@@ -5,6 +5,12 @@
 [![docs](https://img.shields.io/badge/docs-v1.0-blue)](https://docs.gitstream.cm)
 [![issues](https://img.shields.io/github/issues/linear-b/gitstream)](https://github.com/linear-b/gitstream/issues)
 
-#### Documentation 
+## Documentation 
 
 See [https://docs.gitstream.cm](https://docs.gitstream.cm)
+
+## Continuous Merge
+
+**Continuous Merge (CM)** is the practice of automating the merge path by classifying pull requests based on change type, size, and complexity to allow work to flow more efficiently.
+
+![Continuous Merge](assets/ContinuousMerge3l.png)
