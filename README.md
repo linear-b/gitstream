@@ -26,3 +26,5 @@ The next steps are common practice of changing code in repo:
 2. Commit changes  
 3. Push branch to remote repo 
 4. Open Pull Request 
+
+See [examples](https://docs.gitstream.cm/examples/)
