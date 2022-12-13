@@ -1,0 +1,52 @@
+manifest:
+  version: 1.0
+
+automations:
+  show_estimated_time_to_review:
+    if:
+      - true
+    run:
+      - action : add-label@v1
+        args:
+          label: "{{ calc.etr }} min review"
+          color: {{ '00ff00' if (calc.etr >= 20) else ('7B3F00' if (calc.etr >= 5) else '0044ff') }}
+
+  safe_changes:
+    if:
+      - {{ is.doc_formatting or is.doc_update }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'documentation changes: PR approved'
+          color: {{'8A9A5B'}}
+
+      - action: approve@v1
+
+  domain_review:
+    if:
+      - {{ is.domain_change }}
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: [Agusioma]
+
+      - action: add-label@v1
+        args:
+          label: 'domain reviewer assigned'
+          color: {{'8A9A5B'}}
+
+  set_default_comment:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: "Hello there. Thank you for creating a pull request with us. A reviewer will soon get in touch."
+
+
+calc:
+  etr: {{ branch | estimatedReviewTime }}
+is:
+  domain_change: {{ files | match(regex=r/domain\//) | some }}
+  doc_formatting: {{ source.diff.files | isFormattingChange }}
+  doc_update: {{ files | allDocs }}
