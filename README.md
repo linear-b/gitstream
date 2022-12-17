@@ -10,6 +10,10 @@ See [https://docs.gitstream.cm](https://docs.gitstream.cm)
 
 Found a bug? create a new item in the project's [issues](https://github.com/linear-b/gitstream/issues)
 
+### Examples 
+
+See the [automations](automations) direcotry
+
 ### Continuous Merge
 
 **Continuous Merge (CM)** is the practice of automating the merge path by classifying pull requests based on change type, size, and complexity to allow work to flow more efficiently.
