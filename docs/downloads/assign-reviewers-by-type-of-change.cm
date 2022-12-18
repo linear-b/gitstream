@@ -1,0 +1,13 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  review_ui:
+    if:
+      - {{ files | match(regex=r/src\/ui\/.*\.js$/) | some}}
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: [popeye, olive]

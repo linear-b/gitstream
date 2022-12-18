@@ -1,0 +1,22 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  safe_changes:
+    if:
+      - {{ is.formatting or is.docs or is.tests }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'safe-changes'
+      - action: approve@v1
+
+# To simplify the automation, this calculation is placed under a unique YAML key.
+# The result is is assigned to `is.formatting`, `is.docs` and `is.tests` which is 
+# used in the automation above. You can add as many keys as you like.
+is:
+  formatting: {{ source.diff.files | isFormattingChange }}
+  docs: {{ files | allDocs }}
+  tests: {{ files | allTests }}

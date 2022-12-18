@@ -1,2 +1,5 @@
+site/
+.venv/
+overrides/
+.obsidian/
 .DS_Store
-node_modules/

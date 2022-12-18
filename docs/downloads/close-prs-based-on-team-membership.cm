@@ -1,0 +1,16 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  close_ui_changes_by_non_ui:
+    if:
+      - {{ files | match(regex=r/src\/views/) | some }}
+      - {{ pr.author_teams | match(term='ui-team') | nope }}
+    run:
+      - action: add-comment@v1
+        args: 
+          comment: |
+            Please contact a member of `ui-team` team if you need to make changes to files in `src/views`
+      - action: close@v1

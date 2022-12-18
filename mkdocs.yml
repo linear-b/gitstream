@@ -1,0 +1,80 @@
+site_name: gitStream 
+site_description: Documentation of gitStream.
+site_author: Ofer Affias
+copyright: Copyright &copy; 2022 LinearB, Inc.
+repo_url: https://github.com/linear-b/gitstream
+repo_name: linear-b/gitstream
+edit_uri: ""
+
+nav:
+  - Overview: index.md
+  - Guide:
+    - Installation: github-installation.md
+    - Setup: github-app-setup.md
+    - Dry-run mode: dry-run-mode.md
+    - How it works: how-it-works.md
+  - Examples: examples.md
+  - Reference:
+    - The .cm file: cm-file.md
+    - Context variables: context-variables.md
+    - Filter functions: filter-functions.md
+    - Automation actions: automation-actions.md
+  - Troubleshooting: troubleshooting.md
+  - FAQ: faq.md
+
+theme:
+  name: material
+  logo: assets/gitstream-w.webp
+  icon:
+      repo: fontawesome/brands/github
+  # When the user first visits your site, the media queries are evaluated in the order 
+  # of their definition. The first media query that matches selects the default color palette.
+  palette: 
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+  features:
+      - header.autohide
+extra_css:
+  - stylesheets/extra.css
+plugins:
+  - search
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+        remove_comments: true
+markdown_extensions:
+  - admonition
+  - attr_list
+  - markdown.extensions.extra
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.tabbed:
+      alternate_style: true 
+extra:
+  analytics:
+    provider: google
+    property: !ENV ANALYTICS_TAG
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/linear-b/gitstream/
