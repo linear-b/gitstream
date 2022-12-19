@@ -23,7 +23,7 @@ See more [here](context-variables).
 
 ## Filter functions
 
-Filter funstions are essentially callable functions that can be applied to variables. They are called with a pipe operator `|` and can take arguments inside parentheses `( )`. The logic expressions are based on Jinja2 syntax, supported by Nunjucks library.
+Filter functions are essentially callable functions that can be applied to variables. They are called with a pipe operator `|` and can take arguments inside parentheses `( )`. The logic expressions are based on Jinja2 syntax, supported by Nunjucks library.
 
 See more about the Nunjucks built-in filters [here](https://mozilla.github.io/nunjucks/templating.html#builtin-filters), and about gitStream built-in filters [here](filter-functions).
 
@@ -31,7 +31,11 @@ See more about the Nunjucks built-in filters [here](https://mozilla.github.io/nu
 
 Specify the desired automations that are triggered when all conditions are met, read more [here](automation-actions).
 
-The conditions are evaluated on new Pull Requests or changes to the Pull Request. 
+Each automation includes conditions in an `if` section and actions in a `run` section. 
+
+**Conditions:** Multiple conditions can be listed for a single automation, with AND relationship between the conditions, hence all listed conditions must pass to invoke the actions. The conditions are evaluated on new Pull Requests or changes to the Pull Request.
+
+**Actions:** Multiple actions can be listed in a single automation, the actions are invoked one by one.
 
 PRs that are marked as Draft are ignored by default, you can change that, see [`config`](#config) .
 
@@ -102,8 +106,8 @@ Each automation includes its name, and few fields: `if` and `run`.
 |------------|-----------|---------|------------------------------------------------ |
 | `automations`  | Y        | Map     | The automations section root     |
 | `automations.NAME`     | Y | Map | User defined name of the automation, can be any string       |
-| `automations.NAME.if`  | Y | Map | List of conditions                               |
-| `automations.NAME.run` | Y | Map | The automation to run if all conditions are met |
+| `automations.NAME.if`  | Y | Map | List of conditions with AND relationship |
+| `automations.NAME.run` | Y | Map | Actions to run if all conditions are met, invoked one by one |
 
 The `if` field includes the list of conditions. The conditions are checked when a pull request 
 is opened or changed, if all the conditions pass, the automation is executed.
@@ -122,7 +126,7 @@ gitStream supported actions, see [actions](automation-actions).
 
 ### Reusing checks
 
-You can define an accessory section, e.g. `checks`, that defines common conditions, and resue.  
+You can define an accessory section, e.g. `checks`, that defines common conditions, and reuse.  
 
 ```yaml+jinja
 size:
@@ -138,7 +142,10 @@ automations:
       - action: approve@v1
   mark_small_medium:
     if:
+      # Check that the PR is either small or medium size 
       - {{ size.is.small or size.is.medium }}
+      # AND its less than 5 minutes review (estimated) 
+      - {{ branch | estimatedReviewTime <= 5 }}
     run:
       - action: add-label@v1
         args:

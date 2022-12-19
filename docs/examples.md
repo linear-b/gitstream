@@ -111,9 +111,11 @@ automations:
 
 Automatically require 2 reviewers for PRs that have more than 100 lines of code changed under the `src` directory.
 
-This ability can be very useful if you want to have more approvals for certain PRs, but rather than increasing the required approvals for all PRs using GitHub repo settings, it allows to do that only for specific PRs.
+This ability can be very useful if you want to have more approvals for certain PRs, but rather than increasing the required approvals for all PRs using GitHub repo settings, it allows doing that only for specific PRs.
 
-```yaml+jinja
+Multiple conditions in the `if` section has AND relationship and must all be true for the automation to execute.
+
+```yaml+jinja hl_lines="4-6"
 automations:
   double_review:
     if:
@@ -249,7 +251,7 @@ automations:
 
 For example, assume we have an old API `callElvis` we want to switch from to a new API `callGaga`, gitStream can review and trigger a change request automatically when the PR includes use of the deprecated API.
 
-This pattern allows to define best practices in `.cm` code. 
+This pattern allows defining best practices in `.cm` code. 
 
 ![Request changes automatically](screenshots/change_use_deprectaed_api.png)
 
