@@ -218,7 +218,7 @@ Creates a shallow copy of a portion of a given list, filtered down to just the e
 
 </div>
 
-For example, check if all changes but JavaScript files are in tests directory:
+For example, check if all changes, but JavaScript files are in tests directory:
 
 ```yaml+jinja
 {{ files | reject(regex=r/\.js$/) | match(regex=r/tests\//') | every }}
@@ -477,6 +477,8 @@ contributors' percentage of lines in the file, based on `git-blame`.
 
 This function sums all these percentages per user and yield an average percentage of contribution. Then you can use the thresholds to get the right reviewer.
 
+The output lists the Git provider users, e.g., GitHub users, which are mapped from the Git users included in the `git-blame` output. When gitStream cannot map the Git user to a Git provider user it will be dropped from the output list, hence the list may contain less than 100% of the lines.
+
 <div class="filter-details" markdown=1>
 
 | Argument       | Usage    | Type   | Description                                     |
@@ -488,19 +490,19 @@ This function sums all these percentages per user and yield an average percentag
 
 </div>
 
-Example of the filter output:
+Example of the filter output, note the output are GitHub users in the example:
 ```json
 [
-  "popeye <popeye@acme.com>",
-  "olive <olive@acme.com>",
-  "brutus <brutus@acme.com>"
+  "PopeyeUser",
+  "olive_user",
+  "BRUTUS_USER"
 ]
 ```
 
 Get the most significant contributors for the PR files:
 
 ```yaml+jinja
-contributors: {{ repo | rankByGitBlame(gt=50) }}
+contributors: {{ repo | rankByGitBlame(gt=30) }}
 ```
 
 Check if the branch author is a rookie
