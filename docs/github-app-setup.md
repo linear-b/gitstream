@@ -30,6 +30,7 @@ Once installation completes, the following files are added to each of the select
 | File and path        | Customizable | Reason |
 |----------------------|--------------|----------------------------------------|
 | .cm/gitstream.cm     | Y            | Used to specify gitStream automations, you can edit this file |
+| .cm/*.cm     | N            | Any file that ends with `.cm` will be used for automation rules by gitStream |
 | .github/workflows/gitstream.yml | N | Used by gitStream to execute automation in your repo so source code doesn't get to outside services |
 
 ## Set GitHub repo settings
@@ -47,6 +48,6 @@ To make sure gitStream can block PRs from merging under certain conditions, set 
 5. Search for `status checks in the last week for this repository`
 6. Select `gitStream.cm` as required check
 
-![Branch protection rules](screenshots/branch_protection_in_github.png)
+![Branch protection rules](/screenshots/branch_protection_in_github.png)
   
-![Required checks](screenshots/required_checks_in_github.png)
+![Required checks](/screenshots/required_checks_in_github.png)

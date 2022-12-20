@@ -2,7 +2,7 @@
 
 Continuous Merge automation files have a `.cm` extension. In a repository,  gitStream loads and parse the `.cm` directory, which can have multiple automation files, each of which is evaluated independently.
 
-You can edit the `.cm` files and add your own checks and rules. Check out the [Automation examples](examples)
+You can edit the `.cm` files and add your own checks and rules. Check out the [Automation examples](/examples).
 
 ## The .cm directory
 
@@ -19,7 +19,7 @@ Specifically:
 ## Context variables
 
 gitStream includes a collection of variables called contexts. These variable has all the inputs you need to code your automation, including files names and paths, code that was changed or who did the change.
-See more [here](context-variables).
+See more [here](/context-variables).
 
 ## Filter functions
 
@@ -29,7 +29,7 @@ See more about the Nunjucks built-in filters [here](https://mozilla.github.io/nu
 
 ## Automation actions
 
-Specify the desired automations that are triggered when all conditions are met, read more [here](automation-actions).
+Specify the desired automations that are triggered when all conditions are met, read more [here](/automation-actions).
 
 Each automation includes conditions in an `if` section and actions in a `run` section. 
 
@@ -122,7 +122,7 @@ The `run` field includes the automation to execute. It includes the following fi
 
 For `gitstream` engine, the action is specified by: `name@version`
 
-gitStream supported actions, see [actions](automation-actions).
+gitStream supported actions, see [actions](/automation-actions).
 
 ### Reusing checks
 

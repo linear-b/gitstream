@@ -8,9 +8,9 @@ To allow testing and experimenting with new rules, gitStream supports dry-run mo
 
 	When in dry-run mode, changes to the `.cm/gitstream.cm` file are ignored when calculating the conditions to help focus on setting the right automations
 
-![dry-run mode](screenshots/dry-run-mode.png)
+![dry-run mode](/screenshots/dry-run-mode.png)
 
 Once you are satisfied with the results, you can merge the `.cm/gitstream.cm` into the main branch to enable all new changes.
 
-![normal mode](screenshots/normal-mode.png)
+![normal mode](/screenshots/normal-mode.png)
 

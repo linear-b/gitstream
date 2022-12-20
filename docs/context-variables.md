@@ -22,7 +22,7 @@ gitStream includes a collection of variables called contexts.
 
 The following structures are used in the context objects:
 
-- [`BlamePercentage`](#blamepercentage-structure)
+- [`GitBlame`](#gitblamep-structure)
 - :octicons-beaker-24: [`Check`](#check-structure)
 - [`Contributor`](#contributor-structure)
 - [`FileDiff`](#filediff-structure)
@@ -153,7 +153,7 @@ The `repo` context includes metadata related to the repo.
 | `repo.git_activity` | [`GitActivity`](#gitactivity-structure) | Per file and user, the number of lines changed every week for the last 52 weeks |
 | `repo.age` | Integer | Number of days since first commit (of any user) |
 | `repo.author_age` | Integer |  number of days since first commit to this repo |
-| `repo.blame` | [`BlamePercentage`](#blamepercentage-structure) | The percentage each user's lines in a file, the list includes all changed files in the branch. The list is sorted by the `ratio` field |
+| `repo.blame` | [`GitBlame`](#gitblamep-structure) | The percentage each user's lines in a file, the list includes all changed files in the branch. The list is sorted by the `ratio` field |
 | `repo.contributors`  | [`Contributor`](#contributor-structure)  | List of changed files including their relative path |
 
 #### `source`
@@ -166,77 +166,6 @@ The `source` context includes a list of `FileDiff` objects that can be used to g
 
 The source context include all code changes, it is not safe to share it with unknown services.
 
-#### `GitActivity` structure
-
-This structure include per changed file, for every user, the number of lines changed every week for the last 52 weeks.
-
-```json
-{
-  FILE_NAME: # The file name and path
-  { 
-    # The git user identifier (String)
-    GIT_USER: {
-      "week_INDEX": Integer # Number of lines changed that week
-      # ... for the last 52 weeks 
-    }
-  }
-}
-```
-
-For example: 
-
-```json
-{
-  "src/utils/service.js": {
-    "popeye <popeye@acme.com>": {
-      "week_1": 20, 
-      "week_2": 15, 
-      "week_10": 250
-    },
-    "olive <olive@acme.com>": {
-      "week_1": 3, 
-      "week_3": 50, 
-      "week_52": 250
-    }
-  },
-  "README.md": {
-    "popeye <popeye@acme.com>": {
-      "week_2": 15, 
-      "week_3": 10
-    }
-  }
-}
-```
-
-#### `BlamePercentage` structure
-
-For each file, a list of user's blame ratio.
-
-```json
-{
-  FILE_NAME: # The file name and path
-  { 
-    # The git user identifier (String)
-    GIT_USER: Integer, # Precentage 0-100, ratio of user's lines / total lines in file
-  }
-}
-```
-
-For example: 
-
-```json
-{
-  "src/utils/service.js": {
-    "popeye <popeye@acme.com>": 78,
-    "olive <olive@acme.com>": 22,
-  },
-  "README.md": {
-    "popeye <popeye@acme.com>": 13,
-    "olive <olive@acme.com>": 22,
-    "brutus <brutus@acme.com>": 65,
-  }
-}
-```
 
 #### `Check` structure
 
@@ -301,6 +230,78 @@ For example, sum additions in javascript code files:
   "created_at": String, # The time on which the comment was created
   "updated_at": String, # The time on which the comment was last updated
 } 
+```
+
+#### `GitActivity` structure
+
+This structure include per changed file, for every user, the number of lines changed every week for the last 52 weeks.
+
+```json
+{
+  FILE_NAME: # The file name and path
+  { 
+    # The git user identifier (String)
+    GIT_USER: {
+      "week_INDEX": Integer # Number of lines changed that week
+      # ... for the last 52 weeks 
+    }
+  }
+}
+```
+
+For example: 
+
+```json
+{
+  "src/utils/service.js": {
+    "popeye <popeye@acme.com>": {
+      "week_1": 20, 
+      "week_2": 15, 
+      "week_10": 250
+    },
+    "olive <olive@acme.com>": {
+      "week_1": 3, 
+      "week_3": 50, 
+      "week_52": 250
+    }
+  },
+  "README.md": {
+    "popeye <popeye@acme.com>": {
+      "week_2": 15, 
+      "week_3": 10
+    }
+  }
+}
+```
+
+#### `GitBlame` structure
+
+For each file, a list of user's blame ratio.
+
+```json
+{
+  FILE_NAME: # The file name and path
+  { 
+    # The git user identifier (String)
+    GIT_USER: Integer, # Precentage 0-100, ratio of user's lines / total lines in file
+  }
+}
+```
+
+For example: 
+
+```json
+{
+  "src/utils/service.js": {
+    "popeye <popeye@acme.com>": 78,
+    "olive <olive@acme.com>": 22,
+  },
+  "README.md": {
+    "popeye <popeye@acme.com>": 13,
+    "olive <olive@acme.com>": 22,
+    "brutus <brutus@acme.com>": 65,
+  }
+}
 ```
 
 #### `LineComment` structure

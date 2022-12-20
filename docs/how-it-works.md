@@ -98,8 +98,8 @@ In the example above, the diff is performed between commits `H` and `F`.
 
 Eventually, the gitStream app shows the following statuses:  
 
-![Success](screenshots/github_pr_check_pass.png) Success - when the applicable automation finished and PR is good to go 
+![Success](/assets/github_pr_check_pass.png) Success - when the applicable automation finished and PR is good to go 
 
-![Neutral](screenshots/github_pr_check_neutral.png) Neutral - when there aren't any applicable automations for the PR
+![Neutral](/assets/github_pr_check_neutral.png) Neutral - when there aren't any applicable automations for the PR
 
-![Failed](screenshots/github_pr_check_fail.png) Failed - when the applicable automation finished without completion
+![Failed](/assets/github_pr_check_fail.png) Failed - when the applicable automation finished without completion

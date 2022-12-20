@@ -37,7 +37,7 @@ calc:
 <div class="result" markdown>
 
   <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](downloads/label-prs-by-complexity.cm){ .md-button }
+  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/label-prs-by-complexity.cm){ .md-button }
   </span>
 
 </div>
@@ -70,7 +70,7 @@ is:
 
 <div class="result" markdown>
   <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](downloads/approve-safe-changes.cm){ .md-button }
+  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/approve-safe-changes.cm){ .md-button }
   </span>
 </div>
 
@@ -103,7 +103,7 @@ automations:
 
 <div class="result" markdown>
   <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](downloads/mark-prs-without-tests.cm){ .md-button }
+  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/mark-prs-without-tests.cm){ .md-button }
   </span>
 </div>
 
@@ -130,13 +130,13 @@ automations:
 
 <div class="result" markdown>
   <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](downloads/more-approvals-for-complex-changes.cm){ .md-button }
+  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/more-approvals-for-complex-changes.cm){ .md-button }
   </span>
 </div>
 
 ### Assign the relevant reviewers to PRs
 
-When setting `gt` to 50, only those who contributed **more** than 50% of lines overall are selected. Applying `random` will choose one from the list.
+When setting `gt` to 50 which stands for the {==greater-than sign==}: `>`, only those who contributed **more** than 50% of lines overall are selected. Applying `random` will choose one from the list.
 
 ```yaml+jinja hl_lines="8"
 automations:
@@ -151,14 +151,14 @@ automations:
 
 <div class="result" markdown>
   <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](downloads/assign-the-relevant-reviewers-to-prs.cm){ .md-button }
+  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/assign-the-relevant-reviewers-to-prs.cm){ .md-button }
   </span>
 </div>
 
 
 ### Share knowledge
 
-When setting `lt` to 50, only those who contributed **less** than 50% of lines overall are selected. Applying `random` will pick one from the list.
+When setting `lt` to 50, which stands for the {==less-than sign==}: `<`, only those who contributed **less** than 50% of lines overall are selected. Applying `random` will pick one from the list.
 
 ```yaml+jinja hl_lines="8"
 automations:
@@ -173,7 +173,7 @@ automations:
 
 <div class="result" markdown>
   <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](downloads/assigning-non-contributors-to-prs.cm){ .md-button }
+  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/assigning-non-contributors-to-prs.cm){ .md-button }
   </span>
 </div>
 
@@ -207,7 +207,7 @@ automations:
 
 <div class="result" markdown>
   <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](downloads/close-prs-based-on-team-membership.cm){ .md-button }
+  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/close-prs-based-on-team-membership.cm){ .md-button }
   </span>
 </div>
 
@@ -241,7 +241,7 @@ automations:
 
 <div class="result" markdown>
   <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](downloads/assign-mentors-to-new-contributors.cm){ .md-button }
+  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/assign-mentors-to-new-contributors.cm){ .md-button }
   </span>
 </div>
 
@@ -285,6 +285,6 @@ deprecated:
 
 <div class="result" markdown>
   <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](downloads/request-changes-on-deprecated-apis.cm){ .md-button }
+  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/request-changes-on-deprecated-apis.cm){ .md-button }
   </span>
 </div>

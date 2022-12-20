@@ -7,7 +7,7 @@
 Take these three steps to see how gitStream works; later on you can learn about the .cm file, see some automation examples and learn how to create and edit your automation.
 
 1. Get gitStream for free from [GitHub marketplace](https://github.com/marketplace/gitstream-by-linearb)
-2. Add these 2 files [`.cm/gitstream.cm`](downloads/gitstream.cm) and [`.github/workflows/gitstream.yml`](downloads/gitstream.yml) to your repo
+2. Add these 2 files [`.cm/gitstream.cm`](/downloads/gitstream.cm) and [`.github/workflows/gitstream.yml`](/downloads/gitstream.yml) to your repo
 3. Open a new PR to see gitStream in action (You don’t have to merge it)
 
 ## Features
@@ -32,10 +32,10 @@ Take these three steps to see how gitStream works; later on you can learn about 
 
 **Continuous Merge (CM)** is the practice of automating the merge path by classifying pull requests based on change type, size, and complexity to allow work to flow more efficiently.
 
-[learn more about the .cm file](editing-cm-file)
+[learn more about the .cm file](/cm-file)
 
-[automation examples](examples)
+[automation examples](/examples)
 
-![Continuous Merge](assets/ContinuousMerge3l.png#only-light)
-![Continuous Merge](assets/ContinuousMerge3d.png#only-dark)
+![Continuous Merge](/assets/ContinuousMerge3l.png#only-light)
+![Continuous Merge](/assets/ContinuousMerge3d.png#only-dark)
 

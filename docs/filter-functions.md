@@ -33,17 +33,17 @@ The following functions are supported in addition to the built-in functions prov
 
 | Function | Input | Args | Output |
 | --------------- | ------- | ---- |  ---- |
-| [`allDocs`](#alldocs)<br />Checks the list includes only documents | [files](context-variables.md#files) | - | Bool |
-| [`allImages`](#allimages)<br />Checks the list includes only images | [files](context-variables.md#files) | - | Bool |
-| [`allTests`](#alltests)<br />Checks the list includes only tests | [files](context-variables.md#files) | - | Bool |
-| [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes | [branch](context-variables.md#branch-context)| - | Integer |
+| [`allDocs`](#alldocs)<br />Checks the list includes only documents | [files](/context-variables.md#files) | - | Bool |
+| [`allImages`](#allimages)<br />Checks the list includes only images | [files](/context-variables.md#files) | - | Bool |
+| [`allTests`](#alltests)<br />Checks the list includes only tests | [files](/context-variables.md#files) | - | Bool |
+| [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes | [branch](/context-variables.md#branch-context)| - | Integer |
 | [`extensions`](#extensions)<br />Lists all the unique file extensions | [String] | - | [String] |
-| [`explainRankByGitBlame`](#explainrankbygitblame)<br /> Short markdown text explaning rankByGitBlame results | [`repo`](context-variables.md#repo) | `gt`, `lt` | [String] |
-| [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo | [`repo.contributors`](context-variables.md#repo) | String | Bool |
-| [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed | [[`FileDiff` ](context-variables.md#filediff-structure)] | - | Bool |
-| [`matchDiffLines`](#matchdifflines)<br />Match every line in diff | [[`FileDiff` ](context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces` | [Bool] |
-| [`rankByGitActivity`](#rankbygitactivity)<br />Get list of contributors based on `git-commit` activity | [`repo`](context-variables.md#repo) | `gt`, `lt` | [String] |
-| [`rankByGitBlame`](#rankbygitblame)<br />Get list of contributors based on `git-blame` results| [`repo`](context-variables.md#repo) | `gt`, `lt` | [String] |
+| [`explainRankByGitBlame`](#explainrankbygitblame)<br /> Short markdown text explaning rankByGitBlame results | [`repo`](/context-variables.md#repo) | `gt`, `lt` | [String] |
+| [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo | [`repo.contributors`](/context-variables.md#repo) | String | Bool |
+| [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed | [[`FileDiff` ](/context-variables.md#filediff-structure)] | - | Bool |
+| [`matchDiffLines`](#matchdifflines)<br />Match every line in diff | [[`FileDiff` ](/context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces` | [Bool] |
+| [`rankByGitActivity`](#rankbygitactivity)<br />Get list of contributors based on `git-commit` activity | [`repo`](/context-variables.md#repo) | `gt`, `lt` | [String] |
+| [`rankByGitBlame`](#rankbygitblame)<br />Get list of contributors based on `git-blame` results| [`repo`](/context-variables.md#repo) | `gt`, `lt` | [String] |
 
 </div>
 
@@ -145,13 +145,13 @@ Creates a new list populated with the values of the selected attribute of every 
 
 | Argument      | Usage    | Type      | Description                        |
 | ------------- | ---------|-----------|--------------------------------------|
-| -      | Input    | [Object] | The list of objects to map, see [context](21_gitstream-context) for valid inputs               |
+| -      | Input    | [Object] | The list of objects to map, see [context](/context-variables) for valid inputs               |
 | `attr` | Input    | String   | Object attribute to select      |
 | -      | Output   | [Object] | List of the selected object attributes  |
 
 </div>
 
-For example, the `source.diff.files` context holds a list of [`FileDiff` ](context-variables.md#filediff-structure), each has `new_file` attribute. You can create a list of all the new file names by mapping to the `new_file` attribute and then check if there are changes to any `handler.js` file:
+For example, the `source.diff.files` context holds a list of [`FileDiff` ](/context-variables.md#filediff-structure), each has `new_file` attribute. You can create a list of all the new file names by mapping to the `new_file` attribute and then check if there are changes to any `handler.js` file:
 
 ```yaml+jinja
 {{ source.diff.files | map(attr='new_file') | match(term='handler.js') | some }}
@@ -255,7 +255,7 @@ Return `true` if the input list includes only documents based on file extensions
 
 | Argument   | Usage    | Type      | Description                         |
 | -------- | ---------|-----------|------------------------------------------------ |
-| -  | Input    | [`files`](context-variables.md#files)  | The list of changed files with their path     |
+| -  | Input    | [`files`](/context-variables.md#files)  | The list of changed files with their path     |
 | - | Output   | Bool      | `true` if all file extensions are of docs       |
 
 </div>
@@ -274,7 +274,7 @@ Return `true` if the input list includes only images based on file extensions.
 
 | Argument   | Usage    | Type      | Description                                     |
 | -------- | ---------|-----------|------------------------------------------------ |
-| - | Input    | [`files`](context-variables.md#files)  | The list of changed files with their path       |
+| - | Input    | [`files`](/context-variables.md#files)  | The list of changed files with their path       |
 | - | Output   | Bool      | `true` if all file extensions are of images     |
 
 </div>
@@ -293,7 +293,7 @@ Return `true` if the input list includes only tests based on file's path and nam
 
 | Argument | Usage    | Type      | Description                                     |
 | ------ | ---------|-----------|------------------------------------------------ |
-| - | Input   | [`files`](context-variables.md#files)  |The list of changed files with their path        |
+| - | Input   | [`files`](/context-variables.md#files)  |The list of changed files with their path        |
 | - | Output | Bool      | `true` if all file tests based on name and path |
 
 </div>
@@ -313,7 +313,7 @@ For the estimation the model uses additions and deletions statistics grouped by 
 
 | Argument   | Usage    | Type      | Description                                     |
 | -------- | ---------|-----------|------------------------------------------------ |
-| - | Input  | [`branch`](context-variables.md#branch)    | Branch meta data |
+| - | Input  | [`branch`](/context-variables.md#branch)    | Branch meta data |
 | -  | Output  | Integer    | the estimated time for review in minutes |
 
 </div>
@@ -330,7 +330,7 @@ Expects `files` and provide a list of all unique file extensions.
 
 | Argument | Usage    | Type      | Description                                     |
 | ------ | ---------|-----------|------------------------------------------------ |
-| -  | Input    | [`files`](context-variables.md#files)  | The list of changed files with their path       |
+| -  | Input    | [`files`](/context-variables.md#files)  | The list of changed files with their path       |
 | - | Output   | [String]  | List of all unique file extensions              |
 
 </div>
@@ -349,7 +349,7 @@ This filter helps to explain the results of [`rankByGitBlame`](#rankbygitblame),
 
 | Argument       | Usage    | Type   | Description                                     |
 | ------------ | ---------|--------|------------------------------------------------ |
-| -     | Input    | [`repo`](context-variables.md#repo)  | The `repo` context variable  |
+| -     | Input    | [`repo`](/context-variables.md#repo)  | The `repo` context variable  |
 | `lt`     | Input    | Integer  | Filter the user list, keeping those below the specified threshold  |
 | `gt`  | Input  | Integer  | Filter the user list, keeping those above the specified threshold  |
 | -     | Output   | String   | Explaining [`rankByGitBlame`](#rankbygitblame) results in markdown format |
@@ -380,7 +380,7 @@ Return `true` if it's the author first commit in the repo.
 
 | Argument       | Usage    | Type   | Description                                     |
 | ------------ | ---------|--------|------------------------------------------------ |
-| -     | Input    | [`repo.contributors`](context-variables.md#repo)  | List of contributors in the repo |
+| -     | Input    | [`repo.contributors`](/context-variables.md#repo)  | List of contributors in the repo |
 | -     | Input    | String  | The contributor name |
 | -     | Output   | Bool   | `true` if its the first commit of the selected contributor |
 
@@ -407,7 +407,7 @@ If changes in other formats detected, the filter will return `false`.
 
 | Argument       | Usage    | Type   | Description                                     |
 | ------------ | ---------|--------|------------------------------------------------ |
-| -     | Input    | [`source.diff.files`](context-variables.md#source)  | List of file diffs  |
+| -     | Input    | [`source.diff.files`](/context-variables.md#source)  | List of file diffs  |
 | -     | Output   | Bool   | `true` if the all code changes are non functional |
 
 </div>
@@ -454,7 +454,7 @@ Then you can use the thresholds to get the right reviewer.
 
 | Argument       | Usage    | Type   | Description                                     |
 | ------------ | ---------|--------|------------------------------------------------ |
-| -     | Input    | [`repo`](context-variables.md#repo)  | The `repo` context variable  |
+| -     | Input    | [`repo`](/context-variables.md#repo)  | The `repo` context variable  |
 | `weeks`     | Input    | Integer  | The number of last weeks to include |
 | `lt`     | Input    | Integer  | Filter the user list, keeping those below the specified threshold  |
 | `gt`  | Input  | Integer  | Filter the user list, keeping those above the specified threshold  |
@@ -481,7 +481,7 @@ This function sums all these percentages per user and yield an average percentag
 
 | Argument       | Usage    | Type   | Description                                     |
 | ------------ | ---------|--------|------------------------------------------------ |
-| -     | Input    | [`repo`](context-variables.md#repo)  | The `repo` context variable  |
+| -     | Input    | [`repo`](/context-variables.md#repo)  | The `repo` context variable  |
 | `lt`     | Input    | Integer  | Filter the user list, keeping those below the specified threshold  |
 | `gt`  | Input  | Integer  | Filter the user list, keeping those above the specified threshold  |
 | -     | Output   | [String]   | The list of users based on their code score comparison, sorted by rank - first has highest score |
