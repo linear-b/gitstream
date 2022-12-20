@@ -48,7 +48,7 @@ PRs that include only documentation changes are verified and approved by gitStre
 
 ![Approved safe changes](screenshots/approved-safe-changes.png)
 
-```yaml+jinja hl_lines="4"
+```yaml+jinja
 automations:
   safe_changes:
     if:
@@ -220,7 +220,7 @@ Make sure to change the reviewers according to your team members.
 
 ![First weeks](screenshots/first-weeks-example.png)
 
-```yaml+jinja hl_lines="3 15"
+```yaml+jinja
 automations:
   junior:
     if:
