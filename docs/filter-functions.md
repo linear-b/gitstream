@@ -369,8 +369,11 @@ automations:
           reviewers: {{ repo | rankByGitBlame(gt=50) }}
       - action: add-comment@v1
         args:
-          comment: {{ repo | explainRankByGitBlame(gt=50) }}
+          comment: |
+            {{ repo | explainRankByGitBlame(gt=50) }}
 ```
+
+Note the comment starts with `|` and a `new-line` as `explainRankByGitBlame` generates a multiline comment.
 
 #### `isFirstCommit`
 
