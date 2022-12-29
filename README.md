@@ -2,6 +2,10 @@
 
 **gitStream automates your reviews, so you can focus human effort on what matters most.** Not all Pull Requests are the same. Some reviews can be automated, like changes using a specific API (deprecated, sensitive), changes that are non-functional, like docs or tests, or even reformatting code. Automate these reviews to reduce context switches by assigning specific people to review, approve, or even merge simple changes that passed all checks, and more.
 
+### Install
+
+[Install on GitHub](https://github.com/marketplace/gitstream-by-linearb)
+
 ### Documentation 
 
 See [https://docs.gitstream.cm](https://docs.gitstream.cm)
