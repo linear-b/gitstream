@@ -4,10 +4,14 @@ manifest:
   version: 1.0
 
 automations:
-  assign_contributor:
-   if:
-     - true
-   run:
-     - action: add-reviewers@v1
-       args:
-         reviewers: {{ repo | rankByGitBlame(gt=50) | random }}
+  the_right_reviewer:
+    if: 
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            {{ repo | explainRankByGitBlame(gt=25) }}
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ repo | rankByGitBlame(gt=25) | random }}
