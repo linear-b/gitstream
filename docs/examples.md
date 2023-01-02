@@ -77,6 +77,37 @@ is:
 
 ## Review Quality
 
+### Assign the relevant reviewers to PRs
+
+Not every review is equal, getting the right one is improtant to get high quality feedback. Using `rankByGitBlame` or `rankByGitActivity` makes this data driven. 
+
+For example here, when using `rankByGitBlame` and setting `gt` to 25 which stands for the {==greater-than sign==}: `>`, only those who contributed **more** than 25% of lines overall are selected. Applying `random` will choose one from the list. 
+
+```yaml+jinja hl_lines="8"
+automations:
+  the_right_reviewer:
+    if: 
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            {{ repo | explainRankByGitBlame(gt=25) }}
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ repo | rankByGitBlame(gt=25) | random }}
+```
+
+<div class="result" markdown>
+  <span>
+  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/assign-the-relevant-reviewers-to-prs.cm){ .md-button }
+  </span>
+</div>
+
+Using `explainRankByGitBlame` shows the resulting data in the PR comment.
+
+![Suggested reviewers](screenshots/github_suggest_reviewer.png)
+
 ### Mark PRs without tests
 
 PRs that don't have tests changes can be marked automatically.
@@ -133,34 +164,6 @@ automations:
   [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/more-approvals-for-complex-changes.cm){ .md-button }
   </span>
 </div>
-
-### Assign the relevant reviewers to PRs
-
-When setting `gt` to 25 which stands for the {==greater-than sign==}: `>`, only those who contributed **more** than 25% of lines overall are selected. Applying `random` will choose one from the list. The comment by `explainRankByGitBlame` shows the files contributions.
-
-```yaml+jinja hl_lines="8"
-automations:
-  the_right_reviewer:
-    if: 
-      - true
-    run:
-      - action: add-comment@v1
-        args:
-          comment: |
-            {{ repo | explainRankByGitBlame(gt=25) }}
-      - action: add-reviewers@v1
-        args:
-          reviewers: {{ repo | rankByGitBlame(gt=25) | random }}
-```
-
-<div class="result" markdown>
-  <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/assign-the-relevant-reviewers-to-prs.cm){ .md-button }
-  </span>
-</div>
-
-![Suggested reviewers](screenshots/github_suggest_reviewer.png)
-
 
 ### Share knowledge
 

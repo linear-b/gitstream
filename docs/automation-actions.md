@@ -47,6 +47,8 @@ automations:
 
 This action, once triggered, adds a comment to the PR.
 
+This is a manged action, when a PR updates, the existing comments that were added by gitStream are re-evaluated and those that are not applicable are removed.
+
 <div class="filter-details" markdown=1>
 
 | Args       | Usage | Type      | Description                         |
@@ -73,7 +75,7 @@ automations:
 
 This action, once triggered, adds a label to the PR.
 
-This is a manged action, when a PR updates existing labels that were added by gitStream are re-evaluated and those that are not applicable are removed.
+This is a manged action, when a PR updates, the existing labels that were added by gitStream are re-evaluated and those that are not applicable are removed.
 
 <div class="filter-details" markdown=1>
 
