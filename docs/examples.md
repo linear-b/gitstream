@@ -136,17 +136,21 @@ automations:
 
 ### Assign the relevant reviewers to PRs
 
-When setting `gt` to 50 which stands for the {==greater-than sign==}: `>`, only those who contributed **more** than 50% of lines overall are selected. Applying `random` will choose one from the list.
+When setting `gt` to 25 which stands for the {==greater-than sign==}: `>`, only those who contributed **more** than 25% of lines overall are selected. Applying `random` will choose one from the list. The comment by `explainRankByGitBlame` shows the files contributions.
 
 ```yaml+jinja hl_lines="8"
 automations:
-  assign_contributor:
-   if:
-     - true
-   run:
-     - action: add-reviewers@v1
-       args:
-         reviewers: {{ repo | rankByGitBlame(gt=50) | random }}
+  the_right_reviewer:
+    if: 
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            {{ repo | explainRankByGitBlame(gt=25) }}
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ repo | rankByGitBlame(gt=25) | random }}
 ```
 
 <div class="result" markdown>
@@ -154,6 +158,8 @@ automations:
   [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/assign-the-relevant-reviewers-to-prs.cm){ .md-button }
   </span>
 </div>
+
+![Suggested reviewers](screenshots/github_suggest_reviewer.png)
 
 
 ### Share knowledge
