@@ -16,7 +16,7 @@ Found a bug? create a new item in the project's [issues](https://github.com/line
 
 ### Examples 
 
-See the [automations](automations) direcotry
+See the [automations](automations) directory
 
 ## Continuous Merge
 

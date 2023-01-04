@@ -50,7 +50,7 @@ You can edit the `.github/workflows/gitstream.yml` and uncomment the `if` line, 
 jobs:
   gitStream:
     timeout-minutes: 5
-    # uncomment this condition, if you dont want any automation on dependabot PRs
+    # uncomment this condition, if you don't want any automation on dependabot PRs
     if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     name: gitStream workflow automation

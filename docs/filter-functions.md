@@ -38,7 +38,7 @@ The following functions are supported in addition to the built-in functions prov
 | [`allTests`](#alltests)<br />Checks the list includes only tests | [files](/context-variables.md#files) | - | Bool |
 | [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes | [branch](/context-variables.md#branch-context)| - | Integer |
 | [`extensions`](#extensions)<br />Lists all the unique file extensions | [String] | - | [String] |
-| [`explainRankByGitBlame`](#explainrankbygitblame)<br /> Short markdown text explaning rankByGitBlame results | [`repo`](/context-variables.md#repo) | `gt`, `lt` | [String] |
+| [`explainRankByGitBlame`](#explainrankbygitblame)<br /> Short markdown text explaining rankByGitBlame results | [`repo`](/context-variables.md#repo) | `gt`, `lt` | [String] |
 | [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo | [`repo.contributors`](/context-variables.md#repo) | String | Bool |
 | [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed | [[`FileDiff` ](/context-variables.md#filediff-structure)] | - | Bool |
 | [`matchDiffLines`](#matchdifflines)<br />Match every line in diff | [[`FileDiff` ](/context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces` | [Bool] |
@@ -461,7 +461,7 @@ Then you can use the thresholds to get the right reviewer.
 | `weeks`     | Input    | Integer  | The number of last weeks to include |
 | `lt`     | Input    | Integer  | Filter the user list, keeping those below the specified threshold  |
 | `gt`  | Input  | Integer  | Filter the user list, keeping those above the specified threshold  |
-| -     | Output   | [String]   | The list of users based on their code score comparision |
+| -     | Output   | [String]   | The list of users based on their code score comparison |
 
 </div>
 

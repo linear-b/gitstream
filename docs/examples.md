@@ -37,7 +37,7 @@ calc:
 <div class="result" markdown>
 
   <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/label-prs-by-complexity.cm){ .md-button }
+  [:octicons-download-24: Download and add to your repo .cm directory](/downloads/label-prs-by-complexity.cm){ .md-button }
   </span>
 
 </div>
@@ -70,7 +70,7 @@ is:
 
 <div class="result" markdown>
   <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/approve-safe-changes.cm){ .md-button }
+  [:octicons-download-24: Download and add to your repo .cm directory](/downloads/approve-safe-changes.cm){ .md-button }
   </span>
 </div>
 
@@ -79,7 +79,7 @@ is:
 
 ### Assign the relevant reviewers to PRs
 
-Not every review is equal, getting the right one is improtant to get high quality feedback. Using `rankByGitBlame` or `rankByGitActivity` makes this data driven. 
+Not every review is equal, getting the right one is important to get high quality feedback. Using `rankByGitBlame` or `rankByGitActivity` makes this data driven. 
 
 For example here, when using `rankByGitBlame` and setting `gt` to 25 which stands for the {==greater-than sign==}: `>`, only those who contributed **more** than 25% of lines overall are selected. Applying `random` will choose one from the list. 
 
@@ -100,7 +100,7 @@ automations:
 
 <div class="result" markdown>
   <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/assign-the-relevant-reviewers-to-prs.cm){ .md-button }
+  [:octicons-download-24: Download and add to your repo .cm directory](/downloads/assign-the-relevant-reviewers-to-prs.cm){ .md-button }
   </span>
 </div>
 
@@ -134,7 +134,7 @@ automations:
 
 <div class="result" markdown>
   <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/mark-prs-without-tests.cm){ .md-button }
+  [:octicons-download-24: Download and add to your repo .cm directory](/downloads/mark-prs-without-tests.cm){ .md-button }
   </span>
 </div>
 
@@ -161,7 +161,7 @@ automations:
 
 <div class="result" markdown>
   <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/more-approvals-for-complex-changes.cm){ .md-button }
+  [:octicons-download-24: Download and add to your repo .cm directory](/downloads/more-approvals-for-complex-changes.cm){ .md-button }
   </span>
 </div>
 
@@ -182,7 +182,7 @@ automations:
 
 <div class="result" markdown>
   <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/assigning-non-contributors-to-prs.cm){ .md-button }
+  [:octicons-download-24: Download and add to your repo .cm directory](/downloads/assigning-non-contributors-to-prs.cm){ .md-button }
   </span>
 </div>
 
@@ -216,7 +216,7 @@ automations:
 
 <div class="result" markdown>
   <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/close-prs-based-on-team-membership.cm){ .md-button }
+  [:octicons-download-24: Download and add to your repo .cm directory](/downloads/close-prs-based-on-team-membership.cm){ .md-button }
   </span>
 </div>
 
@@ -250,7 +250,7 @@ automations:
 
 <div class="result" markdown>
   <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/assign-mentors-to-new-contributors.cm){ .md-button }
+  [:octicons-download-24: Download and add to your repo .cm directory](/downloads/assign-mentors-to-new-contributors.cm){ .md-button }
   </span>
 </div>
 
@@ -294,6 +294,6 @@ deprecated:
 
 <div class="result" markdown>
   <span>
-  [:octicons-download-24: Download and add to your repo .cm directroy](/downloads/request-changes-on-deprecated-apis.cm){ .md-button }
+  [:octicons-download-24: Download and add to your repo .cm directory](/downloads/request-changes-on-deprecated-apis.cm){ .md-button }
   </span>
 </div>

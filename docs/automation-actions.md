@@ -82,7 +82,7 @@ This is a manged action, when a PR updates, the existing labels that were added 
 | Args       | Usage | Type      | Description                                     |
 | -----------|------|-----|------------------------------------------------ |
 | `label`    | Required |String  | The label text any string can work |
-| `color`    | Optional |String  | The color in hexa, for exmaple: `'FEFEFE'` (you can also add `#` prefix `#FEFEFE`) |
+| `color`    | Optional |String  | The color in hex, for example: `'FEFEFE'` (you can also add `#` prefix `#FEFEFE`) |
 
 </div>
 
@@ -178,7 +178,7 @@ Once triggered, merge the PR if possible. It can set to wait for required checks
 
 | Args       | Usage | Type      | Description                                     |
 | -----------|------|-----|------------------------------------------------ |
-| `wait_for_all_checks`| Optional | Boolean | By default `false`, so only Required checks can block merge, when `true` the action won't merrge even if non-Required check fail  |
+| `wait_for_all_checks`| Optional | Boolean | By default `false`, so only Required checks can block merge, when `true` the action won't merge even if non-Required check fail  |
 | `rebase_on_merge`| Optional |  Boolean   | By default `false`, when merging use rebase mode |
 | `squash_on_merge`| Optional | Boolean   | By default `false`, when merging use squash mode |
 
@@ -247,7 +247,7 @@ automations:
       - action: request-changes@v1
         args:
           comment: |
-            You have used deprected API `oldFetch`, use `newFetch` instead.
+            You have used deprecated API `oldFetch`, use `newFetch` instead.
 ```
 
 #### `require-reviewers`
