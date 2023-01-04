@@ -79,7 +79,7 @@ is:
 
 ### Assign the relevant reviewers to PRs
 
-Not every review is equal, getting the right one is improtant to get high quality feedback. Using `rankByGitBlame` or `rankByGitActivity` makes this data driven. 
+Not every review is equal, getting the right one is important to get high quality feedback. Using `rankByGitBlame` or `rankByGitActivity` makes this data driven. 
 
 For example here, when using `rankByGitBlame` and setting `gt` to 25 which stands for the {==greater-than sign==}: `>`, only those who contributed **more** than 25% of lines overall are selected. Applying `random` will choose one from the list. 
 
