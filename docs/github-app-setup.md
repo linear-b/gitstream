@@ -29,8 +29,7 @@ Once installation completes, the following files are added to each of the select
 
 | File and path        | Customizable | Reason |
 |----------------------|--------------|----------------------------------------|
-| .cm/gitstream.cm     | Y            | Used to specify gitStream automations, you can edit this file |
-| .cm/*.cm     | N            | Any file that ends with `.cm` will be used for automation rules by gitStream |
+| .cm/*.cm     | Y            | Under the repo's `.cm` directory, any file that ends with `.cm` will be used by gitStream to specify automation rules, you can edit these files |
 | .github/workflows/gitstream.yml | N | Used by gitStream to execute automation in your repo so source code doesn't get to outside services |
 
 ## Set GitHub repo settings
