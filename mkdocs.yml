@@ -42,6 +42,7 @@ theme:
         name: Switch to light mode
   features:
       - header.autohide
+      - content.code.copy
 extra_css:
   - stylesheets/extra.css
 plugins:
