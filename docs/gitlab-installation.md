@@ -56,11 +56,9 @@ The required permissions are:
 
 | Permissions           | Reason |
 |----------------------|-------------------------------------------------------|
-| Read API | Access the authenticated user's API and get the relevant events |
-| Read repository | To read the code on monitored repositories |
-| Write repository | To allow gitStream to approve PRs once all conditions are met |
+| Read/Write API | To get notified on MR changes and allow gitStream to approve MRs once all conditions are met |
+| Read repository | To read and check rules over the code changes on monitored repositories |
 | Read user profile | Used to identify users |
-| Read user email | Used to identify users |
 
 ## gitStream actions
 
