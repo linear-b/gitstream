@@ -16,7 +16,7 @@ Take these three steps to see how gitStream works; later on you can learn about 
 === "GitLab"
 
 	1. Install gitStream for free in [GitLab using OAuth](https://api.gitstream.cm/auth/grant/gitlab)
-	2. Add the CI/CD configuration to your repo at this path [`.gitlab-ci.yml`](/downloads/.gitlab-ci.yml) or add its content to your existing file.
+	2. Add the CI/CD configuration to your repo at this path [`.gitlab-ci.yml`](/downloads/gitlab-ci.yml) and rename it to `.gitlab-ci.yml` or add its content to your existing file.
 	3. Add the default automation rules to your repo at this path [`.cm/gitstream.cm`](/downloads/gitstream.cm)
 	4. Open a new PR to see gitStream in action (You don’t have to merge it)
 

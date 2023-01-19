@@ -1,6 +1,6 @@
 # GitLab installation 
 
-**Step 1:** To start using gitStream with GitLab source code hosting, make sure you installed gitStream for [GitLab](https://api.gitstream.cm/auth/grant/gitlab).
+**Step 1:** To start using gitStream with GitLab source code hosting, make sure you installed gitStream for [GitLab with OAuth](https://api.gitstream.cm/auth/grant/gitlab).
 
 !!! note 
 
@@ -15,7 +15,7 @@
 Download the files:
 
 1. [`.cm/gitstream.cm`](/downloads/gitstream.cm)
-2. [`.gitlab-ci.yml`](/downloads/.gitlab-ci.yml)
+2. [`.gitlab-ci.yml`](/downloads/gitlab-ci.yml) (after downloading rename it to `.gitlab-ci.yml`)
 
 Or, copy and a paste their content:
 
@@ -27,7 +27,7 @@ Or, copy and a paste their content:
 === ":octicons-file-code-16: `.gitlab-ci.yml`"
 
     ```yaml+jinja   
-    --8<-- "docs/downloads/.gitlab-ci.yml"
+    --8<-- "docs/downloads/gitlab-ci.yml"
     ```
 
 ## Configuration files
