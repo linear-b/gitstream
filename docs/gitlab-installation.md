@@ -8,16 +8,16 @@
 
 **Step 2:** Once installation completes, add the following 2 configurations files in the root of each of the selected repositories - it should be added to the default branch (usually `master` or `main`).
 
-!!! note 
+!!! attention 
 
-	In GitLab uses a single CI/CD file `.gitlab-ci.yml`, if you already have one in your repository, you should edit it and add the content of the `gitlab-ci.yml` below at the bottom of the file. Otherwise, you can just add the file to your repo.  
+	GitLab uses a single CI/CD file `.gitlab-ci.yml`, if you already have one in your repository, you should edit it and append the content of the `gitlab-ci.yml` below at the bottom of the file. Otherwise, you can just add the file to your repo.  
 
 Download the files:
 
 1. [`.cm/gitstream.cm`](/downloads/gitstream.cm)
 2. [`.gitlab-ci.yml`](/downloads/.gitlab-ci.yml)
 
-Or, if you prefer, copy and paste their content:
+Or, copy and a paste their content:
 
 === ":octicons-file-code-16: `.cm/gitstream.cm`"
 
