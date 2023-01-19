@@ -6,9 +6,20 @@
 
 Take these three steps to see how gitStream works; later on you can learn about the .cm file, see some automation examples and learn how to create and edit your automation.
 
-1. Get gitStream for free from [GitHub marketplace](https://github.com/marketplace/gitstream-by-linearb)
-2. Add these 2 files [`.cm/gitstream.cm`](/downloads/gitstream.cm) and [`.github/workflows/gitstream.yml`](/downloads/gitstream.yml) to your repo
-3. Open a new PR to see gitStream in action (You don’t have to merge it)
+=== "GitHub"
+
+	1. Install gitStream for free from [GitHub marketplace](https://github.com/marketplace/gitstream-by-linearb)
+	2. Add the CI/CD configuration to your repo at this path [`.github/workflows/gitstream.yml`](/downloads/gitstream.yml)
+	3. Add the default automation rules to your repo at this path [`.cm/gitstream.cm`](/downloads/gitstream.cm)
+	4. Open a new PR to see gitStream in action (You don’t have to merge it)
+
+=== "GitLab"
+
+	Coming soon
+
+=== "BitBucket"
+
+	Coming soon
 
 ## Features
 

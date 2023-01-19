@@ -1,6 +1,6 @@
 # How it works
 
-Every time a dev opens a new Pull Request or changes a Pull Request, gitStream is triggered. Next, the `.cm` file is used to determine which automatic actions are invoked based on their conditions. The resulting actions use GitHub API to achieve the desired outcome.
+Every time a dev opens a new Pull Request or changes a Pull Request, gitStream is triggered. Next, the `.cm` file is used to determine which automatic actions are invoked based on their conditions. The resulting actions use Git provider API to achieve the desired outcome.
 
 The next steps are common practice of changing code in repo:
 
@@ -25,21 +25,22 @@ gitGraph
 
 When a new PR is opened, several actors are running:
 
-1. GitHub API
-2. gitStream app which you have installed from the marketplace 
-3. gitStream **workflows** action that was placed in `.github/workflows/gitstream.yml` and pulls another **agent** action from `linear-b/gitstream-github-action@v1`
+1. Git provider API
+2. gitStream **service** which you have installed from the marketplace 
+3. gitStream **CI/CD** script that is placed per the Git provider requirements 
+4. gitStream **agent** that is executed by the CI/CD script
 
 Once a new PR is opened (or changed) the following process occurs:
 
 1. gitStream gets event for the new PR 
-2. gitStream calls the installed action in `.github/workflows/gitstream.yml`
+2. gitStream calls the **CI/CD** script
 3. The installed action pulls and runs gitStream action `linear-b/gitstream-github-action@v1`. 
 4. This action runs locally in the repo and relies on 
 5. The current branch is used to check which automations are valid from `.cm/gitstream.cm`
 6. The action calls to gitStream app with metadata
 7. gitStream app returns results
-8. The list of applicable automations are sent to the gitStream GitHub app
-9. gitStream GitHub app iterates over the automations and invokes each action using GitHub APIs
+8. The list of applicable automations are sent to the gitStream service
+9. gitStream service iterates over the automations and invokes each action using Git provider APIs
 10. The PR gets updated according to the desired automations
 
 At the end, the PR is ready for further review or merge.
@@ -49,22 +50,22 @@ The following diagram describes the flow:
 ``` mermaid
 sequenceDiagram
   autonumber
-  GitHub API->>gitStream app: new PR
-  gitStream app->>gitStream GitHub action: run 
-  activate gitStream GitHub action
-  gitStream GitHub action->>gitStream GitHub action: pull agent action
-  gitStream GitHub action->>gitStream repo agent: run
-  activate gitStream repo agent
-  gitStream repo agent->>gitStream repo agent: parse the `.cm` rules
-  gitStream repo agent->>gitStream app: API calls (metadata read-only)
-  gitStream app->>gitStream repo agent: results
-  gitStream repo agent->>gitStream app: applicable automations
-  deactivate gitStream repo agent
-  deactivate gitStream GitHub action
+  Git provider API->>gitStream app: new PR
+  gitStream app->>gitStream CI/CD script: run 
+  activate gitStream CI/CD script
+  gitStream CI/CD script->>gitStream CI/CD script: pull agent action
+  gitStream CI/CD script->>gitStream in repo agent: run
+  activate gitStream in repo agent
+  gitStream in repo agent->>gitStream in repo agent: parse the `.cm` rules
+  gitStream in repo agent->>gitStream app: API calls (metadata read-only)
+  gitStream app->>gitStream in repo agent: results
+  gitStream in repo agent->>gitStream app: applicable automations
+  deactivate gitStream in repo agent
+  deactivate gitStream CI/CD script
   loop per automation
     loop per action
       gitStream app->>gitStream app: execute action
-      gitStream app->>GitHub API: update PR
+      gitStream app->>Git provider API: update PR
     end
    end
 ```

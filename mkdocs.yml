@@ -9,8 +9,8 @@ edit_uri: ""
 nav:
   - Overview: index.md
   - Guide:
-    - Installation: github-installation.md
-    - Setup: github-app-setup.md
+    - GitHub installation: github-installation.md
+    - GitLab installation: gitlab-installation.md
     - Dry-run mode: dry-run-mode.md
     - How it works: how-it-works.md
   - Examples: examples.md
