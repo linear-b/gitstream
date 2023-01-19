@@ -25,3 +25,4 @@ See the [automations](automations) directory
 **Continuous Merge (CM)** is the practice of automating the merge path by classifying pull requests based on change type, size, and complexity to allow work to flow more efficiently.
 
 ![Continuous Merge](assets/ContinuousMerge3l.png)
+
