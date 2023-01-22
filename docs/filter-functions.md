@@ -108,7 +108,7 @@ Creates a shallow copy of a portion of a given list, filtered down to just the e
 For example, check if all changes to JavaScript files are in tests directory:
 
 ```yaml+jinja
-{{ files | filter(regex=r/\.js$/) | match(regex=r/tests\/) | every }}
+{{ files | filter(regex=r/\.js$/) | match(regex=r/tests\//) | every }}
 ```
 
 For example, check if all changes to JavaScript files are formatting:
