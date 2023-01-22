@@ -16,18 +16,20 @@ Specifically:
 2. The `config` section is defined per `.cm` file
 3. Any accessory expression defined in one file cannot be reused in another file 
 
-## Context variables
+## The .cm files
+
+### Context variables
 
 gitStream includes a collection of variables called contexts. These variable has all the inputs you need to code your automation, including files names and paths, code that was changed or who did the change.
 See more [here](/context-variables).
 
-## Filter functions
+### Filter functions
 
 Filter functions are essentially callable functions that can be applied to variables. They are called with a pipe operator `|` and can take arguments inside parentheses `( )`. The logic expressions are based on Jinja2 syntax, supported by Nunjucks library.
 
 See more about the Nunjucks built-in filters [here](https://mozilla.github.io/nunjucks/templating.html#builtin-filters), and about gitStream built-in filters [here](filter-functions).
 
-## Automation actions
+### Automation actions
 
 Specify the desired automations that are triggered when all conditions are met, read more [here](/automation-actions).
 
@@ -39,7 +41,7 @@ Each automation includes conditions in an `if` section and actions in a `run` se
 
 PRs that are marked as Draft are ignored by default, you can change that, see [`config`](#config) .
 
-## Schema
+### Schema
 
 The following sections are used in `.cm` file to describe the desired automations:
 
@@ -47,7 +49,7 @@ The following sections are used in `.cm` file to describe the desired automation
 - [`config`](#config)
 - [`automations`](#automations)
 
-### `manifest`
+#### `manifest`
 
 The first section in a `gitstream.cm` file is the `manifest`.
 
@@ -65,7 +67,7 @@ The only field required is `version`.
 
 The manifest version field is used to parse the `.cm` file, in the future if breaking changes are introduced to the parser then older automation will be still supported.
 
-### `config`
+#### `config`
 
 The `config` section is optional in `gitstream.cm` file and is used to specify configuration for the way gitStream works.
 
@@ -85,7 +87,7 @@ config:
     - 'ui/src/**/*Model.d.ts'
 ```
 
-### `automations` 
+#### `automations` 
 
 The `automations` section defines the automations and their conditions. 
 

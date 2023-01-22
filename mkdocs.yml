@@ -15,7 +15,7 @@ nav:
     - How it works: how-it-works.md
   - Examples: examples.md
   - Reference:
-    - The .cm file: cm-file.md
+    - The .cm directory and files: cm-file.md
     - Context variables: context-variables.md
     - Filter functions: filter-functions.md
     - Automation actions: automation-actions.md
