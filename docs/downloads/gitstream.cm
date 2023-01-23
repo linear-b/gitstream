@@ -44,9 +44,23 @@ automations:
       - action: add-label@v1
         args:
           label: 'safe-changes'
-      # You can uncomment the following action to get gitStream can to automatically approve 
+      # You can uncomment the following action to get gitStream to automatically approve 
       # such PRs to save reviewers time for such changes.
       # - action: approve@v1
+
+  suggest_the_right_reviewer:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            {{ repo | explainRankByGitBlame(gt=25) }}
+      # You can uncomment the following action to get gitStream to automatically assign
+      # the suggested reviewers
+      # - action: add-reviewers@v1
+      #   args:
+      #     reviewers: {{ repo | rankByGitBlame(gt=25) }}
 
 calc:
   etr: {{ branch | estimatedReviewTime }}
