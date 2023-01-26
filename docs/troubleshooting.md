@@ -71,9 +71,9 @@ Clicking the `Details` button will show more information and context.
 
 You can add this automation to see details on context variable.
 
-### Showing debug information
+## How can I debug expressions and see their content?
 
-For example, to see the list of changed files, use:
+You can dump any context value to the PR comment. For example, to see the list of changed files, use:
 
 ```yaml+jinja
 automations:
@@ -85,6 +85,7 @@ automations:
         args:
           comment: |
             FILES DUMP {{ files | dump | safe }}
+            JS FILES DUMP {{ files | filter(regex=r/\.js$/) | dump | safe }}
 ```
 
 <div class="result" markdown>
