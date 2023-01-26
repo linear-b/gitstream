@@ -69,6 +69,33 @@ Clicking the `Details` button will show more information and context.
 
 ![Check error details](/screenshots/check_syntax_failure_details.png)
 
+You can add this automation to see details on context variable.
+
+### Showing debug information
+
+For example, to see the list of changed files, use:
+
+```yaml+jinja
+automations:
+  show_changed_files:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            FILES DUMP {{ files | dump | safe }}
+```
+
+<div class="result" markdown>
+
+  <span>
+  [:octicons-download-24: Download and add to your repo .cm directory](/downloads/debug.cm){ .md-button }
+  </span>
+
+</div>
+
+
 
 ## gitStream fails with syntax error after adding new rules
 
