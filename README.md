@@ -6,8 +6,6 @@
 
 [Install for GitHub](https://github.com/marketplace/gitstream-by-linearb)
 
-[Install for GitLab](https://api.gitstream.cm/auth/grant/gitlab)
-
 ### Documentation 
 
 See [https://docs.gitstream.cm](https://docs.gitstream.cm)
