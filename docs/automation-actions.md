@@ -122,6 +122,7 @@ This action, once triggered, sets a specific reviewer.
 | -----------|------|-----|------------------------------------------------ |
 | `reviewers` | Required or `team_reviewers` | [String]    | Sets reviewers user name |
 | `team_reviewers` | Required or `reviewers` | [String] | Sets reviewers teams name, without the `@` prefix |
+| `unless_reviewers_set` | Optional | Bool | When `true`, the reviewers are not added if the PR has already assigned reviewers. It is set to `false` by default |
 
 </div>
 
