@@ -9,8 +9,8 @@ Take these three steps to see how gitStream works; later on you can learn about 
 === ":fontawesome-brands-github: GitHub"
 
 	1. Install gitStream for free from [GitHub marketplace](https://github.com/marketplace/gitstream-by-linearb)
-	2. Add this action to your repo here `.github/workflows/gitstream.yml` [Download](/downloads/gitstream.yml){ .md-button }
-	3. Add the default automation rules to your repo here `.cm/gitstream.cm` [Downlaod](/downloads/gitstream.cm){ .md-button }
+	2. Add this action to your repo here `.github/workflows/gitstream.yml` [:octicons-download-24:](/downloads/gitstream.yml){ .md-button }
+	3. Add the default automation rules to your repo here `.cm/gitstream.cm` [:octicons-download-24:](/downloads/gitstream.cm){ .md-button }
 	4. Open a new PR to see gitStream in action (You don’t have to merge it)
 
 === ":fontawesome-brands-gitlab: GitLab"
