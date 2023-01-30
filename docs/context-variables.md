@@ -155,7 +155,7 @@ The `repo` context includes metadata related to the repo.
 | `repo.age` | Integer | Number of days since first commit (of any user) |
 | `repo.author_age` | Integer |  number of days since first commit to this repo |
 | `repo.blame` | [`GitBlame`](#gitblamep-structure) | The percentage each user's lines in a file, the list includes all changed files in the branch. The list is sorted by the `ratio` field |
-| `repo.contributors`  | [`Contributor`](#contributor-structure)  | List of changed files including their relative path |
+| `repo.contributors`  | [`Contributor`](#contributor-structure)  | List of contributors in the repo |
 
 #### `source`
 
