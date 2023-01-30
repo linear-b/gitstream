@@ -10,8 +10,8 @@
 
 Download the files:
 
-1. [`.cm/gitstream.cm`](/downloads/gitstream.cm)
-2. [`.github/workflows/gitstream.yml`](/downloads/gitstream.yml)
+1. Add `.cm/gitstream.cm` [Downlaod](/downloads/gitstream.cm){ .md-button }
+2. Add `.github/workflows/gitstream.yml` [Download](/downloads/gitstream.yml){ .md-button }
 
 Or, if you prefer, copy and paste their content:
 

@@ -9,8 +9,8 @@ Take these three steps to see how gitStream works; later on you can learn about 
 === ":fontawesome-brands-github: GitHub"
 
 	1. Install gitStream for free from [GitHub marketplace](https://github.com/marketplace/gitstream-by-linearb)
-	2. Add the CI/CD configuration to your repo at this path [`.github/workflows/gitstream.yml`](/downloads/gitstream.yml)
-	3. Add the default automation rules to your repo at this path [`.cm/gitstream.cm`](/downloads/gitstream.cm)
+	2. Add this action to your repo here `.github/workflows/gitstream.yml` [Download](/downloads/gitstream.yml){ .md-button }
+	3. Add the default automation rules to your repo here `.cm/gitstream.cm` [Downlaod](/downloads/gitstream.cm){ .md-button }
 	4. Open a new PR to see gitStream in action (You don’t have to merge it)
 
 === ":fontawesome-brands-gitlab: GitLab"
@@ -20,6 +20,7 @@ Take these three steps to see how gitStream works; later on you can learn about 
 === ":fontawesome-brands-bitbucket: BitBucket"
 
 	Coming soon
+
 
 ## Features
 
