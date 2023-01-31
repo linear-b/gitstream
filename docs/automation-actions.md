@@ -259,7 +259,7 @@ This action, once triggered, requires a specific reviewer approval.
 
 | Args       | Usage | Type      | Description                                     |
 | -----------|----|-------|------------------------------------------------ |
-| `reviewers` | Required | [String]    | Sets reviewers user name, merge is blocked till approved by any of the listed users |
+| `reviewers` | Required | [String]    | Sets reviewers user name, merge is blocked till approved by either of the listed users |
 | :octicons-beaker-24: `also_assign` | Optional | Bool    | `true` by default, also assign the specified users as reviewers |
 
 </div>
