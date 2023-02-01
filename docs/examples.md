@@ -144,6 +144,8 @@ Automatically require 2 reviewers for PRs that have more than 100 lines of code 
 
 This ability can be very useful if you want to have more approvals for certain PRs, but rather than increasing the required approvals for all PRs using GitHub repo settings, it allows doing that only for specific PRs.
 
+![First weeks](screenshots/required-check-block-merge.png)
+
 Multiple conditions in the `if` section has AND relationship and must all be true for the automation to execute.
 
 ```yaml+jinja hl_lines="4-6"
@@ -164,6 +166,11 @@ automations:
   [:octicons-download-24: Download and add to your repo .cm directory](/downloads/more-approvals-for-complex-changes.cm){ .md-button }
   </span>
 </div>
+
+!!! note
+
+    gitStream should be set as required check in the repo so it can block merge
+
 
 ### Share knowledge
 
