@@ -2,10 +2,6 @@
 
 **Step 1:** To start using gitStream with GitHub source code hosting, make sure you installed the gitStream app from [GitHub marketplace](https://github.com/marketplace/gitstream-by-linearb).
 
-!!! note 
-
-	gitStream can be installed for one repo, specific repos, or all repos in your organization. We recommend installing for all repositories, as it will also cover new repos you add in the future. You can change this any time if you change your mind.
-
 **Step 2:** Once installation completes, add the following 2 configurations files in the root of each of the selected repos - it should be added to the default branch (usually `master` or `main`).
 
 Download the files:

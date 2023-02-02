@@ -8,10 +8,17 @@ Take these three steps to see how gitStream works; later on you can learn about 
 
 === ":fontawesome-brands-github: GitHub"
 
+
 	1. Install gitStream for free from [GitHub marketplace](https://github.com/marketplace/gitstream-by-linearb)
 	2. Add this action to your repo here `.github/workflows/gitstream.yml` [:octicons-download-24:](/downloads/gitstream.yml){ .md-button }
 	3. Add the default automation rules to your repo here `.cm/gitstream.cm` [:octicons-download-24:](/downloads/gitstream.cm){ .md-button }
-	4. Open a new PR to see gitStream in action (You don’t have to merge it)
+	
+	That's it! Now sit back and watch gitStream automation rules on your next PR (You don’t have to merge it)
+
+	!!! note 
+
+		When installing for GitHub, gitStream can be installed for one repo, specific repos, or all repos in your organization. We recommend installing for **all**, as it will also cover new repos you add in the future. You can change this setting at any time later.
+
 
 === ":fontawesome-brands-gitlab: GitLab"
 

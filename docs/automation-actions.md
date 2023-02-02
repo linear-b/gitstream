@@ -201,10 +201,6 @@ automations:
 
 This action, once triggered, blocks PR merge till the desired reviewers approved the PR. The actions fail the check to prevent the PR for merge.
 
-!!! note
-
-    You should enable branch protection, so GitHub will prevent merging unless the gitStream action check pass successfully. 
-
 <div class="filter-details" markdown=1>
 
 | Args       | Usage | Type      | Description                                     |
@@ -224,6 +220,9 @@ automations:
           approvals: 2
 ```
 
+!!! attention
+
+    To allow this action to block merge, you should enable branch protection, and gitStream has to be set as required check in GitHub.
 
 #### `request-changes`
 
@@ -251,6 +250,11 @@ automations:
             You have used deprecated API `oldFetch`, use `newFetch` instead.
 ```
 
+!!! attention
+
+    To allow this action to block merge, you should enable branch protection, and gitStream has to be set as required check in GitHub.
+
+
 #### `require-reviewers`
 
 This action, once triggered, requires a specific reviewer approval.
@@ -274,3 +278,7 @@ automations:
         args:
           reviewers: ['popeye', 'olive']
 ```
+
+!!! attention
+
+    To allow this action to block merge, you should enable branch protection, and gitStream has to be set as required check in GitHub.
