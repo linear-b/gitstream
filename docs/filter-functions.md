@@ -313,6 +313,12 @@ Test files must include the substring `test` or `spec` in its name or path.
 Returns the estimated review time in minutes based on statistical model.
 For the estimation the model uses additions and deletions statistics grouped by the file types and additional information about the commits and base branch.
 
+!!! note
+
+    The `estimatedReviewTime` filter function calls gitStream app API with the `branch` context to calculate the estimated review time value.
+
+The following files are excluded when calculating this value:
+
 <div class="filter-details" markdown=1>
 
 | Argument   | Usage    | Type      | Description                                     |
@@ -325,6 +331,17 @@ For the estimation the model uses additions and deletions statistics grouped by 
 ```yaml+jinja
 {{ branch | estimatedReviewTime }}
 ```
+
+The following files are automatically excluded from the estimated review time calculation. 
+
+| File type | Filter type | Values| 
+| - | - | - |
+| Data | Extension | `ini` `csv` `xls` `xlsx` `xlr` `doc` `docx` `txt` `pps` `ppt` `pptx` `dot` `dotx` `log` `tar` `rtf` `dat` `ipynb` `po` `profile` `object` `obj` `dxf` `twb` `bcsymbolmap` `tfstate` `pdf` `rbi` `pem` `crt` `svg` `png` `jpeg` `jpg` `ttf` |
+| Data | Regex | `.*dist/.*\.js$` `.*public/assets/.*\.js$` |
+| Lock | Regex | `.*package-lock|packages\.lock|package)\.json$` | 
+| Lock | File | `yarn.lock` `gemfile.lock` `podfile.lock` `cargo.lock` `composer.lock` `pipfile.lock` `gopkg.lock` |
+| Lock | Regex | `.*gradle\.lockfile$` `.*lock\.sbt$` |
+| Pipeline | Regex | `.*ci\.yml$` |
 
 #### `extensions`
 
