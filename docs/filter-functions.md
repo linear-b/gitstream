@@ -264,10 +264,10 @@ Return `true` if the input list includes only documents based on file extensions
 {{ files | allDocs }}
 ```
 
-Doc files extensions are: `md`, `mkdown`, `txt`, `rst`, except for `requirements.txt`. In case you want to exclude more files, use [`reject`](#reject).
+Doc files extensions are: `md`, `mkdown`, `txt`, `rst`, except for `requirements.txt`. In case you want to exclude more files, like all `txt` under `requirements` directory, add another check:
 
 ```yaml+jinja
-{{ files | reject(regex=r/requirements\/dev\.txt$/) | allDocs }}
+{{ (files | allDocs) and (files | match(regex=r/requirements\/.*\.txt$/) | nope ) }}
 ```
 
 #### `allImages`
