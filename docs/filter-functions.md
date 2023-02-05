@@ -260,10 +260,14 @@ Return `true` if the input list includes only documents based on file extensions
 
 </div>
 
+```yaml+jinja
+{{ files | allDocs }}
+```
+
 Doc files extensions are: `md`, `mkdown`, `txt`, `rst`, except for `requirements.txt`. In case you want to exclude more files, use [`reject`](#reject).
 
 ```yaml+jinja
-{{ files | allDocs }}
+{{ files | reject(regex=r/requirements\/dev\.txt$/) | allDocs }}
 ```
 
 #### `allImages`
