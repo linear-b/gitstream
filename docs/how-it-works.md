@@ -2,7 +2,9 @@
 
 Every time a dev opens a new Pull Request or changes a Pull Request, gitStream is triggered. Next, the `.cm` file is used to determine which automatic actions are invoked based on their conditions. The resulting actions use Git provider API to achieve the desired outcome.
 
-The next steps are common practice of changing code in repo:
+## Overview
+
+In general, the next steps are common practice of changing code in repo:
 
 1. Create a feature branch 
 2. Commit changes  
@@ -12,18 +14,18 @@ The next steps are common practice of changing code in repo:
 
 ```mermaid
 gitGraph
-   commit id: "A"
-   commit id: "B"
-   branch feature
-   commit id: "C"
-   commit id: "D"
-   commit id: "E"
-   checkout main
-   commit id: "F"
-   commit id: "G"
+  commit id: "A"
+  commit id: "B"
+  branch feature
+  commit id: "C"
+  commit id: "D"
+  commit id: "E"
+  checkout main
+  commit id: "F"
+  commit id: "G"
 ```
 
-When a new PR is opened, several actors are running:
+When gitStream installed and configured, whenever a new PR is opened, several actors are running:
 
 1. Git provider API
 2. gitStream **service** which you have installed from the marketplace 
@@ -58,7 +60,9 @@ sequenceDiagram
   activate gitStream in repo agent
   gitStream in repo agent->>gitStream in repo agent: parse the `.cm` rules
   gitStream in repo agent->>gitStream app: API calls (metadata read-only)
+  activate gitStream app
   gitStream app->>gitStream in repo agent: results
+  deactivate gitStream app
   gitStream in repo agent->>gitStream app: applicable automations
   deactivate gitStream in repo agent
   deactivate gitStream CI/CD script
@@ -76,24 +80,25 @@ The branch diff is defined as the difference between the current branch and the 
 
 ```mermaid
 gitGraph
-   commit id: "A"
-   commit id: "B"
-   branch feature
-   commit id: "C"
-   commit id: "D"
-   checkout main
-   commit id: "E"
-   commit id: "F"
-   checkout feature
-   merge main
-   commit id: "G"
-   commit id: "H"
-   checkout main
-   commit id: "I"
-   commit id: "J"
+  commit id: "A"
+  commit id: "B"
+  branch feature
+  commit id: "C"
+  commit id: "D"
+  checkout main
+  commit id: "E"
+  commit id: "F"
+  checkout feature
+  merge main
+  commit id: "G"
+  commit id: "H"
+  checkout main
+  commit id: "I"
+  commit id: "J"
 ```
 
 In the example above, the diff is performed between commits `H` and `F`.
+
 
 ## Automation results
 
