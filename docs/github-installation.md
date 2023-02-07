@@ -6,8 +6,8 @@
 
 Download the files:
 
-1. Add `.cm/gitstream.cm` [:octicons-download-24:](/downloads/gitstream.cm){ .md-button }
-2. Add `.github/workflows/gitstream.yml` [:octicons-download-24:](/downloads/gitstream.yml){ .md-button }
+1. Add `.github/workflows/gitstream.yml` [:octicons-download-24:](/downloads/gitstream.yml){ .md-button }
+2. Add `.cm/gitstream.cm` [:octicons-download-24:](/downloads/gitstream.cm){ .md-button }
 
 Or, if you prefer, copy and paste their content:
 
