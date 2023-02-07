@@ -71,10 +71,25 @@ The manifest version field is used to parse the `.cm` file, in the future if bre
 
 The `config` section is optional in `gitstream.cm` file and is used to specify configuration for the way gitStream works.
 
+
+
 | Key         | Required | Type    |  Default | Description                              |
 | ----------- | ---------|---------|----------|------------------------------ |
 | `config`              | N | Map   | - | The config section root                |
 | `config.ignore_files` | N | [String]   | - | Specifies files that will not be included in the context variables |
+
+To control who can change the `*.cm` you can add this rule (and edit the users per your need):
+
+```yaml+jinja title="example"
+automations:
+  cm_review:
+    if:
+      - {{ files | match(regex=r/.cm\/.*.cm$/) | some }}
+    run:
+      - action: require-reviewers@v1
+        args:
+          reviewers: ['popeye']
+```
 
 `config.ignore_files` supports glob pattern matching that contains list of files to ignore, for example:
 
