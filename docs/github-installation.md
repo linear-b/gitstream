@@ -6,21 +6,24 @@
 
 Download the files:
 
-1. Add `.github/workflows/gitstream.yml` [:octicons-download-24:](/downloads/gitstream.yml){ .md-button }
-2. Add `.cm/gitstream.cm` [:octicons-download-24:](/downloads/gitstream.cm){ .md-button }
+1. Download the [GitHub action :octicons-download-24:](/downloads/gitstream.yml){ .md-button } and add to `.github/workflows/gitstream.yml` 
+2. Download the [default rules :octicons-download-24:](/downloads/gitstream.cm){ .md-button } and add to `.cm/gitstream.cm` 
 
-Or, if you prefer, copy and paste their content:
+??? "Or, if you prefer, copy and paste the files content"
 
-=== ":octicons-file-code-16: `.cm/gitstream.cm`"
+    === ":octicons-file-code-16: `.cm/gitstream.cm`"
 
-    ```yaml+jinja
-    --8<-- "docs/downloads/gitstream.cm"
-    ```
-=== ":octicons-file-code-16: `.github/workflows/gitstream.yml`"
+        ```yaml+jinja
+        --8<-- "docs/downloads/gitstream.cm"
+        ```
+    === ":octicons-file-code-16: `.github/workflows/gitstream.yml`"
 
-    ```yaml+jinja   
-    --8<-- "docs/downloads/gitstream.yml"
-    ```
+        ```yaml+jinja   
+        --8<-- "docs/downloads/gitstream.yml"
+        ```
+
+**Next:** Learn how to test and change rules in the [Quick Start](quick-start.md) page.
+
 
 ## Configuration files
 

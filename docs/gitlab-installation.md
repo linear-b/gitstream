@@ -14,21 +14,24 @@
 
 Download the files:
 
-1. [`.cm/gitstream.cm`](/downloads/gitstream.cm)
-2. [`.gitlab-ci.yml`](/downloads/gitlab-ci.yml) (after downloading rename it to `.gitlab-ci.yml`)
+1. Download the [GitLab ci file :octicons-download-24:](/downloads/gitlab-ci.yml){ .md-button } and add to `./.gitlab-ci.yml` 
+2. Download the [default rules :octicons-download-24:](/downloads/gitstream.cm){ .md-button } and add to `.cm/gitstream.cm` 
 
-Or, copy and a paste their content:
 
-=== ":octicons-file-code-16: `.cm/gitstream.cm`"
+??? "Or, if you prefer, copy and paste the files content"
 
-    ```yaml+jinja
-    --8<-- "docs/downloads/gitstream.cm"
-    ```
-=== ":octicons-file-code-16: `.gitlab-ci.yml`"
+    === ":octicons-file-code-16: `.cm/gitstream.cm`"
 
-    ```yaml+jinja   
-    --8<-- "docs/downloads/gitlab-ci.yml"
-    ```
+        ```yaml+jinja
+        --8<-- "docs/downloads/gitstream.cm"
+        ```
+    === ":octicons-file-code-16: `.gitlab-ci.yml`"
+
+        ```yaml+jinja   
+        --8<-- "docs/downloads/gitlab-ci.yml"
+        ```
+
+**Next:** Learn how to test and change rules in the [Quick Start](quick-start.md) page.
 
 ## Configuration files
 

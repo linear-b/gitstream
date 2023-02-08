@@ -10,8 +10,7 @@ Take these three steps to see how gitStream works; later on you can learn about 
 
 
 	1. Install gitStream for free from [GitHub marketplace](https://github.com/marketplace/gitstream-by-linearb)
-	2. Add this action to your repo here `.github/workflows/gitstream.yml` [:octicons-download-24:](/downloads/gitstream.yml){ .md-button }
-	3. Add the default automation rules to your repo here `.cm/gitstream.cm` [:octicons-download-24:](/downloads/gitstream.cm){ .md-button }
+	2. Configure your repository using the [instructions for GitHub](github-installation.md)
 	
 	That's it! Now sit back and watch gitStream automation rules on your next PR (You don’t have to merge it)
 
