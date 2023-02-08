@@ -20,6 +20,7 @@ automations:
       - action: add-label@v1
         args:
           label: 'safe-changes'
+      # - action: approve@v1
 
 calc:
   etr: {{ branch | estimatedReviewTime }}
