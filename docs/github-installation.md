@@ -1,28 +1,22 @@
 # GitHub app installation 
 
-**Step 1:** To start using gitStream with GitHub source code hosting, make sure you installed the gitStream app from [GitHub marketplace](https://github.com/marketplace/gitstream-by-linearb).
+**Step 1 of 3:** Make sure gitStream app is installed from [GitHub marketplace](https://github.com/marketplace/gitstream-by-linearb).
 
-**Step 2:** Once installation completes, add the following 2 configurations files in the root of each of the selected repos - it should be added to the default branch (usually `master` or `main`).
+**Step 2 of 3:** Create a `.cm/gitstream.cm` rules file in your repository default branch (usually `master` or `main`) with the following contents:
 
-Download the files:
+```yaml+jinja
+--8<-- "docs/downloads/gitstream.cm"
+```
 
-1. Download the [GitHub action :octicons-download-24:](/downloads/gitstream.yml){ .md-button } and add to `.github/workflows/gitstream.yml` 
-2. Download the [default rules :octicons-download-24:](/downloads/gitstream.cm){ .md-button } and add to `.cm/gitstream.cm` 
+**Step 3 of 3:** Create a `.github/workflows/gitstream.yml` rules file in your repository default branch (usually `master` or `main`) with the following contents:
 
-??? "Or, if you prefer, copy and paste the files content"
+```yaml+jinja
+--8<-- "docs/downloads/gitstream.yml"
+```
 
-    === ":octicons-file-code-16: `.cm/gitstream.cm`"
+!!! tip "Learn how to test and change rule"
 
-        ```yaml+jinja
-        --8<-- "docs/downloads/gitstream.cm"
-        ```
-    === ":octicons-file-code-16: `.github/workflows/gitstream.yml`"
-
-        ```yaml+jinja   
-        --8<-- "docs/downloads/gitstream.yml"
-        ```
-
-**Next:** Learn how to test and change rules in the [Quick Start](quick-start.md) page.
+    Jump to the [Quick Start](quick-start.md) page.
 
 
 ## Configuration files

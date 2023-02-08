@@ -8,7 +8,6 @@ Take these three steps to see how gitStream works; later on you can learn about 
 
 === ":fontawesome-brands-github: GitHub"
 
-
 	1. Install gitStream for free from [GitHub marketplace](https://github.com/marketplace/gitstream-by-linearb)
 	2. Configure your repository using the [instructions for GitHub](github-installation.md)
 	
