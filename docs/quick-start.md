@@ -34,11 +34,9 @@ You can open a new branch from your main branch, uncomment the default `.cm` rul
 
 Now, still on the new PR, edit also the `README.md` and commit to the branch. When you have a PR with changes to the `.cm` rules, gitStream will switch to dry-run mode. This mode is like a sandbox for testing new automation rules. When you are ready, remove all the changes except the `.cm` changes and merge the PR normally.
 
-!!! note
-
-	Keep reading on [dry-run mode](/dry-run-mode)
-
 Well done! from now on safe changes won't require developer's time to review and approve them.
+
+![Approve safe changes](/screenshots/approved-safe-changes.png)
 
 ## What's next
 
