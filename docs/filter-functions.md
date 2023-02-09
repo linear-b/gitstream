@@ -311,7 +311,7 @@ Test files must include the substring `test` or `spec` in its name or path.
 #### `estimatedReviewTime`
 
 Returns the estimated review time in minutes based on statistical model.
-For the estimation the model uses additions and deletions statistics grouped by the file types and additional information about the commits and base branch.
+The model uses the amount of additions and deletions statistics for each file type with additional information about the commits and base branch.
 
 !!! note
 
