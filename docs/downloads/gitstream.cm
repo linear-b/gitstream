@@ -22,6 +22,18 @@ automations:
           label: 'safe-changes'
       # - action: approve@v1
 
+  the_right_reviewer:
+    if: 
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            {{ repo | explainRankByGitBlame(gt=25) }}
+      # - action: add-reviewers@v1
+      #   args:
+      #     reviewers: {{ repo | rankByGitBlame(gt=25) }}
+
 calc:
   etr: {{ branch | estimatedReviewTime }}
 is:
