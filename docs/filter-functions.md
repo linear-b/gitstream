@@ -375,6 +375,10 @@ This filter helps to explain the results of [`rankByGitBlame`](#rankbygitblame),
 | `gt`  | Input  | Integer  | Filter the user list, keeping those above the specified threshold  |
 | -     | Output   | String   | Explaining [`rankByGitBlame`](#rankbygitblame) results in markdown format |
 
+!!! note 
+
+    Each contributor's result is rounded down to the nearest integer, so the total may add up to less than 100%.
+
 </div>
 
 For example:
