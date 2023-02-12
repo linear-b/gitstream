@@ -14,7 +14,7 @@
 --8<-- "docs/downloads/gitstream.yml"
 ```
 
-!!! tip "Learn how to test and change rule"
+!!! tip "Learn how to add your first rule"
 
     Jump to the [Quick Start](quick-start.md) page.
 
