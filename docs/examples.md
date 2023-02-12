@@ -194,7 +194,32 @@ automations:
 </div>
 
 
+### Mark PRs with deleted files
 
+When files are removed entirely you want to be sure it is not by accident, mark these PRs.
+
+![Deleted label](/screenshots/github-deleted-files.png)
+
+```yaml+jinja
+automations:
+  deleted:
+    if:
+      - {{ has.deleted_files }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'deleted-files'
+          color: '#DF9C04'
+
+has:
+  deleted_files: {{ source.diff.files | map(attr='new_file') | match(term='/dev/null') | some }}
+```
+
+<div class="result" markdown>
+  <span>
+  [:octicons-download-24: Download and add to your repo .cm directory](/downloads/mark-prs-with-deleted-files.cm){ .md-button }
+  </span>
+</div>
 
 
 ## Review Policy
