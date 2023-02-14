@@ -8,7 +8,7 @@
 --8<-- "docs/downloads/gitstream.cm"
 ```
 
-**Step 3 of 3:** Create a `.github/workflows/gitstream.yml` rules file in your repository default branch (usually `master` or `main`) with the following contents:
+**Step 3 of 3:** Create a `.github/workflows/gitstream.yml` action file in your repository default branch (usually `master` or `main`) with the following contents:
 
 ```yaml+jinja
 --8<-- "docs/downloads/gitstream.yml"

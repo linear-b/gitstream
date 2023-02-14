@@ -1,47 +1,47 @@
 # GitLab installation 
 
-**Step 1:** To start using gitStream with GitLab source code hosting, make sure you installed gitStream for [GitLab with OAuth](https://api.gitstream.cm/auth/grant/gitlab).
+**Step 1 of 4:** Create a new `cm` project (repository) in your GitLab group.
 
 !!! note 
 
-	Automation rules by gitStream are executed on behalf of the user account used to install it. We recommend using a new dedicated account in GitLab and authenticate gitStream with it, e.g. `gitstream-cm`.
+    Automation rules by gitStream are executed on behalf of the user account used to install it. We recommend to continue with a new dedicated account (e.g. `gitstream-cm`) in GitLab and install gitStream app with it
 
-**Step 2:** Once installation completes, add the following 2 configurations files in the root of each of the selected repositories - it should be added to the default branch (usually `master` or `main`).
+**Step 2 of 4:** Create a `./.gitlab-ci.yml` CI/CD file in the `cm` repository default branch (usually `master` or `main`) with the following contents:
 
-!!! attention 
+```yaml+jinja
+--8<-- "docs/downloads/gitlab-ci.yml"
+```
 
-	GitLab uses a single CI/CD file `.gitlab-ci.yml`, if you already have one in your repository, you should edit it and append the content of the `gitlab-ci.yml` below at the bottom of the file. Otherwise, you can just add the file to your repo.  
+**Step 3 of 4:** Install gitStream app for [GitLab with OAuth](https://api.gitstream.cm/auth/grant/gitlab).
 
-Download the files:
+**Step 4 of 4:** Create a `.cm/gitstream.cm` rules file in the work repository default branch (usually `master` or `main`) with the following contents:
 
-1. Download the [GitLab ci file :octicons-download-24:](/downloads/gitlab-ci.yml){ .md-button } and add to `./.gitlab-ci.yml` 
-2. Download the [default rules :octicons-download-24:](/downloads/gitstream.cm){ .md-button } and add to `.cm/gitstream.cm` 
+```yaml+jinja
+--8<-- "docs/downloads/gitstream.cm"
+```
 
+!!! tip "Learn how to add your first rule"
 
-??? "Or, if you prefer, copy and paste the files content"
+    Jump to the [Quick Start](quick-start.md) page.
 
-    === ":octicons-file-code-16: `.cm/gitstream.cm`"
-
-        ```yaml+jinja
-        --8<-- "docs/downloads/gitstream.cm"
-        ```
-    === ":octicons-file-code-16: `.gitlab-ci.yml`"
-
-        ```yaml+jinja   
-        --8<-- "docs/downloads/gitlab-ci.yml"
-        ```
-
-**Next:** Learn how to test and change rules in the [Quick Start](quick-start.md) page.
 
 ## Configuration files
 
 Eventually, the following files should exist in each of the selected repos:
 
+In the `cm` repository:
+
+```
+.
+├─ .gitlab-ci.yml
+```
+
+In your target repository:
+
 ```
 .
 ├─ .cm/
 │  └─ gitstream.cm
-├─ .gitlab-ci.yml
 ```
 
 | File and path         | Reason |
