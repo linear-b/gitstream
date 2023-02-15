@@ -69,18 +69,40 @@ The manifest version field is used to parse the `.cm` file, in the future if bre
 
 #### `config`
 
-The `config` section is optional in `gitstream.cm` file and is used to specify configuration for the way gitStream works.
+The `config` section is optional in the `.cm` file and is used to specify configuration for the way gitStream works.
 
+| Key                           | Type     | Default | Description                            |
+| ----------------------------- | ---------|---------| -------------------------------------- |
+| `config`                      | Map      | -       | The config section, applies for the automations defined in the current file |
+| `config.ignore_files` | [String]   | `[]` | Specifies files that will not be included in the context variables |
+| `config.user_mapping` | [String: String] | `[]`    | Key value list of Git user detailes and Git provider account names  |
 
+`config.user_mapping` accepts list of key value strings.
 
-| Key         | Required | Type    |  Default | Description                              |
-| ----------- | ---------|---------|----------|------------------------------ |
-| `config`              | N | Map   | - | The config section root                |
-| `config.ignore_files` | N | [String]   | - | Specifies files that will not be included in the context variables |
+For example, to map confusing Git user into specific account and dump some old accounts:
+
+```yaml title="user_mapping example"
+config:
+  user_mapping:
+    - 'Popeye Man <popeye@invalid.com>': 'popeye-the-salyor-man'
+    - 'Popeye Man <popeye2@invalid.com>': 'popeye-the-salyor-man'
+    - 'Popeye': null
+```
+
+`config.ignore_files` supports glob pattern matching that contains list of files to ignore, for example:
+
+```yaml title="ignore_files example"
+config:
+  ignore_files:
+    - 'yarn.lock'
+    - 'package-lock.json'
+    - 'openapi.json'
+    - 'ui/src/**/*Model.d.ts'
+```
 
 To control who can change the `*.cm` you can add this rule (and edit the users per your need):
 
-```yaml+jinja title="example"
+```yaml+jinja 
 automations:
   cm_review:
     if:
@@ -90,18 +112,6 @@ automations:
         args:
           reviewers: ['popeye']
 ```
-
-`config.ignore_files` supports glob pattern matching that contains list of files to ignore, for example:
-
-```yaml+jinja
-config:
-  ignore_files:
-    - 'yarn.lock'
-    - 'package-lock.json'
-    - 'openapi.json'
-    - 'ui/src/**/*Model.d.ts'
-```
-
 #### `automations` 
 
 The `automations` section defines the automations and their conditions. 
