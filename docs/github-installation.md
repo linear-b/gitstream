@@ -18,6 +18,29 @@
 
     Jump to the [Quick Start](quick-start.md) page.
 
+## Repository settings
+
+!!! note
+
+    To get the full potential using gitStream, you need to set it as a required check.
+
+!!! attention
+
+    To be able to select `gitStream.cm` as required check it should run at least once in the repo. Make sure to open at least 1 PR before doing this setting.
+
+
+To make sure gitStream can block PRs from merging under certain conditions, set the following:
+
+1. Go to repo `settings`
+2. On the left panel select `Code and automation` > `Branches` 
+3. Set `Branch protection rules` for your desired branch 
+4. Enable `Require status checks to pass before merging`
+5. Search for `status checks in the last week for this repository`
+6. Select `gitStream.cm` as required check
+
+![Branch protection rules](/screenshots/branch_protection_in_github.png)
+  
+![Required checks](/screenshots/required_checks_in_github.png)
 
 ## Configuration files
 
@@ -48,27 +71,3 @@ The required permissions are:
 | Read access to administration, issues, and metadata | To read the code on monitored repositories |
 | Read and write access to actions, checks, pull requests, and workflows | Trigger workflows, create and update pull requests and their checks, and modify workflow files |
 | User email | Used to identify users |
-
-## Repository settings
-
-!!! note
-
-    To get the full potential using gitStream, you need to set it as a required check.
-
-!!! attention
-
-    To be able to select `gitStream.cm` as required check it should run at least once in the repo. Make sure to open at least 1 PR before doing this setting.
-
-
-To make sure gitStream can block PRs from merging under certain conditions, set the following:
-
-1. Go to repo `settings`
-2. On the left panel select `Code and automation` > `Branches` 
-3. Set `Branch protection rules` for your desired branch 
-4. Enable `Require status checks to pass before merging`
-5. Search for `status checks in the last week for this repository`
-6. Select `gitStream.cm` as required check
-
-![Branch protection rules](/screenshots/branch_protection_in_github.png)
-  
-![Required checks](/screenshots/required_checks_in_github.png)

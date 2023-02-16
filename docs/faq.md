@@ -51,3 +51,7 @@ Get a plug-in that enable modelines, popular ones are:
 Go to our issues page and check if there are any similar issues already reported, if not create a new issue with all the details so we can take a look.
 
 Found a bug? Create a new item in the [project's issues](https://github.com/linear-b/gitstream/issues)
+
+## How long is gitStream going to be free and is there limitations to the free version?
+
+gitStream is completely free, we plan to introduce paid packages and a business model in the future. There will always be free package.
