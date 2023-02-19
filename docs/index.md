@@ -8,7 +8,7 @@ Take these three steps to see how gitStream works; later on you can learn about 
 
 === ":fontawesome-brands-github: GitHub"
 
-	1. Install gitStream for free from [GitHub marketplace](https://github.com/marketplace/gitstream-by-linearb)
+	1. Install gitStream for free in [GitHub](https://github.com/apps/gitstream-cm/installations/new)
 	2. Configure your repository using the [instructions for GitHub](github-installation.md)
 	
 	That's it! Now sit back and watch gitStream automation rules on your next PR (You don’t have to merge it)
