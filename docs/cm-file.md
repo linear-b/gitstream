@@ -120,6 +120,24 @@ config:
     - 'Popeye': null
 ```
 
+When using `rankByGitBlame` to assign reviewers automatically with `add-reviewers@v1` then mapping users to `null` is a way to prevent the automatic mapping in certain cases, like in your example contributors that are not longer part of the team.
+
+On the other hand, when using `explainRankByGitBlame` with `add-comment@v1` it still shows these users details in the PR comment suggestion as this info might be valuable by itself.
+
+```yaml+jinja
+- action: add-reviewers@v1
+  args: # (1)
+    reviewers: {{ repo | rankByGitBlame(gt=25) }} 
+
+- action: add-comment@v1 
+  args: # (2)
+    comment: |
+      {{ repo | explainRankByGitBlame(gt=25) }} 
+```
+
+1.  `rankByGitBlame` will drop `null` users
+2.  `explainRankByGitBlame` will NOT drop `null` users
+
 ##### `config.ignore_files` 
 
 `config.ignore_files` supports glob pattern matching that contains list of files to ignore, for example:
