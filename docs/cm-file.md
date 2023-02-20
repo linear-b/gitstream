@@ -81,7 +81,7 @@ The `config` section is optional in the `.cm` file and is used to specify config
 
 For example, to map confusing Git user into specific account and dump some old accounts:
 
-```yaml title="user_mapping example"
+```yaml+jinja title="example"
 config:
   user_mapping:
     - 'Popeye Man <popeye@invalid.com>': 'popeye-the-salyor-man'
