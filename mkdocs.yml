@@ -13,6 +13,7 @@ nav:
     - Quick start: quick-start.md
     - Dry-run mode: dry-run-mode.md
     - How it works: how-it-works.md
+    - The syntax: cm-syntax.md
   - Examples: examples.md
   - Reference:
     - The .cm directory and files: cm-file.md
