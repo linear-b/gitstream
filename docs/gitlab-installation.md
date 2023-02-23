@@ -6,6 +6,10 @@
 
     Automation rules by gitStream are executed on behalf of the user account used to install it. We recommend to continue with a new dedicated account (e.g. `gitstream-cm`) in GitLab and install gitStream app with it. The service acocunt has to have `Maintainer`  role.
 
+!!! attention
+
+    GitLab runner v15 or higher are supported
+
 **Step 2 of 4:** Create a `./.gitlab-ci.yml` CI/CD file in the `cm` repository default branch (usually `master` or `main`) with the following contents:
 
 ```yaml+jinja
