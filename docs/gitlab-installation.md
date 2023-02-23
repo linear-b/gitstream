@@ -71,9 +71,9 @@ The required permissions are:
 
 Automation rules by gitStream are executed on behalf of the user account used to install it. We recommend using a new dedicated account in GitLab for installing gitStream, e.g. `gitstream`
 
-Since GitLab doesn't support a bot entity, some gitStream actions are annotated with special watermark to be able to tell if those actions were made by gitStream or by the user, in case a real user account was used to install gitStream. 
+Since GitLab doesn't support a bot entity, some gitStream actions are annotated with a special watermark to be able to tell if those actions were made by gitStream or by the user, in case a real user account was used to install gitStream. 
 
-The water mark is added as follows:
+The watermark is added as follows:
 
 | Action  | Field   | Watermark |
 | ------- | ------- | --------- |
