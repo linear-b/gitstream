@@ -364,7 +364,9 @@ For example, check that only one file type was changed:
 
 #### `explainRankByGitBlame`
 
-This filter helps to explain the results of [`rankByGitBlame`](#rankbygitblame), the output is in Markdown format that can be used in a PR comment.
+This filter helps to explain the results of [`rankByGitBlame`](#rankbygitblame), the output is in Markdown format that can be used in a PR comment. 
+
+The output lists the Git provider users, e.g., GitHub users, which are mapped from the Git users included in the `git-blame` output. Git users that could not be automatically mapped are marked with `*`. To map these users, you can add `user_mapping` see instructions [here](/cm-file#config).
 
 <div class="filter-details" markdown=1>
 
