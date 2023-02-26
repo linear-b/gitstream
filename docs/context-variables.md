@@ -104,7 +104,7 @@ The branch context doesn't include any source code, but only related metadata.
 
 Example for using `branch.name` and `branch.author` to automatically approve and merge version bumps.
 
-```
+```yaml+jinja
 automations:
   dependabot:
     if:
@@ -129,7 +129,7 @@ The `files` context includes the list of changed files in the branch compared to
 |---------|-----------|------------------------ |
 | `files` | [String]  | List of all changed files with their full path |
 
-For example, a typical `files` context should look like: 
+For example, a typical `files` context can look like this: 
 
 ```json
 [
@@ -139,6 +139,24 @@ For example, a typical `files` context should look like:
   "src/index.js",
   "docs/examples.md"
 ]
+```
+
+Example for checking if certain changes are made:
+
+```yaml+jinja
+automations:
+  ui_review:
+    if:
+      - {{ files | match(list=ui_templates_files) | some }}
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: [GitHubUser1, GitHubUser2]
+
+ui_templates_files:
+  - resources/app/ui_template.yml
+  - resources/app/role_template.yml
+  - resources/app/account_template.yml
 ```
 
 #### `pr`
@@ -162,6 +180,24 @@ The `pr` context includes metadata related to the pull request.
 | `pr.status` | String | The PR status: `open`, `requested-changes`, `approved`, `merged` |
 | `pr.title` | String | The PR title |
 | `pr.updated_at` | String | The date and time the PR was last updated |
+
+Example for checking the PR title includes a Jira ticket:
+
+```yaml+jinja
+automations:
+  check_jira_ticket:
+    if:
+      - {{ not has.jira_ticket }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "missing-ticket"
+          color: 'F6443B'
+
+has:
+  jira_ticket: {{ pr.title | includes(regex=r/^\[?\w{3,4}-\d{1,6}\]?(\s|-|_).{20,}$/) }}
+```
+
 
 #### `repo`
 
