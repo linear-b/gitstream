@@ -2,11 +2,11 @@
 
 **Step 1 of 4:** Create a new `cm` project (repository) in your GitLab group.
 
-!!! note 
+!!! tip 
 
     Automation rules by gitStream are executed on behalf of the user account used to install it. We recommend to continue with a new dedicated account (e.g. `gitstream-cm`) in GitLab and install gitStream app with it. The service acocunt has to have `Maintainer`  role.
 
-!!! attention
+!!! warning
 
     GitLab runner v15 or higher are supported
 
