@@ -68,6 +68,12 @@ jobs:
 
 gitStream check run can fail from different reasons, and these are shown in the check result. 
 
+#### Missing workflow file
+
+When it says `gitStream.cm Skipped — gitStream workflow file not found`, it means that the GitHub action was not found, check again that you have this file in your rpeository root: `.github/workflows/gitstream.yml`, see instructions on [GitHub installation](/github-installation.md).
+
+#### Syntax error in the cm files
+
 ![Check failure](screenshots/check_syntax_failure.png)
 
 Clicking the `Details` button will show more information and context.
