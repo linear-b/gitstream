@@ -102,6 +102,25 @@ The `branch` context contains info regarding the branch changes compared to the 
 
 The branch context doesn't include any source code, but only related metadata.
 
+Example for using `branch.name` and `branch.author` to automatically approve and merge version bumps.
+
+```
+automations:
+  dependabot:
+    if:
+      - {{ branch.name | includes(term="dependabot") }}
+      - {{ branch.author | includes(term="dependabot") }}
+    run:
+      - action: approve@v1
+      - action: add-label@v1
+        args:
+          label: "approved-dependabot"
+      - action: merge@v1
+        args:
+          wait_for_all_checks: true
+          squash_on_merge: true
+```
+
 #### `files`
 
 The `files` context includes the list of changed files in the branch compared to the main branch.
