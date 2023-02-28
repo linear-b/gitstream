@@ -29,14 +29,15 @@ Take these three steps to see how gitStream works; later on you can learn about 
 
 ## Features
 
-**Building Custom Rules**
+**📐  Building Custom Rules**
 
 - PR Complexity 
 - Multiple sources
 - Code change variables  
 - Branch details & history
 
-**gitStream engine**
+
+**🤖  gitStream engine**
 
 - Auto-merge PRs
 - Custom PR labels
