@@ -1,10 +1,14 @@
 # CM Syntax
 
-Taking the basic `safe-changes` example blow, every cm file has to have `automations` section. 
+gitStream CM syntax defines a powerful and flexible language that enables users to write automation rules and customize their workflows. In this guide, we'll walk you through the basics of CM syntax and provide examples to help you get started.
 
-In it, you have dictionaries that define automation rules, you can name each automation rule as you desire. In the example below, `safe_changes` is a free form text. You can change it to any valid YAML string.
+Every CM file must have a single `automations` section, which is where you define your automation rules. In this section, you can create dictionaries that specify the conditions and actions of your automation rules. You can name each automation rule as you desire, making it easy to keep track of different rules in your file. 
 
-You can also define an accessory section, with common variables and expression, to simplify the automation rule readability and reuse it in different rules in the same file. In the example below we have defined `is.formatting`, `is.docs` and `is.tests`.
+In the example below, `safe_changes` is an automation. You can name each automation rule as you desire. In the example below, `safe_changes` can have any other name you like as long as it is a valid YAML string.
+
+You can also define user defined accessory sections. These sections can contain common variables and expressions that you can use to simplify your automation rule syntax and reuse it in different rules within the same file. This can help make your automation rules more readable and maintainable.
+
+In the example below we have defined `is.formatting`, `is.docs` and `is.tests`.
 
 ```yaml+jinja
 automations:
