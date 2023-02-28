@@ -1,5 +1,7 @@
 # GitHub app installation 
 
+## Installation
+
 **Step 1 of 4:** Make sure gitStream app is installed in [GitHub](https://github.com/apps/gitstream-cm/installations/new).
 
 **Step 2 of 4:** Create a `.cm/gitstream.cm` rules file in your repository default branch (usually `master` or `main`) with the following contents:

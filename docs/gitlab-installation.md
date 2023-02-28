@@ -12,6 +12,8 @@
 
     The follwoing actions are supported: `add-comment`, `add-label`, `add-labels`, `add-reviewers`, `approve`, `close`, and `merge`.
 
+## Installation
+
 **Step 1 of 4:** Create a new `cm` project (repository) in your GitLab group.
 
 !!! tip 
