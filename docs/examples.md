@@ -329,3 +329,11 @@ deprecated:
   [:octicons-download-24: Download and add to your repo .cm directory](/downloads/request-changes-on-deprecated-apis.cm){ .md-button }
   </span>
 </div>
+
+## More examples
+
+More examples can be found in the [gitStream repository](https://github.com/linear-b/gitstream/tree/main/automations).
+
+!!! tip
+
+    You can boost your GitHub reputation with your new automation rule - open a PR and add it to the [gitStream repository](https://github.com/linear-b/gitstream/tree/main/automations)
