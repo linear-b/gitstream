@@ -1,35 +1,24 @@
 # GitHub app installation 
 
-**Step 1 of 3:** Make sure gitStream app is installed in [GitHub](https://github.com/apps/gitstream-cm/installations/new).
+**Step 1 of 4:** Make sure gitStream app is installed in [GitHub](https://github.com/apps/gitstream-cm/installations/new).
 
-**Step 2 of 3:** Create a `.cm/gitstream.cm` rules file in your repository default branch (usually `master` or `main`) with the following contents:
+**Step 2 of 4:** Create a `.cm/gitstream.cm` rules file in your repository default branch (usually `master` or `main`) with the following contents:
 
 ```yaml+jinja
 --8<-- "docs/downloads/gitstream.cm"
 ```
 
-**Step 3 of 3:** Create a `.github/workflows/gitstream.yml` action file in your repository default branch (usually `master` or `main`) with the following contents:
+**Step 3 of 4:** Create a `.github/workflows/gitstream.yml` action file in your repository default branch (usually `master` or `main`) with the following contents:
 
 ```yaml+jinja
 --8<-- "docs/downloads/gitstream.yml"
 ```
 
-!!! tip "Learn how to add your first rule"
+**Step 4 of 4:** To allow gitStream blocking PRs from merging under certain conditions, set the following:
 
-    Jump to the [Quick Start](quick-start.md) page.
-
-## Repository settings
-
-!!! note
-
-    To get the full potential using gitStream, you need to set it as a required check.
-
-!!! attention
+!!! tip
 
     To be able to select `gitStream.cm` as required check it should run at least once in the repo. Make sure to open at least 1 PR before doing this setting.
-
-
-To make sure gitStream can block PRs from merging under certain conditions, set the following:
 
 1. Go to repo `settings`
 2. On the left panel select `Code and automation` > `Branches` 
@@ -41,6 +30,11 @@ To make sure gitStream can block PRs from merging under certain conditions, set 
 ![Branch protection rules](/screenshots/branch_protection_in_github.png)
   
 ![Required checks](/screenshots/required_checks_in_github.png)
+
+
+## Next steps
+
+To learn how to add your first rule, jump to the [Quick Start](quick-start.md) page.
 
 ## Configuration files
 
