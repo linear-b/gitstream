@@ -1,14 +1,22 @@
 # GitLab installation 
 
+!!! warning
+
+    Please note that the GitLab support feature is still in beta, which means that the feature set is incomplete and subject to changes. There may be some bugs or unexpected behavior that we haven't caught yet. Please bear with us as we continue to add missing functionality and refine it.
+
+!!! warning
+
+    GitLab runner v15 or higher are supported
+
+!!! warning
+
+    The follwoing actions are supported: `add-comment`, `add-label`, `add-labels`, `add-reviewers`, `approve`, `close`, and `merge`.
+
 **Step 1 of 4:** Create a new `cm` project (repository) in your GitLab group.
 
 !!! tip 
 
     Automation rules by gitStream are executed on behalf of the user account used to install it. We recommend to continue with a new dedicated account (e.g. `gitstream-cm`) in GitLab and install gitStream app with it. The service acocunt has to have `Maintainer`  role.
-
-!!! warning
-
-    GitLab runner v15 or higher are supported
 
 **Step 2 of 4:** Create a `./.gitlab-ci.yml` CI/CD file in the `cm` repository default branch (usually `master` or `main`) with the following contents:
 
@@ -23,6 +31,10 @@
 ```yaml+jinja
 --8<-- "docs/downloads/gitstream.cm"
 ```
+
+!!! note 
+
+    When you connect gitStream, webhooks will be installed in all of your repositories. However, automation rules will only be applied to the repositories for which you have added such rules. As a result, the cm repository pipeline will display activity for all connected repositories. If you want to minimize pipeline usage, you can manually remove the installed webhooks from repositories that you don't need.
 
 !!! tip "Learn how to add your first rule"
 
