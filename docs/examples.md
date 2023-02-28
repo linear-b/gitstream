@@ -81,7 +81,7 @@ is:
 
 With gitStream you can define your sensitive areas, set reviewers, while allowing faster merge time for non-sensitive changes.
 
-The `nope` filter is used to make sure no change is in a senstive file.
+The `nope` filter is used to make sure no change is in a sensitive file.
 
 !!! tip
 
@@ -342,6 +342,24 @@ This pattern allows defining best practices in `.cm` code.
 ![Request changes automatically](screenshots/change_use_deprectaed_api.png)
 
 ```yaml+jinja
+automations:
+  catch_deprecated_components:
+    if:
+      - {{ source.diff.files | matchDiffLines(regex=r/callElvis/) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'deprecated-component'
+          color: '#FF0000'
+      - action: request-changes@v1
+        args:
+          comment: |
+            you have used deprecated API, use `callingGaga` instead
+```
+
+gitStream supports iterators over arrays and dictionaries, so you can also make it more general:
+
+```yaml+jinja hl_lines="2 16 19"
 automations:
   {% for item in deprecated %}
   # Automation names should be unique, therefore the iteration number postfix
