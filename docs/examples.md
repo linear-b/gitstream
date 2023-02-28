@@ -77,6 +77,51 @@ is:
 
 ## Review Quality
 
+### Like CODEOWNERS but better
+
+With gitStream you can define your sensitive areas, set reviewers, while allowing faster merge time for non-sensitive changes.
+
+The `nope` filter is used to make sure no change is in a senstive file.
+
+!!! tip
+
+    You can also use regex instead of normal strings, see [here](filter-functions/#named-arguments)
+
+```yaml+jinja hl_lines="4"
+automations:
+  approve_non_sensitive:
+    if:
+      - {{ files | match(list=sensitive) | nope }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'non-sensitive'
+          color: '#2CA44E'
+      - action: approve@v1
+  require_review:
+    if:
+      - {{ files | match(list=sensitive) | some }}
+    run:
+      - action: add-reviewers@v1
+        args:
+          team_reviewers: ['a-team']
+      - action: set-required-approvals@v1
+        args:
+          approvals: 1
+
+sensitive:
+  - src/app/auth/
+  - src/app/routing/
+  - src/app/resources/
+```
+
+<div class="result" markdown>
+  <span>
+  [:octicons-download-24: Download and add to your repo .cm directory](/downloads/define-sensitive-code-areas.cm){ .md-button }
+  </span>
+</div>
+
+
 ### Assign the relevant reviewers to PRs
 
 Not every review is equal, getting the right one is important to get high quality feedback. Using `rankByGitBlame` or `rankByGitActivity` makes this data driven. 

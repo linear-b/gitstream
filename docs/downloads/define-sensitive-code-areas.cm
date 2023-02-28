@@ -1,0 +1,30 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  approve_non_sensitive:
+    if:
+      - {{ files | match(list=sensitive) | nope }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'non-sensitive'
+          color: '#2CA44E'
+      - action: approve@v1
+  require_review:
+    if:
+      - {{ files | match(list=sensitive) | some }}
+    run:
+      - action: add-reviewers@v1
+        args:
+          team_reviewers: ['a-team']
+      - action: set-required-approvals@v1
+        args:
+          approvals: 1
+
+sensitive:
+  - src/app/auth/
+  - src/app/routing/
+  - src/app/resources/
