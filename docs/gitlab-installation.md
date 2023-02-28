@@ -26,15 +26,15 @@
 
 **Step 3 of 4:** Install gitStream app for [GitLab with OAuth](https://api.gitstream.cm/auth/grant/gitlab).
 
+!!! note 
+
+    When you connect gitStream, webhooks will be installed in all of your repositories. However, automation rules will only be applied to the repositories for which you have added such rules. As a result, the cm repository pipeline will display activity for all connected repositories. If you want to minimize pipeline usage, you can manually remove the installed webhooks from repositories that you don't need.
+
 **Step 4 of 4:** Create a `.cm/gitstream.cm` rules file in the work repository default branch (usually `master` or `main`) with the following contents:
 
 ```yaml+jinja
 --8<-- "docs/downloads/gitstream.cm"
 ```
-
-!!! note 
-
-    When you connect gitStream, webhooks will be installed in all of your repositories. However, automation rules will only be applied to the repositories for which you have added such rules. As a result, the cm repository pipeline will display activity for all connected repositories. If you want to minimize pipeline usage, you can manually remove the installed webhooks from repositories that you don't need.
 
 !!! tip "Learn how to add your first rule"
 
