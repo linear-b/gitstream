@@ -64,6 +64,6 @@ The required permissions are:
 |----------------------|-------------------------------------------------------|
 | Write access to dedicated gitStream app files | Used to set up the gitStream workflow files |
 | Write access to code | To allow gitStream to approve PRs once all conditions are met |
-| Read access to administration, issues, and metadata | To read the code on monitored repositories |
+| Read access to administration, issues, and metadata | To get the user team membership, and branch protection settings |
 | Read and write access to actions, checks, pull requests, and workflows | Trigger workflows, create and update pull requests and their checks, and modify workflow files |
 | User email | Used to identify users |
