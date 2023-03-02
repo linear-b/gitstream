@@ -9,7 +9,9 @@ edit_uri: ""
 nav:
   - Overview: index.md
   - Guide:
-    - GitHub installation: github-installation.md
+    - GitHub instructions:
+      - Installation: github-installation.md
+      - Required check: github-required-check.md
     - Quick start: quick-start.md
     - Dry-run mode: dry-run-mode.md
     - How it works: how-it-works.md
