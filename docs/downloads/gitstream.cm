@@ -13,30 +13,5 @@ automations:
           label: "{{ calc.etr }} min review"
           color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
 
-  safe_changes:
-    if:
-      - {{ is.formatting or is.docs or is.tests }}
-    run: 
-      - action: add-label@v1
-        args:
-          label: 'safe-changes'
-      # - action: approve@v1
-
-  the_right_reviewer:
-    if: 
-      - true
-    run:
-      - action: add-comment@v1
-        args:
-          comment: |
-            {{ repo | explainRankByGitBlame(gt=25) }}
-      # - action: add-reviewers@v1
-      #   args:
-      #     reviewers: {{ repo | rankByGitBlame(gt=25) }}
-
 calc:
   etr: {{ branch | estimatedReviewTime }}
-is:
-  formatting: {{ source.diff.files | isFormattingChange }}
-  docs: {{ files | allDocs }}
-  tests: {{ files | allTests }}
