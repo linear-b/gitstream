@@ -46,6 +46,12 @@ calc:
 
 PRs that include only documentation changes are verified and approved by gitStream. In the example below, marked in yellow, the `files` context is checked by `allDocs` filter that verifies there are only document files. PRs that pass the check are approved by gitStream.
 
+Check out the functions to learn more:
+
+- [`isFormattingChange`](/filter-functions/#isformattingchange)
+- [`allDocs`](/filter-functions/#alldocs)
+- [`allTests`](/filter-functions/#alltests)
+
 ![Approved safe changes](screenshots/approved-safe-changes.png)
 
 ```yaml+jinja
@@ -74,7 +80,6 @@ is:
   </span>
 </div>
 
-
 ## Review Quality
 
 ### Like CODEOWNERS but better
@@ -85,7 +90,7 @@ The `nope` filter is used to make sure no change is in a sensitive file.
 
 !!! tip
 
-    You can also use regex instead of normal strings, see [here](filter-functions/#named-arguments)
+    You can also use regex instead of normal strings, see [here](/filter-functions/#named-arguments)
 
 ```yaml+jinja hl_lines="4"
 automations:

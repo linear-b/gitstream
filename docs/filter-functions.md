@@ -251,6 +251,8 @@ Checks whether any element in the list is `true`. In case the list of elements 
 
 Return `true` if the input list includes only documents based on file extensions.
 
+Doc files extensions are: `md`, `mkdown`, `txt`, `rst`, except for `requirements.txt`.
+
 <div class="filter-details" markdown=1>
 
 | Argument   | Usage    | Type      | Description                         |
@@ -264,7 +266,7 @@ Return `true` if the input list includes only documents based on file extensions
 {{ files | allDocs }}
 ```
 
-Doc files extensions are: `md`, `mkdown`, `txt`, `rst`, except for `requirements.txt`. In case you want to exclude more files, like all `txt` under `requirements` directory, add another check:
+In case you want to exclude more files, like all `txt` under `requirements` directory, add another check:
 
 ```yaml+jinja
 {{ (files | allDocs) and (files | match(regex=r/requirements\/.*\.txt$/) | nope ) }}
@@ -273,6 +275,8 @@ Doc files extensions are: `md`, `mkdown`, `txt`, `rst`, except for `requirements
 #### `allImages`
 
 Return `true` if the input list includes only images based on file extensions.
+
+Image file extensions are: `svg`, `png`, `gif`.
 
 <div class="filter-details" markdown=1>
 
@@ -283,8 +287,6 @@ Return `true` if the input list includes only images based on file extensions.
 
 </div>
 
-Image file extensions are: `svg`, `png`, `gif`.
-
 ```yaml+jinja
 {{ files | allImages }}
 ```
@@ -292,6 +294,8 @@ Image file extensions are: `svg`, `png`, `gif`.
 #### `allTests`
 
 Return `true` if the input list includes only tests based on file's path and name.
+
+To identify as test the file must include the substring `test` or `spec` in its name or path.
 
 <div class="filter-details" markdown=1>
 
@@ -301,8 +305,6 @@ Return `true` if the input list includes only tests based on file's path and nam
 | - | Output | Bool      | `true` if all file tests based on name and path |
 
 </div>
-
-Test files must include the substring `test` or `spec` in its name or path.
 
 ```yaml+jinja
 {{ files | allTests }}
