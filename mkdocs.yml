@@ -11,7 +11,7 @@ nav:
   - Guide:
     - GitHub instructions:
       - Installation: github-installation.md
-      - Required check: github-required-check.md
+      - Required check setup: github-required-check.md
     - Quick start: quick-start.md
     - Dry-run mode: dry-run-mode.md
     - How it works: how-it-works.md
