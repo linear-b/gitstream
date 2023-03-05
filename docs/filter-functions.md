@@ -38,6 +38,8 @@ The following functions are supported in addition to the built-in functions prov
 | [`allTests`](#alltests)<br />Checks the list includes only tests | [files](/context-variables.md#files) | - | Bool |
 | [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes | [branch](/context-variables.md#branch-context)| - | Integer |
 | [`extensions`](#extensions)<br />Lists all the unique file extensions | [String] | - | [String] |
+| [`expertReviewer`](#expertreviewer)<br />Get list of contributors based on expert reviewer model results| [`repo`](/context-variables.md#repo) | `gt`, `lt` | [String] |
+| [`explainExpertReviewer`](#explainexpertreviewer)<br /> Short markdown text explaining expertReviewer results | [`repo`](/context-variables.md#repo) | `gt`, `lt` | [String] |
 | [`explainRankByGitBlame`](#explainrankbygitblame)<br /> Short markdown text explaining rankByGitBlame results | [`repo`](/context-variables.md#repo) | `gt`, `lt` | [String] |
 | [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo | [`repo.contributors`](/context-variables.md#repo) | String | Bool |
 | [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed | [[`FileDiff` ](/context-variables.md#filediff-structure)] | - | Bool |
@@ -363,6 +365,81 @@ For example, check that only one file type was changed:
 ```yaml+jinja
 {{ files | extensions | length == 1 }}
 ```
+
+#### `expertReviewer`
+
+When requesting a review for a pull request, it's important to select a reviewer who has a deep understanding of the relevant code area, the domain problem, and the framework being used. This ensures that the reviewer can provide specific and informed feedback, rather than general comments that may not take into account the context in which the problem was solved.
+
+The filter provides the list of most qualified contributors based on `git-blame` `git-commit` results and other activities.
+
+The output lists the Git provider users, e.g., GitHub users, which are mapped from the Git users included in the `git-blame` output. When gitStream cannot map the Git user to a Git provider user it will be dropped from the output list, hence the list may contain less than 100% of the lines.
+
+!!! note
+
+    The `expertReviewer` filter function calls gitStream app API with the `repo` context to calculate the estimated review time value.
+
+<div class="filter-details" markdown=1>
+
+| Argument       | Usage    | Type   | Description                                     |
+| ------------ | ---------|--------|------------------------------------------------ |
+| -     | Input    | [`repo`](/context-variables.md#repo)  | The `repo` context variable  |
+| `lt`     | Input    | Integer  | Filter the user list, keeping those below the specified threshold  |
+| `gt`  | Input  | Integer  | Filter the user list, keeping those above the specified threshold  |
+| -     | Output   | [String]   | The list of users sorted by rank - first has highest score |
+
+</div>
+
+For example:
+
+```yaml+jinja
+automations:
+  the_expert_reviewer:
+    if: 
+      - true
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ repo | expertReviewer(gt=10) }}
+```
+
+
+#### `explainExpertReviewer`
+
+This filter helps to explain the results of [`expertReviewer`](#expertreviewer), the output is in Markdown format that can be used in a PR comment.
+
+!!! note
+
+    The `explainExpertReviewer` filter function calls gitStream app API with the `repo` context to calculate the estimated review time value.
+
+<div class="filter-details" markdown=1>
+
+| Argument       | Usage    | Type   | Description                                     |
+| ------------ | ---------|--------|------------------------------------------------ |
+| -     | Input    | [`repo`](/context-variables.md#repo)  | The `repo` context variable  |
+| `lt`     | Input    | Integer  | Filter the user list, keeping those below the specified threshold  |
+| `gt`  | Input  | Integer  | Filter the user list, keeping those above the specified threshold  |
+| -     | Output   | String   | Explaining [`expertReviewer`](#expertreviewer) results in markdown format |
+
+</div>
+
+For example:
+
+```yaml+jinja
+automations:
+  the_expert_reviewer:
+    if: 
+      - true
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ repo | expertReviewer(gt=10) }}
+      - action: add-comment@v1
+        args:
+          comment: |
+            {{ repo | explainExpertReviewer(gt=10) }}
+```
+
+Note the comment starts with `|` and a `new-line` as `explainExpertReviewer` generates a multiline comment.
 
 #### `explainRankByGitBlame`
 
