@@ -53,12 +53,13 @@ Check out the functions to learn more:
 - [`isFormattingChange`](/filter-functions/#isformattingchange)
 - [`allDocs`](/filter-functions/#alldocs)
 - [`allTests`](/filter-functions/#alltests)
+- [`allImages`](/filter-functions/#allimages)
 
 ```yaml+jinja
 automations:
   safe_changes:
     if:
-      - {{ is.formatting or is.docs or is.tests }}
+      - {{ is.formatting or is.docs or is.tests or is.asset }}
     run: 
       - action: add-label@v1
         args:
@@ -72,6 +73,7 @@ is:
   formatting: {{ source.diff.files | isFormattingChange }}
   docs: {{ files | allDocs }}
   tests: {{ files | allTests }}
+  asset: {{ files | match(regex=r/\.(png|svg|gif|css)$/) | every }}
 ```
 
 <div class="result" markdown>
