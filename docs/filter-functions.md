@@ -347,6 +347,10 @@ The following files are automatically excluded from the estimated review time ca
 | Lock | Regex | `.*gradle\.lockfile$` `.*lock\.sbt$` |
 | Pipeline | Regex | `.*ci\.yml$` |
 
+!!! tip
+
+    You can also filter more files, using [`config.ignore_files`](/cm-file/#configignore_files).
+
 #### `extensions`
 
 Expects `files` and provide a list of all unique file extensions.
