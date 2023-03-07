@@ -4,7 +4,7 @@
 
 !!! note
 
-    Make sure gitStream app is installed in [GitHub](https://github.com/apps/gitstream-cm/installations/new).
+    Make sure gitStream app is installed in [GitHub](https://github.com/apps/gitstream-cm/installations/new){ .md-button }.
 
 **Step 1 of 2:** Create a `.cm/gitstream.cm` rules file in your repository default branch (usually `master` or `main`) with the following contents:
 
