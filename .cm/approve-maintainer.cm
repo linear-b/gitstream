@@ -1,0 +1,16 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  estimated_time_to_review:
+    if:
+      - {{ (files | allDocs) or (files | allImages) }}
+      - {{ pr.author | match(list=maintainers) }}
+    run:
+      - action: approve@v1
+
+maintainers:
+  - 'vim-zz'
+
