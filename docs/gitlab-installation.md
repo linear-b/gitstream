@@ -29,7 +29,7 @@ Prerequisites:
 --8<-- "docs/downloads/gitlab-ci.yml"
 ```
 
-**Step 4 of 4:** Install gitStream app for [GitLab](https://api.gitstream.cm/auth/grant/gitlab).
+**Step 4 of 4:** Install gitStream app for [GitLab](https://api.gitstream.cm/auth/grant/gitlab){ .md-button }.
 
 
 ## Next steps
