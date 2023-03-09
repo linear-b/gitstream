@@ -285,6 +285,7 @@ For example, sum additions in javascript code files:
   "content": String, # The comment body    
   "created_at": String, # The time on which the comment was created
   "updated_at": String, # The time on which the comment was last updated
+  "state": String, # either 'CHANGES_REQUESTED', 'COMMENT', 'APPROVE' or 'PENDING'
 } 
 ```
 
