@@ -172,7 +172,7 @@ The `pr` context includes metadata related to the pull request.
 | `pr.checks` | [`Check`](#check-structure) | List of checks, names and status|
 | `pr.created_at` | String | The date and time the PR was created |
 | `pr.draft` | Bool | `true` when the PR is marked as Draft/WIP |
-| `pr.description` | String | The PR first comment |
+| `pr.description` | String | The PR description text |
 | `pr.general_comments` | [`GeneralComment`](#generalcomment-structure) | TBD |
 | `pr.line_comments` | [`LineComment`](#linecomment-structure) | TBD |
 | `pr.provider` | String | The Git cloud provider name, e.g. `GitHub`, `GitLab` etc. |
