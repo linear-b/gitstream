@@ -2,6 +2,8 @@
 
 gitStream CM syntax defines a powerful and flexible language that enables users to write automation rules and customize their workflows. In this guide, we'll walk you through the basics of CM syntax and provide examples to help you get started.
 
+### How to read the different sections?
+
 Every CM file must have a single `automations` section, which is where you define your automation rules. In this section, you can create dictionaries that specify the conditions and actions of your automation rules. You can name each automation rule as you desire, making it easy to keep track of different rules in your file. 
 
 In the example below, `safe_changes` is an automation. You can name each automation rule as you desire. In the example below, `safe_changes` can have any other name you like as long as it is a valid YAML string.
@@ -43,13 +45,31 @@ is:
 
 You can change the `is` or the keys below it (e.g. `formatting`) to any word (except some reserved words) you like and use that in your expressions – much like variables…
 
+### How to read an expression?
+
+We will explore how gitStream verifies that only documents have been modified by using the following expression:
+
+```
+{{ files | allDocs }}
+```
+
+In this expression, the `file` is a context variable that holds the files' full path for all the changes in the PR.
+
+The pipe symbol `|` functions like a Unix terminal pipe, so the expression can be interpreted as `allDocs(files)`.
+
+The function `allDocs` is defined [here](/filter-functions/#alldocs) 
+
+> Doc files extensions are: md, mkdown, txt, rst, except for requirements.txt
+
+### Using logic operators
+
 Following in this example to invert the logic you can use `not` - a reserved word that invert boolean results: 
 
 ```yaml+jinja
 {{ not (is.formatting or is.docs or is.tests) }}
 ```
 
-### Reserved words
+## Reserved words
 
 gitStream reserved words:
 
@@ -59,6 +79,6 @@ gitStream reserved words:
 
 `e` `if` `for` `asyncEach` `asyncAll` `macro` `set` `extends` `block` `include` `import` `raw` `verbatim` `filter` `call` `abs` `batch` `capitalize` `center` `default` `dictsort` `dump` `escape` `first` `float` `forceescape` `groupby` `indent` `int` `join` `last` `length` `list` `lower` `nl2br` `random` `reject` `rejectattr` `replace` `reverse` `round` `safe` `select` `selectattr` `slice` `sort` `string` `striptags` `sum` `title` `trim` `truncate` `upper` `urlencode` `urlize` `wordcount`
 
-### Syntax highlighting
+## Syntax highlighting
 
 You can add support for `.cm` in your code editor, see [FAQ](https://docs.gitstream.cm/faq/#is-there-cm-syntax-highlighting).
