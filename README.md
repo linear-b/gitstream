@@ -12,7 +12,7 @@ See [https://docs.gitstream.cm](https://docs.gitstream.cm)
 
 ### Issues 
 
-Found a bug? create a new item in the project's [issues](https://github.com/linear-b/gitstream/issues)
+Found a bug? Create a new item in the project's [issues](https://github.com/linear-b/gitstream/issues)
 
 ### Examples 
 
