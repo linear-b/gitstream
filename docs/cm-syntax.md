@@ -49,17 +49,14 @@ You can change the `is` or the keys below it (e.g. `formatting`) to any word (ex
 
 We will explore how gitStream verifies that only documents have been modified by using the following expression:
 
-```
+```yaml+jinja
+# The pipe symbol `|` functions like a Unix terminal pipe, 
+# the expression can be interpreted as `allDocs(files)`
+
 {{ files | allDocs }}
 ```
 
-In this expression, the `file` is a context variable that holds the files' full path for all the changes in the PR.
-
-The pipe symbol `|` functions like a Unix terminal pipe, so the expression can be interpreted as `allDocs(files)`.
-
-The function `allDocs` is defined [here](/filter-functions/#alldocs) 
-
-> Doc files extensions are: md, mkdown, txt, rst, except for requirements.txt
+In this expression, the `file` is a context variable that holds the files' full path for all the changes in the PR. The function `allDocs` is defined [here](/filter-functions/#alldocs) and return `true` when files extensions are: `md`, `mkdown`, `txt`, `rst`, except for `requirements.txt`.
 
 ### Using logic operators
 
