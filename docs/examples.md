@@ -338,7 +338,27 @@ automations:
   </span>
 </div>
 
+### Validate new component has required field
 
+You can define required fields for components, so when your team members adds new components they should also add the required field, `description` in the example below.
+
+```yaml+jinja
+automations:
+  catch_deprecated_components:
+    if:
+      - {{ source.diff.files | matchDiffLines(regex=r/LambdaFunction/) | some }}
+      - {{ source.diff.files | matchDiffLines(regex=r/description:/) | nope }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'lambda-missing-field'
+          color: '#FF0000'
+      - action: request-changes@v1
+        args:
+          comment: |
+            New `LambdaFunction` must have `description:` field.
+
+```
 
 ### Request changes on deprecated APIs
 
