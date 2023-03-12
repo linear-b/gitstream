@@ -1,8 +1,16 @@
 # Quick Start
 
+Once completed installation, each of your PRs will get a label that shows the estimated review time, with color coding as you define in the `cm` file.
+
+![Estimated Review Time label](screenshots/etr-example-1-min.png)
+
+When sharing the PR link in Slack your reviewer will get to see the Estimated Review Time: 
+
+![Estimated review time](screenshots/slack-estimated-review-time-example-1-min.png)
+
 ## First automation – adding labels
 
-Once completed installation, next step is to open a new PR, an easy check is to do minor change to the repository `README.md` file. When set with the default automation rules, your PR should get a colored labeled with `X min review` label and the `safe-changes` label on the PR, as you only changed documentation.
+Next step is to open a new PR, an easy check is to do minor change to the repository `README.md` file. When set with the default automation rules, your PR should get a colored labeled with `X min review` label and the `safe-changes` label on the PR, as you only changed documentation.
 
 ![Labels](screenshots/github-etr-safe-labels-example.png)
 
