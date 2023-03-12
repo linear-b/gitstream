@@ -6,7 +6,7 @@ manifest:
 automations:
   estimated_time_to_review:
     if:
-      - {{ (files | allDocs) or (files | allImages) }}
+      - {{ files | match(regex=r/\.(md|txt|png|svg|webp)$/) | every }}
       - {{ pr.author | match(list=maintainers) }}
     run:
       - action: approve@v1
