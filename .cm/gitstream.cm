@@ -3,6 +3,10 @@
 manifest:
   version: 1.0
 
+config:
+  admin:
+    users: [vim-zz]
+
 automations:
   estimated_time_to_review:
     if:
@@ -13,4 +17,3 @@ automations:
 
 maintainers:
   - 'vim-zz'
-
