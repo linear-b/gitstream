@@ -12,6 +12,7 @@ nav:
     - GitHub instructions:
       - Installation: github-installation.md
       - Setup Required check: github-required-check.md
+      - Organization setup: github-org-level.md
     - Quick start: quick-start.md
     - The CM syntax: cm-syntax.md
     - Dry-run mode: dry-run-mode.md
