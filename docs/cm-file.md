@@ -4,9 +4,25 @@ Continuous Merge automation files have a `.cm` extension. In a repository,  gitS
 
 You can edit the `.cm` files and add your own checks and rules. Check out the [Automation examples](/examples).
 
-## Repository automation rules
+## Automation rules
 
-Repository automation rules can be defined by creating a special `.cm` directory in your repository root. Automation rules are specified in files in this directory, these files can have any name but ends with `.cm`. By default you start with a single automation file `.cm/gitstream.cm`. 
+There are two types of automation rules: repository level rules and organization level rules. 
+
+Repository level rules are set by creating a special `.cm` directory in the repository root. Automation rules are specified in files in this directory, which can have any name but must end with `.cm`. 
+
+Organization level rules are defined by creating a special repository named `cm` in the organization or group. In this repository, you can add CM automation files, which will apply to all the repositories that gitStream app is connected. 
+
+**When organization level rules are defines, repository level automation shall take precedence and override organization automation when having the same identifier.**
+
+An autoamtion identifier is a compistion of the CM file name and the automation name. For example when `safe_changes` is defined in `gitstream.cm` then the automation identifier shall be `gitstream/safe_changes`
+
+!!! tip 
+
+    You can exclude certain repositoires per automation file using the [`config.ignore_repositories`](#config)
+
+### Repository automation rules
+
+Repository automation rules are set by creating a special `.cm` directory in your repository root. Automation rules are specified in files in this directory, these files can have any name but ends with `.cm`. By default, you start with a single automation file `.cm/gitstream.cm`. 
 
 Every file is parsed independently, and the parsing results are combined and executed.
 
@@ -16,7 +32,7 @@ Specifically:
 2. The `config` section is defined per `.cm` file (except `config.admin`)
 3. Any accessory expression defined in each file scope, therefore cannot be reused in another file (but it can be duplicated)
 
-When configured correctly, the `.cm` repository directory structure should look like that (for GitHub):
+When configured correctly, your repository directory structure should look like that (for GitHub):
 
 ```title="Repsository automation rules"
 .
@@ -30,6 +46,27 @@ When configured correctly, the `.cm` repository directory structure should look 
 !!! note 
 
     The `.cm/gitstream.cm` is special, as it allow to use repository level configuration such as `config.admin`.
+
+### Organization automation rules
+
+Organization automation rules are defined by creating a special repository `cm` in your organization or group. In this repository, you can add CM automation files, which will apply to all the repositories that gitStream app is connected.
+
+When configured correctly, the `cm` repository directory structure should look like that (for GitHub):
+
+```title="Repsository automation rules"
+.
+├─ *.cm
+├─ .github/
+│  └─ workflows/
+│     └─ gitstream.yml
+```
+
+For each PR the following automation rules are applied:
+
+1. Repository level rules 
+2. Organization level rules, unless with the same identifier as a repository level automation
+
+When organization level rules are defined, then the CI/CD will be executed on the `cm` repository on behalf of the PR repository.
 
 ## The .cm automation file
 
@@ -91,12 +128,13 @@ The `config` section is optional in the `.cm` file and is used to specify config
 | `config`                     | Map      | -            | per `.cm` file | The config section, applies for the automations defined in the current file |
 | `config.admin.users`         | [String] | `[]`         | `gitstream.cm` | Admin user list (use the Git provider user names) |
 | `config.ignore_files`        | [String] | `[]`         | per `.cm` file | Exclude specific files |
+| `config.ignore_repositories` | [String] | `[]`         | per `.cm` file | Exclude specific repositories |
 | `config.user_mapping`        | [String: String] | `[]` | per `.cm` file | Key value list of Git user detailes and Git provider account names  |
 
 
 ##### `config.admin.users` 
 
-When specified in `gitstream.cm` the `config.admin.users` allows to add admin rights, when a PR changes the `*.cm` files only, if the user is listed in `config.admin.users` the PR will be then approved by gitStream. For example setting `popeye` as admin:
+When specified in `gitstream.cm` the `config.admin.users` allows adding admin rights, when a PR changes the `*.cm` files only, if the user is listed in `config.admin.users` the PR will be then approved by gitStream. For example, setting `popeye` as admin:
 
 ```yaml title="example"
 config:
@@ -106,11 +144,37 @@ config:
 
 This configuration is valid only when used in `.cm/gitstream.cm`, when defined in other `.cm` files this configuration is ignored.
 
+##### `config.ignore_files` 
+
+The `config.ignore_files` supports glob pattern matching that contains list of files to ignore, for example:
+
+```yaml title="example"
+config:
+  ignore_files:
+    - 'yarn.lock'
+    - 'package-lock.json'
+    - 'openapi.json'
+    - 'ui/src/**/*Model.d.ts'
+```
+
+##### `config.ignore_repositories` 
+
+The `config.ignore_repositories` contains list of repositories to ignore, for example:
+
+```yaml title="example"
+config:
+  ignore_repositories:
+    - services
+    - common
+```
+
+For the listed repositories, the automation defined in the CM file shall not apply.
+
 ##### `config.user_mapping` 
 
 Accepts list of key value strings.
 
-For example, when using `rankByGitBlame` or `explainRankByGitBlame` Git users are mapped to their matching Git provider accounts based on the Git details. The automatic mapping can sometimes result with the wrong account or fail to find a proper mapping, in these cases you can configure the `config.user_mapping` to map confusing Git user into their specific accounts and dump some irrelevant accounts:
+For example, when using `rankByGitBlame` or `explainRankByGitBlame` Git users are mapped to their matching Git provider accounts based on the Git details. The automatic mapping can sometimes result with the wrong account or fail to find a proper mapping, in these cases you can configure the `config.user_mapping`. This allows you to map confusing Git user into their specific accounts and dump some irrelevant accounts:
 
 ```yaml title="example"
 config:
@@ -138,18 +202,6 @@ On the other hand, when using `explainRankByGitBlame` with `add-comment@v1` it s
 1.  `rankByGitBlame` will drop `null` users
 2.  `explainRankByGitBlame` will NOT drop `null` users
 
-##### `config.ignore_files` 
-
-`config.ignore_files` supports glob pattern matching that contains list of files to ignore, for example:
-
-```yaml title="example"
-config:
-  ignore_files:
-    - 'yarn.lock'
-    - 'package-lock.json'
-    - 'openapi.json'
-    - 'ui/src/**/*Model.d.ts'
-```
 
 #### `automations` 
 
