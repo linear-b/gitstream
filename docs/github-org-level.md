@@ -4,6 +4,10 @@ Organization level rules are defined by creating a special repository named `cm`
 
 **Step 1 of 3:** Create a `cm` repository in your GitHub organization.
 
+!!! note
+
+    Make sure gitStream app is installed for the new `cm` repository in [GitHub](https://github.com/apps/gitstream-cm/installations/new){ .md-button }.
+
 **Step 2 of 3:** Create a `gitstream.cm` rules file in your repository default branch (usually `master` or `main`) with the following contents:
 
 !!! note 
@@ -25,6 +29,10 @@ Once this step is completed, **all** your PRs from all your repositories will be
 ## Next steps
 
 To learn more on how this works and how to configure it, [read here](/cm-file#automation-rules).
+
+!!! tip 
+
+    You need to set gitStream as required check for each repository to allow gitStream blocking PRs from merging under certain conditions, [set gitStream as required check](github-required-check.md).
 
 ## Configuration files
 
