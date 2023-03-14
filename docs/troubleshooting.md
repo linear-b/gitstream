@@ -28,6 +28,9 @@ Some organization limit which actions can run, in that case in the repository se
 
 ![GitHub allow marketplace actions](screenshots/github_settings_allow_actions.png)
 
+**Is the PR in Draft mode?**
+
+gitStream automations won't trigger for PRs that in Draft mode.
 
 ## I have rules that should have blocked merge, but the PR can be merged still
 
