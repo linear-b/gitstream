@@ -21,11 +21,6 @@ In order to support automations that either Approve or Merge PRs, GitHub API req
 
 Any repo in GitHub is supported. More Git providers are planned soon.
 
-## Do I need VS Code to use gitStream?
-
-No. gitStream is a CM automation system, nevertheless, developers can benefit from having the VS Code 
-extension as it presents in the editor what rules can be used to simplify their workflow.
-
 ## Custom filter functions 
 
 Coming soon.
