@@ -131,7 +131,9 @@ sensitive:
 
 ### Review PRs with Code Experts
 
-Not every review is equal, getting the right one is important to get high quality feedback. Using `codeExperts`, `rankByGitBlame` or `rankByGitActivity` makes this data driven. 
+Not every review is equal, getting the right one is important to get high quality feedback. 
+
+Overall, selecting the right reviewer for your pull request is crucial to ensure that your changes are thoroughly reviewed and that any issues are identified and addressed before they are merged into the main codebase. The `codeExperts` filter can help simplify this process by highlighting the most qualified contributors based on their activity in the relevant code area.
 
 ```yaml+jinja hl_lines="8"
 automations:
