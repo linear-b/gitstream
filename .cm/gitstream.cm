@@ -14,6 +14,7 @@ automations:
       - {{ pr.author | match(list=maintainers) }}
     run:
       - action: approve@v1
+      - action: merge@v1
 
 maintainers:
   - 'vim-zz'
