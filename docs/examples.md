@@ -160,6 +160,8 @@ Using `explainCodeExperts` shows the resulting data in the PR comment.
 
 Last, the `codeExperts` assigns the code experts to review the PR automatically.
 
+You can read more on both [in the function filter page](/filter-functions).
+
 ### Mark PRs without tests
 
 PRs that don't have tests changes can be marked automatically.
