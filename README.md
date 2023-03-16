@@ -24,4 +24,3 @@ See the [automations](automations) directory
 
 ![Continuous Merge](assets/ContinuousMerge3l.png#gh-light-mode-only)
 ![Continuous Merge](assets/ContinuousMerge3d.png#gh-dark-mode-only)
-
