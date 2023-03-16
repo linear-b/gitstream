@@ -129,25 +129,23 @@ sensitive:
 </div>
 
 
-### Assign the relevant reviewers to PRs
+### Review PRs with Code Experts
 
-Not every review is equal, getting the right one is important to get high quality feedback. Using `rankByGitBlame` or `rankByGitActivity` makes this data driven. 
-
-For example here, when using `rankByGitBlame` and setting `gt` to 25 which stands for the {==greater-than sign==}: `>`, only those who contributed **more** than 25% of lines overall are selected. Applying `random` will choose one from the list. 
+Not every review is equal, getting the right one is important to get high quality feedback. Using `codeExperts`, `rankByGitBlame` or `rankByGitActivity` makes this data driven. 
 
 ```yaml+jinja hl_lines="8"
 automations:
-  the_right_reviewer:
+  code_experts:
     if: 
       - true
     run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ repo | codeExperts(gt=10) }}
       - action: add-comment@v1
         args:
           comment: |
-            {{ repo | explainRankByGitBlame(gt=25) }}
-      - action: add-reviewers@v1
-        args:
-          reviewers: {{ repo | rankByGitBlame(gt=25) | random }}
+            {{ repo | explainCodeExperts(gt=10) }}
 ```
 
 <div class="result" markdown>
@@ -156,9 +154,13 @@ automations:
   </span>
 </div>
 
-Using `explainRankByGitBlame` shows the resulting data in the PR comment.
+Using `explainCodeExperts` shows the resulting data in the PR comment.
 
-![Suggested reviewers](screenshots/github_suggest_reviewer.png)
+![Suggested reviewers](screenshots/github-codeexperts-expanded.png)
+
+Last, the `codeExperts` assigns the code experts to review the PR automatically.
+
+You can read more on both [in the function filter page](/filter-functions).
 
 ### Mark PRs without tests
 

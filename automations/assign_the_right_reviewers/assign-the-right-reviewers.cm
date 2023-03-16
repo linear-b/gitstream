@@ -4,14 +4,15 @@ manifest:
   version: 1.0
 
 automations:
-  the_right_reviewer:
+  code_experts:
     if: 
       - true
     run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ repo | codeExperts(gt=10) }}
       - action: add-comment@v1
         args:
           comment: |
-            {{ repo | explainRankByGitBlame(gt=25) }}
-      - action: add-reviewers@v1
-        args:
-          reviewers: {{ repo | rankByGitBlame(gt=25) }}
+            {{ repo | explainCodeExperts(gt=10) }}
+  
