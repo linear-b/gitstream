@@ -316,7 +316,7 @@ To identify as test the file must include the substring `test` or `spec` in its 
 
 When requesting a review for a pull request, it's important to select a reviewer who has a deep understanding of the relevant code area, the domain problem, and the framework being used. This ensures that the reviewer can provide specific and informed feedback, rather than general comments that may not take into account the context in which the issue was solved.
 
-The filter provides the list of most qualified contributors based on `git-blame` and `git-commit` results to determine who has been most active in the relevant code area, and then combines this information into a score between 0 and 100. The commit activity is scored higher for recent commits, which ensures that those who are actively contributing to the codebase are given higher priority as potential reviewers.
+The filter provides the list of most qualified contributors based on `git-blame` and `git-commit` results to determine who has been most active in the relevant code area, and then combines this information into a score between 0 and 100. The commit activity is scored higher for recent commits, which ensures that those who are actively contributing to the codebase are given higher priority as potential reviewers. The result will be limited to 2 users and shall not include the PR author.
 
 The output lists the Git provider users, e.g., GitHub users, which are mapped from the Git users included in the `git-blame` output. When gitStream cannot map the Git user to a Git provider user it will be dropped from the output list, hence the list may contain less than 100% of the lines.
 
@@ -331,7 +331,7 @@ The output lists the Git provider users, e.g., GitHub users, which are mapped fr
 | -     | Input    | [`repo`](/context-variables.md#repo)  | The `repo` context variable  |
 | `lt`     | Input    | Integer  | Filter the user list, keeping those below the specified threshold  |
 | `gt`  | Input  | Integer  | Filter the user list, keeping those above the specified threshold  |
-| -     | Output   | [String]   | The list of users sorted by rank - first has highest score |
+| -     | Output   | [String]   | Up to 2 users, sorted by best match first (it won't include the PR author) |
 
 </div>
 
