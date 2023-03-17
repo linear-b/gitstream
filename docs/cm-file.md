@@ -45,7 +45,7 @@ When configured correctly, your repository directory structure should look like 
 
 !!! note 
 
-    The `.cm/gitstream.cm` is special, as it allow to use repository level configuration such as `config.admin`.
+    The `.cm/gitstream.cm` is special, as it allows for repository level configuration such as `config.admin`.
 
 ### Organization automation rules
 
