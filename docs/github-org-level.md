@@ -36,7 +36,7 @@ To learn more on how this works and how to configure it, [read here](/cm-file#au
 
 ## Configuration files
 
-Eventually, the following files should exist in each of the selected repos:
+Eventually, the following files should exist in the `cm` repository:
 
 ```
 .
