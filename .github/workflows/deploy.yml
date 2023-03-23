@@ -16,4 +16,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CUSTOM_DOMAIN: 'docs.gitstream.cm'
-          ANALYTICS_TAG: 'G-PPEJMF05RD'
+          ANALYTICS_TAG: 'G-WE4YLK8TT5'
