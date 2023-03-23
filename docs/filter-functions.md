@@ -297,7 +297,7 @@ Image file extensions are: `svg`, `png`, `gif`.
 
 Return `true` if the input list includes only tests based on file's path and name.
 
-To identify as test the file must include the substring `test` or `spec` in its name or path.
+To identify as test the file must include the word `test` or `spec` in its name or path, it is checked using this regex: `[^a-zA-Z0-9](spec|test|tests)[^a-zA-Z0-9]`.
 
 <div class="filter-details" markdown=1>
 
