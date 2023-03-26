@@ -10,6 +10,8 @@
 
 See [https://docs.gitstream.cm](https://docs.gitstream.cm)
 
+Watch the [Getting started workshop on YouTube](https://www.youtube.com/watch?v=NLffo0FFSHU&t=809s)
+
 ### Issues 
 
 Found a bug? Create a new item in the project's [issues](https://github.com/linear-b/gitstream/issues)
