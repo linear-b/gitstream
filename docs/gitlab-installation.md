@@ -1,13 +1,9 @@
 # GitLab installation 
 
-
-!!! warning
-
-    Please note that the GitLab support feature is still in **beta**, which means that the feature set is incomplete and subject to changes.
-
 Prerequisites:
 
-1. GitLab runner v15 or higher
+1. GitLab cloud
+2. GitLab runner v15 or higher
 
 ## Installation
 
