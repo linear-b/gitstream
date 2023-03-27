@@ -166,7 +166,7 @@ You can read more on both [in the function filter page](/filter-functions).
 
 ### Mark PRs without tests
 
-PRs that don't have tests changes can be marked automatically.
+PRs that don't have tests changes can be marked automatically. 
 
 When a PR is opened without any tests, this label is added:
 
@@ -180,7 +180,7 @@ Once the tests are added and committed, gitStream automatically removes the labe
 automations:
   no_tests:
     if:
-      - {{ files | match(regex=r/(test|spec)/) | nope }}
+      - {{ files | match(regex=r/[^a-zA-Z0-9](spec|test|tests)[^a-zA-Z0-9]/) | nope }}
     run: 
       - action: add-label@v1
         args:

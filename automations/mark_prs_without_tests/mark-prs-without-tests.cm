@@ -6,7 +6,7 @@ manifest:
 automations:
   no_tests:
     if:
-      - {{ files | match(regex=r/(test|spec)/) | nope }}
+      - {{ files | match(regex=r/[^a-zA-Z0-9](spec|test|tests)[^a-zA-Z0-9]/) | nope }}
     run: 
       - action: add-label@v1
         args:
