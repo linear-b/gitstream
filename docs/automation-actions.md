@@ -120,8 +120,8 @@ This action, once triggered, sets a specific reviewer.
 
 | Args       | Usage | Type      | Description                                     |
 | -----------|------|-----|------------------------------------------------ |
-| `reviewers` | Required or `team_reviewers` | [String]    | Sets reviewers user name |
-| `team_reviewers` | Required or `reviewers` | [String] | Sets reviewers teams name, without the `@` prefix |
+| `reviewers` | Required | [String]    | Sets required reviewers. Supports user names and teams. Teams notated by adding a prefix with the owner name e.g. `owner/team` |
+| `team_reviewers` | Optional | [String]    | Sets required team reviewers without a prefix `team` |
 | `unless_reviewers_set` | Optional | Bool | When `true`, the reviewers are not added if the PR has already assigned reviewers. It is set to `false` by default |
 
 </div>
@@ -134,7 +134,7 @@ automations:
     run:
       - action: add-reviewers@v1
         args:
-          reviewers: [popeye, olive]
+          reviewers: [popeye, olive, acme/team-a]
 ```
 
 
@@ -257,14 +257,13 @@ automations:
 
 #### `require-reviewers`
 
-This action, once triggered, requires a specific reviewer approval.
+This action, once triggered, requires a specific reviewer approval. The PR merge is blocked till approved by either of the listed users or teams.
 
 <div class="filter-details" markdown=1>
 
 | Args       | Usage | Type      | Description                                     |
 | -----------|----|-------|------------------------------------------------ |
-| `reviewers` | Required | [String]    | Sets reviewers user name, merge is blocked till approved by either of the listed users |
-| `team_reviewers` | Required or `reviewers` | [String] | Sets reviewers teams name, without the `@` prefix |
+| `reviewers` | Required | [String]    | Sets required reviewers. Supports user names and teams. Teams notated by adding a prefix with the owner name e.g. `owner/team`. Merge is blocked till approved by either of the listed users |
 | :octicons-beaker-24: `also_assign` | Optional | Bool    | `true` by default, also assign the specified users as reviewers |
 
 </div>
@@ -277,7 +276,7 @@ automations:
     run:
       - action: require-reviewers@v1
         args:
-          reviewers: ['popeye', 'olive']
+          reviewers: [popeye, olive, acme/team-a]
 ```
 
 !!! attention
