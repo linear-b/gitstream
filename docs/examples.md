@@ -111,7 +111,7 @@ automations:
     run:
       - action: add-reviewers@v1
         args:
-          team_reviewers: ['a-team']
+          reviewers: [acme/a-team]
       - action: set-required-approvals@v1
         args:
           approvals: 1
