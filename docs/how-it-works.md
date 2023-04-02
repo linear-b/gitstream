@@ -76,7 +76,13 @@ sequenceDiagram
 
 ## The branch diff
 
-The branch diff is defined as the difference between the current branch and the most recent commit in the main branch, which is shared between both branches.
+The branch diff is defined as the difference between the current branch and the most recent commit in the main branch, which is shared between both branches. The main branch is also referenced as the target branch that the PR shall merge into (referred as the base branch on GitHub).
+
+Using this PR as an example:
+
+![Target Branch](screenshots/target_branch_github.png)
+
+The `git-diff` is performed between commit `H` on the `feature` branch and the commit `F` on the `main` branch.
 
 ```mermaid
 gitGraph
@@ -96,8 +102,6 @@ gitGraph
   commit id: "I"
   commit id: "J"
 ```
-
-In the example above, the diff is performed between commits `H` and `F`.
 
 
 ## Automation results
