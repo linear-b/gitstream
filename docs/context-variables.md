@@ -32,7 +32,7 @@ The following structures are used in the context objects:
 
 ???+ example "Example of a context object"
 
-    Example of a context object for a PR that changed few lines in a `README.md` file:
+    Partial example of a context object for a PR that changed few lines in a `README.md` file:
 
     ```json
     {
@@ -174,6 +174,7 @@ The `pr` context includes metadata related to the pull request.
 | `pr.draft` | Bool | `true` when the PR is marked as Draft/WIP |
 | `pr.description` | String | The PR description text |
 | `pr.general_comments` | [`GeneralComment`](#generalcomment-structure) | TBD |
+| `pr.labels` | [String] | The labels that are attached to the PR |
 | `pr.line_comments` | [`LineComment`](#linecomment-structure) | TBD |
 | `pr.provider` | String | The Git cloud provider name, e.g. `GitHub`, `GitLab` etc. |
 | `pr.reviewers` | [String] | The list of reviewers set for this PR |
