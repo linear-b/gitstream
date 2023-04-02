@@ -20,7 +20,7 @@ Take these three steps to see how gitStream works; later on you can learn about 
 
 === ":fontawesome-brands-gitlab: GitLab"
 
-	Coming soon
+	Follow the installation instructions for GitLab [here](gitlab-installation.md)
 
 === ":fontawesome-brands-bitbucket: BitBucket"
 
