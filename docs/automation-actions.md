@@ -3,23 +3,27 @@
 Actions are the end results of the automation described in your `.cm` file.
 
 !!! note 
-    
-    Items marked with :octicons-beaker-24: are under development and are not available yet.
+
+    The icons for Git providers indicate the actions supported by each provider.
+
+    - GitHub :fontawesome-brands-github:
+    - GitLab :fontawesome-brands-gitlab:
 
 ## Overview
 
 gitStream executes actions in the order they are listed. If an action result fails, following actions will not be executed.
 
-- [`add-comment`](#add-comment)
-- [`add-label`](#add-label)
-- [`add-labels`](#add-labels)
-- [`add-reviewers`](#add-reviewers)
-- [`approve`](#approve)
-- [`close`](#close)
-- [`merge`](#merge)
-- [`set-required-approvals`](#set-required-approvals)
-- [`require-reviewers`](#require-reviewers)
-- [`request-changes`](#request-changes)
+- [`add-comment`](#add-comment) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`add-label`](#add-label) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`add-labels`](#add-labels) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`add-reviewers`](#add-reviewers) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`approve`](#approve) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`close`](#close) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`merge`](#merge) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`set-required-approvals`](#set-required-approvals) :fontawesome-brands-github:
+- [`require-reviewers`](#require-reviewers) :fontawesome-brands-github:
+- [`request-changes`](#request-changes) :fontawesome-brands-github:
+
 
 !!! note
 
@@ -43,7 +47,7 @@ automations:
 
 ## Reference 
 
-#### `add-comment`
+#### `add-comment` :fontawesome-brands-github: :fontawesome-brands-gitlab:
 
 This action, once triggered, adds a comment to the PR.
 
@@ -71,7 +75,7 @@ automations:
 ```
 
 
-#### `add-label`
+#### `add-label` :fontawesome-brands-github: :fontawesome-brands-gitlab:
 
 This action, once triggered, adds a label to the PR.
 
@@ -97,7 +101,7 @@ automations:
           label: api-change
 ```
 
-#### `add-labels`
+#### `add-labels` :fontawesome-brands-github: :fontawesome-brands-gitlab:
 
 This action, once triggered, adds a list of labels to the PR.
 
@@ -112,7 +116,7 @@ This is a manged action, when a PR updates existing labels that were added by gi
 </div>
 
 
-#### `add-reviewers`
+#### `add-reviewers` :fontawesome-brands-github: :fontawesome-brands-gitlab:
 
 This action, once triggered, sets a specific reviewer.
 
@@ -138,7 +142,7 @@ automations:
 ```
 
 
-#### `approve`
+#### `approve` :fontawesome-brands-github: :fontawesome-brands-gitlab:
 
 This action, once triggered, approves the PR for merge.
 
@@ -153,7 +157,7 @@ automations:
       - action: approve@v1
 ```
 
-#### `close`
+#### `close` :fontawesome-brands-github: :fontawesome-brands-gitlab:
 
 This action, once triggered, close the PR without merging.
 
@@ -171,7 +175,7 @@ automations:
       - action: close@v1
 ```
 
-#### `merge`
+#### `merge` :fontawesome-brands-github: :fontawesome-brands-gitlab:
 
 Once triggered, merge the PR if possible. It can set to wait for required checks to pass or ignore checks.
 
@@ -197,7 +201,7 @@ automations:
 ```
 
 
-#### `set-required-approvals`
+#### `set-required-approvals` :fontawesome-brands-github: 
 
 This action, once triggered, blocks PR merge till the desired reviewers approved the PR. The actions fail the check to prevent the PR for merge.
 
@@ -224,7 +228,7 @@ automations:
 
     To allow this action to block merge, you should enable branch protection, and gitStream has to be set as required check in GitHub.
 
-#### `request-changes`
+#### `request-changes` :fontawesome-brands-github: 
 
 This action, once triggered, request changes on the PR. As long as request change is set, gitStream will block the PR merge.
 
@@ -255,7 +259,7 @@ automations:
     To allow this action to block merge, you should enable branch protection, and gitStream has to be set as required check in GitHub.
 
 
-#### `require-reviewers`
+#### `require-reviewers` :fontawesome-brands-github: 
 
 This action, once triggered, requires a specific reviewer approval. The PR merge is blocked till approved by either of the listed users or teams.
 
