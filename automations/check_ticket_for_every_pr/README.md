@@ -2,6 +2,8 @@
 
 It is common practice to require linking the Jira ticket with the PR, to allow reviewers to get more context on the change. gitStream can help enforce that practice automatically, saving reviewers time and improving overall quality for the team.
 
+The automation checks for a ticket either in the PR title or PR description.
+
 The condition basically uses the following regular expression: 
 
 ```
