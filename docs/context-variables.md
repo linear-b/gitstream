@@ -178,6 +178,7 @@ The `pr` context includes metadata related to the pull request.
 | `pr.provider` | String | The Git cloud provider name, e.g. `GitHub`, `GitLab` etc. |
 | `pr.reviewers` | [String] | The list of reviewers set for this PR |
 | `pr.status` | String | The PR status: `open`, `requested-changes`, `approved`, `merged` |
+| `pr.target` | String | The branch the PR is intended merged into |
 | `pr.title` | String | The PR title |
 | `pr.updated_at` | String | The date and time the PR was last updated |
 
@@ -211,6 +212,7 @@ The `repo` context includes metadata related to the repo.
 | `repo.author_age` | Integer |  number of days since first commit to this repo |
 | `repo.blame` | [`GitBlame`](#gitblamep-structure) | The percentage each user's lines in a file, the list includes all changed files in the branch. The list is sorted by the `ratio` field |
 | `repo.contributors`  | [`Contributor`](#contributor-structure)  | List of contributors in the repo |
+| `repo.name`  | String  | Repository name |
 
 #### `source`
 
