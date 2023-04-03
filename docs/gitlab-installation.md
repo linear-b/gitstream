@@ -17,8 +17,7 @@ Prerequisites:
 --8<-- "docs/downloads/gitstream.cm"
 ```
 
-**Step 2 of 4:** Create a new `cm` project (repository) in your GitLab group.
-
+**Step 2 of 4:** Create a new `cm` project (repository) in your GitLab group. It should be created in the same group or a parent group of the target repositories.
 
 **Step 3 of 4:** Create a `./.gitlab-ci.yml` CI/CD file in the `cm` repository default branch (usually `master` or `main`) with the following contents:
 
