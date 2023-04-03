@@ -1,6 +1,3 @@
-<style type="text/css" rel="stylesheet">
-.md-typeset .admonition { font-size: .8rem; }
-</style>
 # How to Setup gitStream with GitHub
 
 !!! Warning "Install gitStream"

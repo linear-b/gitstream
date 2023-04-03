@@ -98,3 +98,6 @@ div.flow-chart {
   font-weight: 100;
   color: gray;
 }
+
+.md-typeset .admonition { font-size: .8rem; }
+
