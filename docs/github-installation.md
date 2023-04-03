@@ -49,12 +49,12 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
         **Create a Continuous Merge Repo**
 
         To begin, create a repository named `cm` in your GitHub organization. The repo can be either public or private; no other repo configurations are required at this time.
-        
+
         **gitStream**
 
         Create a `gitstream.cm` rules file in the root directory of your repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on your organization's repos. You can name it anything you want as long as it ends in `.cm`
 
-        !!! info "Configuration files go in the repo's root directory." 
+        !!! info "Configuration files go in the repo's root directory."
             Unlike the set up instructions for a single repo, your `.cm` files should be placed in the repository's root directory.
         ```yaml+jinja
         --8<-- "docs/downloads/gitstream.cm"
@@ -103,18 +103,18 @@ Here are some additional resources to help you get the most out of gitStream
 ### How do I configure gitStream to block merges? <a name="github-merge-block"></a>
 You can configure Github to require gitStream checks to pass before PRs can be merged using [branch protection rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches).
 
-!!! info "Run a gitStream check before continuing" 
+!!! info "Run a gitStream check before continuing"
     You need to run a check using your gitStream configuration at least once before it can be set as a required check. Make sure to open at least 1 PR before doing this setting.
 
 Here are the steps to configure gitStream in your repo's branch protection rules.
 
 1. Go to repo `settings`
-2. On the left panel select `Code and automation` > `Branches` 
-3. Set `Branch protection rules` for your desired branch 
+2. On the left panel select `Code and automation` > `Branches`
+3. Set `Branch protection rules` for your desired branch
 4. Enable `Require status checks to pass before merging`
 5. Search for `status checks in the last week for this repository`
 6. Select `gitStream.cm` as required check
 
 ![Branch protection rules](/screenshots/branch_protection_in_github.png)
-  
+
 ![Required checks](/screenshots/required_checks_in_github.png)
