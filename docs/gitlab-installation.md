@@ -5,6 +5,10 @@ Prerequisites:
 1. GitLab cloud
 2. GitLab runner v15 or higher
 
+!!! tip 
+
+    Automation rules by gitStream are executed on behalf of the user account used to install it. We recommend to continue with a new dedicated account (e.g. `gitstream-cm`) in GitLab and install gitStream app with it. The service account has to have `Maintainer`  role.
+
 ## Installation
 
 **Step 1 of 4:** Create a `.cm/gitstream.cm` rules file in the work repository default branch (usually `master` or `main`) with the following contents:
@@ -15,9 +19,6 @@ Prerequisites:
 
 **Step 2 of 4:** Create a new `cm` project (repository) in your GitLab group.
 
-!!! tip 
-
-    Automation rules by gitStream are executed on behalf of the user account used to install it. We recommend to continue with a new dedicated account (e.g. `gitstream-cm`) in GitLab and install gitStream app with it. The service account has to have `Maintainer`  role.
 
 **Step 3 of 4:** Create a `./.gitlab-ci.yml` CI/CD file in the `cm` repository default branch (usually `master` or `main`) with the following contents:
 
