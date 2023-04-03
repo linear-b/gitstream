@@ -61,6 +61,10 @@ plugins:
       minify_css: true
       htmlmin_opts:
         remove_comments: true
+  - redirects:
+      redirect_maps:
+        'github-org-level.md': 'github-installation.md'
+        'github-required-check.md': 'github-installation.md'
 markdown_extensions:
   - admonition
   - attr_list
