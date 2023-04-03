@@ -1,52 +1,89 @@
-# GitHub app installation 
+# How to Setup gitStream with GitHub
 
-## Installation
+!!! Warning "Install gitStream"
 
-!!! note
+    Before you can complete the gitStream setup process, you need to install the gitStream app to your [GitHub organization](https://github.com/apps/gitstream-cm/installations/new){ .md-button }.
+## Setup
+You can set up gitStream for a single repo or your entire GitHub organization. Select the tab below for the instructions you want.
+=== "Single Repo"
+    ### Single Repo Setup
+    You must implement two main components for gitStream to function for a single GitHub repo. The first is a configuration file that defines the workflow automations to execute for the repo. The second is a GitHub actions configuration file that triggers gitStream when PRs are created or updated.
+    !!! example "Required Configurations"
+        ### gitStream
 
-    Make sure gitStream app is installed in [GitHub](https://github.com/apps/gitstream-cm/installations/new){ .md-button }.
+        Create a `.cm/gitstream.cm` rules file in your repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on the repo, and you can name it anything you want as long as it ends in `.cm`
 
-**Step 1 of 2:** Create a `.cm/gitstream.cm` rules file in your repository default branch (usually `master` or `main`) with the following contents:
+        Here is an example of a gitStream configuration file you can use to setup some basic workflow automations.
 
-```yaml+jinja
---8<-- "docs/downloads/gitstream.cm"
-```
+        ```yaml+jinja
+        --8<-- "docs/downloads/gitstream.cm"
+        ```
 
-**Step 2 of 2:** Create a `.github/workflows/gitstream.yml` action file in your repository default branch (usually `master` or `main`) with the following contents:
+        ### Github Actions
+        Once your gitStream configuration file is setup, you need a Github Actions configuration file to trigger gitStream automations. Create a `.github/workflows/gitstream.yml` file in your repository's default branch (usually `master` or `main`) and add the following configuration:
 
-```yaml+jinja
---8<-- "docs/downloads/gitstream.yml"
-```
+        ```yaml+jinja
+        --8<-- "docs/downloads/gitstream.yml"
+        ```
 
+        !!! Success
+            When finished, you should have the following file structure in your repo.
+
+            ```
+            .
+            ├─ .cm/
+            │  └─ gitstream.cm
+            ├─ .github/
+            │  └─ workflows/
+            │     └─ gitstream.yml
+            ```
+
+=== "GitHub Organization "
+    ### GitHub Organization Setup
+    Organization rules are ideal when you want to enforce consistent rules across every repo in your organization. You can define them by creating a special repository named `cm` in your GitHub organization where you can add automation files that will apply to **all** repositories within that organization.
+
+    !!! example "Required Configurations"
+        ### Create a Continuous Merge Repo
+        To begin, create a repository named `cm` in your GitHub organization. The repo can be either public or private; no other repo configurations are required at this time.
+        ### Configure gitStream
+        Create a `gitstream.cm` rules file in the root directory of your repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on your organization's repos. You can name it anything you want as long as it ends in `.cm`
+
+        !!! info "Configuration files go in the repo's root directory." 
+            Unlike the set up instructions for a single repo, your `.cm` files should be placed in the repository's root directory.
+        ```yaml+jinja
+        --8<-- "docs/downloads/gitstream.cm"
+        ```
+        ### Configure GitHub Actions
+        Once your gitStream configuration file is set up, you will need to create a Github Actions configuration file to trigger gitStream automations. Create a `.github/workflows/gitstream.yml` file in your `cm` repository's default branch (usually `master` or `main`) and add the following configuration:
+
+        ```yaml+jinja
+        --8<-- "docs/downloads/gitstream.yml"
+        ```
+
+        !!! Success
+            Once finished, **all** PRs to your organization's repositories will be processed by the GitHub Action in this repo, and your `cm` repo should have a file directory that looks like this.
+
+            ```
+            .
+            ├─ gitstream.cm
+            ├─ .github/
+            │  └─ workflows/
+            │     └─ gitstream.yml
+            ```
 ## Next steps
 
-To learn how to add your first rule, jump to the [Quick Start](quick-start.md) page.
+Here are some additional resources to help you get the most out of gitStream
 
-!!! tip 
+* [Quick Start Guide](quick-start.md) - Short configuration examples you can implement in a couple of minutes
+* [Configuration overview](/cm-file) - Learn how to get the most out of `.cm` configurations.
+* [How gitStream works](/how-it-works/) - An overview of the gitStream lifecycle.
 
-    To allow gitStream blocking PRs from merging under certain conditions, [set gitStream as required check](github-required-check.md).
+!!! tip "Merge Blocking"
+    If you want to allow gitStream to block merges, you need to [make gitStream a required check](#github-merge-block) for each individual repository.
 
-## Configuration files
+## FAQ
 
-Eventually, the following files should exist in each of the selected repos:
-
-```
-.
-├─ .cm/
-│  └─ gitstream.cm
-├─ .github/
-│  └─ workflows/
-│     └─ gitstream.yml
-```
-
-| File and path         | Reason |
-|-----------------------|----------------------------------------|
-| `.cm/*.cm`    | Under the repo's `.cm` directory, any file that ends with `.cm` will be used by gitStream to specify automation rules, you can edit these files |
-| `.github/workflows/gitstream.yml` | Used by gitStream to execute automation rules in your GitHub repo so source code doesn't get to outside services |
-
-## Permissions
-
-The required permissions are: 
+### What permissions does gitStream require to function?
 
 | Permissions           | Reason |
 |----------------------|-------------------------------------------------------|
@@ -55,3 +92,22 @@ The required permissions are:
 | Read access to administration, issues, and metadata | To get the user team membership, and branch protection settings |
 | Read and write access to actions, checks, pull requests, and workflows | Trigger workflows, create and update pull requests and their checks, and modify workflow files |
 | User email | Used to identify users |
+
+### How do I configure gitStream to block merges? <a name="github-merge-block"></a>
+You can configure Github to require gitStream checks to pass before PRs can be merged using [branch protection rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches).
+
+!!! info "Run a gitStream check before continuing" 
+    You need to run a check using your gitStream configuration at least once before it can be set as a required check. Make sure to open at least 1 PR before doing this setting.
+
+Here are the steps to configure gitStream in your repo's branch protection rules.
+
+1. Go to repo `settings`
+2. On the left panel select `Code and automation` > `Branches` 
+3. Set `Branch protection rules` for your desired branch 
+4. Enable `Require status checks to pass before merging`
+5. Search for `status checks in the last week for this repository`
+6. Select `gitStream.cm` as required check
+
+![Branch protection rules](/screenshots/branch_protection_in_github.png)
+  
+![Required checks](/screenshots/required_checks_in_github.png)
