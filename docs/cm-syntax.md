@@ -70,7 +70,7 @@ Following in this example to invert the logic you can use `not` - a reserved wor
 
 gitStream reserved words:
 
-`manifest` `config` `automations` `every` `filter` `includes` `map` `match` `nope` `reject` `some` `allDocs` `allImages` `allTests` `estimatedReviewTime` `extensions` `explainRankByGitBlame` `isFirstCommit` `isFormattingChange` `matchDiffLines` `rankByGitActivity` `rankByGitBlame`
+`manifest` `config` `automations` `every` `filter` `includes` `map` `match` `nope` `reject` `some` `allDocs` `allImages` `allTests` `codeExperts` `estimatedReviewTime` `extensions` `explainCodeExperts` `explainRankByGitBlame` `isFirstCommit` `isFormattingChange` `matchDiffLines` `rankByGitActivity` `rankByGitBlame`
 
 [Nunjucks](https://mozilla.github.io/nunjucks/templating.html#builtin-filters) reserved words:
 
