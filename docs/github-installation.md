@@ -6,10 +6,11 @@
 ## Setup
 You can set up gitStream for a single repo or your entire GitHub organization. Select the tab below for the instructions you want.
 === "Single Repo"
-    ### Single Repo Setup
+    **Single Repo Setup**
+
     You must implement two main components for gitStream to function for a single GitHub repo. The first is a configuration file that defines the workflow automations to execute for the repo. The second is a GitHub actions configuration file that triggers gitStream when PRs are created or updated.
     !!! example "Required Configurations"
-        ### gitStream
+        **gitStream**
 
         Create a `.cm/gitstream.cm` rules file in your repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on the repo, and you can name it anything you want as long as it ends in `.cm`
 
@@ -19,7 +20,8 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
         --8<-- "docs/downloads/gitstream.cm"
         ```
 
-        ### Github Actions
+        **Github Actions**
+
         Once your gitStream configuration file is setup, you need a Github Actions configuration file to trigger gitStream automations. Create a `.github/workflows/gitstream.yml` file in your repository's default branch (usually `master` or `main`) and add the following configuration:
 
         ```yaml+jinja
@@ -39,13 +41,17 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
             ```
 
 === "GitHub Organization "
-    ### GitHub Organization Setup
+    **GitHub Organization Setup**
+
     Organization rules are ideal when you want to enforce consistent rules across every repo in your organization. You can define them by creating a special repository named `cm` in your GitHub organization where you can add automation files that will apply to **all** repositories within that organization.
 
     !!! example "Required Configurations"
-        ### Create a Continuous Merge Repo
+        **Create a Continuous Merge Repo**
+
         To begin, create a repository named `cm` in your GitHub organization. The repo can be either public or private; no other repo configurations are required at this time.
-        ### Configure gitStream
+        
+        **gitStream**
+
         Create a `gitstream.cm` rules file in the root directory of your repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on your organization's repos. You can name it anything you want as long as it ends in `.cm`
 
         !!! info "Configuration files go in the repo's root directory." 
@@ -53,7 +59,8 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
         ```yaml+jinja
         --8<-- "docs/downloads/gitstream.cm"
         ```
-        ### Configure GitHub Actions
+        **GitHub Actions**
+
         Once your gitStream configuration file is set up, you will need to create a Github Actions configuration file to trigger gitStream automations. Create a `.github/workflows/gitstream.yml` file in your `cm` repository's default branch (usually `master` or `main`) and add the following configuration:
 
         ```yaml+jinja
