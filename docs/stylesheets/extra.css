@@ -99,5 +99,7 @@ div.flow-chart {
   color: gray;
 }
 
-.md-typeset .admonition { font-size: .8rem; }
+.tabbed-content .md-typeset .admonition { 
+  font-size: .8rem;
+}
 

@@ -18,9 +18,7 @@ An automation identifier is a composition of the CM file name and the automation
 
 !!! tip
 
-```text
-You can exclude certain repositories per automation file using the [`config.ignore_repositories`](#config)
-```
+    You can exclude certain repositories per automation file using the [`config.ignore_repositories`](#config)
 
 ### Repository automation rules
 
@@ -47,9 +45,7 @@ When configured correctly, your repository directory structure should look like 
 
 !!! note
 
-```text
-The `.cm/gitstream.cm` is special, as it allows for repository level configuration such as `config.admin`.
-```
+    The `.cm/gitstream.cm` is special, as it allows for repository level configuration such as `config.admin`.
 
 ### Organization automation rules
 
