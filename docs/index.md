@@ -2,7 +2,7 @@
 
 **gitStream automates your reviews, so you can focus human effort on what matters most.** Not all Pull Requests are the same. Some reviews can be automated, like changes using a specific API (deprecated, sensitive), changes that are non-functional, like docs or tests, or even reformatting code. Automate these reviews to reduce context switches by assigning specific people to review, approve, or even merge simple changes that passed all checks, and more.
 
-#### Quick Start
+## Quick Start
 
 Take these three steps to see how gitStream works; later on you can learn about the .cm file, see some automation examples and learn how to create and edit your automation.
 
@@ -10,10 +10,10 @@ Take these three steps to see how gitStream works; later on you can learn about 
 
 	1. Install gitStream for free in [GitHub](https://github.com/apps/gitstream-cm/installations/new)
 	2. Configure your repository using the [instructions for GitHub](github-installation.md)
-	
+
 	That's it! Now sit back and watch gitStream automation rules on your next PR (You don’t have to merge it)
 
-	!!! note 
+	!!! note
 
 		When installing for GitHub, gitStream can be installed for one repo, specific repos, or all repos in your organization. We recommend installing for **all**, as it will also cover new repos you add in the future. You can change this setting at any time later.
 
@@ -29,21 +29,21 @@ Take these three steps to see how gitStream works; later on you can learn about 
 
 ## Features
 
-**📐  Building Custom Rules**
+### 📐  Building Custom Rules
 
-- PR Complexity 
+- PR Complexity
 - Multiple sources
-- Code change variables  
+- Code change variables
 - Branch details & history
 
 
-**🤖  gitStream engine**
+### 🤖  gitStream engine
 
 - Auto-merge PRs
 - Custom PR labels
-- Require specific reviewers 
+- Require specific reviewers
 - Automated change requests
-- Increase quality requirements 
+- Increase quality requirements
 - Based on Jinja2 template engine
 
 ## Continuous Merge
@@ -56,4 +56,3 @@ Take these three steps to see how gitStream works; later on you can learn about 
 
 ![Continuous Merge](/assets/ContinuousMerge3l.png#only-light)
 ![Continuous Merge](/assets/ContinuousMerge3d.png#only-dark)
-

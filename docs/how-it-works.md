@@ -6,10 +6,10 @@ Every time a dev opens a new Pull Request or changes a Pull Request, gitStream i
 
 In general, the next steps are common practice of changing code in repo:
 
-1. Create a feature branch 
-2. Commit changes  
-3. Push branch to remote repo 
-4. Open Pull Request 
+1. Create a feature branch
+2. Commit changes
+3. Push branch to remote repo
+4. Open Pull Request
 
 
 ```mermaid
@@ -28,16 +28,16 @@ gitGraph
 When gitStream installed and configured, whenever a new PR is opened, several actors are running:
 
 1. Git provider API
-2. gitStream **service** which you have installed from the marketplace 
-3. gitStream **CI/CD** script that is placed per the Git provider requirements 
+2. gitStream **service** which you have installed from the marketplace
+3. gitStream **CI/CD** script that is placed per the Git provider requirements
 4. gitStream **agent** that is executed by the CI/CD script
 
 Once a new PR is opened (or changed) the following process occurs:
 
-1. gitStream gets event for the new PR 
+1. gitStream gets event for the new PR
 2. gitStream calls the **CI/CD** script
-3. The installed action pulls and runs gitStream action `linear-b/gitstream-github-action@v1`. 
-4. This action runs locally in the repo and relies on 
+3. The installed action pulls and runs gitStream action `linear-b/gitstream-github-action@v1`.
+4. This action runs locally in the repo and relies on
 5. The current branch is used to check which automations are valid from `.cm/gitstream.cm`
 6. The action calls to gitStream app with metadata
 7. gitStream app returns results
@@ -53,7 +53,7 @@ The following diagram describes the flow:
 sequenceDiagram
   autonumber
   Git provider API->>gitStream app: new PR
-  gitStream app->>gitStream CI/CD script: run 
+  gitStream app->>gitStream CI/CD script: run
   activate gitStream CI/CD script
   gitStream CI/CD script->>gitStream CI/CD script: pull agent action
   gitStream CI/CD script->>gitStream in repo agent: run
@@ -106,9 +106,9 @@ gitGraph
 
 ## Automation results
 
-Eventually, the gitStream app shows the following statuses:  
+Eventually, the gitStream app shows the following statuses:
 
-![Success](/assets/github_pr_check_pass.png) Success - when the applicable automation finished and PR is good to go 
+![Success](/assets/github_pr_check_pass.png) Success - when the applicable automation finished and PR is good to go
 
 ![Neutral](/assets/github_pr_check_neutral.png) Neutral - when there aren't any applicable automations for the PR
 

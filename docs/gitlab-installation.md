@@ -1,19 +1,21 @@
-# GitLab installation 
+# GitLab installation
 
 Prerequisites:
 
 1. GitLab cloud
 2. GitLab runner v15 or higher
 
-!!! tip 
+!!! tip
 
-    Automation rules by gitStream are executed on behalf of the user account used to install it. We recommend to continue with a new dedicated account (e.g. `gitstream-cm`) in GitLab and install gitStream app with it. The service account has to have `Maintainer`  role.
+```text
+Automation rules by gitStream are executed on behalf of the user account used to install it. We recommend to continue with a new dedicated account (e.g. `gitstream-cm`) in GitLab and install gitStream app with it. The service account has to have `Maintainer`  role.
+```
 
 ## Installation
 
 **Step 1 of 4:** Create a `.cm/gitstream.cm` rules file in the work repository default branch (usually `master` or `main`) with the following contents:
 
-```yaml+jinja
+```yaml
 --8<-- "docs/downloads/gitstream.cm"
 ```
 
@@ -21,7 +23,7 @@ Prerequisites:
 
 **Step 3 of 4:** Create a `./.gitlab-ci.yml` CI/CD file in the `cm` repository default branch (usually `master` or `main`) with the following contents:
 
-```yaml+jinja
+```yaml
 --8<-- "docs/downloads/gitlab-ci.yml"
 ```
 
@@ -38,14 +40,14 @@ Eventually, the following files should exist in each of the selected repos:
 
 In the `cm` repository:
 
-```
+```text
 .
 ├─ .gitlab-ci.yml
 ```
 
 In your target repository:
 
-```
+```text
 .
 ├─ .cm/
 │  └─ gitstream.cm
@@ -58,11 +60,13 @@ In your target repository:
 
 ## Permissions
 
-!!! attention 
+!!! attention
 
-	When renaming or adding new repositories, you must re-authenticate gitStream in [GitLab](https://api.gitstream.cm/auth/grant/gitlab)
+```text
+When renaming or adding new repositories, you must re-authenticate gitStream in [GitLab](https://api.gitstream.cm/auth/grant/gitlab)
+```
 
-The required permissions are: 
+The required permissions are:
 
 | Permissions           | Reason |
 |----------------------|-------------------------------------------------------|
