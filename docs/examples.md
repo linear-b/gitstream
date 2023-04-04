@@ -194,6 +194,37 @@ automations:
   </span>
 </div>
 
+### Mark PRs without Jira tickets
+
+It is important that every PR comprises a reference to the corresponding requirement ticket. In this example the rules checks that the ticket number is mentioned in the PR title or the ticket link is added to the PR desciption. If the reference is missing, a label "missing-jira" with the red color is added to the PR.
+
+```yaml+jinja
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  jira_ticket:
+    if:
+      - {{ not (has.jira_ticket_in_title or has.jira_ticket_in_desc) }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "missing-jira"
+          color: 'F6443B'
+
+has:
+  jira_ticket_in_title: {{ pr.title | includes(regex=r/^\[?\w{3,4}-\d{1,6}\]?(\s|-|_).{1,}$/) }}
+  jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
+```
+
+<div class="result" markdown>
+  <span>
+  [:octicons-download-24: Download and add to your repo .cm directory](/downloads/check-ticket-in-pr.cm){ .md-button }
+  </span>
+</div>
+
 ### Require 2 approvals for complex PRs
 
 Automatically require 2 reviewers for PRs that have more than 100 lines of code changed under the `src` directory.
