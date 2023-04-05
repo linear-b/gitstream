@@ -7,9 +7,7 @@ Prerequisites:
 
 !!! tip
 
-```text
-Automation rules by gitStream are executed on behalf of the user account used to install it. We recommend to continue with a new dedicated account (e.g. `gitstream-cm`) in GitLab and install gitStream app with it. The service account has to have `Maintainer`  role.
-```
+	Automation rules by gitStream are executed on behalf of the user account used to install it. We recommend to continue with a new dedicated account (e.g. `gitstream-cm`) in GitLab and install gitStream app with it. The service account has to have `Maintainer`  role.
 
 ## Installation
 
@@ -62,9 +60,7 @@ In your target repository:
 
 !!! attention
 
-```text
-When renaming or adding new repositories, you must re-authenticate gitStream in [GitLab](https://api.gitstream.cm/auth/grant/gitlab)
-```
+	When renaming or adding new repositories, you must re-authenticate gitStream in [GitLab](https://api.gitstream.cm/auth/grant/gitlab)
 
 The required permissions are:
 
