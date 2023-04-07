@@ -94,4 +94,4 @@ Second, the `double_review` automation forces any changes to the `agent` directo
 
 ## Next Step
 !!! tip "Take a Look at the Quickstart Examples"
-    You're ready to browse our quickstart examples to find more CM automations for your repo. We have examples that help provide context to PRs with labels, assign reviewers based on custom criteria, manage security requirements, and more.
+    You're ready to browse our [CM example library](/examples) to build more automations for your repo. We have examples that help provide context to PRs with labels, assign reviewers based on custom criteria, manage security requirements, and more.
