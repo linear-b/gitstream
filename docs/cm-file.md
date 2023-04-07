@@ -69,30 +69,6 @@ For each PR the following automation rules are applied:
 When organization level rules are defined, then the CI/CD will be executed on the `cm` repository on behalf of the PR repository.
 
 ## The .cm automation file
-
-### Context variables
-
-gitStream includes a collection of variables called contexts. These variable has all the inputs you need to code your automation, including files names and paths, code that was changed or who did the change.
-See more [here](/context-variables).
-
-### Filter functions
-
-Filter functions are essentially callable functions that can be applied to variables. They are called with a pipe operator `|` and can take arguments inside parentheses `( )`. The logic expressions are based on Jinja2 syntax, supported by Nunjucks library.
-
-See more about the Nunjucks built-in filters [here](https://mozilla.github.io/nunjucks/templating.html#builtin-filters), and about gitStream built-in filters [here](/filter-functions).
-
-### Automation actions
-
-Specify the desired automations that are triggered when all conditions are met, read more [here](/automation-actions).
-
-Each automation includes conditions in an `if` section and actions in a `run` section.
-
-**Conditions:** Multiple conditions can be listed for a single automation, with AND relationship between the conditions, hence all listed conditions must pass to invoke the actions. The conditions are evaluated on new Pull Requests or changes to the Pull Request.
-
-**Actions:** Multiple actions can be listed in a single automation, the actions are invoked one by one.
-
-PRs that are marked as Draft are ignored by default, you can change that, see [`config`](#config) .
-
 ### Schema
 
 The following sections are used in `.cm` file to describe the desired automations:

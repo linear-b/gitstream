@@ -1,17 +1,14 @@
-# Dry-run mode
+# How to Test Your Automation
 
-gitStream runs automations as described in `.cm/*.cm` in the main branch. 
+By default, gitStream runs all applicable automations for every new PR and change to existing PR. If you want to test and experiment with new rules, gitStream supports a dry-run mode that will avoid making changes to your PRs. When you commit changes to any CM files found inside your repo's `.cm/` directory, gitStream will switch to dry-run mode.
 
-To allow testing and experimenting with new rules, gitStream supports dry-run mode. When you commit changes to `.cm/*.cm` in a PR branch, gitStream will switch to **dry-run mode**.
-
-In dry-run mode gitStream will stop executing automation rules described in the main branch for this PR, instead gitStream will parse the automation rules described in the `.cm/*.cm` of the PR branch and add a comment in the PR that describes all the automations actions – without executing the actions.
-
-!!! note
-
-	When in dry-run mode, changes to the `.cm/*.cm` file are ignored when calculating the conditions to help focus on setting the right automations
+In dry-run mode, gitStream won't execute any automation rules on the PR. Instead, gitStream will parse all applicable automation rules and post a comment to the PR discussion that describes the actions that will be taken for normal PRs.
 
 ![dry-run mode](/screenshots/dry-run-mode.png)
 
-Once you are satisfied with the results, you can merge the `.cm/*.cm` into the main branch to enable all new changes.
+!!! note
 
-![normal mode](/screenshots/normal-mode.png)
+	When in dry-run mode, incoming changes to the CM files are ignored. In other words, new automations and configurations won't take effect until you merge the PR.
+
+Once you are satisfied with the results, you can merge your CM changes into the main branch to enable the new configurations.
+

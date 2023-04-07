@@ -77,20 +77,20 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
             │  └─ workflows/
             │     └─ gitstream.yml
             ```
-## Next steps
 
-Here are some additional resources to help you get the most out of gitStream
+!!! info "gitStream will now do these two things."
+        When a PR is created or changed, apply or update a label that provides an estimated time to review.
+        ![Estimated Review Time label](screenshots/etr_label_example.png)
+        ![Estimated review time](screenshots/slack-estimated-review-time-example-1-min.png)
 
-* [Quick Start Guide](quick-start.md) - Short configuration examples you can implement in a couple of minutes
-* [Configuration overview](/cm-file) - Learn how to get the most out of `.cm` configurations.
-* [How gitStream works](/how-it-works/) - An overview of the gitStream lifecycle.
+        When a new PR is created, comment with a list of code experts.
+        ![Suggested reviewers](screenshots/github-codeexperts-expanded.png)
+## Next Step
+!!! tip "How gitStream Works"
+        Read our guide: [How gitStream Works](/how-it-works/) to get an overview of the gitStream syntax and automation lifecycle.
+## Additional Resources
 
-!!! tip "Merge Blocking"
-    If you want to allow gitStream to block merges, you need to [make gitStream a required check](#github-merge-block) for each individual repository.
-
-## FAQ
-
-### What permissions does gitStream require to function?
+### Required GitHub Permissions
 
 | Permissions           | Reason |
 |----------------------|-------------------------------------------------------|
@@ -100,7 +100,7 @@ Here are some additional resources to help you get the most out of gitStream
 | Read and write access to actions, checks, pull requests, and workflows | Trigger workflows, create and update pull requests and their checks, and modify workflow files |
 | User email | Used to identify users |
 
-### How do I configure gitStream to block merges? <a name="github-merge-block"></a>
+### Configure gitStream to Block Merges <a name="github-merge-block"></a>
 You can configure Github to require gitStream checks to pass before PRs can be merged using [branch protection rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches).
 
 !!! info "Run a gitStream check before continuing"

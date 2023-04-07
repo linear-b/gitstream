@@ -1,121 +1,97 @@
-# Quick Start
+# Write Your First gitStream Automation
+This article provides Continuous Merge (CM) examples to help you start customizing gitStream automations to meet the needs of your team.
+## Approve Simple Changes
+Changes to documentation, testing, and code formatting are often safe enough that there is little to no risk in letting an individual contributor merge those changes without needing to distract other people on their team to meet organization-wide requirements for multiple reviews on PRs. A good first Continuous Merge (CM) automation to implement is one that labels and approves changes to resources that could be considered safe changes.
 
-## First automation – adding labels
+This example uses the filter functions [`allDocs`](/filter-functions/#alldocs), [`allTests`](/filter-functions/#alltests), [`isFormattingChange`](/filter-functions/#isformattingchange) and [`match`](/filter-functions/#match) to detect changes that should be safe to merge with minimal review. It then uses the [`add-label`](/automation-actions/#add-label) automation action to apply a safe-changes label and the [`approve`](/automation-actions/#approve) automation action to provide an approval review.
 
-Once completed installation, each of your PRs will get a label that shows the estimated review time, with color coding as you define in the `cm` file.
+!!! example "Label and Approve Simple Changes"
+    ```yaml+jinja
+    # -*- mode: yaml -*-
+    manifest:
+      version: 1.0
+      
+    automations:
+      safe_changes:
+        if:
+          - {{ is.docs or is.tests or is.asset or is.formatting }}
+        run: 
+          - action: add-label@v1
+            args:
+              label: 'safe-changes'
+          - action: approve@v1
+    is:
+      docs: {{ files | allDocs }}
+      tests: {{ files | allTests }}
+      asset: {{ files | match(regex=r/\.(png|svg|gif|css)$/) | every }}
+      formatting: {{ source.diff.files | isFormattingChange }}
+    ```
 
-Try it yourself! Open a PR with minor change to the repository `README.md` file, you don't have to merge these changes. Once your PR is open, wait for gitStream check to finish, then your PR should get a colored labeled with `1 min review` label.
+!!! tip "Test Your Automation in Dry Run Mode"
+    gitStream includes a dry-run mode that let's you test your automations on your desired repo without pushing significant code, documentation, or other changes to the repo. 
+    
+    Learn more in our guide: [How to Test Your Automations](/dry-run-mode/).
 
-![Estimated Review Time label](screenshots/etr-example-1-min.png)
+## Find Reviewers for Common Changes
 
-When sharing the PR link in Slack, your reviewer will get to see the Estimated Review Time: 
+Selecting the right reviewer for your PR is crucial to ensure that your changes are thoroughly reviewed and that any issues are identified and addressed before they are merged into the main codebase. 
 
-![Estimated review time](screenshots/slack-estimated-review-time-example-1-min.png)
+This example uses the [`codeExperts`](/filter-functions/#codeexperts) filter function to identify the most qualified contributors based on their activity in the repo. It then assigns those individuals as reviewers on the PR with the [`add-reviewers`](/automation-actions/#add-reviewers) automation action and posts a comment that lists the code experts via the [`add-comment`](/automation-actions/#add-comment) automation action.
 
-## Marking safe changes
+!!! example "Identify and Assign Code Experts for Reviews"
+    This example uses the codeExperts filter function to identify the people who have the most expertise in the relevant code, assigns them as reviewers, and provides a comment that explains how those people were selected.
+    
+    ```yaml+jinja hl_lines="8"
+    # -*- mode: yaml -*-
+    manifest:
+      version: 1.0
 
-Next, let's add a new automation that checks for `safe-changes`. In the example below, we have defined documentation changes as safe changes. 
+    automations:
+      code_experts:
+        if: 
+          - true
+        run:
+          - action: add-reviewers@v1
+            args:
+              reviewers: {{ repo | codeExperts(gt=10) }}
+          - action: add-comment@v1
+            args:
+              comment: |
+                {{ repo | explainCodeExperts(gt=10) }}
+    ```
 
-!!! note
+## Enforce Review Policies for Critical Changes
+Complex and sensitive PRs often require more nuanced and complex review processes that bring in outside teams of experts to review code changes. gitStream makes it easy to set up custom review policies to keep teams align across your organization. This example contains two automations that implement custom review policies for specific parts of a codebase. 
 
-    When editing the CM file, make sure to preserve the indentation in the examples, as CM like YAML uses Python-style indentation to indicate nesting.
+First, the `security_review` automation uses the [`require-reviewers`](/automation-actions/#require-reviewers) automation action to add the security team from the git organization as reviewers on PRs that affect the `auth` directory of the repo. This action accepts a `reviewers:` argument that contains a list of teams or individual users; you will need to change this value to match your organization and users.
 
-You can copy the text below and overwrite the default `.cm/gitstream.cm` file content. Note the new automation rule `safe_changes`.
+Second, the `double_review` automation forces any changes to the `agent` directory to require a review from two people using the [`set-required-approvals`](/automation-actions/#set-required-approvals) automation action.
 
-```yaml+jinja hl_lines="16"
-# -*- mode: yaml -*-
+!!! example "Enforce Review Policies"
+    ```yaml+jinja
+    # -*- mode: yaml -*-
+    manifest:
+      version: 1.0
+    automations:
+      security_review:
+        if:
+          - {{ files | match(regex=r/auth\//) | some }}
+        run:
+          - action: require-reviewers@v1
+            args:
+              reviewers: [my_organization/security]
+          - action: add-reviewers@v1
+            args:
+              reviewers: [my_organization/security]
+      double_review:
+        if:
+          - {{ files | match(regex=r/agent\//) | some }}
+        run:
+          - action: set-required-approvals@v1
+            args:
+              approvals: 2
+    ```
 
-manifest:
-  version: 1.0
-
-automations:
-  estimated_time_to_review:
-    if:
-      - true
-    run:
-      - action: add-label@v1
-        args:
-          label: "{{ calc.etr }} min review"
-          color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
-
-  safe_changes:
-    if:
-      - {{ files | allDocs }}
-    run: 
-      - action: add-label@v1
-        args:
-          label: 'safe-changes'
-      # You can uncomment the following action to get gitStream to automatically approve 
-      # - action: approve@v1
-
-calc:
-  etr: {{ branch | estimatedReviewTime }}
-```
-
-Try it yourself! Open a PR with some minor change to the repository's `README.md` file, you don't have to merge these changes. Once your PR is open and gitStream check has finished running, you should notice that gitStream added `cm-changes` label and all the automation results are now displayed as new comment in the PR. 
-
-!!! note 
-
-    You can learn more about[dry-run mode here](/dry-run-mode), but the gist of it is that gitStream switch to simulation mode to allow you a safe place to check and test new rules before you merge them to the main branch.
-
-If you didn't get any syntax error, you should see the dry-run comment. Once you ready to update the autaomtion rules with the latest changes, undo the `README.md` file changes, and commit and merge the changes you did to the `.cm/gitstream.cm` file in order for these changes to take effect.
-
-Once again, let's open a new PR with some minor change to the repository's `README.md` file, you don't have to merge these changes. After gitStream check has finished you should see the green labeled with `1 min review` label and – as you only changed a document – the `safe-changes` label will appear on the PR as well.
-
-## Approving safe changes
-
-To approve `safe-changes` you should use the last PR, and uncomment the `- action: approve@v1` (make sure to align the `-` list indicator of the action with the previous one) or just overwrite the `.cm/gitstream.cm` file with this content:
-
-```yaml+jinja hl_lines="24"
-# -*- mode: yaml -*-
-
-manifest:
-  version: 1.0
-
-automations:
-  estimated_time_to_review:
-    if:
-      - true
-    run:
-      - action: add-label@v1
-        args:
-          label: "{{ calc.etr }} min review"
-          color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
-
-  safe_changes:
-    if:
-      - {{ files | allDocs }}
-    run: 
-      - action: add-label@v1
-        args:
-          label: 'safe-changes'
-      # You can uncomment the following action to get gitStream to automatically approve 
-      - action: approve@v1
-
-calc:
-  etr: {{ branch | estimatedReviewTime }}
-```
-
-Again, gitStream will switch to dry-run mode, and you are up for it, just merge the changes to `.cm/gitstream.cm` to get safe changes approved by gitStream for your team. 
-
-Well done! From now on, safe changes won't require developer's time to review and approve them.
-
-![Approve safe changes](/screenshots/approved-safe-changes.png)
-
-## What's next
-
-Once you get the hang of it, you can set up more automation rules. 
-
-You can explore the gitStream [CM syntax](/cm-syntax), or go over the [examples](/examples) page, there you can choose various automation such as marking PRs with no tests, assigning the right reviewer – for example changes to the Japanese translation files can be automatically assigned to the right translator…
-
-Download automation files and add them to your repository `.cm/` directory, experiment in dry-run mode, add labels and then switch to automatic actions.
-
-!!! tip
-
-	The `.cm` directory is located in the repository root and contains the automation files. Multiple rules files are supported.
-
-This is only the beginning. With gitStream, you can create rules to automate your PRs. You understand what your team needs, and gitStream will help you get there.
-
-## Something missing?
-
-If something is missing, create a new enhancement request in the [project's issues page](https://github.com/linear-b/gitstream/issues).
+## Next Step
+!!! tip "Take a Look at the Quickstart Examples"
+    You're ready to browse our quickstart examples to find more CM automations for your repo. We have examples that help provide context to PRs with labels, assign reviewers based on custom criteria, manage security requirements, and more.

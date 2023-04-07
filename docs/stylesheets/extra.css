@@ -103,3 +103,6 @@ div.flow-chart {
   font-size: .8rem;
 }
 
+.md-typeset .admonition, .md-typeset details {
+  font-size: .8rem
+}
