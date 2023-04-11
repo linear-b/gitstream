@@ -11,10 +11,9 @@ nav:
   - Guide:
     - GitHub Setup: github-installation.md
     - GitLab Setup: gitlab-installation.md
-    - Quick start: quick-start.md
-    - The CM syntax: cm-syntax.md
-    - Dry-run mode: dry-run-mode.md
-    - How it works: how-it-works.md
+    - How gitStream works: how-it-works.md
+    - Your First Automation: quick-start.md
+    - How to Test Your Automations: dry-run-mode.md
   - Examples: examples.md
   - Reference:
     - Configuration: cm-file.md
@@ -61,6 +60,7 @@ plugins:
       redirect_maps:
         'github-org-level.md': 'github-installation.md'
         'github-required-check.md': 'github-installation.md'
+        'cm-syntax.md': 'how-it-works.md'
 markdown_extensions:
   - admonition
   - attr_list

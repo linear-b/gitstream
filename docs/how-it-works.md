@@ -1,115 +1,181 @@
-# How it works
+# How gitStream Works
+You can configure gitStream via one or more Continuous Merge (CM) files inside your git repository or GitHub/GitLab organization. These files end with a `.cm`  extension, and they outline automations that will run whenever someone opens a new PR or makes changes to an existing PR. 
+## Syntax Overview
+CM files contain a combination of YAML and Jinja2 to build rules that follow an "if this, then that" approach to triggering and executing automations. This, combined with templating and gitStream-specific functions gives you a highly-flexible framework for building custom CM automations.
 
-Every time a dev opens a new Pull Request or changes a Pull Request, gitStream is triggered. Next, the `.cm` file is used to determine which automatic actions are invoked based on their conditions. The resulting actions use Git provider API to achieve the desired outcome.
+All CM files must have a section that starts with `automations:` that contains one or more custom automations that will trigger for the repo. gitStream is triggered every time someone opens a new PR or changes an existing PR. Once activated, gitStream searches for applicable CM files and executes the automations that are listed inside them.
 
-## Overview
+Here is an example of the basic components that are required in every CM file.
 
-In general, the next steps are common practice of changing code in repo:
+!!! example "Required CM Components"
+    Please note, this is not a valid CM automation, it is only for illustrative purposes.
+    ```yaml+jinja
+        # -*- mode: yaml -*-
+        manifest:
+          version: 1.0
+        automations:
+          my_automation:
+            if:
+              - # Add a condition here
+            run:
+              - # Add an automation here
+    ```
 
-1. Create a feature branch
-2. Commit changes
-3. Push branch to remote repo
-4. Open Pull Request
+!!! info
+    When editing CM files, make sure you preserve the indentation in the examples because, like YAML, gitStream uses Python-style indentation to indicate nesting.
+### Automation Actions
+[Automation actions](/automation-actions) specify the desired automations that should be triggered when all conditions are met. Each automation must incliude an `if` condition and a `run` section. The conditions are evaluated whenever someone creates a PR or makes changes to an existing PR; multiple conditions can be listed for a single automation, but they must all be true to invoke the actions. You can have any number of actions listed in an automation and they are invoked one-by-one in no particular order. PRs that are marked as Draft are ignored by default, but you can change that in your [`config`](cm-file/).
 
+!!! example "Basic Automation Example"
+    This example defines an automation named `welcome_newcomer` that post a comment to welcome anyone who submits their first PR to the repo.
+    ```yaml+jinja
+    automations:
+      welcome_newcomer:
+        if: 
+          - {{ repo.contributors | isFirstCommit(branch.author) }}
+        run: 
+          - action: add-comment@v1
+            args:
+              comment: Welcome {{branch.author}}!
+    ```
+### Context Variables and Filter Functions
+[Context variables](/context-variables) are pre-defined objects that gitStream provides as the input data you will need to build your automations. These variables enable you to access information about things like the file names and paths, the person who submitted the PR, or what code was changed.
 
-```mermaid
-gitGraph
-  commit id: "A"
-  commit id: "B"
-  branch feature
-  commit id: "C"
-  commit id: "D"
-  commit id: "E"
-  checkout main
-  commit id: "F"
-  commit id: "G"
-```
+[Filter functions](/filter-functions) are functions you can call and apply to variables. They are called with a pipe operator `|` and can take arguments inside parentheses `( )`. The logic expressions are based on Jinja2 syntax, supported by the [Nunjucks library](https://mozilla.github.io/nunjucks/templating.html#builtin-filters).
 
-When gitStream installed and configured, whenever a new PR is opened, several actors are running:
+!!! example "Context Variable and Filter Function Example"
+    The following statement passes the context variable [`files`](/context-variables/#files) to the filter function [`match`](/filter-functions/#match) which uses an optional list of sensitive filepaths that would need to be defined later in the CM file, and returns true if any of the files match the list as indicated by the [`some`](filter-functions/#some) filter function.
+    ```yaml+jinja
+    {{ files | match(list=sensitive) | some }}
+    ```
 
-1. Git provider API
-2. gitStream **service** which you have installed from the marketplace
-3. gitStream **CI/CD** script that is placed per the Git provider requirements
-4. gitStream **agent** that is executed by the CI/CD script
+You can also apply <a href="https://mozilla.github.io/nunjucks/templating.html#logic" target="_blank">Nunjucks logic operators</a> to filters
+!!! example "Logic Operators Example"
+    This example inverts the previous example using the keyword `not`.
+    ```yaml+jinja
+    {{ not (files | match(list=sensitive) | some )}}
+    ```
+### Accessory Expressions
+Jinja templating makes it easy to write custom expressions that can be invoked elsewhere in your CM files. This makes it easy to reuse data, define custom criteria, and keep your configuration files cleaner so they're easier to manage.  
 
-Once a new PR is opened (or changed) the following process occurs:
+!!! example "Accessory Expressions Example"
+    This example contains two custom expressions; `is:` contains a context variable and some filter functions that are invoked in the `sensitive_review` automation via `is.sensitive`, and `sensitive directories` contains a list of directory paths that will be matched in the filter function.
+    ```yaml+jinja
+    automations:
+      sensitive_review:
+        if:
+          - is.sensitive
+        run:
+          - action: set-required-approvals@v1
+            args:
+              approvals: 2
 
-1. gitStream gets event for the new PR
-2. gitStream calls the **CI/CD** script
-3. The installed action pulls and runs gitStream action `linear-b/gitstream-github-action@v1`.
-4. This action runs locally in the repo and relies on
-5. The current branch is used to check which automations are valid from `.cm/gitstream.cm`
-6. The action calls to gitStream app with metadata
-7. gitStream app returns results
-8. The list of applicable automations are sent to the gitStream service
-9. gitStream service iterates over the automations and invokes each action using Git provider APIs
-10. The PR gets updated according to the desired automations
+    is:
+      sensitive: {{ files | match(list=sensitive_directories) | some }}
 
-At the end, the PR is ready for further review or merge.
+    sensitive_directories:
+      - src/app/auth/
+      - src/app/routing/
+      - src/app/resources/
+    ```
 
-The following diagram describes the flow:
+### Ignore Files or Repos
 
+You can provide gitStream with a list of specific files to ignore for all automations listed in the same CM file. To do so, add a [`configuration:`](/cm-file/#config) section to the CM file that you want to apply the exclusion list to. In the configuration section, add a list of files as an argument to the `ignore_files:` key.
+
+!!! example "How to Ignore Files"
+    To ignore a list of files, add a `config.ignore_files` to you CM file like this: 
+    ```yaml+jinja
+    config:
+      ignore_files:
+        - 'yarn.lock'
+        - 'package-lock.json'
+        - 'openapi.json'
+        - 'ui/src/**/*Model.d.ts'
+    ```
+
+Similarly, if you are using gitStream for your entire git organization, you can specify repos to ignore in the `gitstream.cm` file in the root directory of your cm repo.
+
+!!! example "How to Ignore Repos"
+    ```yaml+jinja
+    config:
+      ignore_repositories:
+        - services
+        - common
+    ```
+
+### Configuration Priority and Overrides
+You can provide any number of CM files and automations for gitStream to process and you can freely combine organization-level automations with automations inside individual repos. There are two important things you need to keep in mind when doing this.
+
+First, when a repository defines the same automation as an organization-level rule, the repository automation will take precedence and override the organization automation. The CM file name and the automation name must both match for this to take effect because gitStream identifies all automations based on a combination of both. For example, if you have a `gitstream.cm` file that contains an automation named `my_automation`, gitStream will identify that as `gitstream/my_automation`.
+
+Second, no priority is given to individual automations. Instead, gitStream collects all applicable automations for a given PR and processes them all at once.
+
+## Next Step
+!!! tip "Write your first automation."
+    The best way to familiarize yourself with CM syntax is to build automations, and we've covered enough info for you to start! 
+    
+    If you're ready to start writing automations, check out our guide: [Write Your First Automation](quick-start.md).
+## Additional Resources
+### Functional Overview
+
+Once gitStream is installed and configured, there are several services that will interact with your repository whenever a PR is created or changed:
+
+* The **git service provider API** (e.g. GitHub, Gitlab)
+* The **gitStream service** that was installed from the git service provider marketplace.
+* A **gitStream CI/CD script** that is configured for the git service provider (e.g. GitHub Actions, GitLab CI/CD).
+* A **gitStream agent** the CI/CD script triggers to execute your automation.
+
+Whenever a new PR is opened or an existing PR is changed, the following process occurs:
+
+1. The **git service provider API** notifies the **gitStream service** that an applicable change has occured to the PR which triggers a call to execute the **gitStream CI/CD script**.
+1. The **gitStream CI/CD script** executes the GitHub Action <a href="https://github.com/linear-b/gitstream-github-action" target="_blank">`linear-b/gitstream-github-action@v1`</a> on the repository, which looks for two things:
+    * Valid CM files that match the filepath `.cm/*.cm` 
+    * Any CM files that are contained in the root directory of the organization's cm repo (if applicable).
+1. The **gitStream CI/CD script** passes all CM metadata to the **gitStream agent** which parses a list of all applicable CM rules. 
+1. The **GitStream agent** provides the list of applicable automations to the **gitStream service**.
+1. The **gitStream service** iterates through the automations and updates the PR via the **git service provider API**.
+
+Here is a diagram that illustrates how things work behind the scenes:
 ``` mermaid
 sequenceDiagram
   autonumber
-  Git provider API->>gitStream app: new PR
-  gitStream app->>gitStream CI/CD script: run
-  activate gitStream CI/CD script
-  gitStream CI/CD script->>gitStream CI/CD script: pull agent action
-  gitStream CI/CD script->>gitStream in repo agent: run
-  activate gitStream in repo agent
-  gitStream in repo agent->>gitStream in repo agent: parse the `.cm` rules
-  gitStream in repo agent->>gitStream app: API calls (metadata read-only)
+  Git Provider API->>gitStream app: PR Notification
   activate gitStream app
-  gitStream app->>gitStream in repo agent: results
-  deactivate gitStream app
-  gitStream in repo agent->>gitStream app: applicable automations
-  deactivate gitStream in repo agent
+  gitStream app->>gitStream CI/CD script: Execute CI/CD Action
+  activate gitStream CI/CD script
+  gitStream CI/CD script->>gitStream agent: CM Metadata
+  activate gitStream agent
+  gitStream agent->>gitStream app: Applicable Automations 
+  deactivate gitStream agent
   deactivate gitStream CI/CD script
-  loop per automation
-    loop per action
-      gitStream app->>gitStream app: execute action
-      gitStream app->>Git provider API: update PR
+  loop Automations
+    loop Actions
+      gitStream app->>Git Provider API: Update PR
     end
    end
+  deactivate gitStream app
 ```
+Upon completion, gitStream will show one of the following three statuses:
 
-## The branch diff
+* ![Success](/assets/github_pr_check_pass.png) Success - when the applicable automation finished and PR is good to go
+* ![Neutral](/assets/github_pr_check_neutral.png) Neutral - when there aren't any applicable automations for the PR
+* ![Failed](/assets/github_pr_check_fail.png) Failed - when the applicable automation finished without completion
+### Reserved Words
+Avoid using these words when naming your automations, actions, or other components. 
 
-The branch diff is defined as the difference between the current branch and the most recent commit in the main branch, which is shared between both branches. The main branch is also referenced as the target branch that the PR shall merge into (referred as the base branch on GitHub).
+gitStream reserved words:
 
-Using this PR as an example:
+`manifest` `config` `automations` `every` `filter` `includes` `map` `match` `nope` `reject` `some` `allDocs` `allImages` `allTests` `codeExperts` `estimatedReviewTime` `extensions` `explainCodeExperts` `explainRankByGitBlame` `isFirstCommit` `isFormattingChange` `matchDiffLines` `rankByGitActivity` `rankByGitBlame`
 
-![Target Branch](screenshots/target_branch_github.png)
+[Nunjucks](https://mozilla.github.io/nunjucks/templating.html#builtin-filters) reserved words:
 
-The `git-diff` is performed between commit `H` on the `feature` branch and the commit `F` on the `main` branch.
+`e` `if` `for` `asyncEach` `asyncAll` `macro` `set` `extends` `block` `include` `import` `raw` `verbatim` `filter` `call` `abs` `batch` `capitalize` `center` `default` `dictsort` `dump` `escape` `first` `float` `forceescape` `groupby` `indent` `int` `join` `last` `length` `list` `lower` `nl2br` `random` `reject` `rejectattr` `replace` `reverse` `round` `safe` `select` `selectattr` `slice` `sort` `string` `striptags` `sum` `title` `trim` `truncate` `upper` `urlencode` `urlize` `wordcount`
 
-```mermaid
-gitGraph
-  commit id: "A"
-  commit id: "B"
-  branch feature
-  commit id: "C"
-  commit id: "D"
-  checkout main
-  commit id: "E"
-  commit id: "F"
-  checkout feature
-  merge main
-  commit id: "G"
-  commit id: "H"
-  checkout main
-  commit id: "I"
-  commit id: "J"
-```
+### Syntax highlighting
 
+You can add support for `.cm` in your code editor, see [FAQ](https://docs.gitstream.cm/faq/#is-there-cm-syntax-highlighting).
 
-## Automation results
+## Is something missing?
 
-Eventually, the gitStream app shows the following statuses:
-
-![Success](/assets/github_pr_check_pass.png) Success - when the applicable automation finished and PR is good to go
-
-![Neutral](/assets/github_pr_check_neutral.png) Neutral - when there aren't any applicable automations for the PR
-
-![Failed](/assets/github_pr_check_fail.png) Failed - when the applicable automation finished without completion
+If you find an issue with these docs or with gitStream itself, please search the  [gitStream issues page](https://github.com/linear-b/gitstream/issues) and create an issue if one doesn't already exist for your problem.
