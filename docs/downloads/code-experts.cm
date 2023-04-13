@@ -11,13 +11,13 @@ automations:
       - {{ files | match(list=sensitive_files) | some }}
     run:
       # Add reviewers from the dev-leads team, and require two approvals
-      # Modify `my_organization/dev-leads` to match your organization.
+      # Modify `my_organization/security` to match your organization.
+      - action: add-reviewers@v1
+        args:
+          reviewers: [my_organization/security]
       - action: set-required-approvals@v1
         args:
           approvals: 2
-      - action: add-reviewers@v1
-        args:
-          reviewers: [my_organization/dev-leads]
 
   # Assign up to 2 reviewers based on highest code expertise. 
   assign_code_experts:
