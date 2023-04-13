@@ -140,6 +140,8 @@ automations:
         args:
           reviewers: [popeye, olive, acme/team-a]
 ```
+!!! warning "Enable Team Write Access"
+    If you want to assign teams as PR reviewers, you need to first make sure the team has write access to the repo in via your organization's settings. For more info, refer to the GitHub instructions for [managing team review settings](https://docs.github.com/en/organizations/organizing-members-into-teams/managing-code-review-settings-for-your-team).
 
 
 #### `approve` :fontawesome-brands-github: :fontawesome-brands-gitlab:
