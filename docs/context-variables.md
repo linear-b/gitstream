@@ -178,7 +178,7 @@ The `pr` context includes metadata related to the pull request.
 | `pr.line_comments` | [`LineComment`](#linecomment-structure) | TBD |
 | `pr.provider` | String | The Git cloud provider name, e.g. `GitHub`, `GitLab` etc. |
 | `pr.reviewers` | [String] | The list of reviewers set for this PR |
-| `pr.status` | String | The PR status: `open`, `requested-changes`, `approved`, `merged` |
+| `pr.status` | String | The PR status: `open`, `closed` |
 | `pr.target` | String | The branch the PR is intended merged into |
 | `pr.title` | String | The PR title |
 | `pr.updated_at` | String | The date and time the PR was last updated |
