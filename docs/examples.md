@@ -25,23 +25,6 @@ Here are examples of some of the automations in this configuration:
 ![Missing Tests Label](screenshots/missing-labels-example.png)
 
 ![Deleted Files Label](screenshots/github-deleted-files.png)
-## Approval Automation
-Not all PRs need extensive review policies that loop in multiple experts. For minor changes to docs, tests, formatting, and other components that pose little risk, gitStream can automate the review process to keep your team focused on their work.
-
-!!! example "PR Approval Automations"
-    ```yaml+jinja
-    --8<-- "docs/downloads/approvals.cm"
-    ```
-    <div class="result" markdown>
-      <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/approvals.cm){ .md-button }
-      </span>
-    </div>
-
-Here are examples of some of the automations in this configuration:
-![Approve Safe Changes](screenshots/approved-safe-changes.png)
-
-![Change Deprecated API](screenshots/change_use_deprectaed_api.png)
 ## Review Assignment
  Identifying the correct people to review a PR can take time, particularly for complex projects and repos that require deep expertise to understand. With features like code experts, gitStream extends CODEOWNER capabilities to provide intelligent automations that identify the best reviewers and give context to help speed up the review process.
 
@@ -62,7 +45,23 @@ Here are examples of some of the automations in this configuration:
 ![New Contributor Example](screenshots/first-weeks-example.png)
 
 ![Required Reviews Example](screenshots/required-check-block-merge.png)
+## Approval Automation
+Not all PRs need extensive review policies that loop in multiple experts. For minor changes to docs, tests, formatting, and other components that pose little risk, gitStream can automate the review process to keep your team focused on their work.
 
+!!! example "PR Approval Automations"
+    ```yaml+jinja
+    --8<-- "docs/downloads/approvals.cm"
+    ```
+    <div class="result" markdown>
+      <span>
+      [:octicons-download-24: Download this example as a CM file.](/downloads/approvals.cm){ .md-button }
+      </span>
+    </div>
+
+Here are examples of some of the automations in this configuration:
+![Approve Safe Changes](screenshots/approved-safe-changes.png)
+
+![Change Deprecated API](screenshots/change_use_deprectaed_api.png)
 ## Organization Automations
 Some rules and automations make most sense to enforce at the organization level. 
 
