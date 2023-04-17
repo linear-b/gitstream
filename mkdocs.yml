@@ -14,7 +14,7 @@ nav:
     - How gitStream works: how-it-works.md
     - Your First Automation: quick-start.md
     - How to Test Your Automations: dry-run-mode.md
-  - Examples: examples.md
+  - Example Library: examples.md
   - Reference:
     - Configuration: cm-file.md
     - Execution: execution-model.md
