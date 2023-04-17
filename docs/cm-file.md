@@ -155,10 +155,14 @@ For example, when using `rankByGitBlame` or `explainRankByGitBlame` Git users ar
 ```yaml title="example"
 config:
   user_mapping:
-    - 'Popeye Man <popeye@invalid.com>': 'popeye-the-salyor-man'
-    - 'Popeye Man <popeye2@invalid.com>': 'popeye-the-salyor-man'
-    - 'Popeye': null
+    - 'Popeye Man <popeye@invalid.com>': 'popeye-the-salyor-man' # (1)
+    - 'Popeye Man <popeye2@invalid.com>': 'popeye-the-salyor-man' # (2)
+    - 'olive <olive@invalid.com>': null # (3)
 ```
+
+1.  Map Git user signature to the correct Git provider user name (e.g. GitHub)
+2.  Map Git user signature to the correct Git provider user name (e.g. GitHub)
+2.  Mapping to `null` removes this Git user from the suggested results
 
 When using `rankByGitBlame` to assign reviewers automatically with `add-reviewers@v1` then mapping users to `null` is a way to prevent the automatic mapping in certain cases, like in your example contributors that are not longer part of the team.
 

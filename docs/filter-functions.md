@@ -253,7 +253,7 @@ Checks whether any element in the list is `true`. In case the list of elements 
 
 Return `true` if the input list includes only documents based on file extensions.
 
-Doc files extensions are: `md`, `mkdown`, `txt`, `rst`, except for `requirements.txt`.
+Doc files extensions are: `md`, `mkdown`, `txt`, `rst`, `adoc`, except for `requirements.txt`.
 
 <div class="filter-details" markdown=1>
 

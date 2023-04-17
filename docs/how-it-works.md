@@ -161,6 +161,9 @@ Upon completion, gitStream will show one of the following three statuses:
 * ![Success](/assets/github_pr_check_pass.png) Success - when the applicable automation finished and PR is good to go
 * ![Neutral](/assets/github_pr_check_neutral.png) Neutral - when there aren't any applicable automations for the PR
 * ![Failed](/assets/github_pr_check_fail.png) Failed - when the applicable automation finished without completion
+
+gitStream checks have a 10-minute timeout for fail-safe reasons. If the check exceeds this time limit, the result will be displayed as Neutral - *Skipped*.
+
 ### Reserved Words
 Avoid using these words when naming your automations, actions, or other components. 
 
