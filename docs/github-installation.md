@@ -40,10 +40,13 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
             │     └─ gitstream.yml
             ```
 
-=== "GitHub Organization "
+=== "GitHub Organization"
     **GitHub Organization Setup**
 
     Organization rules are ideal when you want to enforce consistent rules across every repo in your organization. You can define them by creating a special repository named `cm` in your GitHub organization where you can add automation files that will apply to **all** repositories within that organization.
+
+    !!! Warning "Connect repositories"
+        Make sure gitStream is installed for your new `cm` repo and the repositories you want gitStream to work on your [GitHub organization](https://github.com/apps/gitstream-cm/installations/new){ .md-button }.
 
     !!! example "Required Configurations"
         **Create a Continuous Merge Repo**
