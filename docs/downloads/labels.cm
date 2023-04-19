@@ -16,17 +16,15 @@ automations:
           label: "{{ calc.etr }} min review"
           color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
 
-  # Label PRs that are missing required tests.
+  # Label PRs that are missing tests.
   label_missing_tests:
-    # Triggered for changes to the lib and include directories 
-    # when there is no corresponding change in the tests directory
-    # Update "lib|include" and "tests" to match your repository's file structure
+    # Triggered for changes that lack a change to a test.
     if:
       - {{ files | match(regex=r/[^a-zA-Z0-9](tests)[^a-zA-Z0-9]/) | nope }}
     run: 
       - action: add-label@v1
         args:
-          label: 'missing-tests'
+          label: 'no-tests'
           color: '#E94637'
 
   # Apply a label that indicates when a PR deletes files
