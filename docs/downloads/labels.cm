@@ -1,6 +1,6 @@
 # -*- mode: yaml -*-
 manifest:
-      version: 1.0
+  version: 1.0
 
 automations:
   # Apply an update labels that indicate how long it takes to review the PR
@@ -64,6 +64,6 @@ has:
 # Evaluates PR titles and descriptions to find strings that match Jira ticket number formatting.
 # This is used in the `jira_ticket` automation.
 jira:
-    ticket_in_title: {{ pr.title | includes(regex=r/^\[?\w{3,4}-\d{1,6}\]?(\s|-|_).{1,}$/) }}
-    ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
+  ticket_in_title: {{ pr.title | includes(regex=r/^\[?\w{3,4}-\d{1,6}\]?(\s|-|_).{1,}$/) }}
+  ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
 
