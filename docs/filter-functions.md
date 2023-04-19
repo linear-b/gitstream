@@ -510,11 +510,9 @@ run:
 
 #### `isFormattingChange`
 
-Return `true` if all file diffs are validated as formatting changes.
+Return `true` if all file diffs are validated as formatting changes. This filter function works for JavaScript, TypeScript, JSON, YAML and HTML.
 
-Support source code languages: JavaScript, TypeScript, JSON, YAML and HTML.
-
-If changes in other formats detected, the filter will return `false`.
+gitStream determines formatting changes by minifying the source code for the incoming changes and the existing code and comparing them. If they are identical, this filter function returns `true`. If any unsupported languages are contained in the PR, gitStream will return `false`. 
 
 <div class="filter-details" markdown=1>
 
