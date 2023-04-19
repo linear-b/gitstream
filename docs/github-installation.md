@@ -45,17 +45,13 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
 
     Organization rules are ideal when you want to enforce consistent rules across every repo in your organization. You can define them by creating a special repository named `cm` in your GitHub organization where you can add automation files that will apply to **all** repositories within that organization.
 
-    !!! Warning "Connect repositories"
-        Make sure gitStream is installed for your new `cm` repo and the repositories you want gitStream to work on your [GitHub organization](https://github.com/apps/gitstream-cm/installations/new){ .md-button }.
+    !!! Tip "Prerequisite: Create a cm repo and enable gitStream."
+        Organization-wide automations need to be defined in a repo named "cm" inside your GitHub organization. Before continuing, you must create this repo and <a href="https://github.com/apps/gitstream-cm/installations/new" target="_blank">enable the gitStream app for it</a>.
 
     !!! example "Required Configurations"
-        **Create a Continuous Merge Repo**
-
-        To begin, create a repository named `cm` in your GitHub organization. The repo can be either public or private; no other repo configurations are required at this time.
-
         **gitStream**
 
-        Create a `gitstream.cm` rules file in the root directory of your repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on your organization's repos. You can name it anything you want as long as it ends in `.cm`
+        Create a `gitstream.cm` rules file in the root directory of your cm repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on your organization's repos. You can name it anything you want as long as it ends in `.cm`
 
         !!! info "Configuration files go in the repo's root directory."
             Unlike the set up instructions for a single repo, your `.cm` files should be placed in the repository's root directory.
