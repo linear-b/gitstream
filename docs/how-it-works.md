@@ -55,10 +55,10 @@ You can also apply <a href="https://mozilla.github.io/nunjucks/templating.html#l
     ```yaml+jinja
     {{ not (files | match(list=sensitive) | some )}}
     ```
-### Accessory Expressions
+### Custom Expressions
 Jinja templating makes it easy to write custom expressions that can be invoked elsewhere in your CM files. This makes it easy to reuse data, define custom criteria, and keep your configuration files cleaner so they're easier to manage.  
 
-!!! example "Accessory Expressions Example"
+!!! example "Custom Expressions Example"
     This example contains two custom expressions; `is:` contains a context variable and some filter functions that are invoked in the `sensitive_review` automation via `is.sensitive`, and `sensitive directories` contains a list of directory paths that will be matched in the filter function.
     ```yaml+jinja
     automations:
