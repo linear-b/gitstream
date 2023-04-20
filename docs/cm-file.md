@@ -120,6 +120,8 @@ config:
 
 This configuration is valid only when used in `.cm/gitstream.cm`, when defined in other `.cm` files this configuration is ignored.
 
+When added in the `cm` repository (i.e. at the organizational level), the specified users obtain administrative privileges to CM changes across every repository in the organization. Consequently, for every pull request that modifies a CM file in any of the repositories, the `config.admin.users` parameters are drawn from both the pull request repository and the `cm` repository.
+
 ##### `config.ignore_files`
 
 The `config.ignore_files` supports glob pattern matching that contains list of files to ignore, for example:
