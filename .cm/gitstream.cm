@@ -8,13 +8,33 @@ config:
     users: [vim-zz]
 
 automations:
-  estimated_time_to_review:
+  # Approve docs changes by maintainers, so they are not blocked.
+  # Merging is still manaul 
+  approve_maintainers_docs:
     if:
       - {{ files | match(regex=r/\.(md|txt|png|svg|webp)$/) | every }}
       - {{ pr.author | match(list=maintainers) }}
     run:
       - action: approve@v1
-      - action: merge@v1
+  # Notify maintainers on new PRs
+  notify_maintainers:
+    if:
+      - true
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ maintainers }}
+  # Mark changes to automation rule examples as they need to be tested and working
+  mark_examples:
+    if:
+      - {{ files | match(regex=r/\.(cm)$/) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'examples-code'
+          color: '#FF9800'
+
 
 maintainers:
   - 'vim-zz'
+  - 'BenLloydPearson'
