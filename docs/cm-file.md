@@ -120,6 +120,8 @@ config:
 
 This configuration is valid only when used in `.cm/gitstream.cm`, when defined in other `.cm` files this configuration is ignored.
 
+When you add a user to `config.admin.users` in your organization's `cm` repository, they are granted administrative privileges to CM changes across **every repository** in the organization. gitStream evaluates CM rules in the individual repository **and** your organization's `cm` repository to determine admin users.
+
 ##### `config.ignore_files`
 
 The `config.ignore_files` supports glob pattern matching that contains list of files to ignore, for example:
