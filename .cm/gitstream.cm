@@ -25,7 +25,7 @@ automations:
         args:
           reviewers: {{ maintainers }}
   # Mark changes to automation rule examples as they need to be tested and working
-  notify_maintainers:
+  mark_examples:
     if:
       - {{ files | match(regex=r/\.(cm)$/) | some }}
     run:
