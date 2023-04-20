@@ -12,3 +12,4 @@ automations:
         args:
           comment: |
             FILES DUMP {{ files | dump | safe }}
+
