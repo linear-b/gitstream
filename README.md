@@ -8,7 +8,6 @@
 
 [Install for GitLab](https://docs.gitstream.cm/gitlab-installation/)
 
-
 ### Documentation 
 
 See [https://docs.gitstream.cm](https://docs.gitstream.cm)
@@ -18,6 +17,10 @@ Watch the [Getting started workshop on YouTube](https://www.youtube.com/watch?v=
 ### Issues 
 
 Found a bug? Create a new item in the project's [issues](https://github.com/linear-b/gitstream/issues)
+
+### Updates
+
+Subscribe to [gitStream Feature Announcements](https://github.com/linear-b/gitstream/discussions).
 
 ### Examples 
 
