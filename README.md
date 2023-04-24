@@ -5,6 +5,7 @@
 ### Installation
 
 [Install for GitHub](https://docs.gitstream.cm/github-installation)
+
 [Install for GitLab](https://docs.gitstream.cm/gitlab-installation/)
 
 ### Documentation 
