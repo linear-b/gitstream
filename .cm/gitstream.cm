@@ -37,7 +37,7 @@ automations:
   # Mark missing screenshot 
   mark_screenshot:
     if:
-      - {{ not has.screenshot_link }}
+      - {{ not (has.screenshot_link or has.image_uploaded) }}
     run:
       - action: add-label@v1
         args:
@@ -51,6 +51,8 @@ automations:
 
 has:
   screenshot_link: {{ pr.description | includes(regex=r/!\[.*\]\(.*(jpg|svg|png|gif|psd).*\)/) }}
+  image_uploaded: {{ pr.description | includes(regex=r/<img.*src.*(jpg|svg|png|gif|psd).*>/) }}
+
 
 maintainers:
   - 'vim-zz'
