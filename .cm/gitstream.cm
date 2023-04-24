@@ -31,9 +31,26 @@ automations:
     run:
       - action: add-label@v1
         args:
-          label: 'examples-code'
-          color: '#FF9800'
+          label: 'examples-code-changes'
+          color: '#FFEC00'
 
+  # Mark missing screenshot 
+  mark_screenshot:
+    if:
+      - {{ not has.screenshot_link }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'no-screenshot'
+          color: '#FF000A'
+      - action: add-comment@v1
+        args:
+          comment: |
+            A screenshot of the relevant part of docs after the changes is a life saver 🛟
+
+
+has:
+  screenshot_link: {{ pr.description | includes(regex=r/!\[.*\]\(.*(jpg|svg|png|gif|psd).*\)/) }}
 
 maintainers:
   - 'vim-zz'
