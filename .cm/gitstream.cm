@@ -13,7 +13,7 @@ automations:
   approve_maintainers_docs:
     if:
       - {{ files | match(regex=r/\.(md|txt|png|svg|webp)$/) | every }}
-      - {{ not (has.screenshot_link or has.image_uploaded) }}
+      - {{ has.screenshot_link or has.image_uploaded }}
       - {{ pr.author | match(list=maintainers) }}
     run:
       - action: approve@v1
