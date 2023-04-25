@@ -9,13 +9,15 @@ config:
 
 automations:
   # Approve docs changes by maintainers, so they are not blocked.
-  # Merging is still manaul 
+  # Merging is still manual 
   approve_maintainers_docs:
     if:
       - {{ files | match(regex=r/\.(md|txt|png|svg|webp)$/) | every }}
+      - {{ not (has.screenshot_link or has.image_uploaded) }}
       - {{ pr.author | match(list=maintainers) }}
     run:
       - action: approve@v1
+  
   # Notify maintainers on new PRs
   notify_maintainers:
     if:
@@ -24,6 +26,7 @@ automations:
       - action: add-reviewers@v1
         args:
           reviewers: {{ maintainers }}
+  
   # Mark changes to automation rule examples as they need to be tested and working
   mark_examples:
     if:
