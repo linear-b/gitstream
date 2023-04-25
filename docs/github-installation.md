@@ -117,3 +117,7 @@ Here are the steps to configure gitStream in your repo's branch protection rules
 ![Branch protection rules](/screenshots/branch_protection_in_github.png)
 
 ![Required checks](/screenshots/required_checks_in_github.png)
+
+## Uninstalling gitStream
+
+Configure in your [GitHub organization](https://github.com/apps/gitstream-cm/installations/new){ .md-button }, and choose `Uninstall "gitStream.cm"`
