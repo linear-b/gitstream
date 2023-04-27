@@ -12,7 +12,7 @@ automations:
     run: 
       - action: add-label@v1
         args:
-          label: 'safe change'
+          label: 'safe-change'
       - action: approve@v1
       - action: add-comment@v1
         args:

@@ -4,19 +4,13 @@ If the PR content only contains one or more of documentation, formatting changes
 
 ![Approved safe changes](approved-safe-changes.png)
 
-[Context Variables](https://docs.gitstream.cm/context-variables/)
-* [files](https://docs.gitstream.cm/context-variables/#files)
+Conditions (all must be true):
+* The PR only contains documentation, tests, or formatting changes.
 
-[Filter Functions](https://docs.gitstream.cm/filter-functions/)
-* [isFormattingChange](https://docs.gitstream.cm/filter-functions/#isformattingchange)
-* [allDocs](https://docs.gitstream.cm/filter-functions/#alldocs)
-* [allTests](https://docs.gitstream.cm/filter-functions/#alltests)
-
-[Automation Actions](https://docs.gitstream.cm/automation-actions/)
-* [add-label](https://docs.gitstream.cm/automation-actions/#add-labels)
-* [approve](https://docs.gitstream.cm/automation-actions/#approve)
-* [add-comment](https://docs.gitstream.cm/automation-actions/#add-comment)
-
+Automation Actions:
+* Add a `safe-change` label
+* Approve the PR
+* Post a comment that explains that this is a safe change
 
 Visit the [gitStream docs](https://docs.gitstream.cm/) for more info about how to use this automation
 
