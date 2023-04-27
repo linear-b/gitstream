@@ -5,17 +5,21 @@ manifest:
 
 automations:
   safe_changes:
+    # Triggered for any changes to formatting, documentation, or tests
     if:
       - {{ is.formatting or is.docs or is.tests }}
+    # Apply a safe change label, approve the PR and explain why in a comment.
     run: 
       - action: add-label@v1
         args:
-          label: 'safe-changes'
+          label: 'safe change'
       - action: approve@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR is considered a safe change and has been automatically approved.
 
-# To simplify the automation, this calculation is placed under a unique YAML key.
-# The result is is assigned to `is.formatting`, `is.docs` and `is.tests` which is 
-# used in the automation above. You can add as many keys as you like.
+# These custom expressions are used in the safe_changes automation
 is:
   formatting: {{ source.diff.files | isFormattingChange }}
   docs: {{ files | allDocs }}
