@@ -13,3 +13,7 @@ automations:
       - action: set-required-approvals@v1
         args:
           approvals: 2
+    - action: add-comment@v1
+        args:
+          comment: |
+            This PR is a large change and requires 2 reviews.
