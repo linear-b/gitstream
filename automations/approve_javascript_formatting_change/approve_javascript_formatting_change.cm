@@ -13,3 +13,7 @@ automations:
       - action: add-label@v1
         args:
           label: code-formatting
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR only contains formatting changes and has been approved.
