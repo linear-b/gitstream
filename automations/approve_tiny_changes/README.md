@@ -1,5 +1,16 @@
-# Approve tiny changes
+# Approve Tiny Changes
 
-To allow fast small changes, this rule covers very small changes so they are labeled and approved.
+Approve single-line changes to a single file.
 
-![Approve tiny change](example_approve_and_label.png)
+![Approve tiny change](approve_tiny_change.png)
+
+Conditions (all must be true):
+* If the PR contains a one-line change to a single file.
+
+Automation Actions:
+* Apply a `tiny-change` label.
+* Approve the PR.
+* Post a comment explaining why the PR was approved.
+
+Visit the [gitStream docs](https://docs.gitstream.cm/) for more info about how to use this automation
+
