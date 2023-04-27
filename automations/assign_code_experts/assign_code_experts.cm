@@ -1,0 +1,22 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  assign_code_experts:
+    # Triggered when someone applies a suggest-reviewer label to a PR.
+    if: 
+      - {{ pr.labels | match(term='suggest-reviewer') }}
+    # Identify the best experts to assign for review and post a comment that explains why
+    # More info about code experts
+    # https://docs.gitstream.cm/filter-functions/#codeexperts
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ repo | codeExperts(gt=10) }}
+      - action: add-comment@v1
+        args:
+          comment: |
+            {{ repo | explainCodeExperts(gt=10) }}
+  
