@@ -1,15 +1,15 @@
-# Check for Jira ticket in PR title
+# Label Missing Jira Tickets
+Label PRs that don't reference a Jira ticket in the title or description. This uses regex to detect Jira ticket formats in the title (e.g. ABC-1234), and URLs to Jira tickets in the description.
 
-It is common practice to require linking the Jira ticket with the PR, to allow reviewers to get more context on the change. gitStream can help enforce that practice automatically, saving reviewers time and improving overall quality for the team.
+![Label Missing Jira](label_missing_jira.png)
 
-The automation checks for a ticket either in the PR title or PR description.
+Conditions (all must be true):
+* The PR lacks a Jira ticket number in the title, or a link to a Jira ticket in the PR description.
 
-The condition basically uses the following regular expression: 
+Automation Actions:
+* Apply a `missing-jira` label.
 
-```
-{{ pr.title | includes(regex=r/^\[?\w{3,4}-\d{1,6}\]?(\s|-|_).{20,}$/) }}
-```
+Visit the [gitStream docs](https://docs.gitstream.cm/) for more info about how to use this automation
 
-The `pr.title` holds the PR title, which is piped as the input for the next filter function `includes`. The `includes` function use a regex to check for Jira ticket reference.
 
-The regular expression `r/^\[?\w{3,4}-\d{1,6}\]?(\s|-|_).{20,}$/` is a pattern that can be used to match text strings that contain Jira issue keys, which have a specific format of three or four uppercase letters followed by a hyphen and one to six digits. It also allows the Jira key to be enclosed in optional square brackets at the beginning of the string.
+
