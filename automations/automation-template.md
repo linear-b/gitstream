@@ -10,7 +10,7 @@ How to publish a new automation:
 !-->
 Short description
 
-![Automation Name](automation-name.png)
+![Automation Name](automation_name.png)
 
 Conditions (all must be true):
 * Condition 1
