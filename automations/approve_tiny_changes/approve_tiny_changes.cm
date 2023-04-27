@@ -11,12 +11,12 @@ automations:
     run:
       - action: add-label@v1
         args:
-          label: 'tiny-change'
+          label: 'single-line'
       - action: approve@v1
       - action: add-comment@v1
         args:
           comment: |
-            This PR has been approved because it is considered a tiny change
+            This PR has been approved because it is only a single line
 
 changes:
   # Sum all the lines added in the PR

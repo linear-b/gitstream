@@ -8,7 +8,7 @@ Conditions (all must be true):
 * If the PR contains a one-line change to a single file.
 
 Automation Actions:
-* Apply a `tiny-change` label.
+* Apply a `single-line` label.
 * Approve the PR.
 * Post a comment explaining why the PR was approved.
 
