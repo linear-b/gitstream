@@ -8,11 +8,11 @@ config:
     users: [vim-zz]
 
 automations:
-  # Approve docs changes by maintainers, so they are not blocked.
+  # Approve changes of text files inside docs dir by maintainers 
   # Merging is still manual 
   approve_maintainers_docs:
     if:
-      - {{ files | match(regex=r/\.(md|txt|png|svg|webp)$/) | every }}
+      - {{ files | match(regex=r/docs\/.*\.(md|txt|png|svg|webp)$/) | every }}
       - {{ has.screenshot_link or has.image_uploaded }}
       - {{ pr.author | match(list=maintainers) }}
     run:
