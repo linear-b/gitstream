@@ -28,7 +28,7 @@ Here are examples of some of the automations in this configuration:
 ## Review Assignment
  Identifying the correct people to review a PR can take time, particularly for complex projects and repos that require deep expertise to understand. With features like code experts, gitStream extends CODEOWNER capabilities to provide intelligent automations that identify the best reviewers and give context to help speed up the review process.
 
-!!! example "PR Approval Automations"
+!!! example "PR Review Assignment"
     ```yaml+jinja
     --8<-- "docs/downloads/code-experts.cm"
     ```
