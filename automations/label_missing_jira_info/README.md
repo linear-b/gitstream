@@ -1,0 +1,15 @@
+# Label Missing Jira Tickets
+Label PRs that don't reference a Jira ticket in the title or description. This uses regex to detect Jira ticket formats in the title (e.g. ABC-1234), and URLs to Jira tickets in the description.
+
+![Label Missing Jira](label_missing_jira.png)
+
+Conditions (all must be true):
+* The PR lacks a Jira ticket number in the title, or a link to a Jira ticket in the PR description.
+
+Automation Actions:
+* Apply a `missing-jira` label.
+
+Visit the [gitStream docs](https://docs.gitstream.cm/) for more info about how to use this automation
+
+
+
