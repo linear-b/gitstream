@@ -8,7 +8,7 @@ Conditions (all must be true):
 
 Automation Actions:
 * Apply a `no-screenshot` label.
-* Post a comment that requests a screenshot.
+* Post a comment that requests a screenshot. Update this action to provide specific context for your project.
 
 Visit the [gitStream docs](https://docs.gitstream.cm/) for more info about how to use this automation
 
