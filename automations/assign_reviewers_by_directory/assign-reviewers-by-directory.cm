@@ -14,7 +14,7 @@ automations:
       - action: add-reviewers@v1
         args:
           reviewers: [my-teamate, my-organization/ui-team]
-    - action: add-comment@v1
+      - action: add-comment@v1
         args:
           comment: |
             The UI team has automatically been added for review because this PR contains changes to components inside `/src/ui`
