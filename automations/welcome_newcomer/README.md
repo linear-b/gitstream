@@ -1,6 +1,6 @@
 # Welcome Newcomer
 
-Short description
+Post a welcome message when someone makes their first PR to a repo, and provide context to help them know what's next.
 
 ![Welcome Newcomer](welcome_newcomer.png)
 
