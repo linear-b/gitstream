@@ -2,8 +2,6 @@
 
 If a PR creates a new Lambda function, but lacks a description field, gitStream will request changes and post a comment that explains why. 
 
-![Change Missing Lambda Info](change_missing_lambda_field.png)
-
 Conditions (all must be true):
 
 * The PR contains an update to a Lambda function.
