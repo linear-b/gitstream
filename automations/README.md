@@ -1,2 +1,1 @@
-# Automations
-
+[This content has been moved](docs.gitstream.cm/automations/automation-library/)
