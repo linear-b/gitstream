@@ -15,12 +15,15 @@ automations:
           label: "{{ calc.etr }} min review"
           color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
   # Post a comment that lists the best experts for the files that were modified.
-  code_experts:
+  suggest_code_experts:
+    # Triggered when someone applies a suggest-reviewer label to a PR.
     if: 
-      - true
+      - {{ pr.labels | match(term='suggest-reviewer') }}
+    # Identify the best experts to assign for review and post a comment that explains why
+    # More info about code experts
+    # https://docs.gitstream.cm/filter-functions/#codeexperts
     run:
       - action: add-comment@v1
-      # More info about explainCodeExperts: https://docs.gitstream.cm/filter-functions/#explaincodeexperts
         args:
           comment: |
             {{ repo | explainCodeExperts(gt=10) }}
