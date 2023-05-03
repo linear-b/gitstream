@@ -1,36 +1,37 @@
 # `/:\ gitStream`
 
-**gitStream automates your reviews, so you can focus human effort on what matters most.** Not all Pull Requests are the same. Some reviews can be automated, like changes using a specific API (deprecated, sensitive), changes that are non-functional, like docs or tests, or even reformatting code. Automate these reviews to reduce context switches by assigning specific people to review, approve, or even merge simple changes that passed all checks, and more.
+gitStream is a workflow automation tool that enables you to use YAML configuration files to optimize your code review process. Add context to PRs, find code experts for reviews, and automate the merge process to maximize developer productivity.
 
-### Installation
+If you like gitStream, please give this repo a star! ⭐ It helps us spread the word.
+## Main Features
 
-[Install for GitHub](https://docs.gitstream.cm/github-installation)
+### Automated Change Requests
 
-[Install for GitLab](https://docs.gitstream.cm/gitlab-installation/)
+Reduce code review noise by catching issues before anyone invests precious time. Flag [deprecated components](automations/change-deprecated-components/README.md), [missing data objects](automations/change-missing-lambda-field/README.md), [off-limits code](automations/close-wrong-team-by-directory/README.md), and other problems that need to be addressed before assigning code reviewers.
 
-### Documentation 
+### Review Assignment
 
-See [https://docs.gitstream.cm](https://docs.gitstream.cm)
+Identifying the correct people to review a PR can take time, particularly for complex projects and repos requiring deep expertise. [Assign code experts](automations/assign-code-experts/README.md) to review complex PRs, [notify your security team about sensitive changes](automations/review-sensitive-files/README.md), and automatically [assign reviewers based on the contents of the PR](automations/assign-reviewers-by-directory/README.md).
+### Auto-Merge PRs
 
-Watch the [Getting started workshop on YouTube](https://www.youtube.com/watch?v=NLffo0FFSHU&t=809s)
+Not all PRs need extensive review policies that loop in multiple experts. gitStream lets you auto-merge [safe changes](automations/approve-safe-changes/README.md), [small fixes](automations/approve-tiny-changes/README.md), [PRs from trusted teams](automations/approve-team-by-directory/README.md), and anything else you want to unblock the review process to keep your team focused on their work.
 
-### Issues 
+### Contextual Labels
 
-Found a bug? Create a new item in the project's [issues](https://github.com/linear-b/gitstream/issues)
+Reduce the mental burden of code reviews with labels that provide a high degree of context. Indicate an [estimated time to review](automations/provide-estimated-time-to-review/README.md) or flag potential issues with [Jira information](automations/label-missing-jira-info/README.md), [missing tests](automations/label-prs-without-tests/README.md), [deleted files](automations/label-deleted-files/README.md), and more.
 
-### Updates
+## Install
+[How to install gitStream](https://docs.gitstream.cm/).
+## Usage 
+* [How gitStream works](https://docs.gitstream.cm/how-it-works/)
+* [Write your first automation](https://docs.gitstream.cm/quick-start/)
+* [gitStream automation library](https://docs.gitstream.cm/automations/automation-library/)
+## Contribute 
+
+* [Report a bug](https://github.com/linear-b/gitstream/issues/new?assignees=&labels=bug&template=bug_report.md&title=)
+* [Request a new feature](https://github.com/linear-b/gitstream/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=)
+## Updates
 
 Subscribe to [gitStream Feature Announcements](https://github.com/linear-b/gitstream/discussions).
-
-### Examples 
-
-See the [automations](automations) directory
-
-## Continuous Merge
-
-**Continuous Merge (CM)** is the practice of automating the merge path by classifying pull requests based on change type, size, and complexity to allow work to flow more efficiently.
-
-![Continuous Merge](assets/ContinuousMerge3l.png#gh-light-mode-only)
-![Continuous Merge](assets/ContinuousMerge3d.png#gh-dark-mode-only)
 
 
