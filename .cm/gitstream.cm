@@ -37,14 +37,15 @@ automations:
           label: 'examples-code-changes'
           color: '#FFEC00'
 
-  # Mark missing screenshot 
+  # Mark missing screenshot when touching docs dir texts
   mark_screenshot:
     if:
+      - {{ files | match(regex=r/docs\/.*\.(md|txt)$/) | some }}
       - {{ not (has.screenshot_link or has.image_uploaded) }}
     run:
       - action: add-label@v1
         args:
-          label: 'no-screenshot'
+          label: 'no screenshot'
           color: '#FF000A'
       - action: add-comment@v1
         args:
