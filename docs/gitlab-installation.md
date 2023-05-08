@@ -4,7 +4,6 @@
 
     1. GitLab cloud
     1. GitLab runner v15 or higher
-    1. Install the gitStream app to your [GitLab organization](https://api.gitstream.cm/auth/grant/gitlab){ .md-button }.
 
 !!! tip
 
@@ -90,7 +89,10 @@ You can set up gitStream for a single repo or your entire GitLab organization. S
             ├─ .gitlab-ci.yml
             ├─ gitstream.cm
             ```
-
+## Install gitStream App
+!!! Warning "Install gitStream"
+    The last step of the process is to install the gitStream app to your [GitLab organization](https://api.gitstream.cm/auth/grant/gitlab){ .md-button }.
+    
 !!! info "gitStream will now do these two things."
         When a PR is created or changed, apply or update a label that provides an estimated time to review.
         ![Estimated Review Time label](automations/provide-estimated-time-to-review/provide_estimated_time_to_review.png)
