@@ -409,11 +409,11 @@ For example, check that only one file type was changed:
 
 #### `explainCodeExperts`
 
-This filter helps to explain the results of [`codeExperts`](#codeExperts), the output is in Markdown format that can be used in a PR comment.
+This filter helps to explain the results of [`codeExperts`](#codeExperts), the output is in Markdown format that can be used in a PR comment. The `explainCodeExperts` filter function calls gitStream app API with the `repo` context to calculate the estimated review time value.
 
 !!! note
 
-    The `explainCodeExperts` filter function calls gitStream app API with the `repo` context to calculate the estimated review time value.
+    If you use this function to post a comment to a GitHub PR conversation, gitStream will update the comment for every new commit. You may need to refresh your page to clean up the older comment versions.
 
 <div class="filter-details" markdown=1>
 
