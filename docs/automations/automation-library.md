@@ -43,3 +43,11 @@ These examples help you follow your team's security best practices.
 
 * [Review sensitive files](review-sensitive-files/README.md) - Define a custom list of files and directories that trigger additional reviews.
 * [Change deprecated components](change-deprecated-components/README.md) - Request changes when a PR includes one or more deprecated components.
+
+
+## Contribute Your Idea
+
+!!! tip "Have a great idea for an automation that should be included in this library?"
+    [Submit your configuration](https://github.com/linear-b/gitStream/issues/new?assignees=&labels=new-example&template=new_automation_example.md&title=New+Example%3A+) on GitHub. We'll recognize your contribution publicly (if you want) and might even send you some special swag for your contribution. 
+
+<h2>/:\</h2>
