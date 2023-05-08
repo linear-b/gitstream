@@ -1,13 +1,14 @@
 # How to Setup gitStream with GitLab
 
-Prerequisites:
+!!! info "Prerequisites"
 
-1. GitLab cloud
-2. GitLab runner v15 or higher
+    1. GitLab cloud
+    1. GitLab runner v15 or higher
+    1. Install the gitStream app to your [GitLab organization](https://api.gitstream.cm/auth/grant/gitlab){ .md-button }.
 
 !!! tip
 
-	Automation rules by gitStream are executed on behalf of the user account used to install it. We recommend to continue with a new dedicated account (e.g. `gitstream-cm`) in GitLab and install gitStream app with it. The service account has to have `Maintainer` role.
+	gitStream automation rules are executed on behalf of the user account used to install it, and this account must have the `Maintainer` role. We recommend creating a new dedicated account (e.g. `gitstream-cm`) in GitLab to install the gitStream app.
 
 ## Setup
 
@@ -90,17 +91,15 @@ You can set up gitStream for a single repo or your entire GitLab organization. S
             ├─ gitstream.cm
             ```
 
-!!! Warning "Install gitStream"
-
-    Before you can complete the gitStream setup process, you need to install the gitStream app to your [GitLab organization](https://api.gitstream.cm/auth/grant/gitlab){ .md-button }.
-
 !!! info "gitStream will now do these two things."
         When a PR is created or changed, apply or update a label that provides an estimated time to review.
-        ![Estimated Review Time label](screenshots/etr_label_example.png)
-        ![Estimated review time](screenshots/slack-estimated-review-time-example-1-min.png)
+        ![Estimated Review Time label](automations/provide-estimated-time-to-review/provide_estimated_time_to_review.png)
 
-        When a new PR is created, comment with a list of code experts.
-        ![Suggested reviewers](screenshots/gitHub-codeexperts-expanded.png)
+        When a `suggest-reviewers` label is applied to a PR, gitStream will comment with a list of code experts.
+        ![Suggested reviewers](automations/assign-code-experts/assign_code_experts.png)
+!!! attention
+
+	When renaming or adding new repositories, you must re-authenticate gitStream in [GitLab](https://api.gitstream.cm/auth/grant/gitlab)
 ## Next Step
 !!! tip "How gitStream Works"
         Read our guide: [How gitStream Works](/how-it-works/) to get an overview of the gitStream syntax and automation lifecycle.
@@ -109,10 +108,6 @@ You can set up gitStream for a single repo or your entire GitLab organization. S
 
 
 ### Required GitLab Permissions
-
-!!! attention
-
-	When renaming or adding new repositories, you must re-authenticate gitStream in [GitLab](https://api.gitstream.cm/auth/grant/gitlab)
 
 The required permissions are:
 
