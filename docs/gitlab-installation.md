@@ -1,66 +1,115 @@
-# GitLab installation
+# How to Setup gitStream with GitLab
 
-Prerequisites:
+!!! info "Prerequisites"
 
-1. GitLab cloud
-2. GitLab runner v15 or higher
+    1. GitLab cloud
+    1. GitLab runner v15 or higher
 
 !!! tip
 
-	Automation rules by gitStream are executed on behalf of the user account used to install it. We recommend to continue with a new dedicated account (e.g. `gitstream-cm`) in GitLab and install gitStream app with it. The service account has to have `Maintainer`  role.
+	gitStream automation rules are executed on behalf of the user account used to install it, and this account must have the `Maintainer` role. We recommend creating a new dedicated account (e.g. `gitstream-cm`) in GitLab to install the gitStream app.
 
-## Installation
+## Setup
 
-**Step 1 of 4:** Create a `.cm/gitstream.cm` rules file in the work repository default branch (usually `master` or `main`) with the following contents:
+You can set up gitStream for a single repo or your entire GitLab organization. Select the tab below for the instructions you want.
+=== "Single Repo"
+    **Single Repo Setup**
 
-```yaml
---8<-- "docs/downloads/gitstream.cm"
-```
+    You must implement two main components for gitStream to function for a single GitLab repo. The first is a configuration file that defines the workflow automations to execute for the repo. The second is a GitLab actions configuration file that triggers gitStream when PRs are created or updated which is hosted in a special `cm` repo.
 
-**Step 2 of 4:** Create a new `cm` project (repository) in your GitLab group. It should be created in the same group or a parent group of the target repositories.
+    !!! Warning "Prerequisite: Create a cm repo and enable gitStream."
+        Create a `cm` project (repository) in your GitLab group. It should be created in the same group or a parent group of the target repositories
 
-**Step 3 of 4:** Create a `./.gitlab-ci.yml` CI/CD file in the `cm` repository default branch (usually `master` or `main`) with the following contents:
+    !!! example "Required Configurations"
+        **gitStream**
 
-```yaml
---8<-- "docs/downloads/gitlab-ci.yml"
-```
+        Create a `.cm/gitstream.cm` rules file in your repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on the repo, and you can name it anything you want as long as it ends in `.cm`
 
-**Step 4 of 4:** Install gitStream app for [GitLab](https://api.gitstream.cm/auth/grant/gitlab){ .md-button }.
+        Here is an example of a gitStream configuration file you can use to setup some basic workflow automations.
 
+        ```yaml+jinja
+        --8<-- "docs/downloads/gitstream.cm"
+        ```
 
-## Next steps
+        **GitLab CI**
 
-To learn how to add your first rule, jump to the [Quick Start](quick-start.md) page.
+        Once your gitStream configuration file is setup, you need a GitLab CI configuration file to trigger gitStream automations. Create a new `cm` project (repository) in your GitLab group. It should be created in the same group or a parent group of the target repositories. Create a `.gitlab-ci.yml` file in your new `cm` repository's default branch (usually `master` or `main`) and add the following configuration:
 
-## Configuration files
+        ```yaml+jinja
+        --8<-- "docs/downloads/gitlab-ci.yml"
+        ```
 
-Eventually, the following files should exist in each of the selected repos:
+        !!! Success
+            When finished, you should have the following file structure in your `cm` repo.
 
-In the `cm` repository:
+            ```text
+            .
+            ├─ .gitlab-ci.yml
+            ```
 
-```text
-.
-├─ .gitlab-ci.yml
-```
+            And in your target repository:
 
-In your target repository:
+            ```text
+            .
+            ├─ .cm/
+            │  └─ gitstream.cm
+            ```
 
-```text
-.
-├─ .cm/
-│  └─ gitstream.cm
-```
+=== "GitLab Group"
+    **GitLab Group Setup**
 
-| File and path         | Reason |
-|-----------------------|----------------------------------------|
-| `.cm/*.cm`    | Under the repo's `.cm` directory, any file that ends with `.cm` will be used by gitStream to specify automation rules, you can edit these files |
-| `.gitlab-ci.yml` | Used by gitStream to execute automation rules in your GitLab repo so source code doesn't get to outside services |
+    Organization rules are ideal when you want to enforce consistent rules across every repo in your organization. You can define them by creating a special repository named `cm` in your GitLab organization top group where you can add automation files that will apply to **all** repositories within that organization.
 
-## Permissions
+    !!! Warning "Prerequisite: Create a cm repo and enable gitStream."
+        Create a `cm` project (repository) in your GitLab group. It should be created in the same group or a parent group of the target repositories
 
+    !!! example "Required Configurations"
+        **gitStream**
+
+        Create a `gitstream.cm` rules file in the root directory of your `cm` repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on your organization's repos. You can name it anything you want as long as it ends in `.cm`
+
+        !!! info "Configuration files go in the repo's root directory."
+            Unlike the set up instructions for a single repo, your `.cm` files should be placed in the repository's root directory.
+        ```yaml+jinja
+        --8<-- "docs/downloads/gitstream.cm"
+        ```
+        **GitLab CI**
+
+        Once your gitStream configuration file is setup, you need a GitLab CI configuration file to trigger gitStream automations. Create a `.gitlab-ci.yml` file in your new `cm` repository's default branch (usually `master` or `main`) and add the following configuration:
+
+        ```yaml+jinja
+        --8<-- "docs/downloads/gitlab-ci.yml"
+        ```
+
+        !!! Success
+            When finished, you should have the following file structure in your `cm` repo.
+
+            ```text
+            .
+            ├─ .gitlab-ci.yml
+            ├─ gitstream.cm
+            ```
+## Install gitStream App
+!!! Warning "Install gitStream"
+    The last step of the process is to install the gitStream app to your [GitLab organization](https://api.gitstream.cm/auth/grant/gitlab){ .md-button }.
+    
+!!! info "gitStream will now do these two things."
+        When a PR is created or changed, apply or update a label that provides an estimated time to review.
+        ![Estimated Review Time label](automations/provide-estimated-time-to-review/provide_estimated_time_to_review.png)
+
+        When a `suggest-reviewers` label is applied to a PR, gitStream will comment with a list of code experts.
+        ![Suggested reviewers](automations/assign-code-experts/assign_code_experts.png)
 !!! attention
 
 	When renaming or adding new repositories, you must re-authenticate gitStream in [GitLab](https://api.gitstream.cm/auth/grant/gitlab)
+## Next Step
+!!! tip "How gitStream Works"
+        Read our guide: [How gitStream Works](/how-it-works/) to get an overview of the gitStream syntax and automation lifecycle.
+
+## Additional Resources
+
+
+### Required GitLab Permissions
 
 The required permissions are:
 
@@ -70,9 +119,12 @@ The required permissions are:
 | Read repository | To read and check rules over the code changes on monitored repositories |
 | Read user profile | Used to identify users |
 
-## gitStream actions
+### No support for gitStream to Block Merges
+gitStream actions that blocks MR merge are not support at the moment.
 
-Automation rules by gitStream are executed on behalf of the user account used to install it. We recommend using a new dedicated account in GitLab for installing gitStream, e.g. `gitstream`
+### gitStream service account
+
+Automation rules by gitStream are executed on behalf of the user account used to install it. We recommend using a new dedicated account in GitLab for installing gitStream, e.g. `gitstream-cm`
 
 ## Uninstalling gitStream
 
