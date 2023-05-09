@@ -34,4 +34,14 @@ Reduce the mental burden of code reviews with labels that provide a high degree 
 
 Subscribe to [gitStream Feature Announcements](https://github.com/linear-b/gitstream/discussions).
 
+## Local Documentation Server Setup
+
+To run the documentation server locally using Python3, follow these steps:
+
+1. Create a virtual environment named `.venv` using the command `python -m venv .venv`
+2. Activate the virtual environment by running the command `. ./.venv/bin/activate`
+3. Install the required packages by executing `pip install -r requirements.txt`
+4. Start the server by running `mkdocs serve`
+
+The local documentation server should now be running at `http://127.0.0.1:8000/`.
 
