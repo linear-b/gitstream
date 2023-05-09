@@ -9,24 +9,24 @@ Custom filters are Javascript code snipets that will be embedded into gitStream'
 
 ###  Creating filters
 
-Filters can have at most one input parameter such as the available [context variables](context-variables.md), that is provided to the filter in the `.cm` file using a pipe.
+Filters can have input parameters such of any type allowed in the `.cm` file. the 1st argument should be piped to the filter, and the rest of the arguments must be used as conventional function arguments.
 
 Filters must return a valid Javascript type (i.e Bool, Int, String, Object, etc...)
 
 In addition to the code implemetion of the filter, the filter creator must specify the npm dependecies in JSON format, as it appears in the `package_lock.json` file
 
 ### Custom filter example:
-The following example shows a filter that recieves the [pr context](context-variables.md#pr) as its input, returns `true` if the last [general comment](context-variables.md#generalcomment-structure)'s author is "foo", and the content contains the string "bar", and returns `false` otherwise.
+The following example shows a filter that recieves the [pr context](context-variables.md#pr), and a commenter name as its input, returns `true` if the last [general comment](context-variables.md#generalcomment-structure)'s author equals the commenter name, and the content contains the string "bar". Otherwise it returns `false`.
 
 ```ts
-const myFilter = (pr_context: any) => {
+const myFilter = (pr_context: any, commenter: string) => {
   const comments = pr_context.general_comments;
   if (!comments || comments.length === 0) {
     return false; // If there are no comments or comments array is empty, return false
   }
 
   const lastComment = comments[comments.length - 1];
-  return (lastComment.commenter === 'foo' && lastComment.content.includes('bar')); // check the criteria for the last comment
+  return (lastComment.commenter === commenter && lastComment.content.includes('bar')); // check the criteria for the last comment
 };
 ```
 
