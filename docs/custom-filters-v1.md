@@ -1,26 +1,26 @@
 # Custom filters V1
 
-Custom filters are Javascript code snipets that will be embedded into gitStream's functionality after a review and approval proccess by our engineers
+Custom filters are JavaScript code snippets that will be embedded into gitStream's functionality after a review and approval process by our engineers.
 
-!!! attention
+!!! Attention
 
     :octicons-beaker-24: Coming soon
 
 
 ###  Creating filters
 
-Filters can have input parameters such of any type allowed in the `.cm` file. the 1st argument should be piped to the filter, and the rest of the arguments must be used as conventional function arguments.
+Filters can have input parameters of any type allowed in the `.cm` file. The 1st argument should be piped to the filter, and the rest of the arguments must be used as conventional function arguments.
 
-Filters must return a valid Javascript type (i.e Bool, Int, String, Object, etc...)
+Filters must return a valid JavaScript type (i.e. Bool, Int, String, Object, etc...)
 
 #### Dependencies
-!!! attention
+!!! Attention
     TBD
 
     Consult with gitStream's team if the custom filter requires any dependencies
 
 ### Custom filter example:
-The following example shows a filter that recieves the [pr context](context-variables.md#pr), and a commenter name as its input, returns `true` if the last [general comment](context-variables.md#generalcomment-structure)'s author equals the commenter name, and the content contains the string "foo". Otherwise it returns `false`.
+The following example shows a filter that receives the [pr context](context-variables.md#pr), and a commenter name as its input, and returns `true` if the last [general comment](context-variables.md#generalcomment-structure)'s author equals the commenter name, and the content contains the string "foo". Otherwise, it returns `false`.
 
 ```ts
 const myFilter = (pr_context: any, commenter: string) => {
@@ -46,3 +46,6 @@ automations:
   run:
     - action: approve@v1
 ```
+### Local testing
+!!! Attention
+    TBD
