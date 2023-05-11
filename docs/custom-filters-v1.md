@@ -7,26 +7,40 @@ Custom filters are JavaScript code snippets that will be embedded into gitStream
     :octicons-beaker-24: Coming soon
 
 
-###  Creating filters
+## Creating filters
 
-Filters can have input parameters of any type allowed in the `.cm` file. The 1st argument should be piped to the filter, and the rest of the arguments must be used as conventional function arguments.
+Filters can have input parameters of any type allowed in the `.cm` file. The 1st argument can be piped to the filter, and the rest must be used as conventional function arguments.
 
-Filters must return a valid JavaScript type (i.e. Bool, Int, String, Object, etc...)
+Filters must return a valid JavaScript type (i.e., Bool, Int, String, Object, etc...)
 
 #### Dependencies
 !!! Attention
     TBD
 
-    Consult with gitStream's team if the custom filter requires any dependencies
+    Consult with gitStream's team if the custom filter requires any dependencies.
+## Examples
 
-### Custom filter example:
-The following example shows a filter that receives the [pr context](context-variables.md#pr), and a commenter name as its input, and returns `true` if the last [general comment](context-variables.md#generalcomment-structure)'s author equals the commenter name, and the content contains the string "foo". Otherwise, it returns `false`.
+### Basic custom filter
+The following example shows a filter that receives a string and returns its length.
+```ts
+const strLengthFilter = (str: string) => {
+	return str.length;
+}
+```
+
+#### Filter usage in gitStream
+Once the filter has been added to gitStream, it can be used as any other high-level filter. Since it receives only one argument, it can be piped or passed as a function argument, for example:
+
+`{{ "my string" | strLengthFilter }}`,  or  `{{ strLengthFilter("my string") }}` 
+
+### Custom filter with context variable
+The following example shows a filter receiving the pr context and a commenter name as input. It returns `true` if the last [general comment](context-variables.md#generalcomment-structure)'s author equals the commenter name and the content contains the string "foo". Otherwise, it returns `false`.
 
 ```ts
 const myFilter = (pr_context: any, commenter: string) => {
   const comments = pr_context.general_comments;
   if (!comments || comments.length === 0) {
-    return false; // If there are no comments or comments array is empty, return false
+    return false; // If there are no comments or the comments array is empty, return false
   }
 
   const lastComment = comments[comments.length - 1];
@@ -35,17 +49,16 @@ const myFilter = (pr_context: any, commenter: string) => {
 ```
 
 #### Filter usage in gitStream
-Once the filter has been added to gitStream, it can be used as any other high-level filter:
-
 Approve the PR if the value of `myFilterOutput` is `true`:
 ```yaml+jinja
 automations:
-# approve the PR if the value of `myFilterOutput` is `true`
+# approve the PR if the value of `myFilterOutput` is `true`.
   if:
     - {{ pr | myFilter("bar") }}
   run:
     - action: approve@v1
 ```
-### Local testing
+
+## Local testing
 !!! Attention
     TBD
