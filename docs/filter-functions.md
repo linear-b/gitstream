@@ -527,6 +527,7 @@ gitStream determines formatting changes by minifying the source code for the inc
 {{ source.diff.files | isFormattingChange }}
 ```
 
+
 #### `matchDiffLines`
 
 Checks diff for matching lines.
