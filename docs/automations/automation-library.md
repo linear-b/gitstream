@@ -14,6 +14,7 @@ These examples focus on auto-approve policies and providing detailed context via
 * [Approve Tiny Changes](approve-tiny-changes/README.md) - Approve single-line changes to a single file.
 * [Approve JavaScript formatting](approve-javascript-formatting-change/README.md) - Approve non-functional changes to JavaScript files 
 * [Approve JavaScript log output](approve-javascript-log-output/README.md) - Approve changes to JavaScript files that only affect log output.
+* [Approve Python formatting](approve-python-formatting-change/README.md) - Approve non-functional changes to Python files
 * [Approve Python log output](approve-python-log-output/README.md) - Approve changes to Python files that only affect log output.
 * [Approve team by directory](approve-team-by-directory/README.md) - Approve PRs from specific teams to specified directories and files .
 
