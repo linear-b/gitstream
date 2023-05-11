@@ -127,8 +127,10 @@ This action, once triggered, sets a specific reviewer.
 | `reviewers` | Required | [String]    | Sets required reviewers. Supports user names and teams. Teams notated by adding a prefix with the owner name e.g. `owner/team` |
 | `team_reviewers` | Optional | [String]    | Sets required team reviewers without a prefix `team` |
 | `unless_reviewers_set` | Optional | Bool | When `true`, the reviewers are not added if the PR has already assigned reviewers. It is set to `false` by default |
+| `fail_on_error` | Optional | Bool | When `true`, trying to assign illegal reviewers shall fail the automation, when `false` these errors are silently ignored. It is set to `true` by default |
 
 </div>
+
 
 ```yaml+jinja title="example"
 automations:
