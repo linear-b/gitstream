@@ -1,6 +1,8 @@
 # Approve JavaScript Formatting Changes
 Approve PRs that only contain formatting changes to JavaScript or TypeScript files. 
 
+![Approve JavaScript formatting changes](approve-javascript-formatting-change.png)
+
 Conditions (all must be true):
 
 * All of the files end in `.js` or `.ts`
@@ -12,7 +14,7 @@ Automation Actions:
 * Apply a `code-formatting` label.
 * Post a comment that explains the automation.
 
-!!! example "name"
+!!! example "Approve JavaScript Formatting Change"
     ```yaml+jinja
     --8<-- "docs/downloads/automation-library/approve_javascript_formatting_change.cm"
     ```
