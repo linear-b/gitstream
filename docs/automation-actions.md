@@ -131,6 +131,7 @@ This action, once triggered, sets a specific reviewer.
 
 </div>
 
+
 ```yaml+jinja title="example"
 automations:
   senior_review:
