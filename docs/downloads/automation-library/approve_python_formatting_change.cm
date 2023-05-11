@@ -1,0 +1,19 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  approve_python_formatting:
+    if:
+      - {{ files | extensions | match(list=['py']) | every }}
+      - {{ source.diff.files | isFormattingChange }}
+    run:
+      - action: approve@v1
+      - action: add-label@v1
+        args:
+          label: code-formatting
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR only contains formatting changes and has been approved.
