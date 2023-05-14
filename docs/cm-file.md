@@ -68,6 +68,15 @@ For each PR the following automation rules are applied:
 
 When organization level rules are defined, then the CI/CD will be executed on the `cm` repository on behalf of the PR repository.
 
+### Setting up Global Automation rules 
+
+By utilizing the following techniques, you can effectively combine and manage global and repository rules to customize the behavior of your automations to fit the specific requirements of your repositories:
+
+1. Global rules are defined in the configuration management `cm` repository and are applied to all repositories that are connected to gitStream.
+2. To exclude a specific repository from a global rule, you can create a configuration file in the `cm` repository and add a list of the unwanted repositories under the `config.ignore_repositories` property in the CM file.
+3. To override a global rule for a specific automation in a repository, you can duplicate the rule (both the file and automation name) and place it in the desired repository. The locally defined rule will then take precedence over the global rule for that specific repository.
+
+
 ## The .cm automation file
 ### Schema
 
