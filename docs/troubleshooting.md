@@ -14,7 +14,7 @@ Check you have placed these 2 files in your repository, with these exact names:
 1. `.cm/gitstream.cm`
 2. `.github/workflows/gitstream.yml`
 
-These files need to be committed to the repository default branch (usually `master` or `main`).
+These files need to be committed to the repository default branch (usually `master` or `main`). Notice that the action will not run until these files are found on the default branch.
 
 Check that you see "gitStream workflow automation" on the Action section in your repository:
 
