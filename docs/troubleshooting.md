@@ -73,7 +73,7 @@ gitStream check run can fail from different reasons, and these are shown in the 
 
 #### Missing workflow file
 
-When it says `gitStream.cm Skipped — gitStream workflow file not found`, it means that the GitHub action was not found, check again that you have this file in your rpeository root: `.github/workflows/gitstream.yml`, see instructions on [GitHub installation](/github-installation.md).
+When it says `gitStream.cm Skipped — gitStream workflow file not found`, it means that the GitHub action was not found, check again that you have this file in your repository root: `.github/workflows/gitstream.yml`, see instructions on [GitHub installation](/github-installation.md).
 
 #### Syntax error in the cm files
 
