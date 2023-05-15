@@ -5,9 +5,9 @@ manifest:
 
 automations:
   safe_changes:
-    # Triggered for any changes to formatting, documentation, or tests
+    # Triggered for any changes that only affect formatting, documentation, tests, or images
     if:
-      - {{ is.formatting or is.docs or is.tests }}
+      - {{ is.formatting or is.docs or is.tests or is.image }}
     # Apply a safe change label, approve the PR and explain why in a comment.
     run: 
       - action: add-label@v1
@@ -21,6 +21,7 @@ automations:
 
 # These custom expressions are used in the safe_changes automation
 is:
-  formatting: {{ source.diff.files | isFormattingChange }}
-  docs: {{ files | allDocs }}
-  tests: {{ files | allTests }}
+  formatting: {{ source.diff.files | isFormattingChange | every }}
+  docs: {{ files | allDocs | every }}
+  tests: {{ files | allTests | every }}
+  image: {{ files | allImages | every }}
