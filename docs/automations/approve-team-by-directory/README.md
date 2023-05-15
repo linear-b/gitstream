@@ -1,8 +1,8 @@
 
-# Approve Team by Directory
+# Approve Expert Team
 Approve PRs to a specified directory from a specific team. 
 
-![Approve Team by Directory](approve_team_by_directory.png)
+![Approve Expert Team](approve_team_by_directory.png)
 
 Conditions (all must be true):
 
@@ -14,7 +14,7 @@ Automation Actions:
 * Approve the PR
 * Post a comment that explains the approval.
 
-!!! example "Approve Team by Directory"
+!!! example "Approve Expert Team"
     ```yaml+jinja
     --8<-- "docs/downloads/automation-library/approve_team_by_directory.cm"
     ```
