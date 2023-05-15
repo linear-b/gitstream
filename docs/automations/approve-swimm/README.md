@@ -1,5 +1,5 @@
 # Approve Swimm Changes
-Approve changes that only affect [Swimm](swimm.io) documentation.
+Approve changes that only affect [Swimm](https://swimm.io) documentation.
 
 ![Approve Swimm Changes](approve-swimm.png)
 
