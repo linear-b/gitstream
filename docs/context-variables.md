@@ -251,7 +251,7 @@ The source context include all code changes, it is not safe to share it with unk
 } 
 ```
 
-#### `Conversations` structure
+#### `Conversation` structure
 
 ```json
 {
