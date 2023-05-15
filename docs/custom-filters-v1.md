@@ -38,7 +38,7 @@ The following example shows a filter receiving the pr context and a commenter na
 
 ```ts
 const myFilter = (pr_context: any, commenter: string) => {
-  const comments = pr_context.general_comments;
+  const comments = pr_context.comments;
   if (!comments || comments.length === 0) {
     return false; // If there are no comments or the comments array is empty, return false
   }

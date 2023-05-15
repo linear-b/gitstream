@@ -27,8 +27,8 @@ The following structures are used in the context objects:
 - [`Contributor`](#contributor-structure)
 - [`FileDiff`](#filediff-structure)
 - [`FileMetadata`](#filemetadata-structure)
-- [`GeneralComment`](#generalcomment-structure)
-- [`LineComment`](#linecomment-structure)
+- [`Comment`](#comment-structure)
+- [`conversations`](#conversations-structure)
 
 ???+ example "Example of a context object"
 
@@ -170,18 +170,19 @@ The `pr` context includes metadata related to the pull request.
 | `pr.author` | String | The PR author name |
 | `pr.author_teams` | String | The teams which the PR author is member of|
 | `pr.checks` | [`Check`](#check-structure) | List of checks, names and status|
+| `pr.comments` | [`Comment`](#comment-structure) | List of PR comments objects |
+| `pr.conversations` | [`Conversation`](#conversation-structure) | List of PR conversation objects, usually when reviewer have comments about the source code |
 | `pr.created_at` | String | The date and time the PR was created |
 | `pr.draft` | Bool | `true` when the PR is marked as Draft/WIP |
 | `pr.description` | String | The PR description text |
-| `pr.general_comments` | [`GeneralComment`](#generalcomment-structure) | TBD |
 | `pr.labels` | [String] | The labels that are attached to the PR |
-| `pr.line_comments` | [`LineComment`](#linecomment-structure) | TBD |
 | `pr.provider` | String | The Git cloud provider name, e.g. `GitHub`, `GitLab` etc. |
 | `pr.reviewers` | [String] | The list of reviewers set for this PR |
 | `pr.status` | String | The PR status: `open`, `closed` and `merged` |
 | `pr.target` | String | The branch the PR is intended merged into |
 | `pr.title` | String | The PR title |
 | `pr.requested_changes` | [String] | List of users that requested changes |
+| `pr.reviews` | [`Review`](#review-structure) | List of PR reviews, relevant in GitHub |
 | `pr.updated_at` | String | The date and time the PR was last updated |
 
 Example for checking the PR title includes a Jira ticket:
@@ -239,6 +240,31 @@ The source context include all code changes, it is not safe to share it with unk
 } 
 ```
 
+####  `Comment` structure
+
+```json
+{
+  "commenter": String, # The user that add the comment
+  "content": String, # The comment body    
+  "created_at": String, # The time on which the comment was created
+  "updated_at": String, # The time on which the comment was last updated
+} 
+```
+
+#### `Conversations` structure
+
+```json
+{
+  "commenter": String, # The user that add the comment 
+  "content": String, # The comment body    
+  "created_at": String, # The time on which the comment was created    
+  "updated_at": String, # The time on which the comment was updated    
+  "start_line": Integer, # The first line marked for this comment    
+  "end_line": Integer, # The last line marked for this comment    
+  "is_resolved": Boolean # `true` when marked as resolved
+}
+```
+
 #### `Contributor` structure
 
 The `repo.contributors` mapping includes a list of `Contributor`, where the user name is used as dynamic key:
@@ -279,18 +305,6 @@ For example, sum additions in javascript code files:
 
 ```yaml+jinja
 {{ branch.diff.files_metadata | filter(attr='new_file', regex=r/\.js$|\.ts$/) | map(attr='additions') | sum }}
-```
-
-####  `GeneralComment` structure
-
-```json
-{
-  "commenter": String, # The user that add the comment
-  "content": String, # The comment body    
-  "created_at": String, # The time on which the comment was created
-  "updated_at": String, # The time on which the comment was last updated
-  "state": String, # either 'CHANGES_REQUESTED', 'COMMENT', 'APPROVE' or 'PENDING'
-} 
 ```
 
 #### `GitActivity` structure
@@ -365,15 +379,13 @@ For example:
 }
 ```
 
-#### `LineComment` structure
+####  `Review` structure
 
 ```json
 {
-  "commenter": String, # The user that add the comment 
+  "commenter": String, # The user that add the comment
   "content": String, # The comment body    
-  "created_at": String, # The time on which the comment was created    
-  "updated_at": String, # The time on which the comment was updated    
-  "start_line": Integer, # The first line marked for this comment    
-  "end_line": Integer, # The last line marked for this comment    
-}
+  "created_at": String, # The time on which the comment was created
+  "state": String, # Either `changes_requested`, `approved`, `commented`, `pending`
+} 
 ```
