@@ -17,6 +17,7 @@ These examples focus on auto-approve policies and providing detailed context via
 * [Approve Python formatting](approve-python-formatting-change/README.md) - Approve non-functional changes to Python files
 * [Approve Python log output](approve-python-log-output/README.md) - Approve changes to Python files that only affect log output.
 * [Approve team by directory](approve-team-by-directory/README.md) - Approve PRs from specific teams to specified directories and files .
+* [Approve Swimm Docs Changes](approve-swimm/README.md) - Approve PRs that only contain [Swimm](https://swimm.io) docs changes.
 
 
 ### Add PR Context With Labels
