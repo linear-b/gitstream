@@ -23,5 +23,5 @@ Automation Actions:
       </span>
     </div>
 
-
+Special thanks to [Omerr](https://github.com/Omerr) for providing this example.
 
