@@ -14,7 +14,7 @@ Check you have placed these 2 files in your repository, with these exact names:
 1. `.cm/gitstream.cm`
 2. `.github/workflows/gitstream.yml`
 
-These files need to be committed to the repository default branch (usually `master` or `main`).
+These files need to be committed to the repository default branch (usually `master` or `main`). Notice that the action will not run until these files are found on the default branch.
 
 Check that you see "gitStream workflow automation" on the Action section in your repository:
 
@@ -73,7 +73,7 @@ gitStream check run can fail from different reasons, and these are shown in the 
 
 #### Missing workflow file
 
-When it says `gitStream.cm Skipped — gitStream workflow file not found`, it means that the GitHub action was not found, check again that you have this file in your rpeository root: `.github/workflows/gitstream.yml`, see instructions on [GitHub installation](/github-installation.md).
+When it says `gitStream.cm Skipped — gitStream workflow file not found`, it means that the GitHub action was not found, check again that you have this file in your repository root: `.github/workflows/gitstream.yml`, see instructions on [GitHub installation](/github-installation.md).
 
 #### Syntax error in the cm files
 
