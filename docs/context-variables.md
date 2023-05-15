@@ -386,6 +386,6 @@ For example:
   "commenter": String, # The user that add the comment
   "content": String, # The comment body    
   "created_at": String, # The time on which the comment was created
-  "state": String, # Either `changes_requested`, `approved`, `commented`, `pending`
+  "state": String, # Either `approved`, `changes_requested`, `commented`, `pending`, `submitted`
 } 
 ```
