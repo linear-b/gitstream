@@ -387,5 +387,6 @@ For example:
   "content": String, # The comment body    
   "created_at": String, # The time on which the comment was created
   "state": String, # Either `approved`, `changes_requested`, `commented`, `pending`, `submitted`
+  "conversations": [Conversation], # Conversations that are relvant to this Review feedback
 } 
 ```
