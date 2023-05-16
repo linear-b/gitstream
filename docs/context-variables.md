@@ -169,9 +169,9 @@ The `pr` context includes metadata related to the pull request.
 | `pr.approvals` | [String] | The of reviewers that approved the PR |
 | `pr.author` | String | The PR author name |
 | `pr.author_teams` | String | The teams which the PR author is member of|
-| `pr.checks` | [`Check`](#check-structure) | List of checks, names and status|
-| `pr.comments` | [`Comment`](#comment-structure) | List of PR comments objects |
-| `pr.conversations` | [`Conversation`](#conversation-structure) | List of PR conversation objects, usually when reviewer have comments about the source code |
+| `pr.checks` | [[`Check`]](#check-structure) | List of checks, names and status|
+| `pr.comments` | [[`Comment`]](#comment-structure) | List of PR comments objects |
+| `pr.conversations` | [[`Conversation`]](#conversation-structure) | List of PR conversation objects, usually when reviewer have comments about the source code |
 | `pr.created_at` | String | The date and time the PR was created |
 | `pr.draft` | Bool | `true` when the PR is marked as Draft/WIP |
 | `pr.description` | String | The PR description text |
