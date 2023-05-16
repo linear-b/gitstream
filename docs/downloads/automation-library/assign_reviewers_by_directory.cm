@@ -7,14 +7,14 @@ automations:
   review_ui:
     # Triggered for PRs that contain any changes to JavaScript files inside the `src/ui` directory.
     if:
-      - {{ files | match(regex=r/src\/ui\/.*\.js$/) | some}}
+      - {{ files | match(regex=r/src\/app\/auth\/.*/) | some}}
     # Add a specified user and team as reviewers.
     # Customize the reviewers to match your organization
     run:
       - action: add-reviewers@v1
         args:
-          reviewers: [my-teamate, my-organization/ui-team]
+          reviewers: [my-teamate, my-organization/security]
       - action: add-comment@v1
         args:
           comment: |
-            The UI team has automatically been added for review because this PR contains changes to components inside `/src/ui`
+            The Security team has automatically been added for review because this PR contains changes to components inside `/src/app/auth`
