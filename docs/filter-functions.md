@@ -636,23 +636,23 @@ The output is an object of the following format:
 ``` JSON
 {
   "bugs": {
-      "count": int,
+      "count": number,
       "rating": char ('A'-'E')
     },
   "code_smells": {
-      "count": int,
+      "count": number,
       "rating": char ('A'-'E')
     },
   "vulnerabilities": {
-      "count": int,
+      "count": number,
       "rating": char ('A'-'E')
     },
   "security_hotspots": {
-      "count": int,
+      "count": number,
       "rating": char ('A'-'E')
     },
-  "duplications": int,
-  "coverage": int
+  "duplications": number,
+  "coverage": number
 }
 ```
 <div class="filter-details" markdown=1>
