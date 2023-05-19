@@ -37,7 +37,7 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 !!! quote ""
 	**Contextual Labels**
 
-	Reduce the mental burden of code reviews with labels that provide a high degree of context. Indicate an [estimated time to review](automations/provide-estimated-time-to-review/README.md) or flag potential issues with [Jira information](automations/label-missing-jira-info/README.md), [missing tests](automations/label-prs-without-tests/README.md), [deleted files](automations/label-deleted-files/README.md), and more.
+	Reduce the mental burden of code reviews with labels that provide a high degree of context. Indicate an [estimated time to review](automations/provide-estimated-time-to-review/README.md) or flag potential issues with [Jira information](automations/integrations/jira/label-missing-jira-info/README.md), [missing tests](automations/label-prs-without-tests/README.md), [deleted files](automations/label-deleted-files/README.md), and more.
 
 ![Assign Code Experts](assets/code-experts-highlight.png){: style="width:50%", align=right}
 !!! quote ""

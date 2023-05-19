@@ -85,15 +85,15 @@ Label all PRs with an estimated number of minutes it would take someone to revie
 ## Label Missing Jira Info
 Label PRs that don't reference a Jira ticket in the title or description. This uses regex to detect Jira ticket formats in the title (e.g. ABC-1234), and URLs to Jira tickets in the description.
 
-[More details here.](automations/label-missing-jira-info/README.md)
+[More details here.](automations/integrations/jira/label-missing-jira-info/README.md)
 
 !!! example "Label Missing Jira Info"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/label_missing_jira_info.cm"
+    --8<-- "docs/downloads/automation-library/integrations/jira/label_missing_jira_info.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/label_missing_jira_info.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/jira/label_missing_jira_info.cm){ .md-button }
       </span>
     </div>
 ## More examples
