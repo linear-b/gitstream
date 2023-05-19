@@ -14,7 +14,7 @@ Automation Actions:
 * Merge the PR if all status checks pass.
 
 
-!!! example "Automation Name"
+!!! example "Approve Dependabot"
     ```yaml+jinja
     --8<-- "docs/downloads/automation-library/integrations/dependabot/approve_dependabot.cm"
     ```
