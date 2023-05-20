@@ -52,8 +52,6 @@ automations:
           comment: |
             A screenshot of the relevant part of docs after the changes is a life saver 🛟
 
-
-automations:
   debug:
     if:
       - true
