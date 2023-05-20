@@ -53,6 +53,19 @@ automations:
             A screenshot of the relevant part of docs after the changes is a life saver 🛟
 
 
+automations:
+  debug:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            pr.description {{ pr.description }}
+            pr.description check img1 {{pr.description | includes(regex=r/<img.*src="https:\/\/github.com.*>/) }}
+            pr.description check img2 {{pr.description | includes(regex=r/<img.*src="https:\/\/github.com/) }}
+
+
 has:
   screenshot_link: {{ pr.description | includes(regex=r/!\[.*\]\(.*(jpg|svg|png|gif|psd).*\)/) }}
   image_uploaded: {{ pr.description | includes(regex=r/<img.*src="https:\/\/github.com.*>/) }}
