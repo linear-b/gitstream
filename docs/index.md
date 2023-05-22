@@ -26,35 +26,40 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 
 ## Features
 
-![Approve safe changes](assets/safe-change-highlight.png){: style="width:50%", align=right}
 
 !!! quote ""
+	![Approve safe changes](assets/safe-change-highlight.png){: style="border-radius:4px;width:50%", align=right}
+	
 	**Auto-Merge PRs**
 
 	Not all PRs need extensive review policies that loop in multiple experts. gitStream lets you auto-merge [safe changes](automations/approve-safe-changes/README.md), [small fixes](automations/approve-tiny-changes/README.md), [PRs from trusted teams](automations/approve-team-by-directory/README.md), and anything else you want to unblock the review process to keep your team focused on their work.
 
-![Estimated time to review](assets/etr-label-highlight.png){: style="width:50%", align=left}
 !!! quote ""
+	![Estimated time to review](assets/etr-label-highlight.png){: style="border-radius:4px;width:50%", align=left}
+
 	**Contextual Labels**
 
-	Reduce the mental burden of code reviews with labels that provide a high degree of context. Indicate an [estimated time to review](automations/provide-estimated-time-to-review/README.md) or flag potential issues with [Jira information](automations/label-missing-jira-info/README.md), [missing tests](automations/label-prs-without-tests/README.md), [deleted files](automations/label-deleted-files/README.md), and more.
+	Reduce the mental burden of code reviews with labels that provide a high degree of context. Indicate an [estimated time to review](automations/provide-estimated-time-to-review/README.md) or flag potential issues with [Jira information](automations/integrations/jira/label-missing-jira-info/README.md), [missing tests](automations/label-prs-without-tests/README.md), [deleted files](automations/label-deleted-files/README.md), and more.
 
-![Assign Code Experts](assets/code-experts-highlight.png){: style="width:50%", align=right}
 !!! quote ""
+	![Assign Code Experts](assets/code-experts-highlight.png){: style="border-radius:4px;width:50%", align=right}
+
 	**Review Assignment**
 
 	Identifying the correct people to review a PR can take time, particularly for complex projects and repos requiring deep expertise. [Assign code experts](automations/assign-code-experts/README.md) to review complex PRs, [notify your security team about sensitive changes](automations/review-sensitive-files/README.md), and automatically [assign reviewers based on the contents of the PR](automations/assign-reviewers-by-directory/README.md).
 
-![Change Deprecated Components](assets/change-deprecated-highlight.png){: style="width:50%", align=left}
 !!! quote ""
+	![Change Deprecated Components](assets/change-deprecated-highlight.png){: style="border-radius:4px;width:50%", align=left}
+
 	**Automated Change Requests**
 	
 	Reduce code review noise by catching issues before anyone invests precious time. Flag [deprecated components](automations/change-deprecated-components/README.md), [missing data objects](automations/change-missing-lambda-field/README.md), [off-limits code](automations/close-wrong-team-by-directory/README.md), and other problems that need to be addressed before assigning code reviewers.
 
-**Install /:\ gitStream Now**
 
-[:fontawesome-brands-github: GitHub](https://github.com/apps/gitstream-cm/installations/new){ .md-button }
-[:fontawesome-brands-gitlab: GitLab](http://127.0.0.1:8000/gitlab-installation/){ .md-button }
+
+Install /:\ gitStream Now 
+[:fontawesome-brands-github: GitHub](https://github.com/apps/gitstream-cm/installations/new){ .md-button--primary .md-button }
+[:fontawesome-brands-gitlab: GitLab](http://127.0.0.1:8000/gitlab-installation/){ .md-button--primary .md-button }
 
 ## Get Involved
 Want to report a bug, request a new feature, ask a question, get updates for new features, or propose a new configuration for the automation library? [Join us on GitHub](https://github.com/linear-b/gitstream).

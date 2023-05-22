@@ -1,6 +1,6 @@
 # gitStream Automation Library
 
-This library of gitStream examples is meant to serve as a starting point for your automation. We encourage you to customize them for your project and organization.
+This library of gitStream examples is meant to serve as a starting point for your automation. We encourage you to customize them for your project and organization. If you're looking for examples of how to integrate gitStream with other tools, take a look at the [integrations page](/integrations/)
 
 !!! tip "How to use these examples."
     These examples are all complete gitStream configuration files that you can download directly via the buttons below the examples and upload to the `.cm` directory of your repo. Alternatively, you can copy and paste the individual automations, but make sure you include all required declarations and any related custom expressions from the configurations to ensure they work properly.
@@ -17,12 +17,10 @@ These examples focus on auto-approve policies and providing detailed context via
 * [Approve Python formatting](approve-python-formatting-change/README.md) - Approve non-functional changes to Python files
 * [Approve Python log output](approve-python-log-output/README.md) - Approve changes to Python files that only affect log output.
 * [Approve team by directory](approve-team-by-directory/README.md) - Approve PRs from specific teams to specified directories and files .
-* [Approve Swimm Docs Changes](approve-swimm/README.md) - Approve PRs that only contain [Swimm](https://swimm.io) docs changes.
 
 
 ### Add PR Context With Labels
 * [Provide estimated time to review](provide-estimated-time-to-review/README.md) - Label all PRs with an estimated number of minutes it would take someone to review.
-* [Label missing Jira info](label-missing-jira-info/README.md) - Label PRs that don't reference a Jira ticket in the title or description.
 * [Label PRs without tests](label-prs-without-tests/README.md) - Apply a `missing-tests` label to any PRs that lack updates to tests.
 * [Welcome newcomer](welcome-newcomer/README.md) - Post a welcome message when someone makes their first PR to a repo, and provide context to help them know what's next.
 * [Label percent new code](percent-new-code/README.md) - Post a comment that indicates what percentage of the PR contains new code.
