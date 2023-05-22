@@ -13,12 +13,12 @@ Short description
 ![Automation Name](automation_name.png)
 
 Conditions (all must be true):
+
 * Condition 1
 
 Automation Actions:
-* Action 1
 
-Visit the [gitStream docs](https://docs.gitstream.cm/) for more info about how to use this automation
+* Action 1
 
 !!! example "Automation Name"
     ```yaml+jinja
