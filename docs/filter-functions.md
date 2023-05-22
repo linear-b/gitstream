@@ -37,7 +37,7 @@ The following functions are supported in addition to the built-in functions prov
 | [`allImages`](#allimages)<br />Checks the list includes only images | [`files`](./context-variables.md#files) | - | Bool |
 | [`allTests`](#alltests)<br />Checks the list includes only tests | [`files`](./context-variables.md#files) | - | Bool |
 | [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results| [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
-| [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes | [branch](./context-variables.md#branch-context)| - | Integer |
+| [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes | [`branch`](./context-variables.md#branch)| - | Integer |
 | [`extensions`](#extensions)<br />Lists all the unique file extensions | [String] | - | [String] |
 | [`explainCodeExperts`](#explaincodeexperts)<br /> Short markdown text explaining codeExperts results | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
 | [`explainRankByGitBlame`](#explainrankbygitblame)<br /> Short markdown text explaining rankByGitBlame results | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
