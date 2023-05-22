@@ -33,19 +33,20 @@ The following functions are supported in addition to the built-in functions prov
 
 | Function | Input | Args | Output |
 | --------------- | ------- | ---- |  ---- |
-| [`allDocs`](#alldocs)<br />Checks the list includes only documents | [files](/context-variables.md#files) | - | Bool |
-| [`allImages`](#allimages)<br />Checks the list includes only images | [files](/context-variables.md#files) | - | Bool |
-| [`allTests`](#alltests)<br />Checks the list includes only tests | [files](/context-variables.md#files) | - | Bool |
-| [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results| [`repo`](/context-variables.md#repo) | `gt`, `lt` | [String] |
-| [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes | [branch](/context-variables.md#branch-context)| - | Integer |
+| [`allDocs`](#alldocs)<br />Checks the list includes only documents | [`files`](./context-variables.md#files) | - | Bool |
+| [`allImages`](#allimages)<br />Checks the list includes only images | [`files`](./context-variables.md#files) | - | Bool |
+| [`allTests`](#alltests)<br />Checks the list includes only tests | [`files`](./context-variables.md#files) | - | Bool |
+| [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results| [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
+| [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes | [`branch`](./context-variables.md#branch)| - | Integer |
 | [`extensions`](#extensions)<br />Lists all the unique file extensions | [String] | - | [String] |
-| [`explainCodeExperts`](#explaincodeexperts)<br /> Short markdown text explaining codeExperts results | [`repo`](/context-variables.md#repo) | `gt`, `lt` | [String] |
-| [`explainRankByGitBlame`](#explainrankbygitblame)<br /> Short markdown text explaining rankByGitBlame results | [`repo`](/context-variables.md#repo) | `gt`, `lt` | [String] |
-| [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo | [`repo.contributors`](/context-variables.md#repo) | String | Bool |
-| [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed | [[`FileDiff` ](/context-variables.md#filediff-structure)] | - | Bool |
-| [`matchDiffLines`](#matchdifflines)<br />Match every line in diff | [[`FileDiff` ](/context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces` | [Bool] |
-| [`rankByGitActivity`](#rankbygitactivity)<br />Get list of contributors based on `git-commit` activity | [`repo`](/context-variables.md#repo) | `gt`, `lt` | [String] |
-| [`rankByGitBlame`](#rankbygitblame)<br />Get list of contributors based on `git-blame` results| [`repo`](/context-variables.md#repo) | `gt`, `lt` | [String] |
+| [`explainCodeExperts`](#explaincodeexperts)<br /> Short markdown text explaining codeExperts results | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
+| [`explainRankByGitBlame`](#explainrankbygitblame)<br /> Short markdown text explaining rankByGitBlame results | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
+| [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo | [`repo.contributors`](./context-variables.md#repo) | String | Bool |
+| [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed | [[`FileDiff` ](./context-variables.md#filediff-structure)] | - | Bool |
+| [`matchDiffLines`](#matchdifflines)<br />Match every line in diff | [[`FileDiff` ](./context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces` | [Bool] |
+| [`rankByGitActivity`](#rankbygitactivity)<br />Get list of contributors based on `git-commit` activity | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
+| [`rankByGitBlame`](#rankbygitblame)<br />Get list of contributors based on `git-blame` results| [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
+| [`extractSonarFindings`](#extractSonarFindings):octicons-beaker-24:<br />Get an object containing a summary of the findings found by SonarCloud scan | [`pr`](./context-variables.md#pr) | - | Object |
 
 </div>
 
@@ -153,7 +154,7 @@ Creates a new list populated with the values of the selected attribute of every 
 
 </div>
 
-For example, the `source.diff.files` context holds a list of [`FileDiff` ](/context-variables.md#filediff-structure), each has `new_file` attribute. You can create a list of all the new file names by mapping to the `new_file` attribute and then check if there are changes to any `handler.js` file:
+For example, the `source.diff.files` context holds a list of [`FileDiff` ](./context-variables.md#filediff-structure), each has `new_file` attribute. You can create a list of all the new file names by mapping to the `new_file` attribute and then check if there are changes to any `handler.js` file:
 
 ```yaml+jinja
 {{ source.diff.files | map(attr='new_file') | match(term='handler.js') | some }}
@@ -259,7 +260,7 @@ Doc files extensions are: `md`, `mkdown`, `txt`, `rst`, `adoc`, except for `requ
 
 | Argument   | Usage    | Type      | Description                         |
 | -------- | ---------|-----------|------------------------------------------------ |
-| -  | Input    | [`files`](/context-variables.md#files)  | The list of changed files with their path     |
+| -  | Input    | [`files`](./context-variables.md#files)  | The list of changed files with their path     |
 | - | Output   | Bool      | `true` if all file extensions are of docs       |
 
 </div>
@@ -284,7 +285,7 @@ Image file extensions are: `svg`, `png`, `gif`.
 
 | Argument   | Usage    | Type      | Description                                     |
 | -------- | ---------|-----------|------------------------------------------------ |
-| - | Input    | [`files`](/context-variables.md#files)  | The list of changed files with their path       |
+| - | Input    | [`files`](./context-variables.md#files)  | The list of changed files with their path       |
 | - | Output   | Bool      | `true` if all file extensions are of images     |
 
 </div>
@@ -303,7 +304,7 @@ To identify as test the file must include the word `test` or `spec` in its name 
 
 | Argument | Usage    | Type      | Description                                     |
 | ------ | ---------|-----------|------------------------------------------------ |
-| - | Input   | [`files`](/context-variables.md#files)  |The list of changed files with their path        |
+| - | Input   | [`files`](./context-variables.md#files)  |The list of changed files with their path        |
 | - | Output | Bool      | `true` if all file tests based on name and path |
 
 </div>
@@ -328,7 +329,7 @@ The output lists the Git provider users, e.g., GitHub users, which are mapped fr
 
 | Argument       | Usage    | Type   | Description                                     |
 | ------------ | ---------|--------|------------------------------------------------ |
-| -     | Input    | [`repo`](/context-variables.md#repo)  | The `repo` context variable  |
+| -     | Input    | [`repo`](./context-variables.md#repo)  | The `repo` context variable  |
 | `lt`     | Input    | Integer  | Filter the user list, keeping those below the specified threshold  |
 | `gt`  | Input  | Integer  | Filter the user list, keeping those above the specified threshold  |
 | -     | Output   | [String]   | Up to 2 users, sorted by best match first (it won't include the PR author) |
@@ -363,7 +364,7 @@ The following files are excluded when calculating this value:
 
 | Argument   | Usage    | Type      | Description                                     |
 | -------- | ---------|-----------|------------------------------------------------ |
-| - | Input  | [`branch`](/context-variables.md#branch)    | Branch meta data |
+| - | Input  | [`branch`](./context-variables.md#branch)    | Branch meta data |
 | -  | Output  | Integer    | the estimated time for review in minutes |
 
 </div>
@@ -395,7 +396,7 @@ Expects `files` and provide a list of all unique file extensions.
 
 | Argument | Usage    | Type      | Description                                     |
 | ------ | ---------|-----------|------------------------------------------------ |
-| -  | Input    | [`files`](/context-variables.md#files)  | The list of changed files with their path       |
+| -  | Input    | [`files`](./context-variables.md#files)  | The list of changed files with their path       |
 | - | Output   | [String]  | List of all unique file extensions              |
 
 </div>
@@ -419,7 +420,7 @@ This filter helps to explain the results of [`codeExperts`](#codeExperts), the o
 
 | Argument       | Usage    | Type   | Description                                     |
 | ------------ | ---------|--------|------------------------------------------------ |
-| -     | Input    | [`repo`](/context-variables.md#repo)  | The `repo` context variable  |
+| -     | Input    | [`repo`](./context-variables.md#repo)  | The `repo` context variable  |
 | `lt`     | Input    | Integer  | Filter the user list, keeping those below the specified threshold  |
 | `gt`  | Input  | Integer  | Filter the user list, keeping those above the specified threshold  |
 | -     | Output   | String   | Explaining [`codeExperts`](#codeExperts) results in markdown format |
@@ -455,7 +456,7 @@ The output lists the Git provider users, e.g., GitHub users, which are mapped fr
 
 | Argument       | Usage    | Type   | Description                                     |
 | ------------ | ---------|--------|------------------------------------------------ |
-| -     | Input    | [`repo`](/context-variables.md#repo)  | The `repo` context variable  |
+| -     | Input    | [`repo`](./context-variables.md#repo)  | The `repo` context variable  |
 | `lt`     | Input    | Integer  | Filter the user list, keeping those below the specified threshold  |
 | `gt`  | Input  | Integer  | Filter the user list, keeping those above the specified threshold  |
 | -     | Output   | String   | Explaining [`rankByGitBlame`](#rankbygitblame) results in markdown format |
@@ -493,7 +494,7 @@ Return `true` if it's the author first commit in the repo.
 
 | Argument       | Usage    | Type   | Description                                     |
 | ------------ | ---------|--------|------------------------------------------------ |
-| -     | Input    | [`repo.contributors`](/context-variables.md#repo)  | List of contributors in the repo |
+| -     | Input    | [`repo.contributors`](./context-variables.md#repo)  | List of contributors in the repo |
 | -     | Input    | String  | The contributor name |
 | -     | Output   | Bool   | `true` if its the first commit of the selected contributor |
 
@@ -518,7 +519,7 @@ gitStream determines formatting changes by minifying the source code for the inc
 
 | Argument       | Usage    | Type   | Description                                     |
 | ------------ | ---------|--------|------------------------------------------------ |
-| -     | Input    | [`source.diff.files`](/context-variables.md#source)  | List of file diffs  |
+| -     | Input    | [`source.diff.files`](./context-variables.md#source)  | List of file diffs  |
 | -     | Output   | Bool   | `true` if the all code changes are non functional |
 
 </div>
@@ -566,7 +567,7 @@ Then you can use the thresholds to get the right reviewer.
 
 | Argument       | Usage    | Type   | Description                                     |
 | ------------ | ---------|--------|------------------------------------------------ |
-| -     | Input    | [`repo`](/context-variables.md#repo)  | The `repo` context variable  |
+| -     | Input    | [`repo`](./context-variables.md#repo)  | The `repo` context variable  |
 | `weeks`     | Input    | Integer  | The number of last weeks to include |
 | `lt`     | Input    | Integer  | Filter the user list, keeping those below the specified threshold  |
 | `gt`  | Input  | Integer  | Filter the user list, keeping those above the specified threshold  |
@@ -595,7 +596,7 @@ The output lists the Git provider users, e.g., GitHub users, which are mapped fr
 
 | Argument       | Usage    | Type   | Description                                     |
 | ------------ | ---------|--------|------------------------------------------------ |
-| -     | Input    | [`repo`](/context-variables.md#repo)  | The `repo` context variable  |
+| -     | Input    | [`repo`](./context-variables.md#repo)  | The `repo` context variable  |
 | `lt`     | Input    | Integer  | Filter the user list, keeping those below the specified threshold  |
 | `gt`  | Input  | Integer  | Filter the user list, keeping those above the specified threshold  |
 | -     | Output   | [String]   | The list of users based on their code score comparison, sorted by rank - first has highest score |
@@ -623,3 +624,85 @@ Check if the branch author is a rookie
 is_rookie: {{ repo | rankByGitBlame(lt=15) | match(term=branch.author) | some }}
 ```
 
+#### `extractSonarFindings`
+
+Get an object containing a summary of the findings found by the SonarCloud scan. This filter is relevant only for repos that use SonarCloud to scan PRs
+
+The `pr` context includes all the comments added to the pull request, including the comment written by the SonarCloud bot that holds a summary of its scan. 
+
+This filter reads and parses the comment with SonarCloud's scan summary and makes them available to use inside the `.cm` file automations.
+
+The output is an object of the following format:
+``` JSON
+{
+  "bugs": {
+      "count": number,
+      "rating": string ('A'-'E')
+    },
+  "code_smells": {
+      "count": number,
+      "rating": string ('A'-'E')
+    },
+  "vulnerabilities": {
+      "count": number,
+      "rating": string ('A'-'E')
+    },
+  "security_hotspots": {
+      "count": number,
+      "rating": string ('A'-'E')
+    },
+  "duplications": number,
+  "coverage": number
+}
+```
+<div class="filter-details" markdown=1>
+
+| Argument       | Usage    | Type   | Description                                     |
+| ------------ | ---------|--------|------------------------------------------------ |
+| -     | Input    | [`pr`](./context-variables.md#pr)  | The `pr` context variable  |
+| -     | Output   | [Object]   | The object contains the summary of SonCloud's scan |
+
+</div>
+
+Example of the filter output
+```json
+{
+  "bugs": {
+      "count": 1,
+      "rating": 'B'
+    },
+  "code_smells": {
+      "count": 2,
+      "rating": 'B'
+    },
+  "vulnerabilities": {
+      "count": 2,
+      "rating": 'E'
+    },
+  "security_hotspots": {
+      "count": 0,
+      "rating": 'A'
+    },
+  "duplications": 3,
+  "coverage": 70
+}
+```
+
+Assign the output to a variable
+
+```yaml+jinja
+sonar: {{ pr | extractSonarFindings }}
+```
+
+Add a label with the number of bugs if the bugs rating is other than 'A'
+
+```yaml+jinja
+automations:
+# Add Bugs label
+    if:
+      - {{ sonar.bugs.rating != 'A' }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "{{ sonar.bugs.count }} bugs"
+```
