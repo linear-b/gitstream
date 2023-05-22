@@ -637,19 +637,19 @@ The output is an object of the following format:
 {
   "bugs": {
       "count": number,
-      "rating": char ('A'-'E')
+      "rating": string ('A'-'E')
     },
   "code_smells": {
       "count": number,
-      "rating": char ('A'-'E')
+      "rating": string ('A'-'E')
     },
   "vulnerabilities": {
       "count": number,
-      "rating": char ('A'-'E')
+      "rating": string ('A'-'E')
     },
   "security_hotspots": {
       "count": number,
-      "rating": char ('A'-'E')
+      "rating": string ('A'-'E')
     },
   "duplications": number,
   "coverage": number
@@ -694,15 +694,15 @@ Assign the output to a variable
 sonar: {{ pr | extractSonarFindings }}
 ```
 
-Add a label with the number of bugs
+Add a label with the number of bugs if the bugs rating is other than 'A'
 
 ```yaml+jinja
 automations:
 # Add Bugs label
     if:
-      - {{ sonar.bugs.rating > 'A' }}
+      - {{ sonar.bugs.rating != 'A' }}
     run:
       - action: add-label@v1
         args:
-          label: "{{ sonar.bugs.count }} bugs found"
+          label: "{{ sonar.bugs.count }} bugs"
 ```
