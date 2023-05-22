@@ -16,6 +16,7 @@ nav:
     - How to Test Your Automations: dry-run-mode.md
   - Quickstart Examples: examples.md
   - Automation Library: automations/automation-library.md
+  - Integrations: integrations/README.md
   - Reference:
     - Configuration: cm-file.md
     - Execution: execution-model.md
@@ -62,6 +63,8 @@ plugins:
         'github-org-level.md': 'github-installation.md'
         'github-required-check.md': 'github-installation.md'
         'cm-syntax.md': 'how-it-works.md'
+        'automations/approve-swimm/README.md': 'automations/integrations/swimm/approve-swimm/README.md'
+        'automations/label-missing-jira-info/README.md': 'automations/integrations/jira/label-missing-jira-info/README.md'
 markdown_extensions:
   - admonition
   - attr_list
