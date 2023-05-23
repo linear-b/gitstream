@@ -21,7 +21,7 @@ automations:
 
 # These custom expressions are used in the safe_changes automation
 is:
-  formatting: {{ source.diff.files | isFormattingChange | every }}
-  docs: {{ files | allDocs | every }}
-  tests: {{ files | allTests | every }}
-  image: {{ files | allImages | every }}
+  formatting: {{ source.diff.files | isFormattingChange }}
+  docs: {{ files | allDocs }}
+  tests: {{ files | allTests }}
+  image: {{ files | allImages }}
