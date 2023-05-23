@@ -33,6 +33,11 @@ div.filter-details th:nth-child(1){
   background: white;
 }
 
+/* Dark mode to match the app*/
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #1F2025;
+}
+
 /* change the table colors for dark mode */
 [data-md-color-scheme="slate"] table th{
   background: #2B4252;
