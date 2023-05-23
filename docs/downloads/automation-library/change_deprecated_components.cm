@@ -21,7 +21,7 @@ automations:
         args:
           comment: |
             `{{ item.old }}` component is deprecated, use `{{ item.new }}` instead
-  {% endfor %}:
+  {% endfor %}
 
 # These are the deprecated files that are evaluated in catch_deprecated_components
 deprecated:
