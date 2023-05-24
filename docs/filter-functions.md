@@ -39,6 +39,8 @@ The following functions are supported in addition to the built-in functions prov
 | [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results| [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
 | [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes | [`branch`](./context-variables.md#branch)| - | Integer |
 | [`extensions`](#extensions)<br />Lists all the unique file extensions | [String] | - | [String] |
+| [`extractSonarFindings`](#extractsonarfindings)<br />Get an object with a summary of the findings found by the SonarCloud scan | [`pr`](./context-variables.md#pr) | - | Object |
+| [`extractJitFindings`](#extractjitfindings)<br />Get an object with a summary of the findings found by the Jit scan | [`pr`](./context-variables.md#pr) | - | Object |
 | [`explainCodeExperts`](#explaincodeexperts)<br /> Short markdown text explaining codeExperts results | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
 | [`explainRankByGitBlame`](#explainrankbygitblame)<br /> Short markdown text explaining rankByGitBlame results | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
 | [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo | [`repo.contributors`](./context-variables.md#repo) | String | Bool |
@@ -46,8 +48,6 @@ The following functions are supported in addition to the built-in functions prov
 | [`matchDiffLines`](#matchdifflines)<br />Match every line in diff | [[`FileDiff` ](./context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces` | [Bool] |
 | [`rankByGitActivity`](#rankbygitactivity)<br />Get list of contributors based on `git-commit` activity | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
 | [`rankByGitBlame`](#rankbygitblame)<br />Get list of contributors based on `git-blame` results| [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
-| [`extractSonarFindings`](#extractsonarfindings)<br />Get an object with a summary of the findings found by the SonarCloud scan | [`pr`](./context-variables.md#pr) | - | Object |
-| [`extractJitFindings`](#extractjitfindings)<br />Get an object with a summary of the findings found by the Jit scan | [`pr`](./context-variables.md#pr) | - | Object |
 
 </div>
 
@@ -408,6 +408,170 @@ For example, check that only one file type was changed:
 {{ files | extensions | length == 1 }}
 ```
 
+#### `extractJitFindings`
+Get an object with a summary of the findings found by [Jit](https://www.jit.io/) scan. This filter is relevant only for repos that use Jit to scan PRs
+
+The `pr` context includes all the reviews in the pull request, including the reviews written by the Jit bot, along with all the comments ([conversations](./context-variables.md#conversation-structure)) to the review.
+
+This filter reads and parses the reviews with Jit's findings, making them available for use inside the `.cm` file automations.
+
+The output is an object of the following format:
+```JSON
+{
+  "vulnerabilities": [{
+    "security_control": 'string',
+    "type": 'string',
+    "description": 'string',
+    "severity": 'string',
+    "summary": 'string'
+  }],
+  "metrics": { 
+    "HIGH": number, 
+    "MEDIUM": number,
+    "LOW": number,
+    "INFO": number 
+  }
+}
+```
+<div class="filter-details" markdown=1>
+
+| Argument       | Usage    | Type   | Description                                     |
+| ------------ | ---------|--------|------------------------------------------------ |
+| -     | Input    | [`pr`](./context-variables.md#pr)  | The `pr` context variable  |
+| -     | Output   | Object   | The object contains the summary of Jit's scan |
+
+</div>
+Example of the filter output
+```json
+{
+  "vulnerabilities": [
+    {
+      "security_control": "Static Code Analysis Js",
+      "type": "Codsec.Javascriptnosql-Injection.Nosql-Injection",
+      "description": "Putting request data into a mongo query can leadto a NoSQL Injection. Be sure to properly sanitize thedata if you absolutely must pass request data into a query.",
+      "severity": "HIGH",
+      "summary": "Jit Bot commands and options (e.g., ignore issue)"
+    },
+    {
+      "security_control": "Secret Detection",
+      "type": "Private-Key",
+      "description": "Private Key",
+      "severity": "HIGH",
+      "summary": "Jit Bot commands and options (e.g., ignore issue)"
+    }
+  ],
+  "metrics": {
+    "HIGH": 2,
+    "MEDIUM": 0,
+    "LOW": 0,
+    "INFO": 0
+  }
+}
+```
+
+Assign the output to a variable
+
+```yaml+jinja
+jit: {{ pr | extractJitFindings }}
+```
+
+Add a label if Jit detected secrets in the PR 
+
+```yaml+jinja
+
+automations:
+    # Add Bugs label
+    if:
+      - {{ jit.bugs.rating != 'A' }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "🤫 PR with secrets"
+```
+
+#### `extractSonarFindings`
+
+Get an object with a summary of the findings found by the SonarCloud scan. This filter is relevant only for repos that use SonarCloud to scan PRs
+
+The `pr` context includes all the comments added to the pull request, including the comment written by the SonarCloud bot that holds a summary of its scan. 
+
+This filter reads and parses the comment with SonarCloud's scan summary and makes them available to use inside the `.cm` file automations.
+
+The output is an object of the following format:
+``` JSON
+{
+  "bugs": {
+      "count": number,
+      "rating": 'string' //('A'-'E')
+    },
+  "code_smells": {
+      "count": number,
+      "rating": 'string' //('A'-'E')
+    },
+  "vulnerabilities": {
+      "count": number,
+      "rating": 'string' //('A'-'E')
+    },
+  "security_hotspots": {
+      "count": number,
+      "rating": 'string' //('A'-'E')
+    },
+  "duplications": number,
+  "coverage": number
+}
+```
+<div class="filter-details" markdown=1>
+
+| Argument       | Usage    | Type   | Description                                     |
+| ------------ | ---------|--------|------------------------------------------------ |
+| -     | Input    | [`pr`](./context-variables.md#pr)  | The `pr` context variable  |
+| -     | Output   | Object   | The object contains the summary of SonCloud's scan |
+
+</div>
+
+Example of the filter output
+```json
+{
+  "bugs": {
+      "count": 1,
+      "rating": 'B'
+    },
+  "code_smells": {
+      "count": 2,
+      "rating": 'B'
+    },
+  "vulnerabilities": {
+      "count": 2,
+      "rating": 'E'
+    },
+  "security_hotspots": {
+      "count": 0,
+      "rating": 'A'
+    },
+  "duplications": 3,
+  "coverage": 70
+}
+```
+
+Assign the output to a variable
+
+```yaml+jinja
+sonar: {{ pr | extractSonarFindings }}
+```
+
+Add a label with the number of bugs if the bugs rating is other than 'A'
+
+```yaml+jinja
+automations:
+	show_bugs_count:
+	# Add Bugs label
+	    if:
+	      - {{ sonar.bugs.rating != 'A' }}
+	    run:
+	      - action: add-label@v1
+	        args:
+			    label: "{{ sonar.bugs.count }} bugs"
+```
 
 #### `explainCodeExperts`
 
@@ -623,170 +787,4 @@ Check if the branch author is a rookie
 
 ```yaml+jinja
 is_rookie: {{ repo | rankByGitBlame(lt=15) | match(term=branch.author) | some }}
-```
-
-#### `extractSonarFindings`
-
-Get an object with a summary of the findings found by the SonarCloud scan. This filter is relevant only for repos that use SonarCloud to scan PRs
-
-The `pr` context includes all the comments added to the pull request, including the comment written by the SonarCloud bot that holds a summary of its scan. 
-
-This filter reads and parses the comment with SonarCloud's scan summary and makes them available to use inside the `.cm` file automations.
-
-The output is an object of the following format:
-``` JSON
-{
-  "bugs": {
-      "count": number,
-      "rating": 'string' //('A'-'E')
-    },
-  "code_smells": {
-      "count": number,
-      "rating": 'string' //('A'-'E')
-    },
-  "vulnerabilities": {
-      "count": number,
-      "rating": 'string' //('A'-'E')
-    },
-  "security_hotspots": {
-      "count": number,
-      "rating": 'string' //('A'-'E')
-    },
-  "duplications": number,
-  "coverage": number
-}
-```
-<div class="filter-details" markdown=1>
-
-| Argument       | Usage    | Type   | Description                                     |
-| ------------ | ---------|--------|------------------------------------------------ |
-| -     | Input    | [`pr`](./context-variables.md#pr)  | The `pr` context variable  |
-| -     | Output   | Object   | The object contains the summary of SonCloud's scan |
-
-</div>
-
-Example of the filter output
-```json
-{
-  "bugs": {
-      "count": 1,
-      "rating": 'B'
-    },
-  "code_smells": {
-      "count": 2,
-      "rating": 'B'
-    },
-  "vulnerabilities": {
-      "count": 2,
-      "rating": 'E'
-    },
-  "security_hotspots": {
-      "count": 0,
-      "rating": 'A'
-    },
-  "duplications": 3,
-  "coverage": 70
-}
-```
-
-Assign the output to a variable
-
-```yaml+jinja
-sonar: {{ pr | extractSonarFindings }}
-```
-
-Add a label with the number of bugs if the bugs rating is other than 'A'
-
-```yaml+jinja
-automations:
-	show_bugs_count:
-	# Add Bugs label
-	    if:
-	      - {{ sonar.bugs.rating != 'A' }}
-	    run:
-	      - action: add-label@v1
-	        args:
-			    label: "{{ sonar.bugs.count }} bugs"
-```
-
-
-#### `extractJitFindings`
-Get an object with a summary of the findings found by [Jit](https://www.jit.io/) scan. This filter is relevant only for repos that use Jit to scan PRs
-
-The `pr` context includes all the reviews in the pull request, including the reviews written by the Jit bot, along with all the comments ([conversations](./context-variables.md#conversation-structure)) to the review.
-
-This filter reads and parses the reviews with Jit's findings, making them available for use inside the `.cm` file automations.
-
-The output is an object of the following format:
-```JSON
-{
-  "vulnerabilities": [{
-    "security_control": 'string',
-    "type": 'string',
-    "description": 'string',
-    "severity": 'string',
-    "summary": 'string'
-  }],
-  "metrics": { 
-    "HIGH": number, 
-    "MEDIUM": number,
-    "LOW": number,
-    "INFO": number 
-  }
-}
-```
-<div class="filter-details" markdown=1>
-
-| Argument       | Usage    | Type   | Description                                     |
-| ------------ | ---------|--------|------------------------------------------------ |
-| -     | Input    | [`pr`](./context-variables.md#pr)  | The `pr` context variable  |
-| -     | Output   | Object   | The object contains the summary of Jit's scan |
-
-</div>
-Example of the filter output
-```json
-{
-  "vulnerabilities": [
-    {
-      "security_control": "Static Code Analysis Js",
-      "type": "Codsec.Javascriptnosql-Injection.Nosql-Injection",
-      "description": "Putting request data into a mongo query can leadto a NoSQL Injection. Be sure to properly sanitize thedata if you absolutely must pass request data into a query.",
-      "severity": "HIGH",
-      "summary": "Jit Bot commands and options (e.g., ignore issue)"
-    },
-    {
-      "security_control": "Secret Detection",
-      "type": "Private-Key",
-      "description": "Private Key",
-      "severity": "HIGH",
-      "summary": "Jit Bot commands and options (e.g., ignore issue)"
-    }
-  ],
-  "metrics": {
-    "HIGH": 2,
-    "MEDIUM": 0,
-    "LOW": 0,
-    "INFO": 0
-  }
-}
-```
-
-Assign the output to a variable
-
-```yaml+jinja
-jit: {{ pr | extractJitFindings }}
-```
-
-Add a label if Jit detected secrets in the PR 
-
-```yaml+jinja
-
-automations:
-    # Add Bugs label
-    if:
-      - {{ jit.bugs.rating != 'A' }}
-    run:
-      - action: add-label@v1
-        args:
-          label: "🤫 PR with secrets"
 ```
