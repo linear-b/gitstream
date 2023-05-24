@@ -28,7 +28,7 @@ The following structures are used in the context objects:
 - [`FileDiff`](#filediff-structure)
 - [`FileMetadata`](#filemetadata-structure)
 - [`Comment`](#comment-structure)
-- [`conversations`](#conversations-structure)
+- [`conversations`](#conversation-structure)
 
 ???+ example "Example of a context object"
 

@@ -46,19 +46,20 @@ The following functions are supported in addition to the built-in functions prov
 | [`matchDiffLines`](#matchdifflines)<br />Match every line in diff | [[`FileDiff` ](./context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces` | [Bool] |
 | [`rankByGitActivity`](#rankbygitactivity)<br />Get list of contributors based on `git-commit` activity | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
 | [`rankByGitBlame`](#rankbygitblame)<br />Get list of contributors based on `git-blame` results| [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
-| [`extractSonarFindings`](#extractSonarFindings):octicons-beaker-24:<br />Get an object containing a summary of the findings found by SonarCloud scan | [`pr`](./context-variables.md#pr) | - | Object |
+| [`extractSonarFindings`](#extractsonarfindings)<br />Get an object with a summary of the findings found by the SonarCloud scan | [`pr`](./context-variables.md#pr) | - | Object |
+| [`extractJitFindings`](#extractjitfindings)<br />Get an object with a summary of the findings found by the Jit scan | [`pr`](./context-variables.md#pr) | - | Object |
 
 </div>
 
 ### Named arguments
 
-Some functions supports named arguments, many of these repeat in different functions.
+Some functions support named arguments, many of these repeat in different functions.
 
-`term` - a single string, used as substring to match with the matched item.
+`term` - a single string, used as a substring to match with the matched item.
 
 `list` - a list of strings, trying to match any of the listed substrings with the matched item.
 
-`regex` - a single string, used as _regular expression_ to with the matched item. A regular expression can be created just like JavaScript, but needs to be prefixed with r, for example `r/^foo.*/g`, for more info see [Nunjucks](https://mozilla.github.io/nunjucks/templating.html#regular-expressions). 
+`regex` - a single string, used as a _regular expression_ with the matched item. A regular expression can be created just like JavaScript, but needs to be prefixed with r, for example, `r/^foo.*/g`, for more info see [Nunjucks](https://mozilla.github.io/nunjucks/templating.html#regular-expressions). 
 
 `globs` - a key to an element in the `.cm` that holds a list of strings, used as _glob_ pattern test on the matched item. For more info, see [Wikipedia](https://en.wikipedia.org/wiki/Glob_(programming)).
 
@@ -189,7 +190,7 @@ For example, to check if there are code changes with specific function call:
 
 #### `nope`
 
-The inverse of [`every`](#every), checks whether all element in the list are `false`. In case the list of elements is empty, it will return `false`.
+The inverse of [`every`](#every), checks whether all elements in the list are `false`. In case the list of elements is empty, it will return `false`.
 
 <div class="filter-details" markdown=1>
 
@@ -208,7 +209,7 @@ For example, check that no changes in either 'src' or 'dest' directories:
 
 #### `reject`
 
-Creates a shallow copy of a portion of a given list, filtered down to just the elements that does **not** match the given term. You can use either a single term, regex, or a list of terms to match with.
+Creates a shallow copy of a portion of a given list, filtered down to just the elements that do **not** match the given term. You can use either a single term, regex, or a list of terms to match with.
 
 <div class="filter-details" markdown=1>
 
@@ -269,7 +270,7 @@ Doc files extensions are: `md`, `mkdown`, `txt`, `rst`, `adoc`, except for `requ
 {{ files | allDocs }}
 ```
 
-In case you want to exclude more files, like all `txt` under `requirements` directory, add another check:
+In case you want to exclude more files, like all `txt` under the `requirements` directory, add another check:
 
 ```yaml+jinja
 {{ (files | allDocs) and (files | match(regex=r/requirements\/.*\.txt$/) | nope ) }}
@@ -296,7 +297,7 @@ Image file extensions are: `svg`, `png`, `gif`.
 
 #### `allTests`
 
-Return `true` if the input list includes only tests based on file's path and name.
+Return `true` if the input list includes only tests based on the file's path and name.
 
 To identify as test the file must include the word `test` or `spec` in its name or path, it is checked using this regex: `[^a-zA-Z0-9](spec|test|tests)[^a-zA-Z0-9]`.
 
@@ -305,7 +306,7 @@ To identify as test the file must include the word `test` or `spec` in its name 
 | Argument | Usage    | Type      | Description                                     |
 | ------ | ---------|-----------|------------------------------------------------ |
 | - | Input   | [`files`](./context-variables.md#files)  |The list of changed files with their path        |
-| - | Output | Bool      | `true` if all file tests based on name and path |
+| - | Output | Bool      | `true` if all file tests are based on name and path |
 
 </div>
 
@@ -626,7 +627,7 @@ is_rookie: {{ repo | rankByGitBlame(lt=15) | match(term=branch.author) | some }}
 
 #### `extractSonarFindings`
 
-Get an object containing a summary of the findings found by the SonarCloud scan. This filter is relevant only for repos that use SonarCloud to scan PRs
+Get an object with a summary of the findings found by the SonarCloud scan. This filter is relevant only for repos that use SonarCloud to scan PRs
 
 The `pr` context includes all the comments added to the pull request, including the comment written by the SonarCloud bot that holds a summary of its scan. 
 
@@ -637,19 +638,19 @@ The output is an object of the following format:
 {
   "bugs": {
       "count": number,
-      "rating": string ('A'-'E')
+      "rating": 'string' //('A'-'E')
     },
   "code_smells": {
       "count": number,
-      "rating": string ('A'-'E')
+      "rating": 'string' //('A'-'E')
     },
   "vulnerabilities": {
       "count": number,
-      "rating": string ('A'-'E')
+      "rating": 'string' //('A'-'E')
     },
   "security_hotspots": {
       "count": number,
-      "rating": string ('A'-'E')
+      "rating": 'string' //('A'-'E')
     },
   "duplications": number,
   "coverage": number
@@ -660,7 +661,7 @@ The output is an object of the following format:
 | Argument       | Usage    | Type   | Description                                     |
 | ------------ | ---------|--------|------------------------------------------------ |
 | -     | Input    | [`pr`](./context-variables.md#pr)  | The `pr` context variable  |
-| -     | Output   | [Object]   | The object contains the summary of SonCloud's scan |
+| -     | Output   | Object   | The object contains the summary of SonCloud's scan |
 
 </div>
 
@@ -698,11 +699,94 @@ Add a label with the number of bugs if the bugs rating is other than 'A'
 
 ```yaml+jinja
 automations:
-# Add Bugs label
+	show_bugs_count:
+	# Add Bugs label
+	    if:
+	      - {{ sonar.bugs.rating != 'A' }}
+	    run:
+	      - action: add-label@v1
+	        args:
+			    label: "{{ sonar.bugs.count }} bugs"
+```
+
+
+#### `extractJitFindings`
+Get an object with a summary of the findings found by [Jit](https://www.jit.io/) scan. This filter is relevant only for repos that use Jit to scan PRs
+
+The `pr` context includes all the reviews in the pull request, including the reviews written by the Jit bot, along with all the comments ([conversations](./context-variables.md#conversation-structure)) to the review.
+
+This filter reads and parses the reviews with Jit's findings, making them available for use inside the `.cm` file automations.
+
+The output is an object of the following format:
+```JSON
+{
+  "vulnerabilities": [{
+    "security_control": 'string',
+    "type": 'string',
+    "description": 'string',
+    "severity": 'string',
+    "summary": 'string'
+  }],
+  "metrics": { 
+    "HIGH": number, 
+    "MEDIUM": number,
+    "LOW": number,
+    "INFO": number 
+  }
+}
+```
+<div class="filter-details" markdown=1>
+
+| Argument       | Usage    | Type   | Description                                     |
+| ------------ | ---------|--------|------------------------------------------------ |
+| -     | Input    | [`pr`](./context-variables.md#pr)  | The `pr` context variable  |
+| -     | Output   | Object   | The object contains the summary of Jit's scan |
+
+</div>
+Example of the filter output
+```json
+{
+  "vulnerabilities": [
+    {
+      "security_control": "Static Code Analysis Js",
+      "type": "Codsec.Javascriptnosql-Injection.Nosql-Injection",
+      "description": "Putting request data into a mongo query can leadto a NoSQL Injection. Be sure to properly sanitize thedata if you absolutely must pass request data into a query.",
+      "severity": "HIGH",
+      "summary": "Jit Bot commands and options (e.g., ignore issue)"
+    },
+    {
+      "security_control": "Secret Detection",
+      "type": "Private-Key",
+      "description": "Private Key",
+      "severity": "HIGH",
+      "summary": "Jit Bot commands and options (e.g., ignore issue)"
+    }
+  ],
+  "metrics": {
+    "HIGH": 2,
+    "MEDIUM": 0,
+    "LOW": 0,
+    "INFO": 0
+  }
+}
+```
+
+Assign the output to a variable
+
+```yaml+jinja
+jit: {{ pr | extractJitFindings }}
+```
+
+Add a label if Jit detected secrets in the PR 
+
+```yaml+jinja
+
+automations:
+    # Add Bugs label
     if:
-      - {{ sonar.bugs.rating != 'A' }}
+      - {{ jit.bugs.rating != 'A' }}
     run:
       - action: add-label@v1
         args:
-          label: "{{ sonar.bugs.count }} bugs"
+          label: "🤫 PR with secrets"
 ```
