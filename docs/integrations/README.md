@@ -4,6 +4,15 @@
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
+[:simple-sonarcloud: SonarCloud](sonar.md)
+</div>
+<div class="integrations-card-labels">
+Security
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
 [:simple-dependabot: Dependabot](dependabot.md)
 </div>
 <div class="integrations-card-labels">
@@ -32,15 +41,6 @@ Documentation
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
 :material-security: Jit 
-</div>
-<div class="integrations-card-labels">
-(Coming Soon)
-</div>
-</div>
-
-<div class="integrations-card" markdown="1">
-<div class="integrations-card-title" markdown="1">
-:simple-sonarqube: SonarQube
 </div>
 <div class="integrations-card-labels">
 (Coming Soon)
