@@ -704,7 +704,7 @@ Get the enum value matches to the input key
 | Argument | Usage    | Type      | Description                                     |
 | ------ | ---------|-----------|------------------------------------------------ |
 | - | Input  | String  | The key name  |
-| `enum` | Input   | E um Object  | The enum object to which the input string should be matched |
+| `enum` | Input   | Enum Object  | The enum object to which the input string should be matched |
 | - | Output | Object      | The value of the input key in the input enum object |
 
 </div>
