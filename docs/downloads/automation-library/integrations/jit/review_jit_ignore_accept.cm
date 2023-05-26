@@ -1,0 +1,19 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  review_jit_ignore_accept:
+    if:
+      - {{ pr.conversations | filter(attr='commenter', term='jit-ci') | map(attr='content') | match(term='#jit_ignore_accept') | some }}
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: [my-organziation/security]
+      - action: add-comment@v1
+        args:
+          comment: |
+            The security team has been assigned for optional review because this PR ignores a Jit alert and accepts the associated risks.
+
+jit: {{ pr | extractJitFindings }}
