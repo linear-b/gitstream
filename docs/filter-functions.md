@@ -560,18 +560,25 @@ Assign the output to a variable
 sonar: {{ pr | extractSonarFindings }}
 ```
 
-Add a label with the number of bugs if the bugs rating is other than 'A'
+Add a label with the number of bugs if the bugs rating is other than 'A', and use [mapToEnum](#maptoenum) to set its color
 
 ```yaml+jinja
 automations:
-	show_bugs_count:
-	# Add Bugs label
-	    if:
-	      - {{ sonar.bugs.rating != 'A' }}
-	    run:
-	      - action: add-label@v1
-	        args:
-			    label: "{{ sonar.bugs.count }} bugs"
+  show_bugs_count:
+    if:
+      - {{ sonar.bugs.count > 0}}
+    run:
+      - action: add-label@v1
+        args:
+          label: '🐞 x {{ sonar.bugs.count }} Bugs'
+          color: {{ sonar.bugs.rating | mapToEnum(enum = colors) }}
+
+colors:
+  A: '05AA02'
+  B: 'B6D146'
+  C: 'EABE05'
+  D: 'DF8339'
+  E: 'D4343F'
 ```
 
 #### `explainCodeExperts`
@@ -713,15 +720,15 @@ For example, set a label color according to names in the enum:
 
 ```yaml+jinja	
 automations:
-	label_color:
-	    if:
-	      - true
-	    run:
-	      - action: add-label@v1
-	        args:
-	          label: 'Blue label'
-	          color: {{ "blue" | mapToEnum(enum = colors) }}
-	          
+  label_color:
+    if:
+       - true
+	run:
+	  - action: add-label@v1
+	    args:
+	      label: 'Blue label'
+	      color: {{ "blue" | mapToEnum(enum = colors) }}
+
 colors:
   red: 'FF0000'
   green: '00FF00'
