@@ -564,6 +564,7 @@ Add a label with the number of bugs if the bugs rating is other than 'A', and us
 
 ```yaml+jinja
 automations:
+# Add Bugs label
   show_bugs_count:
     if:
       - {{ sonar.bugs.count > 0}}
