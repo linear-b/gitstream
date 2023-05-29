@@ -45,6 +45,7 @@ The following functions are supported in addition to the built-in functions prov
 | [`explainRankByGitBlame`](#explainrankbygitblame)<br /> Short markdown text explaining rankByGitBlame results | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
 | [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo | [`repo.contributors`](./context-variables.md#repo) | String | Bool |
 | [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed | [[`FileDiff` ](./context-variables.md#filediff-structure)] | - | Bool |
+| [`mapToEnum`](#maptoenum)<br />return the enum value matches to the input key | String | Enum object | Object |
 | [`matchDiffLines`](#matchdifflines)<br />Match every line in diff | [[`FileDiff` ](./context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces` | [Bool] |
 | [`rankByGitActivity`](#rankbygitactivity)<br />Get list of contributors based on `git-commit` activity | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
 | [`rankByGitBlame`](#rankbygitblame)<br />Get list of contributors based on `git-blame` results| [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
@@ -559,18 +560,26 @@ Assign the output to a variable
 sonar: {{ pr | extractSonarFindings }}
 ```
 
-Add a label with the number of bugs if the bugs rating is other than 'A'
+Add a label with the number of bugs if the bugs rating is other than 'A', and use [mapToEnum](#maptoenum) to set its color
 
 ```yaml+jinja
 automations:
-	show_bugs_count:
-	# Add Bugs label
-	    if:
-	      - {{ sonar.bugs.rating != 'A' }}
-	    run:
-	      - action: add-label@v1
-	        args:
-			    label: "{{ sonar.bugs.count }} bugs"
+# Add Bugs label
+  show_bugs_count:
+    if:
+      - {{ sonar.bugs.count > 0}}
+    run:
+      - action: add-label@v1
+        args:
+          label: '🐞 x {{ sonar.bugs.count }} Bugs'
+          color: {{ sonar.bugs.rating | mapToEnum(enum = colors) }}
+
+colors:
+  A: '05AA02'
+  B: 'B6D146'
+  C: 'EABE05'
+  D: 'DF8339'
+  E: 'D4343F'
 ```
 
 #### `explainCodeExperts`
@@ -693,6 +702,40 @@ gitStream determines formatting changes by minifying the source code for the inc
 {{ source.diff.files | isFormattingChange }}
 ```
 
+
+#### `mapToEnum`
+
+Get the enum value matches to the input key
+
+<div class="filter-details" markdown=1>
+
+| Argument | Usage    | Type      | Description                                     |
+| ------ | ---------|-----------|------------------------------------------------ |
+| - | Input  | String  | The key name  |
+| `enum` | Input   | Enum Object  | The enum object to which the input string should be matched |
+| - | Output | Object      | The value of the input key in the input enum object |
+
+</div>
+
+For example, set a label color according to names in the enum:
+
+```yaml+jinja	
+automations:
+  label_color:
+    if:
+       - true
+	run:
+	  - action: add-label@v1
+	    args:
+	      label: 'Blue label'
+	      color: {{ "blue" | mapToEnum(enum = colors) }}
+
+colors:
+  red: 'FF0000'
+  green: '00FF00'
+  blue: '0000FF'
+  yellow: 'FFFF00'
+```
 
 #### `matchDiffLines`
 
