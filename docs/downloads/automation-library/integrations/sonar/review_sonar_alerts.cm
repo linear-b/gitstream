@@ -14,3 +14,5 @@ automations:
           args:
             comment: |
               This PR requires additional review because it fails to meet SonarCloud clean code standards.
+
+sonar: {{ pr | extractSonarFindings }}
