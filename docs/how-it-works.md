@@ -169,11 +169,11 @@ Avoid using these words when naming your automations, actions, or other componen
 
 gitStream reserved words:
 
-`manifest` `config` `automations` `every` `filter` `includes` `map` `match` `nope` `reject` `some` `allDocs` `allImages` `allTests` `codeExperts` `estimatedReviewTime` `extensions` `explainCodeExperts` `explainRankByGitBlame` `isFirstCommit` `isFormattingChange` `matchDiffLines` `rankByGitActivity` `rankByGitBlame`
+`allDocs` `allImages` `allTests` `automations` `codeExperts` `config` `estimaterReviewTime` `explainCodeExperts` `explainRankByGitBlame` `extractJitFindings` `extractSonarFindings` `extensions` `every` `filter` `includes` `isFirstCommit` `isFormattingChange` `manifest` `map` `mapToEnum` `match` `matchDiffLines` `nope` `rankByGitActivity` `rankByGitBlame` `reject` `some`
 
 [Nunjucks](https://mozilla.github.io/nunjucks/templating.html#builtin-filters) reserved words:
 
-`e` `if` `for` `asyncEach` `asyncAll` `macro` `set` `extends` `block` `include` `import` `raw` `verbatim` `filter` `call` `abs` `batch` `capitalize` `center` `default` `dictsort` `dump` `escape` `first` `float` `forceescape` `groupby` `indent` `int` `join` `last` `length` `list` `lower` `nl2br` `random` `reject` `rejectattr` `replace` `reverse` `round` `safe` `select` `selectattr` `slice` `sort` `string` `striptags` `sum` `title` `trim` `truncate` `upper` `urlencode` `urlize` `wordcount`
+`abs` `asyncAll` `asyncEach` `batch` `block` `call` `capitalize` `center` `default` `dictsort` `dump` `e` `escape` `extends` `filter` `first` `float` `for` `forceescape` `groupby` `if` `import` `include` `indent` `int` `join` `last` `length` `list` `lower` `macro` `nl2br` `raw` `reject` `rejectattr` `replace` `reverse` `round` `safe` `select` `selectattr` `set` `slice` `sort` `string` `striptags` `sum` `title` `trim` `truncate` `upper` `urlencode` `urlize` `verbatim` `wordcount`
 
 ### Syntax highlighting
 
