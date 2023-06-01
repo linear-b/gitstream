@@ -39,10 +39,10 @@ The following functions are supported in addition to the built-in functions prov
 | [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results| [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
 | [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes | [`branch`](./context-variables.md#branch)| - | Integer |
 | [`extensions`](#extensions)<br />Lists all the unique file extensions | [String] | - | [String] |
-| [`extractSonarFindings`](#extractsonarfindings)<br />Get an object with a summary of the findings found by the SonarCloud scan | [`pr`](./context-variables.md#pr) | - | Object |
-| [`extractJitFindings`](#extractjitfindings)<br />Get an object with a summary of the findings found by the Jit scan | [`pr`](./context-variables.md#pr) | - | Object |
-| [`explainCodeExperts`](#explaincodeexperts)<br /> Short markdown text explaining codeExperts results | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
-| [`explainRankByGitBlame`](#explainrankbygitblame)<br /> Short markdown text explaining rankByGitBlame results | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
+| [`extractJitFindings`](#extractjitfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the Jit scan | [`pr`](./context-variables.md#pr) | - | Object |
+| [`extractSonarFindings`](#extractsonarfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the SonarCloud scan | [`pr`](./context-variables.md#pr) | - | Object |
+| [`explainCodeExperts`](#explaincodeexperts)<br />Short markdown text explaining codeExperts results | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
+| [`explainRankByGitBlame`](#explainrankbygitblame)<br />Short markdown text explaining rankByGitBlame results | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
 | [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo | [`repo.contributors`](./context-variables.md#repo) | String | Bool |
 | [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed | [[`FileDiff` ](./context-variables.md#filediff-structure)] | - | Bool |
 | [`mapToEnum`](#maptoenum)<br />return the enum value matches to the input key | String | Enum object | Object |
@@ -410,6 +410,11 @@ For example, check that only one file type was changed:
 ```
 
 #### `extractJitFindings`
+
+!!! Warning ":fontawesome-brands-github: Available in GitHub only"
+
+    This filter is currently availalbe only in GitHub
+
 Get an object with a summary of the findings found by [Jit](https://www.jit.io/) scan. This filter is relevant only for repos that use Jit to scan PRs
 
 The `pr` context includes all the reviews in the pull request, including the reviews written by the Jit bot, along with all the comments ([conversations](./context-variables.md#conversation-structure)) to the review.
@@ -491,6 +496,9 @@ automations:
 ```
 
 #### `extractSonarFindings`
+!!! Warning ":fontawesome-brands-github: Available in GitHub only"
+
+    This filter is currently availalbe only in GitHub
 
 Get an object with a summary of the findings found by the SonarCloud scan. This filter is relevant only for repos that use SonarCloud to scan PRs
 
