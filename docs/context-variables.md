@@ -121,6 +121,13 @@ automations:
           squash_on_merge: true
 ```
 
+!!! tip
+
+    The `files` context doesn't include deleted file, to identify both modified and deleted files use the `branch.diff.files_metadata`, for example: 
+    ```
+    {{ branch.diff.files_metadata | match(attr='file', regex=r/\.md$/) | every }}
+    ```
+
 #### `files`
 
 The `files` context includes the list of changed files in the branch compared to the main branch.
