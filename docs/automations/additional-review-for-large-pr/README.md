@@ -12,7 +12,7 @@ Conditions (all must be true):
 
 Automation Actions:
 
-* Require a minumim of 2 reviews.
+* Require a minimum of 2 reviews.
 * Post a comment that explains this is considered a large change that requires 2 reviews.
 
 !!! example "Additional Review for Large PRs"
