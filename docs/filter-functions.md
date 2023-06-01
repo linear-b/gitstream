@@ -411,9 +411,9 @@ For example, check that only one file type was changed:
 
 #### `extractJitFindings`
 
-!!! Warning ":fontawesome-brands-github: Available in Github only"
+!!! Warning ":fontawesome-brands-github: Available in GitHub only"
 
-    This filter is currently availalbe only in github
+    This filter is currently availalbe only in GitHub
 
 Get an object with a summary of the findings found by [Jit](https://www.jit.io/) scan. This filter is relevant only for repos that use Jit to scan PRs
 
@@ -496,9 +496,9 @@ automations:
 ```
 
 #### `extractSonarFindings`
-!!! Warning ":fontawesome-brands-github: Available in Github only"
+!!! Warning ":fontawesome-brands-github: Available in GitHub only"
 
-    This filter is currently availalbe only in github
+    This filter is currently availalbe only in GitHub
 
 Get an object with a summary of the findings found by the SonarCloud scan. This filter is relevant only for repos that use SonarCloud to scan PRs
 
