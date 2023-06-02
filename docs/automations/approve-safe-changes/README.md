@@ -1,18 +1,22 @@
 # Approve Safe Changes
 
 If the PR content only contains one or more of documentation, formatting changes, or tests, automatically approve the PR and apply a safe change label.
+<div class="automationImage" style="align:right" markdown="1">![Approve safe changes](approve-safe-changes.png)</div>
+<div class="automationDescription" markdown="1">
+!!! info "Configuration Description"
+    Conditions (all must be true):
 
-![Approve safe changes](approve-safe-changes.png)
+    * The PR only contains documentation, tests, or formatting changes.
 
-Conditions (all must be true):
+    Automation Actions:
 
-* The PR only contains documentation, tests, or formatting changes.
+    * Add a `safe-change` label
+    * Approve the PR
+    * Post a comment that explains that this is a safe change
 
-Automation Actions:
+</div>
 
-* Add a `safe-change` label
-* Approve the PR
-* Post a comment that explains that this is a safe change
+
 
 !!! example "Approve Safe Changes"
     ```yaml+jinja
@@ -24,4 +28,7 @@ Automation Actions:
       </span>
     </div>
 
+<style>
 
+
+  </style>

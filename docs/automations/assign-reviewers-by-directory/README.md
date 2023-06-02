@@ -2,17 +2,21 @@
 
 Automatically assign code reviewers based on directory structure. Optionally, you can substitue `require-reviewers` for `add-reviewers` to make review from the specified teams and individuals mandatory.
 
+<div class="automationImage" style="align:right" markdown="1">
 ![Assign Reviewers by Directory](assign_reviewers_by_directory.png)
+</div>
+<div class="automationDescription" markdown="1">
+!!! info "Configuration Description"
+    Conditions (all must be true):
 
-Conditions (all must be true):
+    * The PR contains changes to JavaScript files inside the `src/ui` directory.
 
-* The PR contains changes to JavaScript files inside the `src/ui` directory.
+    Automation Actions:
 
-Automation Actions:
-
-* Add a user named `my-teamate` and a team named `my-organization/ui-team` as reviewers. These should be customized to match your organization.
-* Post a comment explaining why these reviewers were assigned.
-
+    * Add a user named `my-teamate` and a team named `my-organization/ui-team` as reviewers. These should be customized to match your organization.
+    * Post a comment explaining why these reviewers were assigned.
+</div>
+<div class="automationExample" markdown="1">
 !!! example "Assign Reviewers by Directory"
     ```yaml+jinja
     --8<-- "docs/downloads/automation-library/assign_reviewers_by_directory.cm"
@@ -22,3 +26,4 @@ Automation Actions:
       [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/assign_reviewers_by_directory.cm){ .md-button }
       </span>
     </div>
+</div>
