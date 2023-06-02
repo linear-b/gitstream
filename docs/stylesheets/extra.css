@@ -111,3 +111,17 @@ div.flow-chart {
 .md-typeset .admonition, .md-typeset details {
   font-size: .8rem
 }
+
+.automationDescription{
+  width:40%;
+}
+.automationImage{
+  width: 59%;
+  float: right;
+}
+
+@media (max-width: 769px) {
+.automationImage, .automationDescription {
+  width: 100%;
+}
+}
