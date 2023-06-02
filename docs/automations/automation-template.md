@@ -10,15 +10,20 @@ How to publish a new automation:
 !-->
 Short description
 
-![Automation Name](/automations/integrations/INSERT/automation-name.png)
+<div class="automationImage" markdown="1">
+![Automation Name](automation_name.png)
+</div>
+<div class="automationDescription" markdown="1">
+!!! info "Configuration Description"
+    Conditions (all must be true):
 
-Conditions (all must be true):
+    * Condition 1
 
-* Condition 1
+    Automation Actions:
 
-Automation Actions:
+    * Action 1
 
-* Action 1
+</div>
 
 !!! example "Automation Name"
     ```yaml+jinja
