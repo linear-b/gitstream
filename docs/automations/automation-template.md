@@ -24,7 +24,7 @@ Short description
     * Action 1
 
 </div>
-
+<div class="automationExample" markdown="1">
 !!! example "Automation Name"
     ```yaml+jinja
     --8<-- "docs/downloads/automation-library/automation_name.cm"
@@ -34,6 +34,6 @@ Short description
       [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/automation_name.cm){ .md-button }
       </span>
     </div>
-
+</div>
 
 
