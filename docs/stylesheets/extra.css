@@ -120,6 +120,11 @@ div.flow-chart {
   float: right;
 }
 
+.automationExample{
+  width: 100%;
+  clear: both;
+}
+
 @media (max-width: 769px) {
 .automationImage, .automationDescription {
   width: 100%;
