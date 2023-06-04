@@ -59,7 +59,7 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 
 Install /:\ gitStream Now 
 [:fontawesome-brands-github: GitHub](https://github.com/apps/gitstream-cm/installations/new){ .md-button--primary .md-button }
-[:fontawesome-brands-gitlab: GitLab](http://127.0.0.1:8000/gitlab-installation/){ .md-button--primary .md-button }
+[:fontawesome-brands-gitlab: GitLab](./gitlab-installation/){ .md-button--primary .md-button }
 
 ## Get Involved
 Want to report a bug, request a new feature, ask a question, get updates for new features, or propose a new configuration for the automation library? [Join us on GitHub](https://github.com/linear-b/gitstream).
