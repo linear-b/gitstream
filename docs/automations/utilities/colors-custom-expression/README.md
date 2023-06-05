@@ -2,7 +2,7 @@
 
 This automation demonstrates all of GitHub's default label colors, implemented as a `colors` custom expression. This is meant to help improve other automations rather than being used on its own.
 
-!!! example "Automation Name"
+!!! example "Colors Custom Expression"
     ```yaml+jinja
     --8<-- "docs/downloads/automation-library/utilities/colors_custom_expression.cm"
     ```
