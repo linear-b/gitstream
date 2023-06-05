@@ -9,6 +9,8 @@ If you like gitStream, please give this repo a star! ⭐ It helps us spread the 
 
 Reduce code review noise by catching issues before anyone invests precious time. Flag [deprecated components](https://docs.gitstream.cm/automations/change-deprecated-components), [missing data objects](https://docs.gitstream.cm/automations/change-missing-lambda-field/), [off-limits code](https://docs.gitstream.cm/automations/close-wrong-team-by-directory/), and other problems that need to be addressed before assigning code reviewers.
 
+
+
 ### Review Assignment
 
 Identifying the correct people to review a PR can take time, particularly for complex projects and repos requiring deep expertise. [Assign code experts](https://docs.gitstream.cm/automations/assign-code-experts/) to review complex PRs, [notify your security team about sensitive changes](https://docs.gitstream.cm/automations/review-sensitive-files/), and automatically [assign reviewers based on the contents of the PR](https://docs.gitstream.cm/automations/assign-reviewers-by-directory/).
