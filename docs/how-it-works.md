@@ -117,6 +117,12 @@ Second, no priority is given to individual automations. Instead, gitStream colle
     
     If you're ready to start writing automations, check out our guide: [Write Your First Automation](quick-start.md).
 ## Additional Resources
+
+### gitStream UI
+Once you have gitStream installed and have run some automations, you can view details about them at [app.gitstream.com](https://app.gitstream.cm). To view gitStream data, you will need to login with your GitHub account and have access to an organization that has run gitStream automations.
+
+![gitStream UI](/screenshots/gitstream-ui.png)
+
 ### Functional Overview
 
 Once gitStream is installed and configured, there are several services that will interact with your repository whenever a PR is created or changed:
