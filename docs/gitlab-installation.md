@@ -44,16 +44,16 @@ You can set up gitStream for a single repo or your entire GitLab organization. S
 
     Group rules are ideal when you want to enforce consistent rules across every repo in your GitLab group. You can define them by creating a special repository named `cm` in the parent group for the git repositories you want to run gitStream on. Here, you can add automation files that will apply to **all** repositories within that group.
 
- Create a `cm` project (repository) in your GitLab group, and create a `gitstream.cm` rules file in the root directory of your `cm` repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on your organization's repos. You can name the CM file anything you want as long as it ends in `.cm`
+    Create a `cm` project (repository) in your GitLab group, and create a `gitstream.cm` rules file in the root directory of your `cm` repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on your organization's repos. You can name the CM file anything you want as long as it ends in `.cm`
 
-!!! info "Configuration files go in the repo's root directory."
-    Unlike the set up instructions for a single repo, your `.cm` files should be placed in the repository's root directory.
+    !!! info "Configuration files go in the repo's root directory."
+        Unlike the set up instructions for a single repo, your `.cm` files should be placed in the repository's root directory.
 
-!!! example "Example Configuration"
-        Here is an example of a gitStream configuration file you can use to setup some basic workflow automations.
-        ```yaml+jinja
-        --8<-- "docs/downloads/gitstream.cm"
-        ```
+    !!! example "Example Configuration"
+            Here is an example of a gitStream configuration file you can use to setup some basic workflow automations.
+            ```yaml+jinja
+            --8<-- "docs/downloads/gitstream.cm"
+            ```
 
 ## 3. Create a GitLab Pipeline
 
