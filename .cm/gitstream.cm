@@ -52,6 +52,14 @@ automations:
           comment: |
             A screenshot of the relevant part of docs after the changes is a life saver 🛟
 
+  debug:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            checks {{ pr.checks | dump | safe }}
 
 has:
   screenshot_link: {{ pr.description | includes(regex=r/!\[.*\]\(.*(jpg|svg|png|gif|psd).*\)/) }}
