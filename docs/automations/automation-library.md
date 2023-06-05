@@ -48,6 +48,7 @@ These examples help you follow your team's security best practices.
 These examples provide useful components to use in other automations. These aren't intended to be used on their own; instead they act as a reference point for improving other automations.
 
 * [Colors custom expression](utilities/colors-custom-expression/README.md) - A custom expression that implements all of GitHub's default label colors in a custom expression.
+* [CM File Header](utilities/cm-header/README.md) - A header to copy/paste to the top of your CM files to help yourself, and others, understand the purpose of the file.
 
 ## Contribute Your Idea
 
