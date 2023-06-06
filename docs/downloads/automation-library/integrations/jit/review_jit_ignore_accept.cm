@@ -6,7 +6,7 @@ manifest:
 automations:
   review_jit_ignore_accept:
     if:
-      - {{ pr.conversations | filter(attr='commenter', term='jit-ci') | map(attr='content') | match(term='#jit_ignore_accept') | some }}
+      - {{ pr.conversations | reject(attr='commenter', term='jit-ci') | filter(attr='content', term='#jit_ignore_accept') | some }}
     run:
       
       - action: add-reviewers@v1
