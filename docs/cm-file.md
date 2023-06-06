@@ -133,7 +133,9 @@ When you add a user to `config.admin.users` in your organization's `cm` reposito
 
 ##### `config.ignore_files`
 
-The `config.ignore_files` supports glob pattern matching that contains list of files to ignore, for example:
+The `config.ignore_files` supports glob pattern matching that contains a list of files to ignore.
+
+Common usage, since some files such as lock files are intentionally not a required part of a review, they would not want to them to be counted in the estimated review time. In such cases, you can add `config.ignore_files` to the relevant CM file, for example:
 
 ```yaml title="example"
 config:
@@ -146,7 +148,7 @@ config:
 
 ##### `config.ignore_repositories`
 
-The `config.ignore_repositories` contains list of repositories to ignore, for example:
+The `config.ignore_repositories` contains a list of repositories to ignore, for example:
 
 ```yaml title="example"
 config:
