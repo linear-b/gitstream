@@ -13,6 +13,7 @@ Manage review assignment for high and medium risk Jit security alerts.
             * Jit reports one or more high vulnerabilities for the PR
         * Automation Actions:
             * Require a review from the organization’s security team.
+            * Require 2 reviewers.
             * Post a comment explaining why this action was taken.
 
         **Review Jit Medium Alerts**
