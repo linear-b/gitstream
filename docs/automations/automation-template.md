@@ -35,5 +35,3 @@ Short description
       </span>
     </div>
 </div>
-
-

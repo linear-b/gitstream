@@ -17,11 +17,11 @@ automations:
             This PR requires additional review because Jit reported one or more high risk vulnerabilities.
   review_jit_medium_alerts:
     if:
-      - {{ jit.metrics.medium > 0 }}
+      - {{ jit.metrics.MEDIUM > 0 }}
     run:
       - action: set-required-approvals@v1
-      args:
-        approvals: 2
+        args:
+          approvals: 2
       - action: add-comment@v1
         args:
           comment: |
