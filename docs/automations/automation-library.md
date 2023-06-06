@@ -44,6 +44,11 @@ These examples help you follow your team's security best practices.
 * [Review sensitive files](review-sensitive-files/README.md) - Define a custom list of files and directories that trigger additional reviews.
 * [Change deprecated components](change-deprecated-components/README.md) - Request changes when a PR includes one or more deprecated components.
 
+## Utilities
+These examples provide useful components to use in other automations. These aren't intended to be used on their own; instead they act as a reference point for improving other automations.
+
+* [Colors custom expression](utilities/colors-custom-expression/README.md) - A custom expression that implements all of GitHub's default label colors in a custom expression.
+* [CM File Header](utilities/cm-header/README.md) - A header to copy/paste to the top of your CM files to help yourself, and others, understand the purpose of the file.
 
 ## Contribute Your Idea
 

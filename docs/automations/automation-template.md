@@ -10,16 +10,21 @@ How to publish a new automation:
 !-->
 Short description
 
+<div class="automationImage" style="align:right" markdown="1">
 ![Automation Name](automation_name.png)
+</div>
+<div class="automationDescription" markdown="1">
+!!! info "Configuration Description"
+    Conditions (all must be true):
 
-Conditions (all must be true):
+    * Condition 1
 
-* Condition 1
+    Automation Actions:
 
-Automation Actions:
+    * Action 1
 
-* Action 1
-
+</div>
+<div class="automationExample" markdown="1">
 !!! example "Automation Name"
     ```yaml+jinja
     --8<-- "docs/downloads/automation-library/automation_name.cm"
@@ -29,6 +34,6 @@ Automation Actions:
       [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/automation_name.cm){ .md-button }
       </span>
     </div>
-
+</div>
 
 

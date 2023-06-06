@@ -24,7 +24,7 @@ Here is an example of the basic components that are required in every CM file.
 !!! info
     When editing CM files, make sure you preserve the indentation in the examples because, like YAML, gitStream uses Python-style indentation to indicate nesting.
 ### Automation Actions
-[Automation actions](/automation-actions) specify the desired automations that should be triggered when all conditions are met. Each automation must incliude an `if` condition and a `run` section. The conditions are evaluated whenever someone creates a PR or makes changes to an existing PR; multiple conditions can be listed for a single automation, but they must all be true to invoke the actions. You can have any number of actions listed in an automation and they are invoked one-by-one in no particular order. PRs that are marked as Draft are ignored by default, but you can change that in your [`config`](cm-file/).
+[Automation actions](/automation-actions) specify the desired automations that should be triggered when all conditions are met. Each automation must include an `if` condition and a `run` section. The conditions are evaluated whenever someone creates a PR or makes changes to an existing PR; multiple conditions can be listed for a single automation, but they must all be true to invoke the actions. You can have any number of actions listed in an automation and they are invoked one-by-one in no particular order. PRs that are marked as Draft are ignored by default, but you can change that in your [`config`](cm-file/).
 
 !!! example "Basic Automation Example"
     This example defines an automation named `welcome_newcomer` that post a comment to welcome anyone who submits their first PR to the repo.
@@ -117,6 +117,12 @@ Second, no priority is given to individual automations. Instead, gitStream colle
     
     If you're ready to start writing automations, check out our guide: [Write Your First Automation](quick-start.md).
 ## Additional Resources
+
+### gitStream UI
+Once you have gitStream installed and have run some automations, you can view details about them at [app.gitstream.com](https://app.gitstream.cm). To view gitStream data, you will need to login with your GitHub account and have access to an organization that has run gitStream automations.
+
+![gitStream UI](/screenshots/gitstream-ui.png)
+
 ### Functional Overview
 
 Once gitStream is installed and configured, there are several services that will interact with your repository whenever a PR is created or changed:
@@ -169,7 +175,7 @@ Avoid using these words when naming your automations, actions, or other componen
 
 gitStream reserved words:
 
-`allDocs` `allImages` `allTests` `automations` `codeExperts` `config` `estimaterReviewTime` `explainCodeExperts` `explainRankByGitBlame` `extractJitFindings` `extractSonarFindings` `extensions` `every` `filter` `includes` `isFirstCommit` `isFormattingChange` `manifest` `map` `mapToEnum` `match` `matchDiffLines` `nope` `rankByGitActivity` `rankByGitBlame` `reject` `some`
+`allDocs` `allImages` `allTests` `automations` `codeExperts` `config` `estimatedReviewTime` `explainCodeExperts` `explainRankByGitBlame` `extractJitFindings` `extractSonarFindings` `extensions` `every` `filter` `includes` `isFirstCommit` `isFormattingChange` `manifest` `map` `mapToEnum` `match` `matchDiffLines` `nope` `rankByGitActivity` `rankByGitBlame` `reject` `some`
 
 [Nunjucks](https://mozilla.github.io/nunjucks/templating.html#builtin-filters) reserved words:
 
