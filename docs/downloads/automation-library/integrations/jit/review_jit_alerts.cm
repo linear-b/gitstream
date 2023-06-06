@@ -11,6 +11,9 @@ automations:
       - action: require-reviewers@v1
         args:
           reviewers: [my-organization/security-team]
+      - action: set-required-approvals@v1
+        args:
+          approvals: 2
       - action: add-comment@v1
         args:
           comment: |
