@@ -2,16 +2,20 @@
 
 Label PRs that delete files.
 
+<div class="automationImage" style="align:right" markdown="1">
 ![Label Deleted Files](label_deleted_files.png)
+</div>
+<div class="automationDescription" markdown="1">
+!!! info "Configuration Description"
+    Conditions (all must be true):
 
-Conditions (all must be true):
+    * The PR deletes one or more files.
 
-* The PR deletes one or more files.
+    Automation Actions:
 
-Automation Actions:
-
-* Apply a `deleted-files` label to the PR.
-
+    * Apply a `deleted-files` label to the PR.
+</div>
+<div class="automationExample" markdown="1">
 !!! example "Label Deleted Files"
     ```yaml+jinja
     --8<-- "docs/downloads/automation-library/label_deleted_files.cm"
@@ -21,3 +25,4 @@ Automation Actions:
       [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/label_deleted_files.cm){ .md-button }
       </span>
     </div>
+</div>

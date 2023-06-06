@@ -2,16 +2,20 @@
 # Label PRs Without Tests
 Apply a `missing-tests` label to any PRs that don't update tests. gitStream will remove this label if the contributor adds a test change to the PR.
 
+<div class="automationImage" style="align:right" markdown="1">
 ![Automation Name](label_prs_without_tests.png)
+</div>
+<div class="automationDescription" markdown="1">
+!!! info "Configuration Description"
+    Conditions (all must be true):
 
-Conditions (all must be true):
+    * The PR has no changes to a test.
 
-* The PR has no changes to a test.
+    Automation Actions:
 
-Automation Actions:
-
-* Apply a `missing-tests` label.
-
+    * Apply a `missing-tests` label.
+</div>
+<div class="automationExample" markdown="1">
 !!! example "Label PRs Without Tests"
     ```yaml+jinja
     --8<-- "docs/downloads/automation-library/label_prs_without_tests.cm"
@@ -21,3 +25,4 @@ Automation Actions:
       [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/label_prs_without_tests.cm){ .md-button }
       </span>
     </div>
+</div>

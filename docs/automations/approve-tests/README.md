@@ -2,18 +2,21 @@
 
 Label and approve PRs that only include tests, and post an explanation comment.
 
+<div class="automationImage" style="align:right" markdown="1">
 ![Adding tests example](approve_tests.png)
+</div>
+<div class="automationDescription" markdown="1">
+!!! info "Configuration Description"
+    Conditions (all must be true):
 
-Conditions (all must be true):
+    * The PR only contains changes to tests
 
-* The PR only contains changes to tests
+    Automation Actions:
 
-Automation Actions:
-
-* Add a tests-only label
-* Approve the PR
-* Post a comment that explains why the PR was approved.
-
+    * Add a tests-only label
+    * Approve the PR
+    * Post a comment that explains why the PR was approved.
+</div>
 !!! example "Approve Tests"
     ```yaml+jinja
     --8<-- "docs/downloads/automation-library/approve_tests.cm"

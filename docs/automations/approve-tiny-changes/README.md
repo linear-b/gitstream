@@ -2,18 +2,21 @@
 
 Approve single-line changes to a single file.
 
+<div class="automationImage" style="align:right" markdown="1">
 ![Approve tiny change](approve_tiny_change.png)
+</div>
+<div class="automationDescription" markdown="1">
+!!! info "Configuration Description"
+    Conditions (all must be true):
 
-Conditions (all must be true):
+    * If the PR contains a one-line change to a single file.
 
-* If the PR contains a one-line change to a single file.
+    Automation Actions:
 
-Automation Actions:
-
-* Apply a `single-line` label.
-* Approve the PR.
-* Post a comment explaining why the PR was approved.
-
+    * Apply a `single-line` label.
+    * Approve the PR.
+    * Post a comment explaining why the PR was approved.
+</div>
 !!! example "name"
     ```yaml+jinja
     --8<-- "docs/downloads/automation-library/approve_tiny_changes.cm"
