@@ -237,8 +237,6 @@ The source context include all code changes, it is not safe to share it with unk
 
 #### `Check` structure
 
-:octicons-beaker-24: Coming soon
-
 ```json
 {
   "name": String, # The check name
