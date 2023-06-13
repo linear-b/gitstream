@@ -8,8 +8,8 @@ Actions are the end results of the automation described in your `.cm` file.
 
     - :fontawesome-brands-github: Supported on GitHub 
     - :fontawesome-brands-gitlab: Supported on GitLab 
-    - :fontawesome-solid-gears: Open beta - Feature is under develipment, and currently available for all
-    - :fontawesome-solid-crown: Premium feature
+    - :fontawesome-solid-flask: Open beta - Feature is under development and currently available for all
+    - :fontawesome-solid-crown: Pro feature
 
 ## Overview
 
@@ -21,7 +21,7 @@ gitStream executes actions in the order they are listed. If an action result fai
 - [`add-reviewers`](#add-reviewers) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`approve`](#approve) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`close`](#close) :fontawesome-brands-github: :fontawesome-brands-gitlab:
-- [`http-request`](#http-request) :fontawesome-solid-gears: :fontawesome-solid-crown: :fontawesome-brands-github: :fontawesome-brands-gitlab: 
+- [`http-request`](#http-request) :fontawesome-solid-flask: :fontawesome-solid-crown: :fontawesome-brands-github:
 - [`merge`](#merge) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`set-required-approvals`](#set-required-approvals) :fontawesome-brands-github:
 - [`require-reviewers`](#require-reviewers) :fontawesome-brands-github:
@@ -182,7 +182,11 @@ automations:
       - action: close@v1
 ```
 
-#### `http-request` :fontawesome-solid-gears: :fontawesome-solid-crown: :fontawesome-brands-github: :fontawesome-brands-gitlab: 
+#### `http-request` :fontawesome-solid-flask: :fontawesome-solid-crown: :fontawesome-brands-github: 
+
+!!! note "Pro feature, in open beta"
+	This feature is under development.
+	Once released, using this feature will be limited to pro subscriptions.
 
 The action, once triggered, sends an HTTP request to the specified URL
 <div class="filter-details" markdown=1>
