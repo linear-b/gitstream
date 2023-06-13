@@ -6,9 +6,14 @@ description: Context Variables enable gitStream to extract useful data from PRs.
 
 Context variable are the inputs for the automation conditions or checks.
 
-!!! note 
+!!! Legend
+
+    The icons indicate the availability status of each action.
     
-    Items marked with :octicons-beaker-24: are under development and are not available yet.
+	- :fontawesome-brands-github: Supported on GitHub 
+	- :fontawesome-brands-gitlab: Supported on GitLab 
+	- :octicons-beaker-24: Under development and not available yet.
+    - :fontawesome-solid-flask: Open beta - Under development and currently available for all
 
 ## Overview
 
@@ -16,11 +21,12 @@ Context variable are the inputs for the automation conditions or checks.
 
 gitStream includes a collection of variables called contexts. 
 
-- [`branch`](#branch)
-- [`files`](#files)
-- [`source`](#source)
-- [`repo`](#repo)
-- [`pr`](#pr)
+- [`branch`](#branch) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`env`](#env) :fontawesome-solid-flask: :fontawesome-brands-github:
+- [`files`](#files) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`pr`](#pr) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`repo`](#repo) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`source`](#source) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 
 ### Structures
 
@@ -133,6 +139,45 @@ automations:
     {{ branch.diff.files_metadata | match(attr='file', regex=r/\.md$/) | every }}
     ```
 
+#### `env` :fontawesome-solid-flask:  :fontawesome-brands-github:
+
+The `env` context allows the user to pass data from the repo unavailable in the other context variables. Thus, the structure of the variable is not fixed and depends on user configuration.
+
+To configure the `env` variable, add the `env` field to gitstream's workflow job configurations in `gitstream.yml`, under GitHub's `workflows` directory
+
+```yaml title="examle: add secrets to the env variable"
+...
+jobs:
+  gitStream:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    name: gitStream workflow automation
+    env:
+      JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+    steps:
+...
+```
+
+To use the context variable, access to the `env` variable's fields as configured in `gitstream.yml`
+
+```yaml+jinja title="examle: use slack webhook secret"
+automations:
+  slack_message:
+    if:
+      - true
+    run:
+      - action: http-request@v1
+        args:
+          url: {{ slack.base }}{{ slack.channel }}
+          method: POST
+          headers: '{"Content-type": "application/json"}'
+          body: '{"text": "Hello, world!"}'
+slack:
+   base: "https://hooks.slack.com/services"
+   channel: {{ env.SLACK_WEBHOOK }}
+```
+
 #### `files`
 
 The `files` context includes the list of changed files in the branch compared to the main branch.
@@ -241,7 +286,6 @@ The `source` context includes a list of `FileDiff` objects that can be used to g
 | `source.diff.files` | [`FileDiff`](#filediff-structure) | List of changed files with their code changes |
 
 The source context include all code changes, it is not safe to share it with unknown services.
-
 
 #### `Check` structure
 
