@@ -19,7 +19,7 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 
 	Pleasse contact LinearB 
 
-	:material-email-outline: [sales@linear-b.io](mailto:sales@linear-b.io)
+	:material-email-outline: [customers@linearb.io](mailto:customers@linearb.io)
 
 === ":fontawesome-brands-bitbucket: BitBucket"
 
