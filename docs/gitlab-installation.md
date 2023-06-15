@@ -62,12 +62,6 @@ Once your gitStream configuration file is setup, you need a GitLab CI configurat
 ```yaml+jinja
 --8<-- "docs/downloads/gitlab-ci.yml"
 ```
-## 4. Install the gitStream Service
-The last step of the process is to install the gitStream app to your [GitLab organization](https://api.gitstream.cm/auth/grant/gitlab){ .md-button }. Make sure you're authenticated with the account you designated in step 1 before clicking this link.
-
-!!! warning "Reinstall gitStream after project changes."
-
-	When renaming or adding new repositories, you must re-authenticate gitStream in [GitLab](https://api.gitstream.cm/auth/grant/gitlab)
 
 ## Next Step
 If you successfully completed these instructions, gitStream will now do these two things.
