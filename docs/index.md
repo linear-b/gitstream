@@ -17,7 +17,9 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 
 === ":fontawesome-brands-gitlab: GitLab"
 
-	Follow the installation instructions for GitLab [here](gitlab-installation.md)
+	Please contact LinearB 
+
+	:material-email-outline: [customers@linearb.io](mailto:customers@linearb.io)
 
 === ":fontawesome-brands-bitbucket: BitBucket"
 
