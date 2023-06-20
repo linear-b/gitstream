@@ -37,6 +37,7 @@ These examples help you identify code experts and assign reviewers based on the 
 * [Assign reviewers by directory](assign-reviewers-by-directory/README.md) - Automatically assign code reviewers based on directory structure.
 * [Change missing Lambda field](change-missing-lambda-field/README.md) - Request changes if a PR creates a new Lambda function that lacks a required field.
 * [Close wrong team by directory](close-wrong-team-by-directory/README.md) - Close PRs to a specified directory if the PR author is not on an approved team.
+* [Review important tags in css](languages/css/review-css-important/README.md) - Detect the use of `!important` in CSS files and automatically request changes.
 
 ## Security Policy Compliance
 These examples help you follow your team's security best practices.

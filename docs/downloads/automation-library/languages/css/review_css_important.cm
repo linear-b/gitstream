@@ -1,0 +1,23 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  approve_javascript_formatting:
+    if:
+      - {{ files | extensions | match(term='css') | some }}
+      - {{ source.diff.files | matchDiffLines(regex=r/!important/) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: '⚠️ Includes !important tag'
+          color: '{{ colors.orange }}'
+      - action: request-changes@v1
+        args:
+          comment: |
+            Please remove the `!important` tag from your CSS.
+
+
+colors:
+  orange: 'd93f0b'
