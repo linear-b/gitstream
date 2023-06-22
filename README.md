@@ -26,6 +26,7 @@ Reduce the mental burden of code reviews with labels that provide a high degree 
 * [How gitStream works](https://docs.gitstream.cm/how-it-works/)
 * [Write your first automation](https://docs.gitstream.cm/quick-start/)
 * [gitStream automation library](https://docs.gitstream.cm/automations/automation-library/)
+* [Integrations](https://docs.gitstream.cm/integrations)
 ## Contribute 
 
 * [Report a bug](https://github.com/linear-b/gitstream/issues/new?assignees=&labels=bug&template=bug_report.md&title=)
