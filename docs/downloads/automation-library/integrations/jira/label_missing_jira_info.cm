@@ -16,5 +16,5 @@ automations:
           color: 'F6443B'
 
 has:
-  jira_ticket_in_title: {{ pr.title | includes(regex=r/^\[?\w{3,4}-\d{1,6}\]?(\s|-|_).{1,}$/) }}
+  jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
   jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
