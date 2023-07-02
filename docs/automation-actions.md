@@ -150,7 +150,7 @@ automations:
 
 #### `explain-code-experts` :fontawesome-brands-github: 
 
-This action, shall add a comment with codeExperts suggestion. If the comment already exists the comment shall be eddited.
+This action, shall add a comment with codeExperts suggestion. If the comment already exists, the comment shall be edited.
 
 <div class="filter-details" markdown=1>
 
