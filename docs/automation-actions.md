@@ -17,6 +17,7 @@ gitStream executes actions in the order they are listed. If an action result fai
 - [`add-label`](#add-label) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`add-labels`](#add-labels) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`add-reviewers`](#add-reviewers) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`explain-code-experts`](#explain-code-experts) :fontawesome-brands-github: 
 - [`approve`](#approve) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`close`](#close) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`merge`](#merge) :fontawesome-brands-github: :fontawesome-brands-gitlab:
@@ -145,6 +146,31 @@ automations:
 !!! warning "Enable Team Write Access"
     If you want to assign teams as PR reviewers, you need to first make sure the team has write access to the repo in via your organization's settings. For more info, refer to the GitHub instructions for [managing team review settings](https://docs.github.com/en/organizations/organizing-members-into-teams/managing-code-review-settings-for-your-team).
 
+
+
+#### `explain-code-experts` :fontawesome-brands-github: 
+
+This action, shall add a comment with codeExperts suggestion. If the comment already exists the comment shall be eddited.
+
+<div class="filter-details" markdown=1>
+
+| Args       | Usage | Type      | Description                                     |
+| -----------|------|-----|------------------------------------------------ |
+| `lt` | Optional | Integer    | Filter the user list, keeping those below the specified threshold |
+| `gt` | Optional | Integer    | Filter the user list, keeping those above the specified threshold |
+
+</div>
+
+```yaml+jinja title="example"
+automations:
+  code_experts:
+    if:
+      - true
+    run:
+      - action: explain-code-experts@v1 
+        args:
+          gt: 10
+```
 
 #### `approve` :fontawesome-brands-github: :fontawesome-brands-gitlab:
 
