@@ -190,6 +190,7 @@ The `pr` context includes metadata related to the pull request.
 | `pr.title` | String | The PR title |
 | `pr.requested_changes` | [String] | List of users that requested changes |
 | `pr.reviews` | [[`Review`]](#review-structure) | List of PR reviews, relevant in GitHub |
+| `pr.unresolved_threads` | Integer | The number of open review comments in the PR |
 | `pr.updated_at` | String | The date and time the PR was last updated |
 
 Example for checking the PR title includes a Jira ticket:
