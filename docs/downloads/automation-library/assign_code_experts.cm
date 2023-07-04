@@ -7,7 +7,7 @@ automations:
   assign_code_experts:
     # Triggered when someone applies a suggest-reviewer label to a PR.
     if: 
-      - {{ pr.labels | match(term='suggest-reviewer') }}
+      - {{ pr.labels | match(term='suggest-reviewer') | some }}
     # Identify the best experts to assign for review and post a comment that explains why
     # More info about code experts
     # https://docs.gitstream.cm/filter-functions/#codeexperts
