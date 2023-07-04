@@ -596,7 +596,8 @@ This filter helps to explain the results of [`codeExperts`](#codeExperts), the o
 
 !!! note
 
-    If you use this function to post a comment to a GitHub PR conversation, gitStream will update the comment for every new commit. You may need to refresh your page to clean up the older comment versions.
+    It is recommended to use the dedicated action [`explain-code-experts`](/automation-actions#explain-code-experts).
+    If you use this function to post a comment to a GitHub PR conversation, gitStream will update the comment for every new commit. You may need to refresh your page to clean up the older comment versions. 
 
 <div class="filter-details" markdown=1>
 
