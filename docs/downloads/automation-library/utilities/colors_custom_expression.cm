@@ -13,7 +13,7 @@ automations:
       - action: add-label@v1
         args:
           label: "Test Label"
-          color: {{ colors.green ) }}
+          color: {{ colors.green }}
 
 # These are all of the colors in GitHub's default label color palette.
 colors:
