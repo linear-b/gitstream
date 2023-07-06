@@ -6,7 +6,7 @@ automations:
   review_changelog: 
     if: 
       - {{ branch.name | includes(term="feature") }}
-      - {{ files | match(regex=r/^docs\/changelog\.md$/) | nope }}
+      - {{ files | match(regex=r/^docs\/changelog\.md$/) | some | nope }}
     run:
       - action: add-label@v1
         args:
