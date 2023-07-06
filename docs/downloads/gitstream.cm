@@ -15,18 +15,13 @@ automations:
           label: "{{ calc.etr }} min review"
           color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
   # Post a comment that lists the best experts for the files that were modified.
-  suggest_code_experts:
-    # Triggered when someone applies a suggest-reviewer label to a PR.
-    if: 
-      - {{ pr.labels | match(term='suggest-reviewer') | some }}
-    # Identify the best experts to assign for review and post a comment that explains why
-    # More info about code experts
-    # https://docs.gitstream.cm/filter-functions/#codeexperts
+  explain_code_experts:
+    if:
+      - true
     run:
-      - action: add-comment@v1
+      - action: explain-code-experts@v1 
         args:
-          comment: |
-            {{ repo | explainCodeExperts(gt=10) }}
+          gt: 10 
 # The next function calculates the estimated time to review and makes it available in the automation above.
 calc:
   etr: {{ branch | estimatedReviewTime }}
