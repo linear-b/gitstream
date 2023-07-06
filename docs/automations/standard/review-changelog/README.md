@@ -8,10 +8,12 @@ Request changes if a PR that meets specified criteria lacks an update to the pro
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
     Conditions (All must be true):
+    
     * The branch name contains the phrase `feature`
     * The PR lacks changes to the docs/changelog.md file
 
     Automation Actions:
+
     * Apply a yellow label that says `⚠️ Missing Changelog`
     * Request changes and post a comment explaining why.
 
