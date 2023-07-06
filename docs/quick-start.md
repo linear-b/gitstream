@@ -36,7 +36,7 @@ This example uses the filter functions [`allDocs`](/filter-functions/#alldocs), 
 
 Selecting the right reviewer for your PR is crucial to ensure that your changes are thoroughly reviewed and that any issues are identified and addressed before they are merged into the main codebase. 
 
-This example uses the [`codeExperts`](/filter-functions/#codeexperts) filter function to identify the most qualified contributors based on their activity in the repo. It then assigns those individuals as reviewers on the PR with the [`add-reviewers`](/automation-actions/#add-reviewers) automation action and posts a comment that lists the code experts via the [`add-comment`](/automation-actions/#add-comment) automation action.
+This example uses the [`codeExperts`](/filter-functions/#codeexperts) filter function to identify the most qualified contributors based on their activity in the repo. It then assigns those individuals as reviewers on the PR with the [`add-reviewers`](/automation-actions/#add-reviewers) automation action and posts a comment that lists the code experts via the [`explain-code-experts`](/automation-actions/#explain-code-experts) automation action.
 
 !!! example "Identify and Assign Code Experts for Reviews"
     This example uses the codeExperts filter function to identify the people who have the most expertise in the relevant code, assigns them as reviewers, and provides a comment that explains how those people were selected.
@@ -47,17 +47,17 @@ This example uses the [`codeExperts`](/filter-functions/#codeexperts) filter fun
       version: 1.0
 
     automations:
-      code_experts:
+      assign_code_experts:
+        # Triggered when someone applies a suggest-reviewer label to a PR.
         if: 
-          - true
+          - {{ pr.labels | match(term='suggest-reviewer') | some }}
         run:
           - action: add-reviewers@v1
             args:
               reviewers: {{ repo | codeExperts(gt=10) }}
-          - action: add-comment@v1
+          - action: explain-code-experts@v1 
             args:
-              comment: |
-                {{ repo | explainCodeExperts(gt=10) }}
+              gt: 10 
     ```
 
 ## Enforce Review Policies for Critical Changes
