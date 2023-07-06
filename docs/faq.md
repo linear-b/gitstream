@@ -38,7 +38,7 @@ Add the following line to the top of the `.cm` file (the default has it already)
 Get a plug-in that enable modelines, popular ones are:
 
 - VS Code: [Modelines](https://marketplace.visualstudio.com/items?itemName=chrislajoie.vscode-modelines)
-- Sublime Text: [Emacs-like Sublime Modeline](https://github.com/kvs/STEmacsModelines)
+- Sublime Text: [CM syntax for ST4](https://packagecontrol.io/packages/Continuous%20Merge) or [Emacs-like Sublime Modeline](https://github.com/kvs/STEmacsModelines)
 - Vim [Modeline magic](https://vim.fandom.com/wiki/Modeline_magic)
 
 ## I have an issue I can seem to solve, what should I do?
