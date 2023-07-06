@@ -1,0 +1,21 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+automations:
+  # Request changes for new features that lack changelog updates.
+  review_changelog: 
+    if: 
+      - {{ branch.name | includes(term="feature") }}
+      - {{ files | match(regex=r/^docs\/changelog\.md$/) | nope }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "⚠️ Missing Changelog"
+          color: {{ colors.yellow }}
+      - action: add-comment@v1
+        args: 
+          comment: | 
+            All new features require an update to the changelog. Please modify your PR to include any relevant changelog updates.
+
+colors:
+  yellow: 'fbca04'
