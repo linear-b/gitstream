@@ -32,6 +32,7 @@ These examples focus on auto-approve policies and providing detailed context via
 These examples help you identify code experts and assign reviewers based on the contents of the PR.
 ### Merge Routing
 
+* [Explain Code Experts](standard/explain-code-experts/README.md) - Post a comment that recommends reviewers based on their expertise. 
 * [Additional review for large PRs](additional-review-for-large-pr/README.md) - Require additional reviewers for complex PRs.
 * [Assign code experts](assign-code-experts/README.md) - Identify the best experts for a PR and assign them to review.
 * [Assign reviewers by directory](assign-reviewers-by-directory/README.md) - Automatically assign code reviewers based on directory structure.
