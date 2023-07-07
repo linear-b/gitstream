@@ -29,3 +29,5 @@ Request changes if a PR that meets specified criteria lacks an update to the pro
       </span>
     </div>
 </div>
+
+Special thanks to [Boemo W Mmopelwa](https://github.com/xTrilton) for providing this example.
