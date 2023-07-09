@@ -13,7 +13,7 @@ automations:
   approve_maintainers_docs:
     if:
       - {{ files | match(regex=r/docs\/.*\.(md|txt|png|svg|webp)$/) | every }}
-      - {{ has.screenshot_link or has.image_uploaded }}
+      - {{ has.img_type1 or has.img_type2 or has.img_type3 }}
       - {{ pr.author | match(list=maintainers) }}
     run:
       - action: approve@v1
@@ -41,7 +41,7 @@ automations:
   mark_screenshot:
     if:
       - {{ files | match(regex=r/docs\/.*\.(md|txt)$/) | some }}
-      - {{ not (has.screenshot_link or has.image_uploaded) }}
+      - {{ not (has.img_type1 or has.img_type2 or has.img_type3) }}
     run:
       - action: add-label@v1
         args:
@@ -54,8 +54,9 @@ automations:
 
 
 has:
-  screenshot_link: {{ pr.description | includes(regex=r/!\[.*\]\(.*(jpg|svg|png|gif|psd).*\)/) }}
-  image_uploaded: {{ pr.description | includes(regex=r/<img.*src=.*https:\/\/github.com.*>/) }}
+  img_type1: {{ pr.description | includes(regex=r/!\[.*\]\(.*(jpg|svg|png|gif|psd).*\)/) }}
+  img_type2: {{ pr.description | includes(regex=r/!\[.*\]\((https?:\/\/github.com\/.*)/) }}
+  img_type3: {{ pr.description | includes(regex=r/<img.*src=.*https:\/\/github.com.*>/) }}
 
 
 maintainers:
