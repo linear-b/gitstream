@@ -130,7 +130,7 @@ Determines whether a string includes a certain substring. You can use either a s
 
 | Argument        | Usage    | Type      | Description                                     |
 | ------------- | ---------|-----------|--------------------------------------|
-| -       | Input    | String  |  The list of strings to match                        |
+| -       | Input    | String  |  The string you want to check for matching substrings |
 | `term`<br />`regex`<br />`list`  | Input (either)  |  String<br />String<br />[String]  | Substring term to match
 | -      | Output   | Bool | `true` if search terms matches   |
 
