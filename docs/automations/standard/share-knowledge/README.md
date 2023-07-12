@@ -2,7 +2,7 @@
 Require the reviewer as a previous contributor with code expertise less than a threshold when PR contains `Share Knowledge` label.
 
 <div class="automationImage" markdown="1">
-![Knowledge Share](share_knowledge.png)
+![Knowledge Share](share-knowledge.png)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
@@ -20,11 +20,11 @@ Require the reviewer as a previous contributor with code expertise less than a t
 <div class="automationExample" markdown="1">
 !!! example "Knowledge Share"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/share_knowledge.cm"
+    --8<-- "docs/downloads/automation-library/standard/share_knowledge.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/share_knowledge.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/share_knowledge.cm){ .md-button }
       </span>
     </div>
 </div>
