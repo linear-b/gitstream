@@ -36,6 +36,7 @@ These examples help you identify code experts and assign reviewers based on the 
 * [Additional review for large PRs](additional-review-for-large-pr/README.md) - Require additional reviewers for complex PRs.
 * [Assign code experts](assign-code-experts/README.md) - Identify the best experts for a PR and assign them to review.
 * [Assign reviewers by directory](assign-reviewers-by-directory/README.md) - Automatically assign code reviewers based on directory structure.
+* [Assign reviewers for knowledge share](standard/share-knowledge/README.md) - Automatically assign code reviewers based on contributions between specified thresholds.
 * [Enforce Changelog Updates](standard/review-changelog/README.md) - Require changelog updates for PRs that meet specific criteria.
 * [Change missing Lambda field](change-missing-lambda-field/README.md) - Request changes if a PR creates a new Lambda function that lacks a required field.
 * [Close wrong team by directory](close-wrong-team-by-directory/README.md) - Close PRs to a specified directory if the PR author is not on an approved team.
