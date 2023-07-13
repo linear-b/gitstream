@@ -1,5 +1,5 @@
 # Knowledge Share
-Require the reviewer as a previous contributor with code expertise less than a threshold when PR contains `Share Knowledge` label.
+Require the reviewer as a previous contributor with code expertise between set thresholds when PR contains `Share Knowledge` label.
 
 <div class="automationImage" markdown="1">
 ![Knowledge Share](share-knowledge.png)
@@ -13,7 +13,7 @@ Require the reviewer as a previous contributor with code expertise less than a t
 
     Automation Actions:
 
-    * Choose a previous contributor below a specified expertise threshold and assign them as a reviewer.
+    * Choose a previous contributor between specified expertise thresholds and assign them as a reviewer.
     * Post a comment explaining why this action was taken.
 
 </div>
