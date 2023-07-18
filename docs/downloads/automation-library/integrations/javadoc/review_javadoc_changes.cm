@@ -5,7 +5,7 @@ automations:
   # Assign PRs that only affect JavaDocs to the technical writing team and add docs label
   review_javadoc:
     if:
-      - {{ source.diff.files | matchDiffLines(regex=r/\/*\*([\s\S]*?)\//) }}
+      - {{ source.diff.files | matchDiffLines(regex=r/\/*\*([\s\S]*?)\//) | every }}
       - {{ source.diff.files | matchDiffLines(regex=r/\b(public|protected|private|static|final|synchronized)?\s+\w+\s+\w+\s*\(([^)]*)\)\s*\{/) | nope }}
     run:
       - action: add-label@v1
