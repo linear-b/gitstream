@@ -176,6 +176,7 @@ The `pr` context includes metadata related to the pull request.
 | `pr.approvals` | [String] | The of reviewers that approved the PR |
 | `pr.author` | String | The PR author name |
 | `pr.author_teams` | String | The teams which the PR author is member of|
+| `pr.author_is_org_member` | Bool | `true` when the PR author is a member of the org under which gitstream installed at|
 | `pr.checks` | [[`Check`]](#check-structure) | List of checks, names and status|
 | `pr.comments` | [[`Comment`]](#comment-structure) | List of PR comments objects |
 | `pr.conversations` | [[`Conversation`]](#conversation-structure) | List of PR conversation objects, usually when reviewer have comments about the source code |
