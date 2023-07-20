@@ -13,14 +13,14 @@ Check that you see gitStream app on repository's Settings > GitHub apps:
 In case you don't see it, visit the marketplace and install it for free: https://github.com/marketplace/gitstream-by-linearb
 
 **Did you set the workflow files correctly?**
-Check you have placed these 2 files in your repository, with these exact names: 
+Check you have placed these two files in your repository with these exact names: 
 
 1. `.cm/gitstream.cm`
 2. `.github/workflows/gitstream.yml`
 
-These files need to be committed to the repository default branch (usually `master` or `main`). Notice that the action will not run until these files are found on the default branch.
+These files must be committed to the repository default branch (usually `master` or `main`). Notice that the action will not run until these files are found on the default branch.
 
-Check that you see "gitStream workflow automation" on the Action section in your repository:
+Check that you see "gitStream workflow automation" in the Action section in your repository:
 
 ![GitHub action](screenshots/github_pr_actions_section.png)
 
@@ -31,10 +31,16 @@ Next, if you see failed action, check out the details:
 Some organization limit which actions can run, in that case in the repository settings you should enable it:
 
 ![GitHub allow marketplace actions](screenshots/github_settings_allow_actions.png)
+Also, add 
+
+```linear-b/gitstream-github-action@v1,*/*/.github/workflows/gitstream.yml*``` 
+to the **Allow specified actions and reusable workflows** list if it is shown.
+![GitHub allow marketplace actions](screenshots/github_settings_allow_specified_actions
+.png)
 
 **Is the PR in Draft mode?**
 
-gitStream automations won't trigger for PRs that in Draft mode.
+gitStream automations won't trigger for PRs that are in Draft mode.
 
 ## I have rules that should have blocked merge, but the PR can be merged still
 
