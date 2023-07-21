@@ -1,33 +1,6 @@
 # /:\ gitStream
 gitStream is a workflow automation tool that enables you to use YAML configuration files to optimize your code review process. Add context to PRs, find code experts for reviews, and automate the merge process to maximize developer productivity.
-
-
-**Build Your First Automation in 2 Minutes**
-=== ":fontawesome-brands-github: GitHub"
-
-	1. Install gitStream for free in [GitHub](https://github.com/apps/gitstream-cm/installations/new)
-	2. Configure your repository using the [instructions for GitHub](github-installation.md). This will guide you through setting up your first automations.
-
-	That's it! Now sit back and watch gitStream run automation rules on your next PR.
-
-	!!! tip "Tip: Install gitStream for your entire organizaton"
-
-		gitStream can be installed for one repo, specific repos, or all repos in your organization. We recommend installing for **all** because it will ensure all new repos are able to use gitStream. You can change this setting at any time in the future.
-
-
-=== ":fontawesome-brands-gitlab: GitLab"
-
-	Please contact LinearB 
-
-	:material-email-outline: [customers@linearb.io](mailto:customers@linearb.io)
-
-=== ":fontawesome-brands-bitbucket: BitBucket"
-
-	Coming soon
-
-
 ## Features
-
 
 !!! quote ""
 	![Approve safe changes](assets/safe-change-highlight.png){: style="border-radius:4px;width:50%", align=right}
@@ -57,11 +30,29 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 	
 	Reduce code review noise by catching issues before anyone invests precious time. Flag [deprecated components](automations/change-deprecated-components/README.md), [missing data objects](automations/change-missing-lambda-field/README.md), [off-limits code](automations/close-wrong-team-by-directory/README.md), and other problems that need to be addressed before assigning code reviewers.
 
+**Build Your First Automation in 2 Minutes**
+=== ":fontawesome-brands-github: GitHub"
+
+	1. Install gitStream for free in [GitHub](https://github.com/apps/gitstream-cm/installations/new)
+	2. Configure your repository using the [instructions for GitHub](github-installation.md). This will guide you through setting up your first automations.
+
+	That's it! Now sit back and watch gitStream run automation rules on your next PR.
+
+	!!! tip "Tip: Install gitStream for your entire organizaton"
+
+		gitStream can be installed for one repo, specific repos, or all repos in your organization. We recommend installing for **all** because it will ensure all new repos are able to use gitStream. You can change this setting at any time in the future.
 
 
-Install /:\ gitStream Now 
-[:fontawesome-brands-github: GitHub](https://github.com/apps/gitstream-cm/installations/new){ .md-button--primary .md-button }
-[:fontawesome-brands-gitlab: GitLab](./gitlab-installation/){ .md-button--primary .md-button }
+=== ":fontawesome-brands-gitlab: GitLab"
+
+	Please contact LinearB 
+
+	:material-email-outline: [customers@linearb.io](mailto:customers@linearb.io)
+
+=== ":fontawesome-brands-bitbucket: BitBucket"
+
+	Coming soon
+
 
 ## Get Involved
 Want to report a bug, request a new feature, ask a question, get updates for new features, or propose a new configuration for the automation library? [Join us on GitHub](https://github.com/linear-b/gitstream).
