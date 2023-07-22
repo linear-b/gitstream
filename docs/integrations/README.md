@@ -56,6 +56,15 @@ Security
 </div>
 </div>
 
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:material-terraform: Terraform](terraform.md)
+</div>
+<div class="integrations-card-labels">
+Documentation
+</div>
+</div>
+
 </div>
 
 

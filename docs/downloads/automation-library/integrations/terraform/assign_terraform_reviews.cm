@@ -1,0 +1,15 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  assign_terraform_review:
+    # Triggered for any changes to Terraform files
+    if:
+      - {{ files | match(regex=r/.*\.tf.*/) | some }}
+    # Assign infrastructure team as reviewer for change in Terraform files
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: [org/infrastructure]
