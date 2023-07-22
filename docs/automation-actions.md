@@ -17,7 +17,7 @@ gitStream executes actions in the order they are listed. If an action result fai
 - [`add-label`](#add-label) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`add-labels`](#add-labels) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`add-reviewers`](#add-reviewers) :fontawesome-brands-github: :fontawesome-brands-gitlab:
-- [`explain-code-experts`](#explain-code-experts) :fontawesome-brands-github: 
+- [`explain-code-experts`](#explain-code-experts) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`approve`](#approve) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`close`](#close) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`merge`](#merge) :fontawesome-brands-github: :fontawesome-brands-gitlab:
@@ -148,7 +148,7 @@ automations:
 
 
 
-#### `explain-code-experts` :fontawesome-brands-github: 
+#### `explain-code-experts` :fontawesome-brands-github: :fontawesome-brands-gitlab:
 
 This action, shall add a comment with codeExperts suggestion. If the comment already exists, the comment shall be edited.
 
