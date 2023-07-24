@@ -6,7 +6,7 @@ title: Integrate gitStream with JSDoc
 JSDoc Examples:
 
 * [Review JSDoc Changes](#review-jsdoc)
-* [Review Java Input Parameters for JSDoc Changes](#review-jsdoc-input-parameters)
+* [Review JavaScript Input Parameters for JSDoc Changes](#review-jsdoc-input-parameters)
 * [Review JSDoc for Large Changes](#review-jsdoc-large-change)
 * [Enforce JSDoc Requirements for New Classes](#review-new-class-jsdoc)
 
