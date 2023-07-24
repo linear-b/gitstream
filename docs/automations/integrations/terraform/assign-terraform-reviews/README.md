@@ -1,8 +1,8 @@
-# Assign Terraform Review
-Automatically assign Infrastructure team for reviewing changes when PR contains Terraform file changes.
+# Require Reviewers for Terraform changes
+Automatically assign `org/infrastructure` team for reviewing changes when PR contains Terraform file changes.
 
 <div class="automationImage" markdown="1">
-![Assign Terraform Review](/automations/integrations/terraform/assign-terraform-reviews/assign-terraform-reviews.png)
+![Review Terraform Changes](/automations/integrations/terraform/assign-terraform-reviews/review-terraform.png)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
@@ -17,13 +17,13 @@ Automatically assign Infrastructure team for reviewing changes when PR contains 
 
 </div>
 <div class="automationExample" markdown="1">
-!!! example "Knowledge Share"
+!!! example "Review Terraform Changes"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/integrations/terraform/assign_terraform_reviews.cm"
+    --8<-- "docs/downloads/automation-library/integrations/terraform/review_terraform.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/terraform/assign_terraform_reviews.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/terraform/review_terraform.cm){ .md-button }
       </span>
     </div>
 </div>
