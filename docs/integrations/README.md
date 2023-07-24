@@ -61,7 +61,7 @@ Security
 [:material-terraform: Terraform](terraform.md)
 </div>
 <div class="integrations-card-labels">
-Documentation
+Infrastructure
 </div>
 </div>
 
