@@ -1,5 +1,6 @@
 ---
 title: Integrate gitStream with Jit
+description: Implement workflow automations for Jit security reviews.
 ---
 # Integrate gitStream with Jit
 

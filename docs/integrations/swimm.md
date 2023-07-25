@@ -1,5 +1,6 @@
 ---
 title: Integrate gitStream with Swimm
+description: Implement workflow automations for Swimm documentation reviews.
 ---
 # Integrate gitStream with Swimm
 

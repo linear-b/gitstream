@@ -1,5 +1,6 @@
 ---
 title: Integrate gitStream with JSDoc
+description: Implement workflow automations for JSDoc code reviews.
 ---
 # Integrate gitStream with JSDoc
 

@@ -1,5 +1,6 @@
 ---
 title: Integrate gitStream with Javadoc
+description: Implement workflow automations for Javadoc code reviews.
 ---
 # Integrate gitStream with Javadoc
 

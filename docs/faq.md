@@ -1,3 +1,7 @@
+---
+title: gitStream Frequently Asked Questions
+description: Get help with gitStream.
+---
 # FAQ
 
 ## What permissions needed?

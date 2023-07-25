@@ -1,5 +1,6 @@
 ---
 title: Integrate gitStream with Jira
+description: Use gitStream to implement workflow automations for Jira.
 ---
 # Integrate gitStream with Jira
 
