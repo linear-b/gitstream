@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Review JSDoc for Large Changes
+description: Automatically flag large PRs that may require JSDoc updates.
+---
 # Review JSDoc for Large Changes
 
 Require more extensive reviews for large JavaScript changes that lack JSDoc updates.

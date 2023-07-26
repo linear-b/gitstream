@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Welcome Newcomer.
+description: Automatically post messages to first time PR contributors to help them get started.
+---
 # Welcome Newcomer
 
 Post a welcome message when someone makes their first PR to a repo, and provide context to help them know what's next.

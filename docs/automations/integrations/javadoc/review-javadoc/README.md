@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Review Javadoc Changes
+description: Automatically approve PRs that only contain Javadoc changes.
+---
 # Review Javadoc Changes
 
 Unblock PRs that only change Javadoc content.

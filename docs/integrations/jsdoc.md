@@ -13,19 +13,23 @@ JSDoc Examples:
 
 
 <a name="review-jsdoc"></a>
---8<-- "docs/automations/integrations/jsdoc/review-jsdoc/README.md"
+## Review JSDoc Changes
+--8<-- "docs/automations/integrations/jsdoc/review-jsdoc/README.md:6:"
 [Direct link to this example](/automations/integrations/jsdoc/review-jsdoc/)
 
 <a name="review-jsdoc-input-parameters"></a>
---8<-- "docs/automations/integrations/jsdoc/review-jsdoc-input/README.md"
+## Review JSDoc Input Parameters
+--8<-- "docs/automations/integrations/jsdoc/review-jsdoc-input/README.md:6:"
 [Direct link to this example](/automations/integrations/jsdoc/review-jsdoc-input/)
 
 <a name="review-jsdoc-large-change"></a>
---8<-- "docs/automations/integrations/jsdoc/review-jsdoc-large/README.md"
+## Review JSDoc for Large Changes
+--8<-- "docs/automations/integrations/jsdoc/review-jsdoc-large/README.md:6:"
 [Direct link to this example](/automations/integrations/jsdoc/review-jsdoc-large/)
 
 <a name="review-new-class-jsdoc"></a>
---8<-- "docs/automations/integrations/jsdoc/review-jsdoc-new-class/README.md"
+## Enforce JSDoc for New JavaScript Classes
+--8<-- "docs/automations/integrations/jsdoc/review-jsdoc-new-class/README.md:6:"
 [Direct link to this example](/automations/integrations/jsdoc/review-jsdoc-new-class/)
 
 Special thanks to [Boemo W Mmopelwa](https://github.com/xTrilton) for providing these examples.

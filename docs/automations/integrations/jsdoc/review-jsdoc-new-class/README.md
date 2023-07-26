@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Enforce JSDoc for New JavaScript Classes
+description: Enforce JSDoc requirements for PRs.
+---
 # Enforce JSDoc for New JavaScript Classes
 
 Require JSDoc for all new JavaScript classes.

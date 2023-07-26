@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Assign team members as reviewers
+description: Automatically assign teammates to review PRs.
+---
 # Assign team members as reviewers
 
 Assign PR reviewer based on the owner team membership.

@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Review JSDoc Input Parameters
+description: Automatically flag PRs that may require JSDoc updates.
+---
 # Review JSDoc Input Parameters
 
 Warn PR authors when they change JavaScript function or constructor input parameters without updating JSDoc content.

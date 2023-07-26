@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Knowledge Share
+description: Automatically distribute PR reviews to increase code expertise.
+---
 # Knowledge Share
 Require the reviewer as a previous contributor with code expertise between set thresholds when PR contains `Share Knowledge` label.
 
