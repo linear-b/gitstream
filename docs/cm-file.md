@@ -1,4 +1,8 @@
-# Overview
+---
+title: gitStream Configuration Overview
+description: Learn how to customize gitStream to meet the needs of your organization.
+---
+# gitStream Configuration Overview
 
 Continuous Merge automation files have a `.cm` extension. In a repository,  gitStream loads and parse the `.cm` directory, which can have multiple automation files, each of which is evaluated independently.
 

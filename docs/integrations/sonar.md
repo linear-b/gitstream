@@ -1,5 +1,6 @@
 ---
 title: Integrate gitStream with SonarCloud
+description: Implement workflow automations for SonarCloud security reviews.
 ---
 # Integrate gitStream with SonarCloud
 
