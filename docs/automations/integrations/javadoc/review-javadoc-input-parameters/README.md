@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Review Java Input Parameters for Javadoc Changes
+description: Notify PR authors to ensure proper Javadoc coverage. 
+---
 # Review Java Input Parameters for Javadoc Changes
 
 If a PR modifies the input parameters for a Java method, but not the associated Javadocs, notify reviewers to check for Javadoc updates.

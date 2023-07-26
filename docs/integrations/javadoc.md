@@ -11,21 +11,24 @@ Javadoc Examples:
 * [Review Javadoc for Large Changes](#review-javadoc-large-change)
 * [Enforce Javadoc Requirements for New Classes](#review-new-class-javadoc)
 
-
 <a name="review-javadoc"></a>
---8<-- "docs/automations/integrations/javadoc/review-javadoc/README.md"
+## Review Javadoc Changes
+--8<-- "docs/automations/integrations/javadoc/review-javadoc/README.md:6:"
 [Direct link to this example](/automations/integrations/javadoc/review-javadoc/)
 
 <a name="review-javadoc-input-parameters"></a>
---8<-- "docs/automations/integrations/javadoc/review-javadoc-input-parameters/README.md"
+## Review Java Input Parameters for Javadoc Changes
+--8<-- "docs/automations/integrations/javadoc/review-javadoc-input-parameters/README.md:6:"
 [Direct link to this example](/automations/integrations/javadoc/review-javadoc-input-parameters/)
 
 <a name="review-javadoc-large-change"></a>
---8<-- "docs/automations/integrations/javadoc/review-javadoc-large-change/README.md"
+## Review Javadoc for Large Changes
+--8<-- "docs/automations/integrations/javadoc/review-javadoc-large-change/README.md:6:"
 [Direct link to this example](/automations/integrations/javadoc/review-javadoc-large-change/)
 
 <a name="review-new-class-javadoc"></a>
---8<-- "docs/automations/integrations/javadoc/review-new-class-javadoc/README.md"
+## Enforce Javadoc Requirements for New Classes
+--8<-- "docs/automations/integrations/javadoc/review-new-class-javadoc/README.md:6:"
 [Direct link to this example](/automations/integrations/javadoc/review-new-class-javadoc/)
 
 Special thanks to [Boemo W Mmopelwa](https://github.com/xTrilton) for providing these examples.

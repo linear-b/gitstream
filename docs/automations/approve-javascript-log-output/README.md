@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Approve JavaScript Log Output Changes
+description: Automatically approve PRs that only change JavaScript log output.
+---
 # Approve JavaScript Log Output Changes
 
 Approve changes to JavaScript files that only affect lines of code that invoke the console.log() method.

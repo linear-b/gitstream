@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Label Missing Jira Info
+description: Automatically flag PRs that are missing required references to Jira issues.
+---
 # Label Missing Jira Info
 Label PRs that don't reference a Jira ticket in the title or description. This uses regex to detect Jira ticket formats in the title (e.g. ABC-1234), and URLs to Jira tickets in the description.
 

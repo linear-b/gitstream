@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Review Sonar Duplications
+description: Automatically request changes when SonarCloud detects duplicated code.
+---
 # Review Sonar Duplications
 
 Request changes when Sonar reports an excessive level of duplicated code.

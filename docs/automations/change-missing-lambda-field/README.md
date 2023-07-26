@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Change Missing Lambda Field
+description: Detect missing Lambda fields that are required in all PRs.
+---
 # Change Missing Lambda Field
 
 If a PR creates a new Lambda function, but lacks a description field, gitStream will request changes and post a comment that explains why. 

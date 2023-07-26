@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Enforce Changelog Updates
+description: Ensure PRS to specific branches include changelog updates.
+---
 # Enforce Changelog Updates
 
 Request changes if a PR that meets specified criteria lacks an update to the project's changelog.

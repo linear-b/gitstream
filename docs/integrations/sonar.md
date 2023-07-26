@@ -15,17 +15,21 @@ SonarCloud Examples:
 * [Review Sonar Security Alerts](#review-sonar-alerts)
 
 <a name="approve-sonar-clean-code"></a>
---8<-- "docs/automations/integrations/sonar/approve-sonar-clean-code/README.md"
+## Approve Sonar Clean Code
+--8<-- "docs/automations/integrations/sonar/approve-sonar-clean-code/README.md:6:"
 [Direct link to this example](/automations/integrations/sonar/approve-sonar-clean-code/)
 
 <a name="label-sonar"></a>
---8<-- "docs/automations/integrations/sonar/label-sonar/README.md"
+## Label SonarCloud Quality Reports
+--8<-- "docs/automations/integrations/sonar/label-sonar/README.md:6:"
 [Direct link to this example](/automations/integrations/sonar/label-sonar/)
 
 <a name="review-sonar-duplications"></a>
---8<-- "docs/automations/integrations/sonar/review-sonar-duplications/README.md"
+## Review Sonar Duplications
+--8<-- "docs/automations/integrations/sonar/review-sonar-duplications/README.md:6:"
 [Direct link to this example](/automations/integrations/sonar/review-sonar-duplications/)
 
 <a name="review-sonar-alerts"></a>
---8<-- "docs/automations/integrations/sonar/review-sonar-alerts/README.md"
+## Review Sonar Security Alerts
+--8<-- "docs/automations/integrations/sonar/review-sonar-alerts/README.md:6:"
 [Direct link to this example](/automations/integrations/sonar/review-sonar-alerts/)

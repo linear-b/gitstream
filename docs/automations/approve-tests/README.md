@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Approve test changes
+description: Automatically approve changes that only contains updates to tests.
+---
 # Approve test changes
 
 Label and approve PRs that only include tests, and post an explanation comment.
