@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Explain Code Experts
+description: Automatically summarize the people with the highest code expertise for PRs.
+---
 # Explain Code Experts
 
 Post a comment that uses git blame and history to list the most relevant experts for all PRs. The comment will automatically update as additional commits are added to the PR. 

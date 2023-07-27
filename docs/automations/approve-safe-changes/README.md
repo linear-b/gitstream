@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Approve Safe Changes
+description: Automatically approve PRs for documentation, formatting, and tests.
+---
 # Approve Safe Changes
 
 If the PR content only contains one or more of documentation, formatting changes, or tests, automatically approve the PR and apply a safe change label.

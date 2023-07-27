@@ -1,6 +1,10 @@
+---
+title: gitStream Automation - Review JSDoc Changes
+description: Automatically approve PRs for JSDoc changes.
+---
 # Review JSDoc Changes
 
-Assign reviewers for PRs that only contain changes to JSDoc.
+Approve PRs that only contain changes to JSDoc and assign optional reviewers.
 
 <div class="automationImage" markdown="1">
 ![Review JSDoc](/automations/integrations/jsdoc/review-jsdoc/review-jsdoc.png)

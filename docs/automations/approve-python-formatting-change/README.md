@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Approve Python Formatting Changes
+description: Automatically approve PRs that only contain Python formatting changes.
+---
 # Approve Python Formatting Changes
 Approve PRs that only contain formatting changes to Python files. 
 

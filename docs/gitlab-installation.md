@@ -1,3 +1,7 @@
+---
+title: How to Setup gitStream with GitLab
+description: Install gitStream to your GitLab organization.
+---
 # How to Setup gitStream with GitLab
 
 !!! info "Prerequisites"

@@ -1,3 +1,7 @@
+---
+title: gitStream Reference - Filter Functions
+description: Filter Functions enable you to process data that gitStream extracts.
+---
 # Filter functions
 
 Filters can change the look and format of the source data, or even generate new data derived from the input values. What's important is that the original data is replaced by the result of transformations, and that's what ends up in rendered templates.

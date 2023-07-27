@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Label Deleted Files
+description: Label PRs that delete files.
+---
 # Label Deleted Files
 
 Label PRs that delete files.
