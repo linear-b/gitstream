@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Approve Python Log Output Changes
+description: Automatically approve PRs that only affect Python log output.
+---
 # Approve Python Log Output Changes
 
 Approve changes to Python files that only affect lines of code that invoke a specified logging object.

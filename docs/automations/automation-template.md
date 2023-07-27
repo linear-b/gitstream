@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Automation Name
+description: 
+---
 # Automation Name
 <!-- 
 How to publish a new automation:
@@ -6,7 +10,8 @@ How to publish a new automation:
 3. Place the related CM file and example image in the same directory and give the files the same name as the automation.
 4. Change all instances of "Automation Name" to match the name of your automation
 5. Add a short description and image (update the image link too), and fill in the list of conditions and automation actions.
-6. Delete this comment and publish the automation!
+6. Fill in the meta description at the top.
+7. Delete this comment and publish the automation!
 !-->
 Short description
 

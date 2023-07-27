@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Assign Reviewers by Directory
+description: Automatically assign reviewers based on a watch list of files and directories.
+---
 # Assign Reviewers by Directory
 
 Automatically assign code reviewers based on directory structure. Optionally, you can substitue `require-reviewers` for `add-reviewers` to make review from the specified teams and individuals mandatory.

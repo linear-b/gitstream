@@ -1,3 +1,7 @@
+---
+title: How to Setup gitStream with GitHub
+description: Install gitStream to your GitHub organization.
+---
 # How to Setup gitStream with GitHub
 
 !!! Warning "Install gitStream"

@@ -1,3 +1,7 @@
+---
+title: Troubleshoot gitStream
+description: Learn how to solve common challenges you might encounter when using gitStream.
+---
 # Troubleshooting 
 
 ## I can't see any action running
@@ -34,9 +38,9 @@ gitStream automations won't trigger for PRs that in Draft mode.
 
 ## I have rules that should have blocked merge, but the PR can be merged still
 
-For example, when using the [`set-required-approvals`](/automation-actions.md#set-required-approvals) 
+For example, when using the [`set-required-approvals`](/automation-actions#set-required-approvals) 
 action, gitStream can ensure the PR got enough approvals before it can be merged. gitStream does that 
-by running as a check and marking the check conclusion as failed. In order for the PR to be blocked, gitStream should be set as a required check in the repo: [instructions here](/github-app-setup.md#Set-GitHub-repo-settings).
+by running as a check and marking the check conclusion as failed. In order for the PR to be blocked, gitStream should be set as a required check in the repo: [instructions here](/github-installation#github-merge-block).
 
 ![Merge enabled](screenshots/merge-enabled-example.png)
 
@@ -73,7 +77,7 @@ gitStream check run can fail from different reasons, and these are shown in the 
 
 #### Missing workflow file
 
-When it says `gitStream.cm Skipped — gitStream workflow file not found`, it means that the GitHub action was not found, check again that you have this file in your repository root: `.github/workflows/gitstream.yml`, see instructions on [GitHub installation](/github-installation.md).
+When it says `gitStream.cm Skipped — gitStream workflow file not found`, it means that the GitHub action was not found, check again that you have this file in your repository root: `.github/workflows/gitstream.yml`, see instructions on [GitHub installation](/github-installation).
 
 #### Syntax error in the cm files
 

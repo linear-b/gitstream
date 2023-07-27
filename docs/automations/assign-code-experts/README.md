@@ -1,4 +1,7 @@
-
+---
+title: gitStream Automation - Assign Code Experts
+description: Automatically assign PR reviewers based on code expertise.
+---
 # Assign Code Experts
 
 When someone applies a `suggest-reviewers` label to a PR, use codeExperts to assign recommended reviewers and post a comment with the `explainCodeExperts` automation action.

@@ -1,3 +1,7 @@
+---
+title: How to Test gitStream Automations
+description: Use gitStream dry-run mode to test your automations before implementing them.
+---
 # How to Test Your Automation
 
 By default, gitStream runs all applicable automations for every new PR and change to existing PR. If you want to test and experiment with new rules, gitStream supports a dry-run mode that will avoid making changes to your PRs. When you commit changes to any CM files found inside your repo's `.cm/` directory, gitStream will switch to dry-run mode.

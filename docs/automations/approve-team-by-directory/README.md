@@ -1,4 +1,7 @@
-
+---
+title: gitStream Automation - Approve Expert Team
+description: Automatically approve PRs from trusted teams.
+---
 # Approve Expert Team
 Approve PRs to a specified directory from a specific team. 
 
