@@ -2,7 +2,7 @@
 Automatically assign `org/infrastructure` team for reviewing changes when PR contains Terraform file changes.
 
 <div class="automationImage" markdown="1">
-![Review Terraform Changes](/automations/integrations/terraform/assign-terraform-reviews/review-terraform.png)
+![Review Terraform Changes](/automations/integrations/terraform/review-terraform/review-terraform.png)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
