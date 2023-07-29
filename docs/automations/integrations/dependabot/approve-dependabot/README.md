@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Approve and Merge Dependabot Changes
+description: Automatically approve and merge Dependabot PRs.
+---
 # Approve and Merge Dependabot Changes
 
 Approve PRs from Dependabot

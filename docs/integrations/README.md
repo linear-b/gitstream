@@ -1,10 +1,14 @@
+---
+title: gitStream Integrations
+description: Integrate third-party developer tools with gitStream.
+---
 # gitStream Integrations
 
 <div class="integrations" markdown="1">
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:simple-sonarcloud: SonarCloud](sonar.md)
+[:simple-sonarcloud: SonarCloud](/integrations/sonar)
 </div>
 <div class="integrations-card-labels">
 Security
@@ -13,7 +17,7 @@ Security
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:simple-dependabot: Dependabot](dependabot.md)
+[:simple-dependabot: Dependabot](/integrations/dependabot)
 </div>
 <div class="integrations-card-labels">
 Security
@@ -22,7 +26,7 @@ Security
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:fontawesome-brands-jira: Jira](jira.md)
+[:fontawesome-brands-jira: Jira](/integrations/jira)
 </div>
 <div class="integrations-card-labels">
 Project Management
@@ -31,7 +35,7 @@ Project Management
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-code-braces: Swimm](swimm.md)
+[:material-code-braces: Swimm](/integrations/swimm)
 </div>
 <div class="integrations-card-labels">
 Documentation
@@ -40,7 +44,7 @@ Documentation
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-language-java: Javadoc](javadoc.md)
+[:material-language-java: Javadoc](/integrations/javadoc)
 </div>
 <div class="integrations-card-labels">
 Documentation
@@ -49,7 +53,16 @@ Documentation
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-security: Jit](jit.md)
+[:material-language-javascript: JSDoc](/integrations/jsdoc)
+</div>
+<div class="integrations-card-labels">
+Documentation
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:material-security: Jit](/integrations/jit)
 </div>
 <div class="integrations-card-labels">
 Security

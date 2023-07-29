@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Close Wrong Team by Directory
+description: Automatically close PRs to protected portions of your code.
+---
 # Close Wrong Team by Directory
 
 Close PRs to a specified directory if the PR author is not on an approved team.

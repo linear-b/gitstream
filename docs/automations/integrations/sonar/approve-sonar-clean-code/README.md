@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Approve Sonar Clean Code
+description: Automatically approve PRs that pass SonarCloud's quality gate.
+---
 # Approve Sonar Clean Code
 
 Approve PRs that pass SonarCloud's quality gate.

@@ -1,3 +1,7 @@
+---
+title: gitStream Quickstart Examples
+description: Build your first gitStream automation in as little as two minutes.
+---
 # gitStream Quickstart Examples
 
 This page contains common gitStream configurations that are a great place to get started with gitStream. For a more detailed list, check out the [gitStream automation library](automations/automation-library.md).

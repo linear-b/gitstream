@@ -1,3 +1,7 @@
+---
+title: Write Your First gitStream Automation
+description: Get started with gitStream in two minutes.
+---
 # Write Your First gitStream Automation
 This article provides Continuous Merge (CM) examples to help you start customizing gitStream automations to meet the needs of your team.
 ## Approve Simple Changes

@@ -1,3 +1,7 @@
+---
+title: gitStream Automation - Review Sonar Security Alerts
+description: Automatically flag SonarCloud security alerts for additional review.
+---
 # Review Sonar Security Alerts
 
 Require additional reviews for Sonar security alerts. gitStream will remove this requirement if the alerts are resolved.

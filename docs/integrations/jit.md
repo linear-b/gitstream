@@ -1,5 +1,6 @@
 ---
 title: Integrate gitStream with Jit
+description: Implement workflow automations for Jit security reviews.
 ---
 # Integrate gitStream with Jit
 
@@ -14,17 +15,21 @@ Jit Examples:
 * [Review Jit Ignore and Accept Risk](#review-jit-ignore-accept)
 
 <a name="review-jit-alerts"></a>
---8<-- "docs/automations/integrations/jit/review-jit-alerts/README.md"
+## Review Jit Security Alerts
+--8<-- "docs/automations/integrations/jit/review-jit-alerts/README.md:6:"
 [Direct link to this example](/automations/integrations/jit/review-jit-alerts/)
 
 <a name="review-jit-secret"></a>
---8<-- "docs/automations/integrations/jit/review-jit-secret/README.md"
+## Review Jit Secret Detection
+--8<-- "docs/automations/integrations/jit/review-jit-secret/README.md:6:"
 [Direct link to this example](/automations/integrations/jit/review-jit-secret/)
 
 <a name="label-jit-alerts"></a>
---8<-- "docs/automations/integrations/jit/label-jit-alerts/README.md"
+## Label Jit Alerts
+--8<-- "docs/automations/integrations/jit/label-jit-alerts/README.md:6:"
 [Direct link to this example](/automations/integrations/jit/label-jit-alerts/)
 
 <a name="review-jit-ignore-accept"></a>
---8<-- "docs/automations/integrations/jit/review-jit-ignore-accept/README.md"
+## Review Jit Ignore and Accept
+--8<-- "docs/automations/integrations/jit/review-jit-ignore-accept/README.md:6:"
 [Direct link to this example](/automations/integrations/jit/review-jit-ignore-accept/)
