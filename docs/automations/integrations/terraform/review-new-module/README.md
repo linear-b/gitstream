@@ -10,13 +10,13 @@ Request changes if a PR that creates a new Terraform module which do not conform
     Conditions (all must be true):
 
     * The PR creates a new Terraform module
-        * A new sub-directory is created inside the /modules directory.
+        * A new sub-directory is created inside the `/modules` directory.
     * The PR lacks one or more required components from the list in the terraform custom expression.
 
     Automation Actions:
 
     * Request changes and post a comment explaining the missing parts of the module.
-    * Apply an orange label: ⚠️ Missing Terraform Components
+    * Apply Label : `⚠️ Missing Terraform Components`
 
 </div>
 <div class="automationExample" markdown="1">
