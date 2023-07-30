@@ -1,0 +1,1 @@
+More Automations can be found on the [Automation Library](/automations/automation-library) and [Integrations](/integrations) pages.
