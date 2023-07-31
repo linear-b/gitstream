@@ -6,6 +6,12 @@ description: Learn how to solve common challenges you might encounter when using
 
 ## I can't see any action running
 
+**Did you install gitStream at your org level?**
+
+Make sure you have added the `cm` repo to the repos gitStream should run on
+![GitHub cm repo](screenshots/repo_in_org_setup.png)
+
+
 **Did you install gitStream in your repo?**
 Check that you see gitStream app on repository's Settings > GitHub apps:
 
@@ -15,7 +21,7 @@ In case you don't see it, visit the marketplace and install it for free: https:/
 **Did you set the workflow files correctly?**
 Check you have placed these two files in your repository with these exact names: 
 
-1. `.cm/gitstream.cm`
+1. `gitstream.cm` in the `cm` repo, (for org level installs), or `.cm/gitstream.cm` on all other repositories
 2. `.github/workflows/gitstream.yml`
 
 These files must be committed to the repository default branch (usually `master` or `main`). Notice that the action will not run until these files are found on the default branch.
