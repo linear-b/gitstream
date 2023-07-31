@@ -44,7 +44,7 @@ to the **Allow specified actions and reusable workflows** list, if it is shown.
 
 gitStream automations won't trigger for PRs that are in Draft mode.
 
-**Do you see 'gitStream workflow file not found' error?**
+**I see 'gitStream workflow file not found' error**
 
 This error indicates that gitStream is unable to locate the file `.github/workflows/gitstream.yml`. The tool first searches for this file in the `cm` repository and then in the PR's repository. If the CI file is not found, this error message is displayed. To resolve this issue, ensure that your setup is correct and that the specified file exists in your repository.
 
