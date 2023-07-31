@@ -31,10 +31,12 @@ Next, if you see failed action, check out the details:
 Some organization limit which actions can run, in that case in the repository settings you should enable it:
 
 ![GitHub allow marketplace actions](screenshots/github_settings_allow_actions.png)
-Also, add 
 
-```linear-b/gitstream-github-action@v1,*/*/.github/workflows/gitstream.yml*``` 
-to the **Allow specified actions and reusable workflows** list if it is shown.
+Also, add 
+```
+linear-b/gitstream-github-action@v1,*/*/.github/workflows/gitstream.yml*
+``` 
+to the **Allow specified actions and reusable workflows** list, if it is shown.
 ![GitHub allow marketplace actions](screenshots/github_settings_allow_specified_actions
 .png)
 
