@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Automation Name
+title: Automation - Automation Name
 description: 
 ---
 # Automation Name
