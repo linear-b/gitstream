@@ -1,0 +1,6 @@
+* [Automatically approve PRs that conly contain changes to JavaScript log output](/automations/approve-javascript-log-output)
+* []()
+* []()
+* []()
+* []()
+* []()
