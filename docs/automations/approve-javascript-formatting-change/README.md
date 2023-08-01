@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Approve JavaScript Formatting Changes
+title: Automation - Approve JavaScript Formatting Changes
 description: Automatically approve PRs that only change JavaScript formatting.
 ---
 # Approve JavaScript Formatting Changes

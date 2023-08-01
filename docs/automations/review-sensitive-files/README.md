@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Review Sensitive Files
+title: Automation - Review Sensitive Files
 description: Automatically assign reviewers for PRs that contain changes to high-risk code.
 ---
 # Review Sensitive Files

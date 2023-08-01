@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Label PRs Without Tests
+title: Automation - Label PRs Without Tests
 description: Automatically label PRs that lack required tests.
 ---
 # Label PRs Without Tests

@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Explain Code Experts
+title: Automation - Explain Code Experts
 description: Automatically summarize the people with the highest code expertise for PRs.
 ---
 # Explain Code Experts

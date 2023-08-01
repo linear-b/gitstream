@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Approve Tiny Changes
+title: Automation - Approve Tiny Changes
 description: Automatically approve small PRs.
 ---
 # Approve Tiny Changes

@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Approve Python Log Output Changes
+title: Automation - Approve Python Log Output Changes
 description: Automatically approve PRs that only affect Python log output.
 ---
 # Approve Python Log Output Changes

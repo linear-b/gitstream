@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Approve Safe Changes
+title: Automation - Approve Safe Changes
 description: Automatically approve PRs that change docs, tests, and other safe assets.
 ---
 # Approve Safe Changes

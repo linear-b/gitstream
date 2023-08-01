@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Change Deprecated Components
+title: Automation - Change Deprecated Components
 description: Automatically detect the use of deprecated components and services in PRs.
 ---
 # Change Deprecated Components

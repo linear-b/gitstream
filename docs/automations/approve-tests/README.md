@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Approve test changes
+title: Automation - Approve test changes
 description: Automatically approve changes that only contains updates to tests.
 ---
 # Approve test changes

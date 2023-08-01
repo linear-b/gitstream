@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Request Screenshot
+title: Automation - Request Screenshot
 description: Automatically ensure PRs contain screenshots to help illustrate the changes.
 ---
 # Request Screenshot

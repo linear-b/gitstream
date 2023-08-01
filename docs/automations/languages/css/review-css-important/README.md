@@ -1,6 +1,10 @@
+---
+title: Automation - Flag CSS Important Tags
+description: Automatically request changes when PRs that include !important tags.
+---
 # Review Important Tags in CSS Files
 
-Short description
+Flag the use of `!important` in CSS files and automatically request changes.
 
 <div class="automationImage" markdown="1">
 ![Review Important Tags in CSS Files](review-css-important.png)

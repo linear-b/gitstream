@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Assign Reviewers by Directory
+title: Automation - Assign Reviewers by Directory
 description: Automatically assign reviewers based on a watch list of files and directories.
 ---
 # Assign Reviewers by Directory
