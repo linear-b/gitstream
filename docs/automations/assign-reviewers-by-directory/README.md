@@ -31,3 +31,14 @@ Automatically assign code reviewers based on directory structure. Optionally, yo
       </span>
     </div>
 </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/review-assignment-automation.md::2"
+--8<-- "docs/snippets/review-assignment-automation.md:4:"
+
+--8<-- "docs/snippets/automation-footer.md"

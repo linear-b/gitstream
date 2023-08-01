@@ -32,3 +32,13 @@ Post a welcome message when someone makes their first PR to a repo, and provide 
       </span>
     </div>
 </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/context-automation.md"
+
+--8<-- "docs/snippets/automation-footer.md"

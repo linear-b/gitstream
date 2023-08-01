@@ -16,4 +16,13 @@ This automation demonstrates all of GitHub's default label colors, implemented a
       </span>
     </div>
 
+## Additional Resources
 
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/utility-automation.md::1"
+--8<-- "docs/snippets/utility-automation.md:3:"
+
+--8<-- "docs/snippets/automation-footer.md"

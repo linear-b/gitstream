@@ -1,5 +1,2 @@
 * [Automatically approve PRs that only change Python log output](/approve-python-log-output)
-* []()
-* []()
-* []()
-* []()
+* [Automatically approve PRs that only include non-functional Python formatting changes](/automations/approve-python-formatting-change)

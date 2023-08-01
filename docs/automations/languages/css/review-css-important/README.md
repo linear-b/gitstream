@@ -33,3 +33,14 @@ Flag the use of `!important` in CSS files and automatically request changes.
       </span>
     </div>
 </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/change-request-automation.md::3"
+--8<-- "docs/snippets/change-request-automation.md:5:"
+
+--8<-- "docs/snippets/automation-footer.md"

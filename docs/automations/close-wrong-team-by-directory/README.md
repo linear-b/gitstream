@@ -32,3 +32,14 @@ Close PRs to a specified directory if the PR author is not on an approved team.
       </span>
     </div>
 </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/change-request-automation.md::2"
+--8<-- "docs/snippets/change-request-automation.md:4:"
+
+--8<-- "docs/snippets/automation-footer.md"

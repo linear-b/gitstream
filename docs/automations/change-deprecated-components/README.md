@@ -31,3 +31,14 @@ Request changes when a PR includes one or more deprecated components.
       </span>
     </div>
 </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/change-request-automation.md::1"
+--8<-- "docs/snippets/change-request-automation.md:3:"
+
+--8<-- "docs/snippets/automation-footer.md"

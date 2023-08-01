@@ -32,3 +32,13 @@ Require 2 reviewers for PRs that have more than 10 changed files in the src dire
       [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/additional_review_for_large_pr.cm){ .md-button }
       </span>
     </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/review-assignment-automation.md:2:"
+
+--8<-- "docs/snippets/automation-footer.md"
