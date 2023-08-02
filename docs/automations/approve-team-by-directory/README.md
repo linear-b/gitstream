@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Approve Trusted Team
+title: Automation - Approve Trusted Team
 description: Automatically approve PRs from trusted teams.
 ---
 # Approve Trusted Team

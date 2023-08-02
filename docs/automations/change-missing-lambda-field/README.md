@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Change Missing Lambda Field
+title: Automation - Change Missing Lambda Field
 description: Detect missing Lambda fields that are required in all PRs.
 ---
 # Change Missing Lambda Field
@@ -32,3 +32,13 @@ If a PR creates a new Lambda function, but lacks a description field, gitStream 
       </span>
     </div>
 </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/change-request-automation.md"
+
+--8<-- "docs/snippets/automation-footer.md"

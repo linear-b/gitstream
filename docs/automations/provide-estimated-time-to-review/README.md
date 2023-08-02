@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Provide Estimated Time to Review
+title: Automation - Provide Estimated Time to Review
 description: Automatically label PRs with an estimated time to review.
 ---
 # Provide Estimated Time to Review
@@ -29,3 +29,13 @@ Label all PRs with an estimated number of minutes it would take someone to revie
       </span>
     </div>
 </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/context-automation.md:2:"
+
+--8<-- "docs/snippets/automation-footer.md"

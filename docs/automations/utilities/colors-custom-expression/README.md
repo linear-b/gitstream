@@ -1,3 +1,7 @@
+---
+title: Automation - Colors Custom Expression
+description: Quickly add color-coded labels to your automations that match the GitHub UI.
+---
 # Colors Custom Expression
 
 This automation demonstrates all of GitHub's default label colors, implemented as a `colors` custom expression. This is meant to help improve other automations rather than being used on its own.
@@ -12,4 +16,13 @@ This automation demonstrates all of GitHub's default label colors, implemented a
       </span>
     </div>
 
+## Additional Resources
 
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/utility-automation.md::1"
+--8<-- "docs/snippets/utility-automation.md:3:"
+
+--8<-- "docs/snippets/automation-footer.md"

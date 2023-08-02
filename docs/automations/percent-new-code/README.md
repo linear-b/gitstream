@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Calculate the Percentage of New Code
+title: Automation - Calculate the Percentage of New Code
 description: Indicate the amount of new code contained in a PR.
 ---
 # Calculate the Percentage of New Code
@@ -29,3 +29,14 @@ Post a comment that indicates what percentage of the PR contains new code.
       </span>
     </div>
 </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/context-automation.md::4"
+--8<-- "docs/snippets/context-automation.md:6:"
+
+--8<-- "docs/snippets/automation-footer.md"

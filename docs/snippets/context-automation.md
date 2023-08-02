@@ -1,0 +1,6 @@
+* [Estimate the amount of time it would require someon to complete a PR review.](/automations/provide-estimated-time-to-review)
+* [Flag missing Jira ticket information](/automations/integrations/jira/label-missing-jira-info)
+* [Label PRs that delete files.](/automations/label-deleted-files)
+* [Label PRs that lack tests](/automations/label-prs-without-tests)
+* [Provide information about what percent of a PR is new code.](/automations/percent-new-code)
+* [Request PR authors to provide screenshots in relevant PRs.](/automations/request-screenshot)
