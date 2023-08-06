@@ -14,6 +14,7 @@ automations:
   review_new_terraform_module:
     if: 
       - {{misslist | match(regex=r/.*/) | some}}
+      - {{is.mainfile and is.mainfilenotinrootfile }}
     run:
       - action: add-comment@v1
         args:
@@ -36,5 +37,8 @@ terraform:
   - main.tf
   - outputs.tf
   - providers.tf
+is:
+  mainfile: {{newfilesinpr | match(term = "main.tf") | some}}
+  mainfilenotinrootfile: {{source.diff.files | map(attr='original_file') | match(term = "main.tf") | nope }}
 newfilesinpr:
   {{ branch.diff.files_metadata | map(attr='new_file')}}
