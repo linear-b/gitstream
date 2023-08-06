@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Approve test changes
+title: Automation - Approve test changes
 description: Automatically approve changes that only contains updates to tests.
 ---
 # Approve test changes
@@ -30,3 +30,13 @@ Label and approve PRs that only include tests, and post an explanation comment.
       [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/approve_tests.cm){ .md-button }
       </span>
     </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/safe-merge-automation.md"
+
+--8<-- "docs/snippets/automation-footer.md"

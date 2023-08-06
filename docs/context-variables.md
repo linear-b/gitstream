@@ -177,7 +177,7 @@ The `pr` context includes metadata related to the pull request.
 | Values             | Type      | Description                                              |
 |--------------------|-----------|-------------------------------------------------|
 | `pr`             | Map       | Includes the info related to the PR   |
-| `pr.approvals` | [String] | The of reviewers that approved the PR |
+| `pr.approvals` | [String] | A list of the of reviewers that approved the PR |
 | `pr.author` | String | The PR author name |
 | `pr.author_teams` | String | The teams which the PR author is member of|
 | `pr.author_is_org_member` | Bool | `true` if the PR author is a member of the organization where gitStream is installed |

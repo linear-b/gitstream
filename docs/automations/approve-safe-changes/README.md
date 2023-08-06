@@ -1,10 +1,11 @@
 ---
-title: gitStream Automation - Approve Safe Changes
-description: Automatically approve PRs for documentation, formatting, and tests.
+title: Automation - Approve Safe Changes
+description: Automatically approve PRs that change docs, tests, and other safe assets.
 ---
 # Approve Safe Changes
 
-If the PR content only contains one or more of documentation, formatting changes, or tests, automatically approve the PR and apply a safe change label.
+Automatically approve PRs that change docs, tests, and other safe assets.
+
 <div class="automationImage" style="align:right" markdown="1">![Approve safe changes](approve-safe-changes.png)</div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
@@ -36,3 +37,13 @@ If the PR content only contains one or more of documentation, formatting changes
 
 
   </style>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/safe-merge-automation.md:2:"
+
+--8<-- "docs/snippets/automation-footer.md"
