@@ -1,0 +1,16 @@
+
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+automations:
+  review_jsdoc_input: 
+    if:  
+      - {{ source.diff.files | matchDiffLines(regex=r/.*\s@param/) | nope }}
+      - {{ source.diff.files | matchDiffLines(regex=r/\((?:.*\:.*\))/) | some }}
+
+    run:
+      - action: add-comment@v1
+        args: 
+          comment: | 
+              This PR appears to modify method input parameters, but is missing JSDoc changes. Please check to ensure no JSDoc changes are necessary.
+

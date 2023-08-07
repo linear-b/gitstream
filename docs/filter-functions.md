@@ -1,3 +1,7 @@
+---
+title: gitStream Reference - Filter Functions
+description: Filter Functions enable you to process data that gitStream extracts.
+---
 # Filter functions
 
 Filters can change the look and format of the source data, or even generate new data derived from the input values. What's important is that the original data is replaced by the result of transformations, and that's what ends up in rendered templates.
@@ -41,7 +45,6 @@ The following functions are supported in addition to the built-in functions prov
 | [`extensions`](#extensions)<br />Lists all the unique file extensions | [String] | - | [String] |
 | [`extractJitFindings`](#extractjitfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the Jit scan | [`pr`](./context-variables.md#pr) | - | Object |
 | [`extractSonarFindings`](#extractsonarfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the SonarCloud scan | [`pr`](./context-variables.md#pr) | - | Object |
-| [`explainCodeExperts`](#explaincodeexperts)<br />Short markdown text explaining codeExperts results | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
 | [`explainRankByGitBlame`](#explainrankbygitblame)<br />Short markdown text explaining rankByGitBlame results | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
 | [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo | [`repo.contributors`](./context-variables.md#repo) | String | Bool |
 | [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed | [[`FileDiff` ](./context-variables.md#filediff-structure)] | - | Bool |
@@ -589,45 +592,6 @@ colors:
   D: 'DF8339'
   E: 'D4343F'
 ```
-
-#### `explainCodeExperts`
-
-This filter helps to explain the results of [`codeExperts`](#codeExperts), the output is in Markdown format that can be used in a PR comment. The `explainCodeExperts` filter function calls gitStream app API with the `repo` context to calculate the estimated review time value.
-
-!!! note
-
-    It is recommended to use the dedicated action [`explain-code-experts`](/automation-actions#explain-code-experts).
-    If you use this function to post a comment to a GitHub PR conversation, gitStream will update the comment for every new commit. You may need to refresh your page to clean up the older comment versions. 
-
-<div class="filter-details" markdown=1>
-
-| Argument       | Usage    | Type   | Description                                     |
-| ------------ | ---------|--------|------------------------------------------------ |
-| -     | Input    | [`repo`](./context-variables.md#repo)  | The `repo` context variable  |
-| `lt`     | Input    | Integer  | Filter the user list, keeping those below the specified threshold  |
-| `gt`  | Input  | Integer  | Filter the user list, keeping those above the specified threshold  |
-| -     | Output   | String   | Explaining [`codeExperts`](#codeExperts) results in markdown format |
-
-</div>
-
-For example:
-
-```yaml+jinja
-automations:
-  code_experts:
-    if: 
-      - true
-    run:
-      - action: add-reviewers@v1
-        args:
-          reviewers: {{ repo | codeExperts(gt=10) }}
-      - action: add-comment@v1
-        args:
-          comment: |
-            {{ repo | explainCodeExperts(gt=10) }}
-```
-
-Note the comment starts with `|` and a `new-line` as `explainCodeExperts` generates a multiline comment.
 
 #### `explainRankByGitBlame`
 

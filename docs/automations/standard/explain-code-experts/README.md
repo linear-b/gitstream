@@ -1,3 +1,7 @@
+---
+title: Automation - Explain Code Experts
+description: Automatically summarize the people with the highest code expertise for PRs.
+---
 # Explain Code Experts
 
 Post a comment that uses git blame and history to list the most relevant experts for all PRs. The comment will automatically update as additional commits are added to the PR. 
@@ -27,3 +31,14 @@ Post a comment that uses git blame and history to list the most relevant experts
       </span>
     </div>
 </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/review-assignment-automation.md::1"
+--8<-- "docs/snippets/review-assignment-automation.md:3:"
+
+--8<-- "docs/snippets/automation-footer.md"

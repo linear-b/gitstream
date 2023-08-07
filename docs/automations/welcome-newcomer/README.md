@@ -1,3 +1,7 @@
+---
+title: Automation - Welcome Newcomer.
+description: Automatically post messages to first time PR contributors to help them get started.
+---
 # Welcome Newcomer
 
 Post a welcome message when someone makes their first PR to a repo, and provide context to help them know what's next.
@@ -28,3 +32,13 @@ Post a welcome message when someone makes their first PR to a repo, and provide 
       </span>
     </div>
 </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/context-automation.md"
+
+--8<-- "docs/snippets/automation-footer.md"

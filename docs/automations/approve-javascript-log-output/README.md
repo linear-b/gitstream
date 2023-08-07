@@ -1,3 +1,7 @@
+---
+title: Automation - Approve JavaScript Log Output Changes
+description: Automatically approve PRs that only change JavaScript log output.
+---
 # Approve JavaScript Log Output Changes
 
 Approve changes to JavaScript files that only affect lines of code that invoke the console.log() method.
@@ -22,3 +26,13 @@ Automation Actions:
       [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/approve_javascript_log_output.cm){ .md-button }
       </span>
     </div>
+
+    ## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/javascript-automation.md:2:"
+
+--8<-- "docs/snippets/automation-footer.md"

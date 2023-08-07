@@ -1,3 +1,7 @@
+---
+title: Automation - Enforce Changelog Updates
+description: Ensure PRS to specific branches include changelog updates.
+---
 # Enforce Changelog Updates
 
 Request changes if a PR that meets specified criteria lacks an update to the project's changelog.
@@ -31,3 +35,13 @@ Request changes if a PR that meets specified criteria lacks an update to the pro
 </div>
 
 Special thanks to [Boemo W Mmopelwa](https://github.com/xTrilton) for providing this example.
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/change-request-automation.md:2:"
+
+--8<-- "docs/snippets/automation-footer.md"

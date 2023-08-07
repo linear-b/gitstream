@@ -1,3 +1,7 @@
+---
+title: How gitStream Works
+description: Learn how gitStream automates code review workflows.
+---
 # How gitStream Works
 You can configure gitStream via one or more Continuous Merge (CM) files inside your git repository or GitHub/GitLab organization. These files end with a `.cm`  extension, and they outline automations that will run whenever someone opens a new PR or makes changes to an existing PR. 
 ## Syntax Overview
@@ -24,7 +28,7 @@ Here is an example of the basic components that are required in every CM file.
 !!! info
     When editing CM files, make sure you preserve the indentation in the examples because, like YAML, gitStream uses Python-style indentation to indicate nesting.
 ### Automation Actions
-[Automation actions](/automation-actions) specify the desired automations that should be triggered when all conditions are met. Each automation must include an `if` condition and a `run` section. The conditions are evaluated whenever someone creates a PR or makes changes to an existing PR; multiple conditions can be listed for a single automation, but they must all be true to invoke the actions. You can have any number of actions listed in an automation and they are invoked one-by-one in no particular order. PRs that are marked as Draft are ignored by default, but you can change that in your [`config`](cm-file/).
+[Automation actions](/automation-actions) specify the desired automations that should be triggered when all conditions are met. Each automation must include an `if` condition and a `run` section. The conditions are evaluated whenever someone creates a PR or makes changes to an existing PR; multiple conditions can be listed for a single automation, but they must all be true to invoke the actions. You can have any number of actions listed in an automation and they are invoked one-by-one in no particular order. PRs that are marked as Draft are ignored by default, but you can change that in your [`config`](/cm-file/).
 
 !!! example "Basic Automation Example"
     This example defines an automation named `welcome_newcomer` that post a comment to welcome anyone who submits their first PR to the repo.
@@ -44,7 +48,7 @@ Here is an example of the basic components that are required in every CM file.
 [Filter functions](/filter-functions) are functions you can call and apply to variables. They are called with a pipe operator `|` and can take arguments inside parentheses `( )`. The logic expressions are based on Jinja2 syntax, supported by the [Nunjucks library](https://mozilla.github.io/nunjucks/templating.html#builtin-filters).
 
 !!! example "Context Variable and Filter Function Example"
-    The following statement passes the context variable [`files`](/context-variables/#files) to the filter function [`match`](/filter-functions/#match) which uses an optional list of sensitive filepaths that would need to be defined later in the CM file, and returns true if any of the files match the list as indicated by the [`some`](filter-functions/#some) filter function.
+    The following statement passes the context variable [`files`](/context-variables/#files) to the filter function [`match`](/filter-functions/#match) which uses an optional list of sensitive filepaths that would need to be defined later in the CM file, and returns true if any of the files match the list as indicated by the [`some`](/filter-functions/#some) filter function.
     ```yaml+jinja
     {{ files | match(list=sensitive) | some }}
     ```

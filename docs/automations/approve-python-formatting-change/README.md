@@ -1,3 +1,7 @@
+---
+title: Automation - Approve Python Formatting Changes
+description: Automatically approve PRs that only contain Python formatting changes.
+---
 # Approve Python Formatting Changes
 Approve PRs that only contain formatting changes to Python files. 
 
@@ -28,3 +32,14 @@ Approve PRs that only contain formatting changes to Python files.
       [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/approve_python_formatting_change.cm){ .md-button }
       </span>
     </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/safe-merge-automation.md::2"
+--8<-- "docs/snippets/safe-merge-automation.md:4:"
+
+--8<-- "docs/snippets/automation-footer.md"

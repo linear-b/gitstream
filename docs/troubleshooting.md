@@ -1,6 +1,16 @@
+---
+title: Troubleshoot gitStream
+description: Learn how to solve common challenges you might encounter when using gitStream.
+---
 # Troubleshooting 
 
 ## I can't see any action running
+
+**Did you install gitStream at your org level?**
+
+Make sure you have added the `cm` repo to the repos gitStream should run on
+![GitHub cm repo](screenshots/repo_in_org_setup.png)
+
 
 **Did you install gitStream in your repo?**
 Check that you see gitStream app on repository's Settings > GitHub apps:
@@ -9,14 +19,14 @@ Check that you see gitStream app on repository's Settings > GitHub apps:
 In case you don't see it, visit the marketplace and install it for free: https://github.com/marketplace/gitstream-by-linearb
 
 **Did you set the workflow files correctly?**
-Check you have placed these 2 files in your repository, with these exact names: 
+Check you have placed these two files in your repository with these exact names: 
 
-1. `.cm/gitstream.cm`
+1. `gitstream.cm` in the `cm` repo, (for org level installs), or `.cm/gitstream.cm` on all other repositories
 2. `.github/workflows/gitstream.yml`
 
-These files need to be committed to the repository default branch (usually `master` or `main`). Notice that the action will not run until these files are found on the default branch.
+These files must be committed to the repository default branch (usually `master` or `main`). Notice that the action will not run until these files are found on the default branch.
 
-Check that you see "gitStream workflow automation" on the Action section in your repository:
+Check that you see "gitStream workflow automation" in the Action section in your repository:
 
 ![GitHub action](screenshots/github_pr_actions_section.png)
 
@@ -28,15 +38,27 @@ Some organization limit which actions can run, in that case in the repository se
 
 ![GitHub allow marketplace actions](screenshots/github_settings_allow_actions.png)
 
+Also, add 
+```
+linear-b/gitstream-github-action@v1,*/*/.github/workflows/gitstream.yml*
+``` 
+to the **Allow specified actions and reusable workflows** list, if it is shown.
+![GitHub allow marketplace actions](screenshots/github_settings_allow_specified_actions
+.png)
+
 **Is the PR in Draft mode?**
 
-gitStream automations won't trigger for PRs that in Draft mode.
+gitStream automations won't trigger for PRs that are in Draft mode.
+
+**I see 'gitStream workflow file not found' error**
+
+This error indicates that gitStream is unable to locate the file `.github/workflows/gitstream.yml`. The tool first searches for this file in the `cm` repository and then in the PR's repository. If the CI file is not found, this error message is displayed. To resolve this issue, ensure that your setup is correct and that the specified file exists in your repository.
 
 ## I have rules that should have blocked merge, but the PR can be merged still
 
-For example, when using the [`set-required-approvals`](/automation-actions.md#set-required-approvals) 
+For example, when using the [`set-required-approvals`](/automation-actions#set-required-approvals) 
 action, gitStream can ensure the PR got enough approvals before it can be merged. gitStream does that 
-by running as a check and marking the check conclusion as failed. In order for the PR to be blocked, gitStream should be set as a required check in the repo: [instructions here](/github-app-setup.md#Set-GitHub-repo-settings).
+by running as a check and marking the check conclusion as failed. In order for the PR to be blocked, gitStream should be set as a required check in the repo: [instructions here](/github-installation#github-merge-block).
 
 ![Merge enabled](screenshots/merge-enabled-example.png)
 
@@ -73,7 +95,7 @@ gitStream check run can fail from different reasons, and these are shown in the 
 
 #### Missing workflow file
 
-When it says `gitStream.cm Skipped — gitStream workflow file not found`, it means that the GitHub action was not found, check again that you have this file in your repository root: `.github/workflows/gitstream.yml`, see instructions on [GitHub installation](/github-installation.md).
+When it says `gitStream.cm Skipped — gitStream workflow file not found`, it means that the GitHub action was not found, check again that you have this file in your repository root: `.github/workflows/gitstream.yml`, see instructions on [GitHub installation](/github-installation).
 
 #### Syntax error in the cm files
 

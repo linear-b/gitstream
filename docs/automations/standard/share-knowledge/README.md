@@ -1,3 +1,7 @@
+---
+title: Automation - Knowledge Share
+description: Automatically distribute PR reviews to increase code expertise.
+---
 # Knowledge Share
 Require the reviewer as a previous contributor with code expertise between set thresholds when PR contains `Share Knowledge` label.
 
@@ -28,3 +32,14 @@ Require the reviewer as a previous contributor with code expertise between set t
       </span>
     </div>
 </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/review-assignment-automation.md::3"
+--8<-- "docs/snippets/merge-automation.md:5:"
+
+--8<-- "docs/snippets/automation-footer.md"

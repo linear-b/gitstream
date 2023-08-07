@@ -1,6 +1,9 @@
-
-# Approve Expert Team
-Approve PRs to a specified directory from a specific team. 
+---
+title: Automation - Approve Trusted Team
+description: Automatically approve PRs from trusted teams.
+---
+# Approve Trusted Team
+Automatically approve low-risk PRs from trusted teams.
 
 <div class="automationImage" style="align:right" markdown="1">
 ![Approve Expert Team](approve_team_by_directory.png)
@@ -26,3 +29,14 @@ Approve PRs to a specified directory from a specific team.
       [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/approve_team_by_directory.cm){ .md-button }
       </span>
     </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/safe-merge-automation.md::1"
+--8<-- "docs/snippets/safe-merge-automation.md:3:"
+
+--8<-- "docs/snippets/automation-footer.md"
