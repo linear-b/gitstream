@@ -71,7 +71,7 @@ Security
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-terraform: Terraform](terraform.md)
+[:material-terraform: Terraform](/integrations/terraform)
 </div>
 <div class="integrations-card-labels">
 Infrastructure
