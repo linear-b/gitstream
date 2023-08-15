@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Approve Tiny Changes
+title: Automation - Approve Tiny Changes
 description: Automatically approve small PRs.
 ---
 # Approve Tiny Changes
@@ -30,3 +30,14 @@ Approve single-line changes to a single file.
       [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/approve_tiny_changes.cm){ .md-button }
       </span>
     </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/safe-merge-automation.md::3"
+--8<-- "docs/snippets/safe-merge-automation.md:5:"
+
+--8<-- "docs/snippets/automation-footer.md"

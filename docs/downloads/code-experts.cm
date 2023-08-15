@@ -30,10 +30,9 @@ automations:
         args:
           reviewers: {{ repo | codeExperts(gt=10) }}
       # Post a comment that lists all code experts who exceed the 10% threshold
-      - action: add-comment@v1
+      - action: explain-code-experts@v1 
         args:
-          comment: |
-            {{ repo | explainCodeExperts(gt=10) }}
+          gt: 10
 
   # Require additional reviewers for large PRs. 
   large_review:

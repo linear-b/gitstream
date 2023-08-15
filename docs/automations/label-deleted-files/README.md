@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Label Deleted Files
+title: Automation - Label Deleted Files
 description: Label PRs that delete files.
 ---
 # Label Deleted Files
@@ -30,3 +30,14 @@ Label PRs that delete files.
       </span>
     </div>
 </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/context-automation.md::2"
+--8<-- "docs/snippets/context-automation.md:4:"
+
+--8<-- "docs/snippets/automation-footer.md"

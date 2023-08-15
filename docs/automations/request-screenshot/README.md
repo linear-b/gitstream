@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Request Screenshot
+title: Automation - Request Screenshot
 description: Automatically ensure PRs contain screenshots to help illustrate the changes.
 ---
 # Request Screenshot
@@ -30,3 +30,14 @@ If the PR lacks an image file, or link to an image in the description, apply a `
       </span>
     </div>
 </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/context-automation.md::5"
+--8<-- "docs/snippets/context-automation.md:7:"
+
+--8<-- "docs/snippets/automation-footer.md"

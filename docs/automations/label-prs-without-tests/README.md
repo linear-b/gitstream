@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Label PRs Without Tests
+title: Automation - Label PRs Without Tests
 description: Automatically label PRs that lack required tests.
 ---
 # Label PRs Without Tests
@@ -29,3 +29,14 @@ Apply a `missing-tests` label to any PRs that don't update tests. gitStream will
       </span>
     </div>
 </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/context-automation.md::3"
+--8<-- "docs/snippets/context-automation.md:5:"
+
+--8<-- "docs/snippets/automation-footer.md"

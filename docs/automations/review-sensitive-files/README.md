@@ -1,5 +1,5 @@
 ---
-title: gitStream Automation - Review Sensitive Files
+title: Automation - Review Sensitive Files
 description: Automatically assign reviewers for PRs that contain changes to high-risk code.
 ---
 # Review Sensitive Files
@@ -31,3 +31,13 @@ Compare the changed files to a pre-defined list of files and directories in. If 
       </span>
     </div>
 </div>
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/review-assignment-automation.md"
+
+--8<-- "docs/snippets/automation-footer.md"
