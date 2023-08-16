@@ -4,7 +4,7 @@ manifest:
 automations:
   enforce_required_labels:
     if:
-      - not {{ pr.labels | match(list=['Core', 'Mobile', 'UI']) | some }}
+      - {{ not pr.labels | match(list=['Core', 'Mobile', 'UI']) | some }}
     run:
       - action: request-changes@v1
         args:
