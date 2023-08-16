@@ -2,7 +2,7 @@
 manifest:
   version: 1.0
 automations:
-  suggest-labels:  
+  suggest_labels:  
     if:  
       - {{ pr.labels | length == 0}}
     run:

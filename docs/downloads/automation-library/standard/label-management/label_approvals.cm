@@ -4,7 +4,7 @@ manifest:
 automations:
   label_approvals: 
     if:  
-       - true
+      - {{ pr.approvals | length > 0 }}
     run:
       - action: add-label@v1
         args:

@@ -4,7 +4,7 @@ manifest:
 automations:
   label_unresolved_threads:  
     if:  
-       - {{ pr.unresolved_threads }}
+      - {{ pr.unresolved_threads }}
     run:
       - action: add-label@v1
         args:

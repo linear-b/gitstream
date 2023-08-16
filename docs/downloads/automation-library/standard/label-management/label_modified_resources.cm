@@ -7,12 +7,11 @@ automations:
   label_automations_{{ item.name }}:
       if:
         -{{ branch.name | includes(regex=item.branch) or files | match(list=item.resources) }}
- 
       run:
         - action: add-label@v1
           args:
             label: {{ item.name }}
-   {% endfor %}
+  {% endfor %}
 
 labels:
   - name: Core
