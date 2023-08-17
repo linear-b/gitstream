@@ -1,0 +1,9 @@
+automations:
+  show_changed_files:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            CHECKS DUMP {{ pr.checks | dump | safe }}
