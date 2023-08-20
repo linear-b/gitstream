@@ -194,7 +194,7 @@ For example, to check if there are code changes with specific function call:
 
 #### `nope`
 
-The inverse of [`every`](#every), checks whether all elements in the list are `false`. In case the list of elements is empty, it will return `false`.
+The inverse of [`every`](#every), checks whether all elements in the list are `false`. In case the list of elements is empty, it will return `true`.
 
 <div class="filter-details" markdown=1>
 
