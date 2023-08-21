@@ -3,7 +3,7 @@ title: gitStream Integrations
 description: Integrate third-party developer tools with gitStream.
 ---
 # gitStream Integrations
-
+## Integrations List
 <div class="integrations" markdown="1">
 
 <div class="integrations-card" markdown="1">
@@ -69,6 +69,7 @@ Security
 </div>
 </div>
 
+
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
 [:material-terraform: Terraform](/integrations/terraform)
@@ -78,9 +79,20 @@ Infrastructure
 </div>
 </div>
 
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:material-label: PR Labels](/automations/standard/label-management)
+</div>
+<div class="integrations-card-labels">
+GitHub / GitLab
+</div>
 </div>
 
+</div>
 
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
 
 <style>
 .integrations {
