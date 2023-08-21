@@ -237,6 +237,30 @@ For example, check if all changes except for `config.json` files are formatting:
 ```yaml+jinja
 {{ source.diff.files | reject(attr='new_file', regex=r/config\.json$/) | isFormattingChange }}
 ```
+#### `intersection`
+
+Given two lists, keep only items that are in both lists.
+
+<div class="filter-details" markdown=1>
+| Argument   | Usage    | Type      | Description                                     |
+| -------- | ---------|-----------|------------------------------------------------ |
+| - | Input  | [Objects]    | List of objects to inspect. |
+| list | Input  | [Objects]    | List of objects to check for intersection. |
+| -  | Output  | [Objects]    | Returns a list of objects containing items that intersecting between the two lists. |
+</div>
+
+#### `difference`
+
+Given two lists, keep only items that are in the 1st list but not in the 2nd.
+
+<div class="filter-details" markdown=1>
+| Argument   | Usage    | Type      | Description                                     |
+| -------- | ---------|-----------|------------------------------------------------ |
+| - | Input  | [Objects]    | List of objects to inspect. |
+| list | Input  | [Objects]    | List of objects to exclude. |
+| -  | Output  | [Objects]    | Returns a list of objects containing items that exist in one input, but not in the other. |
+
+</div>
 
 #### `some`
 
