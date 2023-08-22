@@ -12,18 +12,18 @@ Here is a detailed step-by-step:
 6. Delete the comment from this file and push your changes!
 
 Replace the following terms from this doc, all terms are case sensitive to make find and replace easier:
-* INSERT - The human-readable name for the integration
-* INTEGRATION - The hyphenated name for the integration (lowercase). E.g. "integration-name"
+* IntegrationName - The human-readable name for the integration
+* integration-name - The hyphenated name for the integration (lowercase). E.g. "integration-name"
 * One/Two/Three/Four - The human-readable names for the individual automation examples.
 * one/two/three/four - The hyphenated name for the individual automations (lowercase). E.g. "automation-name"
 -->
 ---
-title: Integrate gitStream with INSERT
-description: Implement workflow automations for INSERT.
+title: Integrate gitStream with IntegrationName
+description: Implement workflow automations for IntegrationName.
 ---
-# Integrate gitStream with INSERT
+# Integrate gitStream with IntegrationName
 
-INSERT Examples:
+IntegrationName Examples:
 
 * [One](#one)
 * [Two](#two)

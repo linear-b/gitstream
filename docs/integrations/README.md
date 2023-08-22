@@ -88,6 +88,15 @@ GitHub / GitLab
 </div>
 </div>
 
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:material-git: Branch Management](/automations/standard/branch-management)
+</div>
+<div class="integrations-card-labels">
+GitHub / GitLab
+</div>
+</div>
+
 </div>
 
 ## Additional Resources
@@ -104,6 +113,7 @@ justify-content: center;
 display: flex;
 flex-direction: column;
 align-items: center;
+text-align: center;
 border: 2px solid white;
 border-radius: 10px;
 width: 200px;
