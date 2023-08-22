@@ -3,7 +3,7 @@ manifest:
   version: 1.0
 
 automations:
-  release_branch_review:
+  review_target_branch:
     if:
       - {{ pr.target | includes(term='release-') }}
     run:
