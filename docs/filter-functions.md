@@ -20,9 +20,11 @@ The following functions are supported in addition to the built-in functions prov
 
 | Function | Input | Args | Output |
 | --------------- | ------- | ---- |  ---- |
+| [`difference`](#difference)<br />Given two lists, keep only items that are in the 1st list but not in the 2nd. | [Objects] | `list` | [Objects] |
 | [`every`](#every)<br />Checks whether all element in the list are `true` | [Bool] | - | Bool |
 | [`filter`](#filter)<br />Reduce list of items into a list of same items that match the specified term | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
 | [`includes`](#match)<br />Check if substring match | String | `regex`, `term`, `list` | Bool |
+| [`intersection`](#intersection)<br />Given two lists, keep only items that are in both lists.| [Objects] | `list` | [Objects] |
 | [`map`](#map)<br />Maps each object in a list into their specified attribute value | [Object] | `attr` | [Object] |
 | [`match`](#match)<br />Maps list of items into a list of booleans that match the specified term | [String]<br />[Object] | `regex`, `term`, `list` `attr` | [Bool] |
 | [`nope`](#nope)<br />Checks whether all element in the list are `false` | [Bool] | - | Bool |
@@ -78,6 +80,19 @@ For example, the following expressions provide an identical result:
 ```
 
 ## Reference
+
+#### `difference`
+
+Given two lists, keep only items that are in the 1st list but not in the 2nd.
+
+<div class="filter-details" markdown=1>
+| Argument   | Usage    | Type      | Description                                     |
+| -------- | ---------|-----------|------------------------------------------------ |
+| - | Input  | [Objects]    | List of objects to inspect. |
+| list | Input  | [Objects]    | List of objects to exclude. |
+| -  | Output  | [Objects]    | Returns a list of objects containing items that exist in one input, but not in the other. |
+
+</div>
 
 #### `every`
 
@@ -144,6 +159,17 @@ Check string matches either of the terms:
 ```yaml+jinja
 {{ 'something' | includes(list=['any', 'thing']) }}
 ```
+#### `intersection`
+
+Given two lists, keep only items that are in both lists.
+
+<div class="filter-details" markdown=1>
+| Argument   | Usage    | Type      | Description                                     |
+| -------- | ---------|-----------|------------------------------------------------ |
+| - | Input  | [Objects]    | List of objects to inspect. |
+| list | Input  | [Objects]    | List of objects to check for intersection. |
+| -  | Output  | [Objects]    | Returns a list of objects containing items that intersecting between the two lists. |
+</div>
 
 #### `map`
 
