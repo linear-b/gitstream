@@ -1,0 +1,11 @@
+manifest:
+  version: 1.0
+
+automations:
+  enforce_required_labels:
+    if:
+      - {{ pr.labels | match(list=['Core', 'Mobile', 'UI']) | nope }}
+    run:
+      - action: request-changes@v1
+        args:
+          comment: Please ensure that your PR is labeled with either 'Core', 'Mobile', or 'UI'. These labels help us to better track and manage your contribution. Thank you.

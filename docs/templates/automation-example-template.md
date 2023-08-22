@@ -23,7 +23,7 @@ Replace the following terms, all terms are case sensitive to make find and repla
 Short description
 
 <div class="automationImage" markdown="1">
-![Automation Name](/automations/automation-library/standard/automation-name/automation-name.png)
+![Automation Name](/automations/standard/automation-name/automation-name.png)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
