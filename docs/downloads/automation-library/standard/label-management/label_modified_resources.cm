@@ -4,7 +4,7 @@ manifest:
 
 automations:
   {% for item in labels %}
-  label_automations_{{ item.name }}:
+  label_resource_{{ item.name }}:
       if:
         -{{ branch.name | includes(regex=item.branch) or files | match(list=item.resources) }}
       run:

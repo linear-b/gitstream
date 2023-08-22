@@ -13,7 +13,6 @@ automations:
             label: '{{ item.additions | round }}% {{ item.name }}'
   {% endfor %}
 
-
 resources:
   core:
     - src/app
