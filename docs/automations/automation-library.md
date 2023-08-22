@@ -45,6 +45,7 @@ This library of gitStream examples is meant to serve as a starting point for you
 * [Close wrong team by directory](close-wrong-team-by-directory/README.md) - Close PRs to a specified directory if the PR author is not on an approved team.
 
 ### Quality Checks
+* [Enforce Semantic PR Titles](standard/enforce-pr-title/README.md) - Enforce PR naming conventions.
 * [Review important tags in css](languages/css/review-css-important/README.md) - Detect the use of `!important` in CSS files and automatically request changes.
 * [Enforce Changelog Updates](standard/review-changelog/README.md) - Require changelog updates for PRs that meet specific criteria.
 * [Request screenshot](request-screenshot/README.md) - Request a screenshot in the PR description if none exist.
@@ -54,6 +55,7 @@ This library of gitStream examples is meant to serve as a starting point for you
 These examples help you follow your team's security best practices.
 
 * [Change deprecated components](change-deprecated-components/README.md) - Request changes when a PR includes one or more deprecated components.
+* [Enforce copyright headers](standard/enforce-copyright-header/README.md) - Enforce the use of copyright headers when publishing open source code.
 
 ## Utilities
 These examples provide useful components to use in other automations. These aren't intended to be used on their own; instead they act as a reference point for improving other automations.

@@ -8,6 +8,7 @@ Use YAML to automate label management on your git repo with gitStream.
 
 * [Enforce Required Labels](#enforce-required-labels)
 * [Label Modified Resources](#label-changed-resources)
+* [Percent-Based Labels for Modified Resources](#label-resources-percent)
 * [Label the number of unresolved code review threads](#label-unresolved-threads)
 * [Automatically recommend labels for new PRs](#suggest-labels)
 * [Label PRs with the number of reviews](#label-approvals)
@@ -19,6 +20,10 @@ Use YAML to automate label management on your git repo with gitStream.
 <a name="label-changed-resources"></a>
 ## Label Modified Resources
 --8<-- "docs/automations/standard/label-management/label-modified-resources/README.md:6:"
+
+<a name="label-changed-resources"></a>
+## Percent-Based Labels for Modified Resources
+--8<-- "docs/automations/standard/label-management/label-resources-percent/README.md:6:"
 
 <a name="label-unresolved-threads"></a>
 ## Label the Number of Unresolved Code Review Threads
