@@ -4,7 +4,7 @@ manifest:
   version: 1.0
 
 automations:
-  assign_code_experts:
+  share_knowledge:
     if:
       - {{ pr.labels | match(term='Share Knowledge') | some }}
     run:
