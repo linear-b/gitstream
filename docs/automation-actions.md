@@ -133,6 +133,7 @@ This action, once triggered, sets a specific reviewer.
 | `team_reviewers` | Optional | [String]    | Sets required team reviewers without a prefix `team` |
 | `unless_reviewers_set` | Optional | Bool | When `true`, the reviewers are not added if the PR has already assigned reviewers. It is set to `false` by default |
 | `fail_on_error` | Optional | Bool | When `true`, trying to assign illegal reviewers shall fail the automation, when `false` these errors are silently ignored. It is set to `true` by default |
+| `wait_for_all_checks`| Optional | Boolean | By default `false`. When `true`, the action will add reviewers only if all checks have passed |
 
 </div>
 
@@ -211,7 +212,7 @@ automations:
 
 #### `merge` :fontawesome-brands-github: :fontawesome-brands-gitlab:
 
-Once triggered, merge the PR if possible. It can set to wait for required checks to pass or ignore checks.
+Once triggered, merge the PR if possible. It can be set to wait for all checks to pass or only required ones.
 
 <div class="filter-details" markdown=1>
 
