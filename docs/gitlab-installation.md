@@ -7,9 +7,10 @@ description: Install gitStream to your GitLab organization.
 !!! info "Prerequisites"
 
     1. GitLab cloud
-    1. GitLab runner v15 or higher
+    2. GitLab runner v15 or higher
+    3. Create an account in the <a href="https://app.linearb.io/sign-up" target="_blank">LinarB app</a> and follow the steps to <a href="https://linearb.helpdocs.io/article/0xxpvue4s9-connect-git-stream-using-a-git-lab-integration" target="_blank">connect gitStream Using a GitLab Integration</a>.
 
-Gitlab Installation Overview
+GitLab Installation Overview
 
 1. Designate a gitStream user account.
 1. Create a CM configuration file.

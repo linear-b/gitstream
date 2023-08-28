@@ -42,16 +42,17 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 
 	That's it! Now sit back and watch gitStream run automation rules on your next PR.
 
-	!!! tip "Tip: Install gitStream for your entire organizaton"
+	!!! tip "Tip: Install gitStream for your entire organization"
 
 		gitStream can be installed for one repo, specific repos, or all repos in your organization. We recommend installing for **all** because it will ensure all new repos are able to use gitStream. You can change this setting at any time in the future.
 
 
 === ":fontawesome-brands-gitlab: GitLab"
 
-	Please contact LinearB 
-
-	:material-email-outline: [customers@linearb.io](mailto:customers@linearb.io)
+	1. Create an account in the <a href="https://app.linearb.io/sign-up" target="_blank">LinarB app</a>.
+	2. Follow the steps to <a href="https://linearb.helpdocs.io/article/0xxpvue4s9-connect-git-stream-using-a-git-lab-integration" target="_blank">connect gitStream Using a GitLab Integration</a>.
+	
+	That's it! Now sit back and watch gitStream run automation rules on your next PR.
 
 === ":fontawesome-brands-bitbucket: BitBucket"
 
