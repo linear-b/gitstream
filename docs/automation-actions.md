@@ -29,7 +29,7 @@ gitStream executes actions in the order they are listed. If an action result fai
 - [`set-required-approvals`](#set-required-approvals) :fontawesome-brands-github:
 - [`request-changes`](#request-changes) :fontawesome-brands-github:
 - [`require-reviewers`](#require-reviewers) :fontawesome-brands-github:
-- [`invoke-github-action`](#invoke-github-action) :fontawesome-brands-github:
+- [`run-github-action`](#run-github-action) :fontawesome-brands-github:
 
 
 !!! note
@@ -90,7 +90,7 @@ This action, once triggered, adds a `completed` check with the specified conclus
 | Args       | Usage | Type      | Description                         |
 | -----------|------|-----|------------------------------------------------ |
 | `check_name`  | Required | String    | The check name to be added to the checks list on gitHub |
-| `conclusion`  | Required | String    | The check conclusion to be set on the check. The value is one of the following: `action_required`, `cancelled`, `timed_out`, `failure`, `neutral`, `skipped`, `success` |
+| `conclusion`  | Required | String    | The conclusion of the check. The value is one of the following: `action_required`, `cancelled`, `timed_out`, `failure`, `neutral`, `skipped`, `success` |
 
 </div>
 
@@ -349,7 +349,7 @@ automations:
 
     To allow this action to block merge, you should enable branch protection, and gitStream has to be set as required check in GitHub.
 
-#### `invoke-github-action` :fontawesome-brands-github: 
+#### `run-github-action` :fontawesome-brands-github: 
 
 This action, once triggered, will start a workflow dispatch automation with the option to add a check to the list of checks in the PR
 
@@ -357,12 +357,13 @@ This action, once triggered, will start a workflow dispatch automation with the 
 
 | Args       | Usage | Type      | Description                              |
 | -----------|-------|-----------|----------------------------------------- |
-| `workflow` | Required | [String]     | The ID or name of the workflow dispatch. |
-| `owner` | Optional | [String]     | By default, the value of `repo.owner` context variable. The account owner of the repository. **Case insensitive String**.  |
-| `repo` | Optional | [String]     | By default, the value of `repo.name` context variable. The name of the repository without the `.git` extension. **Case insensitive String**  |
-| `ref` | Optional | [String]     | By default, the value of `branch.name` context variable. The account owner of the repository. **Case insensitive String**.  |
-| `inputs` | Optional | [String]     | By default, an empty list. Key-Value list with the arguments to provide to the workflow |
-| `check_name` | Optional | [String]     | When added, after the workflow is complete, add the check name to the checks list on GitHub |
+| `workflow` | Required | String     | The ID or name of the workflow dispatch. |
+| `owner` | Optional | String     | By default, the value of `repo.owner` context variable. The account owner of the repository. **Case insensitive String**.  |
+| `repo` | Optional | String     | By default, the value of `repo.name` context variable. The name of the repository without the `.git` extension. **Case insensitive String**  |
+| `ref` | Optional | String     | By default, the value of `branch.name` context variable. The account owner of the repository. **Case insensitive String**.  |
+| `inputs` | Optional | String     | By default, an empty list. Key-Value list with the arguments to provide to the workflow |
+| `check_name` | Optional | String     | When added, after the workflow is complete, add the check name to the checks list on GitHub |
+| `stop_ongoing_workflow` | Optional | Boolean     | By default, `false`. In case the workflow already runs on the branch, if `true`: cancel the ongoing workflow before running the newly dispatched workflow. If `false`: wait for the old workflow to finish before dispatching a new one|
 
 </div>
 
@@ -378,13 +379,12 @@ run_workflow_dispatch:
       - action: invoke-github-action@v1
         args:
           owner: {{ repo.owner }}
-          repo: {{repo.name}}
+          repo: {{ repo.name}}
           workflow: ui-tests
           ref: {{ branch.name }}
           check_name: UI-tests
 ```
 
 !!! attention
-
-    This action will invoke the run of a workflow dispatch; thus, it might result in a significant GitHub action minutes charge.
-    We encourage you to use this action with our [custom triggers](./custom-triggers)
+	* This action will invoke the run of a workflow dispatch; thus, it might result in significant GitHub action minutes charge.
+	* We encourage you to use this action with [custom triggers](./execution-model.md#explicit-triggers)
