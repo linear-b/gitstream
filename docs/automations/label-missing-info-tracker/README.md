@@ -3,7 +3,7 @@
 Label PRs that lack a reference to a project tracker issue (Jira, Azure Boards, Shortcut and Asana) in the PR title or description.
 
 <div class="automationImage" markdown="1">
-![Label Missing Info Tracker](/automations/integrations/label-missing-info-tracker/label-missing-info-tracker.png)
+![Label Missing Info Tracker](/automations/label-missing-info-tracker/label-missing-info-tracker.png)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
@@ -21,7 +21,7 @@ Label PRs that lack a reference to a project tracker issue (Jira, Azure Boards, 
 <div class="automationExample" markdown="1">
 !!! example "Label Missing Info Tracker"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/integrations/label_missing_info_tracker.cm"
+    --8<-- "docs/downloads/automation-library/label_missing_info_tracker.cm"
     ```
     <div class="result" markdown>
       <span>
