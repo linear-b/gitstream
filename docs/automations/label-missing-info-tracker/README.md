@@ -1,9 +1,14 @@
-# Label Missing Info Tracker
+---
+title: Automation - Flag Missing Project Tracking Info
+description: Automatically flag PRs that lack references to related project tracking issues.
+---
+
+# Flag Missing Project Tracking Info
 
 Label PRs that lack a reference to a project tracker issue (Jira, Azure Boards, Shortcut and Asana) in the PR title or description.
 
 <div class="automationImage" markdown="1">
-![Label Missing Info Tracker](/automations/label-missing-info-tracker/label-missing-info-tracker.png)
+![Label Missing Project Tracker](/automations/label-missing-info-tracker/label-missing-project-tracker.png)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
@@ -15,17 +20,17 @@ Label PRs that lack a reference to a project tracker issue (Jira, Azure Boards, 
     Automation Actions:
 
     * Apply Label : `⚠️ Missing Project Tracker`
-    * Post a comment informing the author to provide reference to associated project tracker resource.
+    * Post a comment asking the author to reference the associated project tracker resource.
 
 </div>
 <div class="automationExample" markdown="1">
-!!! example "Label Missing Info Tracker"
+!!! example "Label Missing Project Tracker"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/label_missing_info_tracker.cm"
+    --8<-- "docs/downloads/automation-library/label_missing_project_tracker.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/label_missing_info_tracker.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/label_missing_project_tracker.cm){ .md-button }
       </span>
     </div>
 </div>
