@@ -21,6 +21,7 @@ The following functions are supported in addition to the built-in functions prov
 | Function | Input | Args | Output |
 | --------------- | ------- | ---- |  ---- |
 | [`difference`](#difference)<br />Given two lists, keep only items that are in the 1st list but not in the 2nd. | [Objects] | `list` | [Objects] |
+| [`capture`](#capture)<br />Find and return the first occurrence of a regex in the input string | String | `regex` | [Objects] |
 | [`every`](#every)<br />Checks whether all element in the list are `true` | [Bool] | - | Bool |
 | [`filter`](#filter)<br />Reduce list of items into a list of same items that match the specified term | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
 | [`includes`](#match)<br />Check if substring match | String | `regex`, `term`, `list` | Bool |
@@ -93,6 +94,26 @@ Given two lists, keep only items that are in the 1st list but not in the 2nd.
 | -  | Output  | [Objects]    | Returns a list of objects containing items that exist in one input, but not in the other. |
 
 </div>
+
+#### `capture`
+
+Extract the first match of the regex in the input string. If no match is found, the function returns an empty string.
+
+<div class="filter-details" markdown=1>
+
+| Argument   | Usage    | Type      | Description                                     |
+| -------- | ---------|-----------|------------------------------------------------ |
+| - | Input  | String    | The string to find the match in |
+| `regex`  | Input |  String  | Search term to match with the input string |
+| -  | Output  | Bool   | The first substring that match the provided regex |
+
+</div>
+
+For example, the following line will extract the substring "hello wo" from the input
+
+```yaml+jinja
+{{ "hello world" | capture(regex=r/he.+o/) }}
+```
 
 #### `every`
 
@@ -168,7 +189,7 @@ Given two lists, keep only items that are in both lists.
 | -------- | ---------|-----------|------------------------------------------------ |
 | - | Input  | [Objects]    | List of objects to inspect. |
 | list | Input  | [Objects]    | List of objects to check for intersection. |
-| -  | Output  | [Objects]    | Returns a list of objects containing items that intersecting between the two lists. |
+| -  | Output  | [Objects]    | Returns a list of objects containing items that intersect between the two lists. |
 </div>
 
 #### `map`
