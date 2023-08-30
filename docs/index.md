@@ -49,7 +49,7 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 
 === ":fontawesome-brands-gitlab: GitLab"
 
-	1. Create an account in the <a href="https://app.linearb.io/sign-up" target="_blank">LinearB app</a>.
+	1. <a href="https://app.linearb.io/login" target="_blank">Log in</a>, or <a href="https://app.linearb.io/sign-up" target="_blank">create a free account</a> in the LinearB app.
 	2. Connect gitStream to your GitLab repos by following the steps described <a href="https://linearb.helpdocs.io/article/0xxpvue4s9-connect-git-stream-using-a-git-lab-integration" target="_blank">here</a>.
 	
 	That's it! Now sit back and watch gitStream run automation rules on your next PR.
