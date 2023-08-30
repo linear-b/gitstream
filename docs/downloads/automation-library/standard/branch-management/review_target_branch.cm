@@ -1,0 +1,15 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  review_target_branch:
+    if:
+      - {{ pr.target | includes(term='release-') }}
+    run:
+      - action: require-reviewers@v1
+        args:
+          reviewers: ['org/release-managers']
+      - action: add-reviewers@v1
+        args:
+          reviewers: ['org/release-managers']

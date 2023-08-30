@@ -6,19 +6,13 @@ description: Learn how to solve common challenges you might encounter when using
 
 ## I can't see any action running
 
-**Did you install gitStream at your org level?**
-
-Make sure you have added the `cm` repo to the repos gitStream should run on
-![GitHub cm repo](screenshots/repo_in_org_setup.png)
-
-
-**Did you install gitStream in your repo?**
+#### Did you install gitStream in your repo?
 Check that you see gitStream app on repository's Settings > GitHub apps:
 
 ![GitHub App installed](screenshots/app_in_github.png)
 In case you don't see it, visit the marketplace and install it for free: https://github.com/marketplace/gitstream-by-linearb
 
-**Did you set the workflow files correctly?**
+#### Did you set the workflow files correctly?
 Check you have placed these two files in your repository with these exact names: 
 
 1. `gitstream.cm` in the `cm` repo, (for org level installs), or `.cm/gitstream.cm` on all other repositories
@@ -46,11 +40,16 @@ to the **Allow specified actions and reusable workflows** list, if it is shown.
 ![GitHub allow marketplace actions](screenshots/github_settings_allow_specified_actions
 .png)
 
-**Is the PR in Draft mode?**
+#### Using org level? Did you enable gitStream for your `cm` repo
+
+Make sure you have added the `cm` repo to the repos gitStream should run on
+![GitHub cm repo](screenshots/repo_in_org_setup.png)
+
+#### Is the PR in Draft mode?
 
 gitStream automations won't trigger for PRs that are in Draft mode.
 
-**I see 'gitStream workflow file not found' error**
+#### I see 'gitStream workflow file not found' error
 
 This error indicates that gitStream is unable to locate the file `.github/workflows/gitstream.yml`. The tool first searches for this file in the `cm` repository and then in the PR's repository. If the CI file is not found, this error message is displayed. To resolve this issue, ensure that your setup is correct and that the specified file exists in your repository.
 
@@ -131,7 +130,6 @@ automations:
   </span>
 
 </div>
-
 
 
 ## gitStream fails with syntax error after adding new rules

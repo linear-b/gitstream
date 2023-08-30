@@ -1,0 +1,26 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  {% for item in labels %}
+  label_resource_{{ item.name }}:
+      if:
+        -{{ branch.name | includes(regex=item.branch) or files | match(list=item.resources) }}
+      run:
+        - action: add-label@v1
+          args:
+            label: {{ item.name }}
+  {% endfor %}
+
+labels:
+  - name: Core
+    resources:
+    - src/app
+    branch: r/^core-/
+  - name: mobile
+    resources:
+    - src/android
+    - src/ios
+    branch: r/^mobile-/
+

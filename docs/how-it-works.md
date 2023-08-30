@@ -179,7 +179,7 @@ Avoid using these words when naming your automations, actions, or other componen
 
 gitStream reserved words:
 
-`allDocs` `allImages` `allTests` `automations` `codeExperts` `config` `estimatedReviewTime` `explainCodeExperts` `explainRankByGitBlame` `extractJitFindings` `extractSonarFindings` `extensions` `every` `filter` `includes` `isFirstCommit` `isFormattingChange` `manifest` `map` `mapToEnum` `match` `matchDiffLines` `nope` `rankByGitActivity` `rankByGitBlame` `reject` `some`
+`allDocs` `allImages` `allTests` `automations` `codeExperts` `config` `difference` `estimatedReviewTime` `explainCodeExperts` `explainRankByGitBlame` `extractJitFindings` `extractSonarFindings` `extensions` `every` `filter` `includes` `isFirstCommit` `isFormattingChange` `intersection` `manifest` `map` `mapToEnum` `match` `matchDiffLines` `nope` `rankByGitActivity` `rankByGitBlame` `reject` `some`
 
 [Nunjucks](https://mozilla.github.io/nunjucks/templating.html#builtin-filters) reserved words:
 

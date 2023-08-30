@@ -4,7 +4,7 @@ site_author: LinearB
 copyright: Copyright &copy; 2023 LinearB, Inc.
 repo_url: https://github.com/linear-b/gitstream
 repo_name: linear-b/gitstream
-edit_uri: ""
+edit_uri: "edit/main/docs/"
 
 nav:
   - Overview: index.md
@@ -49,6 +49,7 @@ theme:
       - header.autohide
       - content.code.copy
       - content.code.annotate
+      - content.action.edit
 extra_css:
   - stylesheets/extra.css
 plugins:
