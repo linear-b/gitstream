@@ -4,7 +4,7 @@ manifest:
   version: 1.0
 
 automations:
-  link_issue_tracker:
+  label_missing_issue_tracker:
     if:
       - {{not (has[provider].ticket_in_title or has[provider].ticket_in_desc)}}
     run:
