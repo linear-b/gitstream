@@ -3,7 +3,6 @@ title: gitStream Integrations
 description: Integrate third-party developer tools with gitStream.
 ---
 # gitStream Integrations
-## Integrations List
 <div class="integrations" markdown="1">
 
 <div class="integrations-card" markdown="1">
