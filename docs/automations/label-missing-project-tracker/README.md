@@ -8,7 +8,7 @@ description: Automatically flag PRs that lack references to related project trac
 Label PRs that lack a reference to a project tracker issue (Jira, Azure Boards, Shortcut and Asana) in the PR title or description.
 
 <div class="automationImage" markdown="1">
-![Label Missing Project Tracker](/automations/label-missing-info-tracker/label-missing-project-tracker.png)
+![Label Missing Project Tracker](/automations/label-missing-project-tracker/label-missing-project-tracker.png)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
