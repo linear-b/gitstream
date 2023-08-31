@@ -33,6 +33,7 @@ This library of gitStream examples is meant to serve as a starting point for you
 * [Label PRs without tests](label-prs-without-tests/README.md) - Apply a `missing-tests` label to any PRs that lack updates to tests.
 * [Label percent new code](percent-new-code/README.md) - Post a comment that indicates what percentage of the PR contains new code.
 * [Label deleted files](label-deleted-files/README.md) - Label PRs that delete files.
+* [Label missing project tracker](label-missing-project-tracker/README.md) - Flag PRs that are missing a reference to an associated project tracking resource.
 
 
 ## Improve PR Quality
