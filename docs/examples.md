@@ -44,7 +44,7 @@ Request changes when a PR includes one or more deprecated components.
 ## Review Sensitive Files
 Require sensitive files from a pre-determined list to be reviewed by a specific team.
 
-[More details here](automations/review-sensitive-files/README.md)
+[More details here](automations/standard/review-assignment/review-sensitive-files/README.md)
 
 !!! example "Review Sensitive Files"
     ```yaml+jinja

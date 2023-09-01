@@ -20,6 +20,8 @@ Replace the following terms, all terms are case sensitive to make find and repla
 * automation_name - The name of the automation with words separated by underscores. This is for the associated CM file. 
 * RELATED - The name of the associated snippet file that contains related automations.
 !-->
+
+<!-- --8<-- [start:example]-->
 Short description
 
 <div class="automationImage" markdown="1">
@@ -47,6 +49,7 @@ Short description
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->
 
 ## Additional Resources
 

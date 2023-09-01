@@ -3,10 +3,12 @@ title: Automation - Review Sensitive Files
 description: Automatically assign reviewers for PRs that contain changes to high-risk code.
 ---
 # Review Sensitive Files
+
+<!-- --8<-- [start:example]-->
 Compare the changed files to a pre-defined list of files and directories in. If any files match, require a review from the team `my-organization/security`.
 
 <div class="automationImage" style="align:right" markdown="1">
-![Review Sensitive Files](review_sensitive_files.png)
+![Review Sensitive Files](/automations/standard/review-assignment/review-sensitive-files/review_sensitive_files.png)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
@@ -31,6 +33,7 @@ Compare the changed files to a pre-defined list of files and directories in. If 
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->
 
 ## Additional Resources
 

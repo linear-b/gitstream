@@ -3,12 +3,12 @@ title: Automation - Knowledge Share
 description: Automatically distribute PR reviews to increase code expertise.
 ---
 # Knowledge Share
+
+<!-- --8<-- [start:example]-->
 Require the reviewer as a previous contributor with code expertise between set thresholds when PR contains `Share Knowledge` label.
 
-<div class="automationImage" markdown="1">
-![Knowledge Share](review-assignment/share-knowledge.png)
-</div>
-<div class="automationDescription" markdown="1">
+![Knowledge Share](/automations/standard/review-assignment/share-knowledge/share-knowledge.png)
+
 !!! info "Configuration Description"
     
     Conditions (all must be true):
@@ -20,7 +20,6 @@ Require the reviewer as a previous contributor with code expertise between set t
     * Choose a previous contributor between specified expertise thresholds and assign them as a reviewer.
     * Post a comment explaining why this action was taken.
 
-</div>
 <div class="automationExample" markdown="1">
 !!! example "Knowledge Share"
     ```yaml+jinja
@@ -32,6 +31,7 @@ Require the reviewer as a previous contributor with code expertise between set t
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->
 
 ## Additional Resources
 

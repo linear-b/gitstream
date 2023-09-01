@@ -3,7 +3,7 @@ manifest:
   version: 1.0
 automations:
   {% for item in branches %}
-  require_additional_reviewers_branch_{{ item.prefix }}: 
+  review_target_branch_{{ item.name }}: 
     if:       
     - {{ pr.target| match(regex=item.prefix) }}
     run:
@@ -13,19 +13,16 @@ automations:
       - action: add-comment@v1
         args: 
           comment: | 
-            This PR requires {{ item.reviews }} reviewers from the {{ item.name }} team.
+            PRs to the {{ item.name }} branch require {{ item.reviews }} review(s).
       - action: add-reviewers@v1
         args:
           reviewers: [{{ item.reviewers }}]
   {% endfor %}
 
 branches:
-    - prefix: r/^ABC/ 
+    - prefix: r/^release/ 
+      reviews: 4
+      name: Release
+    - prefix: r/^experimental-/ 
       reviews: 1
-      reviewers: org/a-team
-      name: A
-    - prefix: r/^XYZ-/ 
-      reviews: 2
-      reviewers: org/x-team
-      name: X
-    
+      name: Experimental
