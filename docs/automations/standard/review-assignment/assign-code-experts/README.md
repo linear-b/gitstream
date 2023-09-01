@@ -4,10 +4,11 @@ description: Automatically assign PR reviewers based on code expertise.
 ---
 # Assign Code Experts
 
+<!-- --8<-- [start:example]-->
 When someone applies a `suggest-reviewers` label to a PR, use codeExperts to assign recommended reviewers and post a comment with the `explainCodeExperts` automation action.
 
 <div class="automationImage" style="align:right" markdown="1">
-![Assign Code Experts](assign_code_experts.png)
+![Assign Code Experts](/automations/standard/review-assignment/assign-code-experts/assign_code_experts.png)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
@@ -23,15 +24,15 @@ When someone applies a `suggest-reviewers` label to a PR, use codeExperts to ass
 <div class="automationExample" markdown="1">
 !!! example "Assign Code Experts"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/assign_code_experts.cm"
+    --8<-- "docs/downloads/automation-library/standard/review-assignment/assign_code_experts.cm"
     ```
     <div class="result" markdown="1">
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/assign_code_experts.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/review-assignment/assign_code_experts.cm){ .md-button }
       </span>
     </div>
 </div>
-
+<!-- --8<-- [end:example]-->
 ## Additional Resources
 
 --8<-- "docs/snippets/general.md"
