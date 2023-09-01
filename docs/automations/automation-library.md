@@ -41,7 +41,7 @@ This library of gitStream examples is meant to serve as a starting point for you
 
 * [Assign code experts](standard/review-assignment/assign-code-experts/README.md) - Identify the best experts for a PR and assign them to review.
 * [Assign reviewers by directory](assign-reviewers-by-directory/README.md) - Automatically assign code reviewers based on directory structure.
-* [Assign reviewers for knowledge share](standard/share-knowledge/README.md) - Automatically assign code reviewers based on contributions between specified thresholds.
+* [Assign reviewers for knowledge share](standard/review-assignment/share-knowledge/README.md) - Automatically assign code reviewers based on contributions between specified thresholds.
 * [Change missing Lambda field](change-missing-lambda-field/README.md) - Request changes if a PR creates a new Lambda function that lacks a required field.
 * [Close wrong team by directory](close-wrong-team-by-directory/README.md) - Close PRs to a specified directory if the PR author is not on an approved team.
 

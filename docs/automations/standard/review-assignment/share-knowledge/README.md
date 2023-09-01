@@ -6,7 +6,7 @@ description: Automatically distribute PR reviews to increase code expertise.
 Require the reviewer as a previous contributor with code expertise between set thresholds when PR contains `Share Knowledge` label.
 
 <div class="automationImage" markdown="1">
-![Knowledge Share](share-knowledge.png)
+![Knowledge Share](review-assignment/share-knowledge.png)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
