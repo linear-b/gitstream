@@ -25,7 +25,7 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 
 	**Review Assignment**
 
-	Identifying the correct people to review a PR can take time, particularly for complex projects and repos requiring deep expertise. [Assign code experts](automations/assign-code-experts/README.md) to review complex PRs, [notify your security team about sensitive changes](automations/review-sensitive-files/README.md), and automatically [assign reviewers based on the contents of the PR](automations/assign-reviewers-by-directory/README.md).
+	Identifying the correct people to review a PR can take time, particularly for complex projects and repos requiring deep expertise. [Assign code experts](automations/standard/review-assignment/assign-code-experts/README.md) to review complex PRs, [notify your security team about sensitive changes](automations/review-sensitive-files/README.md), and automatically [assign reviewers based on the contents of the PR](automations/assign-reviewers-by-directory/README.md).
 
 !!! quote ""
 	![Change Deprecated Components](assets/change-deprecated-highlight.png){: style="border-radius:4px;width:50%", align=left}

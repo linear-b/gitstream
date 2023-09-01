@@ -75,7 +75,7 @@ When a PR is created or changed, apply or update a label that provides an estima
 ![Estimated Review Time label](automations/provide-estimated-time-to-review/provide_estimated_time_to_review.png)
 
 When a `suggest-reviewers` label is applied to a PR, gitStream will comment with a list of code experts.
-![Suggested reviewers](automations/assign-code-experts/assign_code_experts.png)
+![Suggested reviewers](automations/standard/review-assignment/assign-code-experts/assign_code_experts.png)
 
 
 !!! tip "How gitStream Works"
