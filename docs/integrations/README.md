@@ -96,6 +96,33 @@ GitHub / GitLab
 </div>
 </div>
 
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:simple-asana: Asana](/integrations/asana)
+</div>
+<div class="integrations-card-labels">
+Project Management
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:simple-clubhouse: Shortcut](/integrations/shortcut)
+</div>
+<div class="integrations-card-labels">
+Project Management
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:simple-azuredevops: Azure Boards](/integrations/azure-boards)
+</div>
+<div class="integrations-card-labels">
+Project Management
+</div>
+</div>
+
 </div>
 
 ## Additional Resources
