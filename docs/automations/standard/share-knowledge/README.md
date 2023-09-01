@@ -24,11 +24,11 @@ Require the reviewer as a previous contributor with code expertise between set t
 <div class="automationExample" markdown="1">
 !!! example "Knowledge Share"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/standard/share_knowledge.cm"
+    --8<-- "docs/downloads/automation-library/standard/review-assignment/share_knowledge.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/share_knowledge.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/review-assignment/share_knowledge.cm){ .md-button }
       </span>
     </div>
 </div>

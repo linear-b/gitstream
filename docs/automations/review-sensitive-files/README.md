@@ -23,11 +23,11 @@ Compare the changed files to a pre-defined list of files and directories in. If 
 <div class="automationExample" markdown="1">
 !!! example "Review Sensitive Files"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/review_sensitive_files.cm"
+    --8<-- "docs/downloads/automation-library/standard/review-assignment/review_sensitive_files.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/review_sensitive_files.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/review-assignment/review_sensitive_files.cm){ .md-button }
       </span>
     </div>
 </div>

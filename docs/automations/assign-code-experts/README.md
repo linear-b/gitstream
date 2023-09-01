@@ -23,11 +23,11 @@ When someone applies a `suggest-reviewers` label to a PR, use codeExperts to ass
 <div class="automationExample" markdown="1">
 !!! example "Assign Code Experts"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/assign_code_experts.cm"
+    --8<-- "docs/downloads/automation-library/standard/review-assignment/assign_code_experts.cm"
     ```
     <div class="result" markdown="1">
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/assign_code_experts.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/review-assignment/assign_code_experts.cm){ .md-button }
       </span>
     </div>
 </div>
