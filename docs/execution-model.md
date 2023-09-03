@@ -17,4 +17,38 @@ Additionally, if any of the automation rules reference the [`pr`](context-variab
 This allows for greater flexibility in the automation process, ensuring that the relevant automation rules are evaluated and triggered when necessary. The execution model ensures that the automation process is streamlined, efficient, and effective.
 
 ### Explicit triggers
-Explicit
+`.cm` files also support explicit triggering mechanism. When using explicit triggers, the automations will run only according to the defined triggers, which means the Implicit triggers will not work. 
+
+#### Explicit triggers syntax
+To define explicit triggers, add the `on` keyword to the automation.
+gitStream supports the following explicit triggers:
+
+- `commit`  
+    Trigger on each commit
+- `pr_created`  
+    Trigger when the PR is created
+- `comment_added`  
+    Trigger added comments
+- `label_added`  
+    Trigger added labels
+- `label_removed`  
+    Trigger removed labels
+
+Explicit triggers can be used at the file level, specific to each automation separately, or a combination of the two. In case triggers are listed at the level **and** specific automation, this automation will be triggered according to both triggers.
+
+#### Examples:
+- assign code expert reviewer when the PR is created and after each commit  
+``` yaml+jinja
+on:
+	- pr_created
+	- commit
+
+automations:
+  assign_code_experts:
+	if: 
+	  - true
+	run:
+	  - action: add-reviewers@v1
+		args:
+		  reviewers: {{ repo | codeExperts(gt=10) }}
+```
