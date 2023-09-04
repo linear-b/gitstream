@@ -36,6 +36,9 @@ This library of gitStream examples is meant to serve as a starting point for you
 * [Label missing project tracker](label-missing-project-tracker/README.md) - Flag PRs that are missing a reference to an associated project tracking resource.
 
 
+### Add PR Context with Comments
+* [Automatic Issue Tracker Link](automatic-issue-tracker-link/README.md) - Automatically post PR comment with Issue Tracker Link.
+
 ## Improve PR Quality
 ### Merge Routing
 
