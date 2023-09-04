@@ -29,7 +29,7 @@ gitStream executes actions in the order they are listed. If an action result fai
 - [`set-required-approvals`](#set-required-approvals) :fontawesome-brands-github:
 - [`request-changes`](#request-changes) :fontawesome-brands-github:
 - [`require-reviewers`](#require-reviewers) :fontawesome-brands-github:
-- [`run-github-action`](#run-github-action) :fontawesome-brands-github:
+- [`run-github-workflow`](#run-github-workflow) :fontawesome-brands-github:
 
 
 !!! note
@@ -349,7 +349,7 @@ automations:
 
     To allow this action to block merge, you should enable branch protection, and gitStream has to be set as required check in GitHub.
 
-#### `run-github-action` :fontawesome-brands-github: 
+#### `run-github-workflow` :fontawesome-brands-github: 
 
 This action, once triggered, will start a workflow dispatch automation with the option to add a check to the list of checks in the PR
 

@@ -17,38 +17,53 @@ Additionally, if any of the automation rules reference the [`pr`](context-variab
 This allows for greater flexibility in the automation process, ensuring that the relevant automation rules are evaluated and triggered when necessary. The execution model ensures that the automation process is streamlined, efficient, and effective.
 
 ### Explicit triggers
-`.cm` files also support explicit triggering mechanism. When using explicit triggers, the automations will run only according to the defined triggers, which means the Implicit triggers will not work. 
+gitstream supports an explicit triggering mechanism. When using explicit triggers, the automations will run only according to the defined triggers, which means the Implicit triggers will not work. 
 
 #### Explicit triggers syntax
-To define explicit triggers, add the `on` keyword to the automation.
+Use explicit triggers to enhance the control and customization of automations in gitStream, allowing users to define precisely when and how automations should be triggered based on various events and actions within pull requests.
+
+Add the `on` keyword to the file and/or to a specific automation to define explicit triggers.
 gitStream supports the following explicit triggers:
 
-- `commit`  
-    Trigger on each commit
-- `pr_created`  
-    Trigger when the PR is created
-- `comment_added`  
-    Trigger added comments
-- `label_added`  
-    Trigger added labels
-- `label_removed`  
-    Trigger removed labels
+- `merge`: Trigger when merging the PR
+- `pr_created`: Trigger when the PR is created
+- `commit`: Trigger on each commit
+- `comment_added`: Trigger on each added comment
+- `label_added`: Trigger on each added label
+- `label_removed`: Trigger on removed label
 
-Explicit triggers can be used at the file level, specific to each automation separately, or a combination of the two. In case triggers are listed at the level **and** specific automation, this automation will be triggered according to both triggers.
+Explicit triggers can be used at the file level, specific to each automation separately, or a combination of the two. In case triggers are listed at the file level **and** specific automation, the automation will be triggered according to both triggers.
 
 #### Examples:
 - assign code expert reviewer when the PR is created and after each commit  
 ``` yaml+jinja
 on:
-	- pr_created
-	- commit
+  - pr_created
+  - commit
 
 automations:
   assign_code_experts:
-	if: 
-	  - true
-	run:
-	  - action: add-reviewers@v1
-		args:
-		  reviewers: {{ repo | codeExperts(gt=10) }}
+    if: 
+      - true
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ repo | codeExperts(gt=10) }}
+```
+
+-  Explain code experts only if the label “suggest-reviewer” exists.  
+    After each commit **or** after adding the label.
+``` yaml+jinja
+on:
+  - commit
+automations:
+  explain_code_experts:
+    on:
+      - label_added
+    if: 
+      - {{ pr.labels | match(term='suggest-reviewer') | some }}
+    run:
+      - action: explain-code-experts@v1 
+        args:
+          gt: 10 
 ```
