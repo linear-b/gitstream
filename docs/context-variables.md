@@ -169,7 +169,7 @@ automations:
     run:
       - action: http-request@v1
         args:
-          url: {{ slack.base }}{{ slack.channel }}
+          url: "{{ slack.base }}/{{ slack.channel }}"
           method: POST
           headers: '{"Content-type": "application/json"}'
           body: '{"text": "Hello, world!"}'
