@@ -5,7 +5,7 @@ description: Automatically post PR comment with Issue Tracker Link.
 
 # Automatic Issue Tracker Link
 
-Post a comment on the PR that provides a link to the associated resource in the issue tracker, such as Jira, Azure Boards, Shortcut, Asana, and more if ID.
+Post a comment on the PR that provides a link to the associated resource in the issue tracker, such as Jira, Azure Boards, Shortcut, Asana, and more.
 
 <div class="automationImage" markdown="1">
 ![Automatic Issue Tracker Link](/automations/automatic-issue-tracker-link/automatic-issue-tracker-link.png)
