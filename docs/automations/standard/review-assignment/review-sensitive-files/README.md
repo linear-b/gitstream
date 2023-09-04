@@ -3,10 +3,12 @@ title: Automation - Review Sensitive Files
 description: Automatically assign reviewers for PRs that contain changes to high-risk code.
 ---
 # Review Sensitive Files
+
+<!-- --8<-- [start:example]-->
 Compare the changed files to a pre-defined list of files and directories in. If any files match, require a review from the team `my-organization/security`.
 
 <div class="automationImage" style="align:right" markdown="1">
-![Review Sensitive Files](review_sensitive_files.png)
+![Review Sensitive Files](/automations/standard/review-assignment/review-sensitive-files/review_sensitive_files.png)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
@@ -23,14 +25,15 @@ Compare the changed files to a pre-defined list of files and directories in. If 
 <div class="automationExample" markdown="1">
 !!! example "Review Sensitive Files"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/review_sensitive_files.cm"
+    --8<-- "docs/downloads/automation-library/standard/review-assignment/review_sensitive_files.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/review_sensitive_files.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/review-assignment/review_sensitive_files.cm){ .md-button }
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->
 
 ## Additional Resources
 

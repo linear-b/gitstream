@@ -130,3 +130,33 @@ div.flow-chart {
   width: 100%;
 }
 }
+
+.integrations-list {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  }
+  .integrations-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 2px solid white;
+  border-radius: 10px;
+  width: 200px;
+  margin: 10px;
+  padding-bottom: 15px;
+  }
+  .integrations-card-title p{
+  font-size: 1.2em;
+  margin-bottom: 1px;
+  }
+  .integrations-card-title a{
+  color: inherit;
+  }
+  
+  .integrations-card-labels {
+  font-size: 0.7em;
+  color: #9aa4ad; /* this is a medium grey color */
+  margin-bottom: 5px;
+  }

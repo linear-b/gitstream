@@ -9,19 +9,19 @@ This page contains common gitStream configurations that are a great place to get
 !!! tip "How to use these examples."
     These examples are all complete gitStream configuration files that you can download directly via the buttons below the examples and upload to the `.cm` directory of your repo. Alternatively, you can copy and paste the individual automations, but make sure you include all required declarations and any related custom expressions from the configurations to ensure they work properly. 
 
-## Assign Code Experts
+## Suggest Code Reviewers
 
 When someone applies a `suggest-reviewers` label to a PR, use codeExperts to assign recommended reviewers and post a comment with the `explainCodeExperts` automation action.
 
-[More details here.](automations/assign-code-experts/README.md)
+[More details here.](automations/standard/explain-code-experts/README.md)
 
-!!! example "Assign Code Experts"
+!!! example "Suggest Code Reviewers"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/assign_code_experts.cm"
+    --8<-- "docs/downloads/automation-library/standard/explain_code_experts.cm
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/assign_code_experts.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/explain_code_experts.cm){ .md-button }
       </span>
     </div>
     
@@ -44,15 +44,15 @@ Request changes when a PR includes one or more deprecated components.
 ## Review Sensitive Files
 Require sensitive files from a pre-determined list to be reviewed by a specific team.
 
-[More details here](automations/review-sensitive-files/README.md)
+[More details here](automations/standard/review-assignment/review-sensitive-files/README.md)
 
 !!! example "Review Sensitive Files"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/review_sensitive_files.cm"
+    --8<-- "docs/downloads/automation-library/standard/review-assignment/review_sensitive_files.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/review_sensitive_files.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/review-assignment/review_sensitive_files.cm){ .md-button }
       </span>
     </div>
 

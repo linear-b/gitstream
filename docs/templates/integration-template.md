@@ -23,25 +23,18 @@ description: Implement workflow automations for IntegrationName.
 ---
 # Integrate gitStream with IntegrationName
 
-IntegrationName Examples:
-
-* [One](#one)
-* [Two](#two)
-* [Three](#three)
-* [Four](#four)
-
 <a name="one"></a>
 ## One
---8<-- "docs/automations/integrations/INTEGRATION/one/README.md:6:"
+--8<-- "docs/automations/integrations/integration-name/one/README.md:6:"
 
 <a name="two"></a>
 ## Two
---8<-- "docs/automations/integrations/INTEGRATION/two/README.md:6:"
+--8<-- "docs/automations/integrations/integration-name/two/README.md:6:"
 
 <a name="three"></a>
 ## Three
---8<-- "docs/automations/integrations/INTEGRATION/three/README.md:6:"
+--8<-- "docs/automations/integrations/integration-name/three/README.md:6:"
 
 <a name="four"></a>
 ## Four
---8<-- "docs/automations/integrations/INTEGRATION/four/README.md:6:"
+--8<-- "docs/automations/integrations/integration-name/four/README.md:6:"

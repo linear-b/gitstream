@@ -25,7 +25,7 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 
 	**Review Assignment**
 
-	Identifying the correct people to review a PR can take time, particularly for complex projects and repos requiring deep expertise. [Assign code experts](automations/assign-code-experts/README.md) to review complex PRs, [notify your security team about sensitive changes](automations/review-sensitive-files/README.md), and automatically [assign reviewers based on the contents of the PR](automations/assign-reviewers-by-directory/README.md).
+	Identifying the correct people to review a PR can take time, particularly for complex projects and repos requiring deep expertise. [Assign code experts](automations/standard/review-assignment/assign-code-experts/README.md) to review complex PRs, [notify your security team about sensitive changes](automations/standard/review-assignment/review-sensitive-files/README.md), and automatically [assign reviewers based on the contents of the PR](automations/assign-reviewers-by-directory/README.md).
 
 !!! quote ""
 	![Change Deprecated Components](assets/change-deprecated-highlight.png){: style="border-radius:4px;width:50%", align=left}
@@ -42,16 +42,17 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 
 	That's it! Now sit back and watch gitStream run automation rules on your next PR.
 
-	!!! tip "Tip: Install gitStream for your entire organizaton"
+	!!! tip "Tip: Install gitStream for your entire organization"
 
 		gitStream can be installed for one repo, specific repos, or all repos in your organization. We recommend installing for **all** because it will ensure all new repos are able to use gitStream. You can change this setting at any time in the future.
 
 
 === ":fontawesome-brands-gitlab: GitLab"
 
-	Please contact LinearB 
-
-	:material-email-outline: [customers@linearb.io](mailto:customers@linearb.io)
+	1. <a href="https://app.linearb.io/login" target="_blank">Login</a>, or <a href="https://app.linearb.io/sign-up" target="_blank">create a free account</a> on the LinearB app.
+	2. Connect gitStream to your GitLab repos by following the steps described <a href="https://linearb.helpdocs.io/article/0xxpvue4s9-connect-git-stream-using-a-git-lab-integration" target="_blank">here</a>.
+	
+	That's it! Now sit back and watch gitStream run automation rules on your next PR.
 
 === ":fontawesome-brands-bitbucket: BitBucket"
 
