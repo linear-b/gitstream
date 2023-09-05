@@ -35,7 +35,8 @@ gitStream supports the following explicit triggers:
 Explicit triggers are set per each automation block independently and can be configured at the file level, specific to each automation separately or a combination of the two. In case triggers are listed at the file level **and** specific automation, the automation will be triggered according to both triggers.
 If an automation block does not have explicit triggers configured, it will be triggered according to the default (implicit) triggers
 
-#### Examples:
+**Examples**
+
 - assign code expert reviewer when the PR is created and after each commit  
 ``` yaml+jinja
 on:
@@ -54,7 +55,6 @@ automations:
 
 -  Explain code experts only if the label “suggest-reviewer” exists. 
   The automation will be triggered after each commit and after each label addition. If the label “suggest-reviewer” exists, it will trigger the `explain-code-experts` automation
-  
 ``` yaml+jinja
 on:
   - commit
