@@ -358,9 +358,9 @@ This action, once triggered, will start a workflow dispatch automation with the 
 | Args       | Usage | Type      | Description                              |
 | -----------|-------|-----------|----------------------------------------- |
 | `workflow` | Required | String     | The ID or name of the workflow dispatch. |
-| `owner` | Optional | String     | By default, the value of `repo.owner` context variable. The account owner of the repository. **Case insensitive String**.  |
-| `repo` | Optional | String     | By default, the value of `repo.name` context variable. The name of the repository without the `.git` extension. **Case insensitive String**  |
-| `ref` | Optional | String     | By default, the value of `branch.name` context variable. The account owner of the repository. **Case insensitive String**.  |
+| `owner` | Optional | String     | By default, the value of `repo.owner` context variable. The account owner of the repository. Case insensitive.  |
+| `repo` | Optional | String     | By default, the value of `repo.name` context variable. The name of the repository without the `.git` extension. Case insensitive.  |
+| `ref` | Optional | String     | By default, the value of `branch.name` context variable. The account owner of the repository. Case insensitive.  |
 | `inputs` | Optional | String     | By default, an empty list. Key-Value list with the arguments to provide to the workflow |
 | `check_name` | Optional | String     | When added, after the workflow is complete, add the check name to the checks list on GitHub |
 | `stop_ongoing_workflow` | Optional | Boolean     | By default, `false`. In case the workflow already runs on the branch, if `true`: cancel the ongoing workflow before running the newly dispatched workflow. If `false`: wait for the old workflow to finish before dispatching a new one|
@@ -369,10 +369,10 @@ This action, once triggered, will start a workflow dispatch automation with the 
 
 ```yaml+jinja title="example"
 on: 
-	- commit
+  - commit
 
 automations:
-run_workflow_dispatch:
+  run_workflow_dispatch:
     if:
       - {{ has.ui_code_changes }} 
     run:
