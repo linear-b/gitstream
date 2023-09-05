@@ -18,6 +18,7 @@ Actions are the end results of the automation described in your `.cm` file.
 gitStream executes actions in the order they are listed. If an action result fails, following actions will not be executed.
 
 - [`add-comment`](#add-comment) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`add-github-check`](#add-github-check) :fontawesome-brands-github:
 - [`add-label`](#add-label) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`add-labels`](#add-labels) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`add-reviewers`](#add-reviewers) :fontawesome-brands-github: :fontawesome-brands-gitlab:
@@ -26,8 +27,9 @@ gitStream executes actions in the order they are listed. If an action result fai
 - [`close`](#close) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`merge`](#merge) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`set-required-approvals`](#set-required-approvals) :fontawesome-brands-github:
-- [`require-reviewers`](#require-reviewers) :fontawesome-brands-github:
 - [`request-changes`](#request-changes) :fontawesome-brands-github:
+- [`require-reviewers`](#require-reviewers) :fontawesome-brands-github:
+- [`run-github-workflow`](#run-github-workflow) :fontawesome-brands-github:
 
 
 !!! note
@@ -79,6 +81,31 @@ automations:
             (Updates API)
 ```
 
+#### `add-github-check` :fontawesome-brands-github:
+
+This action, once triggered, adds a `completed` check with the specified conclusion to the listed checks in the PR.
+
+<div class="filter-details" markdown=1>
+
+| Args       | Usage | Type      | Description                         |
+| -----------|------|-----|------------------------------------------------ |
+| `check_name`  | Required | String    | The check name to be added to the checks list on gitHub |
+| `conclusion`  | Required | String    | The conclusion of the check. The value is one of the following: `action_required`, `cancelled`, `timed_out`, `failure`, `neutral`, `skipped`, `success` |
+
+</div>
+
+```yaml+jinja title="example"
+automations:
+  # Skip UI checks if the PR doesn't have a UI code changes
+  skip_ui_check:
+    if:
+      - {{ not has.ui_code_changes }} 
+    run:
+      - action: add-github-check@v1
+        args:
+          check_name: ui-tests
+          conclusion: skipped
+```
 
 #### `add-label` :fontawesome-brands-github: :fontawesome-brands-gitlab:
 
@@ -321,3 +348,43 @@ automations:
 !!! attention
 
     To allow this action to block merge, you should enable branch protection, and gitStream has to be set as required check in GitHub.
+
+#### `run-github-workflow` :fontawesome-brands-github: 
+
+This action, once triggered, will start a workflow dispatch automation with the option to add a check to the list of checks in the PR
+
+<div class="filter-details" markdown=1>
+
+| Args       | Usage | Type      | Description                              |
+| -----------|-------|-----------|----------------------------------------- |
+| `workflow` | Required | String     | The ID or name of the workflow dispatch. |
+| `owner` | Optional | String     | By default, the value of `repo.owner` context variable. The account owner of the repository. **Case insensitive String**.  |
+| `repo` | Optional | String     | By default, the value of `repo.name` context variable. The name of the repository without the `.git` extension. **Case insensitive String**  |
+| `ref` | Optional | String     | By default, the value of `branch.name` context variable. The account owner of the repository. **Case insensitive String**.  |
+| `inputs` | Optional | String     | By default, an empty list. Key-Value list with the arguments to provide to the workflow |
+| `check_name` | Optional | String     | When added, after the workflow is complete, add the check name to the checks list on GitHub |
+| `stop_ongoing_workflow` | Optional | Boolean     | By default, `false`. In case the workflow already runs on the branch, if `true`: cancel the ongoing workflow before running the newly dispatched workflow. If `false`: wait for the old workflow to finish before dispatching a new one|
+
+</div>
+
+```yaml+jinja title="example"
+on: 
+	- commit
+
+automations:
+run_workflow_dispatch:
+    if:
+      - {{ has.ui_code_changes }} 
+    run:
+      - action: invoke-github-action@v1
+        args:
+          owner: {{ repo.owner }}
+          repo: {{ repo.name}}
+          workflow: ui-tests
+          ref: {{ branch.name }}
+          check_name: UI-tests
+```
+
+!!! attention
+	* This action will invoke the run of a workflow dispatch; thus, it might result in significant GitHub action minutes charge.
+	* We encourage you to use this action with [custom triggers](./execution-model.md#explicit-triggers)
