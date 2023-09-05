@@ -37,7 +37,7 @@ This library of gitStream examples is meant to serve as a starting point for you
 
 
 ### Add PR Context with Comments
-* [Automatic Issue Tracker Link](automatic-issue-tracker-link/README.md) - Automatically post PR comment with Issue Tracker Link.
+* [Link Issue Tracker](standard/link-issue-tracker/README.md) - Automatically post PR comment with Issue Tracker Link.
 
 ## Improve PR Quality
 ### Merge Routing

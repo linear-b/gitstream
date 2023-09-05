@@ -1,14 +1,14 @@
 ---
-title: Automation - Automatic Issue Tracker Link
+title: Automation - Link Issue Tracker
 description: Automatically post PR comment with Issue Tracker Link.
 ---
 
-# Automatic Issue Tracker Link
+# Link Issue Tracker
 
 Post a comment on the PR that provides a link to the associated resource in the issue tracker, such as Jira, Azure Boards, Shortcut, Asana, and more.
 
 <div class="automationImage" markdown="1">
-![Automatic Issue Tracker Link](/automations/automatic-issue-tracker-link/automatic-issue-tracker-link.png)
+![Link Issue Tracker](/automations/standard/link-issue-tracker/link-issue-tracker.png)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
@@ -23,13 +23,13 @@ Post a comment on the PR that provides a link to the associated resource in the 
 
 </div>
 <div class="automationExample" markdown="1">
-!!! example "Automatic Issue Tracker Link"
+!!! example "Link Issue Tracker"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/automatic_issue_tracker_link.cm"
+    --8<-- "docs/downloads/automation-library/standard/link_issue_tracker.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/automatic_issue_tracker_link.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/link_issue_tracker.cm){ .md-button }
       </span>
     </div>
 </div>
