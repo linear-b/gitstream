@@ -96,15 +96,15 @@ This action, once triggered, adds a `completed` check with the specified conclus
 
 ```yaml+jinja title="example"
 automations:
-	# Skip UI checks if the PR doesn't have a UI code changes
-	skip_ui_check:
-		if:
-	      - {{ not has.ui_code_changes }} 
-	    run:
-	      - action: add-github-check@v1
-	        args:
-	            check_name: ui-tests
-	            conclusion: skipped
+  # Skip UI checks if the PR doesn't have a UI code changes
+  skip_ui_check:
+    if:
+      - {{ not has.ui_code_changes }} 
+    run:
+      - action: add-github-check@v1
+        args:
+          check_name: ui-tests
+          conclusion: skipped
 ```
 
 #### `add-label` :fontawesome-brands-github: :fontawesome-brands-gitlab:

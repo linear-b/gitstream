@@ -44,7 +44,7 @@ on:
 
 automations:
   assign_code_experts:
-    if: 
+    if:
       - true
     run:
       - action: add-reviewers@v1
@@ -62,10 +62,10 @@ automations:
   explain_code_experts:
     on:
       - label_added
-    if: 
+    if:
       - {{ pr.labels | match(term='suggest-reviewer') | some }}
     run:
-      - action: explain-code-experts@v1 
+      - action: explain-code-experts@v1
         args:
-          gt: 10 
+          gt: 10
 ```
