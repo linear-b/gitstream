@@ -3,6 +3,12 @@
 manifest:
   version: 1.0
 
+# Configure these to match your organization.
+provider: jira
+orgName: org
+asanaProject: 1234
+azureProject: my_project
+
 {% set ticketid = "" %}
 {% for ticket in tickets %}
 {% if (ticket | includes(regex=r/.+/)) %}
@@ -25,19 +31,17 @@ has:
 
 tracker:
   jira:
-    baseurl: https://testorg.atlassian.net/browse/
+    baseurl: https://[orgName].atlassian.net/browse/
     pattern: r/\b[A-Za-z]+-\d+\b/
   asana:
-    baseurl: https://app.asana.com/0/0/0/
+    baseurl: https://app.asana.com/0/[asanaProject]/0/
     pattern: r/asana-(\d+)/
   azure:
-    baseurl: https://dev.azure.com/testorg/testproj/_workitems/
+    baseurl: https://dev.azure.com/[orgName]/[azureProject]/_workitems/
     pattern: r/(\w+)-(\w+)-(\d+)/
   shortcut:
-    baseurl: https://app.shortcut.com/testorg/story/
+    baseurl: https://app.shortcut.com/[orgName]/story/
     pattern: r/(\w+)\/sc-(\d+)/
-
-provider: jira
 
 tickets:
   - {{branch.name | capture(regex=tracker[provider].pattern)}}
