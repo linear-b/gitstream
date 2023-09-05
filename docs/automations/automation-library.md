@@ -29,15 +29,12 @@ This library of gitStream examples is meant to serve as a starting point for you
 * [Approve team by directory](approve-team-by-directory/README.md) - Approve PRs from specific teams to specified directories and files.
 
 
-### Add PR Context With Labels
+### Add PR Context With Labels and Comments
 * [Label PRs without tests](label-prs-without-tests/README.md) - Apply a `missing-tests` label to any PRs that lack updates to tests.
 * [Label percent new code](percent-new-code/README.md) - Post a comment that indicates what percentage of the PR contains new code.
 * [Label deleted files](label-deleted-files/README.md) - Label PRs that delete files.
 * [Label missing project tracker](label-missing-project-tracker/README.md) - Flag PRs that are missing a reference to an associated project tracking resource.
-
-
-### Add PR Context with Comments
-* [Link Issue Tracker](standard/link-issue-tracker/README.md) - Automatically post PR comment with Issue Tracker Link.
+* [Automatic project tracking links](standard/link-issue-tracker/README.md) - Automatically post PR comments that link to the associated project tracking resource (Jira, Shortcut, Azure Boards, and more).
 
 ## Improve PR Quality
 ### Merge Routing
