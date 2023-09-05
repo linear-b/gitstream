@@ -1,11 +1,11 @@
 ---
-title: Automation - Link Issue Tracker
-description: Automatically post PR comment with Issue Tracker Link.
+title: Automation - Automatic Project Tracker Links
+description: Automatically post PR comments that link to the associated project tracking resource.
 ---
 
-# Link Issue Tracker
+# Automatic Project Tracker Links
 
-Post a comment on the PR that provides a link to the associated resource in the issue tracker, such as Jira, Azure Boards, Shortcut, Asana, and more.
+Post a PR comment that links the associated resource in your issue tracker, such as Jira, Azure Boards, Shortcut, Asana, and more.
 
 <div class="automationImage" markdown="1">
 ![Link Issue Tracker](/automations/standard/link-issue-tracker/link-issue-tracker.png)
@@ -19,7 +19,7 @@ Post a comment on the PR that provides a link to the associated resource in the 
 
     Automation Actions:
 
-    * Post a comment that Providing Link to the Issue Tracker.
+    * Post a comment that provides a link to the associated project tracking resource.
 
 </div>
 <div class="automationExample" markdown="1">
