@@ -102,12 +102,14 @@ automations:
   # Skip UI checks if the PR doesn't have a UI code changes
   skip_ui_check:
     if:
-      - {{ not has.ui_code_changes }} 
+      - {{ not has.fe_code_changes }} 
     run:
       - action: add-github-check@v1
         args:
-          check_name: ui-tests
+          check_name: FE-tests
           conclusion: skipped
+has:
+	fe_code_changes: {{ files | match(regex=r/frontend\//) | some }}
 ```
 
 #### `add-label` :fontawesome-brands-github: :fontawesome-brands-gitlab:
@@ -411,15 +413,17 @@ on:
 automations:
   run_workflow_dispatch:
     if:
-      - {{ has.ui_code_changes }} 
+      - {{ has.fe_code_changes }} 
     run:
-      - action: invoke-github-action@v1
+      - action: run-github-workflow@v1
         args:
           owner: {{ repo.owner }}
           repo: {{ repo.name}}
-          workflow: ui-tests
+          workflow: .github/workflows/frontend-manual.yml
           ref: {{ branch.name }}
-          check_name: UI-tests
+          check_name: FE-tests
+has:
+	fe_code_changes: {{ files | match(regex=r/frontend\//) | some }}
 ```
 
 !!! attention
