@@ -6,16 +6,18 @@ description: Automation Actions enable gitStream to make changes to your PRs.
 
 Actions are the end results of the automation described in your `.cm` file.
 
-!!! note 
+!!! Legend 
 
-    The icons for Git providers indicate the actions supported by each provider.
+    The icons indicate the availability status of each action.
 
-    - GitHub :fontawesome-brands-github:
-    - GitLab :fontawesome-brands-gitlab:
+    - :fontawesome-brands-github: Supported on GitHub 
+    - :fontawesome-brands-gitlab: Supported on GitLab 
+    - :fontawesome-solid-flask: Open beta - Feature is under development and currently available for all
 
 ## Overview
 
-gitStream executes actions in the order they are listed. If an action result fails, following actions will not be executed.
+[`send-http-request`](#send-http-request) is executed immediately after the evaluation of the condition.
+For all other actions, gitStream executes the actions in the order they are listed per automation. If an action result fails, the following actions will not be executed.
 
 - [`add-comment`](#add-comment) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`add-github-check`](#add-github-check) :fontawesome-brands-github:
@@ -26,6 +28,7 @@ gitStream executes actions in the order they are listed. If an action result fai
 - [`approve`](#approve) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`close`](#close) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`merge`](#merge) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`send-http-request`](#send-http-request) :fontawesome-solid-flask: :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`set-required-approvals`](#set-required-approvals) :fontawesome-brands-github:
 - [`request-changes`](#request-changes) :fontawesome-brands-github:
 - [`require-reviewers`](#require-reviewers) :fontawesome-brands-github:
@@ -262,6 +265,40 @@ automations:
       - action: merge@v1
         args:
           rebase_on_merge: true
+```
+
+
+#### `send-http-request` :fontawesome-solid-flask: :fontawesome-brands-github: :fontawesome-brands-gitlab:
+
+The action, once triggered, sends an HTTP request to the specified URL
+<div class="filter-details" markdown=1>
+
+| Args       | Usage | Type      | Description                                     |
+| -----------|------|-----|------------------------------------------------ |
+| `url`| Required | String | The request URL |
+| `method`| Optional |  String | By default `GET`, the request method |
+| `headers`| Optional | [String] | Empty by default (`[]`), Key-Value list of strings, which will be sent as the HTTP headers|
+| `user`| Optional | String | Empty by default, format: `'username:password'`. <br/> If used - adds a Basic-auth HTTP header, by setting the `Authorization` header. Using this arg will override any existing `Authorization` header that was set using `headers` |
+| `body`| Optional | String | Empty by default, the data to be sent as the request body. Only applicable for request methods `PUT`, `POST`, `DELETE`, and `PATCH` |
+| `timeout`| Optional | String | Empty by default (no timeout), the number of milliseconds before the request times out. When the time out is reached, the request will be aborted |
+
+</div>
+
+```yaml+jinja title="example"
+automations:
+  slack_message:
+    if:
+      - true
+    run:
+      - action: send-http-request@v1
+        args:
+          url: "{{ slack.base }}/{{ env.SLACK_WEBHOOK }}"
+          method: POST
+          headers: '{"Content-type": "application/json", "Authorization": "Bearer {{env.secrets.slack}}}'
+          body: '{"text": "Hello, world!"}'
+slack:
+   base: "https://hooks.slack.com/services"
+   channel: {{ env.SLACK_WEBHOOK }}
 ```
 
 
