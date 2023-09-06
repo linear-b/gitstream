@@ -184,6 +184,7 @@ The `pr` context includes metadata related to the pull request.
 | `pr.author_is_org_member` | Bool | `true` if the PR author is a member of the organization where gitStream is installed |
 | `pr.checks` | [[`Check`]](#check-structure) | List of checks, names and status|
 | `pr.comments` | [[`Comment`]](#comment-structure) | List of PR comments objects |
+| `pr.conflicted_files_count` | Integer | The number files in the PR with conflicts |
 | `pr.conversations` | [[`Conversation`]](#conversation-structure) | List of PR conversation objects, usually when reviewer have comments about the source code |
 | `pr.created_at` | String | The date and time the PR was created |
 | `pr.draft` | Bool | `true` when the PR is marked as Draft/WIP |
