@@ -17,7 +17,7 @@ Actions are the end results of the automation described in your `.cm` file.
 ## Overview
 
 [`send-http-request`](#send-http-request) is executed immediately after the evaluation of the condition.
-For all other actions, gitStream executes the actions in the order they are listed. If an action result fails, the following actions will not be executed.
+For all other actions, gitStream executes the actions in the order they are listed per automation. If an action result fails, the following actions will not be executed.
 
 - [`add-comment`](#add-comment) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`add-github-check`](#add-github-check) :fontawesome-brands-github:

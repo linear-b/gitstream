@@ -143,7 +143,7 @@ automations:
 
 The `env` context allows the user to pass data from the repo unavailable in the other context variables. Thus, the structure of the variable is not fixed and depends on user configuration.
 
-To configure the `env` variable, add the `env` field to gitstream's workflow job configurations in `gitstream.yml`, under GitHub's `workflows` directory
+To configure the `env` variable, add the `env` field to gitstream's workflow job configurations in `gitstream.yml`, under GitHub's `workflows` directory.
 
 ```yaml title="examle: add secrets to the env variable"
 ...
