@@ -12,8 +12,8 @@ Automatically label PRs that are missing references to Shortcut resources.
     Conditions (all must be true):
 
     * The PR is missing one of the following:
-      * An Shortcut ticket reference in the PR title.
-      * A link to an Shortcut resource in the PR description.
+        * An Shortcut ticket reference in the PR title.
+        * A link to an Shortcut resource in the PR description.
 
     Automation Actions:
 

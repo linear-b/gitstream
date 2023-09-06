@@ -12,8 +12,8 @@ Automatically label PRs that are missing references to Azure Boards resources.
     Conditions (all must be true):
 
     * The PR is missing one of the following:
-      * An Azure Boards ticket reference in the PR title.
-      * A link to an Azure Boards resource in the PR description.
+        * An Azure Boards ticket reference in the PR title.
+        * A link to an Azure Boards resource in the PR description.
 
     Automation Actions:
 
