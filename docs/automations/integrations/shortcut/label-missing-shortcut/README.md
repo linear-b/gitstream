@@ -3,7 +3,7 @@ title: Automation - Label Missing Shortcut
 description: Automatically label PRs that are missing references to Shortcut resources.
 ---
 # Label Missing Shortcut
-
+<!-- --8<-- [start:example]-->
 Automatically label PRs that are missing references to Shortcut resources.
 
 ![Label Missing Shortcut](/automations/label-missing-project-tracker/label-missing-project-tracker.png)
@@ -31,6 +31,7 @@ Automatically label PRs that are missing references to Shortcut resources.
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->
 
 ## Additional Resources
 

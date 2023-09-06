@@ -3,7 +3,7 @@ title: Automation - Label Missing Azure Boards Info
 description: Automatically label PRs that are missing references to Azure Boards resources.
 ---
 # Label Missing Azure Boards Info
-
+<!-- --8<-- [start:example]-->
 Automatically label PRs that are missing references to Azure Boards resources.
 
 ![Label Missing Azure Boards](/automations/label-missing-project-tracker/label-missing-project-tracker.png)
@@ -31,6 +31,7 @@ Automatically label PRs that are missing references to Azure Boards resources.
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->
 
 ## Additional Resources
 
