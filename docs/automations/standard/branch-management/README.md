@@ -4,11 +4,7 @@ description: Manage git branches with gitStream workflow automations.
 ---
 # Manage git Branches With gitStream
 
-Use gitStream to enforce branch naming conventions, review assignment, and other branch managment workflows.
-
-[Enforce Branch Naming Conventions](#enforce-branch-name) - Automatically enforce prefixes or keywords in PR branch names.
-
-[Assign Reviewers Based on Target Branch](#review-target-branch) - Automatically assign PR reviewers for target branches that include a specified keyword.
+Use gitStream to enforce branch naming conventions and other branch management workflows.
 
 
 <a name="enforce-branch-name"></a>
