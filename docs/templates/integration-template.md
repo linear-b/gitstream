@@ -25,16 +25,23 @@ description: Implement workflow automations for IntegrationName.
 
 <a name="one"></a>
 ## One
---8<-- "docs/automations/integrations/integration-name/one/README.md:6:"
+--8<-- "docs/automations/integrations/integration-name/one/README.md:example"
 
 <a name="two"></a>
 ## Two
---8<-- "docs/automations/integrations/integration-name/two/README.md:6:"
+--8<-- "docs/automations/integrations/integration-name/two/README.md:example"
 
 <a name="three"></a>
 ## Three
---8<-- "docs/automations/integrations/integration-name/three/README.md:6:"
+--8<-- "docs/automations/integrations/integration-name/three/README.md:example"
 
 <a name="four"></a>
 ## Four
---8<-- "docs/automations/integrations/integration-name/four/README.md:6:"
+--8<-- "docs/automations/integrations/integration-name/four/README.md:example"
+
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+--8<-- "docs/snippets/automation-footer.md"
