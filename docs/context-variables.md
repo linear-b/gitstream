@@ -161,13 +161,13 @@ jobs:
 
 To use the context variable, access to the `env` variable's fields as configured in `gitstream.yml`
 
-```yaml+jinja title="examle: use slack webhook secret"
+```yaml+jinja title="example: use slack webhook secret"
 automations:
   slack_message:
     if:
       - true
     run:
-      - action: http-request@v1
+      - action: send-http-request@v1
         args:
           url: "{{ slack.base }}/{{ slack.channel }}"
           method: POST

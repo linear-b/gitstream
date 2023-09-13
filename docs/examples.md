@@ -17,7 +17,7 @@ When someone applies a `suggest-reviewers` label to a PR, use codeExperts to ass
 
 !!! example "Suggest Code Reviewers"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/standard/explain_code_experts.cm
+    --8<-- "docs/downloads/automation-library/standard/explain_code_experts.cm"
     ```
     <div class="result" markdown>
       <span>
