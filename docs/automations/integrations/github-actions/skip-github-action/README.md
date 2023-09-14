@@ -70,11 +70,11 @@ Automatically skip GitHub Actions based on branch names, modified resource, slas
     <div class="automationExample" markdown="1">
     !!! example "Automatically Skip GitHub Actions Based on Modified Resources"
         ```yaml+jinja
-        --8<-- "docs/downloads/automation-library/integrations/github-actions/skip-github-action/skip_github_action_label.cm"
+        --8<-- "docs/downloads/automation-library/integrations/github-actions/skip-github-action/skip_github_action_resource.cm"
         ```
         <div class="result" markdown>
         <span>
-        [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/github-actions/skip-github-action/skip_github_action_label.cm){ .md-button }
+        [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/github-actions/skip-github-action/skip_github_action_resource.cm){ .md-button }
         </span>
         </div>
     </div>

@@ -2,7 +2,11 @@
 
 manifest:
   version: 1.0
-  
+
+on:
+  - pr_created
+  - commit
+
 automations:
   {% for item in pipelines %}
   dispatch_github_action_{{ item.name }}:
