@@ -4,8 +4,8 @@ manifest:
   version: 1.0
 
 on:
-  - pr_created
-  - commit
+  - label_added
+  - label_removed
 
 automations:
   {% for item in pipelines %}
