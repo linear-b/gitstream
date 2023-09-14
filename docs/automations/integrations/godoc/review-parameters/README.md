@@ -26,7 +26,7 @@ Automation Actions:
 <div class="automationExample" markdown="1">
 !!! example "Review godoc Input Parameters"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/integrations/godoc/review_parameters.cm"
+    --8<-- "docs/downloads/automation-library/integrations/godoc/review_godoc_parameters.cm"
     ```
     <div class="result" markdown>
       <span>
