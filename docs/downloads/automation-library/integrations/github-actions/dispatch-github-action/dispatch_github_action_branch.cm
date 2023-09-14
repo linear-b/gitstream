@@ -7,14 +7,29 @@ on:
   - pr_created
   - commit
 
-# Optionally, you can change pr.target to branch.name 
-# if you want to trigger based on the source branch name rather then the target branch name.
 automations:
-  dispatch_github_action_branch:
+  {% for item in pipelines %}
+  # Change pr.target to branch.name if you want to trigger on the source branch rather then the target branch.
+  dispatch_github_action_{{ item.name }}:
     if:
-      - {{ pr.target | includes(term='release') }}
+      - {{ pr.target | includes(term=item.branch.prefix) }}
     run:
       - action: run-github-workflow@v1
         args:
-          workflow: .github/workflows/release-ci.yml
-          check_name: 'Release Branch CI Pipeline'
+          workflow: .github/workflows/{{ item.workflow }}
+          check_name: {{ item.name }}
+      - action: add-label@v1
+        args:
+          label: {{ item.label }}
+  {% endfor %}
+
+
+pipelines:
+  - name: mobile-ci
+    label: Mobile CI 
+    branch-prefix: 'mobile-'
+    workflow: mobile.yml
+  - name: backend-ci
+    label: Backend CI 
+    branch-prefix: 'backend-'
+    workflow: 'backend.yml'
