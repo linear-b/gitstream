@@ -28,7 +28,7 @@ Require godoc for all new Golang classes.
 <div class="automationExample" markdown="1">
 !!! example "Enforce godoc for New Golang Classes"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/integrations/godoc/review_new_class.cm"
+    --8<-- "docs/downloads/automation-library/integrations/godoc/review_godoc_new_class.cm"
     ```
     <div class="result" markdown>
       <span>
