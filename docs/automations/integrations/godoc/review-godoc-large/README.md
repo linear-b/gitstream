@@ -7,13 +7,13 @@ description: Automatically flag large PRs that may require Godoc updates.
 Require more extensive reviews for large Golang changes that lack Godoc updates.
 
 <div class="automationImage" markdown="1">
-![Review Godoc for Large changes](/automations/integrations/jsdoc/review-godoc-large/review-godoc-large.png)
+![Review Godoc for Large changes](/automations/integrations/godoc/review-godoc-large/review-godoc-large.png)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
     Conditions (all must be true):
 
-    * The PR changes more than 25% of a Golang class.
+    * The PR changes more than 100 lines of Golang code.
 
     Automation Actions:
 

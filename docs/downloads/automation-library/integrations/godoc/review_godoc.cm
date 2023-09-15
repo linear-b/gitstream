@@ -5,7 +5,9 @@ automations:
   #Assign PRs that only affect godocs to the technical writing team and add docs label
   review_godoc:
     if:
-      - {{ source.diff.files | match(attr='diff', regex=r/\/*[\s\S]*?\//) | every }}
+      - {{ source.diff.files | match(attr='diff', regex=r/^\/\/.*/) | every }}
+      - {{ files | extensions | match(regex=r/go/) | every }}
+
     run:
       - action: add-label@v1
         args:
@@ -13,7 +15,7 @@ automations:
             color: {{ colors.green }}
       - action: add-reviewers@v1
         args:
-          reviewers: [fourth-organization/tech-writers]
+          reviewers: [org/tech-writers]
       - action: approve@v1
 
 colors:

@@ -2,10 +2,10 @@
 manifest:
   version: 1.0
 automations:
-  review_new_class: 
+  review_godoc_new_class: 
     if:  
-       - {{ is.go and is.new }} 
-       - {{ source.diff.files | match(attr='diff', regex=r/\/*[\s\S]*?\//) | nope }}
+      - {{ is.go and is.new }} 
+      - {{ source.diff.files | match(attr='diff', regex=r/\/*[\s\S]*?\//) | nope }}
     run:
       - action: add-label@v1
         args:
