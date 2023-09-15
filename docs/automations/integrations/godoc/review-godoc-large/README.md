@@ -1,0 +1,36 @@
+---
+title: gitStream Automation - Review Godoc for Large Changes
+description: Automatically flag large PRs that may require Godoc updates.
+---
+# Review Godoc for Large Changes
+
+Require more extensive reviews for large Golang changes that lack Godoc updates.
+
+<div class="automationImage" markdown="1">
+![Review Godoc for Large changes](/automations/integrations/jsdoc/review-godoc-large/review-godoc-large.png)
+</div>
+<div class="automationDescription" markdown="1">
+!!! info "Configuration Description"
+    Conditions (all must be true):
+
+    * The PR changes more than 25% of a Golang class.
+
+    Automation Actions:
+
+    * Post a comment asking the author to review all relevant Godoc to identify necessary updates.
+    * Require a review from the `ORG/tech-writers` team.
+    * Apply a yellow `⚠️ Missing Godoc` Label
+
+
+</div>
+<div class="automationExample" markdown="1">
+!!! example "Review Godoc"
+    ```yaml+jinja
+    --8<-- "docs/downloads/automation-library/integrations/godoc/review_godoc_large.cm"
+    ```
+    <div class="result" markdown>
+      <span>
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/godoc/review_godoc_large.cm){ .md-button }
+      </span>
+    </div>
+</div>
