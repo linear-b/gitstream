@@ -2,14 +2,14 @@
 manifest:
   version: 1.0
 automations:
-  #Assign PRs that only affect godocs to the technical writing team and add docs label
-  review_godoc:
+  #Assign PRs that only affect rdoc to the technical writing team and add docs label
+  review_rdoc:
     if:
-      - {{ source.diff.files | match(attr='diff', regex=r/\/*[\s\S]*?\//) | every }}
+      - {{ source.diff.files | match(attr='diff', regex=r/\=begin(?:.|\n)*?\=end/) | every }}
     run:
       - action: add-label@v1
         args:
-            label: "📓godoc Only"
+            label: "📓rdoc Only"
             color: {{ colors.green }}
       - action: add-reviewers@v1
         args:

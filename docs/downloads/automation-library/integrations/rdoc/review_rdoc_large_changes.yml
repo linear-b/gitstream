@@ -4,20 +4,20 @@ manifest:
   version: 1.0
 
 automations:
-  #Require more extensive reviews for large Golang changes that lack Godoc updates.
-  review_godoc_large:
+  #Require more extensive reviews for large Ruby changes that lack Rdoc updates.
+  review_ruby_large:
     if:
       - {{ changes.ratio > 25}}
-      - {{ source.diff.files | matchDiffLines(regex=r/\/*[\s\S]*?\//) | nope }}
+      - {{ source.diff.files | matchDiffLines(regex=r/\=begin(?:.|\n)*?\=end/) | nope }}
     run: 
       - action: add-label@v1
         args:
-          label: "⚠️ Missing Godoc"
+          label: "⚠️ Missing Rdoc"
           color: {{ colors.yellow }}
       - action: add-comment@v1
         args: 
           comment: | 
-              This PR makes major changes to Golang classes, but is missing updates to Godoc. Please double check for any necessary Godoc updates.
+              This PR makes major changes to Ruby classes, but is missing updates to Rdoc. Please double check for any necessary Rdoc updates.
       - action: add-reviewers@v1
         args:
           reviewers: [fourth-organization/tech-writers]
