@@ -6,6 +6,8 @@ description: Automatically approve PRs for Godoc changes.
 
 Approve PRs that only contain changes to Godoc and assign optional reviewers.
 
+<!-- --8<-- [start:example]-->
+
 <div class="automationImage" markdown="1">
 ![Review Godoc](/automations/integrations/godoc/review-godoc/review-godoc.png)
 </div>
@@ -34,3 +36,4 @@ Approve PRs that only contain changes to Godoc and assign optional reviewers.
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->
