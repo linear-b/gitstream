@@ -6,6 +6,8 @@ description: Automatically flag large PRs that may require Godoc updates.
 
 Require more extensive reviews for large Golang changes that lack Godoc updates.
 
+<!-- --8<-- [start:example]-->
+
 <div class="automationImage" markdown="1">
 ![Review Godoc for Large changes](/automations/integrations/godoc/review-godoc-large/review-godoc-large.png)
 </div>
@@ -34,3 +36,4 @@ Require more extensive reviews for large Golang changes that lack Godoc updates.
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->
