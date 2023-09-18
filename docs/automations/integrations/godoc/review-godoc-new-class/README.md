@@ -6,6 +6,7 @@ description: Enforce godoc requirements for PRs.
 
 Require godoc for all new Golang classes.
 
+<!-- --8<-- [start:example]-->
 
 <div class="automationImage" markdown="1">
 ![Enforce godoc for New Golang Classes](/automations/integrations/godoc/review-new-class/review-new-class.png)
@@ -36,3 +37,4 @@ Require godoc for all new Golang classes.
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->
