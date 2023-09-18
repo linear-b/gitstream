@@ -16,8 +16,8 @@ Additionally, if any of the automation rules reference the [`pr`](context-variab
 
 This allows for greater flexibility in the automation process, ensuring that the relevant automation rules are evaluated and triggered when necessary. The execution model ensures that the automation process is streamlined, efficient, and effective.
 
-### Explicit triggers
-gitstream supports an explicit triggering mechanism. When using explicit triggers, the automations will run only according to the defined triggers, which means the Implicit triggers will not work. 
+### Explicit triggers :fontawesome-brands-github:
+gitstream supports an explicit triggering mechanism. When using explicit triggers, the automations will run only according to the defined triggers, which means the Implicit triggers will not work. Automations triggered by explicit triggers will be invoked also on `draft` PRs
 
 #### Explicit triggers syntax
 Use explicit triggers to enhance the control and customization of automations in gitStream, allowing users to define precisely when and how automations should be triggered based on various events and actions within pull requests.
