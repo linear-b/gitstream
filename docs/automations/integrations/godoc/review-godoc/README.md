@@ -3,10 +3,9 @@ title: gitStream Automation - Review Godoc Changes
 description: Automatically approve PRs for Godoc changes.
 ---
 # Review Godoc Changes
-
+<!-- --8<-- [start:example]-->
 Approve PRs that only contain changes to Godoc and assign optional reviewers.
 
-<!-- --8<-- [start:example]-->
 
 <div class="automationImage" markdown="1">
 ![Review Godoc](/automations/integrations/godoc/review-godoc/review-godoc.png)
@@ -14,15 +13,15 @@ Approve PRs that only contain changes to Godoc and assign optional reviewers.
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
 
-**Conditions (all must be true):**
+    **Conditions (all must be true):**
 
-* The PR only contains changes to Godoc content.
+    * The PR only contains changes to Godoc content.
 
-**Automation Actions:**
+    **Automation Actions:**
 
-* Assign the org/tech-writers team for optional review.
-* Apply a green `📓 Godoc Only` label
-* Approve the PR
+    * Assign the org/tech-writers team for optional review.
+    * Apply a green `📓 Godoc Only` label
+    * Approve the PR
 
 </div>
 <div class="automationExample" markdown="1">

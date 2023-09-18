@@ -1,15 +1,14 @@
 ---
-title: gitStream Automation - Enforce godoc for New Golang Classes
-description: Enforce godoc requirements for PRs.
+title: gitStream Automation - Require Godoc for New Golang Classes
+description: Enforce Godoc requirements for PRS that include new Golang classes.
 ---
-# Enforce godoc for New Golang Classes
-
-Require godoc for all new Golang classes.
-
+# Require Godoc for New Golang Classes
 <!-- --8<-- [start:example]-->
+Require Godoc for all new Golang classes.
+
 
 <div class="automationImage" markdown="1">
-![Enforce godoc for New Golang Classes](/automations/integrations/godoc/review-new-class/review-new-class.png)
+![Enforce Godoc for New Golang Classes](/automations/integrations/godoc/review-godoc-new-class/review-godoc-new-class.png)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
@@ -17,23 +16,23 @@ Require godoc for all new Golang classes.
     Conditions (all must be true):
 
     * The PR creates a new Golang class.
-    * The PR lacks godoc content.
+    * The PR lacks Godoc content.
 
     Automation Actions:
 
-    * Request changes and post a comment explaining that godoc is required
-    * Apply a yellow `⚠️ Missing godoc` label.
+    * Request changes and post a comment explaining that Godoc is required
+    * Apply a yellow `⚠️ Missing Godoc` label.
 
 
 </div>
 <div class="automationExample" markdown="1">
-!!! example "Enforce godoc for New Golang Classes"
+!!! example "Enforce Godoc for New Golang Classes"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/integrations/godoc/review_new_class.cm"
+    --8<-- "docs/downloads/automation-library/integrations/godoc/review_godoc_new_class.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/godoc/review_new_class.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/godoc/review_godoc_new_class.cm){ .md-button }
       </span>
     </div>
 </div>
