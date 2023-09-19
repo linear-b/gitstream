@@ -12,6 +12,12 @@ Integrate third-party developer tools with gitStream.
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
+[::simple-githubactions:: GitHub Actions](/integrations/github-actions)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
 [:material-label: PR Labels](/automations/standard/label-management)
 </div>
 </div>
@@ -81,6 +87,7 @@ Integrate third-party developer tools with gitStream.
 [:simple-azuredevops: Azure Boards](/integrations/azure-boards)
 </div>
 </div>
+
 </div>
 
 ## Documentation
@@ -105,7 +112,14 @@ Integrate third-party developer tools with gitStream.
 </div>
 </div>
 
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:material-language-go: Godoc](/integrations/godoc)
 </div>
+</div>
+
+</div>
+
 ## Other
 
 <div class="integrations-list" markdown="1">
@@ -114,18 +128,10 @@ Integrate third-party developer tools with gitStream.
 <div class="integrations-card-title" markdown="1">
 [:material-terraform: Terraform](/integrations/terraform)
 </div>
-<div class="integrations-card-labels">
-Infrastructure
-</div>
 </div>
 
 </div>
 <!-- --8<-- [end:integrations]-->
 
 ## Additional Resources
-
 --8<-- "docs/snippets/general.md"
-
-<style>
-
-</style>
