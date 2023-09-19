@@ -2,22 +2,22 @@
 manifest:
   version: 1.0
 automations:
-  review_new_class: 
+  review_rdoc_new_class: 
     if:  
-       - {{ is.go and is.new }} 
-       - {{ source.diff.files | match(attr='diff', regex=r/\=begin(?:.|\n)*?\=end/) | nope }}
+      - {{ is.rb and is.new }} 
+      - {{ source.diff.files | match(attr='diff', regex=r/(\#.*\n.*)*def/) | nope }}
     run:
       - action: add-label@v1
         args:
-          label: "⚠️ Missing rdoc"
+          label: "⚠️ Missing RDoc"
           color: {{ colors.yellow }}
       - action: add-comment@v1
         args: 
           comment: | 
-            rdoc is required for all Ruby classes. Please add rdoc to all new classes in this PR.
+            RDoc is required for all Ruby classes. Please add documentation for this PR.
 
 is:
-    go: {{ files | extensions | match(regex=r/rb/) | every }}
+    rb: {{ files | extensions | match(regex=r/rb/) | every }}
     new: {{ source.diff.files | map(attr='original_file') | match(regex=r/^$/) | some }}
 
 colors:

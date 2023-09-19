@@ -2,18 +2,17 @@
 manifest:
   version: 1.0
 automations:
-  #Assign PRs that only affect rdoc to the technical writing team and add docs label
   review_rdoc:
     if:
-      - {{ source.diff.files | match(attr='diff', regex=r/\=begin(?:.|\n)*?\=end/) | every }}
+      - {{ source.diff.files | match(attr='diff', regex=r/^[\s\t]*#.*/) | every }}
     run:
       - action: add-label@v1
         args:
-            label: "📓rdoc Only"
+            label: "📓RDoc Only"
             color: {{ colors.green }}
       - action: add-reviewers@v1
         args:
-          reviewers: [fourth-organization/tech-writers]
+          reviewers: [org/tech-writers]
       - action: approve@v1
 
 colors:

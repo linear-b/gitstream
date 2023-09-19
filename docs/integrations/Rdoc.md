@@ -1,20 +1,21 @@
 ---
-title: Integrate gitStream with Rdoc
-description: Workflow automations for Rdoc code reviews.
+title: Integrate gitStream with RDoc
+description: Workflow automations for RDoc code reviews.
 ---
-# Integrate gitStream with Rdoc
+# Integrate gitStream with RDoc
+Integrate gitStream with [RDoc](https://github.com/ruby/rdoc): a documentation generation framework for Ruby.
 
-<a name="review-rdoc"></a>
-## Review Rdoc Changes
---8<-- "docs/automations/integrations/rdoc/review-rdoc-changes/README.md:example"
+## Review RDoc Changes
+--8<-- "docs/automations/integrations/rdoc/review-rdoc/README.md:example"
 
-<a name="review-rdoc-new-class"></a>
-## Enforce Rdoc Requirements for New Classes
+## Enforce RDoc Requirements for New Classes
 --8<-- "docs/automations/integrations/rdoc/review-rdoc-new-class/README.md:example"
 
-<a name="review-rdoc-large-changes"></a>
-## Review Rdoc for Large changes
---8<-- "docs/automations/integrations/rdoc/review-rdoc-large-changes/README.md:example:"
+## Review RDoc for Large changes
+--8<-- "docs/automations/integrations/rdoc/review-rdoc-large/README.md:example"
+
+## Review RDoc For Function Parameter Changes
+--8<-- "docs/automations/integrations/rdoc/review-rdoc-input/README.md:example"
 
 ## Additional Resources
 
