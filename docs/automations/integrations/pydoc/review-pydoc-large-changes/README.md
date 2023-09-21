@@ -4,15 +4,14 @@ description: Automatically flag large PRs that may require Pydoc updates.
 ---
 # Review Pydoc for Large Changes
 
+<!-- --8<-- [start:example]-->
 Require more extensive reviews for large Python changes that lack Pydoc updates.
 
-<!-- --8<-- [start:example]-->
 
-<div class="automationImage" markdown="1">
 ![Review Pydoc for Large changes](/automations/integrations/pydoc/review-pydoc-large-changes/review-pydoc-large-changes.png)
-</div>
-<div class="automationDescription" markdown="1">
+
 !!! info "Configuration Description"
+    
     Conditions (all must be true):
 
     * The PR changes more than 100 lines of Python code.
@@ -24,7 +23,6 @@ Require more extensive reviews for large Python changes that lack Pydoc updates.
     * Apply a yellow `⚠️ Missing Pydoc` Label
 
 
-</div>
 <div class="automationExample" markdown="1">
 !!! example "Review Pydoc"
     ```yaml+jinja
