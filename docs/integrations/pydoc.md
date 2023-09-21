@@ -3,6 +3,7 @@ title: Integrate gitStream with Pydoc
 description: Workflow automations for Pydoc code reviews.
 ---
 # Integrate gitStream with Pydoc
+Integrate gitStream with [Pydoc](https://github.com/python/pydoc): a documentation generation framework for Python.
 
 <a name="review-pydoc-changes"></a>
 ## Review Pydoc Changes
