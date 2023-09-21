@@ -4,26 +4,24 @@ description: Automatically flag PRs that may require Pydoc updates.
 ---
 # Review Pydoc Input Parameters
 
+<!-- --8<-- [start:example]-->
 Warn PR authors when they change Python function or constructor input parameters without updating Pydoc content.
 
-<!-- --8<-- [start:example]-->
 
-<div class="automationImage" markdown="1">
 ![Review Pydoc Input Parameters](/automations/integrations/pydoc/review-pydoc-parameters/review-pydoc-parameters.png)
-</div>
-<div class="automationDescription" markdown="1">
+
+
 !!! info "Configuration Description"
 
-Conditions (all must be true):
+    Conditions (all must be true):
+    
+    * The PR changes one or more input parameters in Python methods.
+    * The PR lacks changes to ‘[@param](https://github.com/param)’ declarations.
+    
+    Automation Actions:
+    
+    * Post a comment warning the user to review the method’s Pydoc to identify necessary updates.
 
-* The PR changes one or more input parameters in Python methods.
-* The PR lacks changes to ‘[@param](https://github.com/param)’ declarations.
-
-Automation Actions:
-
-* Post a comment warning the user to review the method’s Pydoc to identify necessary updates.
-
-</div>
 <div class="automationExample" markdown="1">
 !!! example "Review Pydoc Input Parameters"
     ```yaml+jinja
