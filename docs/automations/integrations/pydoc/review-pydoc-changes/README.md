@@ -11,15 +11,15 @@ Approve PRs that only contain changes to Pydoc and assign optional reviewers.
 
 !!! info "Configuration Description"
 
-Conditions (all must be true):
-
-* The PR only contains changes to Pydoc content.
-
-Automation Actions:
-
-* Assign the org/tech-writers team for optional review.
-* Apply a green `📓 Pydoc Only` label
-* Approve the PR
+    Conditions (all must be true):
+    
+    * The PR only contains changes to Pydoc content.
+    
+    Automation Actions:
+    
+    * Assign the org/tech-writers team for optional review.
+    * Apply a green `📓 Pydoc Only` label
+    * Approve the PR
 
 <div class="automationExample" markdown="1">
 !!! example "Review Pydoc"
