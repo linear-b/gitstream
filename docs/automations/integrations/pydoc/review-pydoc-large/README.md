@@ -15,7 +15,7 @@ Require more extensive reviews for large Python changes that lack Pydoc updates.
 !!! info "Configuration Description"
     Conditions (all must be true):
 
-    * The PR changes more than 100 lines of Python code.
+    * The PR changes more than 150 lines of Python code.
 
     Automation Actions:
 
