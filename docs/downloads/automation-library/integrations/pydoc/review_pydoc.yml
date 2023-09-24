@@ -3,7 +3,7 @@ manifest:
   version: 1.0
 automations:
   #Assign PRs that only affect Pydoc to the technical writing team and add docs label
-  review_pydoc_changes:
+  review_pydoc:
     if:
       - {{ source.diff.files | match(attr='diff', regex=r/'''[\s\S]*?'''/) | every }}
     run:

@@ -9,7 +9,7 @@ Require more extensive reviews for large Python changes that lack Pydoc updates.
 <!-- --8<-- [start:example]-->
 
 <div class="automationImage" markdown="1">
-![Review Pydoc for Large changes](/automations/integrations/pydoc/review-pydoc-large-changes/review-pydoc-large-changes.png)
+![Review Pydoc for Large changes](/automations/integrations/pydoc/review-pydoc-large/review-pydoc-large.png)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
@@ -28,11 +28,11 @@ Require more extensive reviews for large Python changes that lack Pydoc updates.
 <div class="automationExample" markdown="1">
 !!! example "Review Pydoc"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/integrations/pydoc/review_pydoc_large_changes.cm"
+    --8<-- "docs/downloads/automation-library/integrations/pydoc/review_pydoc_large.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/pydoc/review_pydoc_large_changes.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/pydoc/review_pydoc_large.cm){ .md-button }
       </span>
     </div>
 </div>

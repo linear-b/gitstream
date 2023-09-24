@@ -2,9 +2,9 @@
 manifest:
   version: 1.0
 automations:
-  review_new_class: 
+  review_pydoc_new_class: 
     if:  
-       - {{ is.go and is.new }} 
+       - {{ is.python and is.new }} 
        - {{ source.diff.files | match(attr='diff', regex=r/'''[\s\S]*?'''/) | nope }}
     run:
       - action: add-label@v1
@@ -17,7 +17,7 @@ automations:
             Pydoc is required for all Python classes. Please add Pydoc to all new classes in this PR.
 
 is:
-    go: {{ files | extensions | match(regex=r/py/) | every }}
+    python: {{ files | extensions | match(regex=r/py/) | every }}
     new: {{ source.diff.files | map(attr='original_file') | match(regex=r/^$/) | some }}
 
 colors:

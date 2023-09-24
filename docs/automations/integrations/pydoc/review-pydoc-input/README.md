@@ -9,7 +9,7 @@ Warn PR authors when they change Python function or constructor input parameters
 <!-- --8<-- [start:example]-->
 
 <div class="automationImage" markdown="1">
-![Review Pydoc Input Parameters](/automations/integrations/pydoc/review-pydoc-parameters/review-pydoc-parameters.png)
+![Review Pydoc Input Parameters](/automations/integrations/pydoc/review-pydoc-input/review-pydoc-input.png)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
@@ -27,11 +27,11 @@ Automation Actions:
 <div class="automationExample" markdown="1">
 !!! example "Review Pydoc Input Parameters"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/integrations/pydoc/review_pydoc_parameters.cm"
+    --8<-- "docs/downloads/automation-library/integrations/pydoc/review_pydoc_input.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/pydoc/review_pydoc_parameters.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/pydoc/review_pydoc_input.cm){ .md-button }
       </span>
     </div>
 </div>
