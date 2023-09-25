@@ -303,7 +303,7 @@ automations:
 #### `send-slack-message` :fontawesome-solid-flask: :fontawesome-brands-github:
 
 The action, once triggered, sends a webhook with a message content to a Slack app.
-To use this action, [create a Slack app](https://api.slack.com/messaging/webhooks#getting_started) with enabled Incoming Webhooks. gitStream uses the webhook URL to send the message.
+To use this action, [create a Slack app](https://api.slack.com/messaging/webhooks#getting_started) with Incoming Webhooks enabled. gitStream uses the webhook URL to send the message.
 <div class="filter-details" markdown=1>
 
 | Args       | Usage | Type      | Description                                     |
