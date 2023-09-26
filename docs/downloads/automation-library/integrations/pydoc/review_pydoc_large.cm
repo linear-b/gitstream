@@ -19,7 +19,7 @@ automations:
               This PR makes major changes to Python classes, but is missing updates to Pydoc. Please double check for any necessary Pydoc updates.
       - action: add-reviewers@v1
         args:
-          reviewers: [fourth-organization/tech-writers]
+          reviewers: [org/tech-writers]
 
 changes:
   # Sum all the lines added/edited in the PR

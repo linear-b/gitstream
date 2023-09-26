@@ -8,10 +8,8 @@ Require Pydoc for all new Python classes.
 
 <!-- --8<-- [start:example]-->
 
-<div class="automationImage" markdown="1">
 ![Enforce Pydoc for New Python Classes](/automations/integrations/pydoc/review-pydoc-new-class/review-pydoc-new-class.png)
-</div>
-<div class="automationDescription" markdown="1">
+
 !!! info "Configuration Description"
     
     Conditions (all must be true):
@@ -25,7 +23,6 @@ Require Pydoc for all new Python classes.
     * Apply a yellow `⚠️ Missing Pydoc` label.
 
 
-</div>
 <div class="automationExample" markdown="1">
 !!! example "Enforce Pydoc for New Python Classes"
     ```yaml+jinja

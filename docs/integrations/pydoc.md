@@ -14,11 +14,11 @@ description: Workflow automations for Pydoc code reviews.
 
 <a name="review-pydoc-large"></a>
 ## Review Pydoc for Large changes
---8<-- "docs/automations/integrations/pydoc/review-pydoc-large/README.md:example:"
+--8<-- "docs/automations/integrations/pydoc/review-pydoc-large/README.md:example"
 
 <a name="review-pydoc-input"></a>
 ## Review Pydoc Input Parameters
---8<-- "docs/automations/integrations/pydoc/review-pydoc-input/README.md:example:"
+--8<-- "docs/automations/integrations/pydoc/review-pydoc-input/README.md:example"
 
 ## Additional Resources
 

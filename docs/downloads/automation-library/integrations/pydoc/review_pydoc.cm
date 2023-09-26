@@ -13,7 +13,7 @@ automations:
             color: {{ colors.green }}
       - action: add-reviewers@v1
         args:
-          reviewers: [fourth-organization/tech-writers]
+          reviewers: [org/tech-writers]
       - action: approve@v1
 
 colors:

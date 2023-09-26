@@ -8,23 +8,20 @@ Approve PRs that only contain changes to Pydoc and assign optional reviewers.
 
 <!-- --8<-- [start:example]-->
 
-<div class="automationImage" markdown="1">
 ![Review Pydoc](/automations/integrations/pydoc/review-pydoc/review-pydoc.png)
-</div>
-<div class="automationDescription" markdown="1">
+
 !!! info "Configuration Description"
 
-**Conditions (all must be true):**
+    **Conditions (all must be true):**
 
-* The PR only contains changes to Pydoc content.
+    * The PR only contains changes to Pydoc content.
 
-**Automation Actions:**
+    **Automation Actions:**
 
-* Assign the org/tech-writers team for optional review.
-* Apply a green `📓 Pydoc Only` label
-* Approve the PR
+    * Assign the org/tech-writers team for optional review.
+    * Apply a green `📓 Pydoc Only` label
+    * Approve the PR
 
-</div>
 <div class="automationExample" markdown="1">
 !!! example "Review Pydoc"
     ```yaml+jinja
