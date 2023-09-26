@@ -29,6 +29,7 @@ For all other actions, gitStream executes the actions in the order they are list
 - [`close`](#close) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`merge`](#merge) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`send-http-request`](#send-http-request) :fontawesome-solid-flask: :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`send-slack-message`](#send-slack-message) :fontawesome-solid-flask: :fontawesome-brands-github:
 - [`set-required-approvals`](#set-required-approvals) :fontawesome-brands-github:
 - [`request-changes`](#request-changes) :fontawesome-brands-github:
 - [`require-reviewers`](#require-reviewers) :fontawesome-brands-github:
@@ -286,19 +287,44 @@ The action, once triggered, sends an HTTP request to the specified URL
 
 ```yaml+jinja title="example"
 automations:
-  slack_message:
+  send_webhook:
     if:
       - true
     run:
       - action: send-http-request@v1
         args:
-          url: "{{ slack.base }}/{{ env.SLACK_WEBHOOK }}"
+          url: "http://WEBHOOK_URL"
           method: POST
-          headers: '{"Content-type": "application/json", "Authorization": "Bearer {{env.secrets.slack}}}'
+          headers: '{"Content-type": "application/json"}'
           body: '{"text": "Hello, world!"}'
-slack:
-   base: "https://hooks.slack.com/services"
-   channel: {{ env.SLACK_WEBHOOK }}
+```
+
+
+#### `send-slack-message` :fontawesome-solid-flask: :fontawesome-brands-github:
+
+The action, once triggered, sends a webhook with a message content to a Slack app.
+To use this action, [create a Slack app](https://api.slack.com/messaging/webhooks#getting_started) with Incoming Webhooks enabled. gitStream uses the webhook URL to send the message.
+<div class="filter-details" markdown=1>
+
+| Args       | Usage | Type      | Description                                     |
+| -----------|------|-----|------------------------------------------------ |
+| `message`| Required | String | The message content |
+| `webhook_url`| Optional |  String | The webhook URL. Use the [`env`](./context-variables.md#env) variable to pass secrets |
+
+</div>
+
+```yaml+jinja title="example"
+automations:
+  send_slack:
+    if:
+      - true
+    run:
+      - action: send-slack-message@v1
+        args:
+          message: "Hello world :tada:."
+          webhook_url: "{{ slack_webhook }}"
+
+slack_webhook: {{ env.SLACK_WEBHOOK }}
 ```
 
 

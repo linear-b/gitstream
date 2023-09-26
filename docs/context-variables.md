@@ -141,43 +141,36 @@ automations:
 
 #### `env` :fontawesome-solid-flask:  :fontawesome-brands-github:
 
-The `env` context allows the user to pass data from the repo unavailable in the other context variables. Thus, the structure of the variable is not fixed and depends on user configuration.
+The `env` context allows the user to pass data from the repo that is unavailable in the other context variables. Thus, the structure of the variable is not fixed and depends on user configuration.
 
-To configure the `env` variable, add the `env` field to gitstream's workflow job configurations in `gitstream.yml`, under GitHub's `workflows` directory.
-
+To configure the `env` variable, add the `env` field to gitstream's workflow job configurations on `.github/workflows/gitstream.yml`, under the `Evaluate Rules` step. For more information, visit GitHub's guide for [Using secrets in GitHub Actions](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)
+The `env` field 
 ```yaml title="examle: add secrets to the env variable"
 ...
-jobs:
-  gitStream:
-    timeout-minutes: 5
-    runs-on: ubuntu-latest
     name: gitStream workflow automation
-    env:
-      JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
-      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
     steps:
+      - name: Evaluate Rules
+        env:
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
 ...
 ```
 
 To use the context variable, access to the `env` variable's fields as configured in `gitstream.yml`
 
-```yaml+jinja title="example: use slack webhook secret"
+```yaml+jinja title=" example: use slack webhook secret"
 automations:
-  slack_message:
+  send_slack:
     if:
       - true
     run:
-      - action: send-http-request@v1
+      - action: send-slack-message@v1
         args:
-          url: "{{ slack.base }}/{{ slack.channel }}"
-          method: POST
-          headers: '{"Content-type": "application/json"}'
-          body: '{"text": "Hello, world!"}'
-slack:
-   base: "https://hooks.slack.com/services"
-   channel: {{ env.SLACK_WEBHOOK }}
-```
+          message: "Hello world :tada:."
+          webhook_url: "{{ slack_webhook }}"
 
+slack_webhook: {{ env.SLACK_WEBHOOK }}
+```
+https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions
 #### `files`
 
 The `files` context includes the list of changed files in the branch compared to the main branch.
