@@ -700,7 +700,7 @@ if:
 run: 
   - action: add-comment@v1
     args:
-      comment: Welcome {{branch.author}}!
+      comment: "Welcome {{branch.author}}!"
 ```
 
 #### `isFormattingChange`
