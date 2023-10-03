@@ -1,0 +1,20 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  approve_ruby_log_output:
+    # Triggered for Ruby changes that only affect the logger method
+    if: 
+      - {{ files | match(regex=r/rb/) | every }}
+      - {{ source.diff.files | matchDiffLines(regex=r/^.*logger\.(fatal|debug|info|warn|error)/, ignoreWhiteSpaces=true) | every }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'log-output-only'
+      - action: approve@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR has been approved because it only contains changes to log output
