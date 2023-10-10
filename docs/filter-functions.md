@@ -68,7 +68,7 @@ Some functions support named arguments, many of these repeat in different functi
 
 `regex` - a single string, used as a _regular expression_ with the matched item. A regular expression can be created just like JavaScript, but needs to be prefixed with r, for example, `r/^foo.*/g`, for more info see [Nunjucks](https://mozilla.github.io/nunjucks/templating.html#regular-expressions). 
 
-`globs` - a key to an element in the `.cm` that holds a list of strings, used as _glob_ pattern test on the matched item. For more info, see [Wikipedia](https://en.wikipedia.org/wiki/Glob_(programming)).
+<!-- `globs` - a key to an element in the `.cm` that holds a list of strings, used as _glob_ pattern test on the matched item. For more info, see [Wikipedia](https://en.wikipedia.org/wiki/Glob_(programming)). -->
 
 `attr` - a key in the element to use when doing the requested operation.
 
