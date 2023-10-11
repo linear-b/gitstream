@@ -536,13 +536,13 @@ Add a label if Jit detected secrets in the PR
 ```yaml+jinja
 
 automations:
-    # Add Bugs label
-    if:
-      - {{ jit.bugs.rating != 'A' }}
-    run:
-      - action: add-label@v1
-        args:
-          label: "🤫 PR with secrets"
+    add_bugs_label:
+      if:
+        - {{ jit.metrics.HIGH > 0 }}
+      run:
+        - action: add-label@v1
+          args:
+            label: "Vulnerable code!""
 ```
 
 #### `extractSonarFindings`
