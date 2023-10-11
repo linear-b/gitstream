@@ -3,7 +3,7 @@ title: Automation - Label Missing Shortcut
 description: Automatically label PRs that are missing references to Shortcut resources.
 ---
 # Label Missing Shortcut
-
+<!-- --8<-- [start:example]-->
 Automatically label PRs that are missing references to Shortcut resources.
 
 ![Label Missing Shortcut](/automations/label-missing-project-tracker/label-missing-project-tracker.png)
@@ -12,8 +12,8 @@ Automatically label PRs that are missing references to Shortcut resources.
     Conditions (all must be true):
 
     * The PR is missing one of the following:
-      * An Shortcut ticket reference in the PR title.
-      * A link to an Shortcut resource in the PR description.
+        * An Shortcut ticket reference in the PR title.
+        * A link to an Shortcut resource in the PR description.
 
     Automation Actions:
 
@@ -31,6 +31,7 @@ Automatically label PRs that are missing references to Shortcut resources.
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->
 
 ## Additional Resources
 

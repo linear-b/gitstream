@@ -3,6 +3,7 @@ title: Automation - Label Missing Asana
 description: Automatically label PRs that are missing references to Asana resources.
 ---
 # Label Missing Asana
+<!-- --8<-- [start:example]-->
 Automatically label PRs that are missing references to Asana resources.
 
 ![Label Missing Asana](/automations/label-missing-project-tracker/label-missing-project-tracker.png)
@@ -29,6 +30,7 @@ Automatically label PRs that are missing references to Asana resources.
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->
 
 ## Additional Resources
 
