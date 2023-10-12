@@ -228,6 +228,7 @@ The `pr` context includes metadata related to the pull request.
 | `pr.draft` | Bool | `true` when the PR is marked as Draft/WIP |
 | `pr.description` | String | The PR description text |
 | `pr.labels` | [String] | The labels that are attached to the PR |
+| `pr.number` | Integer | The PR or MR Id number |
 | `pr.provider` | String | The Git cloud provider name, e.g. `GitHub`, `GitLab` etc. |
 | `pr.reviewers` | [String] | The list of reviewers set for this PR |
 | `pr.status` | String | The PR status: `open`, `closed` and `merged` |
