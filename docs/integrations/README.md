@@ -90,6 +90,46 @@ Integrate third-party developer tools with gitStream.
 
 </div>
 
+## Languages
+<div class="integrations-list" markdown="1">
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:simple-javascript: JavaScript](/automations/languages/javascript)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:fontawesome-brands-golang: Go](/automations/languages/golang)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:simple-python: Python](/automations/languages/python)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:material-language-java: Java](/automations/languages/java)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:simple-ruby: Ruby](/automations/languages/ruby)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:simple-html5: HTML/CSS](/automations/languages/html)
+</div>
+</div>
+
+</div>
 ## Documentation
 
 <div class="integrations-list" markdown="1">

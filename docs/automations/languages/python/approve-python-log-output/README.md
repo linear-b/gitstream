@@ -4,18 +4,22 @@ description: Automatically approve PRs that only affect Python log output.
 ---
 # Approve Python Log Output Changes
 
+<!-- --8<-- [start:example]-->
 Approve changes to Python files that only affect lines of code that invoke a specified logging object.
 
-Conditions (all must be true):
+![approve Python log output](/automations/languages/approve-log-output.png)
 
-* All files must end in .py
-* The changes only affect lines of code that invoke a `logger` object. This should be customized to your environment.
+!!! info "Configuration Description"
+    Conditions (all must be true):
 
-Automation Actions:
+    * All files must end in .py
+    * The changes only affect lines of code that invoke a `logger` object. This should be customized to your environment.
 
-* Applies a `log-output-only` label
-* Approves the PR
-* Posts a comment explaining that the change only affects logging output.
+    Automation Actions:
+
+    * Apply a `log-output-only` label
+    * Approve the PR
+    * Post a comment explaining that the change only affects logging output.
 
 !!! example "Approve Python Log Output Changes"
     ```yaml+jinja
@@ -26,13 +30,4 @@ Automation Actions:
       [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/approve_python_log_output.cm){ .md-button }
       </span>
     </div>
-
-## Additional Resources
-
---8<-- "docs/snippets/general.md"
-
-**Related Automations**:
-
---8<-- "docs/snippets/python-automation.md:2:"
-
---8<-- "docs/snippets/automation-footer.md"
+<!-- --8<-- [end:example]-->
