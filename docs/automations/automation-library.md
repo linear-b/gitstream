@@ -22,10 +22,6 @@ This library of gitStream examples is meant to serve as a starting point for you
 
 * [Approve tests](approve-tests/README.md) - Label and approve PRs that only include tests.
 * [Approve Tiny Changes](approve-tiny-changes/README.md) - Approve single-line changes to a single file.
-* [Approve JavaScript formatting](approve-javascript-formatting-change/README.md) - Approve non-functional changes to JavaScript files 
-* [Approve JavaScript log output](approve-javascript-log-output/README.md) - Approve changes to JavaScript files that only affect log output.
-* [Approve Python formatting](approve-python-formatting-change/README.md) - Approve non-functional changes to Python files
-* [Approve Python log output](approve-python-log-output/README.md) - Approve changes to Python files that only affect log output.
 * [Approve team by directory](approve-team-by-directory/README.md) - Approve PRs from specific teams to specified directories and files.
 
 
@@ -47,7 +43,6 @@ This library of gitStream examples is meant to serve as a starting point for you
 
 ### Quality Checks
 * [Enforce Semantic PR Titles](standard/enforce-pr-title/README.md) - Enforce PR naming conventions.
-* [Review important tags in css](languages/css/review-css-important/README.md) - Detect the use of `!important` in CSS files and automatically request changes.
 * [Enforce Changelog Updates](standard/review-changelog/README.md) - Require changelog updates for PRs that meet specific criteria.
 * [Request screenshot](request-screenshot/README.md) - Request a screenshot in the PR description if none exist.
 * [Welcome newcomer](welcome-newcomer/README.md) - Post a welcome message when someone makes their first PR to a repo, and provide context to help them know what's next.
