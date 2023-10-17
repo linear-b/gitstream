@@ -3,10 +3,12 @@ title: Automation - Approve JavaScript Formatting Changes
 description: Automatically approve PRs that only change JavaScript formatting.
 ---
 # Approve JavaScript Formatting Changes
+
+<!-- --8<-- [start:example]-->
 Approve PRs that only contain formatting changes to JavaScript or TypeScript files. 
 
 <div class="automationImage" style="align:right" markdown="1">
-![Approve JavaScript formatting changes](approve-javascript-formatting-change.png)
+![Approve JavaScript formatting changes](/automations/languages/javascript/approve-javascript-formatting-change/approve-javascript-formatting-change.png)
 </div>
 
 <div class="automationDescription" markdown="1">
@@ -32,14 +34,4 @@ Approve PRs that only contain formatting changes to JavaScript or TypeScript fil
       [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/approve_javascript_formatting_change.cm){ .md-button }
       </span>
     </div>
-
-## Additional Resources
-
---8<-- "docs/snippets/general.md"
-
-**Related Automations**:
-
---8<-- "docs/snippets/safe-merge-automation.md::2"
---8<-- "docs/snippets/safe-merge-automation.md:4:"
-
---8<-- "docs/snippets/automation-footer.md"
+<!-- --8<-- [end:example]-->

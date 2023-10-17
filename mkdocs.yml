@@ -67,6 +67,11 @@ plugins:
         'cm-syntax.md': 'how-it-works.md'
         'automations/approve-swimm/README.md': 'automations/integrations/swimm/approve-swimm/README.md'
         'automations/label-missing-jira-info/README.md': 'automations/integrations/jira/label-missing-jira-info/README.md'
+        'automations/approve-python-log-output/README.md': 'automations/languages/python/approve-python-log-output/README.md'
+        'automations/approve-javascrpt-log-output/README.md': 'automations/languages/javascript/approve-javascript-log-output/README.md'
+        'automations/approve-python-formatting-change/README.md': 'automations/languages/python/approve-python-formatting-change/README.md'
+        'automations/approve-javascript-formatting-change/README.md': 'automations/languages/javascript/approve-javascript-formatting-change/README.md'
+        'automations/languages/css/review-css-important/README.md': 'automations/languages/html/review-css-important/README.md'
 markdown_extensions:
   - admonition
   - attr_list

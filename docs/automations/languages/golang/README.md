@@ -1,0 +1,16 @@
+---
+title: Integrate gitStream with Golang
+description: Use gitStream for golang project workflow automations.
+---
+
+## Approve Golang Log Output Changes
+
+--8<-- "docs/automations/languages/golang/approve-golang-log-output/README.md:example"
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+--8<-- "docs/snippets/automation-footer.md"
+
+Special thanks to [Boemo W Mmopelwa](https://github.com/xTrilton) for providing these examples.
