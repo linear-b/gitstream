@@ -6,7 +6,7 @@ description: Automatically approve PRs that only change Rust log output.
 
 <!-- --8<-- [start:example]-->
 
-Approve changes to Rust files that only affect lines of code that invoke the logger object.
+Approve changes to Rust files that only affect lines of code that invoke the logging marcos.
 
 ![approve Rust log output](/automations/languages/approve-log-output.png)
 
