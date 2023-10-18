@@ -129,6 +129,12 @@ Integrate third-party developer tools with gitStream.
 </div>
 </div>
 
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:fontawesome-brands-rust: Rust](/automations/languages/rust)
+</div>
+</div>
+
 </div>
 ## Documentation
 
