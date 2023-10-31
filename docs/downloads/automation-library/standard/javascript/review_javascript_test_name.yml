@@ -1,0 +1,19 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  review_javascript_test_name:
+    if:
+       - {{ is.javascript and is.new }}     
+       - {{ source.diff.files | match(attr='new_file', regex=r/^test/) | every }}
+       - {{ source.diff.files | match(attr='new_file', regex=r/.test.js$/) | nope }}
+    run: 
+      - action: request-changes@v1
+        args:
+          comment: |
+              The test file name does not follow the JavaScript test name conventions. A test file name needs to have the suffix .test after class name. For example, if you are testing a class file called Data.js then the test file name has to be data.test.js.
+
+is:
+    javascript: {{ files | extensions | match(term='js') | every }}
+    new: {{ source.diff.files | map(attr='original_file') | match(regex=r/^$/) }}

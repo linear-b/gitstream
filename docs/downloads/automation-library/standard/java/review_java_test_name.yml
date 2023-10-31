@@ -1,0 +1,19 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  review_java_test_name:
+    if:
+       - {{ is.java and is.new }}     
+       - {{ source.diff.files | match(attr='new_file', regex=r/^src\/test\//) | every }} # checking if it is a test file
+       - {{ source.diff.files | match(attr='new_file', regex=r/Test.java$/) | nope }}
+    run: 
+      - action: request-changes@v1
+        args:
+          comment: |
+              The test file name does not follow the Java test name conventions. A test file name needs to have the word Test at the end of class name. For example, if you are testing a class called Data then the test file name has to be DataTest.java.
+
+is:
+    java: {{ files | extensions | match(term='java') | every }}
+    new: {{ source.diff.files | map(attr='original_file') | match(regex=r/^$/) }}

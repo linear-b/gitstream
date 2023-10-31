@@ -1,0 +1,19 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  review_python_test_name:
+    if:
+       - {{ is.python and is.new }}     
+       - {{ source.diff.files | match(attr='new_file', regex=r/^tests\//) | every }} # checking if it is a test file
+       - {{ source.diff.files | match(attr='new_file', regex=r/test_/) | nope }}
+    run: 
+      - action: request-changes@v1
+        args:
+          comment: |
+              The test file name does not follow the Python test name conventions. A test file name needs to have the prefix test_ before class name. For example, if you are testing a class file called Data.py then the test file name has to be test_data.py.
+
+is:
+    python: {{ files | extensions | match(term='py') | every }}
+    new: {{ source.diff.files | map(attr='original_file') | match(regex=r/^$/) }}
