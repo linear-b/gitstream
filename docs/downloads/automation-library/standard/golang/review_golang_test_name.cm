@@ -6,7 +6,7 @@ automations:
   review_golang_test_name:
     if:
        - {{ is.golang and is.new }}     
-       - {{ source.diff.files | matchDiffLines(regex=r/\*testing.T/) | some }} # Golang test files are created in a separate test directory, so this how we check if it is a test file.
+       - {{ source.diff.files | matchDiffLines(regex=r/\*testing.T/) | some }} # Golang test files are created in the same directory with class files, so this how we check if it is a test file.
        - {{ source.diff.files | match(attr='new_file', regex=r/_test.go$/) | nope }}
     run: 
       - action: request-changes@v1
