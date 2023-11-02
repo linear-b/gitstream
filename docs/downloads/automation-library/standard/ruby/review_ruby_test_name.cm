@@ -1,0 +1,19 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  review_ruby_test_name:
+    if:
+       - {{ is.ruby and is.new }}     
+       - {{ source.diff.files | match(attr='new_file', regex=r/^spec/) | every }}
+       - {{ source.diff.files | match(attr='new_file', regex=r/_spec.rb$/) | nope }}
+    run: 
+      - action: request-changes@v1
+        args:
+          comment: |
+              The test file name does not follow the Ruby test name conventions. A test file name needs to have the suffix _spec after class name. For example, if you are testing a class file called data.rb then the test file name has to be data_spec.rb.
+
+is:
+    ruby: {{ files | extensions | match(term='rb') | every }}
+    new: {{ source.diff.files | map(attr='original_file') | match(regex=r/^$/) }}
