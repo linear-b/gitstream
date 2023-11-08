@@ -251,7 +251,7 @@ Once triggered, merge the PR if possible. It can be set to wait for all checks t
 
 | Args       | Usage | Type      | Description                                     |
 | -----------|------|-----|------------------------------------------------ |
-| `wait_for_all_checks`| Optional | Boolean | By default `false`, so only Required checks can block merge, when `true` the action won't merge unless all checks are completed with `neutral`, `skipped`, or `success` conclusion (except gitStream itself) |
+| `wait_for_all_checks`| Optional | Boolean | By default `false`, so only Required checks can block merge, when `true` the action will merge after all checks are completed with `neutral`, `skipped`, or `success` conclusion (except gitStream itself) |
 | `rebase_on_merge`| Optional |  Boolean   | By default `false`, when merging use rebase mode |
 | `squash_on_merge`| Optional | Boolean   | By default `false`, when merging use squash mode |
 
