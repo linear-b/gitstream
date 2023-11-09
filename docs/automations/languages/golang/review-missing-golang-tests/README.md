@@ -1,14 +1,14 @@
 ---
 title: Automation - Review Missing Golang Tests
-description: Automatically request changes for Golang classes that lack test files in a PR.
+description: Automatically request changes for Golang PRs that are missing tests.
 ---
 # Review Missing Golang Tests
 
 <!-- --8<-- [start:example]-->
 
-Request changes for Golang files that lack test files.
+Automatically request changes for Golang PRs that are missing tests.
 
-![Review Missing Golang Tests](/automations/standard/golang/review-missing-golang-tests/review-missing-golang-tests.png)
+![Review Missing Golang Tests](/automations/languages/golang/review-missing-golang-tests/review-missing-golang-tests.png)
 
 !!! info "Configuration Description"
 
@@ -25,11 +25,11 @@ Request changes for Golang files that lack test files.
 <div class="automationExample" markdown="1">
 !!! example "Review Missing Golang Tests"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/standard/golang/review-missing-golang-tests/review_missing_golang_tests.cm"
+    --8<-- "docs/downloads/automation-library/languages/golang/review_missing_golang_tests.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/golang/review-missing-golang-tests/review_missing_golang_tests.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/languages/golang/review_missing_golang_tests.cm){ .md-button }
       </span>
     </div>
 <!-- --8<-- [end:example]-->
