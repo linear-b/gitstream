@@ -6,9 +6,9 @@ description: Automatically request changes for Java test files that fail to matc
 
 <!-- --8<-- [start:example]-->
 
-Request changes Java test files that fail to match the required naming convention.
+Automatically request changes for Java test files that fail to match the required naming convention.
 
-![Review Java Test Name](/automations/standard/java/review-java-test-name/review-java-test-name.png)
+![Review Java Test Name](/automations/languages/java/review-java-test-name/review-java-test-name.png)
 
 !!! info "Configuration Description"
 
@@ -24,11 +24,11 @@ Request changes Java test files that fail to match the required naming conventio
 <div class="automationExample" markdown="1">
 !!! example "Review Java Test Name"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/standard/java/review-java-test-name/review_java_test_name.cm"
+    --8<-- "docs/downloads/automation-library/languages/java/review_java_test_name.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/java/review-java-test-name/review_java_test_name.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/languages/java/review_java_test_name.cm){ .md-button }
       </span>
     </div>
 <!-- --8<-- [end:example]-->

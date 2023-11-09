@@ -1,14 +1,14 @@
 ---
 title: Automation - Review Missing Java Tests
-description: Automatically request changes for Java classes that lack test files in a PR.
+description: Automatically request changes for Java PRs that lack test files.
 ---
 # Review Missing Java Tests
 
 <!-- --8<-- [start:example]-->
 
-Request changes for Java files that lack test files.
+Automatically request changes for Java PRs that lack test files.
 
-![Review Missing Java Tests](/automations/standard/java/review-missing-java-tests/review-missing-java-tests.png)
+![Review Missing Java Tests](/automations/languages/java/review-missing-java-tests/review-missing-java-tests.png)
 
 !!! info "Configuration Description"
 
@@ -19,17 +19,17 @@ Request changes for Java files that lack test files.
     
     Automation Actions:
     
-    * The PR lacks new test files that match the name of the Java files
-    *  Apply a red missing-tests label
+    * Apply a red missing-tests label
+    * Request changes and post a comment listing the files that need tests.
 
 <div class="automationExample" markdown="1">
 !!! example "Review Missing Java Tests"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/standard/java/review-missing-java-tests/review_missing_java_tests.cm"
+    --8<-- "docs/downloads/automation-library/languages/java/review_missing_java_tests.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/java/review-missing-java-tests/review_missing_java_tests.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/languages/java/review_missing_java_tests.cm){ .md-button }
       </span>
     </div>
 <!-- --8<-- [end:example]-->
