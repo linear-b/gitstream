@@ -6,9 +6,9 @@ description: Automatically request changes for Python test files that fail to ma
 
 <!-- --8<-- [start:example]-->
 
-Request changes Python test files that fail to match the required naming convention.
+Automatically request changes for Python test files that fail to match the required naming convention.
 
-![Review Python Test Name](/automations/standard/python/review-python-test-name/review-python-test-name.png)
+![Review Python Test Name](/automations/languages/python/review-python-test-name/review-python-test-name.png)
 
 !!! info "Configuration Description"
 
@@ -24,11 +24,11 @@ Request changes Python test files that fail to match the required naming convent
 <div class="automationExample" markdown="1">
 !!! example "Review Python Test Name"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/standard/python/review-python-test-name/review_python_test_name.cm"
+    --8<-- "docs/downloads/automation-library/languages/python/review_python_test_name.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/python/review-python-test-name/review_python_test_name.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/languages/python/review_python_test_name.cm){ .md-button }
       </span>
     </div>
 <!-- --8<-- [end:example]-->
