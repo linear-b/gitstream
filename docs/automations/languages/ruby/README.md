@@ -7,6 +7,14 @@ description: Implement Ruby workflow automations with gitStream.
 
 --8<-- "docs/automations/languages/ruby/approve-ruby-log-output/README.md:example"
 
+## Review Missing Ruby Tests
+
+--8<-- "docs/automations/languages/ruby/review-missing-ruby-tests/README.md:example"
+
+## Review Ruby Test Name
+
+--8<-- "docs/automations/languages/ruby/review-ruby-test-name/README.md:example"
+
 ## Additional Resources
 
 --8<-- "docs/snippets/general.md"

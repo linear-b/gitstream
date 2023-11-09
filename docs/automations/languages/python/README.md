@@ -11,6 +11,14 @@ description: Implement Python workflow automations with gitStream.
 
 --8<-- "docs/automations/languages/python/approve-python-formatting-change/README.md:example"
 
+## Review Missing Python Tests
+
+--8<-- "docs/automations/languages/python/review-missing-python-tests/README.md:example"
+
+## Review Python Test Name
+
+--8<-- "docs/automations/languages/python/review-python-test-name/README.md:example"
+
 ## Additional Resources
 
 --8<-- "docs/snippets/general.md"
