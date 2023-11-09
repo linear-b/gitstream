@@ -6,9 +6,9 @@ description: Automatically request changes for JavaScript test files that fail t
 
 <!-- --8<-- [start:example]-->
 
-Request changes JavaScript test files that fail to match the required naming convention.
+Automatically request changes for JavaScript test files that fail to match the required naming convention.
 
-![Review JavaScript Test Name](/automations/standard/javascript/review-javascript-test-name/review-javascript-test-name.png)
+![Review JavaScript Test Name](/automations/languages/javascript/review-javascript-test-name/review-javascript-test-name.png)
 
 !!! info "Configuration Description"
 
@@ -24,11 +24,11 @@ Request changes JavaScript test files that fail to match the required naming con
 <div class="automationExample" markdown="1">
 !!! example "Review JavaScript Test Name"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/standard/javascript/review-javascript-test-name/review_javascript_test_name.cm"
+    --8<-- "docs/downloads/automation-library/languages/javascript/review_javascript_test_name.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/javascript/review-javascript-test-name/review_javascript_test_name.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/languages/javascript/review_javascript_test_name.cm){ .md-button }
       </span>
     </div>
 <!-- --8<-- [end:example]-->
