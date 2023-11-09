@@ -1,0 +1,16 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+newTests: {{ source.diff.files | filter(attr='new_file', regex=r/^spec/) }}
+newTestsCount: {{ source.diff.files | filter(attr='new_file', regex=r/^spec/) | length }}
+
+automations:
+  review_ruby_test_name:
+    if:
+      - {{ newTestsCount > 0}}     
+      - {{ source.diff.files | filter(attr='new_file', regex=r/^spec/) | match(attr='new_file', regex=r/_spec.rb$/) | nope }}
+    run: 
+      - action: request-changes@v1
+        args:
+          comment: |
+              The test file name does not follow the Ruby test name conventions. A test file name needs to have the suffix _spec after class name. For example, if you are testing a class file called data.rb then the test file name has to be data_spec.rb.
