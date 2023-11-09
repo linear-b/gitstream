@@ -11,6 +11,14 @@ description: Implement JavaScript workflow automations with gitStream.
 
 --8<-- "docs/automations/languages/javascript/approve-javascript-formatting-change/README.md:example"
 
+## Review Missing JavaScript Tests
+
+--8<-- "docs/automations/languages/javascript/review-missing-javascript-tests/README.md:example"
+
+## Review JavaScript Test Name
+
+--8<-- "docs/automations/languages/javascript/review-javascript-test-name/README.md:example"
+
 
 ## Additional Resources
 

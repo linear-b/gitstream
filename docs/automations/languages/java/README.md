@@ -7,6 +7,16 @@ description: Implement Java workflow automations with gitStream.
 
 --8<-- "docs/automations/languages/java/approve-java-log-output/README.md:example"
 
+## Review Missing Java Tests
+
+--8<-- "docs/automations/languages/java/review-missing-java-tests/README.md:example"
+
+
+## Review Java Test Names
+
+--8<-- "docs/automations/languages/java/review-java-test-name/README.md:example"
+
+
 ## Additional Resources
 
 --8<-- "docs/snippets/general.md"

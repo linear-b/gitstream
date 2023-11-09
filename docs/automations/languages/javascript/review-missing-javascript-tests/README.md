@@ -1,14 +1,14 @@
 ---
 title: Automation - Review Missing JavaScript Tests
-description: Automatically request changes for JavaScript classes that lack test files in a PR.
+description: Automatically request changes for JavaScript PRs that lack test files.
 ---
 # Review Missing JavaScript Tests
 
 <!-- --8<-- [start:example]-->
 
-Request changes for JavaScript files that lack test files.
+Request changes for JavaScript PRs that lack test files.
 
-![Review Missing JavaScript Tests](/automations/standard/javascript/review-missing-javascript-tests/review-missing-javascipt-tests.png)
+![Review Missing JavaScript Tests](/automations/languages/javascript/review-missing-javascript-tests/review-missing-javascript-tests.png)
 
 !!! info "Configuration Description"
 
@@ -25,11 +25,11 @@ Request changes for JavaScript files that lack test files.
 <div class="automationExample" markdown="1">
 !!! example "Review Missing JavaScript Tests"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/standard/javascript/review-missing-javascript-tests/review_missing_javascript_tests.cm"
+    --8<-- "docs/downloads/automation-library/languages/javascript/review_missing_javascript_tests.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/javascript/review-missing-javascript-tests/review_missing_javascript_tests.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/languages/javascript/review_missing_javascript_tests.cm){ .md-button }
       </span>
     </div>
 <!-- --8<-- [end:example]-->
