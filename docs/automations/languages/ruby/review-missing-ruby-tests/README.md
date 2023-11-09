@@ -19,8 +19,8 @@ Request changes for Ruby files that lack test files.
     
     Automation Actions:
     
-    * The PR lacks new test files that match the name of the Ruby files
-    *  Apply a red missing-tests label
+    * Apply a red missing-tests label
+    * Request changes and post a comment listing the files that need tests.
 
 <div class="automationExample" markdown="1">
 !!! example "Review Missing Ruby Tests"
