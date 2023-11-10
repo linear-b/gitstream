@@ -1,0 +1,25 @@
+manifest:
+  version: 1.0
+
+automations:
+  flag_missing_html_tags:
+    if:
+      - {{ is.html and is.new }}
+      - {{ source.diff.files | matchDiffLines(regex=r/rel="canonical"/) | nope }}
+      - {{ source.diff.files | matchDiffLines(regex=r/meta name="robots"/) | nope }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: "⚠️ Missing crucial tag"
+          color: {{ colors.yellow }}
+      - action: request-changes@v1
+        args:
+          comment: | 
+                 Crucial tags are missing. Please add crucial tags which are: canonical and robot.
+
+is:
+    html: {{ files | extensions | match(term='html') | every }}
+    new: {{ source.diff.files | map(attr='original_file') | match(regex=r/^$/) | some }}
+
+colors:
+  yellow: 'fbca04'
