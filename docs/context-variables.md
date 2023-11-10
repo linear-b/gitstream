@@ -271,6 +271,7 @@ The `repo` context includes metadata related to the repo.
 | `repo.git_activity` | [`GitActivity`](#gitactivity-structure) | Per file and user, the number of lines changed every week for the last 52 weeks |
 | `repo.name`  | String  | Repository name |
 | `repo.owner`  | String  | Repository owner account name |
+| `repo.visibility`  | String  | The visibility of the source branch repo. Value is one of: `private`, `internal`, or `public` |
 
 #### `source`
 
