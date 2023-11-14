@@ -8,12 +8,12 @@ To be able to test automations of private repository PRs, log in with your GitHu
 ### Interface Overview
 
 The gitStream Playground interface consists of the following sections:
+
 - Pull Request Link: An input textbox for a link to the pull request
-- `.cm` file: Code input box where you can write automations to be executed by the playground.  `estimated_time_to_review` and `safe_changes` are provided by default.
+- `cm` editor: Code input box where you can write automations to be executed by the playground.  `estimated_time_to_review` and `safe_changes` are provided by default.
 - Output section, with the following tabs:
 	- `Output` - shows syntax errors when the `.cm` automation syntax is wrong. After running gitStream - it shows the expected result of the automation on the chosen Pull Request.
 	- `Context Variables` - Shows the values of all [Context variables](/context-variables) of the chosen Pull Request.
-
 ## Testing Automations
 
 ### Selecting a Pull Request

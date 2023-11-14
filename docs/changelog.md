@@ -1,4 +1,4 @@
-# Changelog
-## /:\\ gitStream
-### 2023.11.14 <small>November 11, 2023</small> { id="2023.11.14" }
+# /:\\ gitStream Changelog
+All notable changes to this project will be documented in this file.
+### 2023.11.14
 - gitStream Playground official release
