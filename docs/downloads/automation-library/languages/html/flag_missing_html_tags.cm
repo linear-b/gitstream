@@ -11,7 +11,7 @@ automations:
     run: 
       - action: add-label@v1
         args:
-          label: "⚠️ Missing crucial tag"
+          label: "⚠️ Missing Required Tag"
           color: {{ colors.yellow }}
       - action: request-changes@v1
         args:

@@ -1,24 +1,23 @@
 ---
 title: Automation - Flag Duplicate H1
-description: Automatically request changes for HTML files that have duplicate H1 headings.
+description: Automatically request changes when PRs contain HTML files that have more than one H1 heading.
 ---
 # Flag Duplicate H1
 
 <!-- --8<-- [start:example]-->
 
-Request changes for HTML files that have duplicate H1 headings.
+Automatically request changes when PRs contain HTML files that have more than one H1 heading.
 
 ![Flag Duplicate H1](/automations/languages/html/flag-duplicate-h1/flag-duplicate-h1.png)
 !!! info "Configuration Description"
 
     Conditions (all must be true):
     
-    * Creates or modifies an HTML file.
-    * Creates more than one H1 headings.
+    * The PR contains more than one H1 heading in an HTML file.
     
     Automation Actions:
     
-    * Post a comment requesting the author to create only one H1 for the main heading.
+    * Post a comment requesting the author to reduce H1 headings to one per file.
 
 <div class="automationExample" markdown="1">
 !!! example "Flag Duplicate H1"

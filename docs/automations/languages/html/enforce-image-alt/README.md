@@ -1,24 +1,24 @@
 ---
 title: Automation - Enforce Image Alt Attributes
-description: Automatically request changes for HTML files that add images but lack the alt attribute.
+description: Automatically request changes for PRs that are missing image alt attributes.
 ---
 # Enforce Image Alt Attributes
 
 <!-- --8<-- [start:example]-->
 
-Request changes for HTML files that add images but lack the alt attribute.
+Automatically request changes for PRs HTML files that are missing image alt attributes.
 
 ![Enforce Image Alt Attributes](/automations/languages/html/enforce-image-alt/enforce-image-alt.png)
 !!! info "Configuration Description"
 
     Conditions (all must be true):
     
-    * Creates or modifies an HTML file.
-    * Adds an image without writing an alt attribute.
+    * The PR adds an image tag to an HTML file.
+    * The PR is missing alt attributes for one or more images.
     
     Automation Actions:
     
-    * Add a “missing alt attribute” label
+    * Add a `⚠️ Missing alt label` label
     * Request changes and post a comment asking the author to add alt attributes to images.
 
 <div class="automationExample" markdown="1">

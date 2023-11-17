@@ -13,14 +13,14 @@ Request changes for HTML files that lack the canonical and robots tag.
 
     Conditions (all must be true):
     
-    * Creates an HTML file
-    * The file lacks a canonical tag
-    * The file lacks a Robot meta tag
+    * The PR contains only new HTML files
+    * One or more files are missing a canonical tag
+    * One or more files are missing a robots meta tag
     
     Automation Actions:
     
-    * Add a label that says “missing crucial tag”
-    * Post a comment asking the user to add crucial tags, canonical and robot. 
+    * Apply a `⚠️ Missing Required Tag` label.
+    * Post a comment asking the user to add required tags.
 
 <div class="automationExample" markdown="1">
 !!! example "Flag Missing HTML Tags"

@@ -1,25 +1,23 @@
 ---
 title: Automation - Enforce HTML Title Length Requirements
-description: Automatically request changes for a title that has less than 30 characters or exceeds 60 characters.
+description: Automatically request changes for `<title>` tags that don't comply with best practices.
 ---
 # Enforce HTML Title Length Requirements
 
 <!-- --8<-- [start:example]-->
 
-Request changes for a title that has less than 30 characters or exceeds 60 characters.
+Automatically request changes for `<title>` tags that don't comply with best practices.
 
 ![Enforce HTML Title Length Requirements](/automations/languages/html/enforce-html-title-length/enforce-html-title-length.png)
 !!! info "Configuration Description"
 
     Conditions (all must be true):
     
-    * Creates or modifies an HTML file.
-    * Adds an image without writing an alt attribute.
+    * The PR adds a `<title>` tag that is less than 30 or greater than 90 characters.
     
     Automation Actions:
     
-    * Add a “missing alt attribute” label
-    * Request changes and post a comment asking the author to add alt attributes to images.
+    * Request changes and post a comment asking the author to modify the title.
 
 <div class="automationExample" markdown="1">
 !!! example "Enforce HTML Title Length Requirements"

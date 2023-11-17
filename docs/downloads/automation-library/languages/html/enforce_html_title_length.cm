@@ -5,7 +5,6 @@ manifest:
 automations:
   enforce_html_title_length:
     if:
-      - {{ files | extensions | match(term='html') | every }}
       - {{ source.diff.files | matchDiffLines(regex=r/(<title>([\w\W]{1,29})<\/title>)|(<title>([\w\W]{61,})<\/title>)/) | some }}
     run: 
       - action: request-changes@v1
