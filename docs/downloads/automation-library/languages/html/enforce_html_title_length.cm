@@ -1,3 +1,4 @@
+# -*- mode: yaml -*-
 manifest:
   version: 1.0
 
@@ -10,4 +11,4 @@ automations:
       - action: request-changes@v1
         args:
           comment: | 
-              The title added is below or above the recommended number of characters. An optimum title contains characters between 30 and 60 characters.
+              Please ensure that all HTML titles are between 30 and 60 characters.

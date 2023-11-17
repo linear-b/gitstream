@@ -8,7 +8,7 @@ description: Automatically request changes for a title that has less than 30 cha
 
 Request changes for a title that has less than 30 characters or exceeds 60 characters.
 
-![Enforce HTML Title Length Requirements](/automations/standard/html/enforce-html-title-length/enforce-html-title-length.png)
+![Enforce HTML Title Length Requirements](/automations/languages/html/enforce-html-title-length/enforce-html-title-length.png)
 !!! info "Configuration Description"
 
     Conditions (all must be true):
@@ -24,11 +24,11 @@ Request changes for a title that has less than 30 characters or exceeds 60 chara
 <div class="automationExample" markdown="1">
 !!! example "Enforce HTML Title Length Requirements"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/standard/html/enforce-html-title-length/enforce_html_title_length.cm"
+    --8<-- "docs/downloads/automation-library/languages/html/enforce_html_title_length.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/html/enforce-html-title-length/enforce_html_title_length.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/languages/html/enforce_html_title_length.cm){ .md-button }
       </span>
     </div>
 <!-- --8<-- [end:example]-->

@@ -1,3 +1,4 @@
+# -*- mode: yaml -*-
 manifest:
   version: 1.0
 
@@ -15,7 +16,7 @@ automations:
       - action: request-changes@v1
         args:
           comment: | 
-                 Crucial tags are missing. Please add crucial tags which are: canonical and robot.
+              Please ensure new HTML files contain canonical and robots meta tags.
 
 is:
     html: {{ files | extensions | match(term='html') | every }}

@@ -8,7 +8,7 @@ description: Automatically request changes for HTML files that have duplicate H1
 
 Request changes for HTML files that have duplicate H1 headings.
 
-![Flag Duplicate H1](/automations/standard/html/flag-duplicate-h1/flag-duplicate-h1.png)
+![Flag Duplicate H1](/automations/languages/html/flag-duplicate-h1/flag-duplicate-h1.png)
 !!! info "Configuration Description"
 
     Conditions (all must be true):
@@ -23,11 +23,11 @@ Request changes for HTML files that have duplicate H1 headings.
 <div class="automationExample" markdown="1">
 !!! example "Flag Duplicate H1"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/standard/html/flag-duplicate-h1/flag_duplicate_h1.cm"
+    --8<-- "docs/downloads/automation-library/languages/html/flag_duplicate_h1.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/html/flag-duplicate-h1/flag_duplicate_h1.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/languages/html/flag_duplicate_h1.cm){ .md-button }
       </span>
     </div>
 <!-- --8<-- [end:example]-->

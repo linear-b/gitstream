@@ -1,3 +1,4 @@
+# -*- mode: yaml -*-
 manifest:
   version: 1.0
 
@@ -9,6 +10,6 @@ automations:
       - action: request-changes@v1
         args:
           comment: | 
-              The file being modified has a duplicate H1 heading. Please create only one H1 for the main heading. Creating one H1 Heading creates a meaningful structure and makes it easy for indexing search engines.
+              This PR contains HTML files with multiple H1 tags. Please ensure that each HTML file has only one H1 tag.
 
 duplicateH1: {{ source.diff.files | filter(attr='new_content', regex=r/<h1>(.|\n)*<h1>/) | length }}

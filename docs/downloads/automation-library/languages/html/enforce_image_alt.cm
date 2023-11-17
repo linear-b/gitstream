@@ -1,10 +1,10 @@
+# -*- mode: yaml -*-
 manifest:
   version: 1.0
 
 automations:
   enforce_image_alt:
     if:
-      - {{ files | extensions | match(term='html') | every }}
       - {{ source.diff.files | matchDiffLines(regex=r/<img src/) | some }}
       - {{ source.diff.files | matchDiffLines(regex=r/<img src.*alt=/) | nope}}
 
@@ -16,7 +16,7 @@ automations:
       - action: request-changes@v1
         args:
           comment: | 
-                 Some of the images you added do not have an alt attribute. Please add alt attributes to images to add more context to the image.
+                 Please ensure that all images in HTML files have an alt attribute. For example: <img alt="Alt Message">
 
 colors:
   yellow: 'fbca04'
