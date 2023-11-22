@@ -46,6 +46,7 @@ This library of gitStream examples is meant to serve as a starting point for you
 * [Enforce Changelog Updates](standard/review-changelog/README.md) - Require changelog updates for PRs that meet specific criteria.
 * [Request screenshot](request-screenshot/README.md) - Request a screenshot in the PR description if none exist.
 * [Welcome newcomer](welcome-newcomer/README.md) - Post a welcome message when someone makes their first PR to a repo, and provide context to help them know what's next.
+* [Remove TODO comments](standard/review-todo-comments/README.md) - Detect TODO comments in PRs and ask the author to remove or fix them.
 
 ## Security and Policy Compliance
 These examples help you follow your team's security best practices.
