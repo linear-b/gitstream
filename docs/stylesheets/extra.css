@@ -172,3 +172,31 @@ div.flow-chart {
   color: #9aa4ad; /* this is a medium grey color */
   margin-bottom: 5px;
 }
+
+a[href='ff5757'] {
+    color: #ff5757;
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+}
+
+a[href='7ed957'] {
+    color: #7ed957;
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+}
+
+a[href='0cc0df'] {
+    color: #0cc0df;
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+}
+
+a[href='ffde59'] {
+    color: #ffcc59;
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+}
