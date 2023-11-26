@@ -10,6 +10,7 @@ nav:
   - Overview: index.md
   - Guide:
     - GitHub Setup: github-installation.md
+    - GitLab Setup: gitlab-installation.md
     - How gitStream works: how-it-works.md
     - Your First Automation: quick-start.md
     - How to Test Your Automations: dry-run-mode.md
