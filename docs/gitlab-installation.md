@@ -99,14 +99,6 @@ The required permissions are:
 
 gitStream actions that blocks MR merge are not supported at the moment.
 
-**How do I uninstall gitStream?**
-
-Use the following link to uninstall gitStream app for [GitLab](https://webhooks.gitstream.cm/auth/grant/gitlab?state=uninstall){ .md-button }.
-
-!!! warning
-
-	The uninstalling account has to have at least `Developer` or `Maintainer` role in the Group.
-
 **What is a gitStream service account?**
 
 gitStream executes rules on behalf of the user account that was used to install it. We recommend using a new dedicated account in GitLab for installing gitStream.
