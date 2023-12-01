@@ -1,0 +1,44 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  {% for item in labels %}
+  summarize_language_changes_{{ item.name }}:
+      if:
+        - {{ files | match(regex=item.resources) | some }}
+      run:
+        - action: add-label@v1
+          args:
+            label: '{{ item.additions | round }}% {{ item.name }}'
+  {% endfor %}
+
+labels:
+  - name: Java
+    resources: r/.java$/
+    additions: {{ branch.diff.files_metadata | filter(attr='file', regex=r/.java$/ ) | map(attr='additions') | sum / total.additions * 100 }}
+  - name: Rust
+    resources: r/.rs$/
+    additions: {{ branch.diff.files_metadata | filter(attr='file', regex=r/.rs$/ ) | map(attr='additions') | sum / total.additions * 100 }}
+  - name: HTML
+    resources: r/.html$/
+    additions: {{ branch.diff.files_metadata | filter(attr='file', regex=r/.html$/ ) | map(attr='additions') | sum / total.additions * 100 }}
+  - name: JavaScript
+    resources: r/.js$/
+    additions: {{ branch.diff.files_metadata | filter(attr='file', regex=r/.js$/ ) | map(attr='additions') | sum / total.additions * 100 }}
+  - name: Python
+    resources: r/.py$/
+    additions: {{ branch.diff.files_metadata | filter(attr='file', regex=r/.py$/ ) | map(attr='additions') | sum / total.additions * 100 }}
+  - name: Golang
+    resources: r/.go$/
+    additions: {{ branch.diff.files_metadata | filter(attr='file', regex=r/.go$/ ) | map(attr='additions') | sum / total.additions * 100 }}
+  - name: Ruby
+    resources: r/.rb$/
+    additions: {{ branch.diff.files_metadata | filter(attr='file', regex=r/.rb$/ ) | map(attr='additions') | sum / total.additions * 100 }}
+  - name: CSS
+    resources: r/.css/
+    additions: {{ branch.diff.files_metadata | filter(attr='file', regex=r/.css$/) | map(attr='additions') | sum / total.additions * 100 }}
+
+
+total:
+  additions: {{ branch.diff.files_metadata | map(attr='additions') | sum }}
