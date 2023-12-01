@@ -3,17 +3,19 @@ manifest:
   version: 1.0
 
 automations:
-  {% for item in labels %}
+  {% for item in changes %}
   summarize_language_changes_{{ item.name }}:
       if:
         - {{ files | match(regex=item.resources) | some }}
       run:
-        - action: add-label@v1
+        - action: add-comment@v1
           args:
-            label: '{{ item.additions | round }}% {{ item.name }}'
+           comment:
+            <h3> Language Changes Summary</h3>
+            {{ item.additions | round }}% {{ item.name }}
   {% endfor %}
 
-labels:
+changes:
   - name: Java
     resources: r/.java$/
     additions: {{ branch.diff.files_metadata | filter(attr='file', regex=r/.java$/ ) | map(attr='additions') | sum / total.additions * 100 }}
