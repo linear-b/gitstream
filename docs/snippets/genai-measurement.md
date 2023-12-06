@@ -1,0 +1,3 @@
+* [Label by Preset Contributors](genai/label-by-contributors/README.md) - Label PRs authored by a specific set of contributors
+* [Label by Extracted Hint](genai/label-by-hint/README.md) - Label PRs using a hint in the PR title, description, comments or commit messages
+* [Ask in a Prompt and Label](genai/prompt-and-label/README.md) - Prompt the PR author to specify whether the PR was assisted by Generative AI using a comment and label accordingly

@@ -1,0 +1,27 @@
+ -*- mode: yaml -*-
+
+manifest:
+ version: 1.0
+
+automations:
+#
+ add_geni_comment:
+   # Add a comment to mark genAI assisted PRs
+   if:
+     - true
+   run:
+     - action: add-comment@v1
+       args:
+         comment: |
+           Please mark whether you used genAI to assist coding in this PR
+           - [ ] Gen AI Assisted
+           - [ ] Not Gen AI Assisted
+
+ label_genai_PRs:
+   if:
+     - {{ pr.comments | filter(attr='commenter', term='gitstream-cm') | filter (attr='content', term='- [x] Gen AI Assisted') | some}}
+   run:
+     - action: add-label@v1
+       args:
+          label: '🚀 Copilot'
+          color: '#387B95'

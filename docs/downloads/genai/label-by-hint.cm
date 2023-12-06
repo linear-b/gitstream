@@ -1,0 +1,24 @@
+# -*- mode: yaml -*-
+
+manifest:
+ version: 1.0
+
+automations:
+#
+ label_genai:
+   # label PRs if PR title, comment or commit messages contain a hint
+  
+   if:
+     - {{ genai_hints.pr_title or genai_hints.pr_desc or genai_hints.pr_comments or genai_hints.commit_messages  }}
+   # Apply a safe change label, approve the PR and explain why in a comment.
+   run:
+     - action: add-label@v1
+       args:
+         label: '🚀 Copilot'
+         color: '#387B95'
+
+genai_hints:
+ pr_title: {{ pr.title | includes(regex=r/#copilot#/) }}
+ pr_desc: {{pr.description | includes(regex=r/#copilot#/) }}
+ pr_comments: {{ pr.comments | map(attr='content') | match(regex=r/#copilot#/) | some }}
+ commit_messages: {{ branch.commits.messages | match(regex=r/#copilot#/) | some }}
