@@ -19,13 +19,13 @@ Use a prompt to determine if Generative AI was used in the PR, then lable the PR
     * Add a comment using a task list to ask whether Generative AI was used in this PR
     * If the "assisted by Generative AI" box is ticked, label the PR accordingly
 </div>
-!!! example "Prompty and Label"
+!!! example "Prompt and Label"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/genai/prompt_and_label.cm"
+    --8<-- "docs/downloads/automation-library/genai/prompt-and-label.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/genai/prompt_and_lable.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/genai/prompt-and-label.cm){ .md-button }
       </span>
     </div>
 
@@ -35,7 +35,6 @@ Use a prompt to determine if Generative AI was used in the PR, then lable the PR
 
 **Related Automations**:
 
---8<-- "docs/snippets/genai-measurement.md::1"
---8<-- "docs/snippets/safe-merge-automation.md:3:"
+--8<-- "docs/snippets/genai-measurement.md:1:2"
 
 --8<-- "docs/snippets/automation-footer.md"
