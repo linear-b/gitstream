@@ -9,7 +9,7 @@ label_genai:
   # label PRs by a given set of authors with "copilot"
    if:
     - {{ pr.author | match(list=genai_contribs) | some  }}
-  # Apply a safe change label, approve the PR and explain why in a comment.
+  # Label the PR as Copilot
   run:
     - action: add-label@v1
       args:

@@ -35,6 +35,6 @@ Use a prompt to determine if Generative AI was used in the PR, then lable the PR
 
 **Related Automations**:
 
---8<-- "docs/snippets/genai-measurement.md:1:2"
+--8<-- "docs/snippets/genai-measurement.md::2"
 
 --8<-- "docs/snippets/automation-footer.md"

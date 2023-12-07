@@ -10,7 +10,7 @@ automations:
   
    if:
      - {{ genai_hints.pr_title or genai_hints.pr_desc or genai_hints.pr_comments or genai_hints.commit_messages  }}
-   # Apply a safe change label, approve the PR and explain why in a comment.
+   # Label the PR as Copilot
    run:
      - action: add-label@v1
        args:

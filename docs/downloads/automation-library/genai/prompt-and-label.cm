@@ -6,7 +6,7 @@ manifest:
 automations:
 #
  add_geni_comment:
-   # Add a comment to mark genAI assisted PRs
+   # Add a comment prompting to mark genAI assisted PRs
    if:
      - true
    run:
@@ -21,6 +21,7 @@ automations:
    if:
      - {{ pr.comments | filter(attr='commenter', term='gitstream-cm') | filter (attr='content', term='- [x] Gen AI Assisted') | some}}
    run:
+     # Label the PR as Copilot
      - action: add-label@v1
        args:
           label: '🚀 Copilot'
