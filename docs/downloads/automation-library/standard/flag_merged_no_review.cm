@@ -2,6 +2,8 @@
 
 manifest:
   version: 1.0
+on:
+  - merge
 
 # https://docs.gitstream.cm/automation-actions/#send-slack-message
 slack_webhook: {{ env.SLACK_WEBHOOK }}
