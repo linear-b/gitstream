@@ -4,7 +4,7 @@ manifest:
 
 automations:
   {% for item in labels %}
-  label_pr_by_language_{{ item.name }}:
+  label_{{ item.name }}_pr:
       if:
         - {{ files | match(regex=item.resources) | some }}
       run:

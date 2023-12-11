@@ -8,32 +8,35 @@ description: Automatically post a comment that summarizes which programming lang
 
 Post a comment that summarizes which programming languages are contained in PRs.
 
+<div class="automationImage" markdown="1">
 ![Summarize Language Changes](/automations/standard/summarize-language-changes/summarize-language-changes.png)
-!!! info "Configuration Description"
+</div>
 
+<div class="automationDescription" markdown="1">
+!!! info "Configuration Description"
     Conditions (all must be true):
     
-    * A PR is created or has new commits pushed to it.
+    * A PR is created.
     
     Automation Actions:
     
-    * Post a comment that shows the percent of total changes for each programming language present in the PR.
+    * Post a comment containing a table that shows the percent of total changes for each programming language present in the PR.
+</div>
 
 <div class="automationExample" markdown="1">
 !!! example "Summarize Language Changes"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/standard/summarize-language-changes/summarize_language_changes.cm"
+    --8<-- "docs/downloads/automation-library/standard/summarize_language_changes.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/summarize-language-changes/summarize_language_changes.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/summarize_language_changes.cm){ .md-button }
       </span>
     </div>
+<!-- --8<-- [end:example]-->
 
 ## Additional Resources
 
-**Related Automations**:
+--8<-- "docs/snippets/general.md"
 
---8<-- "docs/automations/standard/label-prs-by-language/README.md:example"
-
-<!-- --8<-- [end:example]-->
+--8<-- "docs/snippets/automation-footer.md"
