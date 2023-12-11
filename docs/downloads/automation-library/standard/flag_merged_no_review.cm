@@ -21,13 +21,13 @@ automations:
 
       - action: send-slack-message@v1
         args:
-          message: "SOC2 requires code review process on every code change. This PR  was merged without any review process. _SOC2 ref: CC8.1_"
+          message: "PR #{{ pr.number }} - {{ pr.title }} - was merged without peer reviews. SOC2 requires code reviews for every code change. _SOC2 ref: CC8.1_"
           webhook_url: "{{ slack_webhook }}"
 
       - action: add-comment@v1
         args:
           comment: |
-            PR #{{ pr.number }} - {{ pr.title }} - was merged without peer reviews. SOC2 requires code reviews for every code change.
+            This PR was merged without peer reviews. SOC2 requires code reviews for every code change.
             _SOC2 ref: CC8.1_
 
             @{{ security_team }}
