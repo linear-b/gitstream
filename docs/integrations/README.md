@@ -36,7 +36,7 @@ Integrate third-party developer tools with gitStream.
 
 </div>
 
-## Security
+## Security & Compliance
 
 <div class="integrations-list" markdown="1">
 
@@ -55,6 +55,12 @@ Integrate third-party developer tools with gitStream.
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
 [:simple-dependabot: Dependabot](/integrations/dependabot)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:material-lock: SOC 2](/integrations/soc2)
 </div>
 </div>
 
