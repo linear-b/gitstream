@@ -1,106 +1,46 @@
 ---
-title: gitStream Quickstart Examples
+title: gitStream Quickstart
 description: Build your first gitStream automation in as little as two minutes.
 ---
-# gitStream Quickstart Examples
+# gitStream Quickstart
 
-This page contains common gitStream configurations that are a great place to get started with gitStream. For a more detailed list, check out the [gitStream automation library](automations/automation-library.md).
+This page contains common gitStream configurations that are a great place to get started with gitStream. If you haven't already, you'll need to install gitStream to your [GitHub](github-installation.md) or [GitLab](gitlab-installation.md) organization before you can use these automations
 
-!!! tip "How to use these examples."
-    These examples are all complete gitStream configuration files that you can download directly via the buttons below the examples and upload to the `.cm` directory of your repo. Alternatively, you can copy and paste the individual automations, but make sure you include all required declarations and any related custom expressions from the configurations to ensure they work properly. 
+## Complete Starter Automation
+This starter automation is a great place to start if you're new to gitStream. It includes a handful of non-intrustive automations that can help you begin to adopt a Continuous Merge mindset with gitStream. 
 
-## Suggest Code Reviewers
+The following example includes workflow automations to do the following:
 
-When someone applies a `suggest-reviewers` label to a PR, use codeExperts to assign recommended reviewers and post a comment with the `explainCodeExperts` automation action.
+* Apply color-coded labels that estimate how long it takes to review the PR.
+* Recommend the most knowledgeable code experts to review the PR.
+* Flag PRs that lack required references to project management tickets.
+* Indicate which PRs have unresolved requests for changes.
+* Flag PRs that delete files to alert of potential refactoring.
+* Automatically approve low-risk PRs to docs, testing, or code formatting.
+* Define criteria for when PRs need one or more reviews.
 
-[More details here.](automations/standard/explain-code-experts/README.md)
+!!! tip "How to use this example."
+    This example is a complete gitStream configuration files that you can download directly via the buttons below the examples and upload to the `.cm` directory of your repo. Alternatively, you can copy and paste the individual automations, but make sure you include all required declarations and any related custom expressions from the configuration to ensure everything works properly. 
 
-!!! example "Suggest Code Reviewers"
+!!! example "gitStream Starter Automation"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/standard/explain_code_experts.cm"
+    --8<-- "docs/downloads/automation-library/standard/gitstream_starter.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/explain_code_experts.cm){ .md-button }
-      </span>
-    </div>
-    
-## Request Changes for Deprecated Components
-
-Request changes when a PR includes one or more deprecated components.
-
-[More details here.](automations/change-deprecated-components/README.md)
-
-!!! example "Change Deprecated Components"
-    ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/change_deprecated_components.cm"
-    ```
-    <div class="result" markdown>
-      <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/change_deprecated_components.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/gitstream_starter.cm){ .md-button }
       </span>
     </div>
 
-## Review Sensitive Files
-Require sensitive files from a pre-determined list to be reviewed by a specific team.
+You can find more details about how these automations work here:
 
-[More details here](automations/standard/review-assignment/review-sensitive-files/README.md)
+* [Approve safe changes](approve-safe-changes/README.md) - Approve documentation, formatting changes, and tests.
+* [Provide estimated time to review](provide-estimated-time-to-review/README.md) - Label all PRs with an estimated number of minutes it would take someone to review.
+* [Explain Code Experts](standard/explain-code-experts/README.md) - Post a comment that recommends reviewers based on their expertise. 
+* [Review sensitive files](standard/review-assignment/review-sensitive-files/README.md) - Define a custom list of files and directories that trigger additional reviews.
+* [Additional review for large PRs](additional-review-for-large-pr/README.md) - Require additional reviewers for complex PRs.
 
-!!! example "Review Sensitive Files"
-    ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/standard/review-assignment/review_sensitive_files.cm"
-    ```
-    <div class="result" markdown>
-      <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/review-assignment/review_sensitive_files.cm){ .md-button }
-      </span>
-    </div>
 
-## Approve Safe Changes
+## Next Step
 
-Automatically approve documentation, formatting, and test changes.
-
-[More details here.](automations/approve-safe-changes/README.md)
-
-!!! example "Approve Safe Changes"
-    ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/approve-safe-changes.cm"
-    ```
-    <div class="result" markdown>
-      <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/approve-safe-changes.cm){ .md-button }
-      </span>
-    </div>
-
-## Provide Estimated Time to Review
-Label all PRs with an estimated number of minutes it would take someone to review. 
-
-[More details here.](automations/provide-estimated-time-to-review/README.md)
-!!! example "Provide Estimated Time to Review"
-    ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/provide_estimated_time_to_review.cm"
-    ```
-    <div class="result" markdown>
-      <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/provide_estimated_time_to_review.cm){ .md-button }
-      </span>
-    </div>
-
-## Label Missing Jira Info
-Label PRs that don't reference a Jira ticket in the title or description. This uses regex to detect Jira ticket formats in the title (e.g. ABC-1234), and URLs to Jira tickets in the description.
-
-[More details here.](automations/integrations/jira/label-missing-jira-info/README.md)
-
-!!! example "Label Missing Jira Info"
-    ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/integrations/jira/label_missing_jira_info.cm"
-    ```
-    <div class="result" markdown>
-      <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/jira/label_missing_jira_info.cm){ .md-button }
-      </span>
-    </div>
-## More examples
-
-!!! tip "Check out the gitStream automation library."
-    [Click here](automations/automation-library.md) to find a more extensive list of automation examples.
+For a more detailed list of automations, check out the gitStream [integrations page](integrations/README.md) or [automation library](automations/automation-library.md).
