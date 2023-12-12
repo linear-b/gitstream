@@ -1,82 +1,85 @@
 # Custom filters
 
-Custom filters are implemented in JavaScript.
+gitStream allows the use of custom plugins to extend its functionality, specifically through JavaScript. These plugins are based on the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module standard, a widely used pattern for structuring and importing JavaScript modules. This approach enables users to create and integrate custom filters and functionalities seamlessly within gitStream automations.
 
-!!! attention
+## Folder structure
 
-    :octicons-beaker-24: Coming soon
+Custom plugins are organized in the gitStream project using a specific folder structure:
 
-You can add custom filters by editing the `.cm/filters.js` file in your repo.
+For specific repo, place your filter plugins in this path `.cm/plugins/filters/<filterName>/index.js`. 
 
-```
-.
-├─ .cm/
-│  └─ gitstream.cm
-│  └─ filters.js 
-```
+**Asynchronous Filters**: The filter name should be with `Async` postfix, i.e. `.cm/plugins/filters/<filterNameAsync>/index.js`
 
-####  Adding filters
+**Org level Filters**: The filter shall be placed here `plugins/filters/<filterNameAsync>/index.js`
 
-Filters can have input arguments and return a result which can be any valid JavaScript type.
 
-An example for a `.cm/filters.js`:
+Custom plugins in gitStream are organized using a specific folder structure:
+
+**Specific Repo Filters**: In the desired repository, place your filter plugins at `.cm/plugins/filters/<filterName>/index.js`.
+**Asynchronous Filters**: Name asynchronous filters with an Async postfix, e.g., `.cm/plugins/filters/<filterNameAsync>/index.js`.
+**Org Level Filters**: Place these filters at `plugins/filters/<filterName>/index.js` in your `cm` repository.
+
+
+!!! Tip
+
+    If two filters have the same name, the one in the repository currently overrides the one at the organization level.
+
+!!! Note
+    
+    gitStream actions are terminated by default after 15 minutes, with no current option for extending this limit.
+
+!!! Note 
+
+    Errors in custom plugins are output as logs. Users can implement their own error handling; otherwise, gitStream will log errors in its default format.
+
+#### Filter usage in gitStream
+
+Once the filter has been added to gitStream, it can be used as any other high-level filter, for example:
+
+`{{ "one banana" | bananify }}`,  or  `{{ bananify("one banana") }}` 
+
+## Example: Creating a Custom Filter
+
+Here's an example of how to create a simple custom filter that replaces the word "banana" with a banana emoji (🍌).
+
+1. Create the Filter: In your gitStream project, navigate to the `.cm/plugins/filters/bananify` directory and create the following `index.js` file:
 
 ```js
-export default {
-  // The includes() method determines whether an array includes a 
-  // certain value among its entries, returning true or false.
-  myIncludes: (list, term) => {
-    return list.includes(term);
-  },
-  
-  // Determine if a number is even or odd
-  isOdd: (n) => {
-    return parseInt(n) % 2 == 0;
-  }
+module.exports = (text) => {
+  return text.replaceAll('banana', '🍌');
 }
 ```
 
-Once filters are added it can be used in the `.cm` files, for example using `isOdd` filter looks like this:
+2. Using the Filter in Automations: You can use this custom filter in your repository gitStream automations. Here's an example of how to use it in a CM automation script:
 
 ```yaml+jinja
-{{ branch.diff.size | isOdd }}
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  banana_check:
+    if:
+      - {{ pr.description | includes(term='banana') }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            BANANAS! {{ pr.description | bananify }}
 ```
 
-#### Using npm packages 
-
-The file is loaded by a node.js runtime, the following packages are pre installed and can be imported and used:
-
-- `child_process`
-
-#### Using external tools results
-
-Tip: cache result to local file system and reuse in CI/CD
-
-```js
-const { exec } = require('child_process');
-
-exec('npm run test | wc -l', (err, stdout, stderr) => {
-  if (err) {
-    // node couldn't execute the command
-    return;
-  }
-
-  // the *entire* stdout and stderr (buffered)
-  console.log(`stdout: ${stdout}`);
-  console.log(`stderr: ${stderr}`);
-  return 123;
-});
-
-```
-
-For example:
-
-```yaml+jinja
-# access coverage results
-coverage:
-  is:
-    # npm run test -> /file/here 
-    enough: {{ source | my_coverage > 80 }} # 2 user's filter 
-```
+In this example, the bananify filter is applied to the pull request description, and if the word "banana" is found, it's replaced with a banana emoji in the comment added by the automation.
 
 
+#### Using external packages 
+
+The following dependencies are supported in your plugin:
+
+1. [axios](https://github.com/axios/axios)
+2. github actions core (@actions/core)
+3. [moment](https://github.com/moment/moment)
+4. [lodash](https://github.com/lodash/lodash)
+5. octokit rest api (@octokit/rest)
+
+As of now, the integration of additional external packages beyond these specified ones is not supported.
