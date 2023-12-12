@@ -4,21 +4,16 @@ gitStream allows the use of custom plugins to extend its functionality, specific
 
 ## Folder structure
 
-Custom plugins are organized in the gitStream project using a specific folder structure:
-
-For specific repo, place your filter plugins in this path `.cm/plugins/filters/<filterName>/index.js`. 
-
-**Asynchronous Filters**: The filter name should be with `Async` postfix, i.e. `.cm/plugins/filters/<filterNameAsync>/index.js`
-
-**Org level Filters**: The filter shall be placed here `plugins/filters/<filterNameAsync>/index.js`
-
-
 Custom plugins in gitStream are organized using a specific folder structure:
 
-**Specific Repo Filters**: In the desired repository, place your filter plugins at `.cm/plugins/filters/<filterName>/index.js`.
-**Asynchronous Filters**: Name asynchronous filters with an Async postfix, e.g., `.cm/plugins/filters/<filterNameAsync>/index.js`.
-**Org Level Filters**: Place these filters at `plugins/filters/<filterName>/index.js` in your `cm` repository.
+**Specific Repo Filters**: In the desired repository, place your filter plugins at:
+```.cm/plugins/filters/<filterName>/index.js```
 
+**Asynchronous Filters**: Name asynchronous filters with an Async postfix, e.g.:
+```.cm/plugins/filters/<filterNameAsync>/index.js```
+
+**Org Level Filters**: Place these filters in your `cm` repository at:
+```plugins/filters/<filterName>/index.js``` 
 
 !!! Tip
 
@@ -36,13 +31,13 @@ Custom plugins in gitStream are organized using a specific folder structure:
 
 Once the filter has been added to gitStream, it can be used as any other high-level filter, for example:
 
-`{{ "one banana" | bananify }}`,  or  `{{ bananify("one banana") }}` 
+```{{ "one banana" | bananify }}```
 
 ## Example: Creating a Custom Filter
 
 Here's an example of how to create a simple custom filter that replaces the word "banana" with a banana emoji (🍌).
 
-1. Create the Filter: In your gitStream project, navigate to the `.cm/plugins/filters/bananify` directory and create the following `index.js` file:
+**Create the Filter**: In your gitStream project, navigate to the `.cm/plugins/filters/bananify` directory and create the following `index.js` file:
 
 ```js
 module.exports = (text) => {
@@ -50,7 +45,7 @@ module.exports = (text) => {
 }
 ```
 
-2. Using the Filter in Automations: You can use this custom filter in your repository gitStream automations. Here's an example of how to use it in a CM automation script:
+**Using the Filter in Automations**: You can use this custom filter in your repository gitStream automations. Here's an example of how to use it in a CM automation script:
 
 ```yaml+jinja
 # -*- mode: yaml -*-
