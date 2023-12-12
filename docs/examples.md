@@ -16,7 +16,7 @@ This CM automation contains a collection of workflows to automatically apply lab
 The following example includes workflow automations to do the following:
 
 * Apply color-coded labels that [estimate how long it takes to review the PR](automations/provide-estimated-time-to-review/README.md).
-* Flag PRs that lack required references to [Jira tickets](automations/integrations/jira/label-missing-jira-info/README.md). Check out the gitStream integrations page for more examples of [third-party project management tools](](integrations/README.md)) gitStream integrates with.
+* Flag PRs that lack required references to [Jira tickets](automations/integrations/jira/label-missing-jira-info/README.md). Check out the gitStream integrations page for more examples of [third-party project management tools](integrations/README.md) gitStream integrates with.
 * Label PRs that have [unresolved change requests](automations/standard/label-management/label-unresolved-threads/README.md), or [delete code](automations/label-deleted-files/README.md).
 
 ![Label management quickstart](screenshots/label-management-starter.png)
@@ -34,6 +34,8 @@ The following example includes workflow automations to do the following:
 
 
 ## Automatically Route PR Reviews
+
+If you're ready to begin automatically routing PRs for review, the best solution is to classify PRs according to the amount of risk they create. This next example classifies PRs into one of three categories based on the changes they contain and automatically establishes review criteria.
 
 The following example includes workflow automations to do the following:
 
