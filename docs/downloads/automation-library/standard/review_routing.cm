@@ -48,6 +48,19 @@ long_review_threshold: 5
 # +----------------------------------------------------------------------------+
 
 automations:
+
+  # Post a comment that recommends reviewers based on their knowledge of the files in the PR.
+  # https://docs.gitstream.cm/automations/standard/explain-code-experts/
+  explain_code_experts:
+    # Alternatively, if you only want to trigger when the slash command `/gitstream suggest-reviewers` is included in a comment,
+    # change '- true' to '- {{ (pr.comments | match(attr='content', term='/gitstream suggest-reviewers') | some) }}'
+    if:
+      - true
+    run:
+      - action: explain-code-experts@v1 
+        args:
+          gt: 10
+  
   # Automatically approve changes that only affect formatting, documentation, tests, or images
   # https://docs.gitstream.cm/automations/approve-safe-changes/
   approve_safe_changes:
