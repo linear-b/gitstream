@@ -1,82 +1,115 @@
 # Custom filters
 
-Custom filters are implemented in JavaScript.
+gitStream enables you to build custom Javascript plugins to extend its functionality for more advanced data processing and pulling data from external APIs. gitStream plugins are based on the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module standard, a widely used pattern for structuring and importing JavaScript modules. This approach enables you to create and integrate custom filters and functionalities seamlessly within your gitStream automations.
 
-!!! attention
+## Folder structure
 
-    :octicons-beaker-24: Coming soon
+Custom plugins in gitStream are organized using a specific folder structure:
 
-You can add custom filters by editing the `.cm/filters.js` file in your repo.
+#### Specific Repo Filters
 
-```
-.
-├─ .cm/
-│  └─ gitstream.cm
-│  └─ filters.js 
-```
+In the desired repository, place your filter plugins in the following location:
+```.cm/plugins/filters/<filterName>/index.js```
 
-####  Adding filters
+#### Asynchronous Filters
 
-Filters can have input arguments and return a result which can be any valid JavaScript type.
+Name asynchronous filters with an Async suffix, e.g.:
+```.cm/plugins/filters/<filterNameAsync>/index.js```
 
-An example for a `.cm/filters.js`:
+Name asynchronous filters with an **Async** suffix when creating an asynchronous filter, it's crucial to follow the naming conventions for both the folder structure and the usage within CM scripts:
+
+1. Folder Naming: The folder name for an asynchronous filter should include the `Async` postfix. This naming convention helps gitStream to recognize and handle the filter appropriately. For example, if your filter's name is `dataFetcher`, the folder should be named `dataFetcherAsync`, e.g. `.cm/plugins/filters/dataFetcherAsync/index.js`.
+
+2. Usage in CM Scripts: Similarly, when using the asynchronous filter in your CM scripts, include the `Async` postfix in the filter name. This ensures that gitStream processes the filter as an asynchronous operation, e.g. In your CM script, refer to the above filter as `dataFetcherAsync`.
+
+Implementation requires to return a promise that includes both the error info and the result of the filter, see details in the example below.
+
+!!! Note
+
+    Errors in async plugins are output as logs. Users can implement their own error handling; otherwise, gitStream will log errors in its default format.
+
+#### Org Level Filters
+
+Place these filters in your `cm` repository in the following location:
+```plugins/filters/<filterName>/index.js``` 
+
+!!! Tip
+
+    If two filters have the same name, the one in the repository currently overrides the one at the organization level.
+
+## Error handling
+
+Timeout: gitStream actions are terminated by default after 15 minutes, with no current option for extending this limit.
+
+#### Filter usage in gitStream
+
+Once you've created your custom plugin, it can be called using the same convention as default gitStream filter functions, for example:
+
+```{{ "one banana" | bananify }}```
+
+## Example: Creating a Custom Filter
+
+Here's an example of a simple custom filter that replaces the word "banana" with a banana emoji (🍌).
+
+**Create the Filter**: In your gitStream project, navigate to the `.cm/plugins/filters/bananify` directory and create the following `index.js` file:
 
 ```js
-export default {
-  // The includes() method determines whether an array includes a 
-  // certain value among its entries, returning true or false.
-  myIncludes: (list, term) => {
-    return list.includes(term);
-  },
-  
-  // Determine if a number is even or odd
-  isOdd: (n) => {
-    return parseInt(n) % 2 == 0;
-  }
+module.exports = (text) => {
+  return text.replaceAll('banana', '🍌');
 }
 ```
 
-Once filters are added it can be used in the `.cm` files, for example using `isOdd` filter looks like this:
+**Using the Filter in Automations**: You can use this custom filter in your repository gitStream automations. Here's an example of how to use it in a CM automation script:
 
 ```yaml+jinja
-{{ branch.diff.size | isOdd }}
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  banana_check:
+    if:
+      - {{ pr.description | includes(term='banana') }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            BANANAS! {{ pr.description | bananify }}
 ```
 
-#### Using npm packages 
+In this example, the bananify filter is applied to the pull request description. gitStream will post a comment that changes all occurrences of the word "banana" with a banana emoji.
 
-The file is loaded by a node.js runtime, the following packages are pre installed and can be imported and used:
+## Example: Creating a Async Custom Filter
 
-- `child_process`
+When implementing an asynchronous filter, ensure that your `index.js` file exports an asynchronous function. This function should return a Promise that resolves with the desired output.
 
-#### Using external tools results
-
-Tip: cache result to local file system and reuse in CI/CD
+Example `index.js` for an asynchronous filter:
 
 ```js
-const { exec } = require('child_process');
+const axios = require('axios');
 
-exec('npm run test | wc -l', (err, stdout, stderr) => {
-  if (err) {
-    // node couldn't execute the command
-    return;
-  }
+const sayHelloAsync = async (params, callback) => {
+  const webhookUrl = 'WEBHOOK_URL';
+  const message = {
+    text: "Hello From 'sayHello' plugin from parser",
+  };
+  const result = await axios.post(webhookUrl, message);
+  const error = null;
+  return callback(error, result); 
+};
 
-  // the *entire* stdout and stderr (buffered)
-  console.log(`stdout: ${stdout}`);
-  console.log(`stderr: ${stderr}`);
-  return 123;
-});
-
+module.exports = sayHello;
 ```
 
-For example:
+#### Available JavaScript Packages
 
-```yaml+jinja
-# access coverage results
-coverage:
-  is:
-    # npm run test -> /file/here 
-    enough: {{ source | my_coverage > 80 }} # 2 user's filter 
-```
+gitStream supports the following JavaScript dependencies:
 
+1. [axios](https://github.com/axios/axios)
+2. github actions core (@actions/core)
+3. [moment](https://github.com/moment/moment)
+4. [lodash](https://github.com/lodash/lodash)
+5. octokit rest api (@octokit/rest)
 
+No other dependencies are supported at this time. If you have recommendations for new dependencies, please open a new issue on the [gitStream GitHub repo](https://github.com/linear-b/gitstream).
