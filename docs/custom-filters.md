@@ -6,26 +6,40 @@ gitStream enables you to build custom Javascript plugins to extend its functiona
 
 Custom plugins in gitStream are organized using a specific folder structure:
 
-**Specific Repo Filters**: In the desired repository, place your filter plugins in the following location:
+#### Specific Repo Filters
+
+In the desired repository, place your filter plugins in the following location:
 ```.cm/plugins/filters/<filterName>/index.js```
 
-**Asynchronous Filters**: Name asynchronous filters with an Async suffix, e.g.:
+#### Asynchronous Filters
+
+Name asynchronous filters with an Async suffix, e.g.:
 ```.cm/plugins/filters/<filterNameAsync>/index.js```
 
-**Org Level Filters**: Place these filters in your `cm` repository in the following location:
+Name asynchronous filters with an **Async** suffix when creating an asynchronous filter, it's crucial to follow the naming conventions for both the folder structure and the usage within CM scripts:
+
+1. Folder Naming: The folder name for an asynchronous filter should include the `Async` postfix. This naming convention helps gitStream to recognize and handle the filter appropriately. For example, if your filter's name is `dataFetcher`, the folder should be named `dataFetcherAsync`, e.g. `.cm/plugins/filters/dataFetcherAsync/index.js`.
+
+2. Usage in CM Scripts: Similarly, when using the asynchronous filter in your CM scripts, include the `Async` postfix in the filter name. This ensures that gitStream processes the filter as an asynchronous operation, e.g. In your CM script, refer to the above filter as `dataFetcherAsync`.
+
+Implementation requires to return a promise that includes both the error info and the result of the filter, see details in the example below.
+
+!!! Note
+
+    Errors in async plugins are output as logs. Users can implement their own error handling; otherwise, gitStream will log errors in its default format.
+
+#### Org Level Filters
+
+Place these filters in your `cm` repository in the following location:
 ```plugins/filters/<filterName>/index.js``` 
 
 !!! Tip
 
     If two filters have the same name, the one in the repository currently overrides the one at the organization level.
 
-!!! Note
-    
-    gitStream actions are terminated by default after 15 minutes, with no current option for extending this limit.
+## Error handling
 
-!!! Note 
-
-    Errors in custom plugins are output as logs. Users can implement their own error handling; otherwise, gitStream will log errors in its default format.
+Timeout: gitStream actions are terminated by default after 15 minutes, with no current option for extending this limit.
 
 #### Filter usage in gitStream
 
@@ -66,6 +80,27 @@ automations:
 
 In this example, the bananify filter is applied to the pull request description. gitStream will post a comment that changes all occurrences of the word "banana" with a banana emoji.
 
+## Example: Creating a Async Custom Filter
+
+When implementing an asynchronous filter, ensure that your `index.js` file exports an asynchronous function. This function should return a Promise that resolves with the desired output.
+
+Example `index.js` for an asynchronous filter:
+
+```js
+const axios = require('axios');
+
+const sayHelloAsync = async (params, callback) => {
+  const webhookUrl = 'WEBHOOK_URL';
+  const message = {
+    text: "Hello From 'sayHello' plugin from parser",
+  };
+  const result = await axios.post(webhookUrl, message);
+  const error = null;
+  return callback(error, result); 
+};
+
+module.exports = sayHello;
+```
 
 #### Available JavaScript Packages
 
