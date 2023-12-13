@@ -1,18 +1,18 @@
 # Custom filters
 
-gitStream allows the use of custom plugins to extend its functionality, specifically through JavaScript. These plugins are based on the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module standard, a widely used pattern for structuring and importing JavaScript modules. This approach enables users to create and integrate custom filters and functionalities seamlessly within gitStream automations.
+gitStream enables you to build custom Javascript plugins to extend its functionality for more advanced data processing and pulling data from external APIs. gitStream plugins are based on the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module standard, a widely used pattern for structuring and importing JavaScript modules. This approach enables you to create and integrate custom filters and functionalities seamlessly within your gitStream automations.
 
 ## Folder structure
 
 Custom plugins in gitStream are organized using a specific folder structure:
 
-**Specific Repo Filters**: In the desired repository, place your filter plugins at:
+**Specific Repo Filters**: In the desired repository, place your filter plugins in the following location:
 ```.cm/plugins/filters/<filterName>/index.js```
 
-**Asynchronous Filters**: Name asynchronous filters with an Async postfix, e.g.:
+**Asynchronous Filters**: Name asynchronous filters with an Async suffix, e.g.:
 ```.cm/plugins/filters/<filterNameAsync>/index.js```
 
-**Org Level Filters**: Place these filters in your `cm` repository at:
+**Org Level Filters**: Place these filters in your `cm` repository in the following location:
 ```plugins/filters/<filterName>/index.js``` 
 
 !!! Tip
@@ -29,13 +29,13 @@ Custom plugins in gitStream are organized using a specific folder structure:
 
 #### Filter usage in gitStream
 
-Once the filter has been added to gitStream, it can be used as any other high-level filter, for example:
+Once you've created your custom plugin, it can be called using the same convention as default gitStream filter functions, for example:
 
 ```{{ "one banana" | bananify }}```
 
 ## Example: Creating a Custom Filter
 
-Here's an example of how to create a simple custom filter that replaces the word "banana" with a banana emoji (🍌).
+Here's an example of a simple custom filter that replaces the word "banana" with a banana emoji (🍌).
 
 **Create the Filter**: In your gitStream project, navigate to the `.cm/plugins/filters/bananify` directory and create the following `index.js` file:
 
@@ -64,12 +64,12 @@ automations:
             BANANAS! {{ pr.description | bananify }}
 ```
 
-In this example, the bananify filter is applied to the pull request description, and if the word "banana" is found, it's replaced with a banana emoji in the comment added by the automation.
+In this example, the bananify filter is applied to the pull request description. gitStream will post a comment that changes all occurrences of the word "banana" with a banana emoji.
 
 
-#### Using external packages 
+#### Available JavaScript Packages
 
-The following dependencies are supported in your plugin:
+gitStream supports the following JavaScript dependencies:
 
 1. [axios](https://github.com/axios/axios)
 2. github actions core (@actions/core)
@@ -77,4 +77,4 @@ The following dependencies are supported in your plugin:
 4. [lodash](https://github.com/lodash/lodash)
 5. octokit rest api (@octokit/rest)
 
-As of now, the integration of additional external packages beyond these specified ones is not supported.
+No other dependencies are supported at this time. If you have recommendations for new dependencies, please open a new issue on the [gitStream GitHub repo](https://github.com/linear-b/gitstream).
