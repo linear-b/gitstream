@@ -48,17 +48,7 @@ long_review_threshold: 5
 # +----------------------------------------------------------------------------+
 
 automations:
-  # Apply color coded labels to PRs based on the estimated time to review.
-  # https://docs.gitstream.cm/automations/provide-estimated-time-to-review/
-  estimated_time_to_review:
-    if:
-      - true
-    run:
-      - action: add-label@v1
-        args:
-          label: "{{ calc.etr }} min review"
-          color: {{ colors.red if (calc.etr >= 20) else ( colors.yellow if (calc.etr >= 5) else colors.green ) }}
-  
+
   # Post a comment that recommends reviewers based on their knowledge of the files in the PR.
   # https://docs.gitstream.cm/automations/standard/explain-code-experts/
   explain_code_experts:
@@ -71,40 +61,6 @@ automations:
         args:
           gt: 10
   
-  # Flag PRs that are missing a Jira ticket reference in the title or description.
-  # https://docs.gitstream.cm/integrations/jira/
-  label_missing_jira_info:
-    if:
-      - {{ not (has.jira_ticket_in_title or has.jira_ticket_in_desc) }}
-    run:
-      - action: add-label@v1
-        args:
-          label: "missing-jira"
-          color: {{ colors.red }}
-  
-  # Flag PRs that have unresolved comment threads.
-  # https://docs.gitstream.cm/automations/standard/label-management/label-unresolved-threads/
-  label_unresolved_threads:  
-    if:
-      - {{ pr.status == 'open' }}  
-      - {{ pr.unresolved_threads }}
-    run:
-      - action: add-label@v1
-        args:
-          label: 🚨 {{ pr.unresolved_threads }} Unresolved Thread(s)
-          color: {{ colors.yellow }}  
-  
-  # Flag PRs that delete files to highlight potential refactors that need extra scrutiny.
-  # https://docs.gitstream.cm/automations/label-deleted-files/
-  flag_deleted_files:
-    if:
-      - {{ has.deleted_files }}
-    run: 
-      - action: add-label@v1
-        args:
-          label: 🗑️ Deleted files
-          color: {{ colors.orange }}
-
   # Automatically approve changes that only affect formatting, documentation, tests, or images
   # https://docs.gitstream.cm/automations/approve-safe-changes/
   approve_safe_changes:
@@ -196,9 +152,6 @@ calc:
   etr: {{ branch | estimatedReviewTime }}
 
 has:
-  jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
-  jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
-  deleted_files: {{ source.diff.files | map(attr='new_file') | match(term='/dev/null') | some }}
   sensitive_files: {{ files | match(list=sensitive) | some }}
   do_not_merge_label: {{ pr.labels | match(term='Do not merge') | some }}
 
