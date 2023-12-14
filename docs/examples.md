@@ -1,106 +1,61 @@
 ---
-title: gitStream Quickstart Examples
+title: gitStream Quickstart
 description: Build your first gitStream automation in as little as two minutes.
 ---
-# gitStream Quickstart Examples
+# gitStream Quickstart
 
-This page contains common gitStream configurations that are a great place to get started with gitStream. For a more detailed list, check out the [gitStream automation library](automations/automation-library.md).
+This page contains common gitStream configurations that are a great place to begin adopting a continuous merge mindset with gitStream. If you haven't already, you'll need to install gitStream to your [GitHub](github-installation.md) or [GitLab](gitlab-installation.md) organization before you can use these automations
 
-!!! tip "How to use these examples."
-    These examples are all complete gitStream configuration files that you can download directly via the buttons below the examples and upload to the `.cm` directory of your repo. Alternatively, you can copy and paste the individual automations, but make sure you include all required declarations and any related custom expressions from the configurations to ensure they work properly. 
+!!! tip "Build your first gitStream automation in as little as two minutes."
+    These example are complete gitStream configuration files that you can download directly via the buttons below the examples and upload to the `.cm` directory of your repo. Alternatively, you can copy and paste the individual automations, but make sure you include all required declarations and any related custom expressions from the configuration to ensure everything works properly. 
 
-## Suggest Code Reviewers
+## Improve PR Context with Label Automation
 
-When someone applies a `suggest-reviewers` label to a PR, use codeExperts to assign recommended reviewers and post a comment with the `explainCodeExperts` automation action.
+This CM automation contains a collection of workflows to automatically apply labels that to provide deeper context to code reviewers to help them more quickly triage and address incoming requests for reviews. Ideally, you should implement these automations across your entire git organization to maximize developer usage. 
 
-[More details here.](automations/standard/explain-code-experts/README.md)
+The following example includes workflow automations to do the following:
 
-!!! example "Suggest Code Reviewers"
+* Apply color-coded labels that [estimate how long it takes to review the PR](automations/provide-estimated-time-to-review/README.md).
+* Flag PRs that lack required references to [Jira tickets](automations/integrations/jira/label-missing-jira-info/README.md). Check out the gitStream integrations page for more examples of [third-party project management tools](integrations/README.md) gitStream integrates with.
+* Label PRs that have [unresolved change requests](automations/standard/label-management/label-unresolved-threads/README.md), or [delete code](automations/label-deleted-files/README.md).
+
+![Label management quickstart](screenshots/label-management-starter.png)
+
+!!! example "Label Management with gitStream"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/standard/explain_code_experts.cm"
+    --8<-- "docs/downloads/automation-library/standard/label_automation.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/explain_code_experts.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/label_automation.cm){ .md-button }
       </span>
     </div>
-    
-## Request Changes for Deprecated Components
 
-Request changes when a PR includes one or more deprecated components.
 
-[More details here.](automations/change-deprecated-components/README.md)
 
-!!! example "Change Deprecated Components"
+## Automatically Route PR Reviews
+
+If you're ready to begin automatically routing PRs for review, the best solution is to classify PRs according to the amount of risk they create. This next example classifies PRs into one of three categories based on the changes they contain and automatically establishes review criteria.
+
+The following example includes workflow automations to do the following:
+
+* Recommend the most knowledgeable [code experts](automations/standard/explain-code-experts/README.md) to review the PR.
+* Automatically [approve low-risk PRs](automations/approve-safe-changes/README.md) to docs, testing, or code formatting.
+* Define criteria for when [PRs need one or more reviews](automations/additional-review-for-large-pr/README.md).
+* Label PRs that are available to be cherry picked to merge into the next release.
+
+![Assign Code Experts Examples](automations/standard/review-assignment/assign-code-experts/assign_code_experts.png)
+
+!!! example "Review Routing with gitStream"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/change_deprecated_components.cm"
+    --8<-- "docs/downloads/automation-library/standard/review_routing.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/change_deprecated_components.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/review_routing.cm){ .md-button }
       </span>
     </div>
 
-## Review Sensitive Files
-Require sensitive files from a pre-determined list to be reviewed by a specific team.
+## Next Step
 
-[More details here](automations/standard/review-assignment/review-sensitive-files/README.md)
-
-!!! example "Review Sensitive Files"
-    ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/standard/review-assignment/review_sensitive_files.cm"
-    ```
-    <div class="result" markdown>
-      <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/review-assignment/review_sensitive_files.cm){ .md-button }
-      </span>
-    </div>
-
-## Approve Safe Changes
-
-Automatically approve documentation, formatting, and test changes.
-
-[More details here.](automations/approve-safe-changes/README.md)
-
-!!! example "Approve Safe Changes"
-    ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/approve-safe-changes.cm"
-    ```
-    <div class="result" markdown>
-      <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/approve-safe-changes.cm){ .md-button }
-      </span>
-    </div>
-
-## Provide Estimated Time to Review
-Label all PRs with an estimated number of minutes it would take someone to review. 
-
-[More details here.](automations/provide-estimated-time-to-review/README.md)
-!!! example "Provide Estimated Time to Review"
-    ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/provide_estimated_time_to_review.cm"
-    ```
-    <div class="result" markdown>
-      <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/provide_estimated_time_to_review.cm){ .md-button }
-      </span>
-    </div>
-
-## Label Missing Jira Info
-Label PRs that don't reference a Jira ticket in the title or description. This uses regex to detect Jira ticket formats in the title (e.g. ABC-1234), and URLs to Jira tickets in the description.
-
-[More details here.](automations/integrations/jira/label-missing-jira-info/README.md)
-
-!!! example "Label Missing Jira Info"
-    ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/integrations/jira/label_missing_jira_info.cm"
-    ```
-    <div class="result" markdown>
-      <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/jira/label_missing_jira_info.cm){ .md-button }
-      </span>
-    </div>
-## More examples
-
-!!! tip "Check out the gitStream automation library."
-    [Click here](automations/automation-library.md) to find a more extensive list of automation examples.
+For a more detailed list of automations, check out the gitStream [integrations page](integrations/README.md) or [automation library](automations/automation-library.md).
