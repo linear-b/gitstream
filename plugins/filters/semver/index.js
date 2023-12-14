@@ -1,4 +1,8 @@
 /**
+ * 
+ * This file contains a gitStream custom filter.
+ * More info here: https://docs.gitstream.cm/custom-filters/ 
+ * 
  * Compares two software version numbers and determines the type of version change.
  *
  * This is can be useful if you want to auto-approve specific types of Dependabot or Renovate updates, 
