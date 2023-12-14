@@ -1,0 +1,21 @@
+-*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+on:
+  - pr_created
+
+automations:
+  comment_copilot_prompt:
+    # Post a comment for all PRs to prompt the PR author to indicate whether they used Copilot to assist coding in this PR
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            Please mark whether you used Copilot to assist coding in this PR
+
+            - [ ] Copilot Assisted
+            - [ ] Not Copilot Assisted
