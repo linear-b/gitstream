@@ -16,13 +16,15 @@
   <a href="https://github.com/linear-b/gitstream">
     <img src="https://img.shields.io/github/stars/linear-b/gitstream" alt="Stars">
   </a>
-  <img src="https://img.shields.io/github/license/linear-b/gitstream" alt="Apache 2.0">
+  <a href="https://github.com/linear-b/gitstream/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/linear-b/gitstream" alt="Apache 2.0">
+  </a>
 </p>
 
-<h1 align="center">The most extensible workflow automation tool for code reviews</h1>
+<h1 align="center">The ultimate workflow automation tool for your git repository</h1>
 
 <div align="center">
-/:\ gitStream is the ultimate workflow automation tool for your git repository. Auto-assign reviewers, automate CI services, add important context, unblock PR/MR reviews, and more.
+/:\ gitStream makes it simple to auto-assign reviewers, automate CI services, add important context, unblock PR/MR reviews, and more.
 </div>
 
   <p align="center">
@@ -38,8 +40,6 @@
     <a href="https://github.com/linear-b/gitstream/issues/new?assignees=&labels=new-example&projects=&template=new_automation_example.md&title=New+Example%3A+">Share your automation</a>
     ·
   <a href="https://github.com/linear-b/gitstream/discussions/102">Feature Updates</a>
-    ·
-    <a href="https://twitter.com/LinearB_Inc">X</a>
   </p>
 
 
@@ -67,7 +67,7 @@ If you're ready to install gitStream, or want to explore its automation capabili
 
 ## 📣 Updates
 
-Subscribe to [gitStream Feature Announcements](https://github.com/linear-b/gitstream/discussions).
+Subscribe to [gitStream Feature Announcements](https://github.com/linear-b/gitstream/discussions/102).
 
 ## 📁 Local Documentation Server Setup
 
