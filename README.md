@@ -1,36 +1,71 @@
-# `/:\ gitStream`
+<div align="center">
+  <a href="https://gitstream.cm?utm_source=GitHub&utm_medium=referral&utm_campaign=gitStream+-+GitHub+Repo" target="_blank">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-production-user-asset-6210df.s3.amazonaws.com/7205829/290864953-535d4655-9bd9-4868-8e7b-a571b82bc44c.png">
+    <img alt="Novu Logo" src="https://github-production-user-asset-6210df.s3.amazonaws.com/7205829/290864422-600d9a07-52b2-4eed-9043-bd593b00ef18.png" width="280"/>
+  </picture>
+  </a>
+</div>
 
-gitStream is a workflow automation tool that enables you to use YAML configuration files to optimize your code review process. Add context to PRs, find code experts for reviews, and automate the merge process to maximize developer productivity.
+<br/>
 
-If you like gitStream, please give this repo a star! ⭐ It helps us spread the word.
-## Main Features
+<p align="center">
+  <a href="https://github.com/linear-b/gitstream/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/linear-b/gitstream" alt="NPM">
+  </a>
+  <a href="https://github.com/linear-b/gitstream">
+    <img src="https://img.shields.io/github/stars/linear-b/gitstream
+" alt="Stars">
+  </a>
+  <img src="https://img.shields.io/github/license/linear-b/gitstream" alt="Apache 2.0">
+</p>
 
-### Automated Change Requests
+<h1 align="center">The most extensible workflow automation tool for code reviews</h1>
 
-Reduce code review noise by catching issues before anyone invests precious time. Flag [deprecated components](https://docs.gitstream.cm/automations/change-deprecated-components), [missing data objects](https://docs.gitstream.cm/automations/change-missing-lambda-field/), [off-limits code](https://docs.gitstream.cm/automations/close-wrong-team-by-directory/), and other problems that need to be addressed before assigning code reviewers.
+<div align="center">
+/:\ gitStream is the ultimate workflow automation tool for your git repository. Auto-assign reviewers, automate CI services, add important context, unblock PR/MR reviews, and more.
+</div>
 
-### Review Assignment
+  <p align="center">
+    <br />
+    <a href="https://docs.gitstream.cm/?utm_source=GitHub&utm_medium=referral&utm_campaign=gitStream+-+GitHub+Repo" rel="dofollow"><strong>Explore the docs »</strong></a>
+    <br />
 
-Identifying the correct people to review a PR can take time, particularly for complex projects and repos requiring deep expertise. [Assign code experts](https://docs.gitstream.cm/automations/standard/review-assignment/assign-code-experts/) to review complex PRs, [notify your security team about sensitive changes](https://docs.gitstream.cm/automations/standard/review-assignment/review-sensitive-files/), and automatically [assign reviewers based on the contents of the PR](https://docs.gitstream.cm/automations/assign-reviewers-by-directory/).
-### Auto-Merge PRs
+<br/>
+    <a href="https://github.com/linear-b/gitstream/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=">Report Bug</a>
+    ·
+    <a href="https://github.com/linear-b/gitstream/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.md&title=">Request Feature</a>
+    ·
+    <a href="https://github.com/linear-b/gitstream/issues/new?assignees=&labels=new-example&projects=&template=new_automation_example.md&title=New+Example%3A+">Share your automation</a>
+    ·
+  <a href="https://github.com/linear-b/gitstream/discussions/102">Feature Updates</a>
+    ·
+    <a href="https://twitter.com/LinearB_Inc">X</a>
+  </p>
 
-Not all PRs need extensive review policies that loop in multiple experts. gitStream lets you auto-merge [safe changes](https://docs.gitstream.cm/automations/approve-safe-changes/), [small fixes](https://docs.gitstream.cm/automations/approve-tiny-changes/), [PRs from trusted teams](https://docs.gitstream.cm/automations/approve-team-by-directory/), and anything else you want to unblock the review process to keep your team focused on their work.
 
-### Contextual Labels
+## Why gitStream?
+Our research shows that code reviews are [the most consistent bottleneck in the software development process](https://devinterrupted.substack.com/p/analysis-the-quickest-path-to-halving?utm_source=G&utm_medium=referral&utm_campaign=gitStream+-+GitHub+Repo), so we built gitStream to enable dev teams to use simple YAML configurations to reduce code review toil and improve software quality. 
 
-Reduce the mental burden of code reviews with labels that provide a high degree of context. Indicate an [estimated time to review](https://docs.gitstream.cm/automations/provide-estimated-time-to-review/) or flag potential issues with [Jira information](https://docs.gitstream.cm/automations/label-missing-jira-info/), [missing tests](https://docs.gitstream.cm/automations/label-prs-without-tests/), [deleted files](https://docs.gitstream.cm/automations/label-deleted-files/), and more.
+## ✨ Features
 
-## Install
-[How to install gitStream](https://docs.gitstream.cm/).
-## Usage 
-* [How gitStream works](https://docs.gitstream.cm/how-it-works/)
-* [Write your first automation](https://docs.gitstream.cm/quick-start/)
-* [gitStream automation library](https://docs.gitstream.cm/automations/automation-library/)
-* [Integrations](https://docs.gitstream.cm/integrations)
-## Contribute 
+* 🤓 Auto-assign PR/MR reviewers
+* ♾️ Selectively trigger CI pipelines
+* 🔃 Send webhooks from your git repo to other tools like Slack, Jira, and more
+* ✅ Auto-merge low-risk PRs/MRs like documentation, dependency updates, and test additions
+* 🏷️ Automatic PR labeler
+* ‼️ Flag problems before requesting human review
+* 💬 Add context to code reviews with comments and labels
 
-* [Report a bug](https://github.com/linear-b/gitstream/issues/new?assignees=&labels=bug&template=bug_report.md&title=)
-* [Request a new feature](https://github.com/linear-b/gitstream/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=)
+![Auto-approve safe change](https://github-production-user-asset-6210df.s3.amazonaws.com/7205829/290897837-e7f4f206-ad20-4675-8288-e6dd063d6cab.png)
+
+## 🚀 Get Started
+
+gitStream is a GitHub / GitLab app that processes automations defined in Continuous Merge (CM) automation files contained in your git repos. You can test gitStream automations on your own PRs via the [gitStream playground](https://app.gitstream.cm/playground).
+
+If you're ready to install gitStream, or want to explore its automation capabilities, [head over to the docs](https://docs.gitstream.cm). You can have your first automation up and running in as little as 2 minutes.
+
+
 ## Updates
 
 Subscribe to [gitStream Feature Announcements](https://github.com/linear-b/gitstream/discussions).
@@ -46,3 +81,15 @@ To run the documentation server locally using Python3, follow these steps:
 
 The local documentation server should now be running at `http://127.0.0.1:8000/`.
 
+
+# LinearB
+gitStream is a free product from the team at [LinearB](https://linearb.io/?utm_source=Gi&utm_medium=referral&utm_campaign=gitStream+-+GitHub+Repo): the industry-leading platform for software delivery management that has helped thousands of developers around the world improve their team's productivity.
+
+<div align="center">
+  <a href="https://linearb.io?utm_source=GitHub&utm_medium=referral&utm_campaign=gitStream+-+GitHub+Repo" target="_blank">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/linear-b/gitstream/a5d4aca7b923e5cd70c813df06dc70de97382d8c/docs/downloads/images/LinearB-logo-white.png">
+    <img alt="Novu Logo" src="https://raw.githubusercontent.com/linear-b/gitstream/a5d4aca7b923e5cd70c813df06dc70de97382d8c/docs/downloads/images/LinearB-logo-dark.png" width="280"/>
+  </picture>
+  </a>
+</div>
