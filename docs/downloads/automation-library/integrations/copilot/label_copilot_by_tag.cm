@@ -1,0 +1,21 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  label_copilot:
+    # Detect PRs that contain the text '#copilot#' in the title, description, comments, or commit messages
+    if:
+      - {{ copilot_tag.pr_title or copilot_tag.pr_desc or copilot_tag.pr_comments or copilot_tag.commit_messages  }}
+    # Apply a label indicating the user has adopted Copilot
+    run:
+      - action: add-label@v1
+        args:
+          label: '🤖 Copilot'
+
+copilot_tag:
+  pr_title: {{ pr.title | includes(regex=r/#copilot#/) }}
+  pr_desc: {{pr.description | includes(regex=r/#copilot#/) }}
+  pr_comments: {{ pr.comments | map(attr='content') | match(regex=r/#copilot#/) | some }}
+  commit_messages: {{ branch.commits.messages | match(regex=r/#copilot#/) | some }}
