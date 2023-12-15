@@ -14,8 +14,7 @@
     <img src="https://img.shields.io/github/contributors/linear-b/gitstream" alt="NPM">
   </a>
   <a href="https://github.com/linear-b/gitstream">
-    <img src="https://img.shields.io/github/stars/linear-b/gitstream
-" alt="Stars">
+    <img src="https://img.shields.io/github/stars/linear-b/gitstream" alt="Stars">
   </a>
   <img src="https://img.shields.io/github/license/linear-b/gitstream" alt="Apache 2.0">
 </p>
@@ -44,7 +43,7 @@
   </p>
 
 
-## Why gitStream?
+## ⭐️ Why gitStream?
 Our research shows that code reviews are [the most consistent bottleneck in the software development process](https://devinterrupted.substack.com/p/analysis-the-quickest-path-to-halving?utm_source=G&utm_medium=referral&utm_campaign=gitStream+-+GitHub+Repo), so we built gitStream to enable dev teams to use simple YAML configurations to reduce code review toil and improve software quality. 
 
 ## ✨ Features
@@ -57,7 +56,7 @@ Our research shows that code reviews are [the most consistent bottleneck in the 
 * ‼️ Flag problems before requesting human review
 * 💬 Add context to code reviews with comments and labels
 
-![Auto-approve safe change](https://github-production-user-asset-6210df.s3.amazonaws.com/7205829/290897837-e7f4f206-ad20-4675-8288-e6dd063d6cab.png)
+![Auto-approve safe change](https://github-production-user-asset-6210df.s3.amazonaws.com/7205829/290906189-cd272a62-dbce-47eb-9752-f7b2ddc308cb.jpg)
 
 ## 🚀 Get Started
 
@@ -66,11 +65,11 @@ gitStream is a GitHub / GitLab app that processes automations defined in Continu
 If you're ready to install gitStream, or want to explore its automation capabilities, [head over to the docs](https://docs.gitstream.cm). You can have your first automation up and running in as little as 2 minutes.
 
 
-## Updates
+## 📣 Updates
 
 Subscribe to [gitStream Feature Announcements](https://github.com/linear-b/gitstream/discussions).
 
-## Local Documentation Server Setup
+## 📁 Local Documentation Server Setup
 
 To run the documentation server locally using Python3, follow these steps:
 
