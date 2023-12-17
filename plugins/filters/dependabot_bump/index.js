@@ -1,4 +1,8 @@
 /**
+ * 
+ * This file contains a gitStream custom filter.
+ * More info here: https://docs.gitstream.cm/custom-filters/ 
+ * 
  * Parse dependabot version bump and extract the versions upgraded.
  *
  * This function takes a description string as input and assumes a pattern of `from v1 to v2`.
