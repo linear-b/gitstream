@@ -18,6 +18,12 @@ Integrate third-party developer tools with gitStream.
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
+[::octicons-copilot-16:: GitHub Copilot](/integrations/github-copilot)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
 [:material-label: PR Labels](/automations/standard/label-management)
 </div>
 </div>
@@ -181,6 +187,12 @@ Integrate third-party developer tools with gitStream.
 ## Other
 
 <div class="integrations-list" markdown="1">
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+<a href=linearb>![LinearB](/downloads/images/linearb-symbol-dark.png#only-light) ![LinearB](/downloads/images/linearb-symbol-white.png#only-dark) LinearB</a>
+</div>
+</div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
