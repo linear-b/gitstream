@@ -1,3 +1,0 @@
-* [Label by Preset Contributors](/automations/genai/label-by-contributors) - Label PRs authored by a specific set of contributors
-* [Label by Extracted Hint](/automations/genai/label-by-hint) - Label PRs using a hint in the PR title, description, comments or commit messages
-* [Ask in a Prompt and Label](/automations/genai/prompt-and-label) - Prompt the PR author to specify whether the PR was assisted by Generative AI using a comment and label accordingly
