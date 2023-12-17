@@ -166,6 +166,12 @@ div.flow-chart {
 .integrations-card-title a{
   color: inherit;
 }
+
+.integrations-card-title img{
+  padding:2px;
+  width:auto;
+  height: 1.2em;
+}
   
 .integrations-card-labels {
   font-size: 0.7em;
