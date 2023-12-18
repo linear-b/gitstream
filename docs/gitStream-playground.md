@@ -7,6 +7,8 @@ To access gitStream Playground, visit [https://app.gitstream.cm/playground](http
 To be able to test automations of private repository PRs, log in with your GitHub account credentials.
 ### Interface Overview
 
+
+
 The gitStream Playground interface consists of the following sections:
 ![gitStream Playground](screenshots/Playground-Overview.png)
 

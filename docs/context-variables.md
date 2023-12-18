@@ -2,6 +2,8 @@
 title: gitStream Reference - Context Variables
 description: Context Variables enable gitStream to extract useful data from PRs.
 ---
+
+
 # Context variables
 
 Context variable are the inputs for the automation conditions or checks.

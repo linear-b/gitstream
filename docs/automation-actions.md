@@ -2,6 +2,8 @@
 title: gitStream Reference - Automation Actions
 description: Automation Actions enable gitStream to make changes to your PRs.
 ---
+
+
 # Automation actions
 
 Actions are the end results of the automation described in your `.cm` file.
