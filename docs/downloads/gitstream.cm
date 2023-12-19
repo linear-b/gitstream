@@ -1,19 +1,34 @@
 # -*- mode: yaml -*-
 # This example configuration for provides basic automations to get started with gitStream.
-# View the gitStream quickstart for more examples: https://docs.gitstream.cm/quick-start/
+# View the gitStream quickstart for more examples: https://docs.gitstream.cm/examples/
 manifest:
   version: 1.0
+
+
 automations:
   # Add a label that indicates how many minutes it will take to review the PR.
-  estimated_time_to_review: 
+  estimated_time_to_review:
     if:
       - true
     run:
       - action: add-label@v1
-      # etr is defined in the last section of this example
         args:
           label: "{{ calc.etr }} min review"
-          color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
+          color: {{ colors.red if (calc.etr >= 20) else ( colors.yellow if (calc.etr >= 5) else colors.green ) }}
+  # Inform PR authors when they fail to reference Jira tickets in the PR title or description.
+  label_missing_jira_info:
+    if:
+      - {{ not (has.jira_ticket_in_title or has.jira_ticket_in_desc) }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "missing-jira"
+          color: {{ colors.red }}
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR is missing a Jira ticket reference in the title or description.
+            Please add a Jira ticket reference to the title or description of this PR.
   # Post a comment that lists the best experts for the files that were modified.
   explain_code_experts:
     if:
@@ -22,6 +37,21 @@ automations:
       - action: explain-code-experts@v1 
         args:
           gt: 10 
-# The next function calculates the estimated time to review and makes it available in the automation above.
+
+
+# +----------------------------------------------------------------------------+
+# | Custom Expressions                                                         |
+# | https://docs.gitstream.cm/how-it-works/#custom-expressions                 |
+# +----------------------------------------------------------------------------+
+
 calc:
   etr: {{ branch | estimatedReviewTime }}
+
+has:
+  jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
+  jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
+
+colors:
+  red: 'b60205'
+  yellow: 'fbca04'
+  green: '0e8a16'

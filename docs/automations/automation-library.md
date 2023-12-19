@@ -49,6 +49,14 @@ This library of gitStream examples is meant to serve as a starting point for you
 * [Welcome newcomer](welcome-newcomer/README.md) - Post a welcome message when someone makes their first PR to a repo, and provide context to help them know what's next.
 * [Remove TODO comments](standard/review-todo-comments/README.md) - Detect TODO comments in PRs and ask the author to remove or fix them.
 
+## Measure and Track Generative AI Usage
+
+These examples help you label PRs where Generative AI was used to generate code.
+
+* [Label by Preset Contributors](genai/label-by-contributors/README.md) - Label PRs authored by a specific set of contributors.
+* [Label by Extracted Hint](genai/label-by-hint/README.md) - Label PRs using a hint in the PR title, description, comments or commit messages.
+* [Ask in a Prompt and Label](genai/prompt-and-label/README.md) - Prompt the PR author to specify whether the PR was assisted by Generative AI using a comment and label accordingly.
+
 ## Security and Policy Compliance
 These examples help you follow your team's security best practices.
 
