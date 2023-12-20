@@ -18,7 +18,6 @@ Automatically detect which programming languages are contained in PRs and automa
     
     * Label the PR for each programming language that is included.
 
-<div class="automationExample" markdown="1">
 !!! example "Label PRs by Language"
     ```yaml+jinja
     --8<-- "docs/downloads/automation-library/standard/label-management/label_prs_by_language.cm"
