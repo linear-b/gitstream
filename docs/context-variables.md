@@ -151,7 +151,7 @@ The `env` field
     steps:
       - name: Evaluate Rules
         env:
-          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 ...
 ```
 
