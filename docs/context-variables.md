@@ -151,7 +151,7 @@ The `env` field
     steps:
       - name: Evaluate Rules
         env:
-          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 ...
 ```
 
@@ -170,7 +170,7 @@ automations:
 
 slack_webhook: {{ env.SLACK_WEBHOOK }}
 ```
-https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions
+
 #### `files`
 
 The `files` context includes the list of changed files in the branch compared to the main branch.
