@@ -1,3 +1,8 @@
+---
+search:
+  exclude: true
+---
+
 # Custom filters
 
 gitStream enables you to build custom Javascript plugins to extend its functionality for more advanced data processing and pulling data from external APIs. gitStream plugins are based on the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module standard, a widely used pattern for structuring and importing JavaScript modules. This approach enables you to create and integrate custom filters and functionalities seamlessly within your gitStream automations.
