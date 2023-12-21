@@ -170,7 +170,7 @@ automations:
 
 slack_webhook: {{ env.SLACK_WEBHOOK }}
 ```
-https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions
+
 #### `files`
 
 The `files` context includes the list of changed files in the branch compared to the main branch.
