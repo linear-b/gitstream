@@ -1,4 +1,4 @@
----
+<img width="965" alt="image" src="https://github.com/linear-b/gitstream/assets/129676672/6df504d1-dab5-46d2-bfcd-7be363786f42">---
 title: gitStream Frequently Asked Questions
 description: Get help with gitStream.
 ---
@@ -50,3 +50,8 @@ Get a plug-in that enable modelines, popular ones are:
 Go to our issues page and check if there are any similar issues already reported, if not create a new issue with all the details so we can take a look.
 
 Found a bug? Create a new item in the [project's issues](https://github.com/linear-b/gitstream/issues)
+
+## Can I use gitStream with Merge Queues?
+
+Yes. When a merge queue is used, and gitStream is set as a required check, gitStream automation will be invoked with the merge event. The automation will set gitStream to a `Completed` status and `Skipped` conclusion to allow the PR merge.
+<img width="965" alt="gitStream with Merge Queue" src="https://github.com/linear-b/gitstream/assets/129676672/92e13792-5a60-47dc-853c-6e5f445dcf02">
