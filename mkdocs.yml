@@ -26,7 +26,6 @@ nav:
   - Playground: gitStream-playground.md
   - Troubleshooting: troubleshooting.md
   - FAQ: faq.md
-  - Demo: https://app.gitstream.cm/playground
   - Login: https://app.gitstream.cm/login 
 
 theme:
