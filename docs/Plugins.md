@@ -131,6 +131,7 @@ automations:
 ```
 
 In this example, the `bananify` filter is applied to the pull request description. gitStream will post a comment that changes all occurrences of the word “banana” with a banana emoji.
+
 ### Async Custom Filter
 
 When implementing an asynchronous filter, ensure that your `index.js` file exports an asynchronous function. This function should return a `Promise` that resolves with the desired output.
