@@ -9,7 +9,6 @@ function getOrcaPropertyRating(lines, lineIdentifierRegex, findingsCellIndex) {
 }
 
 module.exports = (pr) => {
-  console.log("ORCA PR", { pr });
   let orcaObject = {
     infrastructure_as_code: { count: null, rating: '' },
     vulnerabilities: { count: null, rating: '' },
