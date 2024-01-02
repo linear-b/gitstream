@@ -16,11 +16,8 @@ automations:
     run:
       - action: add-label@v1
         args:
-          label: 'orca-security:{{ item.name }}'
-          color: {{ colors.red }}
-      - action: add-reviewers@v1
-        args:
-          reviewers: [my-organization/security]
+          label: 'orca-security:{{ item.name }}-{{ item.rating | lower }}'
+          color: {{ colors.red if (item.rating == "HIGH") else (colors.orange if (item.rating == "MEDIUM") else (colors.yellow if (item.rating == "LOW") else colors.blue)) }}
   {% endfor %}
 
 orca: {{ pr | extractOrcaFindings }}
@@ -28,10 +25,13 @@ orca: {{ pr | extractOrcaFindings }}
 reports:
   - name: introduced-cves
     count: {{ orca.vulnerabilities.count }}
+    rating: {{ "HIGH" if (orca.vulnerabilities.rating.high > 0) else ("MEDIUM" if (orca.vulnerabilities.rating.medium > 0) else ("LOW" if (orca.vulnerabilities.rating.low > 0) else "INFO")) }}
   - name: iac-misconfigurations
     count: {{ orca.infrastructure_as_code.count }}
+    rating: {{ "HIGH" if (orca.infrastructure_as_code.rating.high > 0) else ("MEDIUM" if (orca.infrastructure_as_code.rating.medium > 0) else ("LOW" if (orca.infrastructure_as_code.rating.low > 0) else "INFO")) }}
   - name: exposed-secrets 
     count: {{ orca.secrets.count }}
+    rating: {{ "HIGH" if (orca.secrets.rating.high > 0) else ("MEDIUM" if (orca.secrets.rating.medium > 0) else ("LOW" if (orca.secrets.rating.low > 0) else "INFO")) }}
 
 colors:
   red: 'b60205'
