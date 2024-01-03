@@ -1,8 +1,11 @@
---8<-- "docs/plugins/filters/standard/isFlaggedUser/reference.md"
+--8<-- "plugins/filters/isFlaggedUser/reference.md"
+
+
+[Link](/plugins)
 
 ??? note "Plugin Code: isFlaggedUser"
     ```javascript
-    --8<-- "docs/plugins/filters/standard/isFlaggedUser/index.js"
+    --8<-- "plugins/filters/isFlaggedUser/index.js"
     ```
     <div class="result" markdown>
     <span>
@@ -12,11 +15,11 @@
 
 ??? example "gitStream CM Example: isFlaggedUser"
     ```yaml+jinja
-    --8<-- "docs/plugins/filters/standard/isFlaggedUser/is_flagged_user.cm"
+    --8<-- "plugins/filters/isFlaggedUser/is_flagged_user.cm"
     ```
     <div class="result" markdown>
     <span>
     </span>
     </div>
 
-[Download Source Code](https://github.com/linear-b/gitstream/tree/main/docs/plugins/filters/standard/isFlaggedUser)
+[Download Source Code](https://github.com/linear-b/gitstream/tree/main/plugins/filters/isFlaggedUser)
