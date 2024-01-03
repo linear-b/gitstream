@@ -5,58 +5,15 @@ search:
 
 # Custom filters
 
-gitStream enables you to build custom Javascript plugins to extend its functionality for more advanced data processing and pulling data from external APIs. gitStream plugins are based on the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module standard, a widely used pattern for structuring and importing JavaScript modules. This approach enables you to create and integrate custom filters and functionalities seamlessly within your gitStream automations.
+gitStream enables you to build custom JavaScript plugins to extend its functionality for more advanced data processing and pulling data from external APIs. gitStream plugins are based on the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module standard, a widely used pattern for structuring and importing JavaScript modules. This approach enables you to create and integrate custom filters and functionalities seamlessly within your gitStream automations.
 
-## Folder structure
+Check here for community plugins: [Plugins](https://docs.gitstream.cm/plugins).
 
-Custom plugins in gitStream are organized using a specific folder structure:
+### Example: a simple custom filter
 
-#### Specific Repo Filters
+Here's an example of a simple custom filter that replaces the word “banana” with a banana emoji (🍌).
 
-In the desired repository, place your filter plugins in the following location:
-```.cm/plugins/filters/<filterName>/index.js```
-
-#### Asynchronous Filters
-
-Name asynchronous filters with an Async suffix, e.g.:
-```.cm/plugins/filters/<filterNameAsync>/index.js```
-
-Name asynchronous filters with an **Async** suffix when creating an asynchronous filter, it's crucial to follow the naming conventions for both the folder structure and the usage within CM scripts:
-
-1. Folder Naming: The folder name for an asynchronous filter should include the `Async` postfix. This naming convention helps gitStream to recognize and handle the filter appropriately. For example, if your filter's name is `dataFetcher`, the folder should be named `dataFetcherAsync`, e.g. `.cm/plugins/filters/dataFetcherAsync/index.js`.
-
-2. Usage in CM Scripts: Similarly, when using the asynchronous filter in your CM scripts, include the `Async` postfix in the filter name. This ensures that gitStream processes the filter as an asynchronous operation, e.g. In your CM script, refer to the above filter as `dataFetcherAsync`.
-
-Implementation requires to return a promise that includes both the error info and the result of the filter, see details in the example below.
-
-!!! Note
-
-    Errors in async plugins are output as logs. Users can implement their own error handling; otherwise, gitStream will log errors in its default format.
-
-#### Org Level Filters
-
-Place these filters in your `cm` repository in the following location:
-```plugins/filters/<filterName>/index.js``` 
-
-!!! Tip
-
-    If two filters have the same name, the one in the repository currently overrides the one at the organization level.
-
-## Error handling
-
-Timeout: gitStream actions are terminated by default after 15 minutes, with no current option for extending this limit.
-
-#### Filter usage in gitStream
-
-Once you've created your custom plugin, it can be called using the same convention as default gitStream filter functions, for example:
-
-```{{ "one banana" | bananify }}```
-
-## Example: Creating a Custom Filter
-
-Here's an example of a simple custom filter that replaces the word "banana" with a banana emoji (🍌).
-
-**Create the Filter**: In your gitStream project, navigate to the `.cm/plugins/filters/bananify` directory and create the following `index.js` file:
+In your repository project, navigate to the `.cm` folder and create the `.cm/plugins/filters/bananify` path with the following `index.js` file.
 
 ```js
 module.exports = (text) => {
@@ -64,11 +21,19 @@ module.exports = (text) => {
 }
 ```
 
-**Using the Filter in Automations**: You can use this custom filter in your repository gitStream automations. Here's an example of how to use it in a CM automation script:
+You should see the following directory structure:
+
+```
+.
+├─ .cm/
+│  ├─ gitstream.cm
+│  └─ plugins/filters/bananify
+│     └─ index.js
+```
+
+You can now use this custom filter in your repository gitStream automations. Here's an example of how to use it in a CM automation script:
 
 ```yaml+jinja
-# -*- mode: yaml -*-
-
 manifest:
   version: 1.0
 
@@ -83,11 +48,69 @@ automations:
             BANANAS! {{ pr.description | bananify }}
 ```
 
-In this example, the bananify filter is applied to the pull request description. gitStream will post a comment that changes all occurrences of the word "banana" with a banana emoji.
+In this example, the `bananify` filter is applied to the pull request description. gitStream will post a comment that changes all occurrences of the word “banana” with a banana emoji.
+
+## Folder structure
+
+Custom plugins in gitStream are organized using a specific folder structure. In the desired repository, place your filter plugins in the following location:
+```.cm/plugins/filters/<filterName>/index.js```
+
+```
+.
+├─ .cm/
+│  ├─ gitstream.cm
+│  └─ plugins/filters/<filterName>
+│     └─ index.js
+```
+
+To use filters in all your repositories, place these filters in your `cm` repository in the following location: `plugins/filters/<filterName>/index.js`
+
+```
+.
+├─ gitstream.cm
+└─ plugins/filters/<filterName>
+   └─ index.js
+```
+
+!!! Tip
+
+    If two filters have the same name, the one in the repository overrides the one at the organization level.
+
+
+#### Asynchronous Filters
+
+When using async JavaScript in your plugin, beside using the `async` keyword on the function definitions and passing on the `callback` as the last argument to the function, the module should also export an `async` property marker that indicates it is an async function. 
+
+
+```javascript
+module.exports = {
+   async: true, // (1)
+   filter: async (/* args */, callback) => { // (2)
+    // filter implementation details
+    // ...
+    const error = null;
+    return callback(error, unique); // (3)
+  },
+}
+```
+
+1.  Export module property `async: true` 
+2.  Export function `filter: async (..., callback) => { }`
+2.  Return the `callback` with `error` object as its first argument
+
+When using the async function, it is required to return a promise that includes both the error info and the result of the filter, see details in the example below.
+
+#### Debug and error handling
+
+When using `console.log` the output is printed as logs in the workflow runner, e.g. GitHub action log. 
+
+Errors in async plugins are output as logs. 
+
+gitStream actions are terminated by default after 15 minutes, with no current option for extending this limit.
 
 ## Example: Creating a Async Custom Filter
 
-When implementing an asynchronous filter, ensure that your `index.js` file exports an asynchronous function. This function should return a Promise that resolves with the desired output.
+When implementing an asynchronous filter, ensure that your `index.js` file exports an asynchronous function. This function should return a `Promise` that resolves with the desired output.
 
 Example `index.js` for an asynchronous filter:
 
@@ -104,7 +127,10 @@ const sayHelloAsync = async (params, callback) => {
   return callback(error, result); 
 };
 
-module.exports = sayHello;
+module.exports = {
+   async: true,
+   filter: sayHello,
+}
 ```
 
 #### Available JavaScript Packages

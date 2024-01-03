@@ -25,6 +25,11 @@ In order to support automations that either Approve or Merge PRs, GitHub API req
 
 Any repo in GitHub is supported. More Git providers are planned soon.
 
+## Can I use gitStream with Merge Queues?
+
+Yes. When a merge queue is used, and gitStream is set as a required check, gitStream automation will be invoked with the merge event. The automation will set gitStream to a `Completed` status and `Skipped` conclusion to allow the PR merge.
+![gitStream with Merge Queue](screenshots/merge-queue-check.png)
+
 ## Custom filter functions 
 
 Coming soon.
