@@ -10,9 +10,9 @@ function getOrcaPropertyRating(lines, lineIdentifierRegex, findingsCellIndex) {
 
 module.exports = (pr) => {
   let orcaObject = {
-    infrastructure_as_code: { count: null, rating: '' },
-    vulnerabilities: { count: null, rating: '' },
-    secrets: { count: null, rating: '' },
+    infrastructure_as_code: { count: null, priority: '' },
+    vulnerabilities: { count: null, priority: '' },
+    secrets: { count: null, priority: '' },
   };
 
   // Orca comments are added as PR review
@@ -21,22 +21,22 @@ module.exports = (pr) => {
   if (orcaComment.length) {
     const orcaCommentArray = orcaComment[orcaComment.length - 1].content.split('\n');
 
-    var rating = getOrcaPropertyRating(orcaCommentArray, /Infrastructure as Code/, 3);
+    var priority = getOrcaPropertyRating(orcaCommentArray, /Infrastructure as Code/, 3);
     orcaObject.infrastructure_as_code = {
-      count: rating.high + rating.medium + rating.low + rating.info,
-      rating,
+      count: priority.high + priority.medium + priority.low + priority.info,
+      priority,
     };
 
-    var rating = getOrcaPropertyRating(orcaCommentArray, /Vulnerabilities/, 3);
+    var priority = getOrcaPropertyRating(orcaCommentArray, /Vulnerabilities/, 3);
     orcaObject.vulnerabilities = {
-      count: rating.high + rating.medium + rating.low + rating.info,
-      rating,
+      count: priority.high + priority.medium + priority.low + priority.info,
+      priority,
     };
 
-    var rating = getOrcaPropertyRating(orcaCommentArray, /Secrets/, 3);
+    var priority = getOrcaPropertyRating(orcaCommentArray, /Secrets/, 3);
     orcaObject.secrets = {
-      count: rating.high + rating.medium + rating.low + rating.info,
-      rating,
+      count: priority.high + priority.medium + priority.low + priority.info,
+      priority,
     };
   }
 
