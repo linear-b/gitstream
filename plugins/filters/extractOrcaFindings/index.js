@@ -19,7 +19,7 @@ module.exports = (pr) => {
   const orcaComment = pr.reviews.filter(x => x.commenter.includes('orca-security'));
 
   if (orcaComment.length) {
-    const orcaCommentArray = orcaComment[0].content.split('\n');
+    const orcaCommentArray = orcaComment[orcaComment.length - 1].content.split('\n');
 
     var rating = getOrcaPropertyRating(orcaCommentArray, /Infrastructure as Code/, 3);
     orcaObject.infrastructure_as_code = {
