@@ -33,5 +33,5 @@ automations:
           comment: |
             Snyk-bot `patch` version bumps are approved and merged automatically.
 
-bump: {{ pr.description | snykBump | semver }}
+bump: {{ pr.description | extarctSnykVersionBump | compareSemver }}
 ```

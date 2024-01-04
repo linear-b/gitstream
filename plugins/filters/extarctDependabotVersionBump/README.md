@@ -33,5 +33,5 @@ automations:
           comment: |
             Dependabot `patch` version bumps are approved and merged automatically.
 
-bump: {{ pr.description | dependabotBump | semver }}
+bump: {{ pr.description | extarctDependabotVersionBump | compareSemver }}
 ```
