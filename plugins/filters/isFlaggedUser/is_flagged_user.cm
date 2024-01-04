@@ -1,0 +1,13 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  detect_flagged_user:
+    if:
+      - {{ pr.author | isFlaggedUser }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: {{ pr.author }} is a gitStream user.
