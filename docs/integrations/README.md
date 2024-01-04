@@ -3,10 +3,16 @@ title: gitStream Integrations
 description: Integrate third-party developer tools with gitStream.
 ---
 # gitStream Integrations
-
-Integrate third-party developer tools with gitStream.
-
 <!-- --8<-- [start:integrations]-->
+<div class="integrations-list" markdown="1">
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+<a href=linearb>![LinearB](/downloads/images/linearb-symbol-dark.png#only-light) ![LinearB](/downloads/images/linearb-symbol-white.png#only-dark) LinearB</a>
+</div>
+</div>
+
+</div>
 ## GitHub / GitLab
 <div class="integrations-list" markdown="1">
 
@@ -181,12 +187,6 @@ Integrate third-party developer tools with gitStream.
 ## Other
 
 <div class="integrations-list" markdown="1">
-
-<div class="integrations-card" markdown="1">
-<div class="integrations-card-title" markdown="1">
-<a href=linearb>![LinearB](/downloads/images/linearb-symbol-dark.png#only-light) ![LinearB](/downloads/images/linearb-symbol-white.png#only-dark) LinearB</a>
-</div>
-</div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
