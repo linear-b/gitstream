@@ -147,7 +147,7 @@ No other dependencies are supported at this time. If you have recommendations fo
 
 ### How to Publish Custom Filters on the gitStream Docs
 
-Create a directory for your plugin inside one of the subdirectories in `docs/plugins/`. The name of the directory must match the name of the exported JavaScript function. Then ensure you have all of the required files and JSDoc content outlined below.
+Create a directory for your plugin inside one of the subdirectories in `plugins/filters`. The name of the directory must match the name of the exported JavaScript function. Then ensure you have all of the required files and JSDoc content outlined below.
 
 Required Files:
 
