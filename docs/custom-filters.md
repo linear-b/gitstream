@@ -186,6 +186,6 @@ You can use jsdoc2md to convert the JSDoc content of your plugin to markdown usi
 
 Then, invoke the following command from inside your plugin directory:
 
-`jsdoc2md --partial ../../../../snippets/partials/body.hbs --partial ../../../../snippets/partials/sig-name.hbs --files index.js > reference.md`
+`jsdoc2md --partial ../../../docs/snippets/partials/body.hbs --partial ../../../docs/snippets/partials/sig-name.hbs --files index.js > reference.md`
 
 This should output a reference.md file that contains properly formatted markdown based on the JSDoc contents of your plugin.

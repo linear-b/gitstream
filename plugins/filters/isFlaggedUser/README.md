@@ -1,8 +1,5 @@
 --8<-- "plugins/filters/isFlaggedUser/reference.md"
 
-
-[Link](/plugins)
-
 ??? note "Plugin Code: isFlaggedUser"
     ```javascript
     --8<-- "plugins/filters/isFlaggedUser/index.js"

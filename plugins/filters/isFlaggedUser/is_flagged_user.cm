@@ -4,9 +4,9 @@ manifest:
   version: 1.0
 
 automations:
-  is_gitstream_user:
+  detect_flagged_user:
     if:
-      - {{ pr.author | isGitstreamUser }}
+      - {{ pr.author | isFlaggedUser }}
     run:
       - action: add-comment@v1
         args:
