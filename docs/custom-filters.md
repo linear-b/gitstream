@@ -1,153 +1,192 @@
 ---
-search:
-  exclude: true
+title: Filter Function Plugins
+description: Use JavaScript plugins to extend gitStream capabilities, connect gitStream to external APIs, and handle more advanced use cases.
 ---
 
-# Custom filters
+# Filter Function Plugins
 
-gitStream enables you to build custom JavaScript plugins to extend its functionality for more advanced data processing and pulling data from external APIs. gitStream plugins are based on the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module standard, a widely used pattern for structuring and importing JavaScript modules. This approach enables you to create and integrate custom filters and functionalities seamlessly within your gitStream automations.
+gitStream enables you to build JavaScript plugins to extend functionality for more advanced data processing and pulling data from external APIs. Use gitStream plugins to seamlessly create and integrate custom filters and other capabilities within your gitStream automations.
 
-Check here for community plugins: [Plugins](https://docs.gitstream.cm/plugins).
+!!! example "Example: isFlaggedUser"
+    Here is an example of a filter function plugin that evaluates a username input against a list of specified usernames and returns true if the user is in the list.
 
-### Example: a simple custom filter
+    ``` JavaScript
+    const flaggedUsers = ["user1", "user2"];
 
-Here's an example of a simple custom filter that replaces the word “banana” with a banana emoji (🍌).
+    function isFlaggedUser(username) {
+        if (flaggedUsers.includes(username)) {
+            return true;
+        } else {
+            return false;
+        }
+    };
 
-In your repository project, navigate to the `.cm` folder and create the `.cm/plugins/filters/bananify` path with the following `index.js` file.
+    module.exports = isFlaggedUser;
+    ```
+    This creates a new `isFlaggedUser` filter function that can be invoked inside gitStream CM files. For example, you can use this to enable gitStream automations to trigger only for specific PR authors.
 
-```js
-module.exports = (text) => {
-  return text.replaceAll('banana', '🍌');
-}
+    ```yaml+jinja
+    automations:
+      detect_flagged_user:
+        if:
+          - {{ pr.author | isFlaggedUser }}
+        run:
+          - action: add-comment@v1
+            args:
+              comment: {{ pr.author }} is a gitStream user.
+    ```
+
+## Installation
+
+gitStream plugins can be installed for an entire git organization or for individual repos.
+
+!!! warning "Repository Plugins Take Precedence"
+
+    If two filter function plugins have the same name, the repository-level plugin overrides the organization-level plugin.
+
+=== "Org-Level"
+
+    To use a filter function plugin in all your repositories, place it inside your `cm` repository in the following location: 
+    
+    `plugins/filters/<filterName>/index.js`
+
+    !!! success
+        Once installed, you should have a directory structure that looks like this:
+        ```
+        .
+        ├─ gitstream.cm
+        └─ plugins/filters/<filterName>
+          └─ index.js
+        ```
+
+=== "Repo-Level"
+
+    To use a filter function plugin for a single repository, place it inside the repo in the following location: 
+    
+    `.cm/plugins/filters/<filterName>/index.js`
+
+    !!! success
+        Once installed, you should have a directory structure that looks like this:
+        ```
+        .
+        ├─ .cm/
+        │  ├─ gitstream.cm
+        │  └─ plugins/filters/<filterName>
+        │     └─ index.js
+        ```
+
+!!! tip "gitStream Community Plugins"
+    We maintain an official list of community-contributed gitStream plugins. [Click here to explore plugin examples](/plugins).
+
+## Usage
+Once installed, you can call your new plugins inside CM files using the same conventions as the built in filter functions. 
+Filters are called with a pipe operator (`|`) and can take arguments. The first argument must be declared before the pipe, and all remaining arguments are passed as a set inside parenthesis. For example:
 ```
-
-You should see the following directory structure:
-
+{{ "Hello" | plugin(" world!") }}
 ```
-.
-├─ .cm/
-│  ├─ gitstream.cm
-│  └─ plugins/filters/bananify
-│     └─ index.js
+If the filter does not expect any arguments, you can invoke it by passing an empty string:
 ```
+{{ "" | myFilter }}
+```
+## Create Filter Function Plugins
 
-You can now use this custom filter in your repository gitStream automations. Here's an example of how to use it in a CM automation script:
+gitStream plugins are based on the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module standard, a widely used pattern for structuring and importing JavaScript modules. 
+
+!!! info "Supported JavaScript Dependencies"
+    gitStream supports the following JavaScript dependencies: [axios](https://github.com/axios/axios), github actions core (@actions/core), [moment](https://github.com/moment/moment), [lodash](https://github.com/lodash/lodash), octokit rest api (@octokit/rest)
+
+    No other dependencies are supported at this time. If you have recommendations for new dependencies, please open a new issue on the [gitStream GitHub repo](https://github.com/linear-b/gitstream).
+
+### Define a New Plugin
+
+Each filter function plugin must have its own unique directory inside the appropriate `/filters` directory for your repo or organization. To create a new filter function, create an index.js file inside the plugin's top-level directory, all plugins must have an index.js file that serves as the primary entry point
+
+One of the functions contained inside this file must be exported via `module.exports`, using the following conventions:
+
+=== "Synchronous"
+    Export plugins that use synchronous code:
+    
+    ``` javascript
+    function myFilter(author) {
+        return "Hello ${author}!";
+    };
+
+    module.exports = myFilter;
+    ```
+    
+=== "Asynchronous"
+    When using async JavaScript in your plugin, you need two things:
+
+    * A primary async function that returns a `callback()` containing any errors as the first argument and the result of the filter as the second.
+    * A `module.exports` statement that includes the properties `async: true` and `filter: <filterName>` with `<filterName>` matching the primary function that's being exported.
+
+    ``` javascript
+    const myFilter = async (author, callback) => {
+        const message = { text: "Hello ${author}!" };
+        const error = null;
+        return callback(error, message.text); 
+    };
+    
+    module.exports = {
+        async: true,
+        filter: myFilter
+    }
+    ```
+
+Here's how to invoke the new filter from this example:
 
 ```yaml+jinja
-manifest:
-  version: 1.0
-
 automations:
-  banana_check:
+  welcome_author:
     if:
-      - {{ pr.description | includes(term='banana') }}
+      - true
     run:
       - action: add-comment@v1
         args:
-          comment: |
-            BANANAS! {{ pr.description | bananify }}
+          comment: {{ pr.author | myFilter }}
 ```
 
-In this example, the `bananify` filter is applied to the pull request description. gitStream will post a comment that changes all occurrences of the word “banana” with a banana emoji.
+!!! tip "Debugging with console.log()"
+    Data passed to `console.log()` is output in your workflow runner logs, e.g. GitHub Actions, GitLab CI, etc.
 
-## Folder structure
+!!! info "Async Error Handling"
+    Errors reported by async plugins are output to the workflow runner logs. E.g. GitHub Actions, GitLab CI, etc.
 
-Custom plugins in gitStream are organized using a specific folder structure. In the desired repository, place your filter plugins in the following location:
-```.cm/plugins/filters/<filterName>/index.js```
+!!! warning "15 Minute Time Limit"
+    gitStream actions are terminated after 15 minutes, this is a hard limit that can't be extended.
 
-```
-.
-├─ .cm/
-│  ├─ gitstream.cm
-│  └─ plugins/filters/<filterName>
-│     └─ index.js
-```
+### Accept Arguments
 
-To use filters in all your repositories, place these filters in your `cm` repository in the following location: `plugins/filters/<filterName>/index.js`
+Filter function plugins can accept any number of arguments. The first argument must be passed to the filter function via a ` | ` operator; all subsequent arguments are passed as a set inside parenthesis. 
 
-```
-.
-├─ gitstream.cm
-└─ plugins/filters/<filterName>
-   └─ index.js
-```
+!!! example "Filter function to combine two strings"
 
-!!! Tip
+    This example accepts two strings and combines them, separating by a space:
 
-    If two filters have the same name, the one in the repository overrides the one at the organization level.
+    ```javascript
+    function combineStrings(str1, str2) {
+      return str1 + " " + str2;
+    }
+    module.exports = combineStrings;
+    ```
+    
+    In the following invocation, "Hello" is passed as `str1` and "world!" is passed as `str2`
 
+    `{{ "Hello" | combineStrings("world!") }}`
 
-#### Asynchronous Filters
+## More Information
 
-When using async JavaScript in your plugin, beside using the `async` keyword on the function definitions and passing on the `callback` as the last argument to the function, the module should also export an `async` property marker that indicates it is an async function. 
+* [Community Plugin Library](docs/plugins) - Explore plugins created by the gitStream community to get inspirations for your next workflow automation.
+* [Filter functions reference](docs/filter-functions) - Learn more about how built-in gitStream filter functions work.
+* [How gitStream Works](docs/how-it-works) - An introduction to gitStream conventions and syntax.
 
+## Contribute to the Community Plugin Library
 
-```javascript
-module.exports = {
-   async: true, // (1)
-   filter: async (/* args */, callback) => { // (2)
-    // filter implementation details
-    // ...
-    const error = null;
-    return callback(error, unique); // (3)
-  },
-}
-```
-
-1.  Export module property `async: true` 
-2.  Export function `filter: async (..., callback) => { }`
-2.  Return the `callback` with `error` object as its first argument
-
-When using the async function, it is required to return a promise that includes both the error info and the result of the filter, see details in the example below.
-
-#### Debug and error handling
-
-When using `console.log` the output is printed as logs in the workflow runner, e.g. GitHub action log. 
-
-Errors in async plugins are output as logs. 
-
-gitStream actions are terminated by default after 15 minutes, with no current option for extending this limit.
-
-## Example: Creating a Async Custom Filter
-
-When implementing an asynchronous filter, ensure that your `index.js` file exports an asynchronous function. This function should return a `Promise` that resolves with the desired output.
-
-Example `index.js` for an asynchronous filter:
-
-```js
-const axios = require('axios');
-
-const sayHelloAsync = async (params, callback) => {
-  const webhookUrl = 'WEBHOOK_URL';
-  const message = {
-    text: "Hello From 'sayHello' plugin from parser",
-  };
-  const result = await axios.post(webhookUrl, message);
-  const error = null;
-  return callback(error, result); 
-};
-
-module.exports = {
-   async: true,
-   filter: sayHello,
-}
-```
-
-#### Available JavaScript Packages
-
-gitStream supports the following JavaScript dependencies:
-
-1. [axios](https://github.com/axios/axios)
-2. github actions core (@actions/core)
-3. [moment](https://github.com/moment/moment)
-4. [lodash](https://github.com/lodash/lodash)
-5. octokit rest api (@octokit/rest)
-
-No other dependencies are supported at this time. If you have recommendations for new dependencies, please open a new issue on the [gitStream GitHub repo](https://github.com/linear-b/gitstream).
-
-### How to Publish Custom Filters on the gitStream Docs
+LinearB maintains a collection of [community-contributed gitStream plugins](/plugins). Here are the instructions for publishing a plugin as part of this library.
 
 Create a directory for your plugin inside one of the subdirectories in `plugins/filters`. The name of the directory must match the name of the exported JavaScript function. Then ensure you have all of the required files and JSDoc content outlined below.
+
+Here is an [example of a well-designed gitStream plugin](https://github.com/linear-b/gitstream/tree/main/plugins/filters/isFlaggedUser).
 
 Required Files:
 
@@ -158,6 +197,7 @@ Required Files:
 * LICENSE - The full text of the open source license the code is provided under.
 
 Required JSDoc tags:
+
 * `@module` - This must match the name of the exported JavaScript function.
 * `@description` - A 1-2 line description that wholistically describes the functionality of the plugin.
 * `@param` - There should be one `@param` tag for each argument the plugin accepts, with indicated types. Indicate which parameter is the default input parameter with the name "Input."
@@ -166,19 +206,21 @@ Required JSDoc tags:
 * `@license` - The name of the lincense contained in the LICENSE file. 
 
 Here is an example of properly formatted JSDoc content:
-```
+
+
+```javascript
 /**
- *  * @module isFlaggedUser
+ * @module isFlaggedUser
  * @description Returns true if the username that is passed to this function is specified in a predefined list of users. 
  * This is useful if you want gitStream automations to run only for specified users.
  * @param {string} Input - The GitHub username to check.
  * @returns {boolean} Returns true if the user is specified in the flaggedUsers list, otherwise false.
  * @example {{ pr.author | isFlaggedUser }}
  * @license MIT
- */
- ```
+**/
+```
 
-#### How to Generate Plugin Reference Markdown
+***How to Generate Plugin Reference Markdown***
 
 You can use jsdoc2md to convert the JSDoc content of your plugin to markdown using templates we've provided. First install jsdoc2md: 
 
