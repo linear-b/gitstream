@@ -23,6 +23,9 @@ nav:
     - Context variables: context-variables.md
     - Filter functions: filter-functions.md
     - Automation actions: automation-actions.md
+  - Plugins: 
+    - Overview: plugins.md
+    - Filter Functions: filter-function-plugins.md
   - Playground: gitStream-playground.md
   - Troubleshooting: troubleshooting.md
   - FAQ: faq.md
