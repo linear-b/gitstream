@@ -16,11 +16,11 @@ for example, an issue with serects which the has both MEDIUM and LOW prioriry wi
 
 It can be easily edited and adjusted as you like. For example, if you dont like the color, just delete line 20. if you dont like the text of the label edit line 19. If you want different colors edit their hexa values at the bottom.
 
---8<-- "docs/plugins/filters/extractOrcaFindings/reference.md"
+--8<-- "plugins/filters/extractOrcaFindings/reference.md"
 
 ??? note "Plugin Code: extractOrcaFindings"
     ```javascript
-    --8<-- "docs/plugins/filters/extractOrcaFindings/index.js"
+    --8<-- "plugins/filters/extractOrcaFindings/index.js"
     ```
     <div class="result" markdown>
     <span>
@@ -30,11 +30,11 @@ It can be easily edited and adjusted as you like. For example, if you dont like 
 
 ??? example "gitStream CM Example: extractOrcaFindings"
     ```yaml+jinja
-    --8<-- "docs/plugins/filters/extractOrcaFindings/extarct_orca_findings.cm"
+    --8<-- "plugins/filters/extractOrcaFindings/extarct_orca_findings.cm"
     ```
     <div class="result" markdown>
     <span>
     </span>
     </div>
 
-[Download Source Code](https://github.com/linear-b/gitstream/tree/main/docs/plugins/filters/extractOrcaFindings)
+[Download Source Code](https://github.com/linear-b/gitstream/tree/main/plugins/filters/extractOrcaFindings)

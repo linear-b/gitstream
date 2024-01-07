@@ -15,11 +15,11 @@ jobs:
           CODEOWNERS: ${{ secrets.GITSTREAM_CODEOWNERS }}
 ``` 
 
---8<-- "docs/plugins/filters/getCodeowners/reference.md"
+--8<-- "plugins/filters/getCodeowners/reference.md"
 
 ??? note "Plugin Code: getCodeowners"
     ```javascript
-    --8<-- "docs/plugins/filters/getCodeowners/index.js"
+    --8<-- "plugins/filters/getCodeowners/index.js"
     ```
     <div class="result" markdown>
     <span>
@@ -29,11 +29,11 @@ jobs:
 
 ??? example "gitStream CM Example: getCodeowners"
     ```yaml+jinja
-    --8<-- "docs/plugins/filters/getCodeowners/get_codeowners.cm"
+    --8<-- "plugins/filters/getCodeowners/get_codeowners.cm"
     ```
     <div class="result" markdown>
     <span>
     </span>
     </div>
 
-[Download Source Code](https://github.com/linear-b/gitstream/tree/main/docs/plugins/filters/getCodeowners)
+[Download Source Code](https://github.com/linear-b/gitstream/tree/main/plugins/filters/getCodeowners)
