@@ -11,7 +11,7 @@ automations:
     run:
       - action: add-label@v1
         args:
-          label: 'orca-security:{{ item.name }}'
+          label: 'orca:{{ item.name }}'
   {% endfor %}
 
 orca: {{ pr | extractOrcaFindings }}
