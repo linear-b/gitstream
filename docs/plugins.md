@@ -56,7 +56,7 @@ gitStream plugins can be installed for an entire git organization or for individ
         .
         ├─ gitstream.cm
         └─ plugins/filters/<filterName>
-          └─ index.js
+           └─ index.js
         ```
 
 === "Repo-Level"
@@ -133,6 +133,9 @@ One of the functions contained inside this file must be exported via `module.exp
     }
     ```
 
+    !!! info "Async Error Handling"
+        Errors reported by async plugins are output to the workflow runner logs. E.g. GitHub Actions, GitLab CI, etc.
+
 Here's how to invoke the new filter from this example:
 
 ```yaml+jinja
@@ -148,9 +151,6 @@ automations:
 
 !!! tip "Debugging with console.log()"
     Data passed to `console.log()` is output in your workflow runner logs, e.g. GitHub Actions, GitLab CI, etc.
-
-!!! info "Async Error Handling"
-    Errors reported by async plugins are output to the workflow runner logs. E.g. GitHub Actions, GitLab CI, etc.
 
 !!! warning "15 Minute Time Limit"
     gitStream actions are terminated after 15 minutes, this is a hard limit that can't be extended.
