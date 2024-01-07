@@ -7,10 +7,6 @@ description: Use JavaScript plugins to extend gitStream capabilities, connect gi
 
 gitStream enables you to build JavaScript plugins to extend functionality for more advanced data processing and pulling data from external APIs. Use gitStream plugins to seamlessly create and integrate custom filters and other capabilities within your gitStream automations.
 
-!!! danger "gitStream Plugins are Experimental"
-    gitStream plugins are in an experimental state and need to be explicitely enabled to work. To do so, update your gitStream workflow file (`.github/workflows/gitstream.yml` for GitHub) to use gitStream's staging branch.
-    ![gitStream staging branch](/downloads/images/gitstream-staging-config.png)
-
 !!! example "Example: isFlaggedUser"
     Here is an example of a filter function plugin that evaluates a username input against a list of specified usernames and returns true if the user is in the list.
 
