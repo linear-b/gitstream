@@ -1,0 +1,39 @@
+---
+title: gitStream Plugin - getCodeowners
+description: Resolves the PR's code owners based on the repository's CODEOWNERS file
+---
+
+When used, create a secret TOKEN, and add it to the workflow file, in GitHub:
+
+```
+jobs:
+  gitStream:
+    steps:
+      - name: Evaluate Rules
+        uses: linear-b/gitstream-github-action@v1
+        env: 
+          CODEOWNERS: ${{ secrets.GITSTREAM_CODEOWNERS }}
+``` 
+
+--8<-- "docs/plugins/filters/getCodeowners/reference.md"
+
+??? note "Plugin Code: getCodeowners"
+    ```javascript
+    --8<-- "docs/plugins/filters/getCodeowners/index.js"
+    ```
+    <div class="result" markdown>
+    <span>
+    </span>
+    </div>
+
+
+??? example "gitStream CM Example: getCodeowners"
+    ```yaml+jinja
+    --8<-- "docs/plugins/filters/getCodeowners/get_codeowners.cm"
+    ```
+    <div class="result" markdown>
+    <span>
+    </span>
+    </div>
+
+[Download Source Code](https://github.com/linear-b/gitstream/tree/main/docs/plugins/filters/getCodeowners)

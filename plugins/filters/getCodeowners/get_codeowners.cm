@@ -1,0 +1,18 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  senior_review:
+    if:
+      - true
+    run:
+      - action: explain-code-experts@v1
+        args:
+          gt: 10
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ experts | intersection(list=owners) }}
+
+experts: {{ repo | codeExperts(gt=10) }}
+owners: {{ files | codeowners(pr, env.CODEOWNERS) }}

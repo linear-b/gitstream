@@ -1,3 +1,16 @@
+/**
+ * @module extractOrcaFindings
+ * @description Extract security issues information from Orca PR reviews
+ * @param {Object} pr - the gitStream's PR context variable
+ * @returns {Object} Findings
+ * Findings.infrastructure_as_code: { count: null, priority: '' },
+ * Findings.vulnerabilities: { count: null, priority: '' },
+ * Findings.secrets: { count: null, priority: '' },
+ * @example {{ pr | extractOrcaFindings }}
+ * @license MIT
+**/
+
+
 function getOrcaPropertyRating(lines, lineIdentifierRegex, findingsCellIndex) {
   const matches = lines.filter(x => x.match(lineIdentifierRegex));
   const [firstMatch] = matches;

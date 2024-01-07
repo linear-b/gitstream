@@ -1,3 +1,14 @@
+/**
+ * @module extarctSnykVersionBump
+ * @description Extract version bump information from Snyk PRs description
+ * @param {string} description - the PR description
+ * @returns {string[]} V1 (to) and V2 (from)
+ * @example {{ pr.description | extarctSnykVersionBump | compareSemver }}
+ * @license MIT
+**/
+
+
+
 module.exports = (desc) => {
   if (desc && desc !== '""' && desc !== "''" ) {    
     const matches = /Upgrade.*from ([\d\.]+[A-Za-zαß]*) to ([\d\.]+[A-Za-zαß]*)/.exec(desc);

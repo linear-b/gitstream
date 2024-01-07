@@ -1,37 +1,27 @@
-# dependabotBump
+---
+title: gitStream Plugin - extarctDependabotVersionBump
+description: Extract version bump information from Dependabot PRs description.
+---
 
-This plugin helps to automate the handling of PRs that were created by dependabot.
+--8<-- "docs/plugins/filters/extarctDependabotVersionBump/reference.md"
 
-Example usages:
+??? note "Plugin Code: extarctDependabotVersionBump"
+    ```javascript
+    --8<-- "docs/plugins/filters/extarctDependabotVersionBump/index.js"
+    ```
+    <div class="result" markdown>
+    <span>
+    </span>
+    </div>
 
-```yaml+jinja
-manifest:
-  version: 1.0
 
-automations:
-  bump_minor:
-    if:
-      - {{ bump == 'minor' }}
-      - {{ branch.name | includes(term="dependabot") }}
-      - {{ branch.author | includes(term="dependabot") }}
-    run:
-      - action: approve@v1
-      - action: add-comment@v1
-        args:
-          comment: |
-            Dependabot `minor` version bumps are approved automatically.
-  bump_patch:
-    if:
-      - {{ bump == 'patch' }}
-      - {{ branch.name | includes(term="dependabot") }}
-      - {{ branch.author | includes(term="dependabot") }}
-    run:
-      - action: approve@v1
-      - action: merge@v1
-      - action: add-comment@v1
-        args:
-          comment: |
-            Dependabot `patch` version bumps are approved and merged automatically.
+??? example "gitStream CM Example: extarctDependabotVersionBump"
+    ```yaml+jinja
+    --8<-- "docs/plugins/filters/extarctDependabotVersionBump/extarct_dependabot_version_bump.cm"
+    ```
+    <div class="result" markdown>
+    <span>
+    </span>
+    </div>
 
-bump: {{ pr.description | extarctDependabotVersionBump | compareSemver }}
-```
+[Download Source Code](https://github.com/linear-b/gitstream/tree/main/docs/plugins/filters/extarctDependabotVersionBump)

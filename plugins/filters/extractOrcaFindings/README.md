@@ -1,4 +1,7 @@
-# extractOrcaFindings
+---
+title: gitStream Plugin - extractOrcaFindings
+description: Extract security issues information from Orca PR reviews
+---
 
 Usage example, that adds lables based on Orca Secuirty findings.
 
@@ -13,41 +16,25 @@ for example, an issue with serects which the has both MEDIUM and LOW prioriry wi
 
 It can be easily edited and adjusted as you like. For example, if you dont like the color, just delete line 20. if you dont like the text of the label edit line 19. If you want different colors edit their hexa values at the bottom.
 
-```yaml+jinja
-# -*- mode: yaml -*-
+--8<-- "docs/plugins/filters/extractOrcaFindings/reference.md"
 
-manifest:
-  version: 1.0
+??? note "Plugin Code: extractOrcaFindings"
+    ```javascript
+    --8<-- "docs/plugins/filters/extractOrcaFindings/index.js"
+    ```
+    <div class="result" markdown>
+    <span>
+    </span>
+    </div>
 
-automations:
-  {% for item in reports %}
-  label_orca_{{ item.name }}:
-    if:
-      - {{ item.count > 0 }}
-    run:
-      - action: add-label@v1
-        args:
-          label: 'orca-security:{{ item.name }}:{{ item.priority | lower }}'
-          color: {{ colors.red if (item.priority == "HIGH") else (colors.orange if (item.priority == "MEDIUM") else (colors.yellow if (item.priority == "LOW") else colors.blue)) }}
-  {% endfor %}
 
-orca: {{ pr | extractOrcaFindings }}
+??? example "gitStream CM Example: extractOrcaFindings"
+    ```yaml+jinja
+    --8<-- "docs/plugins/filters/extractOrcaFindings/extarct_orca_findings.cm"
+    ```
+    <div class="result" markdown>
+    <span>
+    </span>
+    </div>
 
-reports:
-  - name: introduced-cves
-    count: {{ orca.vulnerabilities.count }}
-    priority: {{ "HIGH" if (orca.vulnerabilities.priority.high > 0) else ("MEDIUM" if (orca.vulnerabilities.priority.medium > 0) else ("LOW" if (orca.vulnerabilities.priority.low > 0) else "INFO")) }}
-  - name: iac-misconfigurations
-    count: {{ orca.infrastructure_as_code.count }}
-    priority: {{ "HIGH" if (orca.infrastructure_as_code.priority.high > 0) else ("MEDIUM" if (orca.infrastructure_as_code.priority.medium > 0) else ("LOW" if (orca.infrastructure_as_code.priority.low > 0) else "INFO")) }}
-  - name: exposed-secrets 
-    count: {{ orca.secrets.count }}
-    priority: {{ "HIGH" if (orca.secrets.priority.high > 0) else ("MEDIUM" if (orca.secrets.priority.medium > 0) else ("LOW" if (orca.secrets.priority.low > 0) else "INFO")) }}
-
-colors:
-  red: 'b60205'
-  orange: 'd93f0b'
-  yellow: 'fbca04'
-  blue: '19c3fb'
-
-```
+[Download Source Code](https://github.com/linear-b/gitstream/tree/main/docs/plugins/filters/extractOrcaFindings)
