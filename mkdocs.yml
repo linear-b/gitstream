@@ -23,10 +23,12 @@ nav:
     - Context variables: context-variables.md
     - Filter functions: filter-functions.md
     - Automation actions: automation-actions.md
+  - Plugins: 
+    - Overview: plugins.md
+    - Filter Functions: filter-function-plugins.md
   - Playground: gitStream-playground.md
   - Troubleshooting: troubleshooting.md
   - FAQ: faq.md
-  - Demo: https://app.gitstream.cm/playground
   - Login: https://app.gitstream.cm/login 
 
 theme:
@@ -103,3 +105,5 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/linear-b/gitstream/
+watch:
+  - plugins

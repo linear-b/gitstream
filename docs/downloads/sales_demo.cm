@@ -29,6 +29,15 @@ automations:
           comment: |
             This PR is missing a Jira ticket reference in the title or description.
             Please add a Jira ticket reference to the title or description of this PR.
+  label_copilot:
+    # Detect PRs that contain the text '#copilot#' in the title, description, comments, or commit messages
+    if:
+      - {{ copilot_tag.pr_title or copilot_tag.pr_desc or copilot_tag.pr_comments or copilot_tag.commit_messages  }}
+    # Apply a label indicating the user has adopted Copilot
+    run:
+      - action: add-label@v1
+        args:
+          label: '🤖 Copilot'
   # Post a comment that lists the best experts for the files that were modified.
   explain_code_experts:
     if:
@@ -50,6 +59,12 @@ calc:
 has:
   jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
   jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
+
+copilot_tag:
+  pr_title: {{ pr.title | includes(regex=r/#copilot#/) }}
+  pr_desc: {{pr.description | includes(regex=r/#copilot#/) }}
+  pr_comments: {{ pr.comments | map(attr='content') | match(regex=r/#copilot#/) | some }}
+  commit_messages: {{ branch.commits.messages | match(regex=r/#copilot#/) | some }}
 
 colors:
   red: 'b60205'

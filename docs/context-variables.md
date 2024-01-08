@@ -105,7 +105,7 @@ The `branch` context contains info regarding the branch changes compared to the 
 | `branch.author_name`      | String    | The branch author name        |
 | `branch.author_email`      | String    | The branch author email       |
 | `branch.base`        | String    | The main branch, `main`                 |
-| :octicons-beaker-24: `branch.commits.messages` | [String] | A list with all the commit messages in this branch  |
+| `branch.commits.messages` | [String] | A list with all the commit messages in this branch  |
 | `branch.diff.size`   | Integer   | The sum of line changed: additions, edits and deletions   |
 | `branch.diff.files_metadata`  | [`FileMetadata`](#filemetadata-structure)  | List of changed files including their relative path      |
 | `branch.name`        | String    | The current branch, `feature-123-branch`                 |
@@ -151,7 +151,7 @@ The `env` field
     steps:
       - name: Evaluate Rules
         env:
-          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 ...
 ```
 
@@ -170,7 +170,7 @@ automations:
 
 slack_webhook: {{ env.SLACK_WEBHOOK }}
 ```
-https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions
+
 #### `files`
 
 The `files` context includes the list of changed files in the branch compared to the main branch.

@@ -11,7 +11,7 @@ automations:
     run:
       - action: add-label@v1
         args:
-          label: '{{ item.icon }} x {{ item.count }} {{ item.name }}'
+          label: '{{ item.icon }} sonar:{{ item.name }}-{{ item.rating }}'
           color: {{ colors.red if (item.rating == 'E' or item.rating == 'D') else (colors.orange if (item.rating == 'C' ) else colors.yellow) }}
   {% endfor %}
 

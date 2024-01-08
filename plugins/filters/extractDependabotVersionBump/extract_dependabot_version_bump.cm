@@ -1,0 +1,29 @@
+manifest:
+  version: 1.0
+
+automations:
+  bump_minor:
+    if:
+      - {{ bump == 'minor' }}
+      - {{ branch.name | includes(term="dependabot") }}
+      - {{ branch.author | includes(term="dependabot") }}
+    run:
+      - action: approve@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            Dependabot `minor` version bumps are approved automatically.
+  bump_patch:
+    if:
+      - {{ bump == 'patch' }}
+      - {{ branch.name | includes(term="dependabot") }}
+      - {{ branch.author | includes(term="dependabot") }}
+    run:
+      - action: approve@v1
+      - action: merge@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            Dependabot `patch` version bumps are approved and merged automatically.
+
+bump: {{ pr.description | extractDependabotVersionBump | compareSemver }}

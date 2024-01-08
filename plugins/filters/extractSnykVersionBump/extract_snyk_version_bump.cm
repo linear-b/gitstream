@@ -1,0 +1,29 @@
+manifest:
+  version: 1.0
+
+automations:
+  bump_minor:
+    if:
+      - {{ bump == 'minor' }}
+      - {{ branch.name | includes(term="snyk-update"") }}
+      - {{ branch.author | includes(term="snyk-update"") }}
+    run:
+      - action: approve@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            Snyk `minor` version bumps are approved automatically.
+  bump_patch:
+    if:
+      - {{ bump == 'patch' }}
+      - {{ branch.name | includes(term="snyk-update"") }}
+      - {{ branch.author | includes(term="snyk-update"") }}
+    run:
+      - action: approve@v1
+      - action: merge@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            Snyk `patch` version bumps are approved and merged automatically.
+
+bump: {{ pr.description | extractSnykVersionBump | compareSemver }}
