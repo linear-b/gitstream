@@ -1,7 +1,3 @@
----
-title: gitStream Plugin - filterName
-description: Indicate if a user is included in a specified list.
----
 <!--
 This is a template file for a gitStream plugin README.md files
 
