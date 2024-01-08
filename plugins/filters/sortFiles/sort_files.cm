@@ -1,0 +1,18 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+
+automations:
+  {% for group in groups %}
+  sort_files:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: {{ group | dump }}.
+  {% endfor %}
+
+groups: {{ source.diff.files | sortFiles("some/directory") }}
