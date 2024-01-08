@@ -3,7 +3,7 @@ title: Filter Function Plugin Library
 description: Implement custom gitStream filter functions with JavaScript.
 ---
 
-JavaScript plugins that enable custom filter functions for gitStream. To learn how to use these examples, read our [guide on how to use gitStream plugins](/custom-filters).
+JavaScript plugins that enable custom filter functions for gitStream. To learn how to use these examples, read our [guide on how to use gitStream plugins](/plugins).
 
 --8<-- "plugins/filters/compareSemver/README.md"
 
