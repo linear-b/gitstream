@@ -26,7 +26,7 @@ It can be easily edited and adjusted as you like. For example, if you dont like 
 
 ??? example "gitStream CM Example: extractOrcaFindings"
     ```yaml+jinja
-    --8<-- "plugins/filters/extractOrcaFindings/extarct_orca_findings.cm"
+    --8<-- "plugins/filters/extractOrcaFindings/extract_orca_findings.cm"
     ```
     <div class="result" markdown>
     <span>

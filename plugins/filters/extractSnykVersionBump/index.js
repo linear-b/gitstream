@@ -1,9 +1,9 @@
 /**
- * @module extarctSnykVersionBump
+ * @module extractSnykVersionBump
  * @description Extract version bump information from Snyk PRs description
  * @param {string} description - the PR description
  * @returns {string[]} V1 (to) and V2 (from)
- * @example {{ pr.description | extarctSnykVersionBump | compareSemver }}
+ * @example {{ pr.description | extractSnykVersionBump | compareSemver }}
  * @license MIT
 **/
 

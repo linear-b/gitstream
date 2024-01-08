@@ -1,9 +1,9 @@
 /**
- * @module extarctDependabotVersionBump
+ * @module extractDependabotVersionBump
  * @description Extract version bump information from Dependabot PRs description
  * @param {string} description - the PR description
  * @returns {string[]} V1 (to) and V2 (from)
- * @example {{ pr.description | extarctDependabotVersionBump | compareSemver }}
+ * @example {{ pr.description | extractDependabotVersionBump | compareSemver }}
  * @license MIT
 **/
 
