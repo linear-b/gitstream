@@ -26,4 +26,4 @@ automations:
           comment: |
             Dependabot `patch` version bumps are approved and merged automatically.
 
-bump: {{ pr.description | extarctDependabotVersionBump | compareSemver }}
+bump: {{ pr.description | extractDependabotVersionBump | compareSemver }}

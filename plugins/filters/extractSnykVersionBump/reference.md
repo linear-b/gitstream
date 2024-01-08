@@ -1,7 +1,7 @@
-<a name="module_extarctDependabotVersionBump"></a>
+<a name="module_extractSnykVersionBump"></a>
 
-## extarctDependabotVersionBump
-Extract version bump information from Dependabot PRs description
+## extractSnykVersionBump
+Extract version bump information from Snyk PRs description
 
 **Returns**: <code>Array.&lt;string&gt;</code> - V1 (to) and V2 (from)  
 **License**: MIT  
@@ -12,5 +12,5 @@ Extract version bump information from Dependabot PRs description
 
 **Example**  
 ```js
-{{ pr.description | extarctDependabotVersionBump | compareSemver }}
+{{ pr.description | extractSnykVersionBump | compareSemver }}
 ```

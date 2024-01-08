@@ -26,4 +26,4 @@ automations:
           comment: |
             Snyk `patch` version bumps are approved and merged automatically.
 
-bump: {{ pr.description | extarctSnykVersionBump | compareSemver }}
+bump: {{ pr.description | extractSnykVersionBump | compareSemver }}
