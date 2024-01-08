@@ -1,8 +1,3 @@
----
-title: gitStream Plugin - extarctSnykVersionBump
-description: Extract version bump information from Snyk PRs description.
----
-
 --8<-- "plugins/filters/extarctSnykVersionBump/reference.md"
 
 ??? note "Plugin Code: extarctSnykVersionBump"
