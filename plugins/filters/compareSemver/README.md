@@ -1,8 +1,3 @@
----
-title: gitStream Plugin - compareSemver
-description: Compares two software version numbers (e.g., "1.2.1" or "1.2b") and determines the type of version change.
----
-
 --8<-- "plugins/filters/compareSemver/reference.md"
 
 ??? note "Plugin Code: compareSemver"
