@@ -1,8 +1,3 @@
----
-title: gitStream Plugin - extarctDependabotVersionBump
-description: Extract version bump information from Dependabot PRs description.
----
-
 --8<-- "plugins/filters/extarctDependabotVersionBump/reference.md"
 
 ??? note "Plugin Code: extarctDependabotVersionBump"
