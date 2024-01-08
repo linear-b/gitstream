@@ -1,7 +1,3 @@
----
-title: gitStream Plugin - getCodeowners
-description: Resolves the PR's code owners based on the repository's CODEOWNERS file
----
 
 When used, create a secret TOKEN, and add it to the workflow file, in GitHub:
 
