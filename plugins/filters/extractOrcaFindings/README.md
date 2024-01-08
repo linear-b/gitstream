@@ -1,7 +1,3 @@
----
-title: gitStream Plugin - extractOrcaFindings
-description: Extract security issues information from Orca PR reviews
----
 
 Usage example, that adds lables based on Orca Secuirty findings.
 
