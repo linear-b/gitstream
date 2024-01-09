@@ -4,7 +4,7 @@ description: Get help with gitStream.
 ---
 # FAQ
 
-## What permissions needed?
+## What permissions are needed?
 
 In your repo permissions, make sure GitHub actions are permitted:
 
@@ -50,8 +50,8 @@ Get a plug-in that enable modelines, popular ones are:
 - Sublime Text: [CM syntax for ST4](https://packagecontrol.io/packages/Continuous%20Merge) or [Emacs-like Sublime Modeline](https://github.com/kvs/STEmacsModelines)
 - Vim [Modeline magic](https://vim.fandom.com/wiki/Modeline_magic)
 
-## I have an issue I can seem to solve, what should I do?
+## I have an issue I can't seem to solve, what should I do?
 
-Go to our issues page and check if there are any similar issues already reported, if not create a new issue with all the details so we can take a look.
+Go to our issues page and check if there are any similar issues already reported. If not, create a new issue with all the details so we can take a look.
 
 Found a bug? Create a new item in the [project's issues](https://github.com/linear-b/gitstream/issues)
