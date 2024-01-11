@@ -102,6 +102,42 @@ description: Integrate third-party developer tools with gitStream.
 
 </div>
 
+## Feature Flags
+<div class="integrations-list" markdown="1">
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[DevCycle](/integrations/devcycle)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[Launch Darkly](/integrations/launch-darkly)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[Flagsmith](/integrations/flagsmith)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[Unleash](/integrations/unleash)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[Flagr](/integrations/flagr)
+</div>
+</div>
+
+</div>
+
+
 ## Languages
 <div class="integrations-list" markdown="1">
 

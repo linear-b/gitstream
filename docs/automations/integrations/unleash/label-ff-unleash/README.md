@@ -1,12 +1,12 @@
 ---
 title: Automation - Label PRs Based on Feature Flags
-description: Automatically label PRs based on feature flags in new or modified code.
+description: Automatically label code that contians specified feature flags.
 ---
 # Label Unleash Feature Flags
 
 <!-- --8<-- [start:example]-->
 
-Label PRs based on feature flags in new or modified code.
+Automatically label code that contians specified feature flags.
 
 ![Label PRs Based on Feature Flags](/automations/integrations/unleash/label-ff-unleash/label-ff-unleash.png)
 
