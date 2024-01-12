@@ -3,11 +3,14 @@ title: How gitStream Works
 description: Learn how gitStream automates code review workflows.
 ---
 # How gitStream Works
-You can configure gitStream via one or more Continuous Merge (CM) files inside your git repository or GitHub/GitLab organization. These files end with a `.cm`  extension, and they outline automations that will run whenever someone opens a new PR or makes changes to an existing PR. 
+You can configure gitStream via one or more Continuous Merge (CM) files inside your git repository or GitHub/GitLab organization. These files end with a `.cm`  extension, and they outline automations that will run for your repo's pull requests. 
 ## Syntax Overview
 CM files contain a combination of YAML and Jinja2 to build rules that follow an "if this, then that" approach to triggering and executing automations. This, combined with templating and gitStream-specific functions gives you a highly-flexible framework for building custom CM automations.
 
-All CM files must have a section that starts with `automations:` that contains one or more custom automations that will trigger for the repo. gitStream is triggered every time someone opens a new PR or changes an existing PR. Once activated, gitStream searches for applicable CM files and executes the automations that are listed inside them.
+All CM files must have a section that starts with `automations:` that contains one or more custom automations that will trigger for the repo. By default, gitStream is triggered every time someone opens a new PR or pushes a commit to an existing PR. Once activated, gitStream searches for applicable CM files and executes the automations that are listed inside them.
+
+!!! tip "Explicit Triggers"
+    You can configure gitStream to trigger for other PR interactions, including comments, labels, and merge status. Read more about the [gitStream execution model](/execution-model).
 
 Here is an example of the basic components that are required in every CM file.
 
@@ -82,6 +85,20 @@ Jinja templating makes it easy to write custom expressions that can be invoked e
       - src/app/routing/
       - src/app/resources/
     ```
+
+### Built-in Functions
+gitStream is built on top of Jinja2 and provides all [default filters](https://mozilla.github.io/nunjucks/templating.html#builtin-filters) from that library. gitStream also includes extra filters on top of Jinja2 that are specific to git repo workflow automations.
+
+!!! warning
+    Don't use these terms when naming automations, plugins, custom expressions, or any other component of gitStream because this will lead to naming conflicts
+
+gitStream filters:
+
+`allDocs` `allImages` `allTests` `automations` `codeExperts` `config` `difference` `estimatedReviewTime` `explainCodeExperts` `explainRankByGitBlame` `extractJitFindings` `extractSonarFindings` `extensions` `every` `filter` `includes` `isFirstCommit` `isFormattingChange` `intersection` `manifest` `map` `mapToEnum` `match` `matchDiffLines` `nope` `rankByGitActivity` `rankByGitBlame` `reject` `some`
+
+[Nunjucks](https://mozilla.github.io/nunjucks/templating.html#builtin-filters) filters:
+
+`abs` `asyncAll` `asyncEach` `batch` `block` `call` `capitalize` `center` `default` `dictsort` `dump` `e` `escape` `extends` `filter` `first` `float` `for` `forceescape` `groupby` `if` `import` `include` `indent` `int` `join` `last` `length` `list` `lower` `macro` `nl2br` `raw` `reject` `rejectattr` `replace` `reverse` `round` `safe` `select` `selectattr` `set` `slice` `sort` `string` `striptags` `sum` `title` `trim` `truncate` `upper` `urlencode` `urlize` `verbatim` `wordcount`
 
 ### Ignore Files or Repos
 
@@ -177,20 +194,6 @@ Upon completion, gitStream will show one of the following three statuses:
 * ![Failed](/assets/github_pr_check_fail.png) Failed - when the applicable automation finished without completion
 
 gitStream checks have a 10-minute timeout for fail-safe reasons. If the check exceeds this time limit, the result will be displayed as Neutral - *Skipped*.
-
-### Built-in Functions
-gitStream is built on top of Jinja2 and provides all [default filters](https://mozilla.github.io/nunjucks/templating.html#builtin-filters) from that library. gitStream also includes extra filters on top of Jinja2 that are specific to git repo workflow automations.
-
-!!! warning
-    Don't use these terms when naming automations, actions, plugins, custom expressions, or any other component of gitStream because this will lead to naming conflicts
-
-gitStream filters:
-
-`allDocs` `allImages` `allTests` `automations` `codeExperts` `config` `difference` `estimatedReviewTime` `explainCodeExperts` `explainRankByGitBlame` `extractJitFindings` `extractSonarFindings` `extensions` `every` `filter` `includes` `isFirstCommit` `isFormattingChange` `intersection` `manifest` `map` `mapToEnum` `match` `matchDiffLines` `nope` `rankByGitActivity` `rankByGitBlame` `reject` `some`
-
-[Nunjucks](https://mozilla.github.io/nunjucks/templating.html#builtin-filters) filters:
-
-`abs` `asyncAll` `asyncEach` `batch` `block` `call` `capitalize` `center` `default` `dictsort` `dump` `e` `escape` `extends` `filter` `first` `float` `for` `forceescape` `groupby` `if` `import` `include` `indent` `int` `join` `last` `length` `list` `lower` `macro` `nl2br` `raw` `reject` `rejectattr` `replace` `reverse` `round` `safe` `select` `selectattr` `set` `slice` `sort` `string` `striptags` `sum` `title` `trim` `truncate` `upper` `urlencode` `urlize` `verbatim` `wordcount`
 
 ### Syntax highlighting
 
