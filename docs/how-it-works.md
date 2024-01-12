@@ -115,6 +115,10 @@ First, when a repository defines the same automation as an organization-level ru
 
 Second, no priority is given to individual automations. Instead, gitStream collects all applicable automations for a given PR and processes them all at once.
 
+### Plugins
+
+gitStream supports the use of JavaScript plugins to create new filter functions. This enables you to write code that further extends gitStream capabilities and connect gitStream to external API services. Read the guide on writing gitStream
+
 ## Next Step
 !!! tip "Write your first automation."
     The best way to familiarize yourself with CM syntax is to build automations, and we've covered enough info for you to start! 
@@ -174,14 +178,17 @@ Upon completion, gitStream will show one of the following three statuses:
 
 gitStream checks have a 10-minute timeout for fail-safe reasons. If the check exceeds this time limit, the result will be displayed as Neutral - *Skipped*.
 
-### Reserved Words
-Avoid using these words when naming your automations, actions, or other components. 
+### Built-in Functions
+gitStream is built on top of Jinja2 and provides all [default filters](https://mozilla.github.io/nunjucks/templating.html#builtin-filters) from that library. gitStream also includes extra filters on top of Jinja2 that are specific to git repo workflow automations.
 
-gitStream reserved words:
+!!! warning
+    Don't use these terms when naming automations, actions, plugins, custom expressions, or any other component of gitStream because this will lead to naming conflicts
+
+gitStream filters:
 
 `allDocs` `allImages` `allTests` `automations` `codeExperts` `config` `difference` `estimatedReviewTime` `explainCodeExperts` `explainRankByGitBlame` `extractJitFindings` `extractSonarFindings` `extensions` `every` `filter` `includes` `isFirstCommit` `isFormattingChange` `intersection` `manifest` `map` `mapToEnum` `match` `matchDiffLines` `nope` `rankByGitActivity` `rankByGitBlame` `reject` `some`
 
-[Nunjucks](https://mozilla.github.io/nunjucks/templating.html#builtin-filters) reserved words:
+[Nunjucks](https://mozilla.github.io/nunjucks/templating.html#builtin-filters) filters:
 
 `abs` `asyncAll` `asyncEach` `batch` `block` `call` `capitalize` `center` `default` `dictsort` `dump` `e` `escape` `extends` `filter` `first` `float` `for` `forceescape` `groupby` `if` `import` `include` `indent` `int` `join` `last` `length` `list` `lower` `macro` `nl2br` `raw` `reject` `rejectattr` `replace` `reverse` `round` `safe` `select` `selectattr` `set` `slice` `sort` `string` `striptags` `sum` `title` `trim` `truncate` `upper` `urlencode` `urlize` `verbatim` `wordcount`
 
