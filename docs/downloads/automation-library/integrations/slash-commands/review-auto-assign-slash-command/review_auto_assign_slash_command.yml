@@ -1,0 +1,16 @@
+manifest:
+  version: 1.0
+
+on:
+  - comment_added
+
+automations:
+  review_auto_assign_slash_command:
+    if:
+       - {{ is.requested }}
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: [codergig3]
+is:
+  requested: {{ pr.comments | match(attr='content', term='/gitstream auto-assign') | some }}
