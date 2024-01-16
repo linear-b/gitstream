@@ -64,9 +64,9 @@ description: Integrate third-party developer tools with gitStream.
 </div>
 </div>
 
-<div class="integrations-card" markdown="1">
-<div class="integrations-card-title" markdown="1">
-[:material-security: Orca Security](/integrations/orca-security)
+<div class="integrations-card" style="padding-bottom:0px;"markdown="1">
+<div class="integrations-card-logo-only" markdown="1">
+<a href=/integrations/orca-security>![Orca Security](/downloads/images/orca-logo-light-mode.png#only-light) ![Orca Security](/downloads/images/orca-logo-dark-mode.png#only-dark)</a>
 </div>
 </div>
 
