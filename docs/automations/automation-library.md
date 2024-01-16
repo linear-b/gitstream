@@ -55,7 +55,10 @@ These examples help you follow your team's security best practices.
 * [Change deprecated components](change-deprecated-components/README.md) - Request changes when a PR includes one or more deprecated components.
 * [Enforce copyright headers](standard/enforce-copyright-header/README.md) - Enforce the use of copyright headers when publishing open source code.
 
+## Third-party Integrations
+
 --8<-- "docs/integrations/README.md:integrations"
+
 ## Utilities
 These examples provide useful components to use in other automations. These aren't intended to be used on their own; instead they act as a reference point for improving other automations.
 
