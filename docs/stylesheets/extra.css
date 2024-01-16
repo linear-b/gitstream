@@ -172,6 +172,12 @@ div.flow-chart {
   width:auto;
   height: 1.2em;
 }
+
+.integrations-card-logo-only img{
+  padding:2px;
+  width:auto;
+  height: 3em;
+}
   
 .integrations-card-labels {
   font-size: 0.7em;
