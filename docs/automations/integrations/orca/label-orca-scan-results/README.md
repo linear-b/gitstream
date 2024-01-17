@@ -14,7 +14,7 @@ Automatically apply labels to PRs that indicate the result of Orca Security scan
     [Learn more about gitStream plugins](/plugins/).
 
 <div class="automationImage" markdown="1">
-![Auto-Label Orca Scan Results](/automations/integrations/orca/label-orca-scan-results/label-orca-scan-results.png)
+![Auto-Label Orca Scan Results](/automations/integrations/orca/label-orca-scan-results/label-orca-scan-results.png#only-light)![Auto-Label Orca Scan Results](/automations/integrations/orca/label-orca-scan-results/label-orca-scan-results-dark.png#only-dark)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
