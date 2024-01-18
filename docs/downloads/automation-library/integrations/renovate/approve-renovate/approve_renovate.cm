@@ -6,7 +6,6 @@ manifest:
 automations:
   approve_renovate:
     if:
-      - {{ branch.name | includes(term="renovate") }}
       - {{ branch.author | includes(term="renovate") }}
     run:
       - action: approve@v1

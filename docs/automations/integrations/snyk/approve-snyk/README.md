@@ -11,16 +11,15 @@ Approve PRs from Snyk
 
 !!! info "Configuration Description"
 
-**Conditions (all must be true):**
+    **Conditions (all must be true):**
 
-* The PR author is Snyk.
-* The branch name includes 'snyk'
+    * The PR author is Snyk.
+    
+    **Automation Actions:**
 
-**Automation Actions:**
-
-* Approve the PR
-* Apply an `approved-snyk` label to the PR
-* Merge the PR if all status checks pass.
+    * Approve the PR
+    * Apply an `approved-snyk` label to the PR
+    * Merge the PR if all status checks pass.
 
 <div class="automationExample" markdown="1">
 !!! example "Approve Snyk"

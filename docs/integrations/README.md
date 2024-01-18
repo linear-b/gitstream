@@ -76,6 +76,18 @@ description: Integrate third-party developer tools with gitStream.
 </div>
 </div>
 
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:simple-renovatebot: Renovate](/integrations/renovate)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:simple-snyk: Snyk](/integrations/snyk)
+</div>
+</div>
+
 </div>
 
 ## Project Management

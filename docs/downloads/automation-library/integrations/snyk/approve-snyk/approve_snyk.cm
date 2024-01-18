@@ -6,7 +6,6 @@ manifest:
 automations:
   approve_snyk:
     if:
-      - {{ branch.name | includes(term="snyk") }}
       - {{ branch.author | includes(term="snyk") }}
     run:
       - action: approve@v1

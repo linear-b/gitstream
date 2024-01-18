@@ -11,16 +11,15 @@ Approve PRs from Renovate
 
 !!! info "Configuration Description"
 
-**Conditions (all must be true):**
+    **Conditions (all must be true):**
 
-* The PR author is Renovate.
-* The branch name includes 'renovate'
+    * The PR author is Mend Renovate.
 
-**Automation Actions:**
+    **Automation Actions:**
 
-* Approve the PR
-* Apply an `approved-renovate` label to the PR
-* Merge the PR if all status checks pass.
+    * Approve the PR
+    * Apply an `approved-renovate` label to the PR
+    * Merge the PR if all status checks pass.
 
 <div class="automationExample" markdown="1">
 !!! example "Approve Renovate"
