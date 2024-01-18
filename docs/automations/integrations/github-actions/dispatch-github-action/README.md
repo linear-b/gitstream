@@ -73,6 +73,30 @@ Automatically trigger GitHub Actions based on PR content like changed resources,
         </span>
         </div>
     </div>
+
+=== "Using Slash Commands"
+    Automatically dispatch gitHub actions workflow by using slash commands.
+
+    !!! info "Configuration Description"
+
+            **Conditions (all must be true):**
+
+            * The PR has a comment that contains the text '/gitstream dispatch <action-name>'.
+
+            **Automation Actions:**
+
+            * Dispatch the Github action workflow specified in the command.
+
+    <div class="automationExample" markdown="1">
+    !!! example "Dispatch GitHub Actions Using Slash Commands"
+        ```yaml+jinja
+        --8<-- "docs/downloads/automation-library/integrations/github-actions/dispatch-github-action/dispatch_github_action_slash_command.cm"
+        ```
+        <div class="result" markdown>
+        <span>
+        [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/github-actions/dispatch-github-action/dispatch_github_action_slash_command.cm){ .md-button }
+        </span>
+        </div>
 <!-- --8<-- [end:example]-->
 
 ## Additional Resources

@@ -1,0 +1,41 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+on:
+  - comment_added
+
+automations:
+  {% for item in pipelines %}
+  dispatch_github_action_{{ item.name }}:
+    if:
+      - {{ pr.comments | match(attr='content', term=item.command) | some }}
+    run:
+      - action: run-github-workflow@v1
+        args:
+          workflow: .github/workflows/{{ item.workflow }}
+          check_name: {{ item.name }}
+      - action: add-label@v1
+        args:
+          label: {{ item.name }}
+  {% endfor %}
+
+pipelines:
+  - name: mobile-ci
+    command: '/gitstream ci-mobile'
+    resources:
+      - 'src/android/'
+      - 'src/ios/'
+    workflow: mobile.yml
+  - name: backend-ci
+    command: '/gitstream ci-backend'
+    resources:
+      - 'src/api/'
+      - 'src/services'
+    workflow: 'backend.yml'
+  - name: frontend-ci
+    command: '/gitstream ci-frontend'
+    resources:
+      - 'src/app/'
+    workflow: 'frontend.yml'
