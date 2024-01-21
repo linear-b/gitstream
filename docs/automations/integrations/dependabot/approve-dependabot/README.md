@@ -34,7 +34,7 @@ Auto-merge Dependabot PRs
 === "By Release Type"
 
     !!! warning "Required gitStream Plugins"
-        This example requires you to install the [`extractDependabotVersionBump`](/filter-function-plugins/#extractdependabotversionbump) and [compareSemver](http://127.0.0.1:8000/filter-function-plugins/#comparesemver) plugins. 
+        This example requires you to install the [`extractDependabotVersionBump`](/filter-function-plugins/#extractdependabotversionbump) and [`compareSemver`](/filter-function-plugins/#comparesemver) plugins. 
         
         [Learn more about gitStream plugins](/plugins/).
 
