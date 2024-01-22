@@ -1,0 +1,18 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+pr_url: "https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"
+
+automations:
+  zapier_export_pr_reviewers:
+    if:
+      - true
+    run:
+      - action: send-http-request@v1
+        args:
+          url: "{{ env.ZAPIER_WEBHOOK }}"
+                    method: "POST"
+                    headers: '{"Content-type": "application/json"}'
+          body: '{ "reviewers": "{{ pr.reviewers }}" }'
