@@ -260,6 +260,12 @@ description: Integrate third-party developer tools with gitStream.
 </div>
 </div>
 
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:simple-zapier: Zapier](/integrations/zapier)
+</div>
+</div>
+
 </div>
 <!-- --8<-- [end:integrations]-->
 
