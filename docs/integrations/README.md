@@ -120,6 +120,18 @@ description: Integrate third-party developer tools with gitStream.
 
 </div>
 
+## Chat & Communications
+
+<div class="integrations-list" markdown="1">
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:simple-slack: Slack](/integrations/slack)
+</div>
+</div>
+
+</div>
+
 ## Feature Flags
 <div class="integrations-list" markdown="1">
 
@@ -245,6 +257,12 @@ description: Integrate third-party developer tools with gitStream.
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
 [:material-terraform: Terraform](/integrations/terraform)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:simple-zapier: Zapier](/integrations/zapier)
 </div>
 </div>
 

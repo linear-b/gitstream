@@ -1,0 +1,33 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  send_slack_security:
+    if:
+			# use your custom logic here to determine whether this needs a security review
+      - true
+    run:
+      - action: send-slack-message@v1
+        args:
+          webhook_url: "{{ env.SLACK_WEBHOOK_SECURITY }}"
+          message: "A PR requires a security review. See https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"
+	send_slack_qa:
+    if:
+			# use your custom logic here to determine whether this needs a qa review
+      - {{ not (files | match(regex=r/(test|spec)/) | some) }}
+    run:
+      - action: send-slack-message@v1
+        args:
+          webhook_url: "{{ env.SLACK_WEBHOOK_QA }}"
+          message: "A PR was submitted without tests. See https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"
+	send_slack_docs:
+    if:
+			# use your custom logic here to determine whether this needs a docs review
+      - {{ files | match(regex=r/(docs)/) | some }}
+    run:
+      - action: send-slack-message@v1
+        args:
+          webhook_url: "{{ env.SLACK_WEBHOOK_DOCS }}"
+          message: "A PR has modified the docs. See https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"
