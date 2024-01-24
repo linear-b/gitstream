@@ -7,10 +7,8 @@ description: Automatically post positive recognition messages in Slack for well-
 <!-- --8<-- [start:example]-->
 Automatically post positive recognition messages in Slack for well-structured PRs.
 
-<div class="automationImage" markdown="1">
 ![Automatic Slack Messages](/automations/integrations/slack/slack-auto-recognition/slack-auto-recognition.png)
-</div>
-<div class="automationDescription" markdown="1">
+
 !!! info "Configuration Description"
     Conditions (all must be true):
 
@@ -23,7 +21,6 @@ Automatically post positive recognition messages in Slack for well-structured PR
 
     * Post a Slack message that automatically recognizes the PR author and provides a link to the PR.
 
-</div>
 <div class="automationExample" markdown="1">
 !!! example "Automatic Slack Messages"
     ```yaml+jinja

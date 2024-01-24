@@ -7,10 +7,8 @@ description: Automatically send Slack notifications from your git repos with git
 <!-- --8<-- [start:example]-->
 Automatically send Slack notifications to specific channels based on the contents of a pull request.
 
-<div class="automationImage" markdown="1">
 ![Send Slack Notifications](/automations/integrations/slack/slack-send-notification/slack-send-notification.png)
-</div>
-<div class="automationDescription" markdown="1">
+
 !!! info "Configuration Description"
     Conditions (all must be true):
 
@@ -20,7 +18,6 @@ Automatically send Slack notifications to specific channels based on the content
 
     * Post a Slack message based on the contents of the PR.
 
-</div>
 <div class="automationExample" markdown="1">
 !!! example "Send Slack Notifications"
     ```yaml+jinja
