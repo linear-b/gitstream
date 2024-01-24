@@ -1,0 +1,12 @@
+manifest:
+  version: 1.0
+
+automations:
+  enforce_changed_lines_limit:
+    if:
+       - {{ branch.diff.size > 250 }}
+    run:
+      - action: request-changes@v1
+        args:
+          comment: |
+            Our goal is to keep PRs under 250 lines of code changed, and this PR modifies more than 250 lines of code. Please consider breaking this PR up into smaller components to make code reviews easier.

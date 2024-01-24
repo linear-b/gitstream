@@ -1,0 +1,19 @@
+manifest:
+  version: 1.0
+
+on:
+  - comment_added
+  - label_added
+
+automations:
+  skip_github_action_checks_for_urgent_prs:
+    if:
+       - {{ is.requested or is.label }}
+    run:
+      - action: add-github-check@v1
+        args:
+          check_name: deployment-ci
+          conclusion: skipped
+is:
+  requested: {{ pr.comments | match(attr='content', term='/gitstream urgent') | some }}
+  label: {{ pr.labels | match(term='urgent') }}
