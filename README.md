@@ -2,7 +2,7 @@
   <a href="https://gitstream.cm?utm_source=GitHub&utm_medium=referral&utm_campaign=gitStream+-+GitHub+Repo" target="_blank">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://github-production-user-asset-6210df.s3.amazonaws.com/7205829/290864953-535d4655-9bd9-4868-8e7b-a571b82bc44c.png">
-    <img alt="Novu Logo" src="https://github-production-user-asset-6210df.s3.amazonaws.com/7205829/290864422-600d9a07-52b2-4eed-9043-bd593b00ef18.png" width="280"/>
+    <img alt="gitStream Logo" src="https://github-production-user-asset-6210df.s3.amazonaws.com/7205829/290864422-600d9a07-52b2-4eed-9043-bd593b00ef18.png" width="280"/>
   </picture>
   </a>
 </div>
