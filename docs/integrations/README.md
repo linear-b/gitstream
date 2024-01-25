@@ -130,6 +130,12 @@ description: Integrate third-party developer tools with gitStream.
 </div>
 </div>
 
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:material-microsoft-teams: Microsoft Teams](/integrations/teams)
+</div>
+</div>
+
 </div>
 
 ## Feature Flags
