@@ -144,7 +144,7 @@ gitStream supports the use of JavaScript plugins to create new filter functions.
 ## Additional Resources
 
 ### gitStream UI
-Once you have gitStream installed and have run some automations, you can view details about them at [app.gitstream.com](https://app.gitstream.cm). To view gitStream data, you will need to login with your GitHub account and have access to an organization that has run gitStream automations.
+Once you have gitStream installed and have run some automations, you can view details about them at [app.gitstream.cm](https://app.gitstream.cm). To view gitStream data, you will need to login with your GitHub account and have access to an organization that has run gitStream automations.
 
 ![gitStream UI](/screenshots/gitstream-ui.png)
 
