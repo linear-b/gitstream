@@ -3,7 +3,7 @@
 manifest:
   version: 1.0
 automations:
-  review_sonar_alerts:
+  review_orca_alerts:
     if:
       - {{ has.vulnerability or has.iac_violation or has.secret }}
     run:
