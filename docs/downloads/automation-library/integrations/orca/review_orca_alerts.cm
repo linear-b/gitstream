@@ -13,7 +13,7 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            This PR requires additional review because it fails to meet SonarCloud clean code standards.
+            This PR requires additional review because it fails to meet Orca Security safe code standards.
 
 orca: {{ pr | extractOrcaFindings }}
 
