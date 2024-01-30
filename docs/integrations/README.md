@@ -76,6 +76,18 @@ description: Integrate third-party developer tools with gitStream.
 </div>
 </div>
 
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:simple-renovatebot: Renovate](/integrations/renovate)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:simple-snyk: Snyk](/integrations/snyk)
+</div>
+</div>
+
 </div>
 
 ## Project Management
@@ -103,6 +115,24 @@ description: Integrate third-party developer tools with gitStream.
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
 [:simple-azuredevops: Azure Boards](/integrations/azure-boards)
+</div>
+</div>
+
+</div>
+
+## Chat & Communications
+
+<div class="integrations-list" markdown="1">
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:simple-slack: Slack](/integrations/slack)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:material-microsoft-teams: Microsoft Teams](/integrations/teams)
 </div>
 </div>
 
@@ -233,6 +263,12 @@ description: Integrate third-party developer tools with gitStream.
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
 [:material-terraform: Terraform](/integrations/terraform)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:simple-zapier: Zapier](/integrations/zapier)
 </div>
 </div>
 

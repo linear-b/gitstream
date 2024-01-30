@@ -1,0 +1,16 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  zapier_export_pr_number:
+    if:
+      - true
+    run:
+      - action: send-http-request@v1
+        args:
+          url: "{{ ZAPIER_WEBHOOK }}"
+          method: POST
+          headers: '{"Content-type": "application/json"}'
+          body: '{ "pr_number":"{{ pr.number }}" }'
