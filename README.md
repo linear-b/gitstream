@@ -58,7 +58,6 @@ Our research shows that code reviews are [the most consistent bottleneck in the 
 
 ![Auto-approve safe change](https://github-production-user-asset-6210df.s3.amazonaws.com/7205829/290906189-cd272a62-dbce-47eb-9752-f7b2ddc308cb.jpg)
 
-
 ## 🚀 Get Started
 
 gitStream is a GitHub / GitLab app that processes automations defined in Continuous Merge (CM) automation files contained in your git repos. You can test gitStream automations on your own PRs via the [gitStream playground](https://app.gitstream.cm/playground).
