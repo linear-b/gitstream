@@ -22,6 +22,3 @@ function containsString(arr, str) {
 };
 
 module.exports = isFlaggedUser;
-
-// Write code to test the isflaggeduser function
-console.log(isFlaggedUser("ben").toString());
