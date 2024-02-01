@@ -1,4 +1,6 @@
 
+--8<-- "plugins/filters/getCodeowners/reference.md"
+
 When used, create a secret TOKEN, and add it to the workflow file, in GitHub:
 
 ```
@@ -10,8 +12,6 @@ jobs:
         env: 
           CODEOWNERS: ${{ secrets.GITSTREAM_CODEOWNERS }}
 ``` 
-
---8<-- "plugins/filters/getCodeowners/reference.md"
 
 ??? note "Plugin Code: getCodeowners"
     ```javascript
