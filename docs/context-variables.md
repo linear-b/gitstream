@@ -153,7 +153,7 @@ jobs:
     runs-on: ubuntu-latest
     name: gitStream workflow automation
     env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 ...
 ```
 
