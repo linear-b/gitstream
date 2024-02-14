@@ -53,6 +53,7 @@ Our research shows that code reviews are [the most consistent bottleneck in the 
 * 🔃 Send webhooks from your git repo to other tools like Slack, Jira, and more
 * ✅ Auto-merge low-risk PRs/MRs like documentation, dependency updates, and test additions
 * 🏷️ Automatic PR labeler
+* 🔌 Build custom JavaScript plugins to extend functionality for more advanced data processing and pulling data from external APIs.
 * ‼️ Flag problems before requesting human review
 * 💬 Add context to code reviews with comments and labels
 
