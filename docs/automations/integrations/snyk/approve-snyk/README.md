@@ -1,6 +1,7 @@
 ---
-title: gitStream Automation - Approve and Merge Snyk Changes
+title: Approve and Merge Snyk Changes
 description: Automatically approve and merge Snyk PRs.
+category: [security, snyk, efficiency]
 ---
 # Approve and Merge Snyk Changes
 
@@ -14,7 +15,7 @@ Approve PRs from Snyk
     **Conditions (all must be true):**
 
     * The PR author is Snyk.
-    
+
     **Automation Actions:**
 
     * Approve the PR
@@ -32,4 +33,3 @@ Approve PRs from Snyk
       </span>
     </div>
 <!-- --8<-- [end:example]-->
-

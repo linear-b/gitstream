@@ -1,6 +1,7 @@
 ---
 title: Automate PR Labels With gitStream
 description: Implement workflow automations for GitHub and GitLab PR labels.
+visible: false
 ---
 # PR Label Management with gitStream
 

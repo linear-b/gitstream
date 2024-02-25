@@ -1,6 +1,7 @@
 ---
-title: gitStream Automation - Review Godoc Changes
+title: Review Godoc Changes
 description: Automatically approve PRs for Godoc changes.
+category: [docs, go]
 ---
 # Review Godoc Changes
 <!-- --8<-- [start:example]-->

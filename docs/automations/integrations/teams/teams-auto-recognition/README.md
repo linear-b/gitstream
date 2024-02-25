@@ -1,6 +1,7 @@
 ---
-title: Automation - Automatic MS Teams Notifications
+title: Automatic MS Teams Notifications
 description: Automatically post positive recognition messages in MS Teams for well-structured PRs.
+category: [devex, msteams]
 ---
 # Automatic MS Teams Notifications
 <!-- --8<-- [start:example]-->

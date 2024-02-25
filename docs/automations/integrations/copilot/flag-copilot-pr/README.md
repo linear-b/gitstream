@@ -1,6 +1,7 @@
 ---
-title: Automation - Label GitHub Copilot PRs
+title: Label GitHub Copilot PRs
 description: Automatically apply labels to PRs that are assisted by GitHub Copilot
+category: [quality, labeling]
 ---
 # Automatically Label GitHub Copilot PRs
 <!-- --8<-- [start:example]-->
@@ -59,7 +60,7 @@ Automatically apply labels to PRs that are assisted by GitHub Copilot. You can a
 
         Automation Actions:
 
-        * Apply a `🤖 Copilot` label to the PR
+
 
     !!! example "Label by Contributors"
         ```yaml+jinja

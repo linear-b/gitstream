@@ -1,6 +1,7 @@
 ---
-title: gitStream Automation - Approve and Merge Renovate Changes
+title: Approve and Merge Renovate Changes
 description: Automatically approve and merge Renovate PRs.
+category: [security, renovate, efficiency]
 ---
 # Approve and Merge Renovate Changes
 
@@ -32,4 +33,3 @@ Approve PRs from Renovate
       </span>
     </div>
 <!-- --8<-- [end:example]-->
-

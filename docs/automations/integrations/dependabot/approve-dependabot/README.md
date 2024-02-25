@@ -1,6 +1,8 @@
 ---
-title: gitStream Automation - Approve and Merge Dependabot Changes
+title: Approve and Merge Dependabot Changes
 description: Automatically approve and merge Dependabot PRs.
+category: [efficiency, security]
+quickstart: false
 ---
 # Approve and Merge Dependabot Changes
 <!-- --8<-- [start:example]-->
@@ -34,8 +36,8 @@ Auto-merge Dependabot PRs
 === "By Release Type"
 
     !!! warning "Required gitStream Plugins"
-        This example requires you to install the [`extractDependabotVersionBump`](/filter-function-plugins/#extractdependabotversionbump) and [`compareSemver`](/filter-function-plugins/#comparesemver) plugins. 
-        
+        This example requires you to install the [`extractDependabotVersionBump`](/filter-function-plugins/#extractdependabotversionbump) and [`compareSemver`](/filter-function-plugins/#comparesemver) plugins.
+
         [Learn more about gitStream plugins](/plugins/).
 
     !!! info "Configuration Description"
