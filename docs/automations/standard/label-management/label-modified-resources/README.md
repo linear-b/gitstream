@@ -1,6 +1,7 @@
 ---
 title: Automation - Label Modified Resources
 description: Automatically label PRs to indicate what resources are being changed.
+category: [review, quality]
 ---
 # Label Modified Resourcess Based on Modified Resources
 <!-- --8<-- [start:example]-->

@@ -1,6 +1,7 @@
 ---
 title: Automation - Assign Code Experts
 description: Automatically assign PR reviewers based on code expertise.
+category: [review, efficiency, quality]
 ---
 # Assign Code Experts
 

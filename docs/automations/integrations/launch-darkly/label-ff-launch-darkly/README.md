@@ -1,6 +1,7 @@
 ---
-title: Automation - Label PRs Based on Feature Flags
+title: Automation - Label PRs Based on LaunchDarkly Feature Flags
 description: Automatically label code that contians specified feature flags.
+category: [featureflag, launchdarkly]
 ---
 # Label LaunchDarkly Feature Flags
 
@@ -13,11 +14,11 @@ Automatically label code that contians specified feature flags.
 !!! info "Configuration Description"
 
     Conditions (all must be true):
-    
+
     * The PR adds one or more feature flag keys.
-   
+
     Automation Actions:
-    
+
     * Label the PR for each feature flag key introduced in the PR.
 
 <div class="automationExample" markdown="1">

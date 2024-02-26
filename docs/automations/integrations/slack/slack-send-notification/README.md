@@ -1,6 +1,7 @@
 ---
 title: Automation - Send Slack Notifications
 description: Automatically send Slack notifications from your git repos with gitStream.
+category: [slack]
 ---
 # Send Slack Notifications
 

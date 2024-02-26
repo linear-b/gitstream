@@ -1,6 +1,7 @@
 ---
-title: gitStream Automation - Enforce RDoc for New Ruby Classes
+title: Automation - Enforce RDoc for New Ruby Classes
 description: Enforce RDoc requirements for new Ruby code.
+category: [quality, ruby]
 ---
 # Enforce RDoc for New Ruby Classes
 
@@ -11,7 +12,7 @@ Require RDoc for all new Ruby classes.
 ![Enforce RDoc for New Ruby Classes](/automations/integrations/rdoc/review-rdoc-new-class/review-rdoc-new-class.png)
 
 !!! info "Configuration Description"
-    
+
     Conditions (all must be true):
 
     * The PR creates a new Ruby class.

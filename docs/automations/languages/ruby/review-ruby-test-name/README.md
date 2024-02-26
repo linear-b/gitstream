@@ -1,6 +1,7 @@
 ---
 title: Automation - Review Ruby Test Name
 description: Automatically request changes for Ruby test files that fail to match the required naming convention.
+category: [ruby]
 ---
 # Review Ruby Test Name
 
@@ -13,12 +14,12 @@ Automatically request changes for Ruby test files that fail to match the require
 !!! info "Configuration Description"
 
     Conditions (all must be true):
-    
+
     * The PR creates one or more new Ruby test files
     * The Ruby test fails to match the required naming convention.
-    
+
     Automation Actions:
-    
+
     * Request changes and post a comment that explains the Ruby test name requirements.
 
 <div class="automationExample" markdown="1">

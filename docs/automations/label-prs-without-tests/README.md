@@ -1,6 +1,7 @@
 ---
 title: Automation - Label PRs Without Tests
 description: Automatically label PRs that lack required tests.
+category: [review, quality]
 ---
 # Label PRs Without Tests
 Apply a `missing-tests` label to any PRs that don't update tests. gitStream will remove this label if the contributor adds a test change to the PR.

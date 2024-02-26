@@ -1,6 +1,7 @@
 ---
 title: Automation - Automatically Notify MS Teams Channels
 description: Automatically send Slack notifications to specific channels based on the contents of a pull request.
+category: [msteams]
 ---
 # Automatically Notify MS Teams Channels
 

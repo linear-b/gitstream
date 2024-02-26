@@ -44,7 +44,7 @@
 
 
 ## ⭐️ Why gitStream?
-Our research shows that code reviews are [the most consistent bottleneck in the software development process](https://devinterrupted.substack.com/p/analysis-the-quickest-path-to-halving?utm_source=G&utm_medium=referral&utm_campaign=gitStream+-+GitHub+Repo), so we built gitStream to enable dev teams to use simple YAML configurations to reduce code review toil and improve software quality. 
+Our research shows that code reviews are [the most consistent bottleneck in the software development process](https://devinterrupted.substack.com/p/analysis-the-quickest-path-to-halving?utm_source=G&utm_medium=referral&utm_campaign=gitStream+-+GitHub+Repo), so we built gitStream to enable dev teams to use simple YAML configurations to reduce code review toil and improve software quality.
 
 ## ✨ Features
 

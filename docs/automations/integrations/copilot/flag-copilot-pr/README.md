@@ -1,6 +1,7 @@
 ---
 title: Automation - Label GitHub Copilot PRs
 description: Automatically apply labels to PRs that are assisted by GitHub Copilot
+category: [quality, labeling]
 ---
 # Automatically Label GitHub Copilot PRs
 <!-- --8<-- [start:example]-->

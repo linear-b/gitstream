@@ -1,6 +1,7 @@
 ---
-title: Integrate gitStream with Rust
+title: Automation - Integrate gitStream with Rust
 description: Use gitStream for rust project workflow automations.
+visible: false
 ---
 
 ## Approve Rust Log Output Changes

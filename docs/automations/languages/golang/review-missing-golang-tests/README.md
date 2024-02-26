@@ -1,6 +1,7 @@
 ---
 title: Automation - Review Missing Golang Tests
 description: Automatically request changes for Golang PRs that are missing tests.
+category: [go, quality, review]
 ---
 # Review Missing Golang Tests
 
@@ -13,12 +14,12 @@ Automatically request changes for Golang PRs that are missing tests.
 !!! info "Configuration Description"
 
     Conditions (all must be true):
-    
+
     * The PR creates one or more new Golang files
     * The PR lacks new test files that match the name of the Golang files
-    
+
     Automation Actions:
-    
+
     * The PR lacks new test files that match the name of the Golang files
     *  Apply a red missing-tests label
 

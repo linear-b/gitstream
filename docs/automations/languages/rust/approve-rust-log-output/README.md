@@ -1,6 +1,7 @@
 ---
 title: Automation - Approve Rust Log Output Changes
 description: Automatically approve PRs that only change Rust log output.
+category: [rust, efficiency]
 ---
 # Approve Rust Log Output Changes
 
@@ -15,12 +16,12 @@ Approve changes to Rust files that only affect lines of code that invoke the log
 
 
     Conditions (all must be true):
-    
+
     * All files end in `.rs`
     * The changes only affect lines of code that invoke `print`, `println` or `dbg` macros or use the `log` crate macros.
-    
+
     Automation Actions:
-    
+
     * Apply a `log-output-only` label
     * Approve the PR
     * Post a comment explaining that the change only affects logging output.

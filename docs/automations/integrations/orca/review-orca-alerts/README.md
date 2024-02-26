@@ -1,6 +1,8 @@
 ---
 title: Automation - Review Orca Security Alerts
 description: Automatically require review from your SecOps team for Orca Security violations in pull requests.
+category: [security, orca]
+quickstart: true
 ---
 # Require Security Review for Orca Alerts
 <!-- --8<-- [start:example]-->

@@ -1,6 +1,7 @@
 ---
 title: Automation - Label PRs by Language
 description: Automatically detect which programming languages are contained in PRs and automatically label the PRs appropriately.
+category: [review]
 ---
 # Label PRs by Language
 
@@ -11,11 +12,11 @@ Automatically detect which programming languages are contained in PRs and automa
 !!! info "Configuration Description"
 
     Conditions (all must be true):
-    
+
     * A PR is created or updated.
-    
+
     Automation Actions:
-    
+
     * Label the PR for each programming language that is included.
 
 !!! example "Label PRs by Language"
@@ -27,6 +28,5 @@ Automatically detect which programming languages are contained in PRs and automa
       [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/label-management/label_prs_by_language.cm){ .md-button }
       </span>
     </div>
-    
-<!-- --8<-- [end:example]-->
 
+<!-- --8<-- [end:example]-->

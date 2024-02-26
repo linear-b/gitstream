@@ -1,6 +1,7 @@
 ---
 title: Automation - Automatically Link PRs to Related Jira Issues
 description: Provide automatic links to Jira issues that are associated with PRs.
+category: [jira, efficiency]
 ---
 # Automatically Link PRs to Related Jira Issues
 <!-- --8<-- [start:example]-->

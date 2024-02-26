@@ -1,6 +1,7 @@
 ---
-title: gitStream Automation - Review Jit Secret Detection
+title: Automation - Review Jit Secret Detection
 description: Automatically block PRs that contain secrets.
+category: [security, jit]
 ---
 # Review Jit Secret Detection
 Close PRs where Jit detects a secret and post a comment explaining steps to remedy the situation.

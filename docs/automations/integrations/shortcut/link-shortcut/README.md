@@ -1,6 +1,7 @@
 ---
 title: Automation - Automatically Link PRs to Related Shortcut Tasks
 description: Provide automatic links to Shortcut tasks that are associated with PRs.
+category: [shortcut, project]
 ---
 # Automatically Link PRs to Related Shortcut Tasks
 <!-- --8<-- [start:example]-->

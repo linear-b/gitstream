@@ -1,6 +1,7 @@
 ---
-title: gitStream Automation - Require Godoc for New Golang Classes
+title: Automation - Require Godoc for New Golang Classes
 description: Enforce Godoc requirements for PRS that include new Golang classes.
+category: [docs, go]
 ---
 # Require Godoc for New Golang Classes
 <!-- --8<-- [start:example]-->
@@ -12,7 +13,7 @@ Require Godoc for all new Golang classes.
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
-    
+
     Conditions (all must be true):
 
     * The PR creates a new Golang class.

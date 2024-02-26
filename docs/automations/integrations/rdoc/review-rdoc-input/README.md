@@ -1,6 +1,7 @@
 ---
-title: gitStream Automation - Review RDoc Input Parameters
+title: Automation - Review RDoc Input Parameters
 description: Automatically flag PRs that may require RDoc updates.
+category: [quality, ruby]
 ---
 
 # Review RDoc Input Parameters

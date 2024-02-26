@@ -1,6 +1,7 @@
 ---
 title: Automation - Label Missing Asana
 description: Automatically label PRs that are missing references to Asana resources.
+category: [quality, project, labeling]
 ---
 # Label Missing Asana
 <!-- --8<-- [start:example]-->

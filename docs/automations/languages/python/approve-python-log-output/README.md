@@ -1,6 +1,7 @@
 ---
 title: Automation - Approve Python Log Output Changes
 description: Automatically approve PRs that only affect Python log output.
+category: [python, efficiency]
 ---
 # Approve Python Log Output Changes
 

@@ -1,11 +1,12 @@
 ---
 title: Automation - Approve Python Formatting Changes
 description: Automatically approve PRs that only contain Python formatting changes.
+category: [python, efficiency]
 ---
 # Approve Python Formatting Changes
 
 <!-- --8<-- [start:example]-->
-Approve PRs that only contain formatting changes to Python files. 
+Approve PRs that only contain formatting changes to Python files.
 
 <div class="automationImage" style="align:right" markdown="1">
 ![Approve Python Formatting Changes](/automations/languages/python/approve-python-formatting-change/approve_python_formatting_change.png)

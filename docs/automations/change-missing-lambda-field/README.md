@@ -1,10 +1,11 @@
 ---
 title: Automation - Change Missing Lambda Field
 description: Detect missing Lambda fields that are required in all PRs.
+category: [quality]
 ---
 # Change Missing Lambda Field
 
-If a PR creates a new Lambda function, but lacks a description field, gitStream will request changes and post a comment that explains why. 
+If a PR creates a new Lambda function, but lacks a description field, gitStream will request changes and post a comment that explains why.
 
 <div class="automationImage" style="align:right" markdown="1">
 ![Change Missing Lambda Info](change_missing_lambda_field.png)

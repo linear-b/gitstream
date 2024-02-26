@@ -1,7 +1,9 @@
 ---
-title: Manage git Branches With gitStream
+title: Automation - Manage git Branches With gitStream
 description: Manage git branches with gitStream workflow automations.
+visible: false
 ---
+
 # Manage git Branches With gitStream
 
 Use gitStream to enforce branch naming conventions, review assignment, and other branch managment workflows.

@@ -1,8 +1,8 @@
 ---
 title: Automation - Review Terraform Module Imports
 description: Enforce Terraform modules use version when importing via URL source
-category: quality
-is_quick: false
+category: [quality]
+quickstart: false
 ---
 
 # Review Terraform Source Version

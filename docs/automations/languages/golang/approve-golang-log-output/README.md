@@ -1,6 +1,7 @@
 ---
 title: Automation - Approve Golang Log Output Changes
 description: Automatically approve PRs that only change Golang log output.
+category: [go, efficiency]
 ---
 # Approve Golang Log Output Changes
 
@@ -15,12 +16,12 @@ Approve changes to Golang files that only affect lines of code that invoke the l
 
 
     Conditions (all must be true):
-    
+
     * All files end in `.go`
     * The changes only affect lines of code that invoke the `log` object.
-    
+
     Automation Actions:
-    
+
     * Apply a `log-output-only` label
     * Approve the PR
     * Post a comment explaining that the change only affects logging output.

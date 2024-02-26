@@ -1,6 +1,7 @@
 ---
-title: gitStream Automation - Label Jit Alerts
+title: Automation - Label Jit Alerts
 description: Automatically label PRs with Jit findings.
+category: [security, jit]
 ---
 # Label Jit Alerts
 Label the number of high, medium, and low risk vulnerabilities Jit reports for PRs.
@@ -29,6 +30,3 @@ Label the number of high, medium, and low risk vulnerabilities Jit reports for P
       </span>
     </div>
 </div>
-
-
-

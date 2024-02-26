@@ -1,6 +1,7 @@
 ---
 title: Automation - Auto-Schedule Sync Meetings via Zapier
 description: Automatically export data from your git repo to Zapier.
+category: [zapier]
 ---
 # Auto-Schedule Sync Meetings via Zapier
 

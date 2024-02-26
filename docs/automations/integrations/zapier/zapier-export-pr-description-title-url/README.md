@@ -1,6 +1,7 @@
 ---
 title: Automation - Create Project Management Tasks Via Zapier
 description: Automatically export new PR titles, description, and url to Zapier.
+category: [project, zapier]
 ---
 # Create Project Management Tasks Via Zapier
 

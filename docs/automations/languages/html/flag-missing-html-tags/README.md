@@ -1,6 +1,7 @@
 ---
 title: Automation - Flag Missing HTML Tags
 description: Automatically request changes for HTML files that lack the canonical and robots tag.
+category: [html, css, quality]
 ---
 # Flag Missing HTML Tags
 
@@ -12,13 +13,13 @@ Request changes for HTML files that lack the canonical and robots tag.
 !!! info "Configuration Description"
 
     Conditions (all must be true):
-    
+
     * The PR contains only new HTML files
     * One or more files are missing a canonical tag
     * One or more files are missing a robots meta tag
-    
+
     Automation Actions:
-    
+
     * Apply a `⚠️ Missing Required Tag` label.
     * Post a comment asking the user to add required tags.
 

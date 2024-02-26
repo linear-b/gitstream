@@ -1,6 +1,7 @@
 ---
 title: Automation - Label the Number of Approvals
 description: Automatically label PRs with the number of completed reviews that approve the PR.
+category: [review]
 ---
 # Label the Number of Approvals
 

@@ -1,8 +1,8 @@
 ---
 title: Automation - Review Terraform Module Directory
 description: Enforce directory structure conventions for new Terraform module
-category: quality
-is_quick: false
+category: [quality]
+quickstart: false
 ---
 
 # Review New Terraform Modules

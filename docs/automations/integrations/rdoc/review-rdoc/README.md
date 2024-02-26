@@ -1,6 +1,7 @@
 ---
-title: gitStream Automation - Approve RDoc Changes
+title: Automation - Approve RDoc Changes
 description: Automatically approve PRs for RDoc changes.
+category: [efficiency, ruby]
 ---
 # Automatically Approve RDoc Changes
 

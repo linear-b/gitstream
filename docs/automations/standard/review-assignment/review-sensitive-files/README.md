@@ -1,6 +1,7 @@
 ---
 title: Automation - Review Sensitive Files
 description: Automatically assign reviewers for PRs that contain changes to high-risk code.
+category: [review, quality]
 ---
 # Review Sensitive Files
 

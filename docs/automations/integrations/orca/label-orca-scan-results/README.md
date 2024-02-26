@@ -1,6 +1,7 @@
 ---
 title: Automation - Auto-Label Orca Scan Results
 description: Automatically apply labels to PRs that indicate the result of Orca Security scans.
+category: [security, orca]
 ---
 # Auto-Label Orca Scan Results
 
@@ -9,8 +10,8 @@ description: Automatically apply labels to PRs that indicate the result of Orca 
 Automatically apply labels to PRs that indicate the result of Orca Security scans.
 
 !!! warning "Required gitStream Plugin"
-    This example requires you to [install the `extractOrcaFindings` plugin](/filter-function-plugins/#extractorcafindings). 
-    
+    This example requires you to [install the `extractOrcaFindings` plugin](/filter-function-plugins/#extractorcafindings).
+
     [Learn more about gitStream plugins](/plugins/).
 
 <div class="automationImage" markdown="1">

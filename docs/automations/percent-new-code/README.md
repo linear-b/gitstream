@@ -1,6 +1,7 @@
 ---
 title: Automation - Calculate the Percentage of New Code
 description: Indicate the amount of new code contained in a PR.
+category: [review]
 ---
 # Calculate the Percentage of New Code
 Post a comment that indicates what percentage of the PR contains new code.
@@ -16,7 +17,7 @@ Post a comment that indicates what percentage of the PR contains new code.
 
     Automation Actions:
 
-    * Use the `changes` custom expression to post a comment that indicates what percentage of the PR is new code.  
+    * Use the `changes` custom expression to post a comment that indicates what percentage of the PR is new code.
 </div>
 <div class="automationExample" markdown="1">
 !!! example "Calculate the Percentage of New Code"

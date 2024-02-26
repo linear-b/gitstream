@@ -1,6 +1,7 @@
 ---
 title: Automation - Review Missing Java Tests
 description: Automatically request changes for Java PRs that lack test files.
+category: [java, review, quality]
 ---
 # Review Missing Java Tests
 
@@ -13,12 +14,12 @@ Automatically request changes for Java PRs that lack test files.
 !!! info "Configuration Description"
 
     Conditions (all must be true):
-    
+
     * The PR creates one or more new Java files
     * The PR lacks new test files that match the name of the Java files
-    
+
     Automation Actions:
-    
+
     * Apply a red missing-tests label
     * Request changes and post a comment listing the files that need tests.
 
