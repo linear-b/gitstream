@@ -1,5 +1,5 @@
 ---
-title: Enforce Changelog Updates
+title: Automation - Enforce Changelog Updates
 description: Ensure PRS to specific branches include changelog updates.
 category: [review]
 ---

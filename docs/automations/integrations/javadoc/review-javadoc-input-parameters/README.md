@@ -1,5 +1,5 @@
 ---
-title: Review Java Input Parameters for Javadoc Changes
+title: Automation - Review Java Input Parameters for Javadoc Changes
 description: Notify PR authors to ensure proper Javadoc coverage.
 category: [docs, java]
 ---

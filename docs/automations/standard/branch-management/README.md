@@ -1,5 +1,5 @@
 ---
-title: Manage git Branches With gitStream
+title: Automation - Manage git Branches With gitStream
 description: Manage git branches with gitStream workflow automations.
 visible: false
 ---

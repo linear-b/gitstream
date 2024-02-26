@@ -1,5 +1,5 @@
 ---
-title: Label Changed Resources By Percent
+title: Automation - Label Changed Resources By Percent
 description: Automatically label PRs based on changes to code resources.
 category: [review]
 ---

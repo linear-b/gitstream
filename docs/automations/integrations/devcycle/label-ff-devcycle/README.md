@@ -1,5 +1,5 @@
 ---
-title: Label PRs Based on Devcycle Feature Flags
+title: Automation - Label PRs Based on Devcycle Feature Flags
 description: Automatically label code that contians specified feature flags.
 category: [quality, labeling]
 ---

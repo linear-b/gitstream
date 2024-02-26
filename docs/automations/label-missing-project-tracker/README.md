@@ -1,5 +1,5 @@
 ---
-title: Flag Missing Project Tracking Info
+title: Automation - Flag Missing Project Tracking Info
 description: Automatically flag PRs that lack references to related project tracking issues.
 category: [project, quality]
 ---

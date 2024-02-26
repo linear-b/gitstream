@@ -1,5 +1,5 @@
 ---
-title: Approve Golang Log Output Changes
+title: Automation - Approve Golang Log Output Changes
 description: Automatically approve PRs that only change Golang log output.
 category: [go, efficiency]
 ---

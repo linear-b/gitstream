@@ -1,5 +1,5 @@
 ---
-title: Export PR Data to Zapier
+title: Automation - Export PR Data to Zapier
 description: Automatically export data from your git repo to Zapier.
 category: [project, zapier]
 ---

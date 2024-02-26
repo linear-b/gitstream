@@ -1,5 +1,5 @@
 ---
-title: Require Godoc for New Golang Classes
+title: Automation - Require Godoc for New Golang Classes
 description: Enforce Godoc requirements for PRS that include new Golang classes.
 category: [docs, go]
 ---

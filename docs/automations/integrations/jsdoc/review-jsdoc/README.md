@@ -1,5 +1,5 @@
 ---
-title: Review JSDoc Changes
+title: Automation - Review JSDoc Changes
 description: Automatically approve PRs for JSDoc changes.
 category: [docs, javascript]
 ---

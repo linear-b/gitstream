@@ -1,5 +1,5 @@
 ---
-title: Label Deleted Files
+title: Automation - Label Deleted Files
 description: Label PRs that delete files.
 category: [quality, review]
 ---

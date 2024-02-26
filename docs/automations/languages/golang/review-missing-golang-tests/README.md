@@ -1,5 +1,5 @@
 ---
-title: Review Missing Golang Tests
+title: Automation - Review Missing Golang Tests
 description: Automatically request changes for Golang PRs that are missing tests.
 category: [go, quality, review]
 ---

@@ -1,5 +1,5 @@
 ---
-title: Automatically Link PRs to Related Asana Cards
+title: Automation - Automatically Link PRs to Related Asana Cards
 description: Provide automatic links to Asana cards that are associated with PRs.
 category: [efficiency, quality, project]
 ---

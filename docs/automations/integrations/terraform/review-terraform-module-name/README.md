@@ -1,5 +1,5 @@
 ---
-title: Review Terraform Module Name
+title: Automation - Review Terraform Module Name
 description: Enforce naming conventions in Terraform module changes
 category: [quality]
 quickstart: false

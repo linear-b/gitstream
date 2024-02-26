@@ -1,5 +1,5 @@
 ---
-title: Review SonarCloud Duplications
+title: Automation - Review SonarCloud Duplications
 description: Automatically request changes when SonarCloud detects duplicated code.
 category: [security, sonarcloud]
 ---

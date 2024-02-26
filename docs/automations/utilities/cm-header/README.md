@@ -1,5 +1,5 @@
 ---
-title: CM File Header
+title: Automation - CM File Header
 description: A helpful header to include at the top of your continuous merge files.
 visible: false
 ---

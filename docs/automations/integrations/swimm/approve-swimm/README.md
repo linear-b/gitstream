@@ -1,5 +1,5 @@
 ---
-title: Approve Swimm Changes
+title: Automation - Approve Swimm Changes
 description: Automatically approve PRs that only change Swimm documentation.
 category: [quality, docs]
 ---

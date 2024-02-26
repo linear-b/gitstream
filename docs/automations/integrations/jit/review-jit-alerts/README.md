@@ -1,5 +1,5 @@
 ---
-title: Review Jit Security Alerts
+title: Automation - Review Jit Security Alerts
 description: Automatically assign PR reviewers for Jit security alerts.
 category: [security, jit]
 ---

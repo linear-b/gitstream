@@ -1,5 +1,5 @@
 ---
-title: Integrate gitStream with Ruby
+title: Automation - Integrate gitStream with Ruby
 description: Implement Ruby workflow automations with gitStream.
 visible: false
 ---

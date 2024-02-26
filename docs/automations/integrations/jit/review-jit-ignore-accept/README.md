@@ -1,5 +1,5 @@
 ---
-title: Review Jit Ignore and Accept
+title: Automation - Review Jit Ignore and Accept
 description: Automatically notify your security team when someone ignores Jit vulnerabilities.
 category: [security, jit]
 ---

@@ -1,5 +1,5 @@
 ---
-title: Integrate gitStream with Python
+title: Automation - Integrate gitStream with Python
 description: Implement Python workflow automations with gitStream.
 visible: false
 ---

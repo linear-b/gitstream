@@ -1,5 +1,5 @@
 ---
-title: Review Jit Secret Detection
+title: Automation - Review Jit Secret Detection
 description: Automatically block PRs that contain secrets.
 category: [security, jit]
 ---

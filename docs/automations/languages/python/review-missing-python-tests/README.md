@@ -1,5 +1,5 @@
 ---
-title: Review Missing Python Tests
+title: Automation - Review Missing Python Tests
 description: Automatically request changes for Python PRs that lack test files.
 category: [python]
 ---

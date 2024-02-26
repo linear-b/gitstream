@@ -1,5 +1,5 @@
 ---
-title: Label Unresolved Review Threads
+title: Automation - Label Unresolved Review Threads
 description: Automatically label PRs when there are unresolved code review comments.
 category: [security]
 quickstart: true

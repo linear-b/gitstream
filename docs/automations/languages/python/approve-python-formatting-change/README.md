@@ -1,5 +1,5 @@
 ---
-title: Approve Python Formatting Changes
+title: Automation - Approve Python Formatting Changes
 description: Automatically approve PRs that only contain Python formatting changes.
 category: [python, efficiency]
 ---

@@ -1,5 +1,5 @@
 ---
-title: Assign team members as reviewers
+title: Automation - Assign team members as reviewers
 description: Automatically assign teammates to review PRs.
 category: [efficiency]
 ---

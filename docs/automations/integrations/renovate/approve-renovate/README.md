@@ -1,5 +1,5 @@
 ---
-title: Approve and Merge Renovate Changes
+title: Automation - Approve and Merge Renovate Changes
 description: Automatically approve and merge Renovate PRs.
 category: [security, renovate, efficiency]
 ---

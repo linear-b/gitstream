@@ -1,5 +1,5 @@
 ---
-title: Review SonarCloud Security Alerts
+title: Automation - Review SonarCloud Security Alerts
 description: Automatically flag SonarCloud security alerts for additional review.
 category: [security, sonarcloud]
 ---

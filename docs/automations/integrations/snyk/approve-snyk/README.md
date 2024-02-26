@@ -1,5 +1,5 @@
 ---
-title: Approve and Merge Snyk Changes
+title: Automation - Approve and Merge Snyk Changes
 description: Automatically approve and merge Snyk PRs.
 category: [security, snyk, efficiency]
 ---

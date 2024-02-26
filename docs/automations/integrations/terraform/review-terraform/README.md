@@ -1,5 +1,5 @@
 ---
-title: Automatically assign infrastructure team for Terraform changes
+title: Automation - Automatically assign infrastructure team for Terraform changes
 description: Require specific reviewers for Terraform module changes
 category: [quality]
 quickstart: false

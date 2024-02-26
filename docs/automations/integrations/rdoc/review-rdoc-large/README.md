@@ -1,5 +1,5 @@
 ---
-title: Review RDoc for Large Changes
+title: Automation - Review RDoc for Large Changes
 description: Automatically flag large PRs that may require RDoc updates.
 category: [quality, ruby]
 ---

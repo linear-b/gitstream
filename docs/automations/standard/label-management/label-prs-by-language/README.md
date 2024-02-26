@@ -1,5 +1,5 @@
 ---
-title: Label PRs by Language
+title: Automation - Label PRs by Language
 description: Automatically detect which programming languages are contained in PRs and automatically label the PRs appropriately.
 category: [review]
 ---

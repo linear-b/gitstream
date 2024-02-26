@@ -1,5 +1,5 @@
 ---
-title: Enforce Required Labels
+title: Automation - Enforce Required Labels
 description: Automatically enforce the use of required PR labels.
 category: [review, quality]
 ---

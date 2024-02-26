@@ -1,5 +1,5 @@
 ---
-title: Label Modified Resources
+title: Automation - Label Modified Resources
 description: Automatically label PRs to indicate what resources are being changed.
 category: [review, quality]
 ---

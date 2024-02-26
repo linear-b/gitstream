@@ -1,5 +1,5 @@
 ---
-title: Export PR Number, Title, and URL to Zapier
+title: Automation - Export PR Number, Title, and URL to Zapier
 description: Automatically export data from your git repo to Zapier.
 category: [project, zapier]
 ---

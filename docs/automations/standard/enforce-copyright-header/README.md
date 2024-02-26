@@ -1,5 +1,5 @@
 ---
-title: Enforce Copyright Headers
+title: Automation - Enforce Copyright Headers
 description: Automatically require copyright headers for all new source code files.
 category: [review, compliance]
 ---

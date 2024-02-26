@@ -1,5 +1,5 @@
 ---
-title: Enforce RDoc for New Ruby Classes
+title: Automation - Enforce RDoc for New Ruby Classes
 description: Enforce RDoc requirements for new Ruby code.
 category: [quality, ruby]
 ---

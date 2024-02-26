@@ -1,5 +1,5 @@
 ---
-title: PR Label Guidance
+title: Automation - PR Label Guidance
 description: Automatically suggest labels to apply to new PRs.
 category: [review]
 ---

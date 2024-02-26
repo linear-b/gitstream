@@ -1,5 +1,5 @@
 ---
-title: Automatic Team Review Assignment
+title: Automation - Automatic Team Review Assignment
 description: Automatically assign teams to review PRs.
 category: [review]
 ---

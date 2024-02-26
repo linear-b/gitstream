@@ -1,5 +1,5 @@
 ---
-title: Colors Custom Expression
+title: Automation - Colors Custom Expression
 description: Quickly add color-coded labels to your automations that match the GitHub UI.
 visible: false
 ---

@@ -1,5 +1,5 @@
 ---
-title: Integrate gitStream with Golang
+title: Automation - Integrate gitStream with Golang
 description: Use gitStream for golang project workflow automations.
 visible: false
 ---

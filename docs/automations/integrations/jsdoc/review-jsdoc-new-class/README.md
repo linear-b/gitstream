@@ -1,5 +1,5 @@
 ---
-title: Enforce JSDoc for New JavaScript Classes
+title: Automation - Enforce JSDoc for New JavaScript Classes
 description: Enforce JSDoc requirements for PRs.
 category: [docs, javascript]
 ---

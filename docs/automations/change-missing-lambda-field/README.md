@@ -1,5 +1,5 @@
 ---
-title: Change Missing Lambda Field
+title: Automation - Change Missing Lambda Field
 description: Detect missing Lambda fields that are required in all PRs.
 category: [quality]
 ---

@@ -1,5 +1,5 @@
 ---
-title: Review Terraform Module Directory
+title: Automation - Review Terraform Module Directory
 description: Enforce directory structure conventions for new Terraform module
 category: [quality]
 quickstart: false

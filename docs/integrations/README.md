@@ -1,5 +1,5 @@
 ---
-title: gitStream Integrations
+title: Automation - gitStream Integrations
 description: Integrate third-party developer tools with gitStream.
 visible: false
 ---

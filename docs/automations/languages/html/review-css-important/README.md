@@ -1,5 +1,5 @@
 ---
-title: Flag CSS Important Tags
+title: Automation - Flag CSS Important Tags
 description: Automatically request changes when PRs that include !important tags.
 category: [html, css, quality]
 ---

@@ -1,5 +1,5 @@
 ---
-title: Label PRs Without Tests
+title: Automation - Label PRs Without Tests
 description: Automatically label PRs that lack required tests.
 category: [review, quality]
 ---

@@ -1,5 +1,5 @@
 ---
-title: Review Godoc for Large Changes
+title: Automation - Review Godoc for Large Changes
 description: Automatically flag large PRs that may require Godoc updates.
 category: [docs, go]
 ---

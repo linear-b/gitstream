@@ -1,5 +1,5 @@
 ---
-title: Integrate gitStream with JavaScript
+title: Automation - Integrate gitStream with JavaScript
 description: Implement JavaScript workflow automations with gitStream.
 visible: false
 ---

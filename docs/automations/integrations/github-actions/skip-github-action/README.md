@@ -1,5 +1,5 @@
 ---
-title: Skip Required GitHub Actions
+title: Automation - Skip Required GitHub Actions
 description: Automatically skip GitHub Actions based on branch names, modified resource, slash commands, and more.
 category: [efficiency, CI]
 ---

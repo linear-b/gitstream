@@ -1,5 +1,5 @@
 ---
-title: Summarize Language Changes
+title: Automation - Summarize Language Changes
 description: Automatically post a comment that summarizes which programming languages are contained in PRs.
 category: [review]
 ---

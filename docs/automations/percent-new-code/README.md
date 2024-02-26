@@ -1,5 +1,5 @@
 ---
-title: Calculate the Percentage of New Code
+title: Automation - Calculate the Percentage of New Code
 description: Indicate the amount of new code contained in a PR.
 category: [review]
 ---

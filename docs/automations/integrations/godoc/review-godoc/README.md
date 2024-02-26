@@ -1,5 +1,5 @@
 ---
-title: Review Godoc Changes
+title: Automation - Review Godoc Changes
 description: Automatically approve PRs for Godoc changes.
 category: [docs, go]
 ---

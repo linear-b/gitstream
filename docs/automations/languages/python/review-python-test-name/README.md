@@ -1,5 +1,5 @@
 ---
-title: Review Python Test Name
+title: Automation - Review Python Test Name
 description: Automatically request changes for Python test files that fail to match the required naming convention.
 category: [python]
 ---

@@ -1,5 +1,5 @@
 ---
-title: Review Missing Java Tests
+title: Automation - Review Missing Java Tests
 description: Automatically request changes for Java PRs that lack test files.
 category: [java, review, quality]
 ---

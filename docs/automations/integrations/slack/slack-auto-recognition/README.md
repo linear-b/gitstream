@@ -1,5 +1,5 @@
 ---
-title: Automatic Slack Messages
+title: Automation - Automatic Slack Messages
 description: Automatically post positive recognition messages in Slack for well-structured PRs.
 category: [devex, slack]
 ---

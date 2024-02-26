@@ -1,5 +1,5 @@
 ---
-title: Review Javadoc Changes
+title: Automation - Review Javadoc Changes
 description: Automatically approve PRs that only contain Javadoc changes.
 category: [docs, java]
 ---

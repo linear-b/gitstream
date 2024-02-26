@@ -1,5 +1,5 @@
 ---
-title: Label Jit Alerts
+title: Automation - Label Jit Alerts
 description: Automatically label PRs with Jit findings.
 category: [security, jit]
 ---

@@ -1,5 +1,5 @@
 ---
-title: Auto-Label Orca Scan Results
+title: Automation - Auto-Label Orca Scan Results
 description: Automatically apply labels to PRs that indicate the result of Orca Security scans.
 category: [security, orca]
 ---

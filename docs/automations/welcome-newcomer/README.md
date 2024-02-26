@@ -1,5 +1,5 @@
 ---
-title: Welcome Newcomer.
+title: Automation - Welcome Newcomer.
 description: Automatically post messages to first time PR contributors to help them get started.
 category: [review]
 ---

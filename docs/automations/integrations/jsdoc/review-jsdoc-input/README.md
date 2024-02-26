@@ -1,5 +1,5 @@
 ---
-title: Review JSDoc Input Parameters
+title: Automation - Review JSDoc Input Parameters
 description: Automatically flag PRs that may require JSDoc updates.
 category: [docs, javascript]
 ---
