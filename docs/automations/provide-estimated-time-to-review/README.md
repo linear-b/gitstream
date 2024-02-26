@@ -1,6 +1,8 @@
 ---
 title: Automation - Provide Estimated Time to Review
 description: Automatically label PRs with an estimated time to review.
+category: Code Review
+quickstart: True
 ---
 # Provide Estimated Time to Review
 Label all PRs with an estimated number of minutes it would take someone to review. gitStream will automatically update this label whenever a PR changes.
