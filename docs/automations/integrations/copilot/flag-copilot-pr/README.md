@@ -60,7 +60,7 @@ Automatically apply labels to PRs that are assisted by GitHub Copilot. You can a
 
         Automation Actions:
 
-
+        * Apply a `🤖 Copilot` label to the PR
 
     !!! example "Label by Contributors"
         ```yaml+jinja
