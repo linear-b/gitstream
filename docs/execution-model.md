@@ -25,17 +25,17 @@ Use explicit triggers to enhance the control and customization of automations in
 Add the `on` keyword to the file and/or to a specific automation to define explicit triggers.
 gitStream supports the following explicit triggers:
 
-| Trigger  | Description            |
-|---------|------------------------ |
-|`merge` | Trigger when merging the PR |
-|`pr_created` | Trigger when the PR is created |
-|`commit` | Trigger on each commit after the creation of the PR |
-|`comment_added` | Trigger on each added comment |
-|`label_added` | Trigger on each added label |
-|`label_removed` | Trigger on removed label |
+| Trigger  | Description            | Default |
+|---------|------------------------ | --------------|
+|`comment_added` | Trigger on each added comment | `off` |
+|`commit` | Trigger on each commit after the creation of the PR | `on` |
+|`label_added` | Trigger on each added label | `on` |
+|`label_removed` | Trigger on removed label | `on` |
+|`merge` | Trigger when merging the PR | `off` |
+|`pr_created` | Trigger when the PR is created | `on` |
 
 Explicit triggers are set per each automation block independently and can be configured at the file level, specific to each automation separately or a combination of the two. In case triggers are listed at the file level **and** specific automation, the automation will be triggered according to both triggers.
-If an automation block does not have explicit triggers configured, it will be triggered according to the default (implicit) triggers
+If an automation block does not have explicit triggers configured, it will be triggered according to the default (implicit) triggers.
 
 **Examples**
 
