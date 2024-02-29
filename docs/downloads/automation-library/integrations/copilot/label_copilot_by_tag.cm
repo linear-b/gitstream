@@ -3,6 +3,11 @@
 manifest:
   version: 1.0
 
+on:
+  - comment_added
+  - commit
+  - pr_created
+
 automations:
   label_copilot:
     # Detect PRs that contain the text '#copilot#' in the title, description, comments, or commit messages

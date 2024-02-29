@@ -90,7 +90,7 @@ Automatically apply labels to PRs that are assisted by GitHub Copilot. You can a
         ```
         <div class="result" markdown>
         <span>
-        [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/copilot/label_copilot_by_hint.cm){ .md-button }
+        [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/copilot/label_copilot_by_tag.cm){ .md-button }
         </span>
         </div>
 <!-- --8<-- [end:example]-->
