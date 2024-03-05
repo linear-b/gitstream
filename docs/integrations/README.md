@@ -49,7 +49,7 @@ visible: false
 
 </div>
 
-## Security
+## Security & Compliance
 
 <div class="integrations-list" markdown="1">
 
@@ -86,6 +86,12 @@ visible: false
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
 [:simple-snyk: Snyk](/integrations/snyk)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:material-lock: SOC 2](/integrations/soc2)
 </div>
 </div>
 
