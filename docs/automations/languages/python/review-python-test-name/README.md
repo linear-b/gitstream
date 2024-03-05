@@ -1,6 +1,7 @@
 ---
 title: Automation - Review Python Test Name
 description: Automatically request changes for Python test files that fail to match the required naming convention.
+category: [python]
 ---
 # Review Python Test Name
 
@@ -13,12 +14,12 @@ Automatically request changes for Python test files that fail to match the requi
 !!! info "Configuration Description"
 
     Conditions (all must be true):
-    
+
     * The PR creates one or more new Python test files
     * The Python test fails to match the required naming convention.
-    
+
     Automation Actions:
-    
+
     * Request changes and post a comment that explains the Python test name requirements.
 
 <div class="automationExample" markdown="1">

@@ -1,6 +1,7 @@
 ---
 title: Automation - Review Missing Ruby Tests
 description: Automatically request changes for Ruby PRs that lack test files.
+category: [ruby]
 ---
 # Review Missing Ruby Tests
 
@@ -13,12 +14,12 @@ Automatically request changes for Ruby PRs that lack test files.
 !!! info "Configuration Description"
 
     Conditions (all must be true):
-    
+
     * The PR creates one or more new Ruby files
     * The PR lacks new test files that match the name of the Ruby files
-    
+
     Automation Actions:
-    
+
     * Apply a red missing-tests label
     * Request changes and post a comment listing the files that need tests.
 

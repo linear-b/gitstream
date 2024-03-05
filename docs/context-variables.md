@@ -143,15 +143,17 @@ automations:
 
 The `env` context allows the user to pass data from the repo that is unavailable in the other context variables. Thus, the structure of the variable is not fixed and depends on user configuration.
 
-To configure the `env` variable, add the `env` field to gitstream's workflow job configurations on `.github/workflows/gitstream.yml`, under the `Evaluate Rules` step. For more information, visit GitHub's guide for [Using secrets in GitHub Actions](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)
-The `env` field 
+To configure the `env` variable, add the `env` field to gitstream's workflow job configurations on `.github/workflows/gitstream.yml`. For more information, visit GitHub's guide for [Using secrets in GitHub Actions](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)
+ 
 ```yaml title="examle: add secrets to the env variable"
 ...
+jobs:
+  gitStream:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
     name: gitStream workflow automation
-    steps:
-      - name: Evaluate Rules
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+    env:
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 ...
 ```
 

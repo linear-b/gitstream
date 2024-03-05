@@ -1,6 +1,8 @@
 ---
 title: Automation - Automatic Project Tracker Links
 description: Automatically post PR comments that link to the associated project tracking resource.
+category: [quality]
+quickstart: true
 ---
 
 # Automatic Project Tracker Links

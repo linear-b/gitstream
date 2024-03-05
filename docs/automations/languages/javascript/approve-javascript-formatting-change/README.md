@@ -1,11 +1,12 @@
 ---
 title: Automation - Approve JavaScript Formatting Changes
 description: Automatically approve PRs that only change JavaScript formatting.
+category: [javascript, efficiency]
 ---
 # Approve JavaScript Formatting Changes
 
 <!-- --8<-- [start:example]-->
-Approve PRs that only contain formatting changes to JavaScript or TypeScript files. 
+Approve PRs that only contain formatting changes to JavaScript or TypeScript files.
 
 <div class="automationImage" style="align:right" markdown="1">
 ![Approve JavaScript formatting changes](/automations/languages/javascript/approve-javascript-formatting-change/approve-javascript-formatting-change.png)

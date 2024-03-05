@@ -1,6 +1,7 @@
 ---
 title: Automation - Flag Duplicate H1
 description: Automatically request changes when PRs contain HTML files that have more than one H1 heading.
+category: [html, css, quality]
 ---
 # Flag Duplicate H1
 
@@ -12,11 +13,11 @@ Automatically request changes when PRs contain HTML files that have more than on
 !!! info "Configuration Description"
 
     Conditions (all must be true):
-    
+
     * The PR contains more than one H1 heading in an HTML file.
-    
+
     Automation Actions:
-    
+
     * Post a comment requesting the author to reduce H1 headings to one per file.
 
 <div class="automationExample" markdown="1">

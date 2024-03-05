@@ -1,6 +1,7 @@
 ---
 title: Automation - Skip Required GitHub Actions
 description: Automatically skip GitHub Actions based on branch names, modified resource, slash commands, and more.
+category: [efficiency, CI]
 ---
 # Skip Required GitHub Actions
 
@@ -40,7 +41,7 @@ Automatically skip GitHub Actions based on branch names, modified resource, slas
     !!! info "Configuration Description"
         Conditions (all must be true):
 
-        * Someone applies one or more specified labels to a PR. 
+        * Someone applies one or more specified labels to a PR.
 
         Automation Actions:
 
@@ -61,7 +62,7 @@ Automatically skip GitHub Actions based on branch names, modified resource, slas
     !!! info "Configuration Description"
         Conditions (all must be true):
 
-        * A PR modifies specific files or directories. 
+        * A PR modifies specific files or directories.
 
         Automation Actions:
 

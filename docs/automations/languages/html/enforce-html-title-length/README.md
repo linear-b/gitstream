@@ -1,6 +1,7 @@
 ---
 title: Automation - Enforce HTML Title Length Requirements
 description: Automatically request changes for `<title>` tags that don't comply with best practices.
+category: [html, css]
 ---
 # Enforce HTML Title Length Requirements
 
@@ -12,11 +13,11 @@ Automatically request changes for `<title>` tags that don't comply with best pra
 !!! info "Configuration Description"
 
     Conditions (all must be true):
-    
+
     * The PR adds a `<title>` tag that is less than 30 or greater than 90 characters.
-    
+
     Automation Actions:
-    
+
     * Request changes and post a comment asking the author to modify the title.
 
 <div class="automationExample" markdown="1">

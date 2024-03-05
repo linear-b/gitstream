@@ -1,6 +1,7 @@
 ---
 title: Automation - Review Java Test Name
 description: Automatically request changes for Java test files that fail to match the required naming convention.
+category: [java, compliance]
 ---
 # Review Java Test Name
 
@@ -13,12 +14,12 @@ Automatically request changes for Java test files that fail to match the require
 !!! info "Configuration Description"
 
     Conditions (all must be true):
-    
+
     * The PR creates one or more new Java test files
     * The Java test fails to match the required naming convention.
-    
+
     Automation Actions:
-    
+
     * Request changes and post a comment that explains the Java test name requirements.
 
 <div class="automationExample" markdown="1">

@@ -1,6 +1,7 @@
 ---
-title: gitStream Automation - Review Javadoc for Large Changes
+title: Automation - Review Javadoc for Large Changes
 description: Automatically flag large PRs that may require Javadoc updates.
+category: [docs, java]
 ---
 # Review Javadoc for Large Changes
 

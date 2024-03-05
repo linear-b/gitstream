@@ -1,6 +1,7 @@
 ---
-title: Code Review Assignment with gitStream
+title: Automation - Code Review Assignment with gitStream
 description: Use gitStream for code review assignment workflow automations.
+visible: false
 ---
 # Use gitStream for Automatic Code Review Assignment
 

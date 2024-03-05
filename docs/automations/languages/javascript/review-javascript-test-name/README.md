@@ -1,6 +1,7 @@
 ---
 title: Automation - Review JavaScript Test Name
 description: Automatically request changes for JavaScript test files that fail to match the required naming convention.
+category: [javascript]
 ---
 # Review JavaScript Test Name
 
@@ -13,12 +14,12 @@ Automatically request changes for JavaScript test files that fail to match the r
 !!! info "Configuration Description"
 
     Conditions (all must be true):
-    
+
     * The PR creates one or more new JavaScript test files
     * The JavaScript test fails to match the required naming convention.
-    
+
     Automation Actions:
-    
+
     * Request changes and post a comment that explains the JavaScript test name requirements.
 
 <div class="automationExample" markdown="1">

@@ -1,6 +1,8 @@
 ---
 title: Automation - Approve Safe Changes
 description: Automatically approve PRs that change docs, tests, and other safe assets.
+category: [efficiency]
+quickstart: false
 ---
 # Approve Safe Changes
 

@@ -1,6 +1,7 @@
 ---
 title: Automation - Enforce Changelog Updates
 description: Ensure PRS to specific branches include changelog updates.
+category: [review]
 ---
 # Enforce Changelog Updates
 
@@ -12,7 +13,7 @@ Request changes if a PR that meets specified criteria lacks an update to the pro
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
     Conditions (All must be true):
-    
+
     * The branch name contains the phrase `feature`
     * The PR lacks changes to the docs/changelog.md file
 

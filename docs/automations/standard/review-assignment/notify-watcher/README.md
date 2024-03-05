@@ -1,6 +1,7 @@
 ---
 title: Automation - Notify Watchlist
 description: Automatically notify code reviewers based on a resource watchlist.
+category: [review, quality]
 ---
 # Notify Watchlist
 

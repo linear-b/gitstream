@@ -1,3 +1,10 @@
+---
+title: Automation - Automatically assign infrastructure team for Terraform changes
+description: Require specific reviewers for Terraform module changes
+category: [quality]
+quickstart: false
+---
+
 # Require Reviewers for Terraform changes
 Automatically assign `org/infrastructure` team for reviewing changes when PR contains Terraform file changes.
 

@@ -1,6 +1,7 @@
 ---
-title: gitStream Automation - Review Jit Security Alerts
+title: Automation - Review Jit Security Alerts
 description: Automatically assign PR reviewers for Jit security alerts.
+category: [security, jit]
 ---
 # Review Jit Security Alerts
 Manage review assignment for high and medium risk Jit security alerts.

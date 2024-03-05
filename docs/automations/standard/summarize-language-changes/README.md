@@ -1,6 +1,7 @@
 ---
 title: Automation - Summarize Language Changes
-description: Automatically post a comment that summarizes which programming languages are contained in PRs..
+description: Automatically post a comment that summarizes which programming languages are contained in PRs.
+category: [review]
 ---
 # Summarize Language Changes
 
@@ -15,11 +16,11 @@ Post a comment that summarizes which programming languages are contained in PRs.
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
     Conditions (all must be true):
-    
+
     * A PR is created.
-    
+
     Automation Actions:
-    
+
     * Post a comment containing a table that shows the percent of total changes for each programming language present in the PR.
 </div>
 

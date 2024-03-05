@@ -1,6 +1,7 @@
 ---
-title: gitStream Automation - Approve Swimm Changes
+title: Automation - Approve Swimm Changes
 description: Automatically approve PRs that only change Swimm documentation.
+category: [quality, docs]
 ---
 # Approve Swimm Changes
 Approve changes that only affect [Swimm](https://swimm.io) documentation.

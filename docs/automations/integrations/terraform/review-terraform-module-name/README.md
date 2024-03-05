@@ -1,3 +1,10 @@
+---
+title: Automation - Review Terraform Module Name
+description: Enforce naming conventions in Terraform module changes
+category: [quality]
+quickstart: false
+---
+
 # Review Terraform Module Name
 Request changes if a PR creates a new Terraform module that is missing a required prefix or keyword in the name.
 

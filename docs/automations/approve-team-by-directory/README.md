@@ -1,6 +1,7 @@
 ---
 title: Automation - Approve Trusted Team
 description: Automatically approve PRs from trusted teams.
+category: [efficiency]
 ---
 # Approve Trusted Team
 Automatically approve low-risk PRs from trusted teams.

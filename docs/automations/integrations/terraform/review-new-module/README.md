@@ -1,3 +1,10 @@
+---
+title: Automation - Review Terraform Module Directory
+description: Enforce directory structure conventions for new Terraform module
+category: [quality]
+quickstart: false
+---
+
 # Review New Terraform Modules
 Request changes if a PR that creates a new Terraform module which do not conform to the required directory structure.
 

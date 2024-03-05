@@ -1,6 +1,7 @@
 ---
 title: Automation - Dispatch GitHub Actions
 description: Automatically trigger GitHub Actions based on PR content like changed resources, source or target branch, slash commands, and more.
+category: [efficiency]
 ---
 # Dispatch GitHub Actions
 

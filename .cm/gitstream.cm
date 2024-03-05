@@ -52,6 +52,33 @@ automations:
           comment: |
             A screenshot of the relevant part of docs after the changes is a life saver 🛟
 
+  # Check for wrong app link 
+  check_wrong_domain:
+    if:
+      - {{ source.diff.files | match(attr='diff', regex=r/git[sS]tream\.com/) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'wrong link'
+          color: '#FF000A'
+      - action: request-changes@v1
+        args:
+          comment: |
+            You have used `gitstream.com` which is not a valid link, use `gitstream.cm` instead.
+
+  # Check for wrong app link 
+  check_local_links:
+    if:
+      - {{ source.diff.files | match(attr='diff', list=['localhost', '127.0.0.1']) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'wrong link'
+          color: '#FF000A'
+      - action: request-changes@v1
+        args:
+          comment: |
+            You have used local links, use www instead.
 
 has:
   img_type1: {{ pr.description | includes(regex=r/!\[.*\]\(.*(jpg|svg|png|gif|psd).*\)/) }}

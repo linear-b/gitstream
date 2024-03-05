@@ -1,6 +1,7 @@
 ---
 title: Automation - Approve Java Log Output Changes
 description: Automatically approve PRs that only change Java log output.
+category: [java, efficiency]
 ---
 # Approve Java Log Output Changes
 
@@ -15,12 +16,12 @@ Approve changes to Java files that only affect lines of code that invoke the log
 
 
     Conditions (all must be true):
-    
+
     * All files end in .java
     * The changes only affect lines of code that invoke logger object.
-    
+
     Automation Actions:
-    
+
     * Apply a `log-output-only` label
     * Approve the PR
     * Post a comment explaining that the change only affects logging output.

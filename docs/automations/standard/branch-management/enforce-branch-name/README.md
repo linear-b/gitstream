@@ -1,6 +1,7 @@
 ---
 title: Automation - Enforce Branch Naming Conventions
 description: Automatically enforce prefixes or keywords in PR branch names.
+category: [review, compliance]
 ---
 # Enforce Branch Naming Conventions
 
@@ -29,4 +30,3 @@ Automatically enforce prefixes or keywords in PR branch names.
       [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/branch-management/enforce_branch_name.cm){ .md-button }
       </span>
     </div>
-

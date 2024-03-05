@@ -1,6 +1,7 @@
 ---
-title: gitStream Automation - Approve Sonar Clean Code
+title: Automation - Approve SonarCloud Clean Code
 description: Automatically approve PRs that pass SonarCloud's quality gate.
+category: [security, sonarcloud, efficiency]
 ---
 # Approve Sonar Clean Code
 

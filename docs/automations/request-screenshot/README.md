@@ -1,6 +1,7 @@
 ---
 title: Automation - Request Screenshot
 description: Automatically ensure PRs contain screenshots to help illustrate the changes.
+category: [quality, review]
 ---
 # Request Screenshot
 If the PR lacks an image file, or link to an image in the description, apply a `no-screenshot` label and post a comment to request a screenshot. If the PR author updates the description, gitStream will remove the label.

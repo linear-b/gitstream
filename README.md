@@ -2,7 +2,7 @@
   <a href="https://gitstream.cm?utm_source=GitHub&utm_medium=referral&utm_campaign=gitStream+-+GitHub+Repo" target="_blank">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://github-production-user-asset-6210df.s3.amazonaws.com/7205829/290864953-535d4655-9bd9-4868-8e7b-a571b82bc44c.png">
-    <img alt="Novu Logo" src="https://github-production-user-asset-6210df.s3.amazonaws.com/7205829/290864422-600d9a07-52b2-4eed-9043-bd593b00ef18.png" width="280"/>
+    <img alt="gitStream Logo" src="https://github-production-user-asset-6210df.s3.amazonaws.com/7205829/290864422-600d9a07-52b2-4eed-9043-bd593b00ef18.png" width="280"/>
   </picture>
   </a>
 </div>
@@ -44,7 +44,7 @@
 
 
 ## ⭐️ Why gitStream?
-Our research shows that code reviews are [the most consistent bottleneck in the software development process](https://devinterrupted.substack.com/p/analysis-the-quickest-path-to-halving?utm_source=G&utm_medium=referral&utm_campaign=gitStream+-+GitHub+Repo), so we built gitStream to enable dev teams to use simple YAML configurations to reduce code review toil and improve software quality. 
+Our research shows that code reviews are [the most consistent bottleneck in the software development process](https://devinterrupted.substack.com/p/analysis-the-quickest-path-to-halving?utm_source=G&utm_medium=referral&utm_campaign=gitStream+-+GitHub+Repo), so we built gitStream to enable dev teams to use simple YAML configurations to reduce code review toil and improve software quality.
 
 ## ✨ Features
 
@@ -53,6 +53,7 @@ Our research shows that code reviews are [the most consistent bottleneck in the 
 * 🔃 Send webhooks from your git repo to other tools like Slack, Jira, and more
 * ✅ Auto-merge low-risk PRs/MRs like documentation, dependency updates, and test additions
 * 🏷️ Automatic PR labeler
+* 🔌 Build custom JavaScript plugins to extend functionality for more advanced data processing and pulling data from external APIs.
 * ‼️ Flag problems before requesting human review
 * 💬 Add context to code reviews with comments and labels
 

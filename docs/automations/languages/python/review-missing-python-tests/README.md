@@ -1,6 +1,7 @@
 ---
 title: Automation - Review Missing Python Tests
 description: Automatically request changes for Python PRs that lack test files.
+category: [python]
 ---
 # Review Missing Python Tests
 
@@ -13,12 +14,12 @@ Automatically request changes for Python PRs that lack test files.
 !!! info "Configuration Description"
 
     Conditions (all must be true):
-    
+
     * The PR creates one or more new Python files
     * The PR lacks new test files that match the name of the Python files
-    
+
     Automation Actions:
-    
+
     * Apply a red missing-tests label
     * Request changes and post a comment listing the files that need tests.
 

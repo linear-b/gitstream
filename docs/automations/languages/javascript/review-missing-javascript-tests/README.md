@@ -1,6 +1,7 @@
 ---
 title: Automation - Review Missing JavaScript Tests
 description: Automatically request changes for JavaScript PRs that lack test files.
+category: [javascript]
 ---
 # Review Missing JavaScript Tests
 
@@ -13,12 +14,12 @@ Request changes for JavaScript PRs that lack test files.
 !!! info "Configuration Description"
 
     Conditions (all must be true):
-    
+
     * The PR creates one or more new JavaScript files
     * The PR lacks new test files that match the name of the JavaScript files
-    
+
     Automation Actions:
-    
+
     * Apply a red `missing-tests` label
     * Request changes and post a comment listing the files that need tests.
 

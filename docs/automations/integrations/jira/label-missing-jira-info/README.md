@@ -1,6 +1,7 @@
 ---
-title: gitStream Automation - Label Missing Jira Info
+title: Automation - Label Missing Jira Info
 description: Automatically flag PRs that are missing required references to Jira issues.
+category: [jira, quality]
 ---
 # Label Missing Jira Info
 <!-- --8<-- [start:example]-->

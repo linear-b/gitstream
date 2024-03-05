@@ -1,6 +1,7 @@
 ---
 title: Automation - Enforce Image Alt Attributes
 description: Automatically request changes for PRs that are missing image alt attributes.
+category: [html, css]
 ---
 # Enforce Image Alt Attributes
 
@@ -12,12 +13,12 @@ Automatically request changes for PRs HTML files that are missing image alt attr
 !!! info "Configuration Description"
 
     Conditions (all must be true):
-    
+
     * The PR adds an image tag to an HTML file.
     * The PR is missing alt attributes for one or more images.
-    
+
     Automation Actions:
-    
+
     * Add a `⚠️ Missing alt label` label
     * Request changes and post a comment asking the author to add alt attributes to images.
 

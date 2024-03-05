@@ -1,6 +1,7 @@
 ---
 title: Automation - Approve Tiny Changes
 description: Automatically approve small PRs.
+category: [efficiency]
 ---
 # Approve Tiny Changes
 
