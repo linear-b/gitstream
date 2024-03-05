@@ -149,18 +149,23 @@ Creates a shallow copy of a portion of a given list, filtered down to just the e
 
 </div>
 
-For example, check if all changes to JavaScript files are in tests directory:
+Examples:
+Check if all changes to JavaScript files are in the tests directory:
 
 ```yaml+jinja
 {{ files | filter(regex=r/\.js$/) | match(regex=r/tests\//) | every }}
 ```
 
-For example, check if all changes to JavaScript files are formatting:
+Check if all changes to JavaScript files are formatting:
 
 ```yaml+jinja
 {{ source.diff.files | filter(attr='new_file', regex=r/\.js$/) | isFormattingChange }}
 ```
 
+Check if the PR has new Python files:
+```yaml+jinja
+{{ branch.diff.files_metadata | filter(attr='original_file', regex=r/^$/) | filter(attr='new_file', regex=r/\.py$/) | some }}
+```
 #### `includes`
 
 Determines whether a string includes a certain substring. You can use either a single term, regex, or a list of terms to match with.
