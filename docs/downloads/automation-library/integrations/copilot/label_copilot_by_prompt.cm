@@ -3,11 +3,6 @@
 manifest:
   version: 1.0
 
-on:
-  - comment_added
-  - commit
-  - merge
-
 automations:
   # You should use this automation in conjunction with comment_copilot_prompt.cm
   label_copilot_pr:
