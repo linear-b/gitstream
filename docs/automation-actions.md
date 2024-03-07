@@ -31,7 +31,7 @@ For all other actions, gitStream executes the actions in the order they are list
 - [`send-http-request`](#send-http-request) :fontawesome-solid-flask: :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`send-slack-message`](#send-slack-message) :fontawesome-solid-flask: :fontawesome-brands-github:
 - [`set-required-approvals`](#set-required-approvals) :fontawesome-brands-github:
-- [`request-changes`](#request-changes) :fontawesome-brands-github:
+- [`request-changes`](#request-changes) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`require-reviewers`](#require-reviewers) :fontawesome-brands-github:
 - [`run-github-workflow`](#run-github-workflow) :fontawesome-brands-github:
 
@@ -62,7 +62,7 @@ automations:
 
 This action, once triggered, adds a comment to the PR.
 
-This is a manged action, when a PR updates, the existing comments that were added by gitStream are re-evaluated and those that are not applicable are removed.
+This is a managed action, when a PR updates, the existing comments that were added by gitStream are re-evaluated and those that are not applicable are removed.
 
 <div class="filter-details" markdown=1>
 
@@ -117,7 +117,7 @@ has:
 
 This action, once triggered, adds a label to the PR.
 
-This is a manged action, when a PR updates, the existing labels that were added by gitStream are re-evaluated and those that are not applicable are removed.
+This is a managed action, when a PR updates, the existing labels that were added by gitStream are re-evaluated and those that are not applicable are removed.
 
 <div class="filter-details" markdown=1>
 
@@ -143,7 +143,7 @@ automations:
 
 This action, once triggered, adds a list of labels to the PR.
 
-This is a manged action, when a PR updates existing labels that were added by gitStream are re-evaluated and those that are not applicable are removed.
+This is a managed action, when a PR updates existing labels that were added by gitStream are re-evaluated and those that are not applicable are removed.
 
 <div class="filter-details" markdown=1>
 
@@ -214,7 +214,7 @@ automations:
 
 This action, once triggered, approves the PR for merge.
 
-This is a manged action, when a PR updates existing approval by gitStream is re-evaluated and removed if no longer applicable.
+This is a managed action, when a PR updates existing approval by gitStream is re-evaluated and removed if no longer applicable.
 
 ```yaml+jinja title="example"
 automations:
@@ -355,11 +355,11 @@ automations:
 
     To allow this action to block merge, you should enable branch protection, and gitStream has to be set as required check in GitHub.
 
-#### `request-changes` :fontawesome-brands-github: 
+#### `request-changes` :fontawesome-brands-github: :fontawesome-brands-gitlab:
 
-This action, once triggered, request changes on the PR. As long as request change is set, gitStream will block the PR merge.
+This action, once triggered, requests changes on the PR. As long as request change is set, gitStream will block the PR merge.
 
-This is a manged action, when a PR updates existing change request by gitStream is re-evaluated and removed if no longer applicable.
+This is a managed action, when a PR updates an existing change request by gitStream is re-evaluated and removed if no longer applicable.
 
 <div class="filter-details" markdown=1>
 
@@ -383,7 +383,11 @@ automations:
 
 !!! attention
 
-    To allow this action to block merge, you should enable branch protection, and gitStream has to be set as required check in GitHub.
+    To allow this action to block merge, The following settings should be set:
+    
+    :fontawesome-brands-github: Enable branch protection and set gitStream as a required check
+    
+    :fontawesome-brands-gitlab: Enable the "All threads must be resolved" Merge check
 
 
 #### `require-reviewers` :fontawesome-brands-github: 
