@@ -31,7 +31,9 @@ Here is an example of the basic components that are required in every CM file.
 !!! info
     When editing CM files, make sure you preserve the indentation in the examples because, like YAML, gitStream uses Python-style indentation to indicate nesting.
 ### Automation Actions
-[Automation actions](/automation-actions) specify the desired automations that should be triggered when all conditions are met. Each automation must include an `if` condition and a `run` section. The conditions are evaluated whenever someone creates a PR or makes changes to an existing PR; multiple conditions can be listed for a single automation, but they must all be true to invoke the actions. You can have any number of actions listed in one automation. Actions are invoked one-by-one in no particular order. PRs that are marked as Draft are ignored by default, but you can control that using [explicit triggers](./execution-model.md#explicit-triggers).
+[Automation actions](/automation-actions) define the desired automations triggered when specific conditions are met. Each automation must contain an `if` condition and a `run` section. Conditions are evaluated when a PR is created or modified. Multiple conditions can be listed, but all must be true to trigger the actions.
+
+Any number of actions can be included in a single automation, and these actions are invoked one-by-one in no particular order. PRs marked as Draft are ignored by default, and this behavior can be modified using [explicit triggers](./execution-model.md#explicit-triggers) (GitHub only).
 
 !!! example "Basic Automation Example"
     This example defines an automation named `welcome_newcomer` that post a comment to welcome anyone who submits their first PR to the repo.
