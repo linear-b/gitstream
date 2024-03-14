@@ -31,7 +31,7 @@ gitStream supports the following explicit triggers:
 | Commit                                                                | `commit`                                     | `on`                           |
 | Adding label                                                          | `label_added`                                | when `pr.label` in `.cm`       |
 | Removing label                                                        | `label_removed`                              | when `pr.label` in `.cm`       |
-| Merging the PR                                                        | `merge`                                      | `off`                          |
+| :fontawesome-brands-github: Merging the PR                            | `merge`                                      | `off`                          |
 | Adding new comment                                                    | `comment_added`                              | when `pr.comment` in `.cm`     |
 | :fontawesome-brands-github: Editing an existing comment               | -                                            | when `pr.comment` in `.cm`     |
 | Title change                                                          | -                                            | when `pr.title` in `.cm`       |
