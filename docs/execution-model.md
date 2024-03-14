@@ -25,18 +25,20 @@ Use explicit triggers to enhance the control and customization of automations in
 Add the `on` keyword to the file and/or to a specific automation to define explicit triggers.
 gitStream supports the following explicit triggers:
 
-| Triggering event                                        | Explicit Trigger :fontawesome-brands-github: | Default (implicit triggers)    |
-| ------------------------------------------------------- | -------------------------------------------- | ------------------------------ |
-| Creating a PR                                           | `pr_created`                                 | `on`                           |
-| Commit                                                  | `commit`                                     | `on`                           |
-| Adding label                                            | `label_added`                                | when `pr.label` in `.cm`       |
-| Removing label                                          | `label_removed`                              | when `pr.label` in `.cm`       |
-| Merging the PR                                          | `merge`                                      | `off`                          |
-| Adding new comment                                      | `comment_added`                              | when `pr.comment` in `.cm`     |
-| :fontawesome-brands-github: Editing an existing comment | -                                            | when `pr.comment` in `.cm`     |
-| Title change                                            | -                                            | when `pr.title` in `.cm`       |
-| Description change                                      | -                                            | when `pr.description` in `.cm` |
-
+| Triggering event                                                      | Explicit Trigger :fontawesome-brands-github: | Default (implicit triggers)    |
+| --------------------------------------------------------------------- | -------------------------------------------- | ------------------------------ |
+| Creating a PR                                                         | `pr_created`                                 | `on`                           |
+| Commit                                                                | `commit`                                     | `on`                           |
+| Adding label                                                          | `label_added`                                | when `pr.label` in `.cm`       |
+| Removing label                                                        | `label_removed`                              | when `pr.label` in `.cm`       |
+| :fontawesome-brands-github: Merging the PR                            | `merge`                                      | `off`                          |
+| Adding new comment                                                    | `comment_added`                              | when `pr.comment` in `.cm`     |
+| :fontawesome-brands-github: Editing an existing comment               | -                                            | when `pr.comment` in `.cm`     |
+| Title change                                                          | -                                            | when `pr.title` in `.cm`       |
+| Description change                                                    | -                                            | when `pr.description` in `.cm` |
+| :fontawesome-brands-github: Transition from draft to ready for review | `pr_ready_for_review`                        | `off`                          |
+| :fontawesome-brands-github: transition from any state to closed       | `pr_closed`                                  | `off`                          |
+| :fontawesome-brands-github: transition from closed to open            | `pr_reopened`                                | `off`                          |
 
 Explicit triggers are set independently per each automation block and can be configured at the file level, specific to each automation separately or in a combination of the two. If triggers are listed at the file level **and** specific automation, the automation will be triggered according to both triggers.
 If an automation block does not have explicit triggers configured, it will be triggered according to the default (implicit) triggers.
