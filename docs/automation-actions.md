@@ -373,7 +373,7 @@ This is a managed action, when a PR updates an existing change request by gitStr
 automations:
   catch_deprecated:
     if:
-      - {{ source.diff.files | matchDiffLines(regex=r/^[+].*oldFetch\(/') | some }}
+      - {{ source.diff.files | matchDiffLines(regex=r/^[+].*oldFetch/) | some }}
     run:
       - action: request-changes@v1
         args:
