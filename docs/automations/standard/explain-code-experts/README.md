@@ -2,6 +2,7 @@
 title: Automation - Explain Code Experts
 description: Automatically summarize the people with the highest code expertise for PRs.
 category: [quality, review]
+quickstart: true
 ---
 # Explain Code Experts
 

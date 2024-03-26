@@ -1,7 +1,7 @@
 ---
 title: Automation - Automatically Link PRs to Related Azure Boards Resources
 description: Provide automatic links to Azure Boards resources that are associated with PRs.
-category: [efficiency, quality, project]
+category: [quality, project, azure, efficiency]
 ---
 # Automatically Link PRs to Related Azure Boards Resources
 

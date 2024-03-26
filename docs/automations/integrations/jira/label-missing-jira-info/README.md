@@ -2,6 +2,7 @@
 title: Automation - Label Missing Jira Info
 description: Automatically flag PRs that are missing required references to Jira issues.
 category: [jira, quality]
+quickstart: true
 ---
 # Label Missing Jira Info
 <!-- --8<-- [start:example]-->
