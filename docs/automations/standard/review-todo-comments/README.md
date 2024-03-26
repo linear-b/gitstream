@@ -1,7 +1,7 @@
 ---
 title: Automation - Review TODO Comments
 description: Automatically request changes for a PR that contains a TODO statement.
-category: [review]
+category: [review, quality]
 ---
 # Review TODO Comments
 
