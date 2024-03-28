@@ -117,7 +117,7 @@ The `config` section is optional in the `.cm` file and is used to specify config
 | `config`                     | Map      | -            | per `.cm` file | The config section, applies for the automations defined in the current file |
 | `config.admin.users`         | [String] | `[]`         | `gitstream.cm` | Admin user list (use the Git provider user names) |
 | `config.ignore_files`        | [String] | `[]`         | per `.cm` file | Exclude specific files |
-| `config.ignore_repositories` | [String] | `[]`         | per `.cm` file | Exclude specific repositories |
+| `config.ignore_repositories` | [String]<br />[regex] | `[]`         | per `.cm` file | Exclude specific repositories |
 | `config.user_mapping`        | [String: String] | `[]` | per `.cm` file | Key value list of Git user detailes and Git provider account names  |
 
 
@@ -152,16 +152,16 @@ config:
 
 ##### `config.ignore_repositories`
 
-The `config.ignore_repositories` contains a list of repositories to ignore, for example:
+The `config.ignore_repositories` contains a list of repositories to ignore by their names, or by a regular expression, for example:
 
 ```yaml title="example"
 config:
   ignore_repositories:
-    - services
+    - r/_service$/
     - common
 ```
 
-For the listed repositories, the automation defined in the CM file shall not apply.
+For the repository `common` and all repositories with the `_service` suffix, the automation defined in the CM file shall not apply.
 
 ##### `config.user_mapping`
 

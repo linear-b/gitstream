@@ -1,7 +1,8 @@
 # /:\\ gitStream Changelog
 All notable changes to this project will be documented in this file.
 
-
+### 2024.3.28
+- Supporting regular expressions in `config.ignore_repositories`
 ### 2024.3.14
 - Added the following explicit triggers:
 	- `pr_ready_for_review`
