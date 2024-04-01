@@ -109,6 +109,7 @@ Once your gitStream configuration file is set up, you need a GitLab CI configura
     - ...
     - docker pull YOUR-REGISTRY-URL/gitstream/rules-engine:latest
 	```
+	The docker image can be pulled to your private repository from [DockerHub](https://hub.docker.com/r/gitstream/rules-engine){:target=_blank}.  
 ## Next Step
 If you successfully complete these instructions, gitStream will now do these two things.
 
