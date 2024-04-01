@@ -19,12 +19,12 @@ GitLab Installation Overview
 
 ## 1. Designate a gitStream User Account
 
-gitStream automation rules are executed on behalf of the user account that is logged in when you install the gitStream service. This account must have the `Maintainer` role. 
+gitStream automation rules are executed on behalf of the user account configured when you install the gitStream service. This account must have the `maintainer` or `owner` role to the relevant repos. 
 
-We recommend creating a dedicated account for this purpose so you can more easily control access to individual repos. You can also use your professional or personal GitLab account for this, but that would result in all automations being executed under that account.
+We recommend creating a [dedicated service account](https://docs.gitlab.com/ee/user/profile/service_accounts.html){:target="_blank"} to control access to individual repos easily. You can also use your professional or personal GitLab account for this, which would result in all automations being executed under that account, which might also affect LinearB's metrics.
 
-!!! tip "Use this account when you install gitStream"
-    Make sure you're logged into this user account in the web browser that you use to click the installation button in step 4.
+!!! tip "Use this account when you integrate gitStream"
+    Make sure to use this account when authorizing GitLab in LinearB.
 
 ## 2. Create a CM Configuration File
 
@@ -62,14 +62,55 @@ You can set up gitStream for a single repo or your entire GitLab organization. S
 
 ## 3. Create a GitLab Pipeline
 
-Once your gitStream configuration file is setup, you need a GitLab CI configuration file to trigger gitStream automations. If you haven't already, create a `cm` project (repository) in your GitLab group. It should be created in the same group or a parent group of the target repositories. Create a `.gitlab-ci.yml` file in your new `cm` repository's default branch (usually `master` or `main`) and add the following configuration:
+Once your gitStream configuration file is set up, you need a GitLab CI configuration file to trigger gitStream automations. If you haven't already, create a `cm` project (repository) in your GitLab group. It should be created in the same group or a parent group of the target repositories. Create a `.gitlab-ci.yml` file in your new `cm` repository's default branch (usually `master` or `main`) and add the following configuration:
 
-```yaml+jinja
---8<-- "docs/downloads/gitlab-ci.yml"
-```
+=== "GitLab-Hosted runners"
 
+    **Gitlab-Hosted Runners**
+    
+    Use the following `.gitlab-ci.yml`
+
+	``` yaml+jinja
+    --8<-- "docs/downloads/gitlab-ci.yml"
+    ```
+
+=== "Self-Managed Runners - Shell"
+    **Self-Managed Runners**
+
+	First, [register the runner](https://docs.gitlab.com/runner/register/){:target="_blank"} with a tag, and use the named tag in the `.gitlab-ci.yml` file
+
+	### Shell executors
+
+	Use the tag created above in the workflow file `cm/.gitlab-ci.yml` instead `REGISTERED-TAG`
+    ``` yaml+jinja
+    --8<-- "docs/downloads/gitlab-shell-ci.yml"
+    ```
+    
+=== "Self-Managed Runners - Kubernetes"
+    **Self-Managed Runners**
+
+	First, [register the runner](https://docs.gitlab.com/runner/register/){:target="_blank"} with a tag, and use the named tag in the `.gitlab-ci.yml` file
+
+	### Kubernetes executors
+	1. Ensure your runner configuration (`config.toml` for example) has the followig:
+	``` yaml
+	[runners.kubernetes]
+    privileged = true
+	```
+	2. Use the tag created above in the workflow file `cm/.gitlab-ci.yml` instead `REGISTERED-TAG`
+    ``` yaml+jinja
+    --8<-- "docs/downloads/gitlab-k8s-ci.yml"
+    ```
+
+!!! tip "**Configuring the image location**"
+	By default, gitStream pulls the image from DockerHub each time it is invoked. You can configure gitStream to pull the docker image from your own registry, to allow faster build times and reduced bandwidth usage - especially for teams with high CI/CD throughput, by downloading the image and storing it in your own registry (ECR or K8S registry, for example) and changing the `cm/.gitlab-ci.yml` accordingly:
+	```
+	script:
+    - ...
+    - docker pull YOUR-REGISTRY-URL/gitstream/rules-engine:latest
+	```
 ## Next Step
-If you successfully completed these instructions, gitStream will now do these two things.
+If you successfully complete these instructions, gitStream will now do these two things.
 
 When a PR is created or changed, apply or update a label that provides an estimated time to review.
 ![Estimated Review Time label](automations/provide-estimated-time-to-review/provide_estimated_time_to_review.png)
@@ -79,7 +120,7 @@ When a `suggest-reviewers` label is applied to a PR, gitStream will comment with
 
 
 !!! tip "How gitStream Works"
-        Read our guide: [How gitStream Works](/how-it-works/) to get an overview of the gitStream syntax and automation lifecycle.
+    Read our guide, [How gitStream Works](/how-it-works/), for a deeper understanding of gitStream's capabilities and how to leverage them fully and to get an overview of the gitStream syntax and automation lifecycle.
 
 ## Additional Resources
 
@@ -88,18 +129,10 @@ When a `suggest-reviewers` label is applied to a PR, gitStream will comment with
 
 The required permissions are:
 
-| Permissions           | Reason |
-|----------------------|-------------------------------------------------------|
-| Read/Write API | To get notified on MR changes and allow gitStream to approve MRs once all conditions are met |
-| Read repository | To read and check rules over the code changes on monitored repositories |
-| Read user profile | Used to identify users |
+| Permissions       | Reason                                                                                       |
+| ----------------- | -------------------------------------------------------------------------------------------- |
+| Read/Write API    | To get notified on MR changes and allow gitStream to approve MRs once all conditions are met |
+| Read repository   | To read and check rules over the code changes on monitored repositories                      |
+| Read user profile | Used to identify users                                                                       |
 
-### FAQ
-**Does gitStream support the ability to block merges?"**
-
-gitStream actions that blocks MR merge are not supported at the moment.
-
-**What is a gitStream service account?**
-
-gitStream executes rules on behalf of the user account that was used to install it. We recommend using a new dedicated account in GitLab for installing gitStream.
 
