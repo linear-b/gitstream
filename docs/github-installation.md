@@ -147,6 +147,38 @@ To ensure gitStream runs on self-hosted GitHub Actions runners, follow these ste
 
 4. **Test with a Sample PR**
     Create a sample pull request and observe gitStream's behavior. It will use the configured self-hosted runners.
+
+### Caching the Docker Image Using GitHub Cache
+
+gitStream provides an optional method to control the frequency of Docker image downloads per day using GitHub's cache services, helping to manage build resources efficiently. By using the `update_times_a_day` argument, you can specify the number of times the Docker image should be downloaded and cached each day. If this argument is not specified, no caching will occur.
+#### Configure Docker Image Caching
+
+To use the caching feature, add the `update_times_a_day` parameter to the `Evaluate Rules` step of your gitStream GitHub Actions workflow.
+
+- **Open Your GitHub Actions Workflow File and Modify the `Evaluate Rules` Step:**
+   Navigate to your `.github/workflows` directory, open gitStream's workflow `yml`, and update the `Evaluate Rules` step. Add the `update_times_a_day` parameter to set the exact times the Docker image is downloaded and cached daily.
+
+- **Example Configuration:**
+   Here is how you might configure the caching within your workflow:
+
+    ```yaml
+    steps:
+      - name: Evaluate Rules
+        uses: linear-b/gitstream-github-action@v1
+        id: rules-engine
+        with:
+          full_repository: ${{ github.event.inputs.full_repository }}
+          head_ref: ${{ github.event.inputs.head_ref }}
+          base_ref: ${{ github.event.inputs.base_ref }}
+          client_payload: ${{ github.event.inputs.client_payload }}
+          installation_id: ${{ github.event.inputs.installation_id }}
+          resolver_url: ${{ github.event.inputs.resolver_url }}
+          resolver_token: ${{ github.event.inputs.resolver_token }}
+          update_times_a_day: 6
+    ```
+
+	In this example, the Docker image is set to be downloaded and cached six times a day, distributed evenly across 24 hours (i.e., the image will be downloaded every 4 hours). This parameter can be adjusted to fit your workflow needs and resource management strategies. Without specifying this argument, no caching will be performed.
+
 ## Uninstalling gitStream
 
 Configure in your [GitHub organization](https://github.com/apps/gitstream-cm/installations/new){ .md-button }, and choose `Uninstall "gitStream.cm"`
