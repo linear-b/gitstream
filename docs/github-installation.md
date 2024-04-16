@@ -150,10 +150,10 @@ To ensure gitStream runs on self-hosted GitHub Actions runners, follow these ste
 
 ### Caching the Docker Image Using GitHub Cache
 
-gitStream provides an optional method to control the frequency of Docker image downloads per day using GitHub's cache services, helping to manage build resources efficiently. By using the `update_times_a_day` argument, you can specify the number of times the Docker image should be downloaded and cached each day. If this argument is not specified, no caching will occur.
+gitStream provides an optional method to control the frequency of Docker image downloads per day using GitHub's cache services, helping to manage build resources efficiently. By using the `update_times_a_day` argument, you can specify the number of times the Docker image should be downloaded and cached daily. If this argument is not specified, no caching will occur.
 #### Configure Docker Image Caching
 
-To use the caching feature, add the `update_times_a_day` parameter to the `Evaluate Rules` step of your gitStream GitHub Actions workflow.
+Add the `update_times_a_day` parameter to the `Evaluate Rules` step of your gitStream GitHub Actions workflow.
 
 - **Open Your GitHub Actions Workflow File and Modify the `Evaluate Rules` Step:**
    Navigate to your `.github/workflows` directory, open gitStream's workflow `yml`, and update the `Evaluate Rules` step. Add the `update_times_a_day` parameter to set the exact times the Docker image is downloaded and cached daily.
