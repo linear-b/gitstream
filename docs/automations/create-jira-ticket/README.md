@@ -3,10 +3,6 @@ title: Jira - create_jira_ticket
 description: Automatically create Jira tickets for new PRs.
 ---
 # create_jira_ticket
-<!--
-Place the related CM file and example image in the same directory and give the files the same name as the automation.
-If relevant, add the automation to the related file in /docs/snippets and update the related automations section below to import the correct lines of that snippet.
-!-->
 
 <!-- --8<-- [start:example]-->
 Automatically create Jira tickets for new PRs.
