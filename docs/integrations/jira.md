@@ -12,6 +12,10 @@ Learn how to integrate gitStream with [Jira](https://www.atlassian.com/software/
 
 --8<-- "docs/automations/integrations/jira/link-jira/README.md:example"
 
+## Automatically Create Jira Ticket With PR Title
+
+--8<-- "docs/automations/create-jira-ticket/README.md:example"
+
 ## Additional Resources
 
 --8<-- "docs/snippets/general.md"
