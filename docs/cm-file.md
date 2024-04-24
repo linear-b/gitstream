@@ -112,14 +112,14 @@ The manifest version field is used to parse the `.cm` file, in the future if bre
 
 The `config` section is optional in the `.cm` file and is used to specify configuration for the way gitStream works.
 
-| Key                          | Type     | Default      | Scope          | Description                            |
-| ---------------------------- | ---------|---------     | -------------- | -------------------------------------- |
-| `config`                     | Map      | -            | per `.cm` file | The config section, applies for the automations defined in the current file |
-| `config.admin.users`         | [String] | `[]`         | `gitstream.cm` | Admin user list (use the Git provider user names) |
-| `config.ignore_files`        | [String] | `[]`         | per `.cm` file | Exclude specific files |
-| `config.ignore_repositories` | [String]<br />[regex] | `[]`         | per `.cm` file | Exclude specific repositories |
-| `config.user_mapping`        | [String: String] | `[]` | per `.cm` file | Key value list of Git user detailes and Git provider account names  |
-
+| Key                           | Type                  | Default | Scope          | Description                                                                 |
+| ----------------------------- | --------------------- | ------- | -------------- | --------------------------------------------------------------------------- |
+| `config`                      | Map                   | -       | per `.cm` file | The config section, applies for the automations defined in the current file |
+| `config.admin.users`          | [String]              | `[]`    | `gitstream.cm` | Admin user list (use the Git provider user names)                           |
+| `config.ignore_files`         | [String]              | `[]`    | per `.cm` file | Exclude specific files                                                      |
+| `config.ignore_repositories`  | [String]<br />[regex] | `[]`    | per `.cm` file | Exclude specific repositories                                               |
+| `config.include_repositories` | [String]<br />[regex] | `[]`    | per `.cm` file | Include **only** specific repositories                                      |
+| `config.user_mapping`         | [String: String]      | `[]`    | per `.cm` file | Key value list of Git user detailes and Git provider account names          |
 
 ##### `config.admin.users`
 
@@ -162,7 +162,39 @@ config:
 ```
 
 For the repository `common` and all repositories with the `_service` suffix, the automation defined in the CM file shall not apply.
+  
+##### `config.include_repositories`
 
+The `config.include_repositories` contains a list of repositories to run gitStream automations by their names, or by a regular expression, for example:
+
+```yaml title="example"
+config:
+  include_repositories:
+    - r/_service$/
+    - common
+```
+
+For the repository `common` and all repositories with the `_service` suffix, the automation defined in the CM file shall not apply.
+
+<div class="automationExample" markdown="1">
+!!! note
+    `ignore_repositories` overrides the `include_repositories` config. I.e., when the same repo is in the include and ignore lists - it will be ignored.
+    ```yaml+jinja
+    config:
+      ignore_repositories:
+        - backend_service
+        - r/test/
+      include_repositories:
+        - r/_service$/
+        - common
+        - testing
+    ```
+	will result with running gitStream on all repos with:
+	
+	-  `_service` suffix, except the `backend_service` repo
+	-  `common` repo
+	
+	`testing` repo will not run the automations as it is ignored by the `r/test/` regex
 ##### `config.user_mapping`
 
 Accepts list of key value strings.

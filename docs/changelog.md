@@ -1,9 +1,11 @@
 # /:\\ gitStream Changelog
 All notable changes to this project will be documented in this file.
 
+### 2024.4.24
+- Supporting allowlist for repositories using `config.include_repositories`
+
 ### 2024.4.16
 - Added a cache option for the docker image
-
 ### 2024.3.28
 - Supporting regular expressions in `config.ignore_repositories`
 ### 2024.3.14
