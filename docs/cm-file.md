@@ -179,6 +179,8 @@ For the repository `common` and all repositories with the `_service` suffix, the
 <div class="automationExample" markdown="1">
 !!! note
     `ignore_repositories` overrides the `include_repositories` config. I.e., when the same repo is in the include and ignore lists - it will be ignored.
+    
+    For example:
     ```yaml+jinja
     config:
       ignore_repositories:
