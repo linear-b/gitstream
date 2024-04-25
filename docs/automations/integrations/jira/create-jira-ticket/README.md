@@ -1,14 +1,21 @@
 ---
-title: Jira - create_jira_ticket
+title: Automation - Automatically Create Jira Tickets
 description: Automatically create Jira tickets for new PRs.
+category: [quality, project, jira, efficiency]
+quickstart: false
 ---
-# create_jira_ticket
+# Automatically Create Jira Tickets
 
 <!-- --8<-- [start:example]-->
 Automatically create Jira tickets for new PRs.
 
+!!! warning "Required gitStream Plugins"
+    This example requires you to install the [`hasJiraTicket`](/filter-function-plugins/#hasJiraTicket) plugin.
+
+    [Learn more about gitStream plugins](/plugins/).
+
 <div class="automationImage" markdown="1">
-![Create Jira Ticket](/automations/standard/create-jira-ticket/create-jira-ticket.png)
+![Create Jira Ticket](/automations/integrations/jira/create-jira-ticket/create-jira-ticket.png)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
