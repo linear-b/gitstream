@@ -160,13 +160,13 @@ This action, once triggered, sets a specific reviewer.
 
 <div class="filter-details" markdown=1>
 
-| Args       | Usage | Type      | Description                                     |
-| -----------|------|-----|------------------------------------------------ |
-| `reviewers` | Required | [String]    | Sets required reviewers. Supports user names and teams. Teams notated by adding a prefix with the owner name e.g. `owner/team` |
-| `team_reviewers` | Optional | [String]    | Sets required team reviewers without a prefix `team` |
-| `unless_reviewers_set` | Optional | Bool | When `true`, the reviewers are not added if the PR has already assigned reviewers. It is set to `false` by default |
-| `fail_on_error` | Optional | Bool | When `true`, trying to assign illegal reviewers shall fail the automation, when `false` these errors are silently ignored. It is set to `true` by default |
-| `wait_for_all_checks`| Optional | Boolean | By default `false`. When `true`, the action will add reviewers only if all checks (except gitStream) are completed with `neutral`, `skipped`, or `success` conclusion |
+| Args                                              | Usage    | Type     | Description                                                                                                                                                           |
+| ------------------------------------------------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `reviewers`                                       | Required | [String] | Sets required reviewers. Supports user names and teams. Teams notated by adding a prefix with the owner name e.g. `owner/team`                                        |
+| `team_reviewers`                                  | Optional | [String] | Sets required team reviewers without a prefix `team`                                                                                                                  |
+| `unless_reviewers_set`                            | Optional | Bool     | When `true`, the reviewers are not added if the PR has already assigned reviewers. It is set to `false` by default                                                    |
+| `fail_on_error`                                   | Optional | Bool     | When `true`, trying to assign illegal reviewers shall fail the automation, when `false` these errors are silently ignored. It is set to `true` by default             |
+| `wait_for_all_checks` :fontawesome-brands-github: | Optional | Boolean  | By default `false`. When `true`, the action will add reviewers only if all checks (except gitStream) are completed with `neutral`, `skipped`, or `success` conclusion |
 
 </div>
 
@@ -249,11 +249,11 @@ Once triggered, merge the PR if possible. It can be set to wait for all checks t
 
 <div class="filter-details" markdown=1>
 
-| Args       | Usage | Type      | Description                                     |
-| -----------|------|-----|------------------------------------------------ |
-| `wait_for_all_checks`| Optional | Boolean | By default `false`, so only Required checks can block merge, when `true` the action will merge after all checks are completed with `neutral`, `skipped`, or `success` conclusion (except gitStream itself) |
-| `rebase_on_merge`| Optional |  Boolean   | By default `false`, when merging use rebase mode |
-| `squash_on_merge`| Optional | Boolean   | By default `false`, when merging use squash mode |
+| Args                                               | Usage    | Type    | Description                                                                                                                                                                                                |
+| -------------------------------------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `wait_for_all_checks`  :fontawesome-brands-github: | Optional | Boolean | By default `false`, so only Required checks can block merge, when `true` the action will merge after all checks are completed with `neutral`, `skipped`, or `success` conclusion (except gitStream itself) |
+| `rebase_on_merge`                                  | Optional | Boolean | By default `false`, when merging use rebase mode                                                                                                                                                           |
+| `squash_on_merge`                                  | Optional | Boolean | By default `false`, when merging use squash mode                                                                                                                                                           |
 
 </div>
 
