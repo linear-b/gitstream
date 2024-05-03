@@ -159,7 +159,7 @@ Once gitStream is installed and configured, there are several services that will
 * A **gitStream CI/CD script** that is configured for the git service provider (e.g. GitHub Actions, GitLab CI/CD).
 * A **gitStream agent** the CI/CD script triggers to execute your automation.
 
-Whenever a new PR is opened or an existing PR is changed, the following process occurs:
+Whenever a new PR is opened or an existing PR is changed (see also [Execution Model](https://docs.gitstream.cm/execution-model/)), the following process occurs:
 
 1. The **git service provider API** notifies the **gitStream service** that an applicable change has occured to the PR which triggers a call to execute the **gitStream CI/CD script**.
 1. The **gitStream CI/CD script** executes the GitHub Action <a href="https://github.com/linear-b/gitstream-github-action" target="_blank">`linear-b/gitstream-github-action@v1`</a> on the repository, which looks for two things:
