@@ -110,17 +110,15 @@ The manifest version field is used to parse the `.cm` file, in the future if bre
 
 #### `config`
 
-The `config` section is optional in the `.cm` file and is used to specify configuration for the way gitStream works.
+The `config` section in the `.cm` file is optional and specifies settings that affect gitStream's operation within a given context.
 
-| Key                          | Type     | Default      | Scope          | Description                            |
-| ---------------------------- | ---------|---------     | -------------- | -------------------------------------- |
-| `config`                     | Map      | -            | per `.cm` file | The config section, applies for the automations defined in the current file |
-| `config.admin.users`         | [String] | `[]`         | `gitstream.cm` | Admin user list (use the Git provider user names) |
-| `config.ignore_files`        | [String] | `[]`         | per `.cm` file | Exclude specific files |
-| `config.ignore_repositories` | [String]<br />[regex] | `[]`         | per `.cm` file | Exclude specific repositories |
-| `config.user_mapping`        | [String: String] | `[]` | per `.cm` file | Key value list of Git user detailes and Git provider account names  |
-
-
+| Key                   | Type             | Default | Scope          | Description                                                                         |
+| --------------------- | ---------------- | ------- | -------------- | ----------------------------------------------------------------------------------- |
+| `config`              | Map              | -       | per `.cm` file | Root configuration section, applies to the automations defined in the current file. |
+| `config.admin.users`  | [String]         | `[]`    | `gitstream.cm` | List of admin users, identified by Git provider usernames.                          |
+| `config.ignore_files` | [String]         | `[]`    | per `.cm` file | Files to exclude from consideration.                                                |
+| `config.user_mapping` | [String: String] | `[]`    | per `.cm` file | Map Git user details to provider account names.                                     |
+          |
 ##### `config.admin.users`
 
 When specified in `gitstream.cm` the `config.admin.users` allows adding admin rights, when a PR changes the `*.cm` files only, if the user is listed in `config.admin.users` the PR will be then approved by gitStream. For example, setting `popeye` as admin:
@@ -149,19 +147,6 @@ config:
     - 'openapi.json'
     - 'ui/src/**/*Model.d.ts'
 ```
-
-##### `config.ignore_repositories`
-
-The `config.ignore_repositories` contains a list of repositories to ignore by their names, or by a regular expression, for example:
-
-```yaml title="example"
-config:
-  ignore_repositories:
-    - r/_service$/
-    - common
-```
-
-For the repository `common` and all repositories with the `_service` suffix, the automation defined in the CM file shall not apply.
 
 ##### `config.user_mapping`
 
