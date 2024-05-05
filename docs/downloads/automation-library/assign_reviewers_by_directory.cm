@@ -17,4 +17,4 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            The UI team has automatically been added for review because this PR contains changes to components inside `/src/ui`
+            The Security team has automatically been added for review because this PR contains changes to components inside `/src/ui`

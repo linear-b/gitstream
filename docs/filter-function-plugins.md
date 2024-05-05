@@ -16,6 +16,8 @@ JavaScript plugins that enable custom filter functions for gitStream. To learn h
 
 --8<-- "plugins/filters/getCodeowners/README.md"
 
+--8<-- "plugins/filters/hasJiraIssue/README.md"
+
 --8<-- "plugins/filters/isFlaggedUser/README.md"
 
 ---
