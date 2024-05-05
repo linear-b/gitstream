@@ -22,7 +22,7 @@ gitStream makes it easy to build workflows that link your GitHub repo to your Ji
 
 --8<-- "docs/automations/integrations/jira/create-jira-issue/README.md:example"
 
-### Update Jira Ticket Status When PRs are Merged
+### Update Jira Ticket Status When PRs are Created
 
 --8<-- "docs/automations/integrations/jira/jira-change-status/README.md:example"
 
