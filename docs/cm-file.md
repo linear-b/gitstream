@@ -7,7 +7,6 @@ description: Learn how to customize gitStream to meet the needs of your organiza
 Continuous Merge automation files have a `.cm` extension. In a repository,  gitStream loads and parse the `.cm` directory, which can have multiple automation files, each of which is evaluated independently.
 
 You can edit the `.cm` files and add your own checks and rules. Check out the [Automation examples](/examples).
-
 ## Automation rules
 
 There are two types of automation rules: repository level rules and organization level rules.
@@ -22,7 +21,7 @@ An automation identifier is a composition of the CM file name and the automation
 
 !!! tip
 
-    You can select (include or exclude) certain repositories per automation file using the [`triggers.include.repository` and `triggers.exclude.repository`](#config)
+    You can select (include or exclude) certain repositories per automation file using the [`triggers.include.repository`](./execution-model.md#trigger-configuration) and [`triggers.exclude.repository`](./execution-model.md#trigger-configuration)
 
 ### Repository automation rules
 
@@ -49,7 +48,7 @@ When configured correctly, your repository directory structure should look like 
 
 !!! note
 
-    The `.cm/gitstream.cm` is special, as it allows for repository level configuration such as `config.admin`.
+    The `.cm/gitstream.cm` is special, as it allows repository-level configuration such as `config.admin`.
 
 ### Organization automation rules
 
