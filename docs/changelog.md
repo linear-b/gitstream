@@ -11,7 +11,7 @@ All notable changes to this project will be documented in this file.
 - Added a cache option for the docker image
 
 ### 2024.3.28
-- Supporting regular expressions in `config.ignore_repositories`
+- Supporting regular expressions in ~~`config.ignore_repositories`~~ `triggers.include.repository` and `triggers.exclude.repository`
 ### 2024.3.14
 - Added the following explicit triggers:
 	- `pr_ready_for_review`

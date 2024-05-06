@@ -11,18 +11,18 @@ When a central `cm` repository is set with the CI/CD runner, the events for PRs 
 gitStream automations are triggered by events related to pull requests (PRs). You can specify triggers to fine-tune which events should initiate automations.
 ### Trigger Configuration
 
-Triggers can be defined globally at the file level or specifically for each automation.
+Triggers can be defined globally at the file level or specifically for each automation. Triggers are applied only to the file(s) where they are declared.
 #### `triggers`
 
 Specifies when automations are executed, supporting `include` and `exclude` lists for branch and repository patterns at the file level. The `on` keyword can also be used within individual automations to define specific events that trigger those automations.
 
-| Key                                                   | Type              | Description                                                                                               |
-| ----------------------------------------------------- | ----------------- | --------------------------------------------------------------------------------------------------------- |
-| `triggers.on` :fontawesome-brands-github:             | [String]          | Explicit triggers that cause the automations to run.                                                      |
-| `triggers.include.branch` :fontawesome-brands-github: | [String]          | Branches whose names contain any of these substrings should trigger the automation (file-level only).     |
-| `triggers.exclude.branch` :fontawesome-brands-github: | [String]          | Branches whose names contain any of these substrings should not trigger the automation (file-level only). |
-| `triggers.include.repository`                         | [String or regex] | Repositories that should trigger the automation (file-level only).                                        |
-| `triggers.exclude.repository`                         | [String or regex] | Repositories that should not trigger the automation (file-level only).                                    |
+| Key                                                   | Type              | Description                                                                             |
+| ----------------------------------------------------- | ----------------- | --------------------------------------------------------------------------------------- |
+| `triggers.on` :fontawesome-brands-github:             | [String]          | Explicit triggers that cause the automations to run.                                    |
+| `triggers.include.branch` :fontawesome-brands-github: | [String]          | Branches whose names contain any of these substrings should trigger the automation.     |
+| `triggers.exclude.branch` :fontawesome-brands-github: | [String]          | Branches whose names contain any of these substrings should not trigger the automation. |
+| `triggers.include.repository`                         | [String or regex] | Repositories that should trigger the automation (org-level automations only).           |
+| `triggers.exclude.repository`                         | [String or regex] | Repositories that should not trigger the automation (org-level automations only).       |
 
 **Note on Substring and Full Line Matching:**
 
