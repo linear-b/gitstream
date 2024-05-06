@@ -23,12 +23,16 @@ Specifies when automations are executed, supporting `include` and `exclude` list
 | `triggers.exclude.branch` :fontawesome-brands-github: | [String]          | Branches whose names contain any of these substrings should not trigger the automation (file-level only). |
 | `triggers.include.repository`                         | [String or regex] | Repositories that should trigger the automation (file-level only).                                        |
 | `triggers.exclude.repository`                         | [String or regex] | Repositories that should not trigger the automation (file-level only).                                    |
+
 **Note on Substring and Full Line Matching:**
+
 - The values in `triggers.include.*` and `triggers.exclude.*` allow for substring matching, meaning that branches or repositories whose names contain any of the specified substrings will be included or excluded from triggering the automation. For precise control, using regular expression anchors (`^` for the start and `$` for the end of a string) allows you to match entire repository names exactly.
 
 **Default Behavior:** 
+
 - Implicit triggers are the default behavior if the automation doesn't have explicit triggers configured.
 - The automation runs for all branches and repositories if neither include nor exclude is specified.
+
 ### Implicit triggers
 
 By default, gitStream evaluates any new commit pushed to the PR, triggering automation evaluation. 
