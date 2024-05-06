@@ -102,7 +102,7 @@ gitStream filters:
 
 `abs` `asyncAll` `asyncEach` `batch` `block` `call` `capitalize` `center` `default` `dictsort` `dump` `e` `escape` `extends` `filter` `first` `float` `for` `forceescape` `groupby` `if` `import` `include` `indent` `int` `join` `last` `length` `list` `lower` `macro` `nl2br` `raw` `reject` `rejectattr` `replace` `reverse` `round` `safe` `select` `selectattr` `set` `slice` `sort` `string` `striptags` `sum` `title` `trim` `truncate` `upper` `urlencode` `urlize` `verbatim` `wordcount`
 
-### Ignore Files or Repos
+### Ignore Files
 
 You can provide gitStream with a list of specific files to ignore for all automations listed in the same CM file. To do so, add a [`configuration:`](/cm-file/#config) section to the CM file that you want to apply the exclusion list to. In the configuration section, add a list of files as an argument to the `ignore_files:` key.
 
@@ -116,17 +116,6 @@ You can provide gitStream with a list of specific files to ignore for all automa
         - 'openapi.json'
         - 'ui/src/**/*Model.d.ts'
     ```
-
-Similarly, if you are using gitStream for your entire git organization, you can specify repos to ignore in the `gitstream.cm` file in the root directory of your cm repo.
-
-!!! example "How to Ignore Repos"
-    ```yaml+jinja
-    config:
-      ignore_repositories:
-        - services
-        - common
-    ```
-
 ### Configuration Priority and Overrides
 You can provide any number of CM files and automations for gitStream to process and you can freely combine organization-level automations with automations inside individual repos. There are two important things you need to keep in mind when doing this.
 
