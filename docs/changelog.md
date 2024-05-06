@@ -1,6 +1,12 @@
 # /:\\ gitStream Changelog
 All notable changes to this project will be documented in this file.
 
+### 2024.5.06
+
+- **Reorganized trigger configuration**: Moved the top-level `on` keyword under a new `triggers` keyword to consolidate all trigger settings.
+- **Enhanced repository and branch triggering**:
+    - Moved `config.include_repository` and `config.ignore_repository` to `triggers.include.repository` and `triggers.exclude.repository`, aligning repository-specific triggers with the new consolidated trigger configuration.
+    - Introduced `triggers.include.branch` and `triggers.exclude.branch` to specify branch-specific conditions for triggering automations. 
 ### 2024.4.16
 - Added a cache option for the docker image
 
