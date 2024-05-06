@@ -8,31 +8,6 @@ quickstart: false
 <!-- --8<-- [start:example]-->
 Auto-merge Dependabot PRs
 
-=== "All Updates"
-    !!! info "Configuration Description"
-
-        Conditions (all must be true):
-
-        * The PR author is Dependabot.
-        * The branch name includes 'dependabot'
-
-        Automation Actions:
-
-        * Approve the PR
-        * Apply an `approved-dependabot` label to the PR
-        * Merge the PR if all status checks pass.
-
-
-    !!! example "Configuration Example"
-        ```yaml+jinja
-        --8<-- "docs/downloads/automation-library/integrations/dependabot/approve_dependabot.cm"
-        ```
-        <div class="result" markdown>
-          <span>
-          [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/dependabot/approve_dependabot.cm){ .md-button }
-          </span>
-        </div>
-
 === "By Release Type"
 
     !!! warning "Required gitStream Plugins"
@@ -61,6 +36,31 @@ Auto-merge Dependabot PRs
         <div class="result" markdown>
           <span>
           [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/dependabot/approve_dependabot_minor.cm){ .md-button }
+          </span>
+        </div>
+
+=== "All Updates"
+    !!! info "Configuration Description"
+
+        Conditions (all must be true):
+
+        * The PR author is Dependabot.
+        * The branch name includes 'dependabot'
+
+        Automation Actions:
+
+        * Approve the PR
+        * Apply an `approved-dependabot` label to the PR
+        * Merge the PR if all status checks pass.
+
+
+    !!! example "Configuration Example"
+        ```yaml+jinja
+        --8<-- "docs/downloads/automation-library/integrations/dependabot/approve_dependabot.cm"
+        ```
+        <div class="result" markdown>
+          <span>
+          [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/dependabot/approve_dependabot.cm){ .md-button }
           </span>
         </div>
 
