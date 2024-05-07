@@ -1,7 +1,7 @@
 ---
 title: Automation - Approve Rust Log Output Changes
 description: Automatically approve PRs that only change Rust log output.
-category: [rust, efficiency]
+category: [rust, logging, efficiency]
 ---
 # Approve Rust Log Output Changes
 

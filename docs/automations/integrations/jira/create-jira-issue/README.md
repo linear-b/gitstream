@@ -1,13 +1,13 @@
 ---
 title: Automation - Automatically Create Jira Issues
 description: Automatically create Jira issues for new PRs.
-category: [quality, project, jira, efficiency]
+category: [quality, project, jira]
 quickstart: false
 ---
 # Automatically Create Jira Issues from PRs
 
 <!-- --8<-- [start:example]-->
-Automatically create Jira tickets for new pull/merge requests. 
+Automatically create Jira tickets for new pull/merge requests.
 
 !!! warning "Jira API & Webhook Integration Required."
     This automation requires you to connect to the [Jira API and incoming webooks](/integrations/jira/#configure-jira-for-gitstream-integrations).

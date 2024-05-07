@@ -1,7 +1,7 @@
 ---
 title: Automation - Review Missing Ruby Tests
 description: Automatically request changes for Ruby PRs that lack test files.
-category: [ruby]
+category: [ruby, testing, quality]
 ---
 # Review Missing Ruby Tests
 

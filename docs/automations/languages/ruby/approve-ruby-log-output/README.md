@@ -1,7 +1,7 @@
 ---
 title: Automation - Approve Ruby Log Output Changes
 description: Automatically approve PRs that only change Ruby log output.
-category: [ruby, efficiency]
+category: [ruby, logging, efficiency]
 ---
 # Approve Ruby Log Output Changes
 

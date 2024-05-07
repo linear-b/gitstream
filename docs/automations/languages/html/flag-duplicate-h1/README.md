@@ -1,7 +1,7 @@
 ---
 title: Automation - Flag Duplicate H1
 description: Automatically request changes when PRs contain HTML files that have more than one H1 heading.
-category: [html, css, quality]
+category: [quality, html, css, quality]
 ---
 # Flag Duplicate H1
 

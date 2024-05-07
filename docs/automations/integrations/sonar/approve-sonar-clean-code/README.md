@@ -1,7 +1,7 @@
 ---
 title: Automation - Approve SonarCloud Clean Code
 description: Automatically approve PRs that pass SonarCloud's quality gate.
-category: [security, sonarcloud, efficiency]
+category: [security, sonarcloud]
 ---
 # Approve Sonar Clean Code
 

@@ -1,7 +1,7 @@
 ---
 title: Automation - Approve test changes
 description: Automatically approve changes that only contains updates to tests.
-category: [efficiency]
+category: [efficiency, testing, quickstart]
 quickstart: true
 ---
 # Approve test changes

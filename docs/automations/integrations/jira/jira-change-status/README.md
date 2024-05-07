@@ -1,13 +1,13 @@
 ---
 title: Automation - Automatic Jira Status Updates
 description: Automatically update the status of Jira tickets when a PR is opened.
-category: [project, jira, efficiency]
+category: [project, project, jira]
 quickstart: false
 ---
 # Automatic Jira Status Updates
 
 <!-- --8<-- [start:example]-->
-Automatically update the status of Jira tickets when a PR is opened. 
+Automatically update the status of Jira tickets when a PR is opened.
 
 !!! warning "Jira Webhook Integration Required"
     You need to [configure an incoming Jira webhook](/integrations/jira/#configure-jira-for-gitstream-integrations) to use this automation.
