@@ -7,7 +7,6 @@ description: Learn how to customize gitStream to meet the needs of your organiza
 Continuous Merge automation files have a `.cm` extension. In a repository,  gitStream loads and parse the `.cm` directory, which can have multiple automation files, each of which is evaluated independently.
 
 You can edit the `.cm` files and add your own checks and rules. Check out the [Automation examples](/examples).
-
 ## Automation rules
 
 There are two types of automation rules: repository level rules and organization level rules.
@@ -22,7 +21,7 @@ An automation identifier is a composition of the CM file name and the automation
 
 !!! tip
 
-    You can exclude certain repositories per automation file using the [`config.ignore_repositories`](#config)
+    You can select (include or exclude) certain repositories per automation file using the [`triggers.include.repository`](./execution-model.md#trigger-configuration) and [`triggers.exclude.repository`](./execution-model.md#trigger-configuration)
 
 ### Repository automation rules
 
@@ -49,7 +48,7 @@ When configured correctly, your repository directory structure should look like 
 
 !!! note
 
-    The `.cm/gitstream.cm` is special, as it allows for repository level configuration such as `config.admin`.
+    The `.cm/gitstream.cm` is special, as it allows repository-level configuration such as `config.admin`.
 
 ### Organization automation rules
 
@@ -68,7 +67,7 @@ When configured correctly, the `cm` repository directory structure should look l
 For each PR the following automation rules are applied:
 
 1. Repository level rules
-2. Organization level rules, unless with the same identifier as a repository level automation
+2. Organization-level rules, unless with the same identifier as a repository-level automation
 
 When organization level rules are defined, then the CI/CD will be executed on the `cm` repository on behalf of the PR repository.
 
@@ -77,8 +76,8 @@ When organization level rules are defined, then the CI/CD will be executed on th
 By utilizing the following techniques, you can effectively combine and manage global and repository rules to customize the behavior of your automations to fit the specific requirements of your repositories:
 
 1. Global rules are defined in the configuration management `cm` repository and are applied to all repositories that are connected to gitStream.
-2. To exclude a specific repository from a global rule, you can create a configuration file in the `cm` repository and add a list of the unwanted repositories under the `config.ignore_repositories` property in the CM file.
-3. To override a global rule for a specific automation in a repository, you can duplicate the rule (both the file and automation name) and place it in the desired repository. The locally defined rule will then take precedence over the global rule for that specific repository.
+2. To exclude or run only on specific repositories from a global rule, you can use `triggers.include.repository` and `triggers.exclude.repository` in the `cm` file and add a list of the unwanted or wanted repositories respectfully.
+3. To override a global rule for specific automation in a repository, you can duplicate the rule (both the file and automation name) and place it in the desired repository. The locally defined rule will then take precedence over the global rule for that specific repository.
 
 
 ## The .cm automation file
