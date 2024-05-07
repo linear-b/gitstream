@@ -72,7 +72,7 @@ If an automation block does not have explicit triggers configured, it will be tr
 
 - Assign code expert reviewer when the PR is created and after each commit. Ignore branches with the string "hotfix" in them
 ``` yaml+jinja
-triggers
+triggers:
   on:
     - pr_created
     - commit
