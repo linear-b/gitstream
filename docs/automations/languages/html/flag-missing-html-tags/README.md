@@ -1,7 +1,7 @@
 ---
 title: Automation - Flag Missing HTML Tags
 description: Automatically request changes for HTML files that lack the canonical and robots tag.
-category: [html, css, quality]
+category: [quality, html, css, quality]
 ---
 # Flag Missing HTML Tags
 

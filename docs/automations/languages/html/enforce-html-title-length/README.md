@@ -1,7 +1,7 @@
 ---
 title: Automation - Enforce HTML Title Length Requirements
 description: Automatically request changes for `<title>` tags that don't comply with best practices.
-category: [html, css]
+category: [quality, html, css]
 ---
 # Enforce HTML Title Length Requirements
 

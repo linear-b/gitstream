@@ -1,7 +1,7 @@
 ---
 title: Automation - Approve RDoc Changes
 description: Automatically approve PRs for RDoc changes.
-category: [efficiency, ruby]
+category: [efficiency, docs, ruby]
 ---
 # Automatically Approve RDoc Changes
 
