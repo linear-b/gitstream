@@ -1,7 +1,7 @@
 ---
 title: Automation - Review Java Test Name
 description: Automatically request changes for Java test files that fail to match the required naming convention.
-category: [java, compliance]
+category: [java, testing, quality]
 ---
 # Review Java Test Name
 

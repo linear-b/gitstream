@@ -1,7 +1,7 @@
 ---
 title: Automation - Label PRs Based on Flagsmith Feature Flags
 description: Automatically label code that contians specified feature flags.
-category: [quality, labeling]
+category: [quality, feature-flag, flagsmith]
 ---
 # Label Flagsmith Feature Flags
 

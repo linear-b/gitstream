@@ -1,7 +1,7 @@
 ---
 title: Automation - Review Python Test Name
 description: Automatically request changes for Python test files that fail to match the required naming convention.
-category: [python]
+category: [python, testing, quality]
 ---
 # Review Python Test Name
 

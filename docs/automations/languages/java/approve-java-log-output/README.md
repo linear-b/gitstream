@@ -1,7 +1,7 @@
 ---
 title: Automation - Approve Java Log Output Changes
 description: Automatically approve PRs that only change Java log output.
-category: [java, efficiency]
+category: [java, logging, efficiency]
 ---
 # Approve Java Log Output Changes
 

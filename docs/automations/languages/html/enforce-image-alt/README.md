@@ -1,7 +1,7 @@
 ---
 title: Automation - Enforce Image Alt Attributes
 description: Automatically request changes for PRs that are missing image alt attributes.
-category: [html, css]
+category: [quality, html, css]
 ---
 # Enforce Image Alt Attributes
 

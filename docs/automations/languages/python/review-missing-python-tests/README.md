@@ -1,7 +1,7 @@
 ---
 title: Automation - Review Missing Python Tests
 description: Automatically request changes for Python PRs that lack test files.
-category: [python]
+category: [python, testing, quality]
 ---
 # Review Missing Python Tests
 

@@ -1,7 +1,7 @@
 ---
 title: Automation - Automatically Create Jira Tickets
 description: Automatically create Jira tickets for new PRs.
-category: [quality, project, jira, efficiency]
+category: [quality, project, jira]
 quickstart: false
 ---
 # Automatically Create Jira Tickets

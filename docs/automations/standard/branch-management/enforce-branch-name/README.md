@@ -1,7 +1,7 @@
 ---
 title: Automation - Enforce Branch Naming Conventions
 description: Automatically enforce prefixes or keywords in PR branch names.
-category: [review, compliance]
+category: [review, quality]
 ---
 # Enforce Branch Naming Conventions
 

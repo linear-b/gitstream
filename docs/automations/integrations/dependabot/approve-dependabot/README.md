@@ -1,7 +1,7 @@
 ---
 title: Automation - Approve and Merge Dependabot Changes
 description: Automatically approve and merge Dependabot PRs.
-category: [efficiency, security]
+category: [efficiency, dependabot, security]
 quickstart: false
 ---
 # Approve and Merge Dependabot Changes

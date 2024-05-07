@@ -1,7 +1,7 @@
 ---
 title: Automation - Provide Estimated Time to Review
 description: Automatically label PRs with an estimated time to review.
-category: [efficiency, review]
+category: [efficiency, review, quickstart]
 quickstart: true
 ---
 # Provide Estimated Time to Review
