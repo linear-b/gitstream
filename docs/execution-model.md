@@ -16,23 +16,39 @@ Triggers can be defined globally at the file level or specifically for each auto
 
 Specifies when automations are executed, supporting `include` and `exclude` lists for branch and repository patterns at the file level. The `on` keyword can also be used within individual automations to define specific events that trigger those automations.
 
-| Key                                                   | Type              | Description                                                                                     |
-| ----------------------------------------------------- | ----------------- | ----------------------------------------------------------------------------------------------- |
-| `triggers.on` :fontawesome-brands-github:             | [String]          | Specifies the explicit triggers that initiate the automations.                                  |
-| `triggers.include.branch` :fontawesome-brands-github: | [String or regex] | Branches that match will trigger the automation.                                               |
-| `triggers.exclude.branch` :fontawesome-brands-github: | [String or regex] | Branches that match will not trigger the automation.                                            |
-| `triggers.include.repository`                         | [String or regex] | Repositories that match will trigger the automation.                                            |
-| `triggers.exclude.repository`                         | [String or regex] | Repositories that match will not trigger the automation.                                        |
+| Key                                                   | Type              | Description                                                    |
+| ----------------------------------------------------- | ----------------- | -------------------------------------------------------------- |
+| `triggers.on` :fontawesome-brands-github:             | [String]          | Specifies the explicit triggers that initiate the automations. |
+| `triggers.include.branch` :fontawesome-brands-github: | [String or regex] | Branches that match will trigger the automation.               |
+| `triggers.exclude.branch` :fontawesome-brands-github: | [String or regex] | Branches that match will not trigger the automation.           |
+| `triggers.include.repository`                         | [String or regex] | Repositories that match will trigger the automation.           |
+| `triggers.exclude.repository`                         | [String or regex] | Repositories that match will not trigger the automation.       |
 
 **Note on Matching:**
 
 - When using a `String` as the matching type, the values in `triggers.include.*` and `triggers.exclude.*` require exact matches. This means that the names of branches or repositories must exactly match the specified string to either trigger or prevent triggering the automation.
-- For more precise control, you can use a regular expression (regex) format: `r/REGEX_PATTERN/`.
+- For more precise control, use a regular expression (regex) format: `r/REGEX_PATTERN/`.
 
 **Default Behavior:**
 
 - Implicit triggers are the default behavior if the automation doesn't have explicit triggers configured.
 - The automation runs for all branches and repositories if neither include nor exclude is specified.
+
+**Exclude/Include prioritization**
+
+- Exclude overrides the include option. Thus, a repo will be excluded when a it matches both the include and exclude lists.
+  
+    In the following example, the automations in the file will be triggered for all repositories that contain the string `feature`, except for the repository `my_feature`
+    ```
+    triggers:
+      include:
+        repository:
+          - r/feature/
+      exclude:
+        repository:
+          - my_feature
+    ```
+
 
 ### Implicit triggers
 
