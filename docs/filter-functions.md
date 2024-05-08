@@ -6,8 +6,8 @@ description: Filter Functions enable you to process data that gitStream extracts
 
 Filters can change the look and format of the source data, or even generate new data derived from the input values. What's important is that the original data is replaced by the result of transformations, and that's what ends up in rendered templates.
 
-!!! note 
-    
+!!! note
+
     Items marked with :octicons-beaker-24: are under development and are not available yet.
 
 ## Overview
@@ -66,7 +66,7 @@ Some functions support named arguments, many of these repeat in different functi
 
 `list` - a list of strings, trying to match any of the listed substrings with the matched item.
 
-`regex` - a single string, used as a _regular expression_ with the matched item. A regular expression can be created just like JavaScript, but needs to be prefixed with r, for example, `r/^foo.*/g`, for more info see [Nunjucks](https://mozilla.github.io/nunjucks/templating.html#regular-expressions). 
+`regex` - a single string, used as a _regular expression_ with the matched item. A regular expression can be created just like JavaScript, but needs to be prefixed with r, for example, `r/^foo.*/g`, for more info see [Nunjucks](https://mozilla.github.io/nunjucks/templating.html#regular-expressions).
 
 <!-- `globs` - a key to an element in the `.cm` that holds a list of strings, used as _glob_ pattern test on the matched item. For more info, see [Wikipedia](https://en.wikipedia.org/wiki/Glob_(programming)). -->
 
@@ -199,7 +199,7 @@ Given two lists, keep only items that are in both lists.
 
 #### `map`
 
-Creates a new list populated with the values of the selected attribute of every element in the input list. 
+Creates a new list populated with the values of the selected attribute of every element in the input list.
 
 <div class="filter-details" markdown=1>
 
@@ -398,7 +398,7 @@ For example:
 ```yaml+jinja
 automations:
   code_experts:
-    if: 
+    if:
       - true
     run:
       - action: add-reviewers@v1
@@ -430,16 +430,39 @@ The following files are excluded when calculating this value:
 {{ branch | estimatedReviewTime }}
 ```
 
-The following files are automatically excluded from the estimated review time calculation. 
+The following files are automatically excluded from the estimated review time calculation.
 
-| File type | Filter type | Values| 
+| File type | Filter type | Values|
 | - | - | - |
 | Data | Extension | `ini` `csv` `xls` `xlsx` `xlr` `doc` `docx` `txt` `pps` `ppt` `pptx` `dot` `dotx` `log` `tar` `rtf` `dat` `ipynb` `po` `profile` `object` `obj` `dxf` `twb` `bcsymbolmap` `tfstate` `pdf` `rbi` `pem` `crt` `svg` `png` `jpeg` `jpg` `ttf` |
 | Data | Regex | `.*dist/.*\.js$` `.*public/assets/.*\.js$` |
-| Lock | Regex | `.*package-lock|packages\.lock|package)\.json$` | 
-| Lock | File | `yarn.lock` `gemfile.lock` `podfile.lock` `cargo.lock` `composer.lock` `pipfile.lock` `gopkg.lock` |
-| Lock | Regex | `.*gradle\.lockfile$` `.*lock\.sbt$` |
 | Pipeline | Regex | `.*ci\.yml$` |
+
+| Lock File Name          | Programming Language | Package Manager      |
+|-------------------------|----------------------|----------------------|
+| `package-lock.json`     | JavaScript           | npm                  |
+| `yarn.lock`             | JavaScript           | Yarn                 |
+| `npm-shrinkwrap.json`   | JavaScript           | npm                  |
+| `Pipfile.lock`          | Python               | pipenv               |
+| `poetry.lock`           | Python               | Poetry               |
+| `conda-lock.yml`        | Python               | conda                |
+| `Gemfile.lock`          | Ruby                 | Bundler              |
+| `composer.lock`         | PHP                  | Composer             |
+| `packages.lock.json`    | .NET                 | NuGet                |
+| `project.assets.json`   | .NET                 | .NET Core            |
+| `pom.xml`               | Java                 | Maven                |
+| `Cargo.lock`            | Rust                 | Cargo                |
+| `mix.lock`              | Elixir               | Mix                  |
+| `pubspec.lock`          | Dart/Flutter         | pub                  |
+| `go.sum`                | Go                   | Go modules           |
+| `stack.yaml.lock`       | Haskell              | Stack                |
+| `vcpkg.json`            | C++                  | vcpkg                |
+| `conan.lock`            | C++                  | Conan                |
+| `ivy.xml`               | Scala                | sbt/Ivy              |
+| `project.clj`           | Clojure              | Leiningen            |
+| `Podfile.lock`          | Swift/Objective-C    | CocoaPods            |
+| `Cartfile.resolved`     | Swift/Objective-C    | Carthage             |
+| `flake.lock`            | Nix                  | Nix                  |
 
 !!! tip
 
@@ -486,11 +509,11 @@ The output is an object of the following format:
     "severity": 'string',
     "summary": 'string'
   }],
-  "metrics": { 
-    "HIGH": number, 
+  "metrics": {
+    "HIGH": number,
     "MEDIUM": number,
     "LOW": number,
-    "INFO": number 
+    "INFO": number
   }
 }
 ```
@@ -536,7 +559,7 @@ Assign the output to a variable
 jit: {{ pr | extractJitFindings }}
 ```
 
-Add a label if Jit detected secrets in the PR 
+Add a label if Jit detected secrets in the PR
 
 ```yaml+jinja
 
@@ -557,7 +580,7 @@ automations:
 
 Get an object with a summary of the findings found by the SonarCloud scan. This filter is relevant only for repos that use SonarCloud to scan PRs
 
-The `pr` context includes all the comments added to the pull request, including the comment written by the SonarCloud bot that holds a summary of its scan. 
+The `pr` context includes all the comments added to the pull request, including the comment written by the SonarCloud bot that holds a summary of its scan.
 
 This filter reads and parses the comment with SonarCloud's scan summary and makes them available to use inside the `.cm` file automations.
 
@@ -647,7 +670,7 @@ colors:
 
 #### `explainRankByGitBlame`
 
-This filter helps to explain the results of [`rankByGitBlame`](#rankbygitblame), the output is in Markdown format that can be used in a PR comment. 
+This filter helps to explain the results of [`rankByGitBlame`](#rankbygitblame), the output is in Markdown format that can be used in a PR comment.
 
 The output lists the Git provider users, e.g., GitHub users, which are mapped from the Git users included in the `git-blame` output. Git users that could not be automatically mapped are marked with `*`. To map these users, you can add `user_mapping` see instructions [here](/cm-file#config).
 
@@ -660,7 +683,7 @@ The output lists the Git provider users, e.g., GitHub users, which are mapped fr
 | `gt`  | Input  | Integer  | Filter the user list, keeping those above the specified threshold  |
 | -     | Output   | String   | Explaining [`rankByGitBlame`](#rankbygitblame) results in markdown format |
 
-!!! note 
+!!! note
 
     Each contributor's result is rounded down to the nearest integer, so the total may add up to less than 100%.
 
@@ -671,7 +694,7 @@ For example:
 ```yaml+jinja
 automations:
   the_right_reviewer:
-    if: 
+    if:
       - true
     run:
       - action: add-reviewers@v1
@@ -700,9 +723,9 @@ Return `true` if it's the author first commit in the repo.
 </div>
 
 ```yaml+jinja
-if: 
+if:
   - {{ repo.contributors | isFirstCommit(branch.author) }}
-run: 
+run:
   - action: add-comment@v1
     args:
       comment: "Welcome {{branch.author}}!"
@@ -712,7 +735,7 @@ run:
 
 Return `true` if all file diffs are validated as formatting changes. This filter function works for JavaScript, TypeScript, Python, JSON, YAML and HTML.
 
-gitStream determines formatting changes by minifying the source code for the incoming changes and the existing code and comparing them. If they are identical, this filter function returns `true`. If any unsupported languages are contained in the PR, gitStream will return `false`. 
+gitStream determines formatting changes by minifying the source code for the incoming changes and the existing code and comparing them. If they are identical, this filter function returns `true`. If any unsupported languages are contained in the PR, gitStream will return `false`.
 
 <div class="filter-details" markdown=1>
 
@@ -744,7 +767,7 @@ Get the enum value matches to the input key
 
 For example, set a label color according to names in the enum:
 
-```yaml+jinja	
+```yaml+jinja
 automations:
   label_color:
     if:
@@ -780,7 +803,7 @@ Checks diff for matching lines.
 
 For example, to check if all the changes are of adding prints and ignore white spaces:
 
-```yaml+jinja	
+```yaml+jinja
 {{ source.diff.files | matchDiffLines(regex=r/^\+.*console\.log/, ignoreWhiteSpaces=true) | every }}
 ```
 
@@ -789,10 +812,10 @@ For example, to check if all the changes are of adding prints and ignore white s
 
 Get list of contributors based on `git-commit` activity.
 
-The `repo` context includes all the changed files, for each file it includes each 
-contributor number of lines changed every week over the last 52 weeks, based on `git-commit`. 
+The `repo` context includes all the changed files, for each file it includes each
+contributor number of lines changed every week over the last 52 weeks, based on `git-commit`.
 
-These functions compare each contributor changes per week and yield an average percentage of contribution for any given file. For example, in a certain week a file had 500 line changed, 200 by a first user, while 3 other users changed 100 lines each. So the score for the first user in that week will be 40 (200/500 in %). The function then average the score for each user for the selected time period. 
+These functions compare each contributor changes per week and yield an average percentage of contribution for any given file. For example, in a certain week a file had 500 line changed, 200 by a first user, while 3 other users changed 100 lines each. So the score for the first user in that week will be 40 (200/500 in %). The function then average the score for each user for the selected time period.
 
 Then you can use the thresholds to get the right reviewer.
 
@@ -818,8 +841,8 @@ active_coders: {{ repo | rankByGitActivity(gt=50, weeks=12) }}
 
 Get list of contributors based on `git-blame` results
 
-The `repo` context includes all the changed files, for each file it includes the 
-contributors' percentage of lines in the file, based on `git-blame`. 
+The `repo` context includes all the changed files, for each file it includes the
+contributors' percentage of lines in the file, based on `git-blame`.
 
 This function sums all these percentages per user and yield an average percentage of contribution. Then you can use the thresholds to get the right reviewer.
 
