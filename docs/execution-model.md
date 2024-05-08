@@ -1,6 +1,6 @@
 # Execution Model
 
-gitStream is triggered on new pull requests (PRs) for repositories that have gitStream installed. Upon triggering, gitStream collects context variables and evaluates the automation rules to determine which ones are relevant. 
+gitStream is triggered on new pull requests (PRs) for repositories that have gitStream installed. Upon triggering, gitStream collects context variables and evaluates the automation rules to determine which ones are relevant.
 
 ## Organization-level rules and repository rules
 
@@ -16,26 +16,27 @@ Triggers can be defined globally at the file level or specifically for each auto
 
 Specifies when automations are executed, supporting `include` and `exclude` lists for branch and repository patterns at the file level. The `on` keyword can also be used within individual automations to define specific events that trigger those automations.
 
-| Key                                                   | Type              | Description                                                                             |
-| ----------------------------------------------------- | ----------------- | --------------------------------------------------------------------------------------- |
-| `triggers.on` :fontawesome-brands-github:             | [String]          | Explicit triggers that cause the automations to run.                                    |
-| `triggers.include.branch` :fontawesome-brands-github: | [String]          | Branches whose names contain any of these substrings should trigger the automation.     |
-| `triggers.exclude.branch` :fontawesome-brands-github: | [String]          | Branches whose names contain any of these substrings should not trigger the automation. |
-| `triggers.include.repository`                         | [String or regex] | Repositories that should trigger the automation (org-level automations only).           |
-| `triggers.exclude.repository`                         | [String or regex] | Repositories that should not trigger the automation (org-level automations only).       |
+| Key                                                   | Type              | Description                                                                                     |
+| ----------------------------------------------------- | ----------------- | ----------------------------------------------------------------------------------------------- |
+| `triggers.on` :fontawesome-brands-github:             | [String]          | Specifies the explicit triggers that initiate the automations.                                  |
+| `triggers.include.branch` :fontawesome-brands-github: | [String or regex] | Branches that match will trigger the automation.                                               |
+| `triggers.exclude.branch` :fontawesome-brands-github: | [String or regex] | Branches that match will not trigger the automation.                                            |
+| `triggers.include.repository`                         | [String or regex] | Repositories that match will trigger the automation.                                            |
+| `triggers.exclude.repository`                         | [String or regex] | Repositories that match will not trigger the automation.                                        |
 
-**Note on Substring and Full Line Matching:**
+**Note on Matching:**
 
-- The values in `triggers.include.*` and `triggers.exclude.*` allow for substring matching, meaning that branches or repositories whose names contain any of the specified substrings will be included or excluded from triggering the automation. For precise control, using regular expression anchors (`^` for the start and `$` for the end of a string) allows you to match entire repository names exactly.
+- When using a `String` as the matching type, the values in `triggers.include.*` and `triggers.exclude.*` require exact matches. This means that the names of branches or repositories must exactly match the specified string to either trigger or prevent triggering the automation.
+- For more precise control, you can use a regular expression (regex) format: `r/REGEX_PATTERN/`.
 
-**Default Behavior:** 
+**Default Behavior:**
 
 - Implicit triggers are the default behavior if the automation doesn't have explicit triggers configured.
 - The automation runs for all branches and repositories if neither include nor exclude is specified.
 
 ### Implicit triggers
 
-By default, gitStream evaluates any new commit pushed to the PR, triggering automation evaluation. 
+By default, gitStream evaluates any new commit pushed to the PR, triggering automation evaluation.
 
 Additionally, if any of the automation rules reference the following [`pr`](context-variables.md#pr) context variables: `pr.comments`, `pr.title`, `pr.description`, or `pr.labels`, gitStream shall trigger and will initiate automation rules evaluation where there are changes to the PR comments, title, description, or labels respectfully.
 
@@ -90,7 +91,7 @@ automations:
           reviewers: {{ repo | codeExperts(gt=10) }}
 ```
 
--  Explain code experts only if the label “suggest-reviewer” exists. 
+-  Explain code experts only if the label “suggest-reviewer” exists.
   The automation will be triggered after each commit and after each label addition. If the label “suggest-reviewer” exists, it will trigger the `explain-code-experts` automation
 ``` yaml+jinja
 triggers:
@@ -109,20 +110,20 @@ automations:
           gt: 10
 ```
 
-- Trigger only specific automations branch pattern A, and trigger other automation for all other branches except those that fit the pattern A
-    
+- Trigger only specific automations branch pattern A, and trigger other automation for all other branches except those that fit the pattern REGEX_PATTERN
+
     ```
-    # Automation in this file will trigger only for branch pattern A
+    # Automation in this file will trigger only for branch pattern REGEX_PATTERN
     triggers:
       include:
         branch:
-          - r/A/
+          - r/REGEX_PATTERN/
     ```
-    
+
     ```
-    # Automations in this file will trigger for all branches except pattern A
+    # Automations in this file will trigger for all branches except pattern REGEX_PATTERN
     triggers:
       exclude:
         branch:
-          - r/A/
+          - r/REGEX_PATTERN/
     ```
