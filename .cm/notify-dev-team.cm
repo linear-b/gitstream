@@ -1,0 +1,14 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  notify_dev_team:
+    if:
+      - true
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: ['linear-b/team-flare']
+ 
