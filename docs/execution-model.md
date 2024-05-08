@@ -27,12 +27,13 @@ Specifies when automations are executed, supporting `include` and `exclude` list
 **Note on Matching:**
 
 - When using a `String` as the matching type, the values in `triggers.include.*` and `triggers.exclude.*` require exact matches. This means that the names of branches or repositories must exactly match the specified string to either trigger or prevent triggering the automation.
-- For more precise control, you can use a regular expression (regex) format: `r/REGEX_PATTERN/`.
+- For more precise control, use a regular expression (regex) format: `r/REGEX_PATTERN/`.
 
 **Default Behavior:**
 
 - Implicit triggers are the default behavior if the automation doesn't have explicit triggers configured.
 - The automation runs for all branches and repositories if neither include nor exclude is specified.
+- Exclude overrides the include option. For example, a repo will be excluded when it matches both the include and exclude lists
 
 ### Implicit triggers
 
