@@ -38,7 +38,7 @@ pub(crate) fn load_and_parse_markdown(file_path: &Path, cli: &Cli) -> Vec<Automa
     let mut info = AutomationInfo {
         always: false,
         automation_in_cm: None,
-        categories: vec![],
+        category: vec![],
         cm: None,
         config: None,
         date: utils::get_initial_commit_date(file_path).ok(),
@@ -101,7 +101,7 @@ pub(crate) fn load_and_parse_markdown(file_path: &Path, cli: &Cli) -> Vec<Automa
                         }
                         info.name = parsed_yaml["title"].as_str().map(str::to_string);
                         info.description = parsed_yaml["description"].as_str().map(str::to_string);
-                        info.categories = parsed_yaml["category"]
+                        info.category = parsed_yaml["category"]
                             .as_sequence()
                             .map(|values| {
                                 values
@@ -111,7 +111,7 @@ pub(crate) fn load_and_parse_markdown(file_path: &Path, cli: &Cli) -> Vec<Automa
                                     .collect()
                             })
                             .unwrap_or_default();
-                        if info.categories.iter().any(|c| c == "quickstart") {
+                        if info.category.iter().any(|c| c == "quickstart") {
                             info.quickstart = true;
                         }
                     }

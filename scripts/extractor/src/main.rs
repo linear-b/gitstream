@@ -29,7 +29,7 @@ struct Cli {
 struct AutomationInfo {
     always: bool,
     automation_in_cm: Option<String>,
-    categories: Vec<String>,
+    category: Vec<String>,
     cm: Option<String>,
     config: Option<String>,
     date: Option<String>, // Assuming date as String for simplicity
