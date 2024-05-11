@@ -1,0 +1,18 @@
+[package]
+name = "extractor"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.83"
+base64 = "0.22.1"
+chrono = { version = "0.4.38", features = ["serde"] }
+clap = { version = "4", features = ["derive"] }
+csv = "1"
+pulldown-cmark = "0.10"
+rayon = "1.10"
+regex = "1.10"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml = "0.9"
+walkdir = "2"
