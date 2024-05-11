@@ -23,4 +23,4 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-          [gitStream](https://docs.gitstream.cm) automatically skipped production CI pipelines because this PR only contains docs changes.
+            [gitStream](https://docs.gitstream.cm) automatically skipped production CI pipelines because this PR only contains docs changes.
