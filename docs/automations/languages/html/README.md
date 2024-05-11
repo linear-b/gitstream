@@ -2,6 +2,7 @@
 title: Automation - Integrate gitStream with HTML and CSS
 description: Use gitStream for HTML/CSS project workflow automations.
 category: [html, css]
+visible: false
 ---
 
 ## Request Changes for CSS Important Tags

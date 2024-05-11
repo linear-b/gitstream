@@ -1,6 +1,7 @@
 ---
 title: Prerequisite configurations for Jira
 description: Learn how to configure gitStream to integrate with Jira.
+visible: false
 ---
 # Configure Jira for gitStream Integrations
 
@@ -13,10 +14,10 @@ If you want to build gitStream automations to interact with the Jira API or Jira
 
 <a target="_blank" href="https://www.atlassian.com/software/jira/features/automation">Jira automations</a> are the preferred method for gitStream to trigger actions within Jira, so you should use them whenever possible. If webhooks don't provide access to the data you need, or acheive the functionality you want, use the Jira API instead.
 
- First, create a Jira automation that uses an incoming webhook as the trigger and add whatever automation components you want after this trigger. Save the webhook URL in a secure place, you'll need it later. 
- 
+ First, create a Jira automation that uses an incoming webhook as the trigger and add whatever automation components you want after this trigger. Save the webhook URL in a secure place, you'll need it later.
+
  Here is an example of an automation that uses the `webhookData` property of the incoming data payload to create a new task. It expects the incoming data payload to contain `title` and `pr_url` fields to set the task summary and a `pr_url` custom field our demo environment already has configured.
- 
+
  ![Jira Automation Example - Create task from incoming webhook](/automations/integrations/jira/configure/jira-webhook-automation.png)
 
 <a target="_blank" href="https://confluence.atlassian.com/jirakb/working-with-incoming-webhook-data-in-automation-for-jira-1125878776.html"> Learn more about working with incoming webhooks in the Jira docs </a>
