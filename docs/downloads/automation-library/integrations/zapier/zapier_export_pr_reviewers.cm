@@ -13,6 +13,6 @@ automations:
       - action: send-http-request@v1
         args:
           url: "{{ env.ZAPIER_WEBHOOK }}"
-                    method: "POST"
-                    headers: '{"Content-type": "application/json"}'
+          method: "POST"
+          headers: '{"Content-type": "application/json"}'
           body: '{ "reviewers": "{{ pr.reviewers }}" }'

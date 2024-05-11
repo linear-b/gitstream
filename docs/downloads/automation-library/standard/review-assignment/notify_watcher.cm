@@ -36,7 +36,7 @@ automations:
                 {%- endfor -%}
                 {%- endif %}
         - action: add-reviewers@v1
-            args:
+          args:
             reviewers: {{ item.owner }}
             team_reviewers: {{ item.team }}
   {% endfor %}
@@ -46,8 +46,8 @@ automations:
 watchers:
   - owner: juliaspencer
     files:
-    - src/auth
+      - src/auth
   - team: release
     files:
-    - package.json
-    - yarn.lock
+      - package.json
+      - yarn.lock

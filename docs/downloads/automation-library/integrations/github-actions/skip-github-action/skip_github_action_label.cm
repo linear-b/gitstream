@@ -19,4 +19,4 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-          [gitStream](https://docs.gitstream.cm) automatically skipped production CI pipelines because this is labeled for experimental release.
+            [gitStream](https://docs.gitstream.cm) automatically skipped production CI pipelines because this is labeled for experimental release.
