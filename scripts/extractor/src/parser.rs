@@ -11,7 +11,8 @@ use std::{fs, path::PathBuf};
 enum ParserState {
     Parsing,
     ParseMetadata,
-    ParseConfig,
+    ParseConfigInText,
+    ParseConfigInHtml,
     ParseExample,
 }
 
@@ -73,9 +74,18 @@ pub(crate) fn load_and_parse_markdown(file_path: &Path, cli: &Cli) -> Vec<Automa
                     info.automation_in_cm = Some(automation);
                 }
             }
+            Event::Start(Tag::Image { dest_url, .. }) => {
+                if dest_url.contains(".png") {
+                    let image_path = PathBuf::from(dest_url.as_ref());
+                    info.image = Some(utils::linkify(&image_path));
+                }
+            }
             Event::Start(_) => {}
             Event::Html(text) => {
-                if text.contains(".png") {
+                if text.contains("Conditions (all must be true)") {
+                    state = ParserState::ParseConfigInHtml;
+                    info.config = Some(String::new());
+                } else if text.contains(".png") {
                     let image_path = utils::extract_file_path(&text, r"\((.*?)\)")
                         // Merge extarced PNG relative path with the README path
                         .map(|s| file_path.parent().unwrap().join(s))
@@ -96,7 +106,12 @@ pub(crate) fn load_and_parse_markdown(file_path: &Path, cli: &Cli) -> Vec<Automa
                         // Deserialize YAML from the metadata block and check for "visible" flag
                         let parsed_yaml: Value = serde_yaml::from_str(&text).unwrap_or_default();
                         // If the "visible" flag is explicitly set to false, return early with empty output
-                        if !parsed_yaml.get("visible").map(|v| v.as_bool()).flatten().unwrap_or(true) {
+                        if !parsed_yaml
+                            .get("visible")
+                            .map(|v| v.as_bool())
+                            .flatten()
+                            .unwrap_or(true)
+                        {
                             return output;
                         }
                         info.name = parsed_yaml["title"].as_str().map(str::to_string);
@@ -115,7 +130,7 @@ pub(crate) fn load_and_parse_markdown(file_path: &Path, cli: &Cli) -> Vec<Automa
                             info.quickstart = true;
                         }
                     }
-                    ParserState::ParseConfig => {
+                    ParserState::ParseConfigInText => {
                         // Accumulate configuration text as it's parsed
                         if indentation == utils::get_indentation(&text) {
                             info.config = Some(info.config.take().unwrap_or_default() + &text)
@@ -123,6 +138,14 @@ pub(crate) fn load_and_parse_markdown(file_path: &Path, cli: &Cli) -> Vec<Automa
                             // If "!!! example" is found in the text, we immediately transition to
                             // the ParseExample state to handle example configurations
                             state = ParserState::ParseExample;
+                        } else if !text.trim().is_empty() {
+                            state = ParserState::Parsing;
+                        }
+                    }
+                    ParserState::ParseConfigInHtml => {
+                        // Accumulate configuration text as it's parsed
+                        if indentation == utils::get_indentation(&text) {
+                            info.config = Some(info.config.take().unwrap_or_default() + &text)
                         } else if !text.trim().is_empty() {
                             state = ParserState::Parsing;
                         }
@@ -152,7 +175,7 @@ pub(crate) fn load_and_parse_markdown(file_path: &Path, cli: &Cli) -> Vec<Automa
                                 output.push(info.clone());
                             }
                         } else if text.contains("Conditions (all must be true)") {
-                            state = ParserState::ParseConfig;
+                            state = ParserState::ParseConfigInText;
                             info.config = Some(String::new());
                         } else if text.contains("!!! example") {
                             state = ParserState::ParseExample;
@@ -166,9 +189,14 @@ pub(crate) fn load_and_parse_markdown(file_path: &Path, cli: &Cli) -> Vec<Automa
             Event::End(TagEnd::Paragraph) => {
                 state = ParserState::Parsing;
             }
-            Event::End(..) => {
-                state = ParserState::Parsing;
-            }
+            Event::End(tag) => match state {
+                ParserState::ParseConfigInHtml => {
+                    if tag == TagEnd::CodeBlock {
+                        state = ParserState::Parsing;
+                    }
+                }
+                _ => state = ParserState::Parsing,
+            },
             _ => (),
         }
         debug_print!(cli.debug, "S: {state:?}");
@@ -185,7 +213,8 @@ fn parse_cm_file(path: &Path) -> Result<String> {
     // Read the content of the specified file
     let Ok(file_content) = fs::read_to_string(&path) else {
         return Err(anyhow::Error::msg(format!(
-            "Can't read file at path {}", path.display()
+            "Can't read file at path {}",
+            path.display()
         )));
     };
     // Encode Jinja expressions within the file content to base64
