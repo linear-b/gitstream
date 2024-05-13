@@ -131,10 +131,9 @@ automations:
           reviewers: {{ repo | codeExperts(gt=10) }}
 ```
 
--  Explain code experts only if the label “suggest-reviewer” exists.
+- Explain code experts only if the label “suggest-reviewer” exists.
   The automation will be triggered after each commit and after each label addition. If the label “suggest-reviewer” exists, it will trigger the `explain-code-experts` automation
-
-  ```yaml+jinja
+```yaml+jinja
 triggers:
   on:
     - commit
@@ -152,19 +151,17 @@ automations:
 ```
 
 - Trigger only specific automations branch pattern A, and trigger other automation for all other branches except those that fit the pattern REGEX_PATTERN
-
-    ```yaml+jinja
-    # Automation in this file will trigger only for branch pattern REGEX_PATTERN
-    triggers:
-      include:
-        branch:
-          - r/REGEX_PATTERN/
-    ```
-
-    ```yaml+jinja
-    # Automations in this file will trigger for all branches except pattern REGEX_PATTERN
-    triggers:
-      exclude:
-        branch:
-          - r/REGEX_PATTERN/
-    ```
+```yaml+jinja
+# Automation in this file will trigger only for branch pattern REGEX_PATTERN
+triggers:
+  include:
+    branch:
+      - r/REGEX_PATTERN/
+```
+```yaml+jinja
+# Automations in this file will trigger for all branches except pattern REGEX_PATTERN
+triggers:
+  exclude:
+    branch:
+      - r/REGEX_PATTERN/
+```
