@@ -117,6 +117,7 @@ The `config` section in the `.cm` file is optional and specifies settings that a
 | `config.admin.users`  | [String]         | `[]`    | `gitstream.cm` | List of admin users, identified by Git provider usernames.                          |
 | `config.ignore_files` | [String]         | `[]`    | per `.cm` file | Files to exclude from consideration.                                                |
 | `config.user_mapping` | [String: String] | `[]`    | per `.cm` file | Map Git user details to provider account names.                                     |
+
 ##### `config.admin.users`
 
 When specified in `gitstream.cm` the `config.admin.users` allows adding admin rights, when a PR changes the `*.cm` files only, if the user is listed in `config.admin.users` the PR will be then approved by gitStream. For example, setting `popeye` as admin:
