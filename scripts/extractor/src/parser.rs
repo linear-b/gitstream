@@ -7,12 +7,12 @@ use std::path::Path;
 use std::str;
 use std::{fs, path::PathBuf};
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq)]
 enum ParserState {
     Parsing,
     ParseMetadata,
-    ParseConfigInText,
-    ParseConfigInHtml,
+    ParseConfigInDivBlock,
+    ParseConfigIndented,
     ParseExample,
 }
 
@@ -48,7 +48,7 @@ pub(crate) fn load_and_parse_markdown(file_path: &Path, cli: &Cli) -> Vec<Automa
         id: 0,
         image: None,
         link: utils::linkify(file_path.parent().unwrap()),
-        logo: svg,
+        logo: svg.map(|path| utils::linkify(&path)),
         name: None,
         quickstart: false,
         visible: true,
@@ -58,7 +58,7 @@ pub(crate) fn load_and_parse_markdown(file_path: &Path, cli: &Cli) -> Vec<Automa
     // This variable tracks if we are in a document with multiple sections.
     // It starts as None and gets updated to Some(1) when the first section divider is found.
     let mut sections = None;
-    let mut indentation = 0;
+    let mut baseline_indentation = 0;
 
     for event in parser {
         debug_print!(cli.debug, "{event:?}");
@@ -80,10 +80,15 @@ pub(crate) fn load_and_parse_markdown(file_path: &Path, cli: &Cli) -> Vec<Automa
                     info.image = Some(utils::linkify(&image_path));
                 }
             }
+            Event::Start(Tag::HtmlBlock) => {
+                if state == ParserState::ParseConfigInDivBlock {
+                    state = ParserState::Parsing
+                }
+            }
             Event::Start(_) => {}
             Event::Html(text) => {
                 if text.contains("Conditions (all must be true)") {
-                    state = ParserState::ParseConfigInHtml;
+                    state = ParserState::ParseConfigInDivBlock;
                     info.config = Some(String::new());
                 } else if text.contains(".png") {
                     let image_path = utils::extract_file_path(&text, r"\((.*?)\)")
@@ -114,7 +119,10 @@ pub(crate) fn load_and_parse_markdown(file_path: &Path, cli: &Cli) -> Vec<Automa
                         {
                             return output;
                         }
-                        info.name = parsed_yaml["title"].as_str().map(str::to_string);
+                        info.name = parsed_yaml["title"]
+                            .as_str()
+                            .map(|s| s.trim_start_matches("Automation - "))
+                            .map(str::to_string);
                         info.description = parsed_yaml["description"].as_str().map(str::to_string);
                         info.category = parsed_yaml["category"]
                             .as_sequence()
@@ -130,24 +138,38 @@ pub(crate) fn load_and_parse_markdown(file_path: &Path, cli: &Cli) -> Vec<Automa
                             info.quickstart = true;
                         }
                     }
-                    ParserState::ParseConfigInText => {
+                    ParserState::ParseConfigInDivBlock => {
                         // Accumulate configuration text as it's parsed
-                        if indentation == utils::get_indentation(&text) {
-                            info.config = Some(info.config.take().unwrap_or_default() + &text)
-                        } else if text.contains("!!! example") {
+                        info.config =
+                            Some(info.config.take().unwrap_or_default() + text.trim_start());
+                        // debug_print!(cli.debug, "text: {text} -> {:?}", info.config);
+                        if text.contains("!!! example") {
                             // If "!!! example" is found in the text, we immediately transition to
                             // the ParseExample state to handle example configurations
                             state = ParserState::ParseExample;
-                        } else if !text.trim().is_empty() {
-                            state = ParserState::Parsing;
                         }
                     }
-                    ParserState::ParseConfigInHtml => {
+                    ParserState::ParseConfigIndented => {
+                        debug_print!(
+                            cli.debug,
+                            "I:{} T:{}",
+                            baseline_indentation,
+                            utils::get_indentation(&text)
+                        );
                         // Accumulate configuration text as it's parsed
-                        if indentation == utils::get_indentation(&text) {
-                            info.config = Some(info.config.take().unwrap_or_default() + &text)
-                        } else if !text.trim().is_empty() {
+                        if text.contains("!!! example") {
+                            // If "!!! example" is found in the text, we immediately transition to
+                            // the ParseExample state to handle example configurations
+                            state = ParserState::ParseExample;
+                        } else if text.contains("<div") {
                             state = ParserState::Parsing;
+                        } else if !text.trim().is_empty()
+                            && utils::get_indentation(&text) < baseline_indentation
+                        {
+                            state = ParserState::Parsing;
+                        } else if utils::get_indentation(&text) >= baseline_indentation {
+                            info.config =
+                                Some(info.config.take().unwrap_or_default() + text.trim_start());
                         }
                     }
                     ParserState::ParseExample => {
@@ -160,7 +182,7 @@ pub(crate) fn load_and_parse_markdown(file_path: &Path, cli: &Cli) -> Vec<Automa
                         }
                     }
                     ParserState::Parsing => {
-                        indentation = utils::get_indentation(&text);
+                        baseline_indentation = utils::get_indentation(&text);
                         if text.starts_with("=== ") {
                             // When a section divider "=== " is found, we check if multi_sections is None.
                             // If it is, this is the first section divider, and we set it to Some(1).
@@ -173,9 +195,10 @@ pub(crate) fn load_and_parse_markdown(file_path: &Path, cli: &Cli) -> Vec<Automa
                                 sections = Some(sections.take().unwrap_or_default() + 1);
                                 debug_print!(cli.debug, "Section: {sections:?}");
                                 output.push(info.clone());
+                                info.config = None;
                             }
                         } else if text.contains("Conditions (all must be true)") {
-                            state = ParserState::ParseConfigInText;
+                            state = ParserState::ParseConfigIndented;
                             info.config = Some(String::new());
                         } else if text.contains("!!! example") {
                             state = ParserState::ParseExample;
@@ -183,17 +206,14 @@ pub(crate) fn load_and_parse_markdown(file_path: &Path, cli: &Cli) -> Vec<Automa
                     }
                 }
             }
-            Event::End(TagEnd::MetadataBlock(..)) => {
-                state = ParserState::Parsing;
-            }
-            Event::End(TagEnd::Paragraph) => {
-                state = ParserState::Parsing;
-            }
             Event::End(tag) => match state {
-                ParserState::ParseConfigInHtml => {
+                ParserState::ParseConfigInDivBlock => {
                     if tag == TagEnd::CodeBlock {
-                        state = ParserState::Parsing;
+                        state = ParserState::Parsing
                     }
+                }
+                ParserState::ParseConfigIndented => {
+                    // only smaller indentation changes state
                 }
                 _ => state = ParserState::Parsing,
             },

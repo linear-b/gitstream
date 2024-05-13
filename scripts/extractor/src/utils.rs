@@ -50,7 +50,29 @@ pub fn linkify(file_path: &Path) -> String {
     let url_path = file_path
         .strip_prefix(Path::new("docs"))
         .unwrap_or(file_path);
-    format!("https://docs.gitstream.cm/{}", url_path.display()).replace("//", "/")
+    format!("https://docs.gitstream.cm/{}", url_path.display()).clean_url()
+}
+
+trait CleanUrl {
+    fn clean_url(&self) -> String;
+}
+
+impl CleanUrl for String {
+    fn clean_url(&self) -> String {
+        clean_url(self)
+    }
+}
+
+fn clean_url(url: &str) -> String {
+    url.splitn(2, "://")
+        .map(|s| {
+            s.split("/")
+                .filter(|p| !p.is_empty())
+                .collect::<Vec<&str>>()
+                .join("/")
+        })
+        .collect::<Vec<String>>()
+        .join("://")
 }
 
 pub fn get_initial_commit_date(file_path: &Path) -> Result<String> {

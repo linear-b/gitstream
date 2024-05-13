@@ -40,7 +40,7 @@ struct AutomationInfo {
     image: Option<String>,
     id: usize,
     link: String,
-    logo: Option<PathBuf>,
+    logo: Option<String>,
     // the title, taken from the README file desc header
     name: Option<String>,
     // link to the SVG file extracted from the README directory
@@ -62,7 +62,13 @@ fn main() -> io::Result<()> {
         .into_iter()
         .filter_map(|e| e.ok())
         .filter(|entry| entry.file_name() == "README.md")
-        .filter(|entry| !entry.path().to_str().unwrap().contains("utilities/cm-header"))
+        .filter(|entry| {
+            !entry
+                .path()
+                .to_str()
+                .unwrap()
+                .contains("utilities/cm-header")
+        })
         .filter(|entry| {
             cli.path_prefix.as_ref().map_or(true, |prefix| {
                 entry.path().to_str().map_or(false, |s| s.contains(prefix))
