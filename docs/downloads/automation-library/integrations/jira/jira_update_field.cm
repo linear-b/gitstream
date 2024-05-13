@@ -17,7 +17,6 @@ automations:
   jira_update_field: 
     if:
       - {{ has.jira_ticket_in_title or has.jira_ticket_in_branch }}
-      - {{ has.jira_ticket_in_title or has.jira_ticket_in_desc }}
     run:
       - action: send-http-request@v1
         args:
