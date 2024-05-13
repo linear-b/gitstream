@@ -71,7 +71,7 @@ For each PR the following automation rules are applied:
 
 When organization level rules are defined, then the CI/CD will be executed on the `cm` repository on behalf of the PR repository.
 
-### Setting up Global Automation rules 
+### Setting up Global Automation rules
 
 By utilizing the following techniques, you can effectively combine and manage global and repository rules to customize the behavior of your automations to fit the specific requirements of your repositories:
 
@@ -182,6 +182,21 @@ On the other hand, when using `explainRankByGitBlame` with `add-comment@v1` it s
 1.  `rankByGitBlame` will drop `null` users
 2.  `explainRankByGitBlame` will NOT drop `null` users
 
+#### `triggers`
+
+The `triggers` is section specifies when automations are executed, supporting `include` and `exclude` lists for branch and repository patterns at the file level. The `on` keyword can also be used within individual automations to define specific events that trigger those automations.
+
+```yaml+jinja
+triggers:
+  on:
+    - pr_created
+    - commit
+  exclude:
+    branch:
+      - hotfix
+```
+
+Read more here: [triggers](/execution-model#explicit-triggers).
 
 #### `automations`
 
