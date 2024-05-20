@@ -17,7 +17,7 @@ GitLab Installation Overview
 1. Create a GitLab pipeline.
 1. Install the gitStream service. 
 
-## 1. Designate a gitStream User Account
+## Designate a gitStream User Account
 
 gitStream automation rules are executed on behalf of the user account configured when you install the gitStream service. This account must have the `maintainer` or `owner` role to the relevant repos. 
 
@@ -26,7 +26,7 @@ We recommend creating a [dedicated service account](https://docs.gitlab.com/ee/u
 !!! tip "Use this account when you integrate gitStream"
     Make sure to use this account when authorizing GitLab in LinearB.
 
-## 2. Create a `cm` repo and a CM Configuration File
+## Create a `cm` repo and a CM Configuration File
 
 Group rules are ideal when you want to enforce consistent rules across every repo in your GitLab group. You can define them by creating a special repository named `cm` in the parent group for the git repositories on which you want to run gitStream. Here, you can add automation files that apply to **all** repositories within that group that are connected to gitStream.
 
@@ -42,7 +42,7 @@ Create a `cm` project (repository) in your GitLab group, and create a `gitstream
 		--8<-- "docs/downloads/gitstream.cm"
 		```
 
-## 3. Create a GitLab Pipeline
+## Create a GitLab Pipeline
 
 Once your gitStream configuration file is set up, you need a GitLab CI configuration file to trigger gitStream automations. Create a `cm` project (repository) in your GitLab group if you haven't already. It should be created in the same group or a parent group of the target repositories. Create a `.gitlab-ci.yml` file in your new `cm` repository's default branch (usually `master` or `main`) and add the following configuration:
 
