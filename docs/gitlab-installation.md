@@ -26,43 +26,25 @@ We recommend creating a [dedicated service account](https://docs.gitlab.com/ee/u
 !!! tip "Use this account when you integrate gitStream"
     Make sure to use this account when authorizing GitLab in LinearB.
 
-## 2. Create a CM Configuration File
+## 2. Create a `cm` repo and a CM Configuration File
 
+Group rules are ideal when you want to enforce consistent rules across every repo in your GitLab group. You can define them by creating a special repository named `cm` in the parent group for the git repositories on which you want to run gitStream. Here, you can add automation files that apply to **all** repositories within that group that are connected to gitStream.
 
-You can set up gitStream for a single repo or your entire GitLab organization. Select the tab below for the instructions you want.
-=== "Single Repo"
-    **Single Repo Setup**
+Create a `cm` project (repository) in your GitLab group, and create a `gitstream.cm` rules file in the root directory of your `cm` repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on your organization's repos. You can name the CM file anything you want as long as it ends in `.cm`
 
-    Create a `.cm/gitstream.cm` rules file in your repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on the repo, and you can name it anything you want as long as it ends in `.cm`
+!!! info "Configuration files go in the repo's root directory."
+	Group-level rules require your `.cm` files to be placed in the repository's root directory.
+	You can also define specific repo-level rules under the `.cm` folder in each of the connected repositories
 
-    !!! example "Example Configuration"
-
-
-        Here is an example of a gitStream configuration file you can use to setup some basic workflow automations.
-
-        ```yaml+jinja
-        --8<-- "docs/downloads/gitstream.cm"
-        ```
-
-=== "GitLab Group"
-    **GitLab Group Setup**
-
-    Group rules are ideal when you want to enforce consistent rules across every repo in your GitLab group. You can define them by creating a special repository named `cm` in the parent group for the git repositories you want to run gitStream on. Here, you can add automation files that will apply to **all** repositories within that group.
-
-    Create a `cm` project (repository) in your GitLab group, and create a `gitstream.cm` rules file in the root directory of your `cm` repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on your organization's repos. You can name the CM file anything you want as long as it ends in `.cm`
-
-    !!! info "Configuration files go in the repo's root directory."
-        Unlike the set up instructions for a single repo, your `.cm` files should be placed in the repository's root directory.
-
-    !!! example "Example Configuration"
-            Here is an example of a gitStream configuration file you can use to setup some basic workflow automations.
-            ```yaml+jinja
-            --8<-- "docs/downloads/gitstream.cm"
-            ```
+!!! example "Example Configuration"
+		Here is an example of a gitStream configuration file to set up some basic workflow automations.
+		```yaml+jinja
+		--8<-- "docs/downloads/gitstream.cm"
+		```
 
 ## 3. Create a GitLab Pipeline
 
-Once your gitStream configuration file is set up, you need a GitLab CI configuration file to trigger gitStream automations. If you haven't already, create a `cm` project (repository) in your GitLab group. It should be created in the same group or a parent group of the target repositories. Create a `.gitlab-ci.yml` file in your new `cm` repository's default branch (usually `master` or `main`) and add the following configuration:
+Once your gitStream configuration file is set up, you need a GitLab CI configuration file to trigger gitStream automations. Create a `cm` project (repository) in your GitLab group if you haven't already. It should be created in the same group or a parent group of the target repositories. Create a `.gitlab-ci.yml` file in your new `cm` repository's default branch (usually `master` or `main`) and add the following configuration:
 
 === "GitLab-Hosted runners"
 
