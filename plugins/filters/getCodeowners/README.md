@@ -7,12 +7,12 @@ When used, create a secret TOKEN, and add it to the workflow file, in GitHub:
 jobs:
   gitStream:
     ...
-    env: 
+    env:
       CODEOWNERS: ${{ secrets.GITSTREAM_CODEOWNERS }}
     steps:
       - name: Evaluate Rules
-        uses: linear-b/gitstream-github-action@v1
-``` 
+        uses: linear-b/gitstream-github-action@v2
+```
 
 ??? note "Plugin Code: getCodeowners"
     ```javascript
