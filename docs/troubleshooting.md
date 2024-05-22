@@ -32,10 +32,10 @@ Some organization limit which actions can run, in that case in the repository se
 
 ![GitHub allow marketplace actions](screenshots/github_settings_allow_actions.png)
 
-Also, add 
+Also, add
 ```
-linear-b/gitstream-github-action@v1,*/*/.github/workflows/gitstream.yml*
-``` 
+linear-b/gitstream-github-action@v2,*/*/.github/workflows/gitstream.yml*
+```
 to the **Allow specified actions and reusable workflows** list, if it is shown.
 ![GitHub allow marketplace actions](screenshots/github_settings_allow_specified_actions
 .png)
@@ -89,12 +89,12 @@ jobs:
     name: gitStream workflow automation
     steps:
       - name: Evaluate Rules
-        uses: linear-b/gitstream-github-action@v1
+        uses: linear-b/gitstream-github-action@v2
 ```
 
 ## gitStream fails and I don't understand why
 
-gitStream check run can fail from different reasons, and these are shown in the check result. 
+gitStream check run can fail from different reasons, and these are shown in the check result.
 
 #### Missing workflow file
 

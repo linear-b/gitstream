@@ -164,7 +164,7 @@ Add the `update_times_a_day` parameter to the `Evaluate Rules` step of your gitS
     ```yaml
     steps:
       - name: Evaluate Rules
-        uses: linear-b/gitstream-github-action@v1
+        uses: linear-b/gitstream-github-action@v2
         id: rules-engine
         with:
           full_repository: ${{ github.event.inputs.full_repository }}
