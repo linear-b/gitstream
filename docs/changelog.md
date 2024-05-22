@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ### 2024.5.06
+- **Simplified GitLab workflow file**: Using the image directly instead of docker Dind
+
+### 2024.5.06
 
 - **Reorganized trigger configuration**: Moved the top-level `on` keyword under a new `triggers` keyword to consolidate all trigger settings.
 - **Enhanced repository and branch triggering**:
