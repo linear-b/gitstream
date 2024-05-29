@@ -126,10 +126,6 @@ Here are the steps to configure gitStream in your repo's branch protection rules
 
 Follow these steps to ensure gitStream runs on self-hosted GitHub Actions runners:
 
-### Configuring gitStream with Self-Hosted Runners
-
-Follow these steps to ensure gitStream runs on self-hosted GitHub Actions runners:
-
 1. **Configure Self-Hosted Runners**
     - Set up self-hosted runners for your GitHub organization or repository. Refer to GitHub documentation on [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners) and [using them in a workflow](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/using-self-hosted-runners-in-a-workflow) for detailed instructions.
 
