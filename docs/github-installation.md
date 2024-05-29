@@ -126,14 +126,18 @@ Here are the steps to configure gitStream in your repo's branch protection rules
 
 Follow these steps to ensure gitStream runs on self-hosted GitHub Actions runners:
 
-1. **Configure Self-Hosted Runners**
-    Ensure you have self-hosted runners set up for your GitHub organization or repository. Refer to the GitHub documentation on [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners) and [Using self-hosted runners in a workflow](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/using-self-hosted-runners-in-a-workflow) for detailed instructions.
-    
-1. **Install Git on Self-Hosted Runners**
-	Make sure your self-hosted runners have Git installed. Git is an essential dependency for gitStream to function properly. The installation guide is available [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+### Configuring gitStream with Self-Hosted Runners
 
-2. **Update GitHub Actions Configuration**
-    Open the gitStream GitHub Actions workflow file (`.github/workflows/gitstream.yml`) and update the `runs-on` field to specify that the gitStream job must run on self-hosted runners. For example:
+Follow these steps to ensure gitStream runs on self-hosted GitHub Actions runners:
+
+1. **Configure Self-Hosted Runners**
+    - Set up self-hosted runners for your GitHub organization or repository. Refer to GitHub documentation on [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners) and [using them in a workflow](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/using-self-hosted-runners-in-a-workflow) for detailed instructions.
+
+2. **Install Git on Self-Hosted Runners**
+    - Ensure Git is installed on your self-hosted runners. Git is a necessary dependency for gitStream. Installation instructions can be found [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+
+3. **Update GitHub Actions Configuration**
+    - Modify the gitStream GitHub Actions workflow file (`.github/workflows/gitstream.yml`) to specify self-hosted runners:
 
     ```yaml
     jobs:
@@ -142,11 +146,12 @@ Follow these steps to ensure gitStream runs on self-hosted GitHub Actions runner
         # ... other configuration ...
     ```
 
-3. **Save and Commit**
-    Save your changes to the workflow file and commit them to your repository.
+4. **Save and Commit**
+    - Save changes to the workflow file and commit them to your repository.
 
-4. **Test with a Sample PR**
-    Create a sample pull request and observe gitStream's behavior. It will use the configured self-hosted runners.
+5. **Test with a Sample PR**
+    - Create a sample pull request to verify gitStream's behavior with self-hosted runners.
+
 
 ## Uninstalling gitStream
 
