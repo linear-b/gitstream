@@ -124,13 +124,13 @@ Here are the steps to configure gitStream in your repo's branch protection rules
 
 ### Configuring gitStream with Self-Hosted Runners
 
-To ensure gitStream runs on self-hosted GitHub Actions runners, follow these steps to configure it:
+Follow these steps to ensure gitStream runs on self-hosted GitHub Actions runners:
 
-1. **Configure Self-Hosted Runners with **
+1. **Configure Self-Hosted Runners**
     Ensure you have self-hosted runners set up for your GitHub organization or repository. Refer to the GitHub documentation on [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners) and [Using self-hosted runners in a workflow](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/using-self-hosted-runners-in-a-workflow) for detailed instructions.
     
-1. **Install Docker and Git on Self-Hosted Runners**
-	Make sure your self-hosted runners have Docker and Git installed. These are essential dependencies for gitStream to function properly. You can follow the official installation guides for [Docker](https://docs.docker.com/get-docker/) and [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+1. **Install Git on Self-Hosted Runners**
+	Make sure your self-hosted runners have Git installed. Git is an essential dependency for gitStream to function properly. The installation guide is available [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
 2. **Update GitHub Actions Configuration**
     Open the gitStream GitHub Actions workflow file (`.github/workflows/gitstream.yml`) and update the `runs-on` field to specify that the gitStream job must run on self-hosted runners. For example:
@@ -147,37 +147,6 @@ To ensure gitStream runs on self-hosted GitHub Actions runners, follow these ste
 
 4. **Test with a Sample PR**
     Create a sample pull request and observe gitStream's behavior. It will use the configured self-hosted runners.
-
-### Caching the Docker Image Using GitHub Cache
-
-gitStream provides an optional method to control the frequency of Docker image downloads per day using GitHub's cache services, helping to manage build resources efficiently. By using the `update_times_a_day` argument, you can specify the number of times the Docker image should be downloaded and cached daily. If this argument is not specified, no caching will occur.
-#### Configure Docker Image Caching
-
-Add the `update_times_a_day` parameter to the `Evaluate Rules` step of your gitStream GitHub Actions workflow.
-
-- **Open Your GitHub Actions Workflow File and Modify the `Evaluate Rules` Step:**
-   Navigate to your `.github/workflows` directory, open gitStream's workflow `yml`, and update the `Evaluate Rules` step. Add the `update_times_a_day` parameter to set the exact times the Docker image is downloaded and cached daily.
-
-- **Example Configuration:**
-   Here is how you might configure the caching within your workflow:
-
-    ```yaml
-    steps:
-      - name: Evaluate Rules
-        uses: linear-b/gitstream-github-action@v2
-        id: rules-engine
-        with:
-          full_repository: ${{ github.event.inputs.full_repository }}
-          head_ref: ${{ github.event.inputs.head_ref }}
-          base_ref: ${{ github.event.inputs.base_ref }}
-          client_payload: ${{ github.event.inputs.client_payload }}
-          installation_id: ${{ github.event.inputs.installation_id }}
-          resolver_url: ${{ github.event.inputs.resolver_url }}
-          resolver_token: ${{ github.event.inputs.resolver_token }}
-          update_times_a_day: 6
-    ```
-
-	In this example, the Docker image is set to be downloaded and cached six times a day, distributed evenly across 24 hours (i.e., the image will be downloaded every 4 hours). This parameter can be adjusted to fit your workflow needs and resource management strategies. Without specifying this argument, no caching will be performed.
 
 ## Uninstalling gitStream
 
