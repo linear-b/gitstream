@@ -40,7 +40,7 @@ The `on` keyword can also be used within individual automations to define specif
 | `triggers.include.repository`                         | [String or regex] | Repositories that match will trigger the automation.           |
 | `triggers.exclude.repository`                         | [String or regex] | Repositories that match will not trigger the automation.       |
 
-gitStream supports the following explicit triggers:
+The table below lists supported explicit triggers, categorized into those enabled by default and those that require manual activation.
 
 | Triggering event                                                      | Explicit Trigger :fontawesome-brands-github: | Default (implicit triggers)    |
 | --------------------------------------------------------------------- | -------------------------------------------- | ------------------------------ |
