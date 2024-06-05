@@ -129,15 +129,15 @@ gitStream supports the use of JavaScript plugins to create new filter functions.
 
 ## Next Step
 !!! tip "Write your first automation."
-    The best way to familiarize yourself with CM syntax is to build automations, and we've covered enough info for you to start! 
-    
+    The best way to familiarize yourself with CM syntax is to build automations, and we've covered enough info for you to start!
+
     If you're ready to start writing automations, check out our guide: [Write Your First Automation](quick-start.md).
 ## Additional Resources
 
 ### gitStream UI
-Once you have gitStream installed and have run some automations, you can view details about them at [app.gitstream.cm](https://app.gitstream.cm). To view gitStream data, you will need to login with your GitHub account and have access to an organization that has run gitStream automations.
+Once you have gitStream installed and have run some automations, you can view details about them at [app.linearb.io/automations](https://app.linearb.io/automations). To view gitStream automation data, you will need to login with your LinearB user account.
 
-![gitStream UI](/screenshots/gitstream-ui.png)
+![gitStream UI](/screenshots/automation-ui.png)
 
 ### Functional Overview
 
