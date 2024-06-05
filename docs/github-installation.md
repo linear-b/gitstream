@@ -129,8 +129,9 @@ Follow these steps to ensure gitStream runs on self-hosted GitHub Actions runner
 1. **Configure Self-Hosted Runners**
     - Set up self-hosted runners for your GitHub organization or repository. Refer to GitHub documentation on [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners) and [using them in a workflow](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/using-self-hosted-runners-in-a-workflow) for detailed instructions.
 
-2. **Install Git on Self-Hosted Runners**
-    - Ensure Git is installed on your self-hosted runners. Git is a necessary dependency for gitStream. Installation instructions can be found [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+2. **Prerequisites for Self-Hosted Runners**
+    - Git: Installation instructions can be found [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+    - Python 3.x
 
 3. **Update GitHub Actions Configuration**
     - Modify the gitStream GitHub Actions workflow file (`.github/workflows/gitstream.yml`) to specify self-hosted runners:
