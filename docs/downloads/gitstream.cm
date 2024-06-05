@@ -8,6 +8,9 @@ manifest:
 automations:
   # Add a label that indicates how many minutes it will take to review the PR.
   estimated_time_to_review:
+    on:
+      - pr_created
+      - commit
     if:
       - true
     run:
@@ -31,12 +34,15 @@ automations:
             Please add a Jira ticket reference to the title or description of this PR.
   # Post a comment that lists the best experts for the files that were modified.
   explain_code_experts:
+    on:
+      - pr_created
+      - commit
     if:
       - true
     run:
-      - action: explain-code-experts@v1 
+      - action: explain-code-experts@v1
         args:
-          gt: 10 
+          gt: 10
 
 
 # +----------------------------------------------------------------------------+
