@@ -1,11 +1,24 @@
+/**
+ * @module checklist
+ * @description Automatically check PRs against a checklist of conditions.
+ * This is useful if you want to ensure that PRs meet certain criteria before they can be merged. 
+ * @param {string} Input - A blank string (no input variable is required)
+ * @param {object} branch - The branch context variable.
+ * @param {object} files - The files context variable.
+ * @param {object} pr - The pr context variable.
+ * @param {object} repo - The repo context variable.
+ * @param {object} env - The env context variable.
+ * @param {object} source - The source context variable.
+ * @returns {string} Returns a formatted GitHub comment with a checklist of conditions that the PR meets.
+ * @example       
+ * - action: add-comment@v1
+        args:
+        	comment: {{ "" | checklist(branch, files, pr, repo, env, source) }}
+ * @license MIT
+**/
+
 const checklistFilter = async (empty, branch, files, pr, repo, env, source, callback) => { // made sync temporarily
-	// Now that we have all the needed data here, we can use it to build our checklist
-	
-	/* 
-		This is an array of objects, each of which represents a check.
-		Not all *must* be true for the PR to be accepted, which is why
-		we don't just put them as automation conditions in the .cm file.
-	*/
+
 	const checks = [
 		{
 			title: "low-risk",
