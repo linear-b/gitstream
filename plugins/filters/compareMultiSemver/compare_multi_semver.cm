@@ -1,0 +1,25 @@
+manifest:
+  version: 1.0
+
+automations:
+  bump_minor:
+    if:
+      - {{ bump == 'minor' }}
+    run:
+      - action: approve@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            bot `minor` version bumps are approved automatically.
+  bump_patch:
+    if:
+      - {{ bump == 'patch' }}
+    run:
+      - action: approve@v1
+      - action: merge@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            bot `patch` version bumps are approved and merged automatically.
+
+bump: {{ [["1.2.3", "1.2.1"], ["1.3.1", "1.2.3"]] | compareMultiSemver }}
