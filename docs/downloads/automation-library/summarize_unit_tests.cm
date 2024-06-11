@@ -1,0 +1,13 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  summarize_unit_tests: 
+    if:
+      - {{ true }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: {{ source.diff.files | summarizeUnitTests(testsDirectory="/tests", testsExtension=".test.js", fileTypes=[".js"]) }}

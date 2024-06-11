@@ -20,22 +20,6 @@ ${content}
 </details>`;
 
 const summarizeUnitTests = async (files, keywords, callback) => {
-	/*
-	Post a comment that summarizes the updates to unit tests.
-	
-	The posted comment includes:
-	Total number of new test files and updates to existing test files.
-	A list of the new test files with an expandable box containing the complete code.
-	A list of updated code files in the PR with indicators to show if there is a corresponding unit test
-	
-	Notes:
-	In the automation, create testsDirectory expression and testsExtension. If the PR modifies either of these, it should trigger
-	Source.diff.files
-	If the value in new_file ends in testsExtension AND the value for original_file is null, the file is a new test
-	If the value in new_file ends in testsExtension AND the value for original_file contains a string, the file is an updated test
-	If the value in new_file ends in one of the values specified in fileTypes, it should be checked against the list of new tests to determine if an update exists in the PR.
-	*/
-
 	let affectedFilesComment = "";
 	let testFinderComment = "";
 	
