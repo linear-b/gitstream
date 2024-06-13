@@ -11,6 +11,7 @@ automations:
         args:
           comment: |
             bot `minor` version bumps are approved automatically.
+
   bump_patch:
     if:
       - {{ bump == 'patch' }}
