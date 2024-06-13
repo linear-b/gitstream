@@ -13,6 +13,7 @@ automations:
         args:
           comment: |
             Renovate `minor` version bumps are approved automatically.
+
   merge_renovate_minor_patch:
     if:
       - {{ bump == 'patch' }}
