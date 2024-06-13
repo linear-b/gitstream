@@ -17,8 +17,8 @@
 
 
 module.exports = (v1, v2) => {
-  let options = {};
-  const { lexicographical = false, zeroExtend = true } = options;
+  const lexicographical = false;
+  const zeroExtend = true;
 
   // support array as input
   if (Array.isArray(v1) && v2 === undefined) {
