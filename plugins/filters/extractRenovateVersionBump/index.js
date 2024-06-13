@@ -9,23 +9,22 @@
 
 
 module.exports = (desc) => {
-  let results = [];
-  if (desc && desc !== '""' && desc !== "''" ) {
-    const regex = /\[[\\]*`([\d\.]+[A-Za-zαß]*)[\\]*` -> [\\]*`([\d\.]+[A-Za-zαß]*)[\\]*`\]/g;
-
+  const results = [];
+  if (desc && desc !== '""' && desc !== "''") {
+    const regex =
+      /\[[\\]*`([\d\.]+[A-Za-zαß]*)[\\]*` -> [\\]*`([\d\.]+[A-Za-zαß]*)[\\]*`\]/g;
     let matches = null;
     do {
       matches = regex.exec(desc);
-      if (matches && matches.length == 3) {
-        var [_, from, to] = matches;
+      if (matches?.length === 3) {
+        let [_, from, to] = matches;
         // remove trailing dot on to
-        if (to[to.length - 1] === ".") {
+        if (to.at(-1) === ".") {
           to = to.slice(0, -1);
         }
         results.push([to, from]);
       }
-    } while(matches !== null);
+    } while (matches !== null);
   }
-
   return results;
 }
