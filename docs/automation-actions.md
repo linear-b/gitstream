@@ -196,7 +196,7 @@ This action, shall add a comment with codeExperts suggestion. If the comment alr
 | -----------|------|-----|------------------------------------------------ |
 | `lt` | Optional | Integer    | Filter the user list, keeping those below the specified threshold |
 | `gt` | Optional | Integer    | Filter the user list, keeping those above the specified threshold |
-| `verbose` | Optional| Bool | When set to false then only shows the suggestion sumary and skips the per file details (true by default) |
+| `verbose` | Optional| Bool | When set to false then only shows the suggestion summary and skips the per file details (true by default) |
 
 </div>
 
