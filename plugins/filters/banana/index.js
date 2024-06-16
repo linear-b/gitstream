@@ -6,8 +6,11 @@
  * @example {{ pr.comment | banana }}
  * @license MIT
 **/
-function banana(text) {
+
+
+module.exports = (text) => {
     return text.replaceAll('banana', '🍌');
 };
 
-module.exports = banana;
+const banana = require('./index.js');
+console.assert(banana("hello banana!") === 'hello 🍌!', `banana("hello banana!") === 'hello 🍌' but got ${banana("hello banana!")}`);

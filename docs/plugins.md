@@ -169,10 +169,34 @@ Filter function plugins can accept any number of arguments. The first argument m
     }
     module.exports = combineStrings;
     ```
-    
+
     In the following invocation, "Hello" is passed as `str1` and "world!" is passed as `str2`
 
     `{{ "Hello" | combineStrings("world!") }}`
+
+### Tips for Debugging Plugins
+
+1. **Context Variable Insight:**
+    Utilize the [gitStream playground](https://app.gitstream.cm/playground) to see how the context variable appears in a real Pull Request (PR). Inspect the PR Context Variables at the bottom of the screen ![Playground](screenshots/playground-context-variables.png).
+
+
+
+2. **Local Execution:**
+    - Run the plugin locally for testing, for example: Running `index.js` with Node.js.
+      ```javascript
+      module.exports = (text) => {
+          return text.replaceAll('banana', '🍌');
+      };
+
+      const banana = require('./index.js');
+      console.assert(banana("hello banana!") === 'hello 🍌!', `banana("hello banana!") === 'hello 🍌!' but got ${banana("hello banana!")}`);
+      ```
+    - Execute with:
+      ```bash
+      $ node index.js
+      ```
+
+By following these steps, you can effectively debug and refine your gitStream plugins.
 
 ## Next Step
 
