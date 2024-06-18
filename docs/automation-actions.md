@@ -459,3 +459,33 @@ automations:
 
     To allow this action to block merge, you should enable branch protection, and gitStream has to be set as required check in GitHub.
 
+#### `update-description` :fontawesome-brands-github:
+This action, when triggered, updates the PR description with new content.
+
+This is a managed action. When a PR updates, the existing comments that were added by gitStream are re-evaluated, and those that are not applicable are removed.
+
+<div class="filter-details" markdown=1>
+
+| Args       | Usage | Type      | Description                              |
+| -----------|-------|-----------|----------------------------------------- |
+| `description` | Required | String     | Sets the PR description |
+</div>
+
+For example, this automation updates the PR description with the ticket info if present in the PR title.
+
+```yaml+jinja title="example"
+automations:
+  add_jira_to_desc:
+    if:
+      - {{ has.jira_ticket_in_title and (not has.jira_ticket_in_desc) }}
+    run:
+      - action: update-description@v1
+        args:
+          description: |
+            {{ pr.title | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
+            {{ pr.description | safe | dump }}
+
+has:
+  jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
+  jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
+```
