@@ -483,7 +483,7 @@ automations:
         args:
           description: |
             {{ pr.title | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
-            {{ pr.description | safe | dump }}
+            {{ pr.description }}
 
 has:
   jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
