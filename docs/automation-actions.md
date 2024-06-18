@@ -469,6 +469,7 @@ This is a managed action. When a PR updates, the existing comments that were add
 | Args       | Usage | Type      | Description                              |
 | -----------|-------|-----------|----------------------------------------- |
 | `description` | Required | String     | Sets the PR description |
+| `concat_mode` | Optional | String     | `replace` by default, the mode to concatenate the new description with the existing one. Possible values: `prepend`, `append`, `replace` |
 </div>
 
 For example, this automation updates the PR description with the ticket info if present in the PR title.
@@ -481,9 +482,9 @@ automations:
     run:
       - action: update-description@v1
         args:
+          concat_mode: prepend
           description: |
             {{ pr.title | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
-            {{ pr.description }}
 
 has:
   jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
