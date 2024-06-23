@@ -485,11 +485,13 @@ automations:
         args:
           concat_mode: prepend
           description: |
-            {{ pr.title | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
+            {{ jira_ticket_from_title }}
 
 has:
   jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
   jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
+
+jira_ticket_from_title: {{ pr.title | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
 ```
 
 
@@ -518,9 +520,11 @@ automations:
         args:
           concat_mode: prepend
           title: |
-            {{ pr.description | capture(regex=r/\b[A-Za-z]+-\d+\b/) }} -
+            {{ jira_ticket_from_desc }} -
 
 has:
   jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
   jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
+
+jira_ticket_from_desc: {{ pr.description | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
 ```
