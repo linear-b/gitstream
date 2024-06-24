@@ -1,7 +1,7 @@
 ---
 title: Automation - Label SonarCloud Quality Reports
 description: Automatically label PRs with SonarCloud insights.
-category: [security, sonarcloud, quickstart]
+category: [security, sonarcloud]
 quickstart: true
 ---
 # Label SonarCloud Quality Reports
