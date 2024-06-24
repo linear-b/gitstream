@@ -3,6 +3,10 @@ title: How to Setup Custom GitHub App and connect to gitStream services
 description: Install gitStream on your GitHub Server.
 ---
 
+!!! Note
+
+    This guide is for installations on self-hosted GitHub Server. If you are using the gitStream cloud service, please refer to [this guide](github-installation.md).
+
 # Create GitHub App
 
 A GitHub application serves as the link between gitStream and GitHub. It facilitates user authentication via OAuth2 and allows users to select repositories accessible by gitStream.
@@ -21,7 +25,9 @@ In this section, we'll guide you through creating a GitHub app for your self-hos
 
 ## Prerequisite
 
-- Decide the endpoint at which you'll be running gitStream. It's typically `gitstream.<your-domain>.com`. Your application won't be running there yet, but you need to know the endpoint you'll be using.
+1. Self-hosted GitHub Server
+2. <a href="https://app.linearb.io/login" target="_blank">Login</a>, or <a href="https://app.linearb.io/sign-up" target="_blank">create a free account</a> on the LinearB app, and follow the steps to <a href="https://linearb.helpdocs.io/article/0xxpvue4s9-connect-git-stream-using-a-git-lab-integration" target="_blank">connect gitStream Using a GitLab Integration</a>.
+3. Decide the endpoint at which you'll be running gitStream. It's typically `gitstream.<your-domain>.com`. Your application won't be running there yet, but you need to know the endpoint you'll be using.
 
 !!! warning
     For integrating with GitHub Enterprise Server (GHE), the top-level domain for gitStream must be the same as the top-level GHE domain. For example, if your GHE is running on `github.prod.company.com`, then gitStream should also run at a `.company.com` endpoint.
