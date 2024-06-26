@@ -35,6 +35,7 @@ For all other actions, gitStream executes the actions in the order they are list
 - [`send-slack-message`](#send-slack-message) :fontawesome-solid-flask: :fontawesome-brands-github:
 - [`set-required-approvals`](#set-required-approvals) :fontawesome-brands-github:
 - [`update-description`](#update-description) :fontawesome-brands-github:
+- [`update-title`](#update-title) :fontawesome-brands-github:
 
 !!! note
 
@@ -484,9 +485,46 @@ automations:
         args:
           concat_mode: prepend
           description: |
-            {{ pr.title | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
+            {{ jira_ticket_from_title }}
 
 has:
   jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
   jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
+
+jira_ticket_from_title: {{ pr.title | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
+```
+
+
+#### `update-title` :fontawesome-brands-github:
+This action, when triggered, updates the PR title with new content.
+
+This is a managed action. When a PR updates, the existing comments that were added by gitStream are re-evaluated, and those that are not applicable are removed.
+
+<div class="filter-details" markdown=1>
+
+| Args       | Usage | Type      | Description                              |
+| -----------|-------|-----------|----------------------------------------- |
+| `title` | Required | String     | Sets the PR title |
+| `concat_mode` | Optional | String     | `replace` by default, the mode to concatenate the new description with the existing one. Possible values: `prepend`, `append`, `replace` |
+</div>
+
+For example, this automation updates the PR title with the ticket info if present in the PR title.
+
+```yaml+jinja title="example"
+automations:
+  add_jira_to_title:
+    if:
+      - {{ has.jira_ticket_in_desc and (not has.jira_ticket_in_title) }}
+    run:
+      - action: update-title@v1
+        args:
+          concat_mode: prepend
+          title: |
+            {{ jira_ticket_from_desc }} -
+
+has:
+  jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
+  jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
+
+jira_ticket_from_desc: {{ pr.description | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
 ```
