@@ -9,9 +9,9 @@ Context variable are the inputs for the automation conditions or checks.
 !!! Legend
 
     The icons indicate the availability status of each action.
-    
-	- :fontawesome-brands-github: Supported on GitHub 
-	- :fontawesome-brands-gitlab: Supported on GitLab 
+
+	- :fontawesome-brands-github: Supported on GitHub
+	- :fontawesome-brands-gitlab: Supported on GitLab
 	- :octicons-beaker-24: Under development and not available yet.
     - :fontawesome-solid-flask: Open beta - Under development and currently available for all
 
@@ -19,7 +19,7 @@ Context variable are the inputs for the automation conditions or checks.
 
 ### Context
 
-gitStream includes a collection of variables called contexts. 
+gitStream includes a collection of variables called contexts.
 
 - [`branch`](#branch) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`env`](#env) :fontawesome-solid-flask: :fontawesome-brands-github:
@@ -92,9 +92,9 @@ The following structures are used in the context objects:
 
 #### `branch`
 
-The `branch` context contains info regarding the branch changes compared to the base branch. 
+The `branch` context contains info regarding the branch changes compared to the base branch.
 
-!!! note  
+!!! note
 
     compared to the `source` context does not include actual source code.
 
@@ -134,7 +134,7 @@ automations:
 
 !!! tip
 
-    The `files` context doesn't include deleted file, to identify both modified and deleted files use the `branch.diff.files_metadata`, for example: 
+    The `files` context doesn't include deleted file, to identify both modified and deleted files use the `branch.diff.files_metadata`, for example:
     ```
     {{ branch.diff.files_metadata | match(attr='file', regex=r/\.md$/) | every }}
     ```
@@ -144,7 +144,7 @@ automations:
 The `env` context allows the user to pass data from the repo that is unavailable in the other context variables. Thus, the structure of the variable is not fixed and depends on user configuration.
 
 To configure the `env` variable, add the `env` field to gitstream's workflow job configurations on `.github/workflows/gitstream.yml`. For more information, visit GitHub's guide for [Using secrets in GitHub Actions](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)
- 
+
 ```yaml title="examle: add secrets to the env variable"
 ...
 jobs:
@@ -181,7 +181,7 @@ The `files` context includes the list of changed files in the branch compared to
 |---------|-----------|------------------------ |
 | `files` | [String]  | List of all changed files with their full path |
 
-For example, a typical `files` context can look like this: 
+For example, a typical `files` context can look like this:
 
 ```json
 [
@@ -233,6 +233,7 @@ The `pr` context includes metadata related to the pull request.
 | `pr.number` | Integer | The PR or MR Id number |
 | `pr.provider` | String | The Git cloud provider name, e.g. `GitHub`, `GitLab` etc. |
 | `pr.reviewers` | [String] | The list of reviewers set for this PR |
+| `pr.source` | String | The branch from which the PR originates |
 | `pr.status` | String | The PR status: `open`, `closed` and `merged` |
 | `pr.target` | String | The branch the PR is intended merged into |
 | `pr.title` | String | The PR title |
@@ -277,7 +278,7 @@ The `repo` context includes metadata related to the repo.
 
 #### `source`
 
-The `source` context includes a list of `FileDiff` objects that can be used to get insights based on code changes. The changes compared to the latest main branch. 
+The `source` context includes a list of `FileDiff` objects that can be used to get insights based on code changes. The changes compared to the latest main branch.
 
 | Values              | Type  | Description                                        |
 |---------------------|-------|--------------------------------------------------- |
@@ -292,7 +293,7 @@ The source context include all code changes, it is not safe to share it with unk
   "name": String, # The check name
   "status": String, # The check status: `queued`, `in_progress`, `completed`
   "conclusion": String, # The check conclusion: `action_required`, `cancelled`, `failure` `neutral`, `success`, `skipped`, `stale`, `timed_out`
-} 
+}
 ```
 
 ####  `Comment` structure
@@ -300,22 +301,22 @@ The source context include all code changes, it is not safe to share it with unk
 ```json
 {
   "commenter": String, # The user that add the comment
-  "content": String, # The comment body    
+  "content": String, # The comment body
   "created_at": String, # The time on which the comment was created
   "updated_at": String, # The time on which the comment was last updated
-} 
+}
 ```
 
 #### `Conversation` structure
 
 ```json
 {
-  "commenter": String, # The user that add the comment 
-  "content": String, # The comment body    
-  "created_at": String, # The time on which the comment was created    
-  "updated_at": String, # The time on which the comment was updated    
-  "start_line": Integer, # The first line marked for this comment    
-  "end_line": Integer, # The last line marked for this comment    
+  "commenter": String, # The user that add the comment
+  "content": String, # The comment body
+  "created_at": String, # The time on which the comment was created
+  "updated_at": String, # The time on which the comment was updated
+  "start_line": Integer, # The first line marked for this comment
+  "end_line": Integer, # The last line marked for this comment
   "is_resolved": Boolean # `true` when marked as resolved
 }
 ```
@@ -327,7 +328,7 @@ The `repo.contributors` mapping includes a list of `Contributor`, where the user
 ```json
 {
   USER_NAME: Integer # Number of commits
-} 
+}
 ```
 
 #### `FileDiff` structure
@@ -341,7 +342,7 @@ The `source.diff.files` mapping includes a list of `FileDiff`:
   "new_file": String, # The name of the file after the changes, including its path
   "original_content": String, #  The content as is in the `main` branch
   "original_file": String, #  The name of the file before the changes, including its path
-} 
+}
 ```
 
 #### `FileMetadata` structure
@@ -351,9 +352,9 @@ The `branch.diff.files_metadata` mapping includes a list of `FileMetadata`:
 ```json
 {
   "additions": Integer, # The number of lines edited or added to the file
-  "deletions": Integer, # The number of lines removed from the file  
+  "deletions": Integer, # The number of lines removed from the file
   "file": String, # The name of the file before the changes, including its path
-} 
+}
 ```
 
 For example, sum additions in javascript code files:
@@ -369,35 +370,35 @@ This structure include per changed file, for every user, the number of lines cha
 ```json
 {
   FILE_NAME: # The file name and path
-  { 
+  {
     # The git user identifier (String)
     GIT_USER: {
       "week_INDEX": Integer # Number of lines changed that week
-      # ... for the last 52 weeks 
+      # ... for the last 52 weeks
     }
   }
 }
 ```
 
-For example: 
+For example:
 
 ```json
 {
   "src/utils/service.js": {
     "popeye <popeye@acme.com>": {
-      "week_1": 20, 
-      "week_2": 15, 
+      "week_1": 20,
+      "week_2": 15,
       "week_10": 250
     },
     "olive <olive@acme.com>": {
-      "week_1": 3, 
-      "week_3": 50, 
+      "week_1": 3,
+      "week_3": 50,
       "week_52": 250
     }
   },
   "README.md": {
     "popeye <popeye@acme.com>": {
-      "week_2": 15, 
+      "week_2": 15,
       "week_3": 10
     }
   }
@@ -411,14 +412,14 @@ For each file, a list of user's blame ratio.
 ```json
 {
   FILE_NAME: # The file name and path
-  { 
+  {
     # The git user identifier (String)
     GIT_USER: Integer, # Precentage 0-100, ratio of user's lines / total lines in file
   }
 }
 ```
 
-For example: 
+For example:
 
 ```json
 {
@@ -439,9 +440,9 @@ For example:
 ```json
 {
   "commenter": String, # The user that add the comment
-  "content": String, # The comment body    
+  "content": String, # The comment body
   "created_at": String, # The time on which the comment was created
   "state": String, # Either `approved`, `changes_requested`, `commented`, `pending`, `submitted`
   "conversations": [Conversation], # Conversations that are relvant to this Review feedback
-} 
+}
 ```
