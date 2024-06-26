@@ -11,6 +11,7 @@ nav:
   - Guide:
     - GitHub Setup: github-installation.md
     - GitLab Setup: gitlab-installation.md
+    - Custom GitHub App: custom-github-app.md
     - How gitStream works: how-it-works.md
     - Your First Automation: quick-start.md
     - How to Test Your Automations: dry-run-mode.md
@@ -23,22 +24,22 @@ nav:
     - Context variables: context-variables.md
     - Filter functions: filter-functions.md
     - Automation actions: automation-actions.md
-  - Plugins: 
+  - Plugins:
     - Overview: plugins.md
     - Filter Functions: filter-function-plugins.md
   - Playground: gitStream-playground.md
   - Troubleshooting: troubleshooting.md
   - FAQ: faq.md
-  - Login: https://app.gitstream.cm/login 
+  - Login: https://app.gitstream.cm/login
 
 theme:
   name: material
   logo: assets/gitstream-w.webp
   icon:
       repo: fontawesome/brands/github
-  # When the user first visits your site, the media queries are evaluated in the order 
+  # When the user first visits your site, the media queries are evaluated in the order
   # of their definition. The first media query that matches selects the default color palette.
-  palette: 
+  palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
       toggle:
@@ -97,7 +98,7 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
-      alternate_style: true 
+      alternate_style: true
 extra:
   analytics:
     provider: google
