@@ -4,7 +4,7 @@ manifest:
 automations:
   review_todo_comments:
     if:
-      - {{ source.diff.files | matchDiffLines(regex=r/^[+].*(TODO)|(todo)/) | some }}
+      - {{ source.diff.files | matchDiffLines(regex=r/^[+].*(TODO|todo)/) | some }}
     run:
       - action: request-changes@v1
         args:
