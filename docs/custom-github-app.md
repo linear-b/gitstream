@@ -47,13 +47,13 @@ Fill in the app information as shown in the screenshot below. For URLs, replace 
 
     1. Do not forget trailing slashes for the URLs.
     2. Do not forget to disable the "Expire user authorization tokens" checkbox.
+    3. The GitHub App name must contain `gitstream` in lower case.
 
 !!! Tip
     Use the following texts:
 
-    1. GitHub App name: `gitStream app`
+    1. GitHub App name: `gitstream app`
     2. Homepage URL: `https://gitstream.cm`
-
 
 ![GitHub App Setup - Register](screenshots/create-new-github-app-setup-register.png)
 
