@@ -22,14 +22,18 @@ In this section, we'll guide you through creating a GitHub app for your self-hos
 
 ## 1. Prerequisites
 
-1. Self-hosted GitHub Server
-2. <a href="https://app.linearb.io/login" target="_blank">Login</a>, or <a href="https://app.linearb.io/sign-up" target="_blank">create a free account</a> on the LinearB app, and follow the steps to <a href="https://linearb.helpdocs.io/article/0xxpvue4s9-connect-git-stream-using-a-git-lab-integration" target="_blank">connect gitStream Using a GitLab Integration</a>.
-3. Decide the endpoint at which you'll be running gitStream. It's typically `gitstream.<your-domain>.com`. Your application won't be running there yet, but you need to know the endpoint you'll be using.
-
 !!! warning
     For integrating with GitHub Enterprise Server (GHE), the top-level domain for gitStream must be the same as the top-level GHE domain. For example, if your GHE is running on `github.prod.company.com`, then gitStream should also run at a `.company.com` endpoint.
 
-## 2. Create a New App
+1. Self-hosted GitHub Server
+2. Decide the endpoint at which you'll be running gitStream. It's typically `gitstream.<your-domain>.com`. Your application won't be running there yet, but you need to know the endpoint you'll be using.
+3. <a href="https://app.linearb.io/login" target="_blank">Login</a>, or <a href="https://app.linearb.io/sign-up" target="_blank">create a free account</a> on the LinearB app, and follow the steps to <a href="https://linearb.helpdocs.io/article/0xxpvue4s9-connect-git-stream-using-a-git-lab-integration" target="_blank">connect gitStream Using a GitLab Integration</a>.
+
+In LinearB, go to Settings -> Git -> click the Connect gitStream button next to your GitHub Server integration. You’ll need to use the `Webhook URL` and `Webhook secret` later when setting up the GitHub App.
+
+![LinearB setup](screenshots/setup-linearb-github-server-step-1.png)
+
+## 2. Create a New GitHub App
 
 Any GitHub account can own the app, but we recommend creating it under the organization account of the team who will maintain the gitStream installation.
 
@@ -134,9 +138,9 @@ To complete the integration, fill in the App ID and Private Key in the LinearB s
 
 !!! Tip
 
-    Use the App ID, and Private key (pem) to complete the LinearB setup.
+    Use the App ID, and Private key (.pem file) to complete the LinearB setup.
 
-![LinearB setup](screenshots/setup-linearb-github-server.png)
+![LinearB setup](screenshots/setup-linearb-github-server-step-2.png)
 
 ## 10. Connect GitHub App to Your Repositories
 
