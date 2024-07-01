@@ -20,20 +20,21 @@ In this section, we'll guide you through creating a GitHub app for your self-hos
 
     Throughout this document, when we refer to a GitHub account, it refers to your own GitHub Server installation.
 
-## 1. Prerequisites
+## 1. Connect GitHub Server to LinearB
 
-1. Self-hosted GitHub Server
-3. <a href="https://app.linearb.io/login" target="_blank">Login</a>, or <a href="https://app.linearb.io/sign-up" target="_blank">create a free account</a> on the LinearB app, and follow the steps to <a href="https://linearb.helpdocs.io/article/0xxpvue4s9-connect-git-stream-using-a-git-lab-integration" target="_blank">connect gitStream Using a GitLab Integration</a>.
+First <a href="https://app.linearb.io/login" target="_blank">login</a>, or <a href="https://app.linearb.io/sign-up" target="_blank">create a free account</a> on the LinearB app.
 
-In LinearB, go to Settings -> Git -> click the Connect gitStream button next to your GitHub Server integration. You’ll need to use the `Webhook URL` and `Webhook secret` later when setting up the GitHub App.
+In LinearB, go to Settings -> Git -> click the `Connect gitStream` button next to your GitHub Server integration. You’ll need to use the **Webhook URL** and **Webhook secret** later when setting up the GitHub App.
 
 ![LinearB setup](screenshots/setup-linearb-github-server-step-1.png)
+
+Keep this window open and complete the next steps in GitHub. Once you have the **App ID** and **Private Key** (.pem file), you can complete the connection in LinearB.
 
 ## 2. Create a New GitHub App
 
 Any GitHub account can own the app, but we recommend creating it under the organization account of the team who will maintain the gitStream installation.
 
-- Log in to GitHub and go to your organization account page (e.g., `https://github.com/<organization account name>`).
+- Log in to [GitHub](https://github.com/) and go to your organization account page (e.g., `https://github.com/<organization account name>`).
 - Click on *Settings -> Developer Settings -> GitHub Apps -> New GitHub App* as shown below.
 - Or go directly to `https://github.com/organizations/<organization account name>/settings/apps/new`
 
