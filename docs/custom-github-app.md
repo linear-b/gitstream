@@ -34,8 +34,8 @@ Keep this window open and complete the next steps in GitHub. Once you have the *
 
 Any GitHub account can own the app, but we recommend creating it under the organization account of the team who will maintain the gitStream installation.
 
-- Log in to [GitHub](https://github.com/) and go to your organization account page (e.g., `https://github.com/<organization account name>`).
-- Click on *Settings -> Developer Settings -> GitHub Apps -> New GitHub App* as shown below.
+- Log in to [GitHub](https://github.com/) and go to your organization account page (e.g., `https://github.com/<organization account name>`)
+- Click on *Settings -> Developer Settings -> GitHub Apps -> New GitHub App* as shown below
 - Or go directly to `https://github.com/organizations/<organization account name>/settings/apps/new`
 
 ![GitHub App Creation](screenshots/create-new-github-app.png)
@@ -46,9 +46,9 @@ Fill in the app information as shown in the screenshot below. For URLs, replace 
 
 !!! Warning
 
-    1. Do not forget trailing slashes for the URLs.
-    2. Do not forget to disable the "Expire user authorization tokens" checkbox.
-    3. The GitHub App name must contain `gitstream` in lower case.
+    1. Do not forget trailing slashes for the URLs
+    2. Do not forget to disable the "Expire user authorization tokens" checkbox
+    3. The GitHub App name must contain `gitstream` in lower case
 
 !!! Tip
     Use the following texts:
@@ -91,7 +91,7 @@ You need to enable these under the permissions section as shown below:
 
 ## 5. Webhook Events and Scope
 
-* Subscribe to events so gitStream is notified when a PR is created, changed, or commented on, etc.
+* Subscribe to events so gitStream is notified when a PR is created, changed, or commented on, etc
 
 ![Permissions Setup 5](screenshots/create-new-github-app-setup-permissions-5.png)
 ![Permissions Setup 6](screenshots/create-new-github-app-setup-permissions-6.png)
