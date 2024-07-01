@@ -22,11 +22,7 @@ In this section, we'll guide you through creating a GitHub app for your self-hos
 
 ## 1. Prerequisites
 
-!!! warning
-    For integrating with GitHub Enterprise Server (GHE), the top-level domain for gitStream must be the same as the top-level GHE domain. For example, if your GHE is running on `github.prod.company.com`, then gitStream should also run at a `.company.com` endpoint.
-
 1. Self-hosted GitHub Server
-2. Decide the endpoint at which you'll be running gitStream. It's typically `gitstream.<your-domain>.com`. Your application won't be running there yet, but you need to know the endpoint you'll be using.
 3. <a href="https://app.linearb.io/login" target="_blank">Login</a>, or <a href="https://app.linearb.io/sign-up" target="_blank">create a free account</a> on the LinearB app, and follow the steps to <a href="https://linearb.helpdocs.io/article/0xxpvue4s9-connect-git-stream-using-a-git-lab-integration" target="_blank">connect gitStream Using a GitLab Integration</a>.
 
 In LinearB, go to Settings -> Git -> click the Connect gitStream button next to your GitHub Server integration. You’ll need to use the `Webhook URL` and `Webhook secret` later when setting up the GitHub App.
