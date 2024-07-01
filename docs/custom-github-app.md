@@ -1,6 +1,6 @@
 ---
-title: How to Setup Custom GitHub App and connect to gitStream services
-description: Install gitStream on your GitHub Server.
+title: How to Set Up Custom GitHub App and Connect to gitStream Services
+description: Install gitStream on Your GitHub Server.
 ---
 
 !!! Note
@@ -11,28 +11,25 @@ description: Install gitStream on your GitHub Server.
 
 A GitHub application serves as the link between gitStream and GitHub. It facilitates user authentication via OAuth2 and allows users to select repositories accessible by gitStream.
 
-In this section, we'll guide you through creating a GitHub app for your self-hosted gitStream installation. By the end, you should have the following values noted down:
+In this section, we'll guide you through creating a GitHub app for your self-hosted gitStream installation. By the end, you should have noted down the following values:
 
 * App ID
-* App URL
-* Client ID
-* Client secret
 * Private Key
 
 !!! Note
 
-    Throughout this document, when we refer to a GitHub account, it can be an individual or organization account on github.com or your own GitHub Enterprise installation, depending on the GitHub offering you are using.
+    Throughout this document, when we refer to a GitHub account, it refers to your own GitHub Server installation.
 
-## Prerequisite
+## 1. Prerequisites
 
 1. Self-hosted GitHub Server
-2. <a href="https://app.linearb.io/login" target="_blank">Login</a>, or <a href="https://app.linearb.io/sign-up" target="_blank">create a free account</a> on the LinearB app, and follow the steps to <a href="https://linearb.helpdocs.io/article/0xxpvue4s9-connect-git-stream-using-a-git-lab-integration" target="_blank">connect gitStream Using a GitLab Integration</a>.
-3. Decide the endpoint at which you'll be running gitStream. It's typically `gitstream.<your-domain>.com`. Your application won't be running there yet, but you need to know the endpoint you'll be using.
+3. <a href="https://app.linearb.io/login" target="_blank">Login</a>, or <a href="https://app.linearb.io/sign-up" target="_blank">create a free account</a> on the LinearB app, and follow the steps to <a href="https://linearb.helpdocs.io/article/0xxpvue4s9-connect-git-stream-using-a-git-lab-integration" target="_blank">connect gitStream Using a GitLab Integration</a>.
 
-!!! warning
-    For integrating with GitHub Enterprise Server (GHE), the top-level domain for gitStream must be the same as the top-level GHE domain. For example, if your GHE is running on `github.prod.company.com`, then gitStream should also run at a `.company.com` endpoint.
+In LinearB, go to Settings -> Git -> click the Connect gitStream button next to your GitHub Server integration. You’ll need to use the `Webhook URL` and `Webhook secret` later when setting up the GitHub App.
 
-## Create New App
+![LinearB setup](screenshots/setup-linearb-github-server-step-1.png)
+
+## 2. Create a New GitHub App
 
 Any GitHub account can own the app, but we recommend creating it under the organization account of the team who will maintain the gitStream installation.
 
@@ -42,24 +39,33 @@ Any GitHub account can own the app, but we recommend creating it under the organ
 
 ![GitHub App Creation](screenshots/create-new-github-app.png)
 
-## Setup URLs and General Information
+## 3. Set Up URLs and General Information
 
 Fill in the app information as shown in the screenshot below. For URLs, replace `gitstream.<your-domain>.com` with the actual endpoint at which you'll be hosting the gitStream application.
 
 !!! Warning
-    Do not forget trailing slashes for the URLs.
 
-!!! Warning
-    Do not forget to disable the "Expire user authorization tokens" checkbox.
+    1. Do not forget trailing slashes for the URLs.
+    2. Do not forget to disable the "Expire user authorization tokens" checkbox.
+    3. The GitHub App name must contain `gitstream` in lower case.
+
+!!! Tip
+    Use the following texts:
+
+    1. GitHub App name: `gitstream app`
+    2. Homepage URL: `https://gitstream.cm`
 
 ![GitHub App Setup - Register](screenshots/create-new-github-app-setup-register.png)
 
-!!! Note
-    Use the webhook URL you got from the LinearB setup page.
+!!! Tip
+    Use the following texts:
+
+    1. **Webhook URL** from LinearB setup page
+    2. **Webhook secret** from LinearB setup page
 
 ![GitHub App Setup - Post Installation](screenshots/create-new-github-app-setup-post-installation.png)
 
-## Setup Permissions
+## 4. Set Up Permissions
 
 We need the following permissions to enable all gitStream functionality:
 
@@ -69,6 +75,12 @@ We need the following permissions to enable all gitStream functionality:
 - **Read and write access to actions, checks, pull requests, and workflows:** Trigger workflows, create and update pull requests and their checks, and modify workflow files
 - **User email:** Used to identify users                                       |
 
+!!! Tip
+    Add the following Path (content paths to single files the app can access):
+
+    1. `.cm/gitstream.cm`
+    2. `github/workflows/gitstream.yml`
+
 You need to enable these under the permissions section as shown below:
 
 ![Permissions Setup 1](screenshots/create-new-github-app-setup-permissions-1.png)
@@ -76,40 +88,70 @@ You need to enable these under the permissions section as shown below:
 ![Permissions Setup 3](screenshots/create-new-github-app-setup-permissions-3.png)
 ![Permissions Setup 4](screenshots/create-new-github-app-setup-permissions-4.png)
 
-## Webhook Events & Scope
+## 5. Webhook Events and Scope
 
-* Subscribe to events so gitStream is notified when a PR is created or changed, or being commented etc.
+* Subscribe to events so gitStream is notified when a PR is created, changed, or commented on, etc.
 
 ![Permissions Setup 5](screenshots/create-new-github-app-setup-permissions-5.png)
 ![Permissions Setup 6](screenshots/create-new-github-app-setup-permissions-6.png)
 
-!!! Note
+!!! Tip
 
     *"Where can this GitHub App be installed?"* choose *"Any account"* so other orgs in your company can use gitStream as well. For on-prem installations that work with github.com, only repositories under your company's org account can be accessed via gitStream.
 
 ![Permissions Setup 7](screenshots/create-new-github-app-setup-permissions-7.png)
 
-## Generate Private Key
+## 6. Generate a Private Key
 
-Once the app is created, scroll down and click *Generate private key*. This will create and download a .pem file for you. Please keep this file safe.
+Once the app is created, scroll down and click *Generate private key*. This will create and download a .pem file for you.
+
+!!! Tip
+
+    Please keep this file safe, we'll need to put it back in LinearB setup.
 
 ![Private Key](screenshots/create-new-github-app-pkey.png)
 
-## Upload Logo
+## 7. Upload a Logo
 
 Download the logo file and upload the logo to your app.
 
 - [Black logo](assets/gitstream-black.png)
 - [White logo](assets/gitstream-white.png)
 
-## Get App Config
+## 8. Get App Configuration
 
-On your newly created app page, you can find the Client ID, Client Secret, App ID, and App URL. Please note down these fields along with the private key generated in the above step. We'll need to plug them back in LinearB setup.
+On your newly created app page, you can find the App ID.
 
-*Public link* is the App URL and *ID* is the App ID.
+!!! Tip
+
+    Please keep the App ID, we'll need to put it back in LinearB setup.
 
 ![App Config Details](screenshots/create-new-github-app-config.png)
 
-## Finish Setup in LinearB
+## 9. Finish Setup in LinearB
 
 To complete the integration, fill in the App ID and Private Key in the LinearB setup screen.
+
+!!! Tip
+
+    Use the App ID, and Private key (.pem file) to complete the LinearB setup.
+
+![LinearB setup](screenshots/setup-linearb-github-server-step-2.png)
+
+## 10. Connect GitHub App to Your Repositories
+
+Go to your organization settings in GitHub and in Third-party Access choose the GitHub Apps. You may need to choose the account to install the gitStream app on. Choose your org you used to create the GitHub app in the previous sections.
+
+![GitHub app setup](screenshots/setup-new-github-app.png)
+
+Choose the repositories you want to connect.
+
+!!! Tip
+
+    It's recommended to select All repositories, as it covers also future repositories.
+
+![Repository access](screenshots/choose-repo-access-for-new-github-app.png)
+
+## 11. Finish Setting Up gitStream
+
+Follow the instructions to configure your repository using the [GitHub Instructions](github-installation.md)
