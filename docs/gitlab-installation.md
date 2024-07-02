@@ -15,11 +15,11 @@ GitLab Installation Overview
 1. Designate a gitStream user account.
 1. Create a CM configuration file.
 1. Create a GitLab pipeline.
-1. Install the gitStream service. 
+1. Install the gitStream service.
 
 ## Designate a gitStream User Account
 
-gitStream automation rules are executed on behalf of the user account configured when you install the gitStream service. This account must have the `maintainer` or `owner` role to the relevant repos. 
+gitStream automation rules are executed on behalf of the user account configured when you install the gitStream service. This account must have the `maintainer` or `owner` role to the relevant repos.
 
 We recommend creating a [dedicated service account](https://docs.gitlab.com/ee/user/profile/service_accounts.html){:target="_blank"} to control access to individual repos easily. You can also use your professional or personal GitLab account for this, which would result in all automations being executed under that account, which might also affect LinearB's metrics.
 
@@ -39,7 +39,7 @@ Create a `cm` project (repository) in your GitLab group, and create a `gitstream
 !!! example "Example Configuration"
 		Here is an example of a gitStream configuration file to set up some basic workflow automations.
 		```yaml+jinja
-		--8<-- "docs/downloads/gitstream.cm"
+		--8<-- "docs/downloads/gitlab/gitstream.cm"
 		```
 
 ## Create a GitLab Pipeline
@@ -49,7 +49,7 @@ Once your gitStream configuration file is set up, you need a GitLab CI configura
 === "GitLab-Hosted runners"
 
     **Gitlab-Hosted Runners**
-    
+
     Use the following `.gitlab-ci.yml`
 
 	``` yaml+jinja
@@ -67,7 +67,7 @@ Once your gitStream configuration file is set up, you need a GitLab CI configura
     ``` yaml+jinja
     --8<-- "docs/downloads/gitlab-shell-ci.yml"
     ```
-    
+
 === "Self-Managed Runners - Kubernetes"
     **Self-Managed Runners**
 
@@ -91,7 +91,7 @@ Once your gitStream configuration file is set up, you need a GitLab CI configura
     - ...
     - docker pull YOUR-REGISTRY-URL/gitstream/rules-engine:latest
 	```
-	The docker image can be pulled to your private repository from [DockerHub](https://hub.docker.com/r/gitstream/rules-engine){:target=_blank}.  
+	The docker image can be pulled to your private repository from [DockerHub](https://hub.docker.com/r/gitstream/rules-engine){:target=_blank}.
 ## Next Step
 If you successfully complete these instructions, gitStream will now do these two things.
 
@@ -117,5 +117,3 @@ The required permissions are:
 | Read/Write API    | To get notified on MR changes and allow gitStream to approve MRs once all conditions are met |
 | Read repository   | To read and check rules over the code changes on monitored repositories                      |
 | Read user profile | Used to identify users                                                                       |
-
-
