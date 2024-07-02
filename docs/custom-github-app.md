@@ -11,6 +11,10 @@ description: Install gitStream on Your GitHub Server.
 
 A GitHub application serves as the link between gitStream and GitHub. It facilitates user authentication via OAuth2 and allows users to select repositories accessible by gitStream.
 
+!!! Info "Prerequisites"
+
+    GitHub Server v3.10 or higher
+
 In this section, we'll guide you through creating a GitHub app for your self-hosted gitStream installation. By the end, you should have noted down the following values:
 
 * App ID
