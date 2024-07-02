@@ -1,0 +1,19 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  teams_auto_recognition:
+    if:
+      - {{ files | match(regex=r/(test|spec)/) | some }} # this pr has at least 1 test
+      - {{ files | length <= 5 }} # this pr has 5 or less files
+      - {{ branch.name | includes(regex=r/[A-Z]{2,}-\d+.*/) }} # this branch has the Jira ticket prefix
+      - {{ branch.diff.size <= 150 }} # this branch has 150 lines of code or less changed
+    run:
+      - action: send-http-request@v1
+        args:
+          method: "POST"
+          headers: '{"Content-type": "application/json"}'
+          url: "{{ env.MS_TEAMS_WEBHOOK }}"
+          body: '{"text": "Congrats to {{ pr.author }} for the amazing new PR, {{ pr.title }}! Check it out at https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"}'
