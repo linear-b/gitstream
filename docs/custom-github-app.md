@@ -11,6 +11,10 @@ description: Install gitStream on Your GitHub Server.
 
 A GitHub application serves as the link between gitStream and GitHub. It facilitates user authentication via OAuth2 and allows users to select repositories accessible by gitStream.
 
+!!! Info "Prerequisites"
+
+    GitHub Server v3.10 or higher
+
 In this section, we'll guide you through creating a GitHub app for your self-hosted gitStream installation. By the end, you should have noted down the following values:
 
 * App ID
@@ -76,15 +80,16 @@ We need the following permissions to enable all gitStream functionality:
 - **Read and write access to actions, checks, pull requests, and workflows:** Trigger workflows, create and update pull requests and their checks, and modify workflow files
 - **User email:** Used to identify users                                       |
 
+You need to enable these under the permissions section as shown below:
+
+![Permissions Setup 1](screenshots/create-new-github-app-setup-permissions-1.png)
+
 !!! Tip
     Add the following Path (content paths to single files the app can access):
 
     1. `.cm/gitstream.cm`
     2. `github/workflows/gitstream.yml`
 
-You need to enable these under the permissions section as shown below:
-
-![Permissions Setup 1](screenshots/create-new-github-app-setup-permissions-1.png)
 ![Permissions Setup 2](screenshots/create-new-github-app-setup-permissions-2.png)
 ![Permissions Setup 3](screenshots/create-new-github-app-setup-permissions-3.png)
 ![Permissions Setup 4](screenshots/create-new-github-app-setup-permissions-4.png)
