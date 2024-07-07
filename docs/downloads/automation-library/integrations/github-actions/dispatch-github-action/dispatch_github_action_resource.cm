@@ -9,7 +9,7 @@ on:
 
 automations:
   {% for item in pipelines %}
-  dispatch_github_action_{{ item.name }}:
+  dispatch_github_action_resource_{{ item.name }}:
     if:
       - {{ files | match(list=item.resources) | some }}
     run:
@@ -25,13 +25,13 @@ automations:
 
 pipelines:
   - name: mobile-ci
-    label: Mobile CI 
+    label: Mobile CI
     resources:
       - 'src/android/'
       - 'src/ios/'
     workflow: mobile.yml
   - name: backend-ci
-    label: Backend CI 
+    label: Backend CI
     resources:
       - 'src/api/'
       - 'src/services'
