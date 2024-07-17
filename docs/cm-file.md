@@ -120,7 +120,9 @@ The `config` section in the `.cm` file is optional and specifies settings that a
 
 ##### `config.admin.users`
 
-When specified in `gitstream.cm` the `config.admin.users` allows adding admin rights, when a PR changes the `*.cm` files only, if the user is listed in `config.admin.users` the PR will be then approved by gitStream. For example, setting `popeye` as admin:
+When specified in `gitstream.cm`, the `config.admin.users` allows adding admin rights. When a PR changes the `*.cm` files only, if the user is listed in `config.admin.users`, the PR will be approved by gitStream. Furthermore, if an admin is defined, they will automatically be requested to review changes in PRs that change rules files and will also be set as a required reviewer, meaning gitStream will block the merge until the admin approves the PR.
+
+For example, setting `popeye` as admin:
 
 ```yaml title="example"
 config:
