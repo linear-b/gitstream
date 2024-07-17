@@ -134,6 +134,8 @@ This configuration is valid only when used in `.cm/gitstream.cm`, when defined i
 
 When you add a user to `config.admin.users` in your organization's `cm` repository, they are granted administrative privileges to CM changes across **every repository** in the organization. gitStream evaluates CM rules in the individual repository **and** your organization's `cm` repository to determine admin users.
 
+When you add a user to `config.admin.users` in your repository's `.cm/gitstream.cm` file, they are granted administrative privileges to CM changes within that specific repository. However, if an organization-level admin is already defined in your organization's `cm` repository, then the organization-level admin approval is required for that change to take effect.
+
 ##### `config.ignore_files`
 
 The `config.ignore_files` supports glob pattern matching that contains a list of files to ignore.
