@@ -188,7 +188,7 @@ automations:
 
 #### `add-thread` :fontawesome-brands-gitlab:
 
-When this action is triggered, a new thread is added to the MR. GitStream can then preserve the thread state after each automation run, including the RESOLVE state and COMMENTS. If the rule's condition doesn't pass, gitStream will remove the thread completely.
+When this action is triggered, a new thread is added to the MR. gitStream can then preserve the thread state after each automation run, including the RESOLVE state and COMMENTS. If the rule's condition doesn't pass, gitStream will remove the thread completely.
 
 <div class="filter-details" markdown=1>
 
