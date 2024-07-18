@@ -24,6 +24,7 @@ For all other actions, gitStream executes the actions in the order they are list
 - [`add-label`](#add-label) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`add-labels`](#add-labels) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`add-reviewers`](#add-reviewers) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`add-thread`](#add-thread) :fontawesome-brands-gitlab:
 - [`approve`](#approve) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`close`](#close) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`explain-code-experts`](#explain-code-experts) :fontawesome-brands-github: :fontawesome-brands-gitlab:
@@ -167,7 +168,7 @@ This action, once triggered, sets a specific reviewer.
 | `team_reviewers`                                  | Optional | [String] | Sets required team reviewers without a prefix `team`                                                                                                                  |
 | `unless_reviewers_set`                            | Optional | Bool     | When `true`, the reviewers are not added if the PR has already assigned reviewers. It is set to `false` by default                                                    |
 | `fail_on_error`                                   | Optional | Bool     | When `true`, trying to assign illegal reviewers shall fail the automation, when `false` these errors are silently ignored. It is set to `true` by default             |
-| `wait_for_all_checks` :fontawesome-brands-github: | Optional | Boolean  | By default `false`. When `true`, the action will add reviewers only if all checks (except gitStream) are completed with `neutral`, `skipped`, or `success` conclusion |
+| `wait_for_all_checks` :fontawesome-brands-github: | Optional | Bool     | By default `false`. When `true`, the action will add reviewers only if all checks (except gitStream) are completed with `neutral`, `skipped`, or `success` conclusion |
 
 </div>
 
@@ -183,9 +184,32 @@ automations:
           reviewers: [popeye, olive, acme/team-a]
 ```
 !!! warning "Enable Team Write Access"
-    If you want to assign teams as PR reviewers, you need to first make sure the team has write access to the repo in via your organization's settings. For more info, refer to the GitHub instructions for [managing team review settings](https://docs.github.com/en/organizations/organizing-members-into-teams/managing-code-review-settings-for-your-team).
+    If you want to assign teams as PR reviewers, you need to first make sure the team has write access to the repo in your organization's settings. For more info, refer to the GitHub instructions for [managing team review settings](https://docs.github.com/en/organizations/organizing-members-into-teams/managing-code-review-settings-for-your-team).
+
+#### `add-thread` :fontawesome-brands-gitlab:
+
+When this action is triggered, a new thread is added to the MR. GitStream can then preserve the thread state after each automation run, including the RESOLVE state and COMMENTS. If the rule's condition doesn't pass, gitStream will remove the thread completely.
+
+<div class="filter-details" markdown=1>
+
+| Args         | Usage    | Type     | Description                                                                                                                                                                                                                                                                                                                                    |
+| ------------ | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `comment`    | Required | [String] | The desired thread content                                                                                                                                                                                                                                                                                                                     |
+| `resolvable` | Optional | Bool     | By default, `true`. When set to `true`, gitStream will issue the thread once and retain all changes made to it by the user. Therefore, if the thread is resolved, it will stay resolved until the condition no longer applies. When set to `false`, gitStream will re-issue the thread after each automation run until the condition is fixed. |
+
+</div>
 
 
+```yaml+jinja title="example"
+automations:
+  enforce_documentation:
+    if:
+      - true
+    run:
+      - action: add-thread@v1
+        args:
+          comment: "Please make sure this change request is documented before merging"
+```
 
 #### `explain-code-experts` :fontawesome-brands-github: :fontawesome-brands-gitlab:
 
@@ -251,11 +275,11 @@ Once triggered, merge the PR if possible. It can be set to wait for all checks t
 
 <div class="filter-details" markdown=1>
 
-| Args                                               | Usage    | Type    | Description                                                                                                                                                                                                |
-| -------------------------------------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `wait_for_all_checks`  :fontawesome-brands-github: | Optional | Boolean | By default `false`, so only Required checks can block merge, when `true` the action will merge after all checks are completed with `neutral`, `skipped`, or `success` conclusion (except gitStream itself) |
-| `rebase_on_merge`                                  | Optional | Boolean | By default `false`, when merging use rebase mode                                                                                                                                                           |
-| `squash_on_merge`                                  | Optional | Boolean | By default `false`, when merging use squash mode                                                                                                                                                           |
+| Args                                               | Usage    | Type | Description                                                                                                                                                                                                |
+| -------------------------------------------------- | -------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `wait_for_all_checks`  :fontawesome-brands-github: | Optional | Bool | By default `false`, so only Required checks can block merge, when `true` the action will merge after all checks are completed with `neutral`, `skipped`, or `success` conclusion (except gitStream itself) |
+| `rebase_on_merge`                                  | Optional | Bool | By default `false`, when merging use rebase mode                                                                                                                                                           |
+| `squash_on_merge`                                  | Optional | Bool | By default `false`, when merging use squash mode                                                                                                                                                           |
 
 </div>
 
@@ -339,15 +363,15 @@ This action, once triggered, will start a workflow dispatch automation with the 
 
 <div class="filter-details" markdown=1>
 
-| Args       | Usage | Type      | Description                              |
-| -----------|-------|-----------|----------------------------------------- |
-| `workflow` | Required | String     | The ID or name of the workflow dispatch. |
-| `owner` | Optional | String     | By default, the value of `repo.owner` context variable. The account owner of the repository. Case insensitive.  |
-| `repo` | Optional | String     | By default, the value of `repo.name` context variable. The name of the repository without the `.git` extension. Case insensitive.  |
-| `ref` | Optional | String     | By default, the value of `branch.name` context variable. The account owner of the repository. Case insensitive.  |
-| `inputs` | Optional | String     | By default, an empty list. Key-Value list with the arguments to provide to the workflow |
-| `check_name` | Optional | String     | When added, after the workflow is complete, add the check name to the checks list on GitHub |
-| `stop_ongoing_workflow` | Optional | Boolean     | By default, `false`. In case the workflow already runs on the branch, if `true`: cancel the ongoing workflow before running the newly dispatched workflow. If `false`: wait for the old workflow to finish before dispatching a new one|
+| Args                    | Usage    | Type   | Description                                                                                                                                                                                                                             |
+| ----------------------- | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `workflow`              | Required | String | The ID or name of the workflow dispatch.                                                                                                                                                                                                |
+| `owner`                 | Optional | String | By default, the value of `repo.owner` context variable. The account owner of the repository. Case insensitive.                                                                                                                          |
+| `repo`                  | Optional | String | By default, the value of `repo.name` context variable. The name of the repository without the `.git` extension. Case insensitive.                                                                                                       |
+| `ref`                   | Optional | String | By default, the value of `branch.name` context variable. The account owner of the repository. Case insensitive.                                                                                                                         |
+| `inputs`                | Optional | String | By default, an empty list. Key-Value list with the arguments to provide to the workflow                                                                                                                                                 |
+| `check_name`            | Optional | String | When added, after the workflow is complete, add the check name to the checks list on GitHub                                                                                                                                             |
+| `stop_ongoing_workflow` | Optional | Bool   | By default, `false`. In case the workflow already runs on the branch, if `true`: cancel the ongoing workflow before running the newly dispatched workflow. If `false`: wait for the old workflow to finish before dispatching a new one |
 
 </div>
 
