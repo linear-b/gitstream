@@ -46,6 +46,16 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 
 		gitStream can be installed for one repo, specific repos, or all repos in your organization. We recommend installing for **all** because it will ensure all new repos are able to use gitStream. You can change this setting at any time in the future.
 
+=== ":fontawesome-brands-github: GitHub Server"
+
+	1. Create and install a [Custom GitHub App for Self-Hosted GitHub Server](/custom-github-app)
+	2. Configure your repository using the [instructions for GitHub](/github-installation#setup). This will guide you through setting up your first automations.
+
+	That's it! Now sit back and watch gitStream run automation rules on your next PR.
+
+	!!! tip "Tip: Install gitStream for your entire organization"
+
+		gitStream can be installed for one repo, specific repos, or all repos in your organization. We recommend installing for **all** because it will ensure all new repos are able to use gitStream. You can change this setting at any time in the future.
 
 === ":fontawesome-brands-gitlab: GitLab"
 
