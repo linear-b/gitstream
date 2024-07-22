@@ -1,7 +1,7 @@
 site_name: gitStream Documentation
 site_description: Automate the code review process with gitStream.
 site_author: LinearB
-copyright: Copyright &copy; 2023 LinearB, Inc.
+copyright: Copyright &copy; 2024 LinearB, Inc.
 repo_url: https://github.com/linear-b/gitstream
 repo_name: linear-b/gitstream
 edit_uri: "edit/main/docs/"

@@ -49,7 +49,7 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 === ":fontawesome-brands-github: GitHub Server"
 
 	1. Create and install a [Custom GitHub App for Self-Hosted GitHub Server](/custom-github-app)
-	2. <a href="https://app.linearb.io/login" target="_blank">Login</a> to the LinearB app.
+	2. <a href="https://app.linearb.io/login" target="_blank">Login</a> to the LinearB app. Navigate to **Company Settings** -> **Git**
 		1. Make sure the GHES is integrated with LinearB
 		2. Connect gitStream to the GHES integration by pressing the "Connect gitStream" button
 		3. Connect the repositories to gitStream by selecting the checkbox under the "gitStream" column (for org level installation, `cm` repo must be selected)
