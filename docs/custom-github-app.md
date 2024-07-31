@@ -90,7 +90,7 @@ You need to enable these under the permissions section as shown below:
     Add the following Path (content paths to single files the app can access):
 
     1. `.cm/gitstream.cm`
-    2. `github/workflows/gitstream.yml`
+    2. `.github/workflows/gitstream.yml`
 
 ![Permissions Setup 2](screenshots/create-new-github-app-setup-permissions-2.png)
 ![Permissions Setup 3](screenshots/create-new-github-app-setup-permissions-3.png)
