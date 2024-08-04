@@ -60,30 +60,6 @@ The table below lists supported explicit triggers, categorized into those enable
 Explicit triggers are set independently per each automation block and can be configured at the file level, specific to each automation separately or in combination. If triggers are listed at the file level **and** specific automation, the automation will be triggered according to both triggers.
 If an automation block does not have explicit triggers configured, it will be triggered according to the default (implicit) triggers.
 
-Usage example:
-
-```yaml+jinja
-triggers:
-  on:
-    - pr_created
-    - commit
-  exclude:
-    branch:
-      - hotfix
-
-automations:
-  skip_github_action_label:
-    on:
-      - label_added
-    if:
-      - {{ pr.labels | match(term='experimental') | some }}
-    run:
-      - action: add-github-check@v1
-        args:
-          check_name: production-ci
-          conclusion: skipped
-```
-
 **Note on Matching:**
 
 - When using a `String` as the matching type, the values in `triggers.include.*` and `triggers.exclude.*` require exact matches. This means that the names of branches or repositories must exactly match the specified string to either trigger or prevent triggering the automation.
@@ -111,7 +87,81 @@ automations:
 
 ### Examples
 
-- Assign code expert reviewer when the PR is created and after each commit. Ignore branches with the string "hotfix" in them
+#### Dependabot and Renovate
+
+For example, you can have your normal automations that help developers with their PRs and a separate automation that automates Dependabot or Renovate version bumps. Both automations serve distinctly different purposes: the first helps your developers streamline their PRs, while the other reduces developers' toil by auto-approving version bumps. You will not want to trigger gitStream for Dependabot or Renovate unnecessarily, so you can configure the triggers to exclude the branch where Dependabot or Renovate PRs are created.
+
+!!! warning "Required gitStream Plugins"
+    This example requires you to install the [`extractDependabotVersionBump`](/filter-function-plugins/#extractdependabotversionbump) and [`compareSemver`](/filter-function-plugins/#comparesemver) plugins.
+
+In your default automation file, you should exclude the branch where Dependabot or Renovate PRs are created:
+
+```yaml+jinja title="gitstream.cm"
+manifest:
+  version: 1.0
+
+# Disable triggering when the PR is created by bots
+triggers:
+  exclude:
+    branch:
+      - r/(Dependabot|dependabot|Renovate|renovate)/
+
+# The default automations for developers below
+automations:
+  estimated_time_to_review:
+    if:
+      - true
+    run:
+      - action: add-label@v1
+        args:
+          label: "{{ calc.etr }} min review"
+  ...
+```
+
+And the other automations file is set to automate Dependabot PRs:
+
+```yaml+jinja title="dependabot.cm"
+manifest:
+  version: 1.0
+
+triggers:
+  include:
+    branch:
+      - r/(Dependabot|dependabot|Renovate|renovate)/
+
+automations:
+  bump_minor:
+    if:
+      - {{ bump == 'minor' }}
+      - {{ branch.name | includes(term="dependabot") }}
+      - {{ branch.author | includes(term="dependabot") }}
+    run:
+      - action: approve@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            Dependabot `minor` version bumps are approved automatically.
+
+  bump_patch:
+    if:
+      - {{ bump == 'patch' }}
+      - {{ branch.name | includes(term="dependabot") }}
+      - {{ branch.author | includes(term="dependabot") }}
+    run:
+      - action: approve@v1
+      - action: merge@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            Dependabot `patch` version bumps are approved and merged automatically.
+
+bump: {{ pr.description | extractDependabotVersionBump | compareSemver }}
+```
+
+#### Assign code expert
+
+Assign code expert reviewer when the PR is created and after each commit. Ignore branches with the string "hotfix" in them.
+
 ``` yaml+jinja
 triggers:
   on:
@@ -131,8 +181,10 @@ automations:
           reviewers: {{ repo | codeExperts(gt=10) }}
 ```
 
-- Explain code experts only if the label “suggest-reviewer” exists.
-  The automation will be triggered after each commit and after each label addition. If the label “suggest-reviewer” exists, it will trigger the `explain-code-experts` automation
+#### Explain code experts
+
+Explain code experts only if the label “suggest-reviewer” exists. The automation will be triggered after each commit and after each label addition. If the label “suggest-reviewer” exists, it will trigger the `explain-code-experts` automation.
+
 ```yaml+jinja
 triggers:
   on:
@@ -150,7 +202,10 @@ automations:
           gt: 10
 ```
 
-- Trigger only specific automations branch pattern A, and trigger other automation for all other branches except those that fit the pattern REGEX_PATTERN
+#### Branch regex pattern
+
+Trigger only specific automations branch pattern A, and trigger other automation for all other branches except those that fit the pattern REGEX_PATTERN
+
 ```yaml+jinja
 # Automation in this file will trigger only for branch pattern REGEX_PATTERN
 triggers:
