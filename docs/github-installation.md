@@ -21,7 +21,7 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
         Here is an example of a gitStream configuration file you can use to setup some basic workflow automations.
 
         ```yaml+jinja
-        --8<-- "docs/downloads/gitstream.cm"
+        --8<-- "docs/downloads/github/gitstream.cm"
         ```
 
         **Github Actions**
@@ -60,7 +60,7 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
         !!! info "Configuration files go in the repo's root directory."
             Unlike the set up instructions for a single repo, your `.cm` files should be placed in the repository's root directory.
         ```yaml+jinja
-        --8<-- "docs/downloads/gitstream.cm"
+        --8<-- "docs/downloads/github/gitstream.cm"
         ```
         **GitHub Actions**
 
