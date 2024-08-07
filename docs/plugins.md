@@ -46,8 +46,8 @@ gitStream plugins can be installed for an entire git organization or for individ
 
 === "Org-Level"
 
-    To use a filter function plugin in all your repositories, place it inside your `cm` repository in the following location: 
-    
+    To use a filter function plugin in all your repositories, place it inside your `cm` repository in the following location:
+
     `plugins/filters/<filterName>/index.js`
 
     !!! success
@@ -61,8 +61,8 @@ gitStream plugins can be installed for an entire git organization or for individ
 
 === "Repo-Level"
 
-    To use a filter function plugin for a single repository, place it inside the repo in the following location: 
-    
+    To use a filter function plugin for a single repository, place it inside the repo in the following location:
+
     `.cm/plugins/filters/<filterName>/index.js`
 
     !!! success
@@ -79,7 +79,7 @@ gitStream plugins can be installed for an entire git organization or for individ
     We maintain an official list of community-contributed gitStream plugins. [Click here to explore plugin examples](/filter-function-plugins).
 
 ## Usage
-Once installed, you can call your new plugins inside CM files using the same conventions as the built in filter functions. 
+Once installed, you can call your new plugins inside CM files using the same conventions as the built in filter functions.
 Filters are called with a pipe operator (`|`) and can take arguments. The first argument must be declared before the pipe, and all remaining arguments are passed as a set inside parenthesis. For example:
 ```
 {{ "Hello" | plugin(" world!") }}
@@ -90,7 +90,7 @@ If the filter does not expect any arguments, you can invoke it by passing an emp
 ```
 ## Create Filter Function Plugins
 
-gitStream plugins are based on the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module standard, a widely used pattern for structuring and importing JavaScript modules. 
+gitStream plugins are based on the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module standard, a widely used pattern for structuring and importing JavaScript modules.
 
 !!! info "Supported JavaScript Dependencies"
     gitStream supports the following JavaScript dependencies: [axios](https://github.com/axios/axios), github actions core (@actions/core), [moment](https://github.com/moment/moment), [lodash](https://github.com/lodash/lodash), octokit rest api (@octokit/rest)
@@ -103,40 +103,40 @@ Each filter function plugin must have its own unique directory inside the approp
 
 One of the functions contained inside this file must be exported via `module.exports`, using the following conventions:
 
-=== "Synchronous"
-    Export plugins that use synchronous code:
-    
-    ``` javascript
-    function myFilter(author) {
-        return "Hello ${author}!";
-    };
+Export plugins that use synchronous code:
 
-    module.exports = myFilter;
-    ```
-    
-=== "Asynchronous"
-    When using async JavaScript in your plugin, you need two things:
+``` javascript
+function myFilter(author) {
+    return "Hello ${author}!";
+};
 
-    * A primary async function that returns a `callback()` containing any errors as the first argument and the result of the filter as the second.
-    * A `module.exports` statement that includes the properties `async: true` and `filter: <filterName>` with `<filterName>` matching the primary function that's being exported.
+module.exports = myFilter;
+```
 
-    ``` javascript
-    const myFilter = async (author, callback) => {
-        const message = { text: "Hello ${author}!" };
-        const error = null;
-        return callback(error, message.text); 
-    };
-    
-    module.exports = {
-        async: true,
-        filter: myFilter
-    }
-    ```
+### Define a New Asynchronous Plugin (async)
 
-    !!! info "Async Error Handling"
-        Errors reported by async plugins are output to the workflow runner logs. E.g. GitHub Actions, GitLab CI, etc.
+When using async JavaScript in your plugin, you need two things:
 
-Here's how to invoke the new filter from this example:
+* A primary async function that returns a `callback()` containing any errors as the first argument and the result of the filter as the second.
+* A `module.exports` statement that includes the properties `async: true` and `filter: <filterName>` with `<filterName>` matching the primary function that's being exported.
+
+``` javascript
+const myFilter = async (author, callback) => {
+    const message = { text: "Hello ${author}!" };
+    const error = null;
+    return callback(error, message.text);
+};
+
+module.exports = {
+    async: true,
+    filter: myFilter
+}
+```
+
+!!! info "Async Error Handling"
+    Errors reported by async plugins are output to the workflow runner logs. E.g. GitHub Actions, GitLab CI, etc.
+
+Here's how to invoke the new filter from this example, whether it's synchronous or asynchronous:
 
 ```yaml+jinja
 automations:
@@ -149,15 +149,12 @@ automations:
           comment: {{ pr.author | myFilter }}
 ```
 
-!!! tip "Debugging with console.log()"
-    Data passed to `console.log()` is output in your workflow runner logs, e.g. GitHub Actions, GitLab CI, etc.
-
 !!! warning "15 Minute Time Limit"
     gitStream actions are terminated after 15 minutes, this is a hard limit that can't be extended.
 
 ### Accept Arguments
 
-Filter function plugins can accept any number of arguments. The first argument must be passed to the filter function via a ` | ` operator; all subsequent arguments are passed as a set inside parenthesis. 
+Filter function plugins can accept any number of arguments. The first argument must be passed to the filter function via a ` | ` operator; all subsequent arguments are passed as a set inside parenthesis.
 
 !!! example "Filter function to combine two strings"
 
@@ -174,14 +171,18 @@ Filter function plugins can accept any number of arguments. The first argument m
 
     `{{ "Hello" | combineStrings("world!") }}`
 
-### Tips for Debugging Plugins
+### Tips for develpers
 
-1. **Context Variable Insight:**
+1. **Debugging with console.log()**
+
+    Any data passed to `console.log()` will be displayed in your workflow runner logs, such as GitHub Actions, GitLab CI, etc.
+
+2. **Context Variable Insight**
+
     Utilize the [gitStream playground](https://app.gitstream.cm/playground) to see how the context variable appears in a real Pull Request (PR). Inspect the PR Context Variables at the bottom of the screen ![Playground](screenshots/playground-context-variables.png).
 
+3. **Local Execution**
 
-
-2. **Local Execution:**
     - Run the plugin locally for testing, for example: Running `index.js` with Node.js.
       ```javascript
       module.exports = (text) => {
@@ -191,14 +192,16 @@ Filter function plugins can accept any number of arguments. The first argument m
       const banana = require('./index.js');
       console.assert(banana("hello banana!") === 'hello 🍌!', `banana("hello banana!") === 'hello 🍌!' but got ${banana("hello banana!")}`);
       ```
+
     - Execute with:
       ```bash
       $ node index.js
       ```
 
-By following these steps, you can effectively debug and refine your gitStream plugins.
+4. **Handling Escaped Characters**
 
-## Next Step
+    When returning strings with escaped characters, add an extra slash as it will be parsed by the template engine. For example, to return the following text `"first line \n next line"` you should return this from the plugin `"first line \\n next line"`.
+
 
 !!! tip "Check out the community plugin library."
     Check out the [filter function plugin library](/filter-function-plugins) to explore plugins created by the LinearB community.
@@ -226,7 +229,7 @@ Required JSDoc tags:
 * `@param` - There should be one `@param` tag for each argument the plugin accepts, with indicated types. Indicate which parameter is the default input parameter with the name "Input."
 * `@returns` - Provide the type and a short description.
 * `@example` - Simple examples that show how to invoke the plugin.
-* `@license` - The name of the lincense contained in the LICENSE file. 
+* `@license` - The name of the lincense contained in the LICENSE file.
 
 Here is an example of properly formatted JSDoc content:
 
@@ -234,7 +237,7 @@ Here is an example of properly formatted JSDoc content:
 ```javascript
 /**
  * @module isFlaggedUser
- * @description Returns true if the username that is passed to this function is specified in a predefined list of users. 
+ * @description Returns true if the username that is passed to this function is specified in a predefined list of users.
  * This is useful if you want gitStream automations to run only for specified users.
  * @param {string} Input - The GitHub username to check.
  * @returns {boolean} Returns true if the user is specified in the flaggedUsers list, otherwise false.
@@ -245,7 +248,7 @@ Here is an example of properly formatted JSDoc content:
 
 ***How to Generate Plugin Reference Markdown***
 
-You can use jsdoc2md to convert the JSDoc content of your plugin to markdown using templates we've provided. First install jsdoc2md: 
+You can use jsdoc2md to convert the JSDoc content of your plugin to markdown using templates we've provided. First install jsdoc2md:
 
 ```npm install -g jsdoc-to-markdown```
 
