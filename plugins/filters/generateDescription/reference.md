@@ -3,8 +3,10 @@
 ## generateDescription
 A gitStream plugin to auto-generate pull request descriptions based on commit messages and other criteria.
 
-**Returns**: <code>Object</code> - Returns the generated PR description.  
-**License**: MIT  
+![Example PR description](screenshots/generate-pr-description-example.png)
+
+**Returns**: <code>Object</code> - Returns the generated PR description.
+**License**: MIT
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -14,7 +16,7 @@ A gitStream plugin to auto-generate pull request descriptions based on commit me
 | source | <code>Object</code> | The source object containing diff information. |
 | callback | <code>function</code> | The callback function. |
 
-**Example**  
+**Example**
 ```js
 {{ branch | generateDescription(pr, repo, source) }}
 ```
