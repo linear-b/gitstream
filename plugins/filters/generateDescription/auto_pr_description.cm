@@ -4,7 +4,7 @@ triggers:
       - r/dependabot/
 
 automations:
-  add_jira_to_desc:
+  generate_pr_desc:
     if:
       - true
     run:
