@@ -26,7 +26,8 @@ nav:
     - Automation actions: automation-actions.md
   - Plugins:
     - Overview: plugins.md
-    - Filter Functions Plugins: filter-function-plugins.md
+    - Plugins Development: plugins-for-developers.md
+    - Filter Functions Plugins List: filter-function-plugins.md
   - Playground: gitStream-playground.md
   - Troubleshooting: troubleshooting.md
   - FAQ: faq.md
