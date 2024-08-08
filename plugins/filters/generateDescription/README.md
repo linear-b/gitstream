@@ -14,7 +14,7 @@
 
 ??? example "gitStream CM Example: generateDescription"
     ```yaml+jinja
-    --8<-- "plugins/filters/generateDescription/auto_pr_description.cm"
+    --8<-- "plugins/filters/generateDescription/generate_pr_description.cm.cm"
     ```
     <div class="result" markdown>
     <span>

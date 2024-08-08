@@ -29,11 +29,11 @@ This automation is useful for ensuring that PR descriptions are consistent and i
 <div class="automationExample" markdown="1">
 !!! example "Generate PR Description"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/auto_pr_description.cm"
+    --8<-- "docs/downloads/automation-library/generate_pr_description.cm.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/auto_pr_description.cm"){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/generate_pr_description.cm.cm"){ .md-button }
       </span>
     </div>
 </div>
