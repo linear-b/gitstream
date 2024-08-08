@@ -19,7 +19,7 @@ Automatically generate Pull Request descriptions based on commit messages. This 
 !!! info "Configuration Description"
     Conditions (all must be true):
 
-    * A PR is created
+    * A PR is created or has commits added to it.
 
     Automation Actions:
 
