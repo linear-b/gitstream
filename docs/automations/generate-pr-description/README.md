@@ -32,7 +32,7 @@ Automatically generate Pull Request descriptions based on commit messages. This 
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/generate_pr_description.cm"){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/generate_pr_description.cm){ .md-button }
       </span>
     </div>
 </div>
