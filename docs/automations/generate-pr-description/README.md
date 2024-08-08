@@ -28,11 +28,11 @@ Automatically generate Pull Request descriptions based on commit messages. This 
 <div class="automationExample" markdown="1">
 !!! example "Generate PR Description"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/generate_pr_description.cm.cm"
+    --8<-- "docs/downloads/automation-library/generate_pr_description.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/generate_pr_description.cm.cm"){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/generate_pr_description.cm"){ .md-button }
       </span>
     </div>
 </div>
