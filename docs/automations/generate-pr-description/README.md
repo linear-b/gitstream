@@ -3,10 +3,9 @@ title: Automation - Generate PR Description from Commit Messages
 description: Automatically generate Pull Request descriptions based on commit messages.
 category: [quality, productivity]
 ---
-# Generate PR Description from Commit Messages
+# Automatically Generate PR Description from Commit Messages
 
-Generate Pull Request descriptions automatically based on commit messages.
-This automation is useful for ensuring that PR descriptions are consistent and informative.
+Automatically generate Pull Request descriptions based on commit messages. This automation helps ensure PR descriptions are consistent and informative.
 
 !!! warning "Required gitStream Plugins"
     This example requires you to install the [`generateDescription`](/filter-function-plugins/#generatedescription) plugin.
@@ -14,17 +13,17 @@ This automation is useful for ensuring that PR descriptions are consistent and i
     [Learn more about gitStream plugins](/plugins/).
 
 <div class="automationImage" style="align:right" markdown="1">
-![Example PR description](generate-pr-description-example.png)
+![Automatically generate PR descriptions](generate-pr-description-example.png)
 </div>
 <div class="automationDescription" markdown="1">
 !!! info "Configuration Description"
     Conditions (all must be true):
 
-    * Every PR.
+    * A PR is created or has commits added to it.
 
     Automation Actions:
 
-    * Update the PR description with auto generated content based on commit messages.
+    * Update the PR description with auto-generated content based on commit messages.
 </div>
 <div class="automationExample" markdown="1">
 !!! example "Generate PR Description"
