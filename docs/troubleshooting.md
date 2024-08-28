@@ -44,6 +44,10 @@ to the **Allow specified actions and reusable workflows** list, if it is shown.
 
 Make sure you have added the `cm` repo to the repos gitStream should run on
 ![GitHub cm repo](screenshots/repo_in_org_setup.png)
+#### Are you using the default runners along with the "IP allow list" feature on GitHub?
+<a href="https://docs.github.com/en/enterprise-cloud@latest/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/managing-allowed-ip-addresses-for-your-organization#using-github-actions-with-an-ip-allow-list" target="_blank">According to GitHub</a>, in order to use GitHub actions with the allow list, you must use self-hosted runners or GitHub-hosted larger runners with static IP address ranges and add their IP to the allow list. 
+
+When using GitHub's default runners, you will encounter the following error: "The repository owner has an IP allow list enabled, and [IP] is not permitted to access this repository," which indicates that GitHub is blocking the action. You can verify if the IP is part of GitHub's CIDR ranges by using the following <a href="https://api.github.com/meta" target="_blank">list</a>
 
 #### Is the PR in Draft mode?
 

@@ -10,7 +10,7 @@ on:
 automations:
   {% for item in pipelines %}
   # Change pr.target to branch.name if you want to trigger on the source branch rather then the target branch.
-  dispatch_github_action_{{ item.name }}:
+  dispatch_github_action_branch_{{ item.name }}:
     if:
       - {{ pr.target | includes(term=item.branch_prefix) }}
     run:
@@ -26,10 +26,10 @@ automations:
 
 pipelines:
   - name: mobile_ci
-    label: Mobile CI 
+    label: Mobile CI
     branch_prefix: 'mobile-'
     workflow: mobile.yml
   - name: backend_ci
-    label: Backend CI 
+    label: Backend CI
     branch_prefix: 'backend-'
     workflow: 'backend.yml'

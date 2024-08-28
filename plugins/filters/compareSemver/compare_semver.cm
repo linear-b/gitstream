@@ -11,6 +11,7 @@ automations:
         args:
           comment: |
             bot `minor` version bumps are approved automatically.
+
   bump_patch:
     if:
       - {{ bump == 'patch' }}
@@ -22,4 +23,4 @@ automations:
           comment: |
             bot `patch` version bumps are approved and merged automatically.
 
-bump: {{ ["1.2.1", "1.2.3"] | compareSemver }}
+bump: {{ ["1.2.3", "1.2.1"] | compareSemver }}

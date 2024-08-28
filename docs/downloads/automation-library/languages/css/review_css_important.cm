@@ -4,7 +4,7 @@ manifest:
   version: 1.0
 
 automations:
-  approve_javascript_formatting:
+  review_css_important:
     if:
       - {{ files | extensions | match(term='css') | some }}
       - {{ source.diff.files | matchDiffLines(regex=r/!important/) | some }}

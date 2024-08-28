@@ -13,6 +13,7 @@ automations:
         args:
           comment: |
             Dependabot `minor` version bumps are approved automatically.
+
   bump_patch:
     if:
       - {{ bump == 'patch' }}

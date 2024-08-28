@@ -8,13 +8,19 @@ JavaScript plugins that enable custom filter functions for gitStream. To learn h
 
 --8<-- "plugins/filters/checklist/README.md"
 
+--8<-- "plugins/filters/compareMultiSemver/README.md"
+
 --8<-- "plugins/filters/compareSemver/README.md"
 
 --8<-- "plugins/filters/extractDependabotVersionBump/README.md"
 
+--8<-- "plugins/filters/extractRenovateVersionBump/README.md"
+
 --8<-- "plugins/filters/extractSnykVersionBump/README.md"
 
 --8<-- "plugins/filters/extractOrcaFindings/README.md"
+
+--8<-- "plugins/filters/generateDescription/README.md"
 
 --8<-- "plugins/filters/getCodeowners/README.md"
 
