@@ -2,7 +2,7 @@
 title: How gitStream Works
 description: Learn how gitStream automates code review workflows.
 ---
-# How gitStream Works
+	# How gitStream Works
 You can configure gitStream via one or more Continuous Merge (CM) files inside your git repository or GitHub/GitLab organization. These files end with a `.cm`  extension, and they outline automations that will run for your repo's pull requests. 
 ## Syntax Overview
 CM files contain a combination of YAML and Jinja2 to build rules that follow an "if this, then that" approach to triggering and executing automations. This, combined with templating and gitStream-specific functions gives you a highly-flexible framework for building custom CM automations.

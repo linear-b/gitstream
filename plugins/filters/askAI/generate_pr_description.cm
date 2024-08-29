@@ -1,0 +1,14 @@
+triggers:
+  exclude:
+    branch:
+      - r/dependabot/
+
+automations:
+  generate_pr_desc:
+    if:
+      - true
+    run:
+      - action: update-description@v1
+        args:
+          description: |
+            {{ branch | generateDescription(pr, repo, source) }}
