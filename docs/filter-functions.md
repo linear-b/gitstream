@@ -433,7 +433,7 @@ Encode data into base64 representation. When an encoded string is passed as inpu
 | Argument | Usage  | Type         | Description                         |
 | -------- | ------ | ------------ | ----------------------------------- |
 | -        | Input  | Object       | The input object to encode          |
-| -        | Output | String (b64) | Base 64representation of the object |
+| -        | Output | String (Base64) | Base64 encoding of the object |
 
 </div>
 
