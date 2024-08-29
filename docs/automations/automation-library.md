@@ -32,6 +32,7 @@ This library of gitStream examples is meant to serve as a starting point for you
 * [Label missing project tracker](label-missing-project-tracker/README.md) - Flag PRs that are missing a reference to an associated project tracking resource.
 * [Automatic project tracking links](standard/link-issue-tracker/README.md) - Automatically post PR comments that link to the associated project tracking resource (Jira, Shortcut, Azure Boards, and more).
 * [Summarize PR contents by language](standard/summarize-language-changes/README.md) - Post a comment that breaks down code changes by the programming languages contained in the PR.
+* [PR Checklist](pr-checklist-general/README.md) - Post a comment with a checklist giving more context about the PR to reviewers
 
 ## Improve PR Quality
 ### Merge Routing
