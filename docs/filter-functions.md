@@ -45,7 +45,7 @@ The following functions are supported in addition to the built-in functions prov
 | [`allTests`](#alltests)<br />Checks the list includes only tests                                                                                            | [`files`](./context-variables.md#files)                    | -                            | Bool                 |
 | [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results                                                          | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                   | [String]             |
 | [`decode`](#decode)<br />Decode data from Base64                                                                                                               | String (Base64 encoded)                                       | -                            | Object               |
-| [`encode`](#encode)<br />Encode data into b64 representation                                                                                                | Object                                                     | -                            | String (b64 encoded) |
+| [`encode`](#encode)<br />Encode data into Base64 representation                                                                                                | Object                                                     | -                            | String (Base64 encoded) |
 | [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes                                                                         | [`branch`](./context-variables.md#branch)                  | -                            | Integer              |
 | [`extensions`](#extensions)<br />Lists all the unique file extensions                                                                                       | [String]                                                   | -                            | [String]             |
 | [`extractJitFindings`](#extractjitfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the Jit scan            | [`pr`](./context-variables.md#pr)                          | -                            | Object               |
@@ -427,7 +427,7 @@ Decode Base64 string into and object
 
 #### `encode`
 
-Encode data into base64 representation. When an encoded string is passed as input for [`add-comment`](./automation-actions.md#add-comment), the action automatically detects and decodes it.
+Encode data into Base64 representation. When an encoded string is passed as input for [`add-comment`](./automation-actions.md#add-comment), the action automatically detects and decodes it.
 <div class="filter-details" markdown=1>
 
 | Argument | Usage  | Type         | Description                         |
