@@ -1,0 +1,21 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  pr_description_checklist:
+    if:
+      - {{ pr.description | includes(regex=r/\-\[\]/) }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "Missing Checklist Items"
+          color: {{ colors.yellow }}
+      - action: request-changes@v1
+        args:
+          comment: |
+            Please complete the PR checklist before requesting a code review.
+     
+colors:
+  yellow: 'fbca04'
