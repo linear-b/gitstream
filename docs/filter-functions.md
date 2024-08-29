@@ -422,12 +422,12 @@ Decode base64 string into and object
 </div>
 
 ```yaml+jinja
-{{ files | allTests }}
+{{ base64String | decode }}
 ```
 
 #### `encode`
 
-Encode data into base64 representation.
+Encode data into base64 representation. When an encoded string is passed as input for [`add-comment`](./automation-actions.md#add-comment), the action automatically detects and decodes it.
 <div class="filter-details" markdown=1>
 
 | Argument | Usage  | Type         | Description                         |
