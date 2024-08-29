@@ -410,7 +410,7 @@ automations:
 
 #### `decode`
 
-Decode base64 string into and object
+Decode Base64 string into and object
 
 <div class="filter-details" markdown=1>
 
