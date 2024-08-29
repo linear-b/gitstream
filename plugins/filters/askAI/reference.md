@@ -21,5 +21,5 @@ A gitStream plugin to interact with AI models. Currently works with `ChatGPR-4o-
     The `add-comment` action automatically decodes encoded strings.
     
 ```yaml
-{{ code | askAI("Based on the given context, search for new functions without tests and suggest the tests to add. If all functions are covered completely, return 'no tests to suggest.'", env.OPEN_AI_TOKEN) | encode }}
+{{ source | askAI("Based on the given context, search for new functions without tests and suggest the tests to add. If all functions are covered completely, return 'no tests to suggest.'", env.OPEN_AI_TOKEN) | encode }}
 ```
