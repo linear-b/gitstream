@@ -1,5 +1,5 @@
 
---8<-- "plugins/filters/generateDescription/reference.md"
+--8<-- "plugins/filters/askAI/reference.md"
 
 
 ??? note "Plugin Code: askAI"

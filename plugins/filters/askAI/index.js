@@ -1,121 +1,139 @@
 /**
- * @module generateDescription
- * @description A gitStream plugin to auto-generate pull request descriptions based on commit messages and other criteria.
- * @param {Object} branch - The current branch object.
- * @param {Object} pr - The pull request object.
- * @param {Object} repo - The repository object.
- * @param {Object} source - The source object containing diff information.
- * @param {function} callback - The callback function.
- * @returns {Object} Returns the generated PR description.
+ * @module askAI
+ * @description A gitStream plugin to interact with AI models. Currently works with `ChatGPR-4o-mini`.
+ * @param {Object} context - The context that will be attached to the prompt .
+ * @param {string} prompt - The prompt string.
+ * @param {Object} token - The token to the AI model.
+ * @returns {Object} Returns the response from the AI model.
  * @example {{ branch | generateDescription(pr, repo, source) }}
  * @license MIT
 **/
 
+const lockFiles = [
+  'package-lock.json',
+  'yarn.lock',
+  'npm-shrinkwrap.json',
+  'Pipfile.lock',
+  'poetry.lock',
+  'conda-lock.yml',
+  'Gemfile.lock',
+  'composer.lock',
+  'packages.lock.json',
+  'project.assets.json',
+  'pom.xml',
+  'Cargo.lock',
+  'mix.lock',
+  'pubspec.lock',
+  'go.sum',
+  'stack.yaml.lock',
+  'vcpkg.json',
+  'conan.lock',
+  'ivy.xml',
+  'project.clj',
+  'Podfile.lock',
+  'Cartfile.resolved',
+  'flake.lock',
+  'pnpm-lock.yaml'
+];
 
-// Parse commit messages
-function parseCommitMessages(messages) {
-  const commitTypes = {
-    feat: [],
-    fix: [],
-    chore: [],
-    docs: [],
-    style: [],
-    refactor: [],
-    perf: [],
-    test: [],
-    build: [],
-    ci: [],
-    other: [],
-  };
+const excludeExpressionsList = [
+  '.*\\.(ini|csv|xls|xlsx|xlr|doc|docx|txt|pps|ppt|pptx|dot|dotx|log|tar|rtf|dat|ipynb|po|profile|object|obj|dxf|twb|bcsymbolmap|tfstate|pdf|rbi|pem|crt|svg|png|jpeg|jpg|ttf)$',
+  '.*(package-lock|packages\\.lock|package)\\.json$',
+  '.*(yarn|gemfile|podfile|cargo|composer|pipfile|gopkg)\\.lock$',
+  '.*gradle\\.lockfile$',
+  '.*lock\\.sbt$',
+  '.*dist/.*\\.js',
+  '.*public/assets/.*\\.js',
+  '.*ci\\.yml$'
+];
 
-  messages
-    .filter((message) => !message.includes("Merge branch"))
-    .forEach((message) => {
-      const match = message.match(
-        /^(feat|fix|chore|docs|style|refactor|perf|test|build|ci):/,
-      );
-      if (match) {
-        commitTypes[match[1]].push(message.replace(`${match[1]}:`, "").trim());
-      } else {
-        commitTypes.other.push(message);
-      }
-    });
+const ignoreFilesRegexList = lockFiles
+  .map(file => file.replace('.', '\\.'))
+  .concat(excludeExpressionsList);
+const excludePattern = new RegExp(ignoreFilesRegexList.join('|'));
 
-  return commitTypes;
-}
+const filterExcludeFiles = file => {
+  return !excludePattern.test(file) || (file.diff?.split(' ').length ?? 0) < 800;
+};
 
-// Format commit section
-function formatCommitSection(type, commits) {
-  return commits.length
-    ? `> - **${type}:**\n${commits.map((msg) => `>     - ${msg}`).join("\n")}\n`
-    : "";
-}
-
-function containsNewTests(files) {
-  const testPattern = /(test_|spec_|__tests__|_test|_tests|\.test|\.spec)/i;
-  const testDirectoryPattern = /[\\/]?(tests|test|__tests__)[\\/]/i;
-  const testKeywords = /describe\(|it\(|test\(|expect\(/i; // Common test keywords for JavaScript
-
-  for (const file of files) {
-    const { new_file, diff, new_content } = file;
-
-    // Check if the filename indicates it's a test file
-    if (testPattern.test(new_file) || testDirectoryPattern.test(new_file)) {
+const buildArrayContext = context => {
+  return context.filter(element => {
+    if (typeof element !== 'object') {
       return true;
     }
 
-    // Check if the diff or new content contains test-related code
-    if (testKeywords.test(diff) || testKeywords.test(new_content)) {
-      return true;
-    }
+    return context.filter(filterExcludeFiles);
+  });
+};
+
+const buildSourceContext = context => {
+  return context.diff.files.filter(filterExcludeFiles);
+};
+
+const buildContextForGPT = context => {
+  if (Array.isArray(context)) {
+    return buildArrayContext(context);
   }
 
-  return false;
-}
-
-function extractUserAdditions(description) {
-  const match = description.match(
-    /<!--- user additions start --->([\s\S]*?)<!--- user additions end --->/,
-  );
-  return match ? match[1].trim() : description.trim();
-}
-
-// Generate PR description
-async function generateDescription(branch, pr, repo, source, callback) {
-  if (process.env[__filename]) {
-    return callback(null, process.env[__filename]);
+  if (context?.diff?.files) {
+    return buildSourceContext(context);
   }
 
-  const commitTypes = parseCommitMessages(branch.commits.messages);
+  return context;
+};
 
-  const addTests = containsNewTests(source.diff.files) ? "X" : " ";
-  const codeApproved = pr.approvals > 0 ? "X" : " ";
+const askAI = async (context, prompt, token, callback) => {
+  const cacheKey = `${__filename}${prompt}`;
+  
+  if (process.env[cacheKey]) {
+    return callback(null, process.env[cacheKey]);
+  }
 
-  const changes = Object.entries(commitTypes)
-    .map(([type, commits]) => formatCommitSection(type, commits))
-    .join("");
-  const changesWithoutLastBr = changes.slice(0, -1);
-  const userAdditions = extractUserAdditions(pr.description);
+  const maxTokens = 4096;
+  const endpoint = 'https://api.openai.com/v1/chat/completions';
 
-  const result = `
-<!--- user additions start --->
-${userAdditions}
-<!--- user additions end --->
+  const formattedContext = buildContextForGPT(context);
 
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      model: 'gpt-4o-2024-08-06',
+      messages: [
+        {
+          role: 'system',
+          content: 'You are a code reviewer.'
+        },
+        {
+          role: 'system',
+          content: JSON.stringify(formattedContext)
+        },
+        {
+          role: 'assistant',
+          content:
+            'You are code reviewer for a project. please answer without introductory phrases.'
+        },
+        { role: 'user', content: prompt }
+      ],
+      max_tokens: maxTokens
+    })
+  });
 
-**PR description below is managed by gitStream**
-<!--- Auto-generated by gitStream--->
-> #### Commits Summary
-> This pull request includes the following changes:
-${changesWithoutLastBr}
-> #### Checklist
-> - [${addTests}] Add tests
-> - [${codeApproved}] Code Reviewed and approved
-<!--- Auto-generated by gitStream end --->
-`;
+  const data = await response.json();
 
-  process.env[__filename] = result.split("\n").join("\n            ");
-  return callback(null, process.env[__filename]);
-}
+  const suggestion =
+    data.choices?.[0]?.message?.content ??
+    'context was too big for api, try with smaller context object';
 
-module.exports = { filter: generateDescription, async: true };
+  process.env[cacheKey] = suggestion;
+
+  return callback(null, process.env[cacheKey]);
+};
+
+module.exports = {
+  async: true,
+  filter: askAI
+};

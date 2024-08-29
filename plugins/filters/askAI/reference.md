@@ -3,9 +3,9 @@
 ## askAI
 A gitStream plugin to interact with AI models. Currently works with `ChatGPR-4o-mini`
 
-![Example PR description](screenshots/askAI-CR.png)
+![Example PR description](screenshots/askAI-qa.png)
 
-**Returns**: <code>Object</code> - Returns the generated PR description.
+**Returns**: <code>Object</code> - Returns the response from the AI model
 **License**: MIT
 
 | Param   | Type     | Description                                     |
@@ -16,6 +16,10 @@ A gitStream plugin to interact with AI models. Currently works with `ChatGPR-4o-
 
 
 **Example**
+!!! tip "Encoding output"
+    The output of AI models may be lengthy, which might cause issues when setting the comment. We recommend using the `encode` filter function, as shown in the example, to ensure that the comment is passed fully.
+    The `add-comment` action automatically decodes encoded strings.
+    
 ```yaml
-{{ code | askAI("Based on the given context, write a few bullet points about how I can improve my code? address only to diff code, if it exists", env.OPEN_AI_TOKEN) | encode }}
+{{ code | askAI("Based on the given context, search for new functions without tests and suggest the tests to add. If all functions are covered completely, return 'no tests to suggest.'", env.OPEN_AI_TOKEN) | encode }}
 ```
