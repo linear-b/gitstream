@@ -18,19 +18,19 @@ The following functions are supported in addition to the built-in functions prov
 
 <div class="big-summary" markdown=1>
 
-| Function | Input | Args | Output |
-| --------------- | ------- | ---- |  ---- |
-| [`capture`](#capture)<br />Find and return the first occurrence of a regex in the input string | String | `regex` | [Objects] |
-| [`difference`](#difference)<br />Given two lists, keep only items that are in the 1st list but not in the 2nd. | [Objects] | `list` | [Objects] |
-| [`every`](#every)<br />Checks whether all element in the list are `true` | [Bool] | - | Bool |
-| [`filter`](#filter)<br />Reduce list of items into a list of same items that match the specified term | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
-| [`includes`](#match)<br />Check if substring match | String | `regex`, `term`, `list` | Bool |
-| [`intersection`](#intersection)<br />Given two lists, keep only items that are in both lists.| [Objects] | `list` | [Objects] |
-| [`map`](#map)<br />Maps each object in a list into their specified attribute value | [Object] | `attr` | [Object] |
-| [`match`](#match)<br />Maps list of items into a list of booleans that match the specified term | [String]<br />[Object] | `regex`, `term`, `list` `attr` | [Bool] |
-| [`nope`](#nope)<br />Checks whether all element in the list are `false` | [Bool] | - | Bool |
-| [`reject`](#reject)<br />Inverse of [`filter`](#filter), the result list contains non-matching items | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
-| [`some`](#some)<br />Checks whether at least one element in the list is `true` | [Bool] | - | Bool |
+| Function                                                                                                       | Input                  | Args                            | Output                 |
+| -------------------------------------------------------------------------------------------------------------- | ---------------------- | ------------------------------- | ---------------------- |
+| [`capture`](#capture)<br />Find and return the first occurrence of a regex in the input string                 | String                 | `regex`                         | [Objects]              |
+| [`difference`](#difference)<br />Given two lists, keep only items that are in the 1st list but not in the 2nd. | [Objects]              | `list`                          | [Objects]              |
+| [`every`](#every)<br />Checks whether all element in the list are `true`                                       | [Bool]                 | -                               | Bool                   |
+| [`filter`](#filter)<br />Reduce list of items into a list of same items that match the specified term          | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
+| [`includes`](#match)<br />Check if substring match                                                             | String                 | `regex`, `term`, `list`         | Bool                   |
+| [`intersection`](#intersection)<br />Given two lists, keep only items that are in both lists.                  | [Objects]              | `list`                          | [Objects]              |
+| [`map`](#map)<br />Maps each object in a list into their specified attribute value                             | [Object]               | `attr`                          | [Object]               |
+| [`match`](#match)<br />Maps list of items into a list of booleans that match the specified term                | [String]<br />[Object] | `regex`, `term`, `list` `attr`  | [Bool]                 |
+| [`nope`](#nope)<br />Checks whether all element in the list are `false`                                        | [Bool]                 | -                               | Bool                   |
+| [`reject`](#reject)<br />Inverse of [`filter`](#filter), the result list contains non-matching items           | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
+| [`some`](#some)<br />Checks whether at least one element in the list is `true`                                 | [Bool]                 | -                               | Bool                   |
 
 </div>
 
