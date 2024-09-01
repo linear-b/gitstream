@@ -38,25 +38,25 @@ The following functions are supported in addition to the built-in functions prov
 
 <div class="big-summary" markdown=1>
 
-| Function                                                                                                                                                    | Input                                                      | Args                         | Output               |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------- | -------------------- |
-| [`allDocs`](#alldocs)<br />Checks the list includes only documents                                                                                          | [`files`](./context-variables.md#files)                    | -                            | Bool                 |
-| [`allImages`](#allimages)<br />Checks the list includes only images                                                                                         | [`files`](./context-variables.md#files)                    | -                            | Bool                 |
-| [`allTests`](#alltests)<br />Checks the list includes only tests                                                                                            | [`files`](./context-variables.md#files)                    | -                            | Bool                 |
-| [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results                                                          | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                   | [String]             |
-| [`decode`](#decode)<br />Decode data from Base64                                                                                                               | String (Base64 encoded)                                       | -                            | Object               |
-| [`encode`](#encode)<br />Encode data into Base64 representation                                                                                                | Object                                                     | -                            | String (Base64 encoded) |
-| [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes                                                                         | [`branch`](./context-variables.md#branch)                  | -                            | Integer              |
-| [`extensions`](#extensions)<br />Lists all the unique file extensions                                                                                       | [String]                                                   | -                            | [String]             |
-| [`extractJitFindings`](#extractjitfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the Jit scan            | [`pr`](./context-variables.md#pr)                          | -                            | Object               |
-| [`extractSonarFindings`](#extractsonarfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the SonarCloud scan | [`pr`](./context-variables.md#pr)                          | -                            | Object               |
-| [`explainRankByGitBlame`](#explainrankbygitblame)<br />Short markdown text explaining rankByGitBlame results                                                | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                   | [String]             |
-| [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo                                                                    | [`repo.contributors`](./context-variables.md#repo)         | String                       | Bool                 |
-| [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed                                                                        | [[`FileDiff` ](./context-variables.md#filediff-structure)] | -                            | Bool                 |
-| [`mapToEnum`](#maptoenum)<br />return the enum value matches to the input key                                                                               | String                                                     | Enum object                  | Object               |
-| [`matchDiffLines`](#matchdifflines)<br />Match every line in diff                                                                                           | [[`FileDiff` ](./context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces` | [Bool]               |
-| [`rankByGitActivity`](#rankbygitactivity)<br />Get list of contributors based on `git-commit` activity                                                      | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                   | [String]             |
-| [`rankByGitBlame`](#rankbygitblame)<br />Get list of contributors based on `git-blame` results                                                              | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                   | [String]             |
+| Function                                                                                                                                                    | Input                                                      | Args                         | Output                  |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------- | ----------------------- |
+| [`allDocs`](#alldocs)<br />Checks the list includes only documents                                                                                          | [`files`](./context-variables.md#files)                    | -                            | Bool                    |
+| [`allImages`](#allimages)<br />Checks the list includes only images                                                                                         | [`files`](./context-variables.md#files)                    | -                            | Bool                    |
+| [`allTests`](#alltests)<br />Checks the list includes only tests                                                                                            | [`files`](./context-variables.md#files)                    | -                            | Bool                    |
+| [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results                                                          | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                   | [String]                |
+| [`decode`](#decode)<br />Decode Base64 encoded string into an object                                                                                        | String (Base64 encoded)                                    | -                            | Object                  |
+| [`encode`](#encode)<br />Encode data into Base64 encoded string                                                                                             | Object                                                     | -                            | String (Base64 encoded) |
+| [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes                                                                         | [`branch`](./context-variables.md#branch)                  | -                            | Integer                 |
+| [`extensions`](#extensions)<br />Lists all the unique file extensions                                                                                       | [String]                                                   | -                            | [String]                |
+| [`extractJitFindings`](#extractjitfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the Jit scan            | [`pr`](./context-variables.md#pr)                          | -                            | Object                  |
+| [`extractSonarFindings`](#extractsonarfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the SonarCloud scan | [`pr`](./context-variables.md#pr)                          | -                            | Object                  |
+| [`explainRankByGitBlame`](#explainrankbygitblame)<br />Short markdown text explaining rankByGitBlame results                                                | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                   | [String]                |
+| [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo                                                                    | [`repo.contributors`](./context-variables.md#repo)         | String                       | Bool                    |
+| [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed                                                                        | [[`FileDiff` ](./context-variables.md#filediff-structure)] | -                            | Bool                    |
+| [`mapToEnum`](#maptoenum)<br />return the enum value matches to the input key                                                                               | String                                                     | Enum object                  | Object                  |
+| [`matchDiffLines`](#matchdifflines)<br />Match every line in diff                                                                                           | [[`FileDiff` ](./context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces` | [Bool]                  |
+| [`rankByGitActivity`](#rankbygitactivity)<br />Get list of contributors based on `git-commit` activity                                                      | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                   | [String]                |
+| [`rankByGitBlame`](#rankbygitblame)<br />Get list of contributors based on `git-blame` results                                                              | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                   | [String]                |
 
 </div>
 
@@ -410,24 +410,23 @@ automations:
 
 #### `decode`
 
-Decode Base64 string into and object
-
+Decode Base64 encoded string into an object. Encoded strings are formatted: `"base64: <encoded_string>"`
 <div class="filter-details" markdown=1>
 
-| Argument | Usage  | Type   | Description                         |
-| -------- | ------ | ------ | ----------------------------------- |
-| -        | Input  | String | Base64 representation of the object |
-| -        | Output | Object | Decoded objet                       |
+| Argument | Usage  | Type   | Description                                 |
+| -------- | ------ | ------ | ------------------------------------------- |
+| -        | Input  | String | Base64 encoded string prefixed `"Base64: "` |
+| -        | Output | Object | Decoded objet                               |
 
 </div>
 
 ```yaml+jinja
-{{ base64String | decode }}
+{{ "base64: SGVsbG8gV29ybGQ=" | decode }} # Output: "Hello World"
 ```
 
 #### `encode`
 
-Encode data into Base64 representation. When an encoded string is passed as input for [`add-comment`](./automation-actions.md#add-comment), the action automatically detects and decodes it.
+Encode data into Base64 encoded string. When an encoded string is passed as input for [`add-comment`](./automation-actions.md#add-comment), the action automatically detects and decodes it.
 <div class="filter-details" markdown=1>
 
 | Argument | Usage  | Type         | Description                         |
@@ -438,7 +437,7 @@ Encode data into Base64 representation. When an encoded string is passed as inpu
 </div>
 
 ```yaml+jinja
-{{ "String" | encode }}
+{{ "Hello World" | encode }} # Output: "base64: SGVsbG8gV29ybGQ="
 ```
 
 #### `estimatedReviewTime`
