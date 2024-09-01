@@ -2,9 +2,10 @@
  * @module suggestIssues
  * @description Fetches ticket recommendations based on given pull request details.
  * @param {object} pr - The pull request object containing title, author, and created_at properties.
+ * @param {object} branch - The branch object containing the branch name.
  * @param {string} apiKey - The API key used to authenticate requests.
  * @returns {Array} Returns an array of suggested issues related to the current Pull Request.
- * @example {{ pr | suggestIssues(env.LINEARB_TOKEN) }}
+ * @example {{ pr | suggestIssues(branch, env.LINEARB_TOKEN) }}
  * @license MIT
 **/
 
