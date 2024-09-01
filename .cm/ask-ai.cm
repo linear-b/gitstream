@@ -12,6 +12,8 @@ automations:
     if:
       - true
     run:
-      - action: add-comment@v1
+      - action: update-description@v1
         args:
-          comment: "{{ source | askAI("based on the given context, describe in plain english the changes introduced in this PR.", env.OPEN_AI_TOKEN) | prependTitle("gitStream Describe PR") | encode }}"
+          concat_mode: append
+          description: |
+            "{{ source | askAI("based on the given context, describe in plain english the changes introduced in this PR.", env.OPEN_AI_TOKEN) | prependTitle("✨ /:\ gitStream Describe PR ✨") | encode }}"
