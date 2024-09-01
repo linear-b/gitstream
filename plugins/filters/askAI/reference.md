@@ -3,7 +3,7 @@
 ## askAI
 A gitStream plugin to interact with AI models. Currently works with `ChatGPR-4o-mini`
 
-![Example PR description](screenshots/askAI-qa.png)
+![Example PR description](screenshots/askAI-describe-PR.png)
 
 **Returns**: <code>Object</code> - Returns the response from the AI model
 **License**: MIT
