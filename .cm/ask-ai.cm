@@ -1,0 +1,17 @@
+-*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+triggers:
+  on:
+    - pr_created
+    - commit
+automations:
+  describe_pr:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: "{{ source | askAI("based on the given context, describe in plain english the changes introduced in this PR.", env.OPEN_AI_TOKEN) | prependTitle("gitStream Describe PR") | encode }}"
