@@ -6,6 +6,12 @@ visible: false
 # gitStream Integrations
 <!-- --8<-- [start:integrations]-->
 <div class="integrations-list" markdown="1">
+  
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:material-AutoAwesome: AI](/integrations/AI)
+</div>
+</div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
