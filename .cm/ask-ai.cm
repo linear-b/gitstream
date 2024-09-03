@@ -14,4 +14,6 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: "{{ source | askAI("based on the given context, describe in plain english the changes introduced in this PR.", env.OPEN_AI_TOKEN) | prependTitle("gitStream Describe PR") | encode }}"
+          comment: |
+            # ✨gitStream Describe PR ✨
+            {{ source | askAI("based on the given context, describe in plain english the changes introduced in this PR.", env.OPEN_AI_TOKEN) | encode }}
