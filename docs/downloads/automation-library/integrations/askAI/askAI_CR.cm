@@ -9,9 +9,10 @@ triggers:
 automations:
   ask_ai_describe:
     if:
-      - {{ pr.labels | match(term="AskAI CR") | some }}
+      - {{ pr.labels | match(term="askai cr") | some }}
     run:
       - action: add-comment@v1
         args:
           comment: |
-            {{ source | askAI("Based on the given context, can you write a few bullet points about how I can improve my code? Please relate only to code diff, if it exists.", env.OPEN_AI_TOKEN) | prependTitle("gitStream Review") | encode }}
+            # ✨ gitStream Review ✨
+            {{ source | askAI("Based on the given context, can you write a few bullet points about how I can improve my code? Please relate only to code diff, if it exists.", env.OPEN_AI_TOKEN) | encode }}
