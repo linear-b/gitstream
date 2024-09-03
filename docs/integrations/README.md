@@ -6,6 +6,12 @@ visible: false
 # gitStream Integrations
 <!-- --8<-- [start:integrations]-->
 <div class="integrations-list" markdown="1">
+  
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[AI](/automations/integrations/AI)
+</div>
+</div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
@@ -19,13 +25,13 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[::simple-githubactions:: GitHub Actions](/integrations/github-actions)
+[:simple-githubactions: GitHub Actions](/integrations/github-actions)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[::octicons-copilot-16:: GitHub Copilot](/integrations/github-copilot)
+[:octicons-copilot-16: GitHub Copilot](/integrations/github-copilot)
 </div>
 </div>
 
