@@ -9,7 +9,7 @@ triggers:
 automations:
   ask_ai_describe:
     if:
-      - {{ pr.labels | match(term="askAI qa") | some }}
+      - {{ pr.labels | match(term="askai describe") | some }}
     run:
       - action: add-comment@v1
         args:
