@@ -1,1 +1,1 @@
-[This content has been moved](docs.gitstream.cm/automations/automation-library/)
+[This content has been moved](https://docs.gitstream.cm/automations/automation-library/)
