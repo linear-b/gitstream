@@ -4,6 +4,7 @@ description: Automatically suggest labels to apply to new PRs.
 category: [review]
 ---
 # Suggest Labels
+<!-- --8<-- [start:example]-->
 Automatically suggest labels to apply to new PRs.
 
 <div class="automationImage" markdown="1">
@@ -31,3 +32,15 @@ Automatically suggest labels to apply to new PRs.
       </span>
     </div>
 </div>
+
+<!-- --8<-- [end:example]-->
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/context-automation.md"
+
+--8<-- "docs/snippets/automation-footer.md"
