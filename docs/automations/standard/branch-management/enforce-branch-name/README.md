@@ -4,7 +4,7 @@ description: Automatically enforce prefixes or keywords in PR branch names.
 category: [review, quality]
 ---
 # Enforce Branch Naming Conventions
-
+<!-- --8<-- [start:example]-->
 Automatically enforce prefixes or keywords in PR branch names.
 
 ![Enforce Branch Naming Conventions](/automations/standard/branch-management/enforce-branch-name/enforce-branch-name.png)
@@ -30,3 +30,14 @@ Automatically enforce prefixes or keywords in PR branch names.
       [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/standard/branch-management/enforce_branch_name.cm){ .md-button }
       </span>
     </div>
+<!-- --8<-- [end:example]-->
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/review-assignment-automation.md"
+
+--8<-- "docs/snippets/automation-footer.md"
