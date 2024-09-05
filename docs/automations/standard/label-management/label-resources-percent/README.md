@@ -4,6 +4,7 @@ description: Automatically label PRs based on changes to code resources.
 category: [review]
 ---
 # Label Changed Resources By Percent
+<!-- --8<-- [start:example]-->
 
 Apply a label to all PRs that indicates what percentage of new lines of code modify one or more specified resources.
 
@@ -32,3 +33,15 @@ Apply a label to all PRs that indicates what percentage of new lines of code mod
       </span>
     </div>
 </div>
+
+<!-- --8<-- [end:example]-->
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/context-automation.md"
+
+--8<-- "docs/snippets/automation-footer.md"
