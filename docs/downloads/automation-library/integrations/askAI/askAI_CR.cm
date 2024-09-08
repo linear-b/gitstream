@@ -17,6 +17,6 @@ automations:
             # ✨ gitStream Review ✨
             {{ source | askAI("
               Review the PR code diff.
-              - Identify bugs, security risks, and performance issues.
-              - Check for deprecated methods and style guide violations.
-              - Suggest improvements.", env.OPEN_AI_TOKEN) | encode }}
+              - Identify bugs, security risks, and performance issues
+              - Check for deprecated methods and style guide violations
+              - Provide specific improvement suggestions based on the changes", env.OPEN_AI_TOKEN) | encode }}
