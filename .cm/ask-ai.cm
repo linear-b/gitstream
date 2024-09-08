@@ -30,9 +30,9 @@ automations:
             # ✨ gitStream Review ✨
             {{ source | askAI("
               Review the PR code diff only for `js` and `cm` (gitStream Configuration) files.
-              - Identify bugs, security risks, and performance issues.
-              - Verify best practices and style guide violations.
-              - Suggest improvements.", env.OPEN_AI_TOKEN) | encode }}
+              - Identify bugs, security risks, and performance issues
+              - Verify best practices and style guide violations
+              - Provide specific improvement suggestions based on the changes", env.OPEN_AI_TOKEN) | encode }}
 
 
 
