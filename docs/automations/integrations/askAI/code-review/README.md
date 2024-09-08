@@ -6,6 +6,8 @@ category: [quality, genai, copilot, tests, efficiency]
 # Ask AI for a Code Review
 
 <!-- --8<-- [start:example]-->
+Use AI to perform a comprehensive code review, identify bugs, security risks, performance issues, deprecated methods, and style guide violations, and suggests improvements.
+
 !!! info "Configuration Description"
 
     Conditions (all must be true):

@@ -6,6 +6,8 @@ category: [quality, genai, copilot, tests, efficiency]
 # Ask AI to Suggest Tests
 
 <!-- --8<-- [start:example]-->
+Use AI to suggests additional test cases for uncovered or modified functions in the PR, including edge cases.
+
 !!! info "Configuration Description"
 
     Conditions (all must be true):

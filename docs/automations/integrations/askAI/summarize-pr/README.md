@@ -6,6 +6,10 @@ category: [quality, genai, copilot, tests, efficiency]
 # Ask AI to Summarize the Changes in a PR
 
 <!-- --8<-- [start:example]-->
+Use AI to generate a concise bullet-point summary of the changes in the pull request.
+
+![summarized-pr](/automations/integrations/askAI/summarize-pr/summarized-pr.png)
+
 !!! info "Configuration Description"
 
     Conditions (all must be true):
