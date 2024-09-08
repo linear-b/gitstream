@@ -7,6 +7,7 @@ triggers:
   on:
     - pr_created
     - commit
+
 automations:
   describe_pr:
     if:
@@ -15,5 +16,25 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            # ✨gitStream Describe PR ✨
-            {{ source | askAI("based on the given context, describe in plain english the changes introduced in this PR.", env.OPEN_AI_TOKEN) | encode }}
+            # 📜 PR Summary 📜
+            {{ source | askAI("
+              Summarize in simple terms the changes in this PR using bullet points.", env.OPEN_AI_TOKEN) | encode }}
+
+  cr_code_changes:
+    if:
+      - {{ has.code_changes }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            # ✨ gitStream Review ✨
+            {{ source | askAI("
+              Review the PR code diff only for `js` and `cm` (gitStream Configuration) files.
+              - Identify bugs, security risks, and performance issues.
+              - Verify best practices and style guide violations.
+              - Suggest improvements.", env.OPEN_AI_TOKEN) | encode }}
+
+
+
+has:
+    code_changes: {{ files | extensions | match(list=['cm', 'js']) | some }}
