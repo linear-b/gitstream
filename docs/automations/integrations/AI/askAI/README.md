@@ -15,6 +15,7 @@ category: [quality, genai, copilot, tests, efficiency]
 
 
 === "Code Review"
+    ### AskAI for Code Review
     !!! info "Configuration Description"
 
         Conditions (all must be true):
@@ -36,6 +37,7 @@ category: [quality, genai, copilot, tests, efficiency]
           </span>
         </div>
 === "Describe PR"
+    ### AskAI for description
     !!! info "Configuration Description"
 
         Conditions (all must be true):
