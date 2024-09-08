@@ -1,7 +1,7 @@
 ---
-title: Automation - Label Missing Azure Boards Info
-description: Automatically label PRs that are missing references to Azure Boards resources.
-category: [quality, genai, copilot, tests, efficiency]
+title: Automation - Ask AI for a Code Review
+description: Use gitStream's integration with AI services to perform a comprehensive code review to your code
+category: [quickstart, quality, genai, copilot, tests, efficiency]
 ---
 # Ask AI for a Code Review
 

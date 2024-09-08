@@ -1,6 +1,6 @@
 ---
-title: Automation - Label Missing Azure Boards Info
-description: Automatically label PRs that are missing references to Azure Boards resources.
+title: Automation - Ask AI to Summarize the Changes in a PR
+description: Use gitStream's integration with AI services to generate a summary of the changes in the PR.
 category: [quality, genai, copilot, tests, efficiency]
 ---
 # Ask AI to Summarize the Changes in a PR
