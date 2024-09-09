@@ -98,18 +98,18 @@ The `branch` context contains info regarding the branch changes compared to the 
 
     compared to the `source` context does not include actual source code.
 
-| Values               | Type      | Description                                              |
-|----------------------|-----------|--------------------------------------------------------- |
-| `branch`             | Map       | Includes the info related to the current branch          |
-| `branch.author`      | String    | The branch author (the user that did first commit in the branch). The formatted like author in `git-log`, e.g. `Popeye <popeye@acme.com>`        |
-| `branch.author_name`      | String    | The branch author name        |
-| `branch.author_email`      | String    | The branch author email       |
-| `branch.base`        | String    | The main branch, `main`                 |
-| `branch.commits.messages` | [String] | A list with all the commit messages in this branch  |
-| `branch.diff.size`   | Integer   | The sum of line changed: additions, edits and deletions   |
-| `branch.diff.files_metadata`  | [`FileMetadata`](#filemetadata-structure)  | List of changed files including their relative path      |
-| `branch.name`        | String    | The current branch, `feature-123-branch`                 |
-| `branch.num_of_commits` | Integer   | The number of commits in the branch |
+| Values                       | Type                                      | Description                                                                                                                               |
+| ---------------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `branch`                     | Map                                       | Includes the info related to the current branch                                                                                           |
+| `branch.author`              | String                                    | The branch author (the user that did first commit in the branch). The formatted like author in `git-log`, e.g. `Popeye <popeye@acme.com>` |
+| `branch.author_name`         | String                                    | The branch author name                                                                                                                    |
+| `branch.author_email`        | String                                    | The branch author email                                                                                                                   |
+| `branch.base`                | String                                    | The main branch, `main`                                                                                                                   |
+| `branch.commits.messages`    | [String]                                  | A list with all the commit messages in this branch                                                                                        |
+| `branch.diff.size`           | Integer                                   | The sum of line changed: additions, edits and deletions                                                                                   |
+| `branch.diff.files_metadata` | [`FileMetadata`](#filemetadata-structure) | List of changed files including their relative path                                                                                       |
+| `branch.name`                | String                                    | The current branch, `feature-123-branch`                                                                                                  |
+| `branch.num_of_commits`      | Integer                                   | The number of commits in the branch                                                                                                       |
 
 The branch context doesn't include any source code, but only related metadata.
 
@@ -215,32 +215,34 @@ ui_templates_files:
 
 The `pr` context includes metadata related to the pull request.
 
-| Values             | Type      | Description                                              |
-|--------------------|-----------|-------------------------------------------------|
-| `pr`             | Map       | Includes the info related to the PR   |
-| `pr.approvals` | [String] | A list of the of reviewers that approved the PR |
-| `pr.author` | String | The PR author name |
-| `pr.author_teams` | String | The teams which the PR author is member of|
-| `pr.author_is_org_member` | Bool | `true` if the PR author is a member of the organization where gitStream is installed |
-| `pr.checks` | [[`Check`]](#check-structure) | List of checks, names and status|
-| `pr.comments` | [[`Comment`]](#comment-structure) | List of PR comments objects |
-| `pr.conflicted_files_count` | Integer | The number files in the PR with conflicts |
-| `pr.conversations` | [[`Conversation`]](#conversation-structure) | List of PR conversation objects, usually when reviewer have comments about the source code |
-| `pr.created_at` | String | The date and time the PR was created |
-| `pr.draft` | Bool | `true` when the PR is marked as Draft/WIP |
-| `pr.description` | String | The PR description text |
-| `pr.labels` | [String] | The labels that are attached to the PR |
-| `pr.number` | Integer | The PR or MR Id number |
-| `pr.provider` | String | The Git cloud provider name, e.g. `GitHub`, `GitLab` etc. |
-| `pr.reviewers` | [String] | The list of reviewers set for this PR |
-| `pr.source` | String | The branch from which the PR originates |
-| `pr.status` | String | The PR status: `open`, `closed` and `merged` |
-| `pr.target` | String | The branch the PR is intended merged into |
-| `pr.title` | String | The PR title |
-| `pr.requested_changes` | [String] | List of users that requested changes |
-| `pr.reviews` | [[`Review`]](#review-structure) | List of PR reviews, relevant in GitHub |
-| `pr.unresolved_threads` | Integer | The number of open review comments in the PR |
-| `pr.updated_at` | String | The date and time the PR was last updated |
+| Values                      | Type                                        | Description                                                                                |
+| --------------------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `pr`                        | Map                                         | Includes the info related to the PR                                                        |
+| `pr.approvals`              | [String]                                    | A list of the of reviewers that approved the PR                                            |
+| `pr.assignees`              | [String]                                    | A list of the people assigned to this pull request                                         |
+| `pr.author`                 | String                                      | The PR author name                                                                         |
+| `pr.author_is_org_member`   | Bool                                        | `true` if the PR author is a member of the organization where gitStream is installed       |
+| `pr.author_teams`           | String                                      | The teams which the PR author is member of                                                 |
+| `pr.checks`                 | [[`Check`]](#check-structure)               | List of checks, names and status                                                           |
+| `pr.comments`               | [[`Comment`]](#comment-structure)           | List of PR comments objects                                                                |
+| `pr.conflicted_files_count` | Integer                                     | The number files in the PR with conflicts                                                  |
+| `pr.conversations`          | [[`Conversation`]](#conversation-structure) | List of PR conversation objects, usually when reviewer have comments about the source code |
+| `pr.created_at`             | String                                      | The date and time the PR was created                                                       |
+| `pr.description`            | String                                      | The PR description text                                                                    |
+| `pr.draft`                  | Bool                                        | `true` when the PR is marked as Draft/WIP                                                  |
+| `pr.labels`                 | [String]                                    | The labels that are attached to the PR                                                     |
+| `pr.number`                 | Integer                                     | The PR or MR Id number                                                                     |
+| `pr.provider`               | String                                      | The Git cloud provider name, e.g. `GitHub`, `GitLab` etc.                                  |
+| `pr.requested_changes`      | [String]                                    | List of users that requested changes                                                       |
+| `pr.reviewers`              | [String]                                    | The list of reviewers set for this PR                                                      |
+| `pr.reviews`                | [[`Review`]](#review-structure)             | List of PR reviews, relevant in GitHub                                                     |
+| `pr.source`                 | String                                      | The branch from which the PR originates                                                    |
+| `pr.status`                 | String                                      | The PR status: `open`, `closed` and `merged`                                               |
+| `pr.target`                 | String                                      | The branch the PR is intended merged into                                                  |
+| `pr.title`                  | String                                      | The PR title                                                                               |
+| `pr.unresolved_threads`     | Integer                                     | The number of open review comments in the PR                                               |
+| `pr.updated_at`             | String                                      | The date and time the PR was last updated                                                  |
+| `pr.url`                    | String                                      | A link to the PR on                                                                        |
 
 Example for checking the PR title includes a Jira ticket:
 
@@ -264,24 +266,24 @@ has:
 
 The `repo` context includes metadata related to the repo.
 
-| Values             | Type      | Description                                              |
-|--------------------|-----------|-------------------------------------------------|
-| `repo`             | Map       | Includes the info related to the current repo   |
-| `repo.age` | Integer | Number of days since first commit (of any user) |
-| `repo.author_age` | Integer |  number of days since first commit to this repo |
-| `repo.blame` | [`GitBlame`](#gitblamep-structure) | The percentage each user's lines in a file, the list includes all changed files in the branch. The list is sorted by the `ratio` field |
-| `repo.contributors`  | [`Contributor`](#contributor-structure)  | List of contributors in the repo |
-| `repo.git_activity` | [`GitActivity`](#gitactivity-structure) | Per file and user, the number of lines changed every week for the last 52 weeks |
-| `repo.name`  | String  | Repository name |
-| `repo.owner`  | String  | Repository owner account name |
-| `repo.visibility`  | String  | The visibility of the source branch repo. Value is one of: `private`, `internal`, or `public` |
+| Values              | Type                                    | Description                                                                                                                            |
+| ------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `repo`              | Map                                     | Includes the info related to the current repo                                                                                          |
+| `repo.age`          | Integer                                 | Number of days since first commit (of any user)                                                                                        |
+| `repo.author_age`   | Integer                                 | number of days since first commit to this repo                                                                                         |
+| `repo.blame`        | [`GitBlame`](#gitblamep-structure)      | The percentage each user's lines in a file, the list includes all changed files in the branch. The list is sorted by the `ratio` field |
+| `repo.contributors` | [`Contributor`](#contributor-structure) | List of contributors in the repo                                                                                                       |
+| `repo.git_activity` | [`GitActivity`](#gitactivity-structure) | Per file and user, the number of lines changed every week for the last 52 weeks                                                        |
+| `repo.name`         | String                                  | Repository name                                                                                                                        |
+| `repo.owner`        | String                                  | Repository owner account name                                                                                                          |
+| `repo.visibility`   | String                                  | The visibility of the source branch repo. Value is one of: `private`, `internal`, or `public`                                          |
 
 #### `source`
 
 The `source` context includes a list of `FileDiff` objects that can be used to get insights based on code changes. The changes compared to the latest main branch.
 
-| Values              | Type  | Description                                        |
-|---------------------|-------|--------------------------------------------------- |
+| Values              | Type                              | Description                                   |
+| ------------------- | --------------------------------- | --------------------------------------------- |
 | `source.diff.files` | [`FileDiff`](#filediff-structure) | List of changed files with their code changes |
 
 The source context include all code changes, it is not safe to share it with unknown services.
