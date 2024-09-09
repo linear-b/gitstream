@@ -9,7 +9,7 @@ visible: false
   
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[AI](/automations/integrations/AI)
+[AI](/automations/integrations/askAI)
 </div>
 </div>
 
