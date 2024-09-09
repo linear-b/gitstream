@@ -32,7 +32,8 @@ automations:
               Review the PR code diff only for `js` and `cm` (gitStream Configuration) files. You can suggest code changes. Make sure you cover
               - Finding bugs, security risks, and performance issues
               - Verify best practices and style guide violations
-              - Specific improvement suggestions based on the changes", env.OPEN_AI_TOKEN) | encode }}
+              - Specific improvement suggestions based on the changes",
+              env.OPEN_AI_TOKEN) | encode }}
 
 
 
