@@ -5,15 +5,15 @@ A gitStream plugin to interact with AI models. Currently works with `ChatGPR-4o-
 
 ![Example PR description](screenshots/askAI-describe-PR.png)
 
-**Returns**: <code>Object</code> - Returns the response from the AI model
+**Returns**: <code>Object</code> -  Returns the AI-generated response based on the provided context and prompt.
 **License**: MIT
 
-| Param   | Type     | Description                                     |
-| ------- | -------- | ----------------------------------------------- |
-| context | `Object` | The context that will be attached to the prompt |
-| role    | `string` | Role instructions for the conversationThe       |
-| prompt  | `string` | The prompt string                               |
-| token   | `Object` | The token to the AI model                       |
+| Param   | Type     | Description                                                                                                        |
+| ------- | -------- | ------------------------------------------------------------------------------------------------------------------ |
+| context | `Object` | The context that needs to be sent to the AI model for analysis.                                                    |
+| role    | `string` |  Free text. If not empty, Defines the role or persona for the AI to adopt while generating the response.           |
+| prompt  | `string` | The specific request or question you want the AI to respond to, after the context has been provided.               |
+| token   | `Object` | The token to the AI model                                                                                          |
 
 
 **Example**

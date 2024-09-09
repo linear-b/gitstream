@@ -2,6 +2,7 @@
  * @module askAI
  * @description A gitStream plugin to interact with AI models. Currently works with `ChatGPR-4o-mini`.
  * @param {Object} context - The context that will be attached to the prompt .
+ * @param {string} role - Role instructions for the conversation.
  * @param {string} prompt - The prompt string.
  * @param {Object} token - The token to the AI model.
  * @returns {Object} Returns the response from the AI model.
@@ -83,7 +84,7 @@ const buildContextForGPT = context => {
 };
 
 const askAI = async (context, role = '', prompt, token, callback) => {
-  const cacheKey = `${__filename}${prompt}`;
+  const cacheKey = `${__filename}${role}${prompt}`;
   
   if (process.env[cacheKey]) {
     return callback(null, process.env[cacheKey]);
