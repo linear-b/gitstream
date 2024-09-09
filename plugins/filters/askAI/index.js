@@ -82,7 +82,7 @@ const buildContextForGPT = context => {
   return context;
 };
 
-const askAI = async (context, prompt, token, callback) => {
+const askAI = async (context, role = '', prompt, token, callback) => {
   const cacheKey = `${__filename}${prompt}`;
   
   if (process.env[cacheKey]) {
@@ -103,18 +103,16 @@ const askAI = async (context, prompt, token, callback) => {
     body: JSON.stringify({
       model: 'gpt-4o-2024-08-06',
       messages: [
+        ...(role ? 
+        [
+          {
+            role: 'system',
+            content: `You are a ${role}. Answer only to the request, without any introductory or conclusion text.`
+          }] 
+          : []),
         {
-          role: 'system',
-          content: 'You are a code reviewer.'
-        },
-        {
-          role: 'system',
+          role: 'user',
           content: JSON.stringify(formattedContext)
-        },
-        {
-          role: 'assistant',
-          content:
-            'You are code reviewer for a project. please answer without introductory phrases.'
         },
         { role: 'user', content: prompt }
       ],

@@ -11,6 +11,7 @@ A gitStream plugin to interact with AI models. Currently works with `ChatGPR-4o-
 | Param   | Type     | Description                                     |
 | ------- | -------- | ----------------------------------------------- |
 | context | `Object` | The context that will be attached to the prompt |
+| role    | `string` | Role instructions for the conversationThe       |
 | prompt  | `string` | The prompt string                               |
 | token   | `Object` | The token to the AI model                       |
 
@@ -21,5 +22,5 @@ A gitStream plugin to interact with AI models. Currently works with `ChatGPR-4o-
     The [`add-comment`](./automation-actions.md#add-comment) action automatically decodes encoded strings.
     
 ```yaml
-{{ source | askAI("Based on the given context, search for new functions without tests and suggest the tests to add. If all functions are covered completely, return 'no tests to suggest.'", env.OPEN_AI_TOKEN) | encode }}
+{{ source | askAI("QA tester", "Based on the given context, search for new functions without tests and suggest the tests to add. If all functions are covered completely, return 'no tests to suggest.'", env.OPEN_AI_TOKEN) | encode }}
 ```
