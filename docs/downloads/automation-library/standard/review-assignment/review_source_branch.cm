@@ -20,9 +20,9 @@ automations:
   {% endfor %}
 
 branches:
-    - prefix: r/^ABC/ 
+    - name: ABC
+      prefix: r/^ABC/
       reviewers: org/a-team
-      name: ABC
-    - prefix: r/^XYZ-/ 
+    - name: XYZ
+      prefix: r/^XYZ-/
       reviewers: org/x-team
-      name: XYZ
