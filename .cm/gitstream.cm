@@ -5,7 +5,7 @@ manifest:
 
 config:
   admin:
-    users: [vim-zz]
+    users: [vim-zz, PavelLinearB]
 
 automations:
   # Approve changes of text files inside docs dir by maintainers 

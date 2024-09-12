@@ -5,6 +5,7 @@ category: [security]
 quickstart: true
 ---
 # Label Unresolved Review Threads
+<!-- --8<-- [start:example]-->
 Automatically label PRs when there are unresolved code review comments.
 
 <div class="automationImage" markdown="1">
@@ -32,3 +33,15 @@ Automatically label PRs when there are unresolved code review comments.
       </span>
     </div>
 </div>
+
+<!-- --8<-- [end:example]-->
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/context-automation.md"
+
+--8<-- "docs/snippets/automation-footer.md"

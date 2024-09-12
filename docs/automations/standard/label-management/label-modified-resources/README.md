@@ -28,3 +28,13 @@ Automatically label PRs to indicate what resources are being changed.
     </div>
 
 <!-- --8<-- [end:example]-->
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/context-automation.md"
+
+--8<-- "docs/snippets/automation-footer.md"

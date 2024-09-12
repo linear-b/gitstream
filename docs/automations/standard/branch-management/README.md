@@ -15,7 +15,8 @@ Use gitStream to enforce branch naming conventions, review assignment, and other
 
 <a name="enforce-branch-name"></a>
 ## Enforce Branch Naming Conventions
---8<-- "docs/automations/standard/branch-management/enforce-branch-name/README.md:6:"
+
+--8<-- "docs/automations/standard/branch-management/enforce-branch-name/README.md:example"
 
 ## Additional Resources
 

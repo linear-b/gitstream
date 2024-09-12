@@ -30,3 +30,13 @@ Automatically detect which programming languages are contained in PRs and automa
     </div>
 
 <!-- --8<-- [end:example]-->
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/context-automation.md"
+
+--8<-- "docs/snippets/automation-footer.md"

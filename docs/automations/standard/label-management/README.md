@@ -9,11 +9,11 @@ Use YAML to automate label management on your git repo with gitStream.
 
 <a name="enforce-required-labels"></a>
 ## Enforce Required Labels
---8<-- "docs/automations/standard/label-management/enforce-labels/README.md:6:"
+--8<-- "docs/automations/standard/label-management/enforce-labels/README.md:example"
 
 <a name="label-changed-resources"></a>
 ## Label Modified Resources
---8<-- "docs/automations/standard/label-management/label-resources-percent/README.md:6:"
+--8<-- "docs/automations/standard/label-management/label-resources-percent/README.md:example"
 
 <a name="label-languages"></a>
 ## Label PRs by Language
@@ -21,15 +21,15 @@ Use YAML to automate label management on your git repo with gitStream.
 
 <a name="label-unresolved-threads"></a>
 ## Label the Number of Unresolved Code Review Threads
---8<-- "docs/automations/standard/label-management/label-unresolved-threads/README.md:6:"
+--8<-- "docs/automations/standard/label-management/label-unresolved-threads/README.md:example"
 
 <a name="suggest-labels"></a>
 ## Automatically Recommend Labels for New PRs
---8<-- "docs/automations/standard/label-management/suggest-labels/README.md:6:"
+--8<-- "docs/automations/standard/label-management/suggest-labels/README.md:example"
 
 <a name="label-approvals"></a>
 ## Label PRs with the Number of Approvals
---8<-- "docs/automations/standard/label-management/label-approvals/README.md:6:"
+--8<-- "docs/automations/standard/label-management/label-approvals/README.md:example"
 
 ## Additional Resources
 

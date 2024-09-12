@@ -82,15 +82,14 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
             ```
 
 !!! info "gitStream will now do these two things."
-        When a PR is created or changed, apply or update a label that provides an estimated time to review.
-        ![Estimated Review Time label](screenshots/etr_label_example.png)
-        ![Estimated review time](screenshots/slack-estimated-review-time-example-1-min.png)
-
-        When a new PR is created, comment with a list of code experts.
-        ![Suggested reviewers](screenshots/github-codeexperts-expanded.png)
+    When a PR is created or changed, apply or update a label that provides an estimated time to review.
+    ![Estimated Review Time label](screenshots/etr_label_example.png)
+    ![Estimated review time](screenshots/slack-estimated-review-time-example-1-min.png)
+    When a new PR is created, comment with a list of code experts.
+    ![Suggested reviewers](screenshots/github-codeexperts-expanded.png)
 ## Next Step
 !!! tip "How gitStream Works"
-        Read our guide: [How gitStream Works](/how-it-works/) to get an overview of the gitStream syntax and automation lifecycle.
+    Read our guide: [How gitStream Works](/how-it-works/) to get an overview of the gitStream syntax and automation lifecycle.
 ## Additional Resources
 
 ### Required GitHub Permissions
