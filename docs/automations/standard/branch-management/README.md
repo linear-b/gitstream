@@ -10,13 +10,18 @@ Use gitStream to enforce branch naming conventions, review assignment, and other
 
 [Enforce Branch Naming Conventions](#enforce-branch-name) - Automatically enforce prefixes or keywords in PR branch names.
 
-[Assign Reviewers Based on Target Branch](#review-target-branch) - Automatically assign PR reviewers for target branches that include a specified keyword.
+[Branch-Based Review Policies](#review-branch) - Automatically assign PR reviewers for target branches that include a specified keyword.
 
 
 <a name="enforce-branch-name"></a>
 ## Enforce Branch Naming Conventions
 
 --8<-- "docs/automations/standard/branch-management/enforce-branch-name/README.md:example"
+
+<a name="review-branch"></a>
+## Branch-Based Review Policies
+
+--8<-- "docs/automations/standard/review-assignment/review-branch/README.md:example"
 
 ## Additional Resources
 
