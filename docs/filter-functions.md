@@ -382,7 +382,7 @@ The output lists the Git provider users, e.g., GitHub users, which are mapped fr
 
 !!! note
 
-    The `codeExperts` filter function calls gitStream app API with the `repo` context to calculate the estimated review time value.
+    The `codeExperts` filter function calls gitStream app API with the `repo` context to calculate the experts.
 
 <div class="filter-details" markdown=1>
 
@@ -442,8 +442,8 @@ Encode data into Base64 encoded string. When an encoded string is passed as inpu
 
 #### `estimatedReviewTime`
 
-Returns the estimated review time in minutes based on statistical model.
-The model uses the amount of additions and deletions statistics for each file type with additional information about the commits and base branch.
+Returns the estimated review time in minutes based on an ML model.
+The model prediction is computed based on the PR metadata data (e.g. branch name, commits) and mainly by the number of additions and deletions for each type of change (Code, Data, Configuration, etc..)
 
 !!! note
 
