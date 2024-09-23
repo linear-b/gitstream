@@ -443,13 +443,11 @@ Encode data into Base64 encoded string. When an encoded string is passed as inpu
 #### `estimatedReviewTime`
 
 Returns the estimated review time in minutes based on an ML model.
-The model prediction is computed based on the PR metadata data (e.g. branch name, commits) and mainly by the number of additions and deletions for each type of change (Code, Data, Configuration, etc..)
+The model estimation is computed based on the PR metadata data (e.g. branch name, commits) and mainly by the number of additions and deletions for each type of change (Code, Data, Configuration, etc..)
 
 !!! note
 
     The `estimatedReviewTime` filter function calls gitStream app API with the `branch` context to calculate the estimated review time value.
-
-The following files are excluded when calculating this value:
 
 <div class="filter-details" markdown=1>
 
