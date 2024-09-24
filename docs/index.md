@@ -19,13 +19,7 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 	**Contextual Labels**
 
 	Reduce the mental burden of code reviews with labels that provide a high degree of context. Indicate an [estimated time to review](automations/provide-estimated-time-to-review/README.md) or flag potential issues with [Jira information](automations/integrations/jira/label-missing-jira-info/README.md), [missing tests](automations/label-prs-without-tests/README.md), [deleted files](automations/label-deleted-files/README.md), and more.
-
-!!! quote ""
-	![Assign Code Experts](assets/code-experts-highlight.png){: style="border-radius:4px;width:50%", align=right}
-
-	**Review Assignment**
-
-	Identifying the correct people to review a PR can take time, particularly for complex projects and repos requiring deep expertise. [Assign code experts](automations/standard/review-assignment/assign-code-experts/README.md) to review complex PRs, [notify your security team about sensitive changes](automations/standard/review-assignment/review-sensitive-files/README.md), and automatically [assign reviewers based on the contents of the PR](automations/assign-reviewers-by-directory/README.md).
+ssignment/assign-code-experts/README.md) to review complex PRs, [notify your security team about sensitive changes](automations/standard/review-assignment/review-sensitive-files/README.md), and automatically [assign reviewers based on the contents of the PR](automations/assign-reviewers-by-directory/README.md).
 
 !!! quote ""
 	![Change Deprecated Components](assets/change-deprecated-highlight.png){: style="border-radius:4px;width:50%", align=left}
