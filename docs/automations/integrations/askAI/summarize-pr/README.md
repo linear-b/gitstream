@@ -27,7 +27,7 @@ Use AI to generate a concise bullet-point summary of the changes in the pull req
     ```
     <div class="result" markdown>
         <span>
-        [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/askAI/askAI-QA.cm){ .md-button }
+        [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/askAI/askAI_summarize.cm){ .md-button }
         </span>
     </div>
 <!-- --8<-- [end:example]-->
