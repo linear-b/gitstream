@@ -25,7 +25,7 @@ Use AI to suggests additional test cases for uncovered or modified functions in 
     ```
     <div class="result" markdown>
         <span>
-        [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/askAI/askAI-QA.cm){ .md-button }
+        [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/askAI/askAI_tests.cm){ .md-button }
         </span>
     </div>
 <!-- --8<-- [end:example]-->

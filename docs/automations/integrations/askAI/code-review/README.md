@@ -25,7 +25,7 @@ Use AI to perform a comprehensive code review, identify bugs, security risks, pe
     ```
     <div class="result" markdown>
         <span>
-        [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/askAI/askAI-CR.cm){ .md-button }
+        [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/askAI/askAI_CR.cm){ .md-button }
         </span>
     </div>
 <!-- --8<-- [end:example]-->
