@@ -19,7 +19,7 @@ automations:
     on:
       - label_added
     if:
-      - {{ pr.labels | match(term="/ask-ai qa") | some }}
+      - {{ pr.labels | includes(term="/ask-ai qa") }}
     run:
       - action: add-comment@v1
         args:
