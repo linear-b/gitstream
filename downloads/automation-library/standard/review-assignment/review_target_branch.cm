@@ -1,0 +1,30 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+automations:
+  {% for item in branches %}
+  review_target_branch_{{ item.name }}: 
+    if:       
+    - {{ pr.target| match(regex=item.prefix) }}
+    run:
+      - action: set-required-approvals@v1
+        args:
+          approvals: {{ item.reviews }}
+      - action: add-comment@v1
+        args: 
+          comment: | 
+            PRs to the {{ item.name }} branch require {{ item.reviews }} review(s).
+      - action: add-reviewers@v1
+        args:
+          reviewers: [{{ item.reviewers }}]
+  {% endfor %}
+
+branches:
+    - name: Release
+      prefix: r/^release/
+      reviewers: org/release-team
+      reviews: 4
+    - name: Experimental
+      prefix: r/^experimental-/
+      reviewers: org/experiment-team
+      reviews: 1
