@@ -295,6 +295,8 @@ The source context include all code changes, it is not safe to share it with unk
   "name": String, # The check name
   "status": String, # The check status: `queued`, `in_progress`, `completed`
   "conclusion": String, # The check conclusion: `action_required`, `cancelled`, `failure` `neutral`, `success`, `skipped`, `stale`, `timed_out`
+  "title": String, # the check title
+  "total_time": Integer, # the total time the check took, in Seconds
 }
 ```
 
