@@ -13,7 +13,7 @@ Check that you see gitStream app on repository's Settings > GitHub apps:
 In case you don't see it, visit the marketplace and install it for free: https://github.com/marketplace/gitstream-by-linearb
 
 #### Did you set the workflow files correctly?
-Check you have placed these two files in your repository with these exact names: 
+Check you have placed these two files in your repository with these exact names:
 
 1. `gitstream.cm` in the `cm` repo, (for org level installs), or `.cm/gitstream.cm` on all other repositories
 2. `.github/workflows/gitstream.yml`
@@ -40,12 +40,22 @@ to the **Allow specified actions and reusable workflows** list, if it is shown.
 ![GitHub allow marketplace actions](screenshots/github_settings_allow_specified_actions
 .png)
 
+#### Adding new repo? Make sure to enable gitStream for it
+
+1. Go to https://github.com/apps/gitstream-cm and then
+2. click the `Configure` button
+3. If you see organization selection, choose the relevant org
+4. Scroll down to `Repository access`
+5. Make sure the repo you want is covered, i.e. either `All repositories` is checked or the repo is checked in the `Only select repositories` list
+
+![GitHub repository access](screenshots/github_repository_access.png)
+
 #### Using org level? Did you enable gitStream for your `cm` repo
 
 Make sure you have added the `cm` repo to the repos gitStream should run on
 ![GitHub cm repo](screenshots/repo_in_org_setup.png)
 #### Are you using the default runners along with the "IP allow list" feature on GitHub?
-<a href="https://docs.github.com/en/enterprise-cloud@latest/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/managing-allowed-ip-addresses-for-your-organization#using-github-actions-with-an-ip-allow-list" target="_blank">According to GitHub</a>, in order to use GitHub actions with the allow list, you must use self-hosted runners or GitHub-hosted larger runners with static IP address ranges and add their IP to the allow list. 
+<a href="https://docs.github.com/en/enterprise-cloud@latest/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/managing-allowed-ip-addresses-for-your-organization#using-github-actions-with-an-ip-allow-list" target="_blank">According to GitHub</a>, in order to use GitHub actions with the allow list, you must use self-hosted runners or GitHub-hosted larger runners with static IP address ranges and add their IP to the allow list.
 
 When using GitHub's default runners, you will encounter the following error: "The repository owner has an IP allow list enabled, and [IP] is not permitted to access this repository," which indicates that GitHub is blocking the action. You can verify if the IP is part of GitHub's CIDR ranges by using the following <a href="https://api.github.com/meta" target="_blank">list</a>
 
@@ -59,8 +69,8 @@ This error indicates that gitStream is unable to locate the file `.github/workfl
 
 ## I have rules that should have blocked merge, but the PR can be merged still
 
-For example, when using the [`set-required-approvals`](/automation-actions#set-required-approvals) 
-action, gitStream can ensure the PR got enough approvals before it can be merged. gitStream does that 
+For example, when using the [`set-required-approvals`](/automation-actions#set-required-approvals)
+action, gitStream can ensure the PR got enough approvals before it can be merged. gitStream does that
 by running as a check and marking the check conclusion as failed. In order for the PR to be blocked, gitStream should be set as a required check in the repo: [instructions here](/github-installation#github-merge-block).
 
 ![Merge enabled](screenshots/merge-enabled-example.png)
@@ -69,7 +79,7 @@ by running as a check and marking the check conclusion as failed. In order for t
 
 In order for gitStream to be listed as a required check, it needs to be triggered at least once in that repo. First create a new PR so gitStream is triggered.
 
-Check it under repository's Settings > Branches: 
+Check it under repository's Settings > Branches:
 
 ![Branch protection rules](screenshots/branch_protection_in_github.png)
 
@@ -79,7 +89,7 @@ Check it under repository's Settings > Branches:
 
 When using repository level rules, you can edit the `.github/workflows/gitstream.yml` and uncomment the `if` line, you can edit and replace the bot name with the bot name you want to ignore (`dependabot[bot]` in the example below).
 
-!!! note 
+!!! note
 
     This will not work for org level rules
 
