@@ -37,10 +37,7 @@ Create a `cm` project (repository) in your GitLab group, and create a `gitstream
 	You can also define specific repo-level rules under the `.cm` folder in each of the connected repositories
 
 !!! example "Example Configuration"
-		Here is an example of a gitStream configuration file to set up some basic workflow automations.
-		```yaml+jinja
 		--8<-- "docs/downloads/gitstream.cm"
-		```
 
 ## Create a GitLab Pipeline
 
