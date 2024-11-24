@@ -28,3 +28,7 @@ automations:
 has:
   jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
   jira_ticket_in_branch: {{ branch.name | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
+
+tickets:
+  - {{branch.name | capture(regex=r/\b[A-Za-z]+-\d+\b/)}}
+  - {{pr.title | capture(regex=r/\b[A-Za-z]+-\d+\b/)}}
