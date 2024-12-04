@@ -32,8 +32,8 @@ For all other actions, gitStream executes the actions in the order they are list
 - [`request-changes`](#request-changes) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`require-reviewers`](#require-reviewers) :fontawesome-brands-github:
 - [`run-github-workflow`](#run-github-workflow) :fontawesome-brands-github:
-- [`send-http-request`](#send-http-request) :fontawesome-solid-flask: :fontawesome-brands-github: :fontawesome-brands-gitlab:
-- [`send-slack-message`](#send-slack-message) :fontawesome-solid-flask: :fontawesome-brands-github:
+- [`send-http-request`](#send-http-request) :fontawesome-brands-github:
+- [`send-slack-message`](#send-slack-message) :fontawesome-brands-github:
 - [`set-required-approvals`](#set-required-approvals) :fontawesome-brands-github:
 - [`update-description`](#update-description) :fontawesome-brands-github:
 - [`update-title`](#update-title) :fontawesome-brands-github:
@@ -400,7 +400,7 @@ has:
   	* This action will invoke the run of a workflow dispatch; thus, it might result in significant GitHub action minutes charge.
   	* We encourage you to use this action with [custom triggers](./execution-model.md#explicit-triggers)
 
-#### `send-http-request` :fontawesome-solid-flask: :fontawesome-brands-github: :fontawesome-brands-gitlab:
+#### `send-http-request` :fontawesome-brands-github:
 
 The action, once triggered, sends an HTTP request to the specified URL
 <div class="filter-details" markdown=1>
@@ -430,7 +430,7 @@ automations:
           body: '{"text": "Hello, world!"}'
 ```
 
-#### `send-slack-message` :fontawesome-solid-flask: :fontawesome-brands-github:
+#### `send-slack-message` :fontawesome-brands-github:
 
 The action, once triggered, sends a webhook with a message content to a Slack app.
 To use this action, [create a Slack app](https://api.slack.com/messaging/webhooks#getting_started) with Incoming Webhooks enabled. gitStream uses the webhook URL to send the message.
