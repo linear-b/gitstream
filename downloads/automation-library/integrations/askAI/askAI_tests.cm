@@ -1,0 +1,21 @@
+manifest:
+  version: 1.0
+
+triggers:
+  on:
+    - commit
+    - pr_created
+
+automations:
+  ask_ai_describe:
+    if:
+      - {{ pr.labels | match(term="askai tests") | some }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            # 🧪 Test Suggestions 🧪
+            {{ source | askAI("QA tester",
+              "Identify any new or modified functions without test coverage in this PR.
+              Suggest specific test cases to add, including edge cases.
+              If all functions are covered, return 'No additional tests needed.'", env.OPEN_AI_TOKEN) | encode }}
