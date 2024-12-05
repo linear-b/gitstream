@@ -61,7 +61,7 @@ const EXCLUDE_PATTERN = new RegExp(IGNORE_FILES_REGEX_LIST.join('|'));
  */
 const shouldExcludeFile = fileObject => {
   const shouldExludeByName = EXCLUDE_PATTERN.test(fileObject.original_file);
-  const shouldExludeBySize = (fileObject.diff?.split(' ').length ?? 0) > 800;
+  const shouldExludeBySize = (fileObject.diff?.split(' ').length ?? 0) > 1000;
 
   return shouldExludeByName || shouldExludeBySize;
 };
