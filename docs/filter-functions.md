@@ -20,7 +20,7 @@ The following functions are supported in addition to the built-in functions prov
 
 | Function                                                                                                       | Input                  | Args                            | Output                 |
 | -------------------------------------------------------------------------------------------------------------- | ---------------------- | ------------------------------- | ---------------------- |
-| [`capture`](#capture)<br />Find and return the first occurrence of a regex in the input string                 | String                 | `regex`                         | [Objects]              |
+| [`capture`](#capture)<br />Find and return the first occurrence of a regex in the input string                 | String                 | `regex`                         | String              |
 | [`difference`](#difference)<br />Given two lists, keep only items that are in the 1st list but not in the 2nd. | [Objects]              | `list`                          | [Objects]              |
 | [`every`](#every)<br />Checks whether all element in the list are `true`                                       | [Bool]                 | -                               | Bool                   |
 | [`filter`](#filter)<br />Reduce list of items into a list of same items that match the specified term          | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
@@ -94,7 +94,7 @@ Extract the first match of the regex in the input string. If no match is found, 
 | -------- | ---------|-----------|------------------------------------------------ |
 | - | Input  | String    | The string to find the match in |
 | `regex`  | Input |  String  | Search term to match with the input string |
-| -  | Output  | Bool   | The first substring that match the provided regex |
+| -  | Output  | String   | The first substring that matches the provided regex |
 
 </div>
 
