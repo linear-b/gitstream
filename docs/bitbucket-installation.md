@@ -35,7 +35,7 @@ Create a `gitstream.cm` rules file in the root directory of your repository's de
 
 !!! example "Example Configuration"
     ```yaml
-    --8<-- "docs/downloads/gitstream.cm"
+    --8<-- "docs/downloads/gitstream-bb.cm"
     ```
 
 ## Create a Bitbucket Pipeline

@@ -12,6 +12,7 @@ Actions are the end results of the automation described in your `.cm` file.
 
     - :fontawesome-brands-github: Supported on GitHub
     - :fontawesome-brands-gitlab: Supported on GitLab
+    - :fontawesome-brands-bitbucket: Supported on Bitbucket
     - :fontawesome-solid-flask: Open beta - Feature is under development and currently available for all
 
 ## Overview
@@ -19,20 +20,20 @@ Actions are the end results of the automation described in your `.cm` file.
 [`send-http-request`](#send-http-request) is executed immediately after the evaluation of the condition.
 For all other actions, gitStream executes the actions in the order they are listed per automation. If an action result fails, the following actions will not be executed.
 
-- [`add-comment`](#add-comment) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`add-comment`](#add-comment) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`add-github-check`](#add-github-check) :fontawesome-brands-github:
 - [`add-label`](#add-label) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`add-labels`](#add-labels) :fontawesome-brands-github: :fontawesome-brands-gitlab:
-- [`add-reviewers`](#add-reviewers) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`add-reviewers`](#add-reviewers) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`add-thread`](#add-thread) :fontawesome-brands-gitlab:
-- [`approve`](#approve) :fontawesome-brands-github: :fontawesome-brands-gitlab:
-- [`close`](#close) :fontawesome-brands-github: :fontawesome-brands-gitlab:
-- [`explain-code-experts`](#explain-code-experts) :fontawesome-brands-github: :fontawesome-brands-gitlab:
-- [`merge`](#merge) :fontawesome-brands-github: :fontawesome-brands-gitlab:
-- [`request-changes`](#request-changes) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`approve`](#approve) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+- [`close`](#close) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+- [`explain-code-experts`](#explain-code-experts) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+- [`merge`](#merge) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+- [`request-changes`](#request-changes) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`require-reviewers`](#require-reviewers) :fontawesome-brands-github:
 - [`run-github-workflow`](#run-github-workflow) :fontawesome-brands-github:
-- [`send-http-request`](#send-http-request) :fontawesome-brands-github:
+- [`send-http-request`](#send-http-request) :fontawesome-brands-github: :fontawesome-brands-bitbucket:
 - [`send-slack-message`](#send-slack-message) :fontawesome-brands-github:
 - [`set-required-approvals`](#set-required-approvals) :fontawesome-brands-github:
 - [`update-description`](#update-description) :fontawesome-brands-github:
@@ -60,7 +61,7 @@ automations:
 
 ## Reference
 
-#### `add-comment` :fontawesome-brands-github: :fontawesome-brands-gitlab:
+#### `add-comment` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
 This action, once triggered, adds a comment to the PR.
 
@@ -156,7 +157,7 @@ This is a managed action, when a PR updates existing labels that were added by g
 </div>
 
 
-#### `add-reviewers` :fontawesome-brands-github: :fontawesome-brands-gitlab:
+#### `add-reviewers` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
 This action, once triggered, sets a specific reviewer.
 
@@ -236,7 +237,7 @@ automations:
           gt: 10
 ```
 
-#### `approve` :fontawesome-brands-github: :fontawesome-brands-gitlab:
+#### `approve` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
 This action, once triggered, approves the PR for merge.
 
@@ -251,7 +252,7 @@ automations:
       - action: approve@v1
 ```
 
-#### `close` :fontawesome-brands-github: :fontawesome-brands-gitlab:
+#### `close` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
 This action, once triggered, close the PR without merging.
 
@@ -269,7 +270,7 @@ automations:
       - action: close@v1
 ```
 
-#### `merge` :fontawesome-brands-github: :fontawesome-brands-gitlab:
+#### `merge` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
 Once triggered, merge the PR if possible. It can be set to wait for all checks to pass or only required ones.
 
@@ -294,7 +295,7 @@ automations:
           rebase_on_merge: true
 ```
 
-#### `request-changes` :fontawesome-brands-github: :fontawesome-brands-gitlab:
+#### `request-changes` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
 This action, once triggered, requests changes on the PR. As long as request change is set, gitStream will block the PR merge.
 
@@ -400,7 +401,7 @@ has:
   	* This action will invoke the run of a workflow dispatch; thus, it might result in significant GitHub action minutes charge.
   	* We encourage you to use this action with [custom triggers](./execution-model.md#explicit-triggers)
 
-#### `send-http-request` :fontawesome-brands-github:
+#### `send-http-request` :fontawesome-brands-github: :fontawesome-brands-bitbucket:
 
 The action, once triggered, sends an HTTP request to the specified URL
 <div class="filter-details" markdown=1>
