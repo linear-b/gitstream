@@ -23,7 +23,7 @@ In order to support automations that either Approve or Merge PRs, GitHub API req
 
 ## What repos are supported?
 
-Any repo in GitHub is supported. More Git providers are planned soon.
+gitStream supports repositories in GitHub, GitLab, and Bitbucket. Note that the `add-label` action is not supported in Bitbucket as it does not have a native labeling feature.
 
 ## Can I use gitStream with Merge Queues?
 
