@@ -42,6 +42,30 @@
   <a href="https://github.com/linear-b/gitstream/discussions/102">Feature Updates</a>
   </p>
 
+## 🤝 Community Engagement
+
+We believe in the power of community and welcome contributions from developers around the world. Whether you're fixing bugs, adding new features, or improving documentation, your contributions are valuable to us. Please check our [contribution guidelines](https://github.com/linear-b/gitstream/blob/main/CONTRIBUTING.md) to get started.
+
+Join our [community discussions](https://github.com/linear-b/gitstream/discussions) to share your ideas, ask questions, and connect with other gitStream users.
+
+## 🧠 askAI Capabilities
+
+We're excited to introduce the askAI features that leverage AI to enhance your code review process. With askAI, you can:
+
+* Perform comprehensive code reviews to identify bugs, security risks, and style guide violations.
+* Generate concise summaries of PR changes to quickly understand the scope of modifications.
+* Suggest additional test cases for uncovered or modified functions, including edge cases.
+
+### askAI Examples
+
+- **Code Review**: Automatically perform a code review using AI to identify potential issues and suggest improvements. [Learn more](https://docs.gitstream.cm/automations/integrations/askAI/code-review/README.md).
+
+- **Summarize PR Changes**: Use AI to generate a bullet-point summary of changes in a pull request. [Learn more](https://docs.gitstream.cm/automations/integrations/askAI/summarize-pr/README.md).
+
+- **Suggest Tests**: AI suggests additional test cases for new or modified functions in your PR. [Learn more](https://docs.gitstream.cm/automations/integrations/askAI/add-tests/README.md).
+
+Explore our [documentation](https://docs.gitstream.cm) to get started with these features and see how they can streamline your workflow.
+
 
 ## ⭐️ Why gitStream?
 Our research shows that code reviews are [the most consistent bottleneck in the software development process](https://devinterrupted.substack.com/p/analysis-the-quickest-path-to-halving?utm_source=G&utm_medium=referral&utm_campaign=gitStream+-+GitHub+Repo), so we built gitStream to enable dev teams to use simple YAML configurations to reduce code review toil and improve software quality.
