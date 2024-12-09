@@ -58,7 +58,6 @@ The table below lists supported explicit triggers, categorized into those enable
 | :fontawesome-brands-github: transition from closed to open            | `pr_reopened`                                | `off`                          |
 | :fontawesome-brands-github: Approving the PR                          | `pr_approved`                                | `off`                          |
 
-
 Explicit triggers are set independently per each automation block and can be configured at the file level, specific to each automation separately or in combination. If triggers are listed at the file level **and** specific automation, the automation will be triggered according to both triggers.
 If an automation block does not have explicit triggers configured, it will be triggered according to the default (implicit) triggers.
 
