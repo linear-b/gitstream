@@ -1,0 +1,19 @@
+manifest:
+  version: 1.0
+
+triggers:
+  on:
+    - commit
+    - pr_created
+
+automations:
+  ask_ai_describe:
+    if:
+      - {{ pr.labels | match(term="askai summarize") | some }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            # 📜 PR Summary 📜
+            {{ source | askAI("Experienced developer",
+              "Summarize the changes in this PR in bullet points.", env.OPEN_AI_TOKEN) | encode }}
