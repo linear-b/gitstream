@@ -68,9 +68,12 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 	
 	That's it! Now sit back and watch gitStream run automation rules on your next PR.
 
-=== ":fontawesome-brands-bitbucket: BitBucket"
+=== ":fontawesome-brands-bitbucket: Bitbucket"
 
-	Coming soon
+	1. <a href="https://app.linearb.io/login" target="_blank">Login</a>, or <a href="https://app.linearb.io/sign-up" target="_blank">create a free account</a> on the LinearB app.
+	2. Connect gitStream to your Bitbucket repos by following the steps described in the [Bitbucket installation guide](bitbucket-installation.md).
+	
+	That's it! Now sit back and watch gitStream run automation rules on your next PR.
 
 
 ## Get Involved

@@ -61,7 +61,7 @@ Our research shows that code reviews are [the most consistent bottleneck in the 
 
 ## 🚀 Get Started
 
-gitStream is a GitHub / GitLab app that processes automations defined in Continuous Merge (CM) automation files contained in your git repos. You can test gitStream automations on your own PRs via the [gitStream playground](https://app.gitstream.cm/playground).
+gitStream is a GitHub / GitLab / Bitbucket app that processes automations defined in Continuous Merge (CM) automation files contained in your git repos. You can test gitStream automations on your own PRs via the [gitStream playground](https://app.gitstream.cm/playground).
 
 If you're ready to install gitStream, or want to explore its automation capabilities, [head over to the docs](https://docs.gitstream.cm). You can have your first automation up and running in as little as 2 minutes.
 
