@@ -56,7 +56,7 @@ The table below lists supported explicit triggers, categorized into those enable
 | :fontawesome-brands-github: Transition from draft to ready for review | `pr_ready_for_review`                        | `off`                          |
 | :fontawesome-brands-github: transition from any state to closed       | `pr_closed`                                  | `off`                          |
 | :fontawesome-brands-github: transition from closed to open            | `pr_reopened`                                | `off`                          |
-| :fontawesome-brands-github: Transition from any state to approved     | `pr_approved`                                | If there is an automation with one of the actions: `require-reviewers`, `set-required-approvals` or `merge`, or uses `pr.status` or `pr.approvals` contexts                          |
+| :fontawesome-brands-github: Transition from any state to approved     | `pr_approved`                                | If there is an automation with one of the actions: `require-reviewers`, `set-required-approvals` or `merge`, or uses `pr.approvals` context variable  |
 
 Explicit triggers are set independently per each automation block and can be configured at the file level, specific to each automation separately or in combination. If triggers are listed at the file level **and** specific automation, the automation will be triggered according to both triggers.
 If an automation block does not have explicit triggers configured, it will be triggered according to the default (implicit) triggers.
