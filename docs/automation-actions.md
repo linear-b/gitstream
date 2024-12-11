@@ -365,10 +365,10 @@ This action, once triggered, will start a workflow dispatch automation with the 
 
 | Args                    | Usage    | Type   | Description                                                                                                                                                                                                                             |
 | ----------------------- | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `workflow`              | Required | String | The ID or name of the workflow dispatch.                                                                                                                                                                                                |
+| `workflow`              | Required | String | The ID or the path of the workflow dispatch.                                                                                                                                                                                            |
 | `owner`                 | Optional | String | By default, the value of `repo.owner` context variable. The account owner of the repository. Case insensitive.                                                                                                                          |
 | `repo`                  | Optional | String | By default, the value of `repo.name` context variable. The name of the repository without the `.git` extension. Case insensitive.                                                                                                       |
-| `ref`                   | Optional | String | By default, the value of `branch.name` context variable. The account owner of the repository. Case insensitive.                                                                                                                         |
+| `ref`                   | Optional | String | By default, the value of `branch.name` context variable. The branch nem. Case sensitive.                                                                                                                                                |
 | `inputs`                | Optional | String | By default, an empty list. Key-Value list with the arguments to provide to the workflow                                                                                                                                                 |
 | `check_name`            | Optional | String | When added, after the workflow is complete, add the check name to the checks list on GitHub                                                                                                                                             |
 | `stop_ongoing_workflow` | Optional | Bool   | By default, `false`. In case the workflow already runs on the branch, if `true`: cancel the ongoing workflow before running the newly dispatched workflow. If `false`: wait for the old workflow to finish before dispatching a new one |
@@ -397,8 +397,9 @@ has:
 
 !!! attention
 
-  	* This action will invoke the run of a workflow dispatch; thus, it might result in significant GitHub action minutes charge.
+  	* This action will invoke the run of a workflow dispatch; thus, it might result in a significant GitHub action minutes charge.
   	* We encourage you to use this action with [custom triggers](./execution-model.md#explicit-triggers)
+   	* To manually test the webhook dispatch, please [run the workflow](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/manually-running-a-workflow#running-a-workflow){:target="_blank"} before using it with gitStream.
 
 #### `send-http-request` :fontawesome-brands-github:
 
