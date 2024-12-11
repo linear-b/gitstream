@@ -31,6 +31,7 @@ The following functions are supported in addition to the built-in functions prov
 | [`nope`](#nope)<br />Checks whether all element in the list are `false`                                        | [Bool]                 | -                               | Bool                   |
 | [`reject`](#reject)<br />Inverse of [`filter`](#filter), the result list contains non-matching items           | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
 | [`some`](#some)<br />Checks whether at least one element in the list is `true`                                 | [Bool]                 | -                               | Bool                   |
+| [`readFile`](#readfile)<br />Reads the contents of a file from the current branch or "cm" folder               | String                 | `path`                          | String                 |
 
 </div>
 
@@ -826,7 +827,7 @@ Checks diff for matching lines.
 | Argument | Usage    | Type      | Description                                     |
 | ------ | ---------|-----------|------------------------------------------------ |
 | - | Input  | [Object]  | The list of objects      |
-| `regex` | Input   | String  | Regex term to match with the input items, use `\\` for `\` |
+| `regex` | Input   | String  | Regex term to match with the input items, use `\` for `\` |
 | `ignoreWhiteSpaces` | Input   | Bool  | `false` by default, match a named attribute in the input object |
 | :octicons-beaker-24: `caseSensitive` | Input   | Bool  | `true` by default, ignore case when matching terms |
 | - | Output | [Bool]      | `true` for every matching object |
@@ -864,9 +865,28 @@ Then you can use the thresholds to get the right reviewer.
 </div>
 
 Check if the branch author is a rookie
-
+Check if the branch author is a rookie
 ```yaml+jinja
 active_coders: {{ repo | rankByGitActivity(gt=50, weeks=12) }}
+```
+
+#### `readFile`
+
+Reads the contents of a file from the current branch or the "cm" folder and returns it as a string. This function only allows reading files from the "repo" and "cm" directories for security reasons.
+
+<div class="filter-details" markdown=1>
+
+| Argument | Usage    | Type   | Description                                     |
+| -------- | ---------|--------|------------------------------------------------ |
+| -        | Input    | String | The path to the file relative to the "repo" or "cm" directory |
+| -        | Output   | String | The contents of the file as a string            |
+
+</div>
+
+For example, to read a file named `config.yaml` from the "cm" directory:
+
+```yaml+jinja
+{{ "cm/config.yaml" | readFile }}
 ```
 
 #### `rankByGitBlame`
