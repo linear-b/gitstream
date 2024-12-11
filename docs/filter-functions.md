@@ -20,7 +20,7 @@ The following functions are supported in addition to the built-in functions prov
 
 | Function                                                                                                       | Input                  | Args                            | Output                 |
 | -------------------------------------------------------------------------------------------------------------- | ---------------------- | ------------------------------- | ---------------------- |
-| [`capture`](#capture)<br />Find and return the first occurrence of a regex in the input string                 | String                 | `regex`                         | String              |
+| [`capture`](#capture)<br />Find and return the first occurrence of a regex in the input string                 | String                 | `regex`                         | String                 |
 | [`difference`](#difference)<br />Given two lists, keep only items that are in the 1st list but not in the 2nd. | [Objects]              | `list`                          | [Objects]              |
 | [`every`](#every)<br />Checks whether all element in the list are `true`                                       | [Bool]                 | -                               | Bool                   |
 | [`filter`](#filter)<br />Reduce list of items into a list of same items that match the specified term          | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
@@ -31,7 +31,7 @@ The following functions are supported in addition to the built-in functions prov
 | [`nope`](#nope)<br />Checks whether all element in the list are `false`                                        | [Bool]                 | -                               | Bool                   |
 | [`reject`](#reject)<br />Inverse of [`filter`](#filter), the result list contains non-matching items           | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
 | [`some`](#some)<br />Checks whether at least one element in the list is `true`                                 | [Bool]                 | -                               | Bool                   |
-| [`readFile`](#readfile)<br />Reads the contents of a file from the current branch or "cm" folder               | String                 | `path`                          | String                 |
+
 
 </div>
 
@@ -39,26 +39,26 @@ The following functions are supported in addition to the built-in functions prov
 
 <div class="big-summary" markdown=1>
 
-| Function                                                                                                                                                    | Input                                                      | Args                         | Output                  |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------- | ----------------------- |
-| [`allDocs`](#alldocs)<br />Checks the list includes only documents                                                                                          | [`files`](./context-variables.md#files)                    | -                            | Bool                    |
-| [`allImages`](#allimages)<br />Checks the list includes only images                                                                                         | [`files`](./context-variables.md#files)                    | -                            | Bool                    |
-| [`allTests`](#alltests)<br />Checks the list includes only tests                                                                                            | [`files`](./context-variables.md#files)                    | -                            | Bool                    |
-| [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results                                                          | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                   | [String]                |
-| [`decode`](#decode)<br />Decode Base64 encoded string into an object                                                                                        | String (Base64 encoded)                                    | -                            | Object                  |
-| [`encode`](#encode)<br />Encode data into Base64 encoded string                                                                                             | Object                                                     | -                            | String (Base64 encoded) |
-| [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes                                                                         | [`branch`](./context-variables.md#branch)                  | -                            | Integer                 |
-| [`extensions`](#extensions)<br />Lists all the unique file extensions                                                                                       | [String]                                                   | -                            | [String]                |
-| [`extractJitFindings`](#extractjitfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the Jit scan            | [`pr`](./context-variables.md#pr)                          | -                            | Object                  |
-| [`extractSonarFindings`](#extractsonarfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the SonarCloud scan | [`pr`](./context-variables.md#pr)                          | -                            | Object                  |
-| [`explainRankByGitBlame`](#explainrankbygitblame)<br />Short markdown text explaining rankByGitBlame results                                                | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                   | [String]                |
-| [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo                                                                    | [`repo.contributors`](./context-variables.md#repo)         | String                       | Bool                    |
-| [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed                                                                        | [[`FileDiff` ](./context-variables.md#filediff-structure)] | -                            | Bool                    |
-| [`mapToEnum`](#maptoenum)<br />return the enum value matches to the input key                                                                               | String                                                     | Enum object                  | Object                  |
-| [`matchDiffLines`](#matchdifflines)<br />Match every line in diff                                                                                           | [[`FileDiff` ](./context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces` | [Bool]                  |
-| [`rankByGitActivity`](#rankbygitactivity)<br />Get list of contributors based on `git-commit` activity                                                      | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                   | [String]                |
-| [`rankByGitBlame`](#rankbygitblame)<br />Get list of contributors based on `git-blame` results                                                              | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                   | [String]                |
-
+| Function                                                                                                                                                    | Input                                                      | Args                                               | Output                  |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------- | ----------------------- |
+| [`allDocs`](#alldocs)<br />Checks the list includes only documents                                                                                          | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
+| [`allImages`](#allimages)<br />Checks the list includes only images                                                                                         | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
+| [`allTests`](#alltests)<br />Checks the list includes only tests                                                                                            | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
+| [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results                                                          | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
+| [`decode`](#decode)<br />Decode Base64 encoded string into an object                                                                                        | String (Base64 encoded)                                    | -                                                  | Object                  |
+| [`encode`](#encode)<br />Encode data into Base64 encoded string                                                                                             | Object                                                     | -                                                  | String (Base64 encoded) |
+| [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes                                                                         | [`branch`](./context-variables.md#branch)                  | -                                                  | Integer                 |
+| [`extensions`](#extensions)<br />Lists all the unique file extensions                                                                                       | [String]                                                   | -                                                  | [String]                |
+| [`extractJitFindings`](#extractjitfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the Jit scan            | [`pr`](./context-variables.md#pr)                          | -                                                  | Object                  |
+| [`extractSonarFindings`](#extractsonarfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the SonarCloud scan | [`pr`](./context-variables.md#pr)                          | -                                                  | Object                  |
+| [`explainRankByGitBlame`](#explainrankbygitblame)<br />Short markdown text explaining rankByGitBlame results                                                | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
+| [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo                                                                    | [`repo.contributors`](./context-variables.md#repo)         | String                                             | Bool                    |
+| [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed                                                                        | [[`FileDiff` ](./context-variables.md#filediff-structure)] | -                                                  | Bool                    |
+| [`mapToEnum`](#maptoenum)<br />return the enum value matches to the input key                                                                               | String                                                     | Enum object                                        | Object                  |
+| [`matchDiffLines`](#matchdifflines)<br />Match every line in diff                                                                                           | [[`FileDiff` ](./context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces`                       | [Bool]                  |
+| [`rankByGitActivity`](#rankbygitactivity)<br />Get list of contributors based on `git-commit` activity                                                      | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
+| [`rankByGitBlame`](#rankbygitblame)<br />Get list of contributors based on `git-blame` results                                                              | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
+| [`readFile`](#readfile)<br />Reads the contents of a file from the current branch or "cm" folder                                                            | String - The file path                                     | String (optional) - the file type. `txt` or `json` | String                  |
 </div>
 
 ### Named arguments
@@ -870,25 +870,6 @@ Check if the branch author is a rookie
 active_coders: {{ repo | rankByGitActivity(gt=50, weeks=12) }}
 ```
 
-#### `readFile`
-
-Reads the contents of a file from the current branch or the "cm" folder and returns it as a string. This function only allows reading files from the "repo" and "cm" directories for security reasons.
-
-<div class="filter-details" markdown=1>
-
-| Argument | Usage    | Type   | Description                                     |
-| -------- | ---------|--------|------------------------------------------------ |
-| -        | Input    | String | The path to the file relative to the "repo" or "cm" directory |
-| -        | Output   | String | The contents of the file as a string            |
-
-</div>
-
-For example, to read a file named `config.yaml` from the "cm" directory:
-
-```yaml+jinja
-{{ "cm/config.yaml" | readFile }}
-```
-
 #### `rankByGitBlame`
 
 Get list of contributors based on `git-blame` results
@@ -930,4 +911,23 @@ Check if the branch author is a rookie
 
 ```yaml+jinja
 is_rookie: {{ repo | rankByGitBlame(lt=15) | match(term=branch.author) | some }}
+```
+
+#### `readFile`
+
+Reads the contents of a file from the current branch or the "cm" folder and returns it as a string. This function only allows reading files from the "repo" and "cm" directories for security reasons.
+
+<div class="filter-details" markdown=1>
+
+| Argument | Usage  | Type   | Description                                                         |
+| -------- | ------ | ------ | ------------------------------------------------------------------- |
+| -        | Input  | String | The path to the file relative to the "repo" or "cm" directory       |
+| type     | Input  | String | Optional. `txt` by default. The output type - either`txt` or `json` |
+| -        | Output | String | The contents of the file as a string                                |
+</div>
+
+For example, to read a file named `config.yaml` from the "cm" directory:
+
+```yaml+jinja
+{{ "cm/config.yaml" | readFile }}
 ```
