@@ -827,7 +827,7 @@ Checks diff for matching lines.
 | Argument | Usage    | Type      | Description                                     |
 | ------ | ---------|-----------|------------------------------------------------ |
 | - | Input  | [Object]  | The list of objects      |
-| `regex` | Input   | String  | Regex term to match with the input items, use `\` for `\` |
+| `regex` | Input   | String  | Regex term to match with the input items, use `\\` for `\` |
 | `ignoreWhiteSpaces` | Input   | Bool  | `false` by default, match a named attribute in the input object |
 | :octicons-beaker-24: `caseSensitive` | Input   | Bool  | `true` by default, ignore case when matching terms |
 | - | Output | [Bool]      | `true` for every matching object |
@@ -865,7 +865,7 @@ Then you can use the thresholds to get the right reviewer.
 </div>
 
 Check if the branch author is a rookie
-Check if the branch author is a rookie
+
 ```yaml+jinja
 active_coders: {{ repo | rankByGitActivity(gt=50, weeks=12) }}
 ```
