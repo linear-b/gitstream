@@ -33,11 +33,11 @@ For all other actions, gitStream executes the actions in the order they are list
 - [`request-changes`](#request-changes) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`require-reviewers`](#require-reviewers) :fontawesome-brands-github:
 - [`run-github-workflow`](#run-github-workflow) :fontawesome-brands-github:
-- [`send-http-request`](#send-http-request) :fontawesome-brands-github: :fontawesome-brands-bitbucket:
-- [`send-slack-message`](#send-slack-message) :fontawesome-brands-github:
+- [`send-http-request`](#send-http-request) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+- [`send-slack-message`](#send-slack-message) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`set-required-approvals`](#set-required-approvals) :fontawesome-brands-github:
-- [`update-description`](#update-description) :fontawesome-brands-github:
-- [`update-title`](#update-title) :fontawesome-brands-github:
+- [`update-description`](#update-description) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+- [`update-title`](#update-title) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
 !!! note
 
@@ -212,7 +212,7 @@ automations:
           comment: "Please make sure this change request is documented before merging"
 ```
 
-#### `explain-code-experts` :fontawesome-brands-github: :fontawesome-brands-gitlab:
+#### `explain-code-experts` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
 This action, shall add a comment with codeExperts suggestion. If the comment already exists, the comment shall be edited.
 
@@ -401,7 +401,7 @@ has:
   	* This action will invoke the run of a workflow dispatch; thus, it might result in significant GitHub action minutes charge.
   	* We encourage you to use this action with [custom triggers](./execution-model.md#explicit-triggers)
 
-#### `send-http-request` :fontawesome-brands-github: :fontawesome-brands-bitbucket:
+#### `send-http-request` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
 The action, once triggered, sends an HTTP request to the specified URL
 <div class="filter-details" markdown=1>
@@ -431,7 +431,7 @@ automations:
           body: '{"text": "Hello, world!"}'
 ```
 
-#### `send-slack-message` :fontawesome-brands-github:
+#### `send-slack-message` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
 The action, once triggered, sends a webhook with a message content to a Slack app.
 To use this action, [create a Slack app](https://api.slack.com/messaging/webhooks#getting_started) with Incoming Webhooks enabled. gitStream uses the webhook URL to send the message.
@@ -485,7 +485,7 @@ automations:
 
     To allow this action to block merge, you should enable branch protection, and gitStream has to be set as required check in GitHub.
 
-#### `update-description` :fontawesome-brands-github:
+#### `update-description` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 This action, when triggered, updates the PR description with new content.
 
 This is a managed action. When a PR updates, the existing comments that were added by gitStream are re-evaluated, and those that are not applicable are removed.
@@ -520,7 +520,7 @@ jira_ticket_from_title: {{ pr.title | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
 ```
 
 
-#### `update-title` :fontawesome-brands-github:
+#### `update-title` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 This action, when triggered, updates the PR title with new content.
 
 This is a managed action. When a PR updates, the existing comments that were added by gitStream are re-evaluated, and those that are not applicable are removed.
