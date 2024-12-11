@@ -922,7 +922,7 @@ Reads the contents of a file from the current branch or the `cm` repo and return
 | Argument | Usage  | Type   | Description                                                         |
 | -------- | ------ | ------ | ------------------------------------------------------------------- |
 | -        | Input  | String | The relative file path in the current repo. Prepend `../cm/` to get files from the `cm` repo      |
-| type     | Input  | String | The content type. Optional, `txt` by default. Allowed options are `txt` or `json` |
+| `type`     | Input  | String | The content type. Optional, `txt` by default. Allowed options are `txt` or `json` |
 | -        | Output | String | The contents of the file as a string                                |
 </div>
 
