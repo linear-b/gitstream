@@ -915,19 +915,29 @@ is_rookie: {{ repo | rankByGitBlame(lt=15) | match(term=branch.author) | some }}
 
 #### `readFile`
 
-Reads the contents of a file from the current branch or the "cm" folder and returns it as a string. This function only allows reading files from the "repo" and "cm" directories for security reasons.
+Reads the contents of a file from the current branch or the `cm` repo and returns it as a string.
 
 <div class="filter-details" markdown=1>
 
 | Argument | Usage  | Type   | Description                                                         |
 | -------- | ------ | ------ | ------------------------------------------------------------------- |
-| -        | Input  | String | The path to the file relative to the "repo" or "cm" directory       |
-| type     | Input  | String | Optional. `txt` by default. The output type - either`txt` or `json` |
+| -        | Input  | String | The relative file path in the current repo. Prepend `../cm/` to get files from the `cm` repo      |
+| type     | Input  | String | The content type. Optional, `txt` by default. Allowed options are `txt` or `json` |
 | -        | Output | String | The contents of the file as a string                                |
 </div>
 
-For example, to read a file named `config.yaml` from the "cm" directory:
+For example, add a comment with a file's content:
 
 ```yaml+jinja
-{{ "cm/config.yaml" | readFile }}
+automations:
+  add_readme_comment:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            {{ README_CONTENT }}
+
+README_CONTENT: {{ "txt" | readFile("./README.md") | dump }}
 ```
