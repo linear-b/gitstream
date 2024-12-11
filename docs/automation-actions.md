@@ -31,6 +31,7 @@ For all other actions, gitStream executes the actions in the order they are list
 - [`merge`](#merge) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`request-changes`](#request-changes) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`require-reviewers`](#require-reviewers) :fontawesome-brands-github:
+- [`readFile`](#readfile) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`run-github-workflow`](#run-github-workflow) :fontawesome-brands-github:
 - [`send-http-request`](#send-http-request) :fontawesome-brands-github:
 - [`send-slack-message`](#send-slack-message) :fontawesome-brands-github:
@@ -512,10 +513,10 @@ automations:
             {{ jira_ticket_from_title }}
 
 has:
-  jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
+  jira_ticket_in_title: {{ pr.title | includes(regex=r/[A-Za-z]+-\d+/) }}
   jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
 
-jira_ticket_from_title: {{ pr.title | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
+jira_ticket_from_title: {{ pr.title | capture(regex=r/[A-Za-z]+-\d+/) }}
 ```
 
 
@@ -547,8 +548,32 @@ automations:
             {{ jira_ticket_from_desc }} -
 
 has:
-  jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
+  jira_ticket_in_title: {{ pr.title | includes(regex=r/[A-Za-z]+-\d+/) }}
   jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
 
-jira_ticket_from_desc: {{ pr.description | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
+jira_ticket_from_desc: {{ pr.description | capture(regex=r/[A-Za-z]+-\d+/) }}
+
+#### `readFile` :fontawesome-brands-github: :fontawesome-brands-gitlab:
+
+This action, once triggered, reads the content of a specified file from the repository.
+
+<div class="filter-details" markdown=1>
+
+| Args       | Usage | Type      | Description                                     |
+| -----------|------|-----|------------------------------------------------ |
+| `file_path`| Required | String | The path to the file to be read |
+| `encoding` | Optional | String | The encoding of the file, default is `utf-8` |
+
+</div>
+
+```yaml+jinja title="example"
+automations:
+  read_config:
+    if:
+      - true
+    run:
+      - action: readFile@v1
+        args:
+          file_path: "config/settings.yaml"
+          encoding: "utf-8"
 ```
