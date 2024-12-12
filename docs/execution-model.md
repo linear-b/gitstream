@@ -26,11 +26,9 @@ Triggers can be defined globally at the file level or specifically for each auto
 
 #### `triggers` section
 
-Use explicit triggers to enhance the control and customization of automations in gitStream, when you need to define precisely when and how automations should be triggered based on various events and actions within pull requests.
+The `triggers` section in gitStream gives you precise control over when automations execute. It allows you to define conditions based on pull request events using `include` and `exclude` lists to specify branch and repository patterns. These lists determine which branches or repositories trigger or bypass automation but do not affect the events initiating automations.
 
-The `triggers` is section specifies when automations are executed, supporting `include` and `exclude` lists for branch and repository patterns at the file level.
-
-The `on` keyword can also be used within individual automations to define specific events that trigger those automations. Add the `on` keyword under the `triggers` key in the file and/or to a specific automation to define explicit triggers.
+Additionally, the `on` keyword defines specific events that trigger automations. It can be added at the file level (under the `triggers` section) or within individual automations for greater customization. Multiple triggers can be stacked, meaning gitStream will execute the automation for each matching triggering event, allowing flexibility in defining automation behavior
 
 | Key                                                   | Type              | Description                                                    |
 | ----------------------------------------------------- | ----------------- | -------------------------------------------------------------- |
