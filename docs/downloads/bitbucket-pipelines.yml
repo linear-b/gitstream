@@ -26,7 +26,7 @@ pipelines:
             description: workspace/repo
       - step:
           name: /:\ gitstream workflow automation
-          max-time: 5
+          max-time: 15
           clone:
             enabled: false
           services:
