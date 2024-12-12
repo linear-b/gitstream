@@ -26,11 +26,9 @@ Triggers can be defined globally at the file level or specifically for each auto
 
 #### `triggers` section
 
-Use explicit triggers to enhance the control and customization of automations in gitStream, when you need to define precisely when and how automations should be triggered based on various events and actions within pull requests.
+The `triggers` section in gitStream gives you precise control over when automations execute. It allows you to define conditions based on pull request events using `include` and `exclude` lists to specify branch and repository patterns. These lists determine which branches or repositories trigger or bypass automation but do not affect the events initiating automations.
 
-The `triggers` is section specifies when automations are executed, supporting `include` and `exclude` lists for branch and repository patterns at the file level.
-
-The `on` keyword can also be used within individual automations to define specific events that trigger those automations. Add the `on` keyword under the `triggers` key in the file and/or to a specific automation to define explicit triggers.
+Additionally, the `on` keyword defines specific events that trigger automations. It can be added at the file level (under the `triggers` section) or within individual automations for greater customization. Multiple triggers can be stacked, meaning gitStream will execute the automation for each matching triggering event, allowing flexibility in defining automation behavior
 
 | Key                                                   | Type              | Description                                                    |
 | ----------------------------------------------------- | ----------------- | -------------------------------------------------------------- |
@@ -56,7 +54,7 @@ The table below lists supported explicit triggers, categorized into those enable
 | :fontawesome-brands-github: Transition from draft to ready for review | `pr_ready_for_review`                        | `off`                          |
 | :fontawesome-brands-github: transition from any state to closed       | `pr_closed`                                  | `off`                          |
 | :fontawesome-brands-github: transition from closed to open            | `pr_reopened`                                | `off`                          |
-| :fontawesome-brands-github: Approving the PR                          | `pr_approved`                                | `off`                          |
+| :fontawesome-brands-github: Transition from any state to approved     | `pr_approved`                                | If there is an automation with one of the actions: `require-reviewers`, `set-required-approvals` or `merge`, or uses `pr.approvals` context variable  |
 
 Explicit triggers are set independently per each automation block and can be configured at the file level, specific to each automation separately or in combination. If triggers are listed at the file level **and** specific automation, the automation will be triggered according to both triggers.
 If an automation block does not have explicit triggers configured, it will be triggered according to the default (implicit) triggers.
@@ -73,7 +71,7 @@ If an automation block does not have explicit triggers configured, it will be tr
 
 **Exclude/Include prioritization**
 
-- Exclude overrides the include option. Thus, a repo will be excluded when a it matches both the include and exclude lists.
+- Exclude overrides the include option. Thus, a repo will be excluded when it matches the include and exclude lists.
 
     In the following example, the automations in the file will be triggered for all repositories that contain the string `feature`, except for the repository `my_feature`
     ```yaml+jinja
@@ -90,7 +88,7 @@ If an automation block does not have explicit triggers configured, it will be tr
 
 #### Dependabot and Renovate
 
-For example, you can have your normal automations that help developers with their PRs and a separate automation that automates Dependabot or Renovate version bumps. Both automations serve distinctly different purposes: the first helps your developers streamline their PRs, while the other reduces developers' toil by auto-approving version bumps. You will not want to trigger gitStream for Dependabot or Renovate unnecessarily, so you can configure the triggers to exclude the branch where Dependabot or Renovate PRs are created.
+For example, you can have your normal automations that help developers with their PRs and a separate automation that automates Dependabot or Renovate version bumps. Both automations serve distinctly different purposes: the first helps your developers streamline their PRs, while the other reduces developers' toil by auto-approving version bumps. You will not want to unnecessarily trigger gitStream for Dependabot or Renovate, so you can configure the triggers to exclude the branch where Dependabot or Renovate PRs are created.
 
 !!! warning "Required gitStream Plugins"
     This example requires you to install the [`extractDependabotVersionBump`](/filter-function-plugins/#extractdependabotversionbump) and [`compareSemver`](/filter-function-plugins/#comparesemver) plugins.
