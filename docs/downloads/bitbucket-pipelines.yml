@@ -41,7 +41,6 @@ pipelines:
             - docker pull gitstream/rules-engine:latest
             - |
               docker run -v $BITBUCKET_CLONE_DIR/gitstream:/code \
-              -e SLACK_PRIVATE_MISHA_CHANNEL_WEBHOOK=$SLACK_PRIVATE_MISHA_CHANNEL_WEBHOOK \
               -e HEAD_REF=$head_ref \
               -e BASE_REF=$base_ref \
               -e CLIENT_PAYLOAD="$client_payload" \
