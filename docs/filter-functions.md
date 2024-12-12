@@ -939,5 +939,5 @@ automations:
           comment: |
             {{ README_CONTENT }}
 
-README_CONTENT: {{ "txt" | readFile("./README.md") }}
+README_CONTENT: {{ "./README.md" | readFile(output="txt") }}
 ```
