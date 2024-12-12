@@ -54,6 +54,7 @@ The table below lists supported explicit triggers, categorized into those enable
 | :fontawesome-brands-github: Transition from draft to ready for review | `pr_ready_for_review`                        | `off`                          |
 | :fontawesome-brands-github: transition from any state to closed       | `pr_closed`                                  | `off`                          |
 | :fontawesome-brands-github: transition from closed to open            | `pr_reopened`                                | `off`                          |
+| :fontawesome-brands-github: Transition from any state to approved     | `pr_approved`                                | If there is an automation with one of the actions: `require-reviewers`, `set-required-approvals` or `merge`, or uses `pr.approvals` context variable  |
 
 Explicit triggers are set independently per each automation block and can be configured at the file level, specific to each automation separately or in combination. If triggers are listed at the file level **and** specific automation, the automation will be triggered according to both triggers.
 If an automation block does not have explicit triggers configured, it will be triggered according to the default (implicit) triggers.
@@ -70,7 +71,7 @@ If an automation block does not have explicit triggers configured, it will be tr
 
 **Exclude/Include prioritization**
 
-- Exclude overrides the include option. Thus, a repo will be excluded when a it matches both the include and exclude lists.
+- Exclude overrides the include option. Thus, a repo will be excluded when it matches the include and exclude lists.
 
     In the following example, the automations in the file will be triggered for all repositories that contain the string `feature`, except for the repository `my_feature`
     ```yaml+jinja
@@ -87,7 +88,7 @@ If an automation block does not have explicit triggers configured, it will be tr
 
 #### Dependabot and Renovate
 
-For example, you can have your normal automations that help developers with their PRs and a separate automation that automates Dependabot or Renovate version bumps. Both automations serve distinctly different purposes: the first helps your developers streamline their PRs, while the other reduces developers' toil by auto-approving version bumps. You will not want to trigger gitStream for Dependabot or Renovate unnecessarily, so you can configure the triggers to exclude the branch where Dependabot or Renovate PRs are created.
+For example, you can have your normal automations that help developers with their PRs and a separate automation that automates Dependabot or Renovate version bumps. Both automations serve distinctly different purposes: the first helps your developers streamline their PRs, while the other reduces developers' toil by auto-approving version bumps. You will not want to unnecessarily trigger gitStream for Dependabot or Renovate, so you can configure the triggers to exclude the branch where Dependabot or Renovate PRs are created.
 
 !!! warning "Required gitStream Plugins"
     This example requires you to install the [`extractDependabotVersionBump`](/filter-function-plugins/#extractdependabotversionbump) and [`compareSemver`](/filter-function-plugins/#comparesemver) plugins.
