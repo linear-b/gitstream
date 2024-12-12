@@ -4,6 +4,10 @@ description: Install gitStream to your Bitbucket workspace.
 ---
 # How to Setup gitStream with Bitbucket
 
+!!! info "beta is coming soon!"
+
+    Stay tuned as we are getting ready to release the Bitbucket support!
+
 !!! info "Prerequisites"
 
     1. Bitbucket Cloud account
