@@ -922,8 +922,8 @@ Reads the contents of a file from the current branch or the `cm` repo and return
 | Argument | Usage  | Type   | Description                                                         |
 | -------- | ------ | ------ | ------------------------------------------------------------------- |
 | -        | Input  | String | The relative file path in the current repo. Prepend `../cm/` to get files from the `cm` repo      |
-| `type`     | Input  | String | The content type. Optional, `txt` by default. Allowed options are `txt` or `json` |
-| -        | Output | String | The contents of the file as a string                                |
+| `output` | Input  | String | The content type. Optional, `txt` by default. Allowed options are `txt` or `json`. When using `json`, the output will be returned as an Object |
+| -        | Output | String/ Object | The contents of the file as a String or Object                         |
 </div>
 
 For example, add a comment with a file's content:
@@ -939,5 +939,5 @@ automations:
           comment: |
             {{ README_CONTENT }}
 
-README_CONTENT: {{ "txt" | readFile("./README.md") | dump }}
+README_CONTENT: {{ "txt" | readFile("./README.md") }}
 ```
