@@ -963,7 +963,7 @@ automations:
               BackEnd: include {{ TEAMS.back.members | length }} members  
               
 
-TEAMS: {{ "../cm/.TEAMS.json" | readFile(output="json") }}  
+TEAMS: {{ "../cm/TEAMS.json" | readFile(output="json") }}  
 ```
 
 Configuration file example:
