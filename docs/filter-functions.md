@@ -235,13 +235,15 @@ Return `true` for each element in the list that match the search term.
 
 </div>
 
-For example, to check if all code changes are in the `tests` directory:
+Examples:
+
+Check if all code changes are in the `tests` directory:
 
 ```yaml+jinja
 {{ files | match(regex=r/tests\//) | every }}
 ```
 
-For example, to check if there are code changes with specific function call:
+Check if there are code changes with specific function call:
 
 ```yaml+jinja
 {{ source.diff.files | match(attr='diff', term='myFunction') | some }}
@@ -281,13 +283,15 @@ Creates a shallow copy of a portion of a given list, filtered down to just the e
 
 </div>
 
-For example, check if all changes, but JavaScript files are in tests directory:
+Examples:
+
+Check if all changes, but JavaScript files are in tests directory:
 
 ```yaml+jinja
 {{ files | reject(regex=r/\.js$/) | match(regex=r/tests\//') | every }}
 ```
 
-For example, check if all changes except for `config.json` files are formatting:
+Check if all changes except for `config.json` files are formatting:
 
 ```yaml+jinja
 {{ source.diff.files | reject(attr='new_file', regex=r/config\.json$/) | isFormattingChange }}
@@ -922,11 +926,13 @@ Reads the contents of a file from the current branch or the `cm` repo and return
 | Argument | Usage  | Type   | Description                                                         |
 | -------- | ------ | ------ | ------------------------------------------------------------------- |
 | -        | Input  | String | The relative file path in the current repo. Prepend `../cm/` to get files from the `cm` repo      |
-| `output` | Input  | String | The content type. Optional, `txt` by default. Allowed options are `txt` or `json`. When using `json`, the output will be returned as an Object |
-| -        | Output | String/ Object | The contents of the file as a String or Object                         |
+| `output` | Input  | String | The content type. Optional, `txt` by default. Allowed options are `txt` or `json`. When using `json`, the output will be returned as a stringified Object |
+| -        | Output | String | The contents of the file as a String. In case of `json` output, the result will be `JSON.stringified`                         |
 </div>
 
-For example, add a comment with a file's content:
+Examples:
+
+Add a comment with a file's content:
 
 ```yaml+jinja
 automations:
@@ -939,5 +945,45 @@ automations:
           comment: |
             {{ README_CONTENT }}
 
-README_CONTENT: {{ "./README.md" | readFile(output="txt") }}
+README_CONTENT: {{ "./README.md" | readFile() }}
+```
+
+Read JSON configuration file from the `cm` repo and use some of the properties in a comment:
+```
+automations:  
+  describe_teams:  
+    if:  
+      - {{ true }}  
+    run:  
+      - action: add-comment@v1  
+        args:  
+          comment: |  
+              We have {{ TEAMS | length }} teams with {{ TEAMS.front.members | length + TEAMS.back.members | length }} members in total:  
+              FrontEnd: include {{ TEAMS.front.members | length }} members  
+              BackEnd: include {{ TEAMS.back.members | length }} members  
+              
+
+TEAMS: {{ "../cm/.TEAMS.json" | readFile(output="json") }}  
+```
+
+Configuration file example:
+``` JSON
+{  
+  "front": {  
+    "name": "Frontend",  
+    "description": "Frontend team",  
+    "members": [  
+      "John",  
+      "Jane"  
+    ]  
+  },  
+  "back": {  
+    "name": "Backend",  
+    "description": "Backend team",  
+    "members": [  
+      "Alice",  
+      "Bob"  
+    ]  
+  }  
+}  
 ```
