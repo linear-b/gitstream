@@ -45,7 +45,7 @@ Create a `gitstream.cm` rules file in the root directory of your repository's de
 
 ## Create a Bitbucket Pipeline
 
-Once your gitStream configuration file is set up, you need a Bitbucket Pipelines configuration file to trigger gitStream automations. Create a `.bitbucket-pipelines.yml` file in your repository's default branch (usually `master` or `main`) and add the following configuration:
+Once your gitStream configuration file is set up, you need a Bitbucket Pipelines configuration file to trigger gitStream automations. Create a `bitbucket-pipelines.yml` file in your repository's default branch (usually `master` or `main`) and add the following configuration:
 
 ```yaml
 --8<-- "docs/downloads/bitbucket-pipelines.yml"
