@@ -7,7 +7,7 @@ triggers:
     - pr_created
 
 automations:
-  ask_ai_describe:
+  ask_ai_review:
     if:
       - {{ pr.labels | match(term="askai cr") | some }}
     run:
