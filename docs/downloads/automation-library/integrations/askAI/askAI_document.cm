@@ -18,4 +18,4 @@ automations:
             {{ source | askAI("Technical writer",
               "Review the code diff and generate documentation for any newly added features or significant changes. 
               Focus on describing functionality, parameters, and expected behavior. 
-              Format the output in clear, concise bullet points or paragraphs.", env.OPEN_AI_TOKEN) | encode }}
+              Format the output in clear, concise bullet points or paragraphs.", env.OPEN_AI_TOKEN) }}
