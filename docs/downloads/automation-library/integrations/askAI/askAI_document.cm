@@ -9,7 +9,7 @@ triggers:
 automations:
   ask_ai_document:
     if:
-      - {{ pr.labels | match(term="askai tests") | some }}
+      - {{ pr.labels | match(term="askai document") | some }}
     run:
       - action: add-comment@v1
         args:

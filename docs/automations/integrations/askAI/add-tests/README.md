@@ -2,6 +2,7 @@
 title: Automation - Ask AI to Suggest Tests
 description: Use gitStream's integration with AI services to suggests additional tests
 category: [quality, genai, copilot, tests, efficiency]
+starter_kits: [genai]
 ---
 # Ask AI to Suggest Tests
 

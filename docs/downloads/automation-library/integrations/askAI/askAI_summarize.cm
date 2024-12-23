@@ -16,4 +16,4 @@ automations:
           comment: |
             # 📜 PR Summary 📜
             {{ source | askAI("Experienced developer",
-              "Summarize the changes in this PR in bullet points.", env.OPEN_AI_TOKEN) | encode }}
+              "Summarize the changes in this PR in bullet points.", env.OPEN_AI_TOKEN) }}
