@@ -30,10 +30,6 @@ gitStream supports repositories in GitHub, GitLab, and Bitbucket. Note that the 
 Yes. When a merge queue is used, and gitStream is set as a required check, gitStream automation will be invoked with the merge event. The automation will set gitStream to a `Completed` status and `Skipped` conclusion to allow the PR merge.
 ![gitStream with Merge Queue](screenshots/merge-queue-check.png)
 
-## Custom filter functions 
-
-Coming soon.
-
 ## Is there .cm syntax highlighting?
 
 The `.cm` file uses YAML with JINJA2. For your favorite editor to automatically choose the right syntax, you can use modelines.
