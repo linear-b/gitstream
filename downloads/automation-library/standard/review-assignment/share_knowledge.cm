@@ -1,0 +1,17 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  share_knowledge:
+    if:
+      - {{ pr.labels | match(term='Share Knowledge') | some }}
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ repo | codeExperts(gt=30, lt=60) | random }}
+      - action: add-comment@v1
+        args:
+          comment: |
+            gitStream has assigned a reviewer to increase knowledge sharing on this PR.
