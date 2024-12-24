@@ -7,7 +7,7 @@ triggers:
     - pr_created
 
 automations:
-  ask_ai_describe:
+  ask_ai_summarize:
     if:
       - {{ pr.labels | match(term="askai summarize") | some }}
     run:
@@ -16,4 +16,4 @@ automations:
           comment: |
             # 📜 PR Summary 📜
             {{ source | askAI("Experienced developer",
-              "Summarize the changes in this PR in bullet points.", env.OPEN_AI_TOKEN) | encode }}
+              "Summarize the changes in this PR in bullet points.", env.OPEN_AI_TOKEN) }}

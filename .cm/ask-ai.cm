@@ -18,7 +18,7 @@ automations:
           comment: |
             # 📜 PR Summary 📜
             {{ source | askAI("
-              Summarize in simple terms the changes in this PR using bullet points.", env.OPEN_AI_TOKEN) | encode }}
+              Summarize in simple terms the changes in this PR using bullet points.", env.OPEN_AI_TOKEN) }}
 
   cr_code_changes:
     if:
@@ -33,7 +33,7 @@ automations:
               - Finding bugs, security risks, and performance issues
               - Verify best practices and style guide violations
               - Specific improvement suggestions based on the changes",
-              env.OPEN_AI_TOKEN) | encode }}
+              env.OPEN_AI_TOKEN) }}
 
 
 
