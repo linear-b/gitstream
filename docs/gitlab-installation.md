@@ -58,7 +58,7 @@ Once your gitStream configuration file is set up, you need a GitLab CI configura
 
 	First, [register the runner](https://docs.gitlab.com/runner/register/){:target="_blank"} with a tag, and use the named tag in the `.gitlab-ci.yml` file
 
-	### Shell executors
+	**Shell executors**
 
 	Use the tag created above in the workflow file `cm/.gitlab-ci.yml` instead `REGISTERED-TAG`
     ``` yaml+jinja
@@ -70,8 +70,9 @@ Once your gitStream configuration file is set up, you need a GitLab CI configura
 
 	First, [register the runner](https://docs.gitlab.com/runner/register/){:target="_blank"} with a tag, and use the named tag in the `.gitlab-ci.yml` file
 
-	### Kubernetes executors
-	1. Ensure your runner configuration (`config.toml` for example) has the followig:
+	**Kubernetes executors**
+	
+    1. Ensure your runner configuration (`config.toml` for example) has the followig:
 	``` yaml
 	[runners.kubernetes]
     privileged = true
@@ -89,18 +90,16 @@ Once your gitStream configuration file is set up, you need a GitLab CI configura
     - docker pull YOUR-REGISTRY-URL/gitstream/rules-engine:latest
 	```
 	The docker image can be pulled to your private repository from [DockerHub](https://hub.docker.com/r/gitstream/rules-engine){:target=_blank}.  
+
+## Install the gitStream Service
+
+To complete the setup, install the gitStream service in your Bitbucket workspace. Follow the instructions provided in the LinearB app to connect your Bitbucket account and repositories to gitStream.
+
 ## Next Step
-If you successfully complete these instructions, gitStream will now do these two things.
-
-When a PR is created or changed, apply or update a label that provides an estimated time to review.
-![Estimated Review Time label](automations/provide-estimated-time-to-review/provide_estimated_time_to_review.png)
-
-When a `suggest-reviewers` label is applied to a PR, gitStream will comment with a list of code experts.
-![Suggested reviewers](automations/standard/review-assignment/assign-code-experts/assign_code_experts.png)
-
+If you successfully complete these instructions, gitStream will now automate your code review workflows in Bitbucket.
 
 !!! tip "How gitStream Works"
-    Read our guide, [How gitStream Works](/how-it-works/), for a deeper understanding of gitStream's capabilities and how to leverage them fully and to get an overview of the gitStream syntax and automation lifecycle.
+    Read our guide, [How gitStream Works](/how-it-works/), for a deeper understanding of gitStream's capabilities and how to leverage them fully.
 
 ## Additional Resources
 
