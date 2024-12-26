@@ -11,8 +11,8 @@ nav:
   - Guide:
     - GitHub Setup: github-installation.md
     - GitLab Setup: gitlab-installation.md
-    - Bitbucket Setup: bitbucket-installation.md
-    - Custom GitHub App: custom-github-app.md
+    - Bitbucket Cloud Setup: bitbucket-installation.md
+    - Custom GitHub App (GitHub Server): custom-github-app.md
     - How gitStream works: how-it-works.md
     - Your First Automation: quick-start.md
     - How to Test Your Automations: dry-run-mode.md
