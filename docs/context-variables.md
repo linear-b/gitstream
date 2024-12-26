@@ -14,7 +14,7 @@ Context variable are the inputs for the automation conditions or checks.
 	- :fontawesome-brands-gitlab: Supported on GitLab
 	- :fontawesome-brands-bitbucket: Supported on Bitbucket
 	- :octicons-beaker-24: Under development and not available yet.
-    	- :fontawesome-solid-flask: Open beta - Under development and currently available for all
+	- :fontawesome-solid-flask: Open beta - Under development and currently available for all
 
 ## Overview
 
