@@ -2,11 +2,11 @@
 title: How to Setup gitStream with Bitbucket
 description: Install gitStream to your Bitbucket workspace.
 ---
-# How to Setup gitStream with Bitbucket
+# How to Setup gitStream with Bitbucket Cloud
 
 !!! info "gitStream for Bitbucket Cloud is currently in **beta**"
     
-    If you're interested in automating your Bitbucket pull requests and enhancing your development workflow, please [contact our support team](mailto:support@linearb.io) to request access and receive setup instructions.  
+    To start automating your Bitbucket pull requests and enhancing your development workflow, please [contact our support team](mailto:support@linearb.io) to request access and receive setup instructions.  
     We’d love to hear your feedback and collaborate to improve this integration during the beta phase. Thank you for your interest!  
 
 !!! info "Prerequisites"
