@@ -23,6 +23,17 @@ category: [quality, genai, copilot, tests, efficiency]
 
 --8<-- "docs/automations/integrations/askAI/code-review/README.md:example"
 
+## Ask AI for Documentation
+
+--8<-- "docs/automations/integrations/askAI/document/README.md:example"
+
+## Ask AI for Code Improvements
+
+--8<-- "docs/automations/integrations/askAI/improve/README.md:example"
+
+<!-- ## Ask AI for anything
+
+--8<-- "docs/automations/integrations/askAI/code-review/README.md:example" -->
 <!-- --8<-- [end:examples]-->
 
 ## Additional Resources

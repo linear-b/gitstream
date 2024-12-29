@@ -87,6 +87,7 @@ The following sections are used in `.cm` file to describe the desired automation
 
 - [`manifest`](#manifest)
 - [`config`](#config)
+- [`triggers`](#triggers)
 - [`automations`](#automations)
 
 #### `manifest`

@@ -13,7 +13,7 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            {{ source | askAI("Experienced developer", "Summarize in simple terms the changes in this PR using bullet points.", env.OPEN_AI_TOKEN) | encode }}
+            {{ source | askAI("Experienced developer", "Summarize in simple terms the changes in this PR using bullet points.", env.OPEN_AI_TOKEN) }}
 
   generate_pr_desc_on_ask_ai_label:
     on:
@@ -24,4 +24,4 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            {{ source | askAI("qa tester", "Based on the given context, search for new functions without tests and suggest the tests to add. If all functions are covered completely, return 'no tests to suggest.'", env.OPEN_AI_TOKEN) | encode }}
+            {{ source | askAI("qa tester", "Based on the given context, search for new functions without tests and suggest the tests to add. If all functions are covered completely, return 'no tests to suggest.'", env.OPEN_AI_TOKEN) }}
