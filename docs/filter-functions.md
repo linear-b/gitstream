@@ -20,7 +20,7 @@ The following functions are supported in addition to the built-in functions prov
 
 | Function                                                                                                       | Input                  | Args                            | Output                 |
 | -------------------------------------------------------------------------------------------------------------- | ---------------------- | ------------------------------- | ---------------------- |
-| [`capture`](#capture)<br />Find and return the first occurrence of a regex in the input string                 | String                 | `regex`                         | String              |
+| [`capture`](#capture)<br />Find and return the first occurrence of a regex in the input string                 | String                 | `regex`                         | String                 |
 | [`difference`](#difference)<br />Given two lists, keep only items that are in the 1st list but not in the 2nd. | [Objects]              | `list`                          | [Objects]              |
 | [`every`](#every)<br />Checks whether all element in the list are `true`                                       | [Bool]                 | -                               | Bool                   |
 | [`filter`](#filter)<br />Reduce list of items into a list of same items that match the specified term          | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
@@ -32,32 +32,33 @@ The following functions are supported in addition to the built-in functions prov
 | [`reject`](#reject)<br />Inverse of [`filter`](#filter), the result list contains non-matching items           | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
 | [`some`](#some)<br />Checks whether at least one element in the list is `true`                                 | [Bool]                 | -                               | Bool                   |
 
+
 </div>
 
 ### High level functions
 
 <div class="big-summary" markdown=1>
 
-| Function                                                                                                                                                    | Input                                                      | Args                         | Output                  |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------- | ----------------------- |
-| [`allDocs`](#alldocs)<br />Checks the list includes only documents                                                                                          | [`files`](./context-variables.md#files)                    | -                            | Bool                    |
-| [`allImages`](#allimages)<br />Checks the list includes only images                                                                                         | [`files`](./context-variables.md#files)                    | -                            | Bool                    |
-| [`allTests`](#alltests)<br />Checks the list includes only tests                                                                                            | [`files`](./context-variables.md#files)                    | -                            | Bool                    |
-| [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results                                                          | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                   | [String]                |
-| [`decode`](#decode)<br />Decode Base64 encoded string into an object                                                                                        | String (Base64 encoded)                                    | -                            | Object                  |
-| [`encode`](#encode)<br />Encode data into Base64 encoded string                                                                                             | Object                                                     | -                            | String (Base64 encoded) |
-| [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes                                                                         | [`branch`](./context-variables.md#branch)                  | -                            | Integer                 |
-| [`extensions`](#extensions)<br />Lists all the unique file extensions                                                                                       | [String]                                                   | -                            | [String]                |
-| [`extractJitFindings`](#extractjitfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the Jit scan            | [`pr`](./context-variables.md#pr)                          | -                            | Object                  |
-| [`extractSonarFindings`](#extractsonarfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the SonarCloud scan | [`pr`](./context-variables.md#pr)                          | -                            | Object                  |
-| [`explainRankByGitBlame`](#explainrankbygitblame)<br />Short markdown text explaining rankByGitBlame results                                                | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                   | [String]                |
-| [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo                                                                    | [`repo.contributors`](./context-variables.md#repo)         | String                       | Bool                    |
-| [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed                                                                        | [[`FileDiff` ](./context-variables.md#filediff-structure)] | -                            | Bool                    |
-| [`mapToEnum`](#maptoenum)<br />return the enum value matches to the input key                                                                               | String                                                     | Enum object                  | Object                  |
-| [`matchDiffLines`](#matchdifflines)<br />Match every line in diff                                                                                           | [[`FileDiff` ](./context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces` | [Bool]                  |
-| [`rankByGitActivity`](#rankbygitactivity)<br />Get list of contributors based on `git-commit` activity                                                      | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                   | [String]                |
-| [`rankByGitBlame`](#rankbygitblame)<br />Get list of contributors based on `git-blame` results                                                              | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                   | [String]                |
-
+| Function                                                                                                                                                    | Input                                                      | Args                                               | Output                  |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------- | ----------------------- |
+| [`allDocs`](#alldocs)<br />Checks the list includes only documents                                                                                          | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
+| [`allImages`](#allimages)<br />Checks the list includes only images                                                                                         | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
+| [`allTests`](#alltests)<br />Checks the list includes only tests                                                                                            | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
+| [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results                                                          | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
+| [`decode`](#decode)<br />Decode Base64 encoded string into an object                                                                                        | String (Base64 encoded)                                    | -                                                  | Object                  |
+| [`encode`](#encode)<br />Encode data into Base64 encoded string                                                                                             | Object                                                     | -                                                  | String (Base64 encoded) |
+| [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes                                                                         | [`branch`](./context-variables.md#branch)                  | -                                                  | Integer                 |
+| [`extensions`](#extensions)<br />Lists all the unique file extensions                                                                                       | [String]                                                   | -                                                  | [String]                |
+| [`extractJitFindings`](#extractjitfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the Jit scan            | [`pr`](./context-variables.md#pr)                          | -                                                  | Object                  |
+| [`extractSonarFindings`](#extractsonarfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the SonarCloud scan | [`pr`](./context-variables.md#pr)                          | -                                                  | Object                  |
+| [`explainRankByGitBlame`](#explainrankbygitblame)<br />Short markdown text explaining rankByGitBlame results                                                | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
+| [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo                                                                    | [`repo.contributors`](./context-variables.md#repo)         | String                                             | Bool                    |
+| [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed                                                                        | [[`FileDiff` ](./context-variables.md#filediff-structure)] | -                                                  | Bool                    |
+| [`mapToEnum`](#maptoenum)<br />return the enum value matches to the input key                                                                               | String                                                     | Enum object                                        | Object                  |
+| [`matchDiffLines`](#matchdifflines)<br />Match every line in diff                                                                                           | [[`FileDiff` ](./context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces`                       | [Bool]                  |
+| [`rankByGitActivity`](#rankbygitactivity)<br />Get list of contributors based on `git-commit` activity                                                      | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
+| [`rankByGitBlame`](#rankbygitblame)<br />Get list of contributors based on `git-blame` results                                                              | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
+| [`readFile`](#readfile)<br />Reads the contents of a file from the current branch or "cm" folder                                                            | String - The file path                                     | String (optional) - the file type. `txt` or `json` | String                  |
 </div>
 
 ### Named arguments
@@ -234,13 +235,15 @@ Return `true` for each element in the list that match the search term.
 
 </div>
 
-For example, to check if all code changes are in the `tests` directory:
+Examples:
+
+Check if all code changes are in the `tests` directory:
 
 ```yaml+jinja
 {{ files | match(regex=r/tests\//) | every }}
 ```
 
-For example, to check if there are code changes with specific function call:
+Check if there are code changes with specific function call:
 
 ```yaml+jinja
 {{ source.diff.files | match(attr='diff', term='myFunction') | some }}
@@ -280,13 +283,15 @@ Creates a shallow copy of a portion of a given list, filtered down to just the e
 
 </div>
 
-For example, check if all changes, but JavaScript files are in tests directory:
+Examples:
+
+Check if all changes, but JavaScript files are in tests directory:
 
 ```yaml+jinja
 {{ files | reject(regex=r/\.js$/) | match(regex=r/tests\//') | every }}
 ```
 
-For example, check if all changes except for `config.json` files are formatting:
+Check if all changes except for `config.json` files are formatting:
 
 ```yaml+jinja
 {{ source.diff.files | reject(attr='new_file', regex=r/config\.json$/) | isFormattingChange }}
@@ -910,4 +915,75 @@ Check if the branch author is a rookie
 
 ```yaml+jinja
 is_rookie: {{ repo | rankByGitBlame(lt=15) | match(term=branch.author) | some }}
+```
+
+#### `readFile`
+
+Reads the contents of a file from the current branch or the `cm` repo and returns it as a string.
+
+<div class="filter-details" markdown=1>
+
+| Argument | Usage  | Type   | Description                                                         |
+| -------- | ------ | ------ | ------------------------------------------------------------------- |
+| -        | Input  | String | The relative file path in the current repo. Prepend `../cm/` to get files from the `cm` repo      |
+| `output` | Input  | String | The content type. Optional, `txt` by default. Allowed options are `txt` or `json`. When using `json`, the output will be returned as a stringified Object |
+| -        | Output | String | The contents of the file as a String. In case of `json` output, the result will be `JSON.stringified`                         |
+</div>
+
+Examples:
+
+Add a comment with a file's content:
+
+```yaml+jinja
+automations:
+  add_readme_comment:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            {{ README_CONTENT }}
+
+README_CONTENT: {{ "./README.md" | readFile() }}
+```
+
+Read JSON configuration file from the `cm` repo and use some of the properties in a comment:
+```
+automations:  
+  describe_teams:  
+    if:  
+      - {{ true }}  
+    run:  
+      - action: add-comment@v1  
+        args:  
+          comment: |  
+              We have {{ TEAMS | length }} teams with {{ TEAMS.front.members | length + TEAMS.back.members | length }} members in total:  
+              FrontEnd: include {{ TEAMS.front.members | length }} members  
+              BackEnd: include {{ TEAMS.back.members | length }} members  
+              
+
+TEAMS: {{ "../cm/TEAMS.json" | readFile(output="json") }}  
+```
+
+Configuration file example:
+``` JSON
+{  
+  "front": {  
+    "name": "Frontend",  
+    "description": "Frontend team",  
+    "members": [  
+      "John",  
+      "Jane"  
+    ]  
+  },  
+  "back": {  
+    "name": "Backend",  
+    "description": "Backend team",  
+    "members": [  
+      "Alice",  
+      "Bob"  
+    ]  
+  }  
+}  
 ```
