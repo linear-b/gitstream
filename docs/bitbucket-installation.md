@@ -18,7 +18,7 @@ description: Install gitStream to your Bitbucket workspace.
 Bitbucket Installation Overview
 
 1. Designate a gitStream user account.
-2. Create a CM configuration file.
+2. Create a `cm` repo and `.cm` configuration file.
 3. Create a Bitbucket pipeline.
 4. Install the gitStream service.
 
@@ -26,18 +26,19 @@ Bitbucket Installation Overview
 
 gitStream automation rules are executed on behalf of the user account configured when you install the gitStream service. This account must have the necessary permissions to the relevant repositories.
 
-We recommend creating a dedicated service account to control access to individual repositories easily. You can also use your professional or personal Bitbucket account for this, which would result in all automations being executed under that account.
+We recommend creating a dedicated service account to easily control access to individual repositories. You can also use your professional or personal Bitbucket account for this, resulting in all automations being executed under that account.
 
 !!! tip "Use this account when you integrate gitStream"
     Make sure to use this account when authorizing Bitbucket in LinearB.
 
-## Create a CM Configuration File
+## Create a `cm` repo and `.cm` configuration file.
 
-Create a `gitstream.cm` rules file in the root directory of your repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on your repositories. You can name the CM file anything you want as long as it ends in `.cm`.
+Create a `cm` repository in your Bitbucket workspace. This repository must reside in the same project as your target repositories. In the root directory of the default branch (usually `master` or `main`), create a `gitstream.cm` rules file to define the workflow automations. The file can have any name but must end with the `.cm` extension.
 
-!!! info "Configuration files go in the repo's root directory."
-    Your `.cm` files should be placed in the repository's root directory.
-
+!!! info "Configuration File Locations"
+	Group-level rules require your `.cm` files to be placed in the `cm` repository's root directory.
+	You can also define specific repo-level rules under the `.cm` folder in each of the connected repositories
+ 
 !!! example "Example Configuration"
     ```yaml
     --8<-- "docs/downloads/gitstream-bb.cm"
@@ -45,7 +46,7 @@ Create a `gitstream.cm` rules file in the root directory of your repository's de
 
 ## Create a Bitbucket Pipeline
 
-Once your gitStream configuration file is set up, you need a Bitbucket Pipelines configuration file to trigger gitStream automations. Create a `bitbucket-pipelines.yml` file in your repository's default branch (usually `master` or `main`) and add the following configuration:
+Once your gitStream configuration file is set up, you need a Bitbucket Pipelines configuration file to trigger gitStream automations. Create a `bitbucket-pipelines.yml` file in your `cm` repository's default branch and add the following configuration:
 
 ```yaml
 --8<-- "docs/downloads/bitbucket-pipelines.yml"
