@@ -30,7 +30,7 @@ We recommend creating a [dedicated service account](https://docs.gitlab.com/ee/u
 
 Create a `cm` project (repository) in your GitLab group. This repository must be created in the same group or parent group as the target repositories. In the root directory of the default branch (usually `master` or `main`), create a `gitstream.cm` rules file to define the workflow automations. The file name can vary but must end in `.cm`.
 
-!!! info "Configuration files locations"
+!!! info "Configuration File Locations"
 	Group-level rules require your `.cm` files to be placed in the `cm` repository's root directory.
 	You can also define specific repo-level rules under the `.cm` folder in each of the connected repositories.
 
