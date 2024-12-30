@@ -1,0 +1,21 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+on:
+  - comment_added
+
+automations:
+  assign_expert_slash_command:
+    if:
+      - {{ is.requested }}
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ repo | codeExperts(gt=10) }}
+      - action: explain-code-experts@v1 
+        args:
+          gt: 10 
+is:
+  requested: {{ pr.comments | match(attr='content', term='/gitstream auto-assign') | some }}
