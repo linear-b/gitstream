@@ -13,7 +13,7 @@ description: Install gitStream to your GitLab organization.
 GitLab Installation Overview
 
 1. Designate a gitStream user account.
-1. Create a CM configuration file.
+1. Create a `cm` repo and `.cm` configuration file.
 1. Create a GitLab pipeline.
 1. Install the gitStream service. 
 
@@ -26,15 +26,13 @@ We recommend creating a [dedicated service account](https://docs.gitlab.com/ee/u
 !!! tip "Use this account when you integrate gitStream"
     Make sure to use this account when authorizing GitLab in LinearB.
 
-## Create a `cm` repo and a CM Configuration File
+## Create a `cm` repo and `.cm` configuration file.
 
-Group rules are ideal when you want to enforce consistent rules across every repo in your GitLab group. You can define them by creating a special repository named `cm` in the parent group for the git repositories on which you want to run gitStream. Here, you can add automation files that apply to **all** repositories within that group that are connected to gitStream.
+Create a `cm` project (repository) in your GitLab group. This repository must be created in the same group or parent group as the target repositories. In the root directory of the default branch (usually `master` or `main`), create a `gitstream.cm` rules file to define the workflow automations. The file name can vary but must end in `.cm`.
 
-Create a `cm` project (repository) in your GitLab group, and create a `gitstream.cm` rules file in the root directory of your `cm` repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on your organization's repos. You can name the CM file anything you want as long as it ends in `.cm`
-
-!!! info "Configuration files go in the repo's root directory."
-	Group-level rules require your `.cm` files to be placed in the repository's root directory.
-	You can also define specific repo-level rules under the `.cm` folder in each of the connected repositories
+!!! info "Configuration files locations"
+	Group-level rules require your `.cm` files to be placed in the `cm` repository's root directory.
+	You can also define specific repo-level rules under the `.cm` folder in each of the connected repositories.
 
 !!! example "Example Configuration"
 		--8<-- "docs/downloads/gitstream.cm"
