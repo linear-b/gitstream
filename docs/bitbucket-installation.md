@@ -26,16 +26,16 @@ Bitbucket Installation Overview
 
 gitStream automation rules are executed on behalf of the user account configured when you install the gitStream service. This account must have the necessary permissions to the relevant repositories.
 
-We recommend creating a dedicated service account to control access to individual repositories easily. You can also use your professional or personal Bitbucket account for this, which would result in all automations being executed under that account.
+We recommend creating a dedicated service account to easily control access to individual repositories. You can also use your professional or personal Bitbucket account for this, resulting in all automations being executed under that account.
 
 !!! tip "Use this account when you integrate gitStream"
     Make sure to use this account when authorizing Bitbucket in LinearB.
 
 ## Create a `cm` repo and `.cm` configuration file.
 
-Create a `cm` repository in your Bitbucket workspace. This repository must reside in the same project as your target repositories. In the root directory of the default branch (usually `master` or `main`), create a `gitstream.cm` rules file to define the workflow automations. The file can have any name, but it must end with `.cm`.
+Create a `cm` repository in your Bitbucket workspace. This repository must reside in the same project as your target repositories. In the root directory of the default branch (usually `master` or `main`), create a `gitstream.cm` rules file to define the workflow automations. The file can have any name but must end with the `.cm` extension.
 
-!!! info "Configuration files locations"
+!!! info "Configuration File Locations"
 	Group-level rules require your `.cm` files to be placed in the `cm` repository's root directory.
 	You can also define specific repo-level rules under the `.cm` folder in each of the connected repositories
  
