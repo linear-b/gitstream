@@ -6,14 +6,14 @@ description: Install gitStream to your GitLab organization.
 
 !!! info "Prerequisites"
 
-    1. GitLab cloud
-    2. GitLab runner v15 or higher
+    1. GitLab
+    2. GitLab runner v15 or higher with ability to run apk commands
     3. <a href="https://app.linearb.io/login" target="_blank">Login</a>, or <a href="https://app.linearb.io/sign-up" target="_blank">create a free account</a> on the LinearB app, and follow the steps to <a href="https://linearb.helpdocs.io/article/0xxpvue4s9-connect-git-stream-using-a-git-lab-integration" target="_blank">connect gitStream Using a GitLab Integration</a>.
 
 GitLab Installation Overview
 
 1. Designate a gitStream user account.
-1. Create a CM configuration file.
+1. Create a `cm` repo and `.cm` configuration file.
 1. Create a GitLab pipeline.
 1. Install the gitStream service. 
 
@@ -26,21 +26,16 @@ We recommend creating a [dedicated service account](https://docs.gitlab.com/ee/u
 !!! tip "Use this account when you integrate gitStream"
     Make sure to use this account when authorizing GitLab in LinearB.
 
-## Create a `cm` repo and a CM Configuration File
+## Create a `cm` repo and `.cm` configuration file.
 
-Group rules are ideal when you want to enforce consistent rules across every repo in your GitLab group. You can define them by creating a special repository named `cm` in the parent group for the git repositories on which you want to run gitStream. Here, you can add automation files that apply to **all** repositories within that group that are connected to gitStream.
+Create a `cm` project (repository) in your GitLab group. This repository must be created in the same group or parent group as the target repositories. In the root directory of the default branch (usually `master` or `main`), create a `gitstream.cm` rules file to define the workflow automations. The file name can vary but must end in `.cm`.
 
-Create a `cm` project (repository) in your GitLab group, and create a `gitstream.cm` rules file in the root directory of your `cm` repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on your organization's repos. You can name the CM file anything you want as long as it ends in `.cm`
-
-!!! info "Configuration files go in the repo's root directory."
-	Group-level rules require your `.cm` files to be placed in the repository's root directory.
-	You can also define specific repo-level rules under the `.cm` folder in each of the connected repositories
+!!! info "Configuration File Locations"
+	Group-level rules require your `.cm` files to be placed in the `cm` repository's root directory.
+	You can also define specific repo-level rules under the `.cm` folder in each of the connected repositories.
 
 !!! example "Example Configuration"
-		Here is an example of a gitStream configuration file to set up some basic workflow automations.
-		```yaml+jinja
 		--8<-- "docs/downloads/gitstream.cm"
-		```
 
 ## Create a GitLab Pipeline
 
@@ -61,7 +56,7 @@ Once your gitStream configuration file is set up, you need a GitLab CI configura
 
 	First, [register the runner](https://docs.gitlab.com/runner/register/){:target="_blank"} with a tag, and use the named tag in the `.gitlab-ci.yml` file
 
-	### Shell executors
+	**Shell executors**
 
 	Use the tag created above in the workflow file `cm/.gitlab-ci.yml` instead `REGISTERED-TAG`
     ``` yaml+jinja
@@ -73,8 +68,9 @@ Once your gitStream configuration file is set up, you need a GitLab CI configura
 
 	First, [register the runner](https://docs.gitlab.com/runner/register/){:target="_blank"} with a tag, and use the named tag in the `.gitlab-ci.yml` file
 
-	### Kubernetes executors
-	1. Ensure your runner configuration (`config.toml` for example) has the followig:
+	**Kubernetes executors**
+	
+    1. Ensure your runner configuration (`config.toml` for example) has the followig:
 	``` yaml
 	[runners.kubernetes]
     privileged = true
@@ -92,18 +88,16 @@ Once your gitStream configuration file is set up, you need a GitLab CI configura
     - docker pull YOUR-REGISTRY-URL/gitstream/rules-engine:latest
 	```
 	The docker image can be pulled to your private repository from [DockerHub](https://hub.docker.com/r/gitstream/rules-engine){:target=_blank}.  
+
+## Install the gitStream Service
+
+To complete the setup, install the gitStream service in your Bitbucket workspace. Follow the instructions provided in the LinearB app to connect your Bitbucket account and repositories to gitStream.
+
 ## Next Step
-If you successfully complete these instructions, gitStream will now do these two things.
-
-When a PR is created or changed, apply or update a label that provides an estimated time to review.
-![Estimated Review Time label](automations/provide-estimated-time-to-review/provide_estimated_time_to_review.png)
-
-When a `suggest-reviewers` label is applied to a PR, gitStream will comment with a list of code experts.
-![Suggested reviewers](automations/standard/review-assignment/assign-code-experts/assign_code_experts.png)
-
+If you successfully complete these instructions, gitStream will now automate your code review workflows in Bitbucket.
 
 !!! tip "How gitStream Works"
-    Read our guide, [How gitStream Works](/how-it-works/), for a deeper understanding of gitStream's capabilities and how to leverage them fully and to get an overview of the gitStream syntax and automation lifecycle.
+    Read our guide, [How gitStream Works](/how-it-works/), for a deeper understanding of gitStream's capabilities and how to leverage them fully.
 
 ## Additional Resources
 

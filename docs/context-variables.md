@@ -12,8 +12,9 @@ Context variable are the inputs for the automation conditions or checks.
 
 	- :fontawesome-brands-github: Supported on GitHub
 	- :fontawesome-brands-gitlab: Supported on GitLab
+	- :fontawesome-brands-bitbucket: Supported on Bitbucket
 	- :octicons-beaker-24: Under development and not available yet.
-    - :fontawesome-solid-flask: Open beta - Under development and currently available for all
+	- :fontawesome-solid-flask: Open beta - Under development and currently available for all
 
 ## Overview
 
@@ -21,12 +22,12 @@ Context variable are the inputs for the automation conditions or checks.
 
 gitStream includes a collection of variables called contexts.
 
-- [`branch`](#branch) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`branch`](#branch) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`env`](#env) :fontawesome-solid-flask: :fontawesome-brands-github:
-- [`files`](#files) :fontawesome-brands-github: :fontawesome-brands-gitlab:
-- [`pr`](#pr) :fontawesome-brands-github: :fontawesome-brands-gitlab:
-- [`repo`](#repo) :fontawesome-brands-github: :fontawesome-brands-gitlab:
-- [`source`](#source) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`files`](#files) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+- [`pr`](#pr) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+- [`repo`](#repo) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+- [`source`](#source) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
 ### Structures
 
@@ -295,6 +296,8 @@ The source context include all code changes, it is not safe to share it with unk
   "name": String, # The check name
   "status": String, # The check status: `queued`, `in_progress`, `completed`
   "conclusion": String, # The check conclusion: `action_required`, `cancelled`, `failure` `neutral`, `success`, `skipped`, `stale`, `timed_out`
+  "title": String, # the check title
+  "total_time": Integer, # the total time the check took, in Seconds
 }
 ```
 
