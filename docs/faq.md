@@ -14,11 +14,12 @@ Choose which repositories are permitted to use GitHub Actions.
 
 [x] Allow all actions and reusable workflows
 
-## Does gitStream services have access to my code?
+## Does gitStream have access to my code?
 
-Like any other CI/CD automation, the source code is being scanned in the repo and is not shared with any external services. Only metadata related to and affecting the workflow is shared to allow rule-based automation on the repo.
+Like any other CI/CD automation, the source code is being scanned in the repo and is not shared with any external services. Only metadata related to and affecting the workflow is shared to allow rule-based automation on the repo. An exception to this is when you configure your own gitStream plugins that may connect to other services, such as using the [`askAI`](/filter-function-plugins/#askai) plugin, which will provide context to the configured model provider.
 
 ## Why does gitStream require permission to write code?
+
 To support automations that either Approve or Merge PRs, the git providers require code write scope.
 
 ## What repos are supported?
@@ -34,7 +35,7 @@ Yes. When a merge queue is used, and gitStream is set as a required check, gitSt
 
 The `.cm` file uses YAML with JINJA2. For your favorite editor to automatically choose the right syntax, you can use modelines.
 
-Add the following line to the top of the `.cm` file (the default has it already): 
+Add the following line to the top of the `.cm` file (the default has it already):
 
 ```
 # -*- mode: yaml -*-

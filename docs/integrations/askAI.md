@@ -1,39 +1,35 @@
 ---
 title: Integrate gitStream with AI
-description: Use gitStream to integrate with AI services for Review, describe and add tests.
+description: Use gitStream to integrate with AI for different use cases.
 category: [quality, genai, copilot, tests, efficiency]
 ---
 # Integrate gitStream with AI
 
 <!-- --8<-- [start:examples]-->
 !!! warning "Required gitStream Plugins"
-    This example requires you to install the [`askAI`](/filter-function-plugins/#askai) plugin.
+    This example requires you to install the [`askAI`](/filter-function-plugins/#askai) plugin, which will provide context to the configured model provider and may incur API costs.
 
     [Learn more about gitStream plugins](/plugins/).
 
-## Ask AI to Summarize the Changes in a PR
+## Ask AI to summarize the changes in a PR
 
 --8<-- "docs/automations/integrations/askAI/summarize-pr/README.md:example"
 
-## Ask AI to Suggest Tests
-
---8<-- "docs/automations/integrations/askAI/add-tests/README.md:example"
-
-## Ask AI for a Code Review
+## Ask AI to review the changes in a PR
 
 --8<-- "docs/automations/integrations/askAI/code-review/README.md:example"
 
-## Ask AI for Documentation
-
---8<-- "docs/automations/integrations/askAI/document/README.md:example"
-
-## Ask AI for Code Improvements
+## Ask AI for improvements to the changes in a PR
 
 --8<-- "docs/automations/integrations/askAI/improve/README.md:example"
 
-<!-- ## Ask AI for anything
+## Ask AI for documentation covering the changes in a PR
 
---8<-- "docs/automations/integrations/askAI/code-review/README.md:example" -->
+--8<-- "docs/automations/integrations/askAI/document/README.md:example"
+
+## Ask AI for tests covering the changes in a PR
+
+--8<-- "docs/automations/integrations/askAI/add-tests/README.md:example"
 <!-- --8<-- [end:examples]-->
 
 ## Additional Resources
