@@ -35,7 +35,7 @@ For all other actions, gitStream executes the actions in the order they are list
 - [`run-github-workflow`](#run-github-workflow) :fontawesome-brands-github:
 - [`send-http-request`](#send-http-request) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`send-slack-message`](#send-slack-message) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
-- [`set-required-approvals`](#set-required-approvals) :fontawesome-brands-github:
+- [`set-required-approvals`](#set-required-approvals) :fontawesome-brands-github: :fontawesome-brands-bitbucket:
 - [`update-description`](#update-description) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`update-title`](#update-title) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
