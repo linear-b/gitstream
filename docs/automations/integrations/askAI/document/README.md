@@ -1,23 +1,24 @@
 ---
-title: Automation - Ask AI to Summarize the Changes in a PR
-description: Use gitStream's integration with AI services to generate a summary of the changes in the PR.
+title: Automation - Ask AI for Documentation for a PR
+description: Use gitStream's integration with AI services to recommend documentation for the changes in the PR.
 category: [quality, genai, copilot, tests, efficiency]
+starter_kits: [genai]
 ---
-# Ask AI to Summarize the Changes in a PR
+# Ask AI for Documentation for a PR
 
 <!-- --8<-- [start:example]-->
-Use AI to generate a documentation for the newly added features and changes based on the code diff.
+Use AI to recommend new or updated documentation for changes in a PR, focusing on functionality, parameters, and expected behavior.
 
 !!! info "Configuration Description"
 
     Conditions (all must be true):
 
     * A PR is created or new code has been committed to the PR.
-    * The PR has a label "askai document"
+    * The PR has a label `askai document`.
 
     Automation Actions:
 
-    * Add a comment with a summary of the PR
+    * Add a comment with AI-generated documentation recommendations for the PR.
 
 !!! example "Configuration Example"
     ```yaml+jinja

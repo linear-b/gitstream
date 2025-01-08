@@ -1,13 +1,13 @@
 ---
-title: Automation - Ask AI to Summarize the Changes in a PR
-description: Use gitStream's integration with AI services to generate a summary of the changes in the PR.
+title: Automation - Ask AI to Summarize a PR
+description: Use gitStream's integration with AI services to generate a concise bullet-point summary of a PR.
 category: [quality, genai, copilot, tests, efficiency]
 starter_kits: [genai]
 ---
-# Ask AI to Summarize the Changes in a PR
+# Ask AI to Summarize a PR
 
 <!-- --8<-- [start:example]-->
-Use AI to generate a concise bullet-point summary of the changes in the pull request.
+Use AI to generate a concise bullet-point summary of changes in a PR.
 
 ![summarized-pr](/automations/integrations/askAI/summarize-pr/summarized-pr.png)
 
@@ -16,11 +16,11 @@ Use AI to generate a concise bullet-point summary of the changes in the pull req
     Conditions (all must be true):
 
     * A PR is created or new code has been committed to the PR.
-    * The PR has a label "askai summarize"
+    * The PR has a label `askai summarize`.
 
     Automation Actions:
 
-    * Add a comment with a summary of the PR
+    * Add a comment with an AI-generated summary of the PR.
 
 !!! example "Configuration Example"
     ```yaml+jinja

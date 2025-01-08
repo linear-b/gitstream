@@ -11,23 +11,23 @@ category: [quality, genai, copilot, tests, efficiency]
 
     [Learn more about gitStream plugins](/plugins/).
 
-## Ask AI to summarize the changes in a PR
+## Ask AI to Summarize a PR
 
 --8<-- "docs/automations/integrations/askAI/summarize-pr/README.md:example"
 
-## Ask AI to review the changes in a PR
+## Ask AI to Review a PR
 
 --8<-- "docs/automations/integrations/askAI/code-review/README.md:example"
 
-## Ask AI for improvements to the changes in a PR
+## Ask AI for Improvements to a PR
 
 --8<-- "docs/automations/integrations/askAI/improve/README.md:example"
 
-## Ask AI for documentation covering the changes in a PR
+## Ask AI for Documentation for a PR
 
 --8<-- "docs/automations/integrations/askAI/document/README.md:example"
 
-## Ask AI for tests covering the changes in a PR
+## Ask AI for Tests for a PR
 
 --8<-- "docs/automations/integrations/askAI/add-tests/README.md:example"
 <!-- --8<-- [end:examples]-->
