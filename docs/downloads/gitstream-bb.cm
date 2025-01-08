@@ -15,12 +15,12 @@ automations:
         args:
           comment: "{{ calc.etr }} min review"
 
-  # Inform PR authors when they fail to reference Jira tickets in the PR title or description.
-  comment_missing_jira_info:
+  # Request changes by PR authors when they fail to reference Jira tickets in the PR title or description.
+  request_missing_jira_info:
     if:
       - {{ not (has.jira_ticket_in_title or has.jira_ticket_in_desc) }}
     run:
-      - action: add-comment@v1
+      - action: request-changes@v1
         args:
           comment: |
             This PR is missing a Jira ticket reference in the title or description.
