@@ -31,7 +31,7 @@ For all other actions, gitStream executes the actions in the order they are list
 - [`explain-code-experts`](#explain-code-experts) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`merge`](#merge) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`request-changes`](#request-changes) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
-- [`require-reviewers`](#require-reviewers) :fontawesome-brands-github:
+- [`require-reviewers`](#require-reviewers) :fontawesome-brands-github: :fontawesome-brands-bitbucket:
 - [`run-github-workflow`](#run-github-workflow) :fontawesome-brands-github:
 - [`send-http-request`](#send-http-request) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`send-slack-message`](#send-slack-message) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
@@ -330,7 +330,7 @@ automations:
     :fontawesome-brands-gitlab: Enable the "All threads must be resolved" Merge check
 
 
-#### `require-reviewers` :fontawesome-brands-github:
+#### `require-reviewers` :fontawesome-brands-github: :fontawesome-brands-bitbucket:
 
 This action, once triggered, requires a specific reviewer approval. The PR merge is blocked till approved by either of the listed users or teams.
 
@@ -356,7 +356,11 @@ automations:
 
 !!! attention
 
-    To allow this action to block merge, you should enable branch protection, and gitStream has to be set as required check in GitHub.
+    To allow this action to block merge, The following settings should be set:
+
+    :fontawesome-brands-github: Enable branch protection and set gitStream as a required check
+
+    :fontawesome-brands-bitbucket: Select "Prevent a merge with unresolved merge checks" under Branch restrictions
 
 #### `run-github-workflow` :fontawesome-brands-github:
 
@@ -459,9 +463,9 @@ automations:
 slack_webhook: {{ env.SLACK_WEBHOOK }}
 ```
 
-#### `set-required-approvals` :fontawesome-brands-github:
+#### `set-required-approvals` :fontawesome-brands-github: :fontawesome-brands-bitbucket:
 
-This action, once triggered, blocks PR merge till the desired reviewers approved the PR. The actions fail the check to prevent the PR for merge.
+This action, once triggered, blocks PR merge till the desired reviewers approve the PR. The actions fail the check to prevent the PR from merging.
 
 <div class="filter-details" markdown=1>
 
@@ -482,9 +486,14 @@ automations:
           approvals: 2
 ```
 
+
 !!! attention
 
-    To allow this action to block merge, you should enable branch protection, and gitStream has to be set as required check in GitHub.
+    To allow this action to block merge, The following settings should be set:
+
+    :fontawesome-brands-github: Enable branch protection and set gitStream as a required check
+
+    :fontawesome-brands-bitbucket: Select "Prevent a merge with unresolved merge checks" under Branch restrictions
 
 #### `update-description` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 This action, when triggered, updates the PR description with new content.
