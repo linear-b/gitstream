@@ -4,7 +4,7 @@
  * @param {Object} context - The context to be sent to the AI model with the prompt.
  * @param {string} role - The system role or persona for the AI to adopt while generating the response.
  * @param {string} prompt - The specific request or question you want the AI to respond to, after the context has been provided.
- * @param {Object} token - Your OpenAI API token.
+ * @param {string} token - Your OpenAI API token.
  * @returns {Object} Returns the AI-generated response based on the provided context and prompt.
  * @example {{ source | askAI("Experienced developer", "Summarize the changes in this PR in bullet points.", env.OPEN_AI_TOKEN) }}
  * @license MIT

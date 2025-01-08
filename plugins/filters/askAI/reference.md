@@ -22,5 +22,5 @@ A gitStream plugin to facilitate AI workflows with OpenAI's `gpt-4o-2024-08-06` 
 **Example**
 
 ```yaml
-{{ {{ source | askAI("Experienced developer", "Summarize the changes in this PR in bullet points.", env.OPEN_AI_TOKEN) }} }}
+{{ source | askAI("Experienced developer", "Summarize the changes in this PR in bullet points.", env.OPEN_AI_TOKEN) }}
 ```

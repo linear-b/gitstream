@@ -16,7 +16,7 @@ Choose which repositories are permitted to use GitHub Actions.
 
 ## Does gitStream have access to my code?
 
-Like any other CI/CD automation, the source code is being scanned in the repo and is not shared with any external services. Only metadata related to and affecting the workflow is shared to allow rule-based automation on the repo. An exception to this is when you configure your own gitStream plugins that may connect to other services, such as using the [`askAI`](/filter-function-plugins/#askai) plugin, which will provide context to the configured model provider.
+Like any other CI/CD automation, the source code is being scanned in the repo and is not shared with any external services. By default, only metadata related to and affecting the workflow is shared to allow rule-based automation on the repo. Your own gitStream plugins that may connect to other services, such as using the [`askAI`](/filter-function-plugins/#askai) plugin which will provide context to the configured model provider.
 
 ## Why does gitStream require permission to write code?
 
