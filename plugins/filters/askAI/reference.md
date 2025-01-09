@@ -2,12 +2,14 @@
 
 ## askAI
 
-!!! warning "Data privacy"
-    The [`askAI`](/filter-function-plugins/#askai) plugin will provide context to the configured model provider and may incur API costs.
+The AskAI plugin allows gitStream workflows to interact with external AI services, enabling advanced automation capabilities such as code analysis, test case generation, and PR summarization. This plugin requires a valid API token for the AI service, which must be securely provided as an environment variable.
 
-    [Learn more about gitStream plugins](/plugins/).
+!!! note "Security note"
+    The `AskAI` plugin integrates with an external AI model and requires your API token for authorization. Ensure you provide a valid token through the `env.OPEN_AI_TOKEN` parameter or similar configuration. This may also incur API costs.
 
-A gitStream plugin to facilitate AI workflows with OpenAI's `gpt-4o-2024-08-06` model.
+    When using the `AskAI` plugin, the provided **context** and **prompt** will be shared with the configured AI service. **Ensure that no sensitive or proprietary information is included unless your organization's policies permit it**. 
+    
+![Example PR description](screenshots/askAI-describe-PR.png)
 
 **Returns**: <code>Object</code> -  Returns the AI-generated response based on the provided context and prompt.
 **License**: MIT
