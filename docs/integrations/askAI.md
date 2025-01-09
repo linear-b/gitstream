@@ -7,7 +7,7 @@ category: [quality, genai, copilot, tests, efficiency]
 
 <!-- --8<-- [start:examples]-->
 !!! warning "Required gitStream Plugins"
-    This example requires you to install the [`askAI`](/filter-function-plugins/#askai) plugin, which will provide context to the configured model provider and may incur API costs.
+    These examples requires you to install the [`askAI`](/filter-function-plugins/#askai) plugin, which will provide context to the configured model provider and may incur API costs.
 
     [Learn more about gitStream plugins](/plugins/).
 
@@ -15,19 +15,19 @@ category: [quality, genai, copilot, tests, efficiency]
 
 --8<-- "docs/automations/integrations/askAI/summarize-pr/README.md:example"
 
-## Ask AI to Review a PR
+## Ask AI for a PR Review Checklist
 
 --8<-- "docs/automations/integrations/askAI/code-review/README.md:example"
 
-## Ask AI for Improvements to a PR
+## Ask AI for PR Improvements
 
 --8<-- "docs/automations/integrations/askAI/improve/README.md:example"
 
-## Ask AI for Documentation for a PR
+## Ask AI to Generate Documentation
 
 --8<-- "docs/automations/integrations/askAI/document/README.md:example"
 
-## Ask AI for Tests for a PR
+## Ask AI to Generate Tests
 
 --8<-- "docs/automations/integrations/askAI/add-tests/README.md:example"
 <!-- --8<-- [end:examples]-->

@@ -1,10 +1,10 @@
 ---
-title: Automation - Ask AI to Review a PR
+title: Automation - Ask AI for a PR Review Checklist
 description: Use gitStream's integration with AI services to perform a initial code review for a PR.
 category: [quickstart, quality, genai, copilot, tests, efficiency]
 starter_kits: [genai]
 ---
-# Ask AI to Review a PR
+# Ask AI for a PR Review Checklist
 
 <!-- --8<-- [start:example]-->
 Use AI to generate an initial code review checklist, identify bugs, security risks, performance issues, deprecated methods, and style guide violations, and suggests improvements. The automation provides insights and recommended next actions for a human reviewer.

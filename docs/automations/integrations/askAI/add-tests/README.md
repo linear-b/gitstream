@@ -1,13 +1,13 @@
 ---
-title: Automation - Ask AI for Tests for a PR
+title: Automation - Ask AI to Generate Unit Tests
 description: Use gitStream's integration with AI services to recommend tests for the changes in the PR.
 category: [quality, genai, copilot, tests, efficiency]
 starter_kits: [genai]
 ---
-# Ask AI for Tests for a PR
+# Ask AI to Generate Unit Tests
 
 <!-- --8<-- [start:example]-->
-Use AI to recommend tests for the changes in a PR.
+Use AI to recommend unit tests for the changes in a PR.
 
 !!! info "Configuration Description"
 

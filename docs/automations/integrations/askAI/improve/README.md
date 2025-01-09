@@ -1,10 +1,10 @@
 ---
-title: Automation - Ask AI for Improvements to a PR
+title: Automation - Ask AI for PR Improvements
 description: Use gitStream's integration with AI services to recommend improvements to a PR.
 category: [quality, genai, copilot, tests, efficiency]
 starter_kits: [genai]
 ---
-# Ask AI for Improvements to a PR
+# Ask AI for PR Improvements
 
 <!-- --8<-- [start:example]-->
 Use AI to recommend improvements to a PR that enhance readability, performance, security, and maintainability.

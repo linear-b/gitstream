@@ -1,10 +1,10 @@
 ---
-title: Automation - Ask AI for Documentation for a PR
+title: Automation - Ask AI to Generate Documentation
 description: Use gitStream's integration with AI services to recommend documentation for the changes in the PR.
 category: [quality, genai, copilot, tests, efficiency]
 starter_kits: [genai]
 ---
-# Ask AI for Documentation for a PR
+# Ask AI to Generate Documentation
 
 <!-- --8<-- [start:example]-->
 Use AI to recommend new or updated documentation for changes in a PR, focusing on functionality, parameters, and expected behavior.
