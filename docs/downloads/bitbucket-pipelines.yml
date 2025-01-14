@@ -43,6 +43,7 @@ pipelines:
               docker run -v $BITBUCKET_CLONE_DIR/gitstream:/code \
               -e HEAD_REF=$head_ref \
               -e BASE_REF=$base_ref \
+              -e RUN_ID=$BITBUCKET_BUILD_NUMBER \
               -e CLIENT_PAYLOAD="$client_payload" \
               -e RULES_RESOLVER_URL=$resolver_url \
               -e RULES_RESOLVER_TOKEN=$resolver_token \
