@@ -9,7 +9,7 @@ starter_kits: [genai]
 <!-- --8<-- [start:example]-->
 Use the `AI_DescribePR` filter to automatically generate and append a concise, AI-generated description to a pull request. This ensures that all PRs include meaningful and helpful descriptions, improving review efficiency.
 
-![summarized-pr](/automations/integrations/askAI/summarize-pr/LinearB-AI-describe-pr.png)
+![summarized-pr](/automations/integrations/LinearBAI/describe-pr/LinearB-AI-describe-pr.png)
 
 !!! info "Configuration Description"
 
