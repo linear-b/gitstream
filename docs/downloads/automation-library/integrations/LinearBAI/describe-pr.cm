@@ -1,0 +1,15 @@
+manifest:
+  version: 1.0
+
+automations:
+  add_pr_description:
+    on:
+      - pr_created
+      - commit
+    if:
+      - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
+    run:
+      - action: update-description@v1
+        args:
+          concat_mode: append
+          description: {{ source | AI_DescribePR }}
