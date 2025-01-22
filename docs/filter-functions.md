@@ -42,6 +42,7 @@ The following functions are supported in addition to the built-in functions prov
 | Function                                                                                                                                                    | Input                                                      | Args                                               | Output                  |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------- | ----------------------- |
 | [`AI_DescribePR`](#AI_DescribePR)<br />Returns an AI-generated description of the PR based on the provided input diff                                       | Object                                                     | -                                                  | String                  |
+| [`allDocs`](#alldocs)<br />Checks the list includes only images                                                                                             | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
 | [`allImages`](#allimages)<br />Checks the list includes only images                                                                                         | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
 | [`allTests`](#alltests)<br />Checks the list includes only tests                                                                                            | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
 | [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results                                                          | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
@@ -314,31 +315,6 @@ Checks whether any element in the list is `true`. In case the list of elements 
 {{ files | match(list=['src', 'dest']) | some }}
 ```
 
-#### `allDocs`
-
-Return `true` if the input list includes only documents based on file extensions.
-
-Doc files extensions are: `md`, `mkdown`, `txt`, `rst`, `adoc`, except for `requirements.txt`.
-
-<div class="filter-details" markdown=1>
-
-| Argument   | Usage    | Type      | Description                         |
-| -------- | ---------|-----------|------------------------------------------------ |
-| -  | Input    | [`files`](./context-variables.md#files)  | The list of changed files with their path     |
-| - | Output   | Bool      | `true` if all file extensions are of docs       |
-
-</div>
-
-```yaml+jinja
-{{ files | allDocs }}
-```
-
-In case you want to exclude more files, like all `txt` under the `requirements` directory, add another check:
-
-```yaml+jinja
-{{ (files | allDocs) and (files | match(regex=r/requirements\/.*\.txt$/) | nope ) }}
-```
-
 #### `AI_DescribePR`
 
 Leverage LinearB's AI to assist with generating a concise and meaningful description for pull requests based on the provided context. Streamline the review process by summarizing the purpose and key changes in a PR, reducing the manual effort and cognitive load for developers and reviewers.
@@ -365,6 +341,32 @@ automations:
           description: {{ source | AI_DescribePR }}
             
 ```
+
+#### `allDocs`
+
+Return `true` if the input list includes only documents based on file extensions.
+
+Doc files extensions are: `md`, `mkdown`, `txt`, `rst`, `adoc`, except for `requirements.txt`.
+
+<div class="filter-details" markdown=1>
+
+| Argument   | Usage    | Type      | Description                         |
+| -------- | ---------|-----------|------------------------------------------------ |
+| -  | Input    | [`files`](./context-variables.md#files)  | The list of changed files with their path     |
+| - | Output   | Bool      | `true` if all file extensions are of docs       |
+
+</div>
+
+```yaml+jinja
+{{ files | allDocs }}
+```
+
+In case you want to exclude more files, like all `txt` under the `requirements` directory, add another check:
+
+```yaml+jinja
+{{ (files | allDocs) and (files | match(regex=r/requirements\/.*\.txt$/) | nope ) }}
+```
+
 
 #### `allImages`
 
