@@ -18,19 +18,19 @@ The following functions are supported in addition to the built-in functions prov
 
 <div class="big-summary" markdown=1>
 
-| Function                                                                                                       | Input                  | Args                            | Output                 |
-| -------------------------------------------------------------------------------------------------------------- | ---------------------- | ------------------------------- | ---------------------- |
-| [`capture`](#capture)<br />Find and return the first occurrence of a regex in the input string                 | String                 | `regex`                         | String                 |
-| [`difference`](#difference)<br />Given two lists, keep only items that are in the 1st list but not in the 2nd. | [Objects]              | `list`                          | [Objects]              |
-| [`every`](#every)<br />Checks whether all element in the list are `true`                                       | [Bool]                 | -                               | Bool                   |
-| [`filter`](#filter)<br />Reduce list of items into a list of same items that match the specified term          | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
-| [`includes`](#match)<br />Check if substring match                                                             | String                 | `regex`, `term`, `list`         | Bool                   |
-| [`intersection`](#intersection)<br />Given two lists, keep only items that are in both lists.                  | [Objects]              | `list`                          | [Objects]              |
-| [`map`](#map)<br />Maps each object in a list into their specified attribute value                             | [Object]               | `attr`                          | [Object]               |
-| [`match`](#match)<br />Maps list of items into a list of booleans that match the specified term                | [String]<br />[Object] | `regex`, `term`, `list` `attr`  | [Bool]                 |
-| [`nope`](#nope)<br />Checks whether all element in the list are `false`                                        | [Bool]                 | -                               | Bool                   |
-| [`reject`](#reject)<br />Inverse of [`filter`](#filter), the result list contains non-matching items           | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
-| [`some`](#some)<br />Checks whether at least one element in the list is `true`                                 | [Bool]                 | -                               | Bool                   |
+| Function                                                                                                              | Input                  | Args                            | Output                 |
+| --------------------------------------------------------------------------------------------------------------------- | ---------------------- | ------------------------------- | ---------------------- |
+| [`capture`](#capture)<br />Find and return the first occurrence of a regex in the input string                        | String                 | `regex`                         | String                 |
+| [`difference`](#difference)<br />Given two lists, keep only items that are in the 1st list but not in the 2nd.        | [Objects]              | `list`                          | [Objects]              |
+| [`every`](#every)<br />Checks whether all element in the list are `true`                                              | [Bool]                 | -                               | Bool                   |
+| [`filter`](#filter)<br />Reduce list of items into a list of same items that match the specified term                 | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
+| [`includes`](#match)<br />Check if substring match                                                                    | String                 | `regex`, `term`, `list`         | Bool                   |
+| [`intersection`](#intersection)<br />Given two lists, keep only items that are in both lists.                         | [Objects]              | `list`                          | [Objects]              |
+| [`map`](#map)<br />Maps each object in a list into their specified attribute value                                    | [Object]               | `attr`                          | [Object]               |
+| [`match`](#match)<br />Maps list of items into a list of booleans that match the specified term                       | [String]<br />[Object] | `regex`, `term`, `list` `attr`  | [Bool]                 |
+| [`nope`](#nope)<br />Checks whether all element in the list are `false`                                               | [Bool]                 | -                               | Bool                   |
+| [`reject`](#reject)<br />Inverse of [`filter`](#filter), the result list contains non-matching items                  | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
+| [`some`](#some)<br />Checks whether at least one element in the list is `true`                                        | [Bool]                 | -                               | Bool                   |
 
 
 </div>
@@ -41,7 +41,8 @@ The following functions are supported in addition to the built-in functions prov
 
 | Function                                                                                                                                                    | Input                                                      | Args                                               | Output                  |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------- | ----------------------- |
-| [`allDocs`](#alldocs)<br />Checks the list includes only documents                                                                                          | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
+| [`AI_DescribePR`](#ai_describepr)<br />Returns an AI-generated description of the PR based on the provided input diff                                       | Object                                                     | -                                                  | String                  |
+| [`allDocs`](#alldocs)<br />Checks the list includes only images                                                                                             | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
 | [`allImages`](#allimages)<br />Checks the list includes only images                                                                                         | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
 | [`allTests`](#alltests)<br />Checks the list includes only tests                                                                                            | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
 | [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results                                                          | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
@@ -314,6 +315,33 @@ Checks whether any element in the list is `true`. In case the list of elements 
 {{ files | match(list=['src', 'dest']) | some }}
 ```
 
+#### `AI_DescribePR`
+
+Leverage LinearB's AI to assist with generating a concise and meaningful description for pull requests based on the provided context. Streamline the review process by summarizing the purpose and key changes in a PR, reducing the manual effort and cognitive load for developers and reviewers.
+
+| **Argument** | Usage  | **Type** | **Description**                                                        |
+| ------------ | ------ | -------- | ---------------------------------------------------------------------- |
+| -            | Input  | `Object` | The context to send to the AI for generating a description.            |
+| -            | Output | String   | AI-generated description of the PR based on the provided input context |
+
+Use the `AI_DescribePR` filter in a `.cm` file to append the AI-generated description to the PR description on each non-bot commit:
+
+```yaml
+automations:
+  add_pr_description:
+    on:
+      - pr_created
+      - commit
+    if:
+      - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
+    run:
+      - action: update-description@v1
+        args:
+          concat_mode: append
+          description: {{ source | AI_DescribePR }}
+            
+```
+
 #### `allDocs`
 
 Return `true` if the input list includes only documents based on file extensions.
@@ -339,6 +367,7 @@ In case you want to exclude more files, like all `txt` under the `requirements` 
 {{ (files | allDocs) and (files | match(regex=r/requirements\/.*\.txt$/) | nope ) }}
 ```
 
+
 #### `allImages`
 
 Return `true` if the input list includes only images based on file extensions.
@@ -347,10 +376,10 @@ Image file extensions are: `svg`, `png`, `gif`.
 
 <div class="filter-details" markdown=1>
 
-| Argument   | Usage    | Type      | Description                                     |
-| -------- | ---------|-----------|------------------------------------------------ |
-| - | Input    | [`files`](./context-variables.md#files)  | The list of changed files with their path       |
-| - | Output   | Bool      | `true` if all file extensions are of images     |
+| Argument | Usage  | Type                                    | Description                                 |
+| -------- | ------ | --------------------------------------- | ------------------------------------------- |
+| -        | Input  | [`files`](./context-variables.md#files) | The list of changed files with their path   |
+| -        | Output | Bool                                    | `true` if all file extensions are of images |
 
 </div>
 
@@ -366,10 +395,10 @@ To identify as test the file must include the word `test` or `spec` in its name 
 
 <div class="filter-details" markdown=1>
 
-| Argument | Usage    | Type      | Description                                     |
-| ------ | ---------|-----------|------------------------------------------------ |
-| - | Input   | [`files`](./context-variables.md#files)  |The list of changed files with their path        |
-| - | Output | Bool      | `true` if all file tests are based on name and path |
+| Argument | Usage  | Type                                    | Description                                         |
+| -------- | ------ | --------------------------------------- | --------------------------------------------------- |
+| -        | Input  | [`files`](./context-variables.md#files) | The list of changed files with their path           |
+| -        | Output | Bool                                    | `true` if all file tests are based on name and path |
 
 </div>
 
