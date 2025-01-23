@@ -3,10 +3,10 @@ title: Automation - Ask AI to Summarize the Changes in a PR
 description: Use gitStream's integration with AI services to generate a summary of the changes in the PR.
 category: [quality, genai, copilot, tests, efficiency]
 ---
-# Ask AI to Summarize the Changes in a PR
+# Ask AI to provide PR documentation
 
 <!-- --8<-- [start:example]-->
-Use AI to generate a documentation for the newly added features and changes based on the code diff.
+Use AI to generate documentation for the newly added features and changes based on the code diff.
 
 !!! info "Configuration Description"
 
