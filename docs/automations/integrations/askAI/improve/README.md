@@ -1,23 +1,23 @@
 ---
-title: Automation - Ask AI to Summarize the Changes in a PR
-description: Use gitStream's integration with AI services to generate a summary of the changes in the PR.
+title: Automation - Ask AI for code suggestions to improve the PR
+description: Use gitStream's integration with AI services to generate code suggestions to improve the PR.
 category: [quality, genai, copilot, tests, efficiency]
 ---
-# Ask AI to provide code suggestion to improve the PR
+# Ask AI to provide code suggestions to improve the PR
 
 <!-- --8<-- [start:example]-->
-Use AI to generate improvement suggestions for the code changes.
+Use AI to generate suggestions for improvement in the code changes.
 
 !!! info "Configuration Description"
 
     Conditions (all must be true):
 
-    * A PR is created or new code has been committed to the PR.
+    * A PR is created, or a new code has been committed to the PR.
     * The PR has a label "askai improve"
 
     Automation Actions:
 
-    * Add a comment with omprovement suggestions for the added code
+    * Add a comment with improvement suggestions for the added code
 
 !!! example "Configuration Example"
     ```yaml+jinja
