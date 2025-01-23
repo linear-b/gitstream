@@ -1,6 +1,6 @@
 ---
 title: Automation - Add PR Description Using LinearB's AI
-description: Use gitStream's integration with AI services to generate a summary of the changes in the PR.
+description: Use gitStream's integration with AI services to describe and summarize the PR changes.
 category: [quality, genai, copilot, tests, efficiency]
 starter_kits: [genai]
 ---
