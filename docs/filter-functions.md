@@ -8,7 +8,8 @@ Filters can change the look and format of the source data, or even generate new 
 
 !!! note
 
-    Items marked with :octicons-beaker-24: are under development and are not available yet.
+    - Items marked with :octicons-beaker-24: are under development and are not available yet.
+    - Items marked with :material-star-circle: are available exclusively for paid accounts. To unlock this feature, [contact our sales team](https://linearb.io/book-a-demo).
 
 ## Overview
 
@@ -39,27 +40,27 @@ The following functions are supported in addition to the built-in functions prov
 
 <div class="big-summary" markdown=1>
 
-| Function                                                                                                                                                    | Input                                                      | Args                                               | Output                  |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------- | ----------------------- |
-| [`AI_DescribePR`](#ai_describepr)<br />Returns an AI-generated description of the PR based on the provided input diff                                       | Object                                                     | -                                                  | String                  |
-| [`allDocs`](#alldocs)<br />Checks the list includes only images                                                                                             | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
-| [`allImages`](#allimages)<br />Checks the list includes only images                                                                                         | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
-| [`allTests`](#alltests)<br />Checks the list includes only tests                                                                                            | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
-| [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results                                                          | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
-| [`decode`](#decode)<br />Decode Base64 encoded string into an object                                                                                        | String (Base64 encoded)                                    | -                                                  | Object                  |
-| [`encode`](#encode)<br />Encode data into Base64 encoded string                                                                                             | Object                                                     | -                                                  | String (Base64 encoded) |
-| [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes                                                                         | [`branch`](./context-variables.md#branch)                  | -                                                  | Integer                 |
-| [`extensions`](#extensions)<br />Lists all the unique file extensions                                                                                       | [String]                                                   | -                                                  | [String]                |
-| [`extractJitFindings`](#extractjitfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the Jit scan            | [`pr`](./context-variables.md#pr)                          | -                                                  | Object                  |
-| [`extractSonarFindings`](#extractsonarfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the SonarCloud scan | [`pr`](./context-variables.md#pr)                          | -                                                  | Object                  |
-| [`explainRankByGitBlame`](#explainrankbygitblame)<br />Short markdown text explaining rankByGitBlame results                                                | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
-| [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo                                                                    | [`repo.contributors`](./context-variables.md#repo)         | String                                             | Bool                    |
-| [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed                                                                        | [[`FileDiff` ](./context-variables.md#filediff-structure)] | -                                                  | Bool                    |
-| [`mapToEnum`](#maptoenum)<br />return the enum value matches to the input key                                                                               | String                                                     | Enum object                                        | Object                  |
-| [`matchDiffLines`](#matchdifflines)<br />Match every line in diff                                                                                           | [[`FileDiff` ](./context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces`                       | [Bool]                  |
-| [`rankByGitActivity`](#rankbygitactivity)<br />Get list of contributors based on `git-commit` activity                                                      | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
-| [`rankByGitBlame`](#rankbygitblame)<br />Get list of contributors based on `git-blame` results                                                              | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
-| [`readFile`](#readfile)<br />Reads the contents of a file from the current branch or "cm" folder                                                            | String - The file path                                     | String (optional) - the file type. `txt` or `json` | String                  |
+| Function                                                                                                                                                                 | Input                                                      | Args                                               | Output                  |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- | -------------------------------------------------- | ----------------------- |
+| [`AI_DescribePR`](#ai_describepr) :material-star-circle:{ title="Premium feature" } <br />Returns an AI-generated description of the PR based on the provided input diff | Object                                                     | -                                                  | String                  |
+| [`allDocs`](#alldocs)<br />Checks the list includes only images                                                                                                          | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
+| [`allImages`](#allimages)<br />Checks the list includes only images                                                                                                      | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
+| [`allTests`](#alltests)<br />Checks the list includes only tests                                                                                                         | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
+| [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results                                                                       | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
+| [`decode`](#decode)<br />Decode Base64 encoded string into an object                                                                                                     | String (Base64 encoded)                                    | -                                                  | Object                  |
+| [`encode`](#encode)<br />Encode data into Base64 encoded string                                                                                                          | Object                                                     | -                                                  | String (Base64 encoded) |
+| [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes                                                                                      | [`branch`](./context-variables.md#branch)                  | -                                                  | Integer                 |
+| [`extensions`](#extensions)<br />Lists all the unique file extensions                                                                                                    | [String]                                                   | -                                                  | [String]                |
+| [`extractJitFindings`](#extractjitfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the Jit scan                         | [`pr`](./context-variables.md#pr)                          | -                                                  | Object                  |
+| [`extractSonarFindings`](#extractsonarfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the SonarCloud scan              | [`pr`](./context-variables.md#pr)                          | -                                                  | Object                  |
+| [`explainRankByGitBlame`](#explainrankbygitblame)<br />Short markdown text explaining rankByGitBlame results                                                             | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
+| [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo                                                                                 | [`repo.contributors`](./context-variables.md#repo)         | String                                             | Bool                    |
+| [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed                                                                                     | [[`FileDiff` ](./context-variables.md#filediff-structure)] | -                                                  | Bool                    |
+| [`mapToEnum`](#maptoenum)<br />return the enum value matches to the input key                                                                                            | String                                                     | Enum object                                        | Object                  |
+| [`matchDiffLines`](#matchdifflines)<br />Match every line in diff                                                                                                        | [[`FileDiff` ](./context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces`                       | [Bool]                  |
+| [`rankByGitActivity`](#rankbygitactivity)<br />Get list of contributors based on `git-commit` activity                                                                   | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
+| [`rankByGitBlame`](#rankbygitblame)<br />Get list of contributors based on `git-blame` results                                                                           | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
+| [`readFile`](#readfile)<br />Reads the contents of a file from the current branch or "cm" folder                                                                         | String - The file path                                     | String (optional) - the file type. `txt` or `json` | String                  |
 </div>
 
 ### Named arguments
@@ -315,7 +316,12 @@ Checks whether any element in the list is `true`. In case the list of elements 
 {{ files | match(list=['src', 'dest']) | some }}
 ```
 
-#### `AI_DescribePR`
+#### `AI_DescribePR` :material-star-circle: { title="Premium feature" }
+
+!!! note "Premium Feature"
+    This filter uses LinearB’s AI service and is available exclusively for paid accounts.  
+
+    If you’re interested in unlocking this feature, [contact our sales team](https://linearb.io/book-a-demo) to learn more.
 
 Leverage LinearB's AI to assist with generating a concise and meaningful description for pull requests based on the provided context. Streamline the review process by summarizing the purpose and key changes in a PR, reducing the manual effort and cognitive load for developers and reviewers.
 

@@ -4,10 +4,15 @@ description: Use gitStream's integration with AI services to generate a summary 
 category: [quality, genai, copilot, tests, efficiency]
 starter_kits: [genai]
 ---
-# Add PR Description Using LinearB's AI
+# Add PR Description Using LinearB's AI :material-star-circle:
 
 <!-- --8<-- [start:example]-->
 Use the `AI_DescribePR` filter to automatically generate and append a concise, AI-generated description to a pull request. This ensures that all PRs include meaningful and helpful descriptions, improving review efficiency.
+
+!!! note "Premium Feature"
+    This filter uses LinearB’s AI service and is available exclusively for paid accounts.  
+
+    If you’re interested in unlocking this feature, [contact our sales team](https://linearb.io/book-a-demo) to learn more.
 
 ![summarized-pr](/automations/integrations/LinearBAI/describe-pr/LinearB-AI-describe-pr.png)
 
