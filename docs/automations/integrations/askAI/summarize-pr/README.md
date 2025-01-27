@@ -2,7 +2,6 @@
 title: Automation - Ask AI to Summarize a PR
 description: Use gitStream's integration with AI services to generate a concise bullet-point summary of a PR.
 category: [quality, genai, copilot, tests, efficiency]
-starter_kits: [genai]
 ---
 # Ask AI to Summarize a PR
 

@@ -4,6 +4,7 @@ description: Use gitStream's integration with AI services to recommend improveme
 category: [quality, genai, copilot, tests, efficiency]
 starter_kits: [genai]
 ---
+
 # Ask AI for PR Improvements
 
 <!-- --8<-- [start:example]-->
