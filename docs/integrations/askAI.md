@@ -27,7 +27,7 @@ category: [quality, genai, copilot, tests, efficiency]
 
 --8<-- "docs/automations/integrations/askAI/document/README.md:example"
 
-## Ask AI to Generate Tests
+## Ask AI to Generate Unit Tests
 
 --8<-- "docs/automations/integrations/askAI/add-tests/README.md:example"
 <!-- --8<-- [end:examples]-->
