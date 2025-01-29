@@ -301,7 +301,7 @@ Check if all changes except for `config.json` files are formatting:
 
 #### `some`
 
-Checks whether any element in the list is `true`. In case the list of elements is empty it will return `false`.
+Check whether any element in the list is `true`. If the list of elements is empty, it will return `false`.
 
 <div class="filter-details" markdown=1>
 
@@ -325,9 +325,13 @@ Checks whether any element in the list is `true`. In case the list of elements 
 
 Leverage LinearB's AI to assist with generating a concise and meaningful description for pull requests based on the provided context. Streamline the review process by summarizing the purpose and key changes in a PR, reducing the manual effort and cognitive load for developers and reviewers.
 
+Use the optional `template` argument to customize the AI-generated PR description format to fit your needs. If no template is provided, gitStream will use its default summarization logic.
+
+
 | **Argument** | Usage  | **Type** | **Description**                                                        |
 | ------------ | ------ | -------- | ---------------------------------------------------------------------- |
 | -            | Input  | `Object` | The context to send to the AI for generating a description.            |
+| `template`   | Input (optional) | `String` | A custom format to guide the AI-generated description output. If not provided, a default bullet point summarization format will be used |
 | -            | Output | String   | AI-generated description of the PR based on the provided input context |
 
 Use the `AI_DescribePR` filter in a `.cm` file to append the AI-generated description to the PR description on each non-bot commit:
@@ -344,8 +348,11 @@ automations:
       - action: update-description@v1
         args:
           concat_mode: append
-          description: {{ source | AI_DescribePR }}
-            
+          description: {{ source | AI_DescribePR(template=SUMMARY_TEMPLATE) }}
+
+SUMMARY_TEMPLATE: |
+  "Summary: {changes}.
+  Impact: {impact}."
 ```
 
 #### `allDocs`
