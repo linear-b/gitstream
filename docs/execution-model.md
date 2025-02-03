@@ -6,6 +6,18 @@ gitStream is triggered on new pull requests (PRs) for repositories that have git
 
 When a central `cm` repository is set with the CI/CD runner, the events for PRs from all installed repositories shall be evaluated in the `cm` repository pipeline, considering the organization-level and PR repository rules.
 
+## Execution behavior for free accounts
+
+Free accounts have a monthly limit on the number of PRs that can trigger automations. Once this limit is reached:
+
+- PRs will still be created, but gitStream will skip automations for them.  
+- The gitStream check on these PRs will be concluded as `Skipped`, To ensure that gitStream will not block the Pr from merging.  
+- A warning is displayed in PR comments when the organization reaches 90% of its quota.  
+- The limit resets at the start of each month.  
+
+To remove automation limits, <a href="https://linearb.io/contact-us" target="_blank">Contact linearB</a> and upgrade to a paid plan.  
+🔗 Learn more: [Automation Limits](limits.md)
+
 ## Triggering Mechanism
 
 gitStream automations are triggered by events related to pull requests (PRs). You can specify triggers to fine-tune which events should initiate automations.

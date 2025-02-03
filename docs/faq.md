@@ -25,6 +25,17 @@ To support automations that either Approve or Merge PRs, the git providers requi
 
 gitStream supports repositories in GitHub, GitLab, and Bitbucket. Note that the `add-label` action is not supported in Bitbucket as it does not have a native labeling feature.
 
+## Are there limits on gitStream automations for free accounts?
+
+Yes. Free accounts have a monthly limit on the number of PRs that can trigger automations.  
+
+- When the organization reaches 90% of the limit, a warning will appear in PR comments.  
+- Once the limit is exceeded, new PRs will not trigger automations and will be marked as "Skipped."  
+- The limit resets at the start of each month.  
+
+To remove automation limits, <a href="https://linearb.io/contact-us" target="_blank">Contact linearB</a> and upgrade to a paid plan.  
+🔗 Learn more: [Automation Limits](limits.md)
+
 ## Can I use gitStream with Merge Queues?
 
 Yes. When a merge queue is used, and gitStream is set as a required check, gitStream automation will be invoked with the merge event. The automation will set gitStream to a `Completed` status and `Skipped` conclusion to allow the PR merge.
