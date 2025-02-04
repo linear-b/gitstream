@@ -33,7 +33,7 @@ Yes. Free accounts have a monthly limit on the number of PRs that can trigger au
 - Once the limit is exceeded, new PRs will not trigger automations and will be marked as "Skipped."  
 - The limit resets at the start of each month.  
 
-To remove automation limits, <a href="https://linearb.io/contact-us" target="_blank">Contact linearB</a> and upgrade to a paid plan.  
+To remove automation limits, <a href="https://linearb.io/contact-us" target="_blank">Contact LinearB</a> and upgrade to a paid plan.  
 🔗 Learn more: [Automation Limits](limits.md)
 
 ## Can I use gitStream with Merge Queues?

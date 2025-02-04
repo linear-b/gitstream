@@ -16,4 +16,4 @@ Free accounts have a monthly cap on the number of PRs that can trigger automatio
 ## Need more automations?
 If your team requires a higher automation quota, upgrading to a paid plan will remove these restrictions.
 
-<a href="https://linearb.io/contact-us" target="_blank">Contact linearB</a> or <a href="https://linearb.io/book-a-demo" target="_blank">Book a demo</a> to explore upgrade options.
+<a href="https://linearb.io/contact-us" target="_blank">Contact LinearB</a> or <a href="https://linearb.io/book-a-demo" target="_blank">Book a demo</a> to explore upgrade options.
