@@ -11,7 +11,7 @@ When a central `cm` repository is set with the CI/CD runner, the events for PRs 
 Free accounts have a monthly limit on the number of PRs that can trigger automations. Once this limit is reached:
 
 - PRs will still be created, but gitStream will skip automations for them.  
-- The gitStream check on these PRs will be concluded as `Skipped`, To ensure that gitStream will not block the PR from merging.  
+- The gitStream check on these PRs will be concluded as `Skipped`, to ensure that gitStream will not block the PR from merging.  
 - A warning is displayed in PR comments when the organization reaches 90% of its quota.  
 - The limit resets at the start of each month.  
 
