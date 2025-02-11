@@ -36,7 +36,8 @@ const LOCK_FILES = [
   'Podfile.lock',
   'Cartfile.resolved',
   'flake.lock',
-  'pnpm-lock.yaml'
+  'pnpm-lock.yaml',
+  'uv.lock'
 ];
 const EXCLUDE_EXPRESSIONS_LIST = [
   '.*\\.(ini|csv|xls|xlsx|xlr|doc|docx|txt|pps|ppt|pptx|dot|dotx|log|tar|rtf|dat|ipynb|po|profile|object|obj|dxf|twb|bcsymbolmap|tfstate|pdf|rbi|pem|crt|svg|png|jpeg|jpg|ttf)$',
