@@ -1,6 +1,7 @@
 <a name="module_generateDescription"></a>
 
 ## askAI
+
 The AskAI plugin allows gitStream workflows to interact with external AI services, enabling advanced automation capabilities such as code analysis, test case generation, and PR summarization. This plugin requires a valid API token for the AI service, which must be securely provided as an environment variable.
 
 !!! note "Security note"
@@ -15,14 +16,13 @@ The AskAI plugin allows gitStream workflows to interact with external AI service
 
 | Param   | Type     | Description                                                                                                        |
 | ------- | -------- | ------------------------------------------------------------------------------------------------------------------ |
-| context | `Object` | The context that needs to be sent to the AI model for analysis.                                                    |
-| role    | `string` |  Free text. If not empty, Defines the role or persona for the AI to adopt while generating the response.           |
+| context | `Object` | The context to be sent to the AI model with the prompt.                                                            |
+| role    | `string` | The system role or persona for the AI to adopt while generating the response.                                      |
 | prompt  | `string` | The specific request or question you want the AI to respond to, after the context has been provided.               |
-| token   | `Object` | The token to the AI model                                                                                          |
-
+| token   | `string` | Your OpenAI API token.                                                                                             |
 
 **Example**
-    
+
 ```yaml
-{{ source | askAI("QA tester", "Based on the given context, search for new functions without tests and suggest the tests to add. If all functions are covered completely, return 'no tests to suggest.'", env.OPEN_AI_TOKEN) }}
+{{ source | askAI("Experienced developer", "Summarize the changes in this PR in bullet points.", env.OPEN_AI_TOKEN) }}
 ```
