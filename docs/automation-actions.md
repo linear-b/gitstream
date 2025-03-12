@@ -20,7 +20,7 @@ Actions are the end results of the automation described in your `.cm` file.
 [`send-http-request`](#send-http-request) is executed immediately after the evaluation of the condition.
 For all other actions, gitStream executes the actions in the order they are listed per automation. If an action result fails, the following actions will not be executed.
 
-- [`add-code-comment`](#add-code-comment) :fontawesome-brands-github: :fontawesome-brands-gitlab:
+- [`add-code-comment`](#add-code-comment) :fontawesome-brands-github:
 - [`add-comment`](#add-comment) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`add-github-check`](#add-github-check) :fontawesome-brands-github:
 - [`add-label`](#add-label) :fontawesome-brands-github: :fontawesome-brands-gitlab:
@@ -62,7 +62,7 @@ automations:
 
 ## Reference
 
-#### `add-code-comment` :fontawesome-brands-github: :fontawesome-brands-gitlab: 
+#### `add-code-comment` :fontawesome-brands-github:
 
 This action, once triggered, adds a single code comment to the PR.
 
