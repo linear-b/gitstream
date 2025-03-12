@@ -20,6 +20,7 @@ Actions are the end results of the automation described in your `.cm` file.
 [`send-http-request`](#send-http-request) is executed immediately after the evaluation of the condition.
 For all other actions, gitStream executes the actions in the order they are listed per automation. If an action result fails, the following actions will not be executed.
 
+- [`add-code-comment`](#add-code-comment) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`add-comment`](#add-comment) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`add-github-check`](#add-github-check) :fontawesome-brands-github:
 - [`add-label`](#add-label) :fontawesome-brands-github: :fontawesome-brands-gitlab:
@@ -60,6 +61,39 @@ automations:
 
 
 ## Reference
+
+#### `add-code-comment` :fontawesome-brands-github: :fontawesome-brands-gitlab: 
+
+This action, once triggered, adds a single code comment to the PR.
+
+This is a managed action, when PR updates, the existing comments added by gitStream are re-evaluated, and those that are not applicable are removed.
+
+<div class="filter-details" markdown=1>
+
+| Args       | Usage | Type      | Description                         |
+| -----------|------|-----|------------------------------------------------ |
+| `comment`  | Required | String    | Sets the comment, markdown is supported, including suggestion syntax (```suggestion … ```) |
+| `file_path`  | Required | String    | The relative path to the file that necessitates the comment |
+| `start_line`  | Optional | Integer    | The line (or the first line in multi-line comment)of the blob in the pull request diff that the comment applies to
+If start_line is empty, the code comment should be on the file provided |
+| `end_line`  | Optional | Integer    | For a multi-line comment, the last line of the range that your comment applies to.
+Must be equal to or larger than start_line |
+
+</div>
+
+```yaml+jinja title="example"
+automations:
+  senior_review:
+    if:
+      - true
+    run:
+      - action: add-code-comment@v1
+        args:
+          file_path: <FILE>
+          start_line: 20
+          comment: |
+            Magic! Move it to a constant variable.
+```
 
 #### `add-comment` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
