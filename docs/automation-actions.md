@@ -74,10 +74,8 @@ This is a managed action, when PR updates, the existing comments added by gitStr
 | -----------|------|-----|------------------------------------------------ |
 | `comment`  | Required | String    | Sets the comment, markdown is supported, including suggestion syntax (```suggestion … ```) |
 | `file_path`  | Required | String    | The relative path to the file that necessitates the comment |
-| `start_line`  | Optional | Integer    | The line (or the first line in multi-line comment)of the blob in the pull request diff that the comment applies to
-If start_line is empty, the code comment should be on the file provided |
-| `end_line`  | Optional | Integer    | For a multi-line comment, the last line of the range that your comment applies to.
-Must be equal to or larger than start_line |
+| `start_line`  | Optional | Integer    | The line (or the first line in multi-line comment)of the blob in the pull request diff that the comment applies to. If start_line is empty, the code comment should be on the file provided |
+| `end_line`  | Optional | Integer    | For a multi-line comment, the last line of the range that your comment applies to. Must be equal to or larger than start_line |
 
 </div>
 
