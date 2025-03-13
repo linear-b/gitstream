@@ -6,7 +6,7 @@ description: Install gitStream to your Bitbucket workspace.
 
 !!! info "gitStream for Bitbucket Cloud is currently in **beta**"
     
-    To start automating your Bitbucket pull requests and enhancing your development workflow, please [contact our support team](mailto:support@linearb.io) to request access and receive setup instructions.  
+    To start automating your Bitbucket pull requests and enhancing your development workflow, please [contact our product team](mailto:product@linearb.io) to request access and receive setup instructions.  
     We’d love to hear your feedback and collaborate to improve this integration during the beta phase. Thank you for your interest!  
 
 !!! info "Prerequisites"

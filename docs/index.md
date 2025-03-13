@@ -75,6 +75,14 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 	
 	That's it! Now sit back and watch gitStream run automation rules on your next PR.
 
+!!! warning "Automation limits for free accounts"
+    Free accounts have a monthly cap on PRs that can trigger gitStream automations.
+
+    - At 90% usage, a warning appears in PR comments.  
+    - Once the limit is reached, new PRs will not run automations and the gitStream check will be concluded as `Skipped`.  
+    - Limits reset at the start of each month.
+		
+    🔗 Learn more: [Automation Limits](limits.md)
 
 ## Get Involved
 Want to report a bug, request a new feature, ask a question, get updates for new features, or propose a new configuration for the automation library? [Join us on GitHub](https://github.com/linear-b/gitstream).
