@@ -11,7 +11,7 @@ category: [quality, genai, copilot, tests, efficiency]
 
 --8<-- "docs/automations/integrations/LinearBAI/describe-pr/README.md:example"
 
-## Use LinearB's AI for a comprehansive Code Review
+## Use LinearB's AI for a comprehensive Code Review
 
 --8<-- "docs/automations/integrations/askAI/code-review/README.md:example"
 
