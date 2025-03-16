@@ -1,0 +1,13 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+automations:
+  review_python_exceptions: 
+    if:  
+      - {{ source.diff.files | matchDiffLines(regex=r/raise Exception/) | some }}
+      - {{ files | extensions | match(term='py') | every }}
+    run:
+      - action: add-comment@v1
+        args: 
+          comment: | 
+              This PR appears to throw exceptions that aren't specific. Please throw specific exceptions to add more clarity which simplifies the debugging process. 
