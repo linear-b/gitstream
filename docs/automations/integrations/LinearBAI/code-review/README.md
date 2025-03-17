@@ -9,11 +9,6 @@ starter_kits: [genai]
 <!-- --8<-- [start:example]-->
 Use LinearB's AI with the `code-review` action to automatically review the introduced changes to the code.
 
-!!! note "Premium Feature"
-    This automation uses LinearB’s AI service and is available exclusively for paid accounts.  
-
-    If you’re interested in unlocking this feature, [contact our sales team](https://linearb.io/book-a-demo).
-
 !!! info "Configuration Description"
 
     Conditions (all must be true):
