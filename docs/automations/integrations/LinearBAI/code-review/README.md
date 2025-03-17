@@ -9,7 +9,7 @@ starter_kits: [genai]
 <!-- --8<-- [start:example]-->
 Use LinearB's AI with the `code-review` action to automatically review the introduced changes to the code.
 
-![code-review](/automations/integrations/LinearBAI/describe-pr/LinearB-AI-code-review.png)
+![code-review](/automations/integrations/LinearBAI/code-review/LinearB-AI-code-review.png)
 
 !!! info "Configuration Description"
 
