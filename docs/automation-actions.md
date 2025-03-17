@@ -29,6 +29,7 @@ For all other actions, gitStream executes the actions in the order they are list
 - [`add-thread`](#add-thread) :fontawesome-brands-gitlab:
 - [`approve`](#approve) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`close`](#close) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+- [`code-review`](#code-review) :fontawesome-brands-github: <!-- :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket: -->
 - [`explain-code-experts`](#explain-code-experts) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`merge`](#merge) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`request-changes`](#request-changes) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
@@ -300,6 +301,36 @@ automations:
           comment: |
             Please contact a member of `ui-team` team if you need to make changes to files in `src/views`
       - action: close@v1
+```
+
+#### `code-review` :fontawesome-brands-github: <!-- >:fontawesome-brands-gitlab: :fontawesome-brands-bitbucket: -->
+
+This action, once triggered, reviews the code in the PR, and generates a comment with the identified issue, bugs, misconfigurations, and bad practices in the newly introduced code, with an option to approve the PR if no issues were found. 
+
+<div class="filter-details" markdown=1>
+
+| Args       | Usage | Type      | Description                                     |
+| -----------|------|-----|------------------------------------------------ |
+| `approve_on_LGTM` | Optional | Bool    | Approve this PR if no issues were found. Default is `false` |
+
+```yaml+jinja title="example"
+automations:
+  linearb_ai_review:
+    on:
+      - pr_created
+      - commit
+    if:
+      - {{ not pr.draft }}
+      - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
+    run:
+      - action: code-review@v1
+        args:
+          approve_on_LGTM: {{ APPROVE_PR_ON_LGTM }} # optional arg, you can remove it
+...
+...
+# Define variables
+
+APPROVE_PR_ON_LGTM: false # Add conditions for PR approvals. For example - allow approval only for specific users
 ```
 
 #### `merge` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:

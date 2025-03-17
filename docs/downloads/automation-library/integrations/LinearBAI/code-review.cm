@@ -1,0 +1,18 @@
+manifest:
+  version: 1.0
+
+automations:
+  linearb_ai_review:
+    on:
+      - pr_created
+      - commit
+    if:
+      - {{ pr.draft == false }}
+      - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
+    run:
+      - action: code-review@v1
+        args:
+          approve_on_LGTM: {{ APPROVE_PR_ON_LGTM }} # optional arg, you can remove it
+....
+...
+APPROVE_PR_ON_LGTM: false # you can add conditions for PR approvals. For example - allowing approvals only for specific users
