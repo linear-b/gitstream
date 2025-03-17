@@ -311,7 +311,7 @@ This action, once triggered, reviews the code in the PR, and generates a comment
 
 | Args       | Usage | Type      | Description                                     |
 | -----------|------|-----|------------------------------------------------ |
-| `approve_on_LGTM` | Optional | Bool    | Approve this PR if no issues were found. Dafault is `false` |
+| `approve_on_LGTM` | Optional | Bool    | Approve this PR if no issues were found. Default is `false` |
 
 ```yaml+jinja title="example"
 automations:
