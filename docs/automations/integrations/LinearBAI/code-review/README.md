@@ -9,11 +9,14 @@ starter_kits: [genai]
 <!-- --8<-- [start:example]-->
 Use LinearB's AI with the `code-review` action to automatically review the introduced changes to the code.
 
+![code-review](/automations/integrations/LinearBAI/describe-pr/LinearB-AI-code-review.png)
+
 !!! info "Configuration Description"
 
     Conditions (all must be true):
 
     * A PR is created or new code has been committed to the PR.
+    * The PR is not on Draft staten and was not created by a bot.
 
     Automation Actions:
 
