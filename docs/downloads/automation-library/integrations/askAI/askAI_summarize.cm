@@ -14,6 +14,7 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            # 📜 PR Summary 📜
-            {{ source | askAI("Experienced developer",
-              "Summarize the changes in this PR in bullet points.", env.OPEN_AI_TOKEN) }}
+            ## gitStream askAI: summary for this PR 📜
+            {{ source | askAI("experienced software developer focused on code reviews",
+              "Review the PR code diff.
+              - Summarize the changes in the PR in an unordered list.", env.OPEN_AI_TOKEN) }}
