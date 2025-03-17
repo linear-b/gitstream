@@ -13,7 +13,7 @@ category: [quality, genai, copilot, tests, efficiency]
 
 ## Use LinearB's AI for a comprehensive Code Review
 
---8<-- "docs/automations/integrations/askAI/code-review/README.md:example"
+--8<-- "docs/automations/integrations/LinearBAI/code-review/README.md:example"
 
 
 ## Additional Resources
