@@ -325,18 +325,19 @@ The action automatically analyzes the code modifications to create a clear, high
 
 ```yaml+jinja title="example"
 automations:
-  # trigger it only when PR is created or has new commits.
-  on:
-    - pr_created
-    - commit
-  # Skip description for Draft PRs and PRs from bots.
-  if:
-    - {{ not pr.draft }}
-    - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
-  run:
-    - action: describe-changes@v1
-      args:
-        concat_mode: append
+  pr_description:
+    # trigger it only when PR is created or has new commits.
+    on:
+      - pr_created
+      - commit
+    # Skip description for Draft PRs and PRs from bots.
+    if:
+      - {{ not pr.draft }}
+      - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
+    run:
+      - action: describe-changes@v1
+        args:
+          concat_mode: append
 ```
 
 #### `explain-code-experts` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
