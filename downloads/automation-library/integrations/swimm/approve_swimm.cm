@@ -1,0 +1,21 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  approve_swimm_changes:
+    # Triggered for any changes to Swimm documentation
+    if:
+      - {{ branch.diff.files_metadata | match(attr='file', regex=r/\.swm\//) | every }}
+    # Apply a swimm-docs-only label, approve the PR and explain why in a comment.
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'swimm-docs-only'
+      - action: approve@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR is considered a safe change as it only affects Swimm Docs. 
+            It has been automatically approved.
