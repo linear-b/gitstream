@@ -42,7 +42,6 @@ The following functions are supported in addition to the built-in functions prov
 
 | Function                                                                                                                                                                 | Input                                                      | Args                                               | Output                  |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- | -------------------------------------------------- | ----------------------- |
-| [`AI_DescribePR`](#ai_describepr) :material-star-circle:{ title="Premium feature" } <br />Returns an AI-generated description of the PR based on the provided input diff | Object                                                     | -                                                  | String                  |
 | [`allDocs`](#alldocs)<br />Checks the list includes only images                                                                                                          | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
 | [`allImages`](#allimages)<br />Checks the list includes only images                                                                                                      | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
 | [`allTests`](#alltests)<br />Checks the list includes only tests                                                                                                         | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
@@ -314,38 +313,6 @@ Checks whether any element in the list is `true`. In case the list of elements 
 
 ```yaml+jinja
 {{ files | match(list=['src', 'dest']) | some }}
-```
-
-#### `AI_DescribePR` :material-star-circle: { title="Premium feature" }
-
-!!! note "Premium Feature"
-    This filter uses LinearB’s AI service and is available exclusively for paid accounts.  
-
-    If you’re interested in unlocking this feature, [contact our sales team](https://linearb.io/book-a-demo) to learn more.
-
-Leverage LinearB's AI to assist with generating a concise and meaningful description for pull requests based on the provided context. Streamline the review process by summarizing the purpose and key changes in a PR, reducing the manual effort and cognitive load for developers and reviewers.
-
-| **Argument** | Usage  | **Type** | **Description**                                                        |
-| ------------ | ------ | -------- | ---------------------------------------------------------------------- |
-| -            | Input  | `Object` | The context to send to the AI for generating a description.            |
-| -            | Output | String   | AI-generated description of the PR based on the provided input context |
-
-Use the `AI_DescribePR` filter in a `.cm` file to append the AI-generated description to the PR description on each non-bot commit:
-
-```yaml
-automations:
-  add_pr_description:
-    on:
-      - pr_created
-      - commit
-    if:
-      - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
-    run:
-      - action: update-description@v1
-        args:
-          concat_mode: append
-          description: {{ source | AI_DescribePR }}
-            
 ```
 
 #### `allDocs`
@@ -985,40 +952,40 @@ README_CONTENT: {{ "./README.md" | readFile() }}
 
 Read JSON configuration file from the `cm` repo and use some of the properties in a comment:
 ```
-automations:  
-  describe_teams:  
-    if:  
-      - {{ true }}  
-    run:  
-      - action: add-comment@v1  
-        args:  
-          comment: |  
-              We have {{ TEAMS | length }} teams with {{ TEAMS.front.members | length + TEAMS.back.members | length }} members in total:  
-              FrontEnd: include {{ TEAMS.front.members | length }} members  
-              BackEnd: include {{ TEAMS.back.members | length }} members  
-              
+automations:
+  describe_teams:
+    if:
+      - {{ true }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+              We have {{ TEAMS | length }} teams with {{ TEAMS.front.members | length + TEAMS.back.members | length }} members in total:
+              FrontEnd: include {{ TEAMS.front.members | length }} members
+              BackEnd: include {{ TEAMS.back.members | length }} members
 
-TEAMS: {{ "../cm/TEAMS.json" | readFile(output="json") }}  
+
+TEAMS: {{ "../cm/TEAMS.json" | readFile(output="json") }}
 ```
 
 Configuration file example:
 ``` JSON
-{  
-  "front": {  
-    "name": "Frontend",  
-    "description": "Frontend team",  
-    "members": [  
-      "John",  
-      "Jane"  
-    ]  
-  },  
-  "back": {  
-    "name": "Backend",  
-    "description": "Backend team",  
-    "members": [  
-      "Alice",  
-      "Bob"  
-    ]  
-  }  
-}  
+{
+  "front": {
+    "name": "Frontend",
+    "description": "Frontend team",
+    "members": [
+      "John",
+      "Jane"
+    ]
+  },
+  "back": {
+    "name": "Backend",
+    "description": "Backend team",
+    "members": [
+      "Alice",
+      "Bob"
+    ]
+  }
+}
 ```
