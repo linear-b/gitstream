@@ -14,14 +14,14 @@ Enhance your pull request experience with our new AI capabilities using LinearB'
 	
 	**Add PR Description Using LinearB's AI**
 
-	Automatically generate and append a concise, AI-generated description to a pull request to ensure all PRs include meaningful and helpful descriptions, improving review efficiency.
+	Automatically generate and append a concise, [AI-generated description](automations/integrations/LinearBAI/describe-pr) to a pull request to ensure all PRs include meaningful and helpful descriptions, improving review efficiency.
 
 !!! quote ""
 	![code-review](/automations/integrations/LinearBAI/code-review/LinearB-AI-code-review.png){: style="border-radius:4px;width:50%", align=left}
 
 	**Use LinearB's AI for a Comprehensive Code Review**
 
-	Leverage LinearB's AI to automatically review introduced changes to the code, ensuring high-quality code reviews and reducing the manual effort required.
+	Leverage LinearB's AI to [automatically review](automations/integrations/LinearBAI/code-review) introduced changes to the code, ensuring high-quality code reviews and reducing the manual effort required.
 
 ## Features
 
