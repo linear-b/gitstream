@@ -30,6 +30,7 @@ For all other actions, gitStream executes the actions in the order they are list
 - [`approve`](#approve) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`close`](#close) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`code-review`](#code-review) :fontawesome-brands-github: <!-- :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket: -->
+- [`describe-changes`](#describe-changes) :fontawesome-brands-github: <!-- :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket: -->
 - [`explain-code-experts`](#explain-code-experts) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`merge`](#merge) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`request-changes`](#request-changes) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
@@ -245,31 +246,6 @@ automations:
           comment: "Please make sure this change request is documented before merging"
 ```
 
-#### `explain-code-experts` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
-
-This action, shall add a comment with codeExperts suggestion. If the comment already exists, the comment shall be edited.
-
-<div class="filter-details" markdown=1>
-
-| Args       | Usage | Type      | Description                                     |
-| -----------|------|-----|------------------------------------------------ |
-| `lt` | Optional | Integer    | Filter the user list, keeping those below the specified threshold |
-| `gt` | Optional | Integer    | Filter the user list, keeping those above the specified threshold |
-| `verbose` | Optional| Bool | When set to false then only shows the suggestion summary and skips the per file details (true by default) |
-
-</div>
-
-```yaml+jinja title="example"
-automations:
-  code_experts:
-    if:
-      - true
-    run:
-      - action: explain-code-experts@v1
-        args:
-          gt: 10
-```
-
 #### `approve` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
 This action, once triggered, approves the PR for merge.
@@ -305,7 +281,7 @@ automations:
 
 #### `code-review` :fontawesome-brands-github: <!-- >:fontawesome-brands-gitlab: :fontawesome-brands-bitbucket: -->
 
-This action, once triggered, reviews the code in the PR, and generates a comment with the identified issue, bugs, misconfigurations, and bad practices in the newly introduced code, with an option to approve the PR if no issues were found. 
+This action, once triggered, reviews the code in the PR, and generates a comment with the identified issue, bugs, misconfigurations, and bad practices in the newly introduced code, with an option to approve the PR if no issues were found.
 
 <div class="filter-details" markdown=1>
 
@@ -332,6 +308,63 @@ automations:
 
 APPROVE_PR_ON_LGTM: false # Add conditions for PR approvals. For example - allow approval only for specific users
 ```
+
+#### `describe-changes` :fontawesome-brands-github:
+
+This action, once triggered, leverages AI to generate a comprehensive summary of the changes in the PR and incorporates it into the PR description.
+
+The action automatically analyzes the code modifications to create a clear, high-level overview of what has been changed, making it easier for reviewers to understand the scope and purpose of the PR.
+
+<div class="filter-details" markdown=1>
+
+| Args         | Usage    | Type   | Description                                                                                                                 |
+| ------------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------- |
+| `concat_mode` | Optional | String | By default `replace`. The mode to add the changes description, can be `replace`, `append`, or `prepend` to the PR description |
+
+</div>
+
+```yaml+jinja title="example"
+automations:
+  pr_description:
+    # trigger it only when PR is created or has new commits.
+    on:
+      - pr_created
+      - commit
+    # Skip description for Draft PRs and PRs from bots.
+    if:
+      - {{ not pr.draft }}
+      - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
+    run:
+      - action: describe-changes@v1
+        args:
+          concat_mode: append
+```
+
+#### `explain-code-experts` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+
+This action, shall add a comment with codeExperts suggestion. If the comment already exists, the comment shall be edited.
+
+<div class="filter-details" markdown=1>
+
+| Args       | Usage | Type      | Description                                     |
+| -----------|------|-----|------------------------------------------------ |
+| `lt` | Optional | Integer    | Filter the user list, keeping those below the specified threshold |
+| `gt` | Optional | Integer    | Filter the user list, keeping those above the specified threshold |
+| `verbose` | Optional| Bool | When set to false then only shows the suggestion summary and skips the per file details (true by default) |
+
+</div>
+
+```yaml+jinja title="example"
+automations:
+  code_experts:
+    if:
+      - true
+    run:
+      - action: explain-code-experts@v1
+        args:
+          gt: 10
+```
+
 
 #### `merge` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 

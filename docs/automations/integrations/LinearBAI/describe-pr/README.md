@@ -7,7 +7,7 @@ starter_kits: [genai]
 # Add PR Description Using LinearB's AI :material-star-circle:
 
 <!-- --8<-- [start:example]-->
-Use the `AI_DescribePR` filter to automatically generate and append a concise, AI-generated description to a pull request. This ensures that all PRs include meaningful and helpful descriptions, improving review efficiency.
+Use the [`describe-changes`](/automation-actions/#describe-changes) automation action to automatically generate and append a concise, AI-generated description to a pull request. This ensures that all PRs include meaningful and helpful descriptions, improving review efficiency.
 
 ![summarized-pr](/automations/integrations/LinearBAI/describe-pr/LinearB-AI-describe-pr.png)
 

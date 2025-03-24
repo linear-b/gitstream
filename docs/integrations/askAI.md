@@ -1,13 +1,13 @@
 ---
-title: Integrate gitStream with AI
+title: Integrate gitStream with Your Own AI
 description: Use gitStream to integrate with AI services for Review, describe and add tests.
 category: [quality, genai, copilot, tests, efficiency]
 ---
-# Integrate gitStream with AI
+# Integrate gitStream with your own AI
 
 <!-- --8<-- [start:examples]-->
 !!! warning "Required gitStream Plugins"
-    This example requires you to install the [`askAI`](/filter-function-plugins/#askai) plugin.
+    To use these examples, you need to install the [`askAI`](/filter-function-plugins/#askai) plugin and provide your own AI service API key.
 
     [Learn more about gitStream plugins](/plugins/).
 
