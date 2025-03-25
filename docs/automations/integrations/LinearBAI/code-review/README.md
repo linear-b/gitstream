@@ -1,8 +1,9 @@
 ---
 title: Automation - Code Review Using LinearB's AI
 description: Use gitStream's integration with LinearB's AI service to automate code reviews.
-category: [quality, genai, copilot, tests, efficiency]
+category: [quality, genai, efficiency, quickstart]
 starter_kits: [genai]
+quickstart: true
 ---
 # Code Review Using LinearB's AI :material-star-circle:
 
