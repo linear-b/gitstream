@@ -9,6 +9,9 @@ description: Install gitStream to your GitLab organization.
     1. GitLab
     2. GitLab runner v15 or higher with ability to run apk commands
     3. <a href="https://app.linearb.io/login" target="_blank">Login</a>, or <a href="https://app.linearb.io/sign-up" target="_blank">create a free account</a> on the LinearB app, and follow the steps to <a href="https://linearb.helpdocs.io/article/0xxpvue4s9-connect-git-stream-using-a-git-lab-integration" target="_blank">connect gitStream Using a GitLab Integration</a>.
+    4. Allowed network connection between the executors and the following IPs:
+        - 13.56.203.235
+        - 54.151.81.98
 
 GitLab Installation Overview
 

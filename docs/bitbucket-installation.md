@@ -15,6 +15,9 @@ description: Install gitStream to your Bitbucket workspace.
     2. Bitbucket Pipelines enabled
     3. <a href="https://app.linearb.io/login" target="_blank">Login</a>, or <a href="https://app.linearb.io/sign-up" target="_blank">create a free account</a> on the LinearB app, and follow the steps to connect gitStream using a Bitbucket integration.
     4. A dedicated user for gitStream, whose name includes the term **"gitstream"**.  
+    5. Allowed network connection between the runners and the following IPs:
+        - 13.56.203.235
+        - 54.151.81.98
 
 Bitbucket Installation Overview
 

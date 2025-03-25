@@ -4,6 +4,11 @@ description: Install gitStream to your GitHub organization.
 ---
 # How to Setup gitStream with GitHub
 
+!!! Info "Prerequisites"
+    Allowed network connection between the runners and the following IPs:
+        - 13.56.203.235
+        - 54.151.81.98
+
 !!! Warning "Install gitStream"
 
     Before you can complete the gitStream setup process, you need to install the gitStream app to your [GitHub organization](https://github.com/apps/gitstream-cm/installations/new){ .md-button }.
