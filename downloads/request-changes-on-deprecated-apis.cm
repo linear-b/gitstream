@@ -1,0 +1,30 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  {% for item in deprecated %}
+  # Automation names should be unique, therefore the iteration number postfix
+  catch_deprecated_components_{{ loop.index }}:
+    if:
+      - {{ source.diff.files | matchDiffLines(regex=item.regex) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'deprecated-component'
+          color: '#FF0000'
+      - action: request-changes@v1
+        args:
+          comment: |
+            `{{ item.old }}` component is deprecated, use `{{ item.new }}` instead
+  {% endfor %}
+
+# This list includes the deprecated items
+deprecated:
+  - regex: r/callElvis/
+    old: Elvis
+    new: Gaga
+  - regex: r/callOldAPI/
+    old: callOldAPI
+    new: callBetterAPI

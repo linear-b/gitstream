@@ -1,0 +1,55 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+
+###### ** Configure This Section ** ######
+
+# Configure this for your Jira instance and the email associated with your API key.
+# You can safely use these values because only your API key is sensitive. 
+jiraSpaceName: "my-company" # e.g. my-company.atlassian.net
+email: "my.email@example.com"
+# If you're concerned about exposing this information,
+# we recommend using environment variables for your production environment.
+
+# -----------
+
+# Pass the API token associated with the email above to gitStream via an environment variable.
+jiraAuth: {{ env.JIRA_API_TOKEN }}
+# Learn more about env: https://docs.gitstream.cm/context-variables/#env
+
+# -----------
+
+# Change this to the Jira field you want to match the input string against.
+jiraField: "myField"
+# If you want to search a custom field, you should provide the ID like so:
+# jiraField: "cf[XXXXX]"
+# Replace XXXXX with the ID of the custom field you want to search.
+# More information:
+# Using JQL to search the Jira API: https://support.atlassian.com/jira-service-management-cloud/docs/jql-fields/
+# How to find the ID of a custom field: https://confluence.atlassian.com/jirakb/how-to-find-any-custom-field-s-ids-744522503.html
+
+# -----------
+
+###### ** Automation ** ######
+# You may want to update the text in the comment gitStream posts;
+# otherwise, this section shouldn't need to be changed.
+prUrl: "https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"
+has_jira_issue: {{ prUrl  | hasJiraIssue(jiraAuth, jiraField, jiraSpaceName, email) }}
+
+automations:
+  automatic_jira_task: 
+    if:
+      - {{ not has_jira_issue }}
+      - {{ pr.description | includes(regex=r/\- \[x\] Auto-create Jira Task/)}}
+    run:
+      - action: send-http-request@v1
+        args:
+          url: {{ env.JIRA_WEBHOOK }}
+          method: POST
+          headers: '{"Content-type": "application/json"}'
+          body: '{"data":{"pr_url": "{{ prUrl }}","title":"{{ pr.title }}"}}'
+      - action: add-comment@v1
+        args:
+          comment: "gitStream automatically created a Jira task for this PR"
