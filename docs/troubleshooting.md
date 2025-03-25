@@ -28,7 +28,7 @@ Next, if you see a failed action, check out the details:
 
 ![GitHub action log](screenshots/github_pr_actions_log.png)
 
-#### Does your organization allows 3rd pary actions?
+#### Does your organization allows 3rd party actions?
 
 Some organizations limit which actions can run, in that case, in the repository settings, you should enable it:
 
