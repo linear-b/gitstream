@@ -1,8 +1,9 @@
 ---
 title: Automation - Add PR Description Using LinearB's AI
 description: Use gitStream's integration with LinearB's AI service to summarize the PR changes.
-category: [quality, genai, copilot, tests, efficiency]
+category: [quality, genai, efficiency, quickstart]
 starter_kits: [genai]
+quickstart: true
 ---
 # Add PR Description Using LinearB's AI :material-star-circle:
 
