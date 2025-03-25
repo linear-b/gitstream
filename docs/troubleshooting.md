@@ -24,11 +24,13 @@ Check that you see "gitStream workflow automation" in the Action section in your
 
 ![GitHub action](screenshots/github_pr_actions_section.png)
 
-Next, if you see failed action, check out the details:
+Next, if you see a failed action, check out the details:
 
 ![GitHub action log](screenshots/github_pr_actions_log.png)
 
-Some organization limit which actions can run, in that case in the repository settings you should enable it:
+#### Does your organization allows 3rd party actions?
+
+Some organizations limit which actions can run, in that case, in the repository settings, you should enable it:
 
 ![GitHub allow marketplace actions](screenshots/github_settings_allow_actions.png)
 
