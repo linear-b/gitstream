@@ -14,8 +14,8 @@ A GitHub application serves as the link between gitStream and GitHub. It facilit
 !!! Info "Prerequisites"
     1. GitHub Server v3.10 or higher
     2. Allowed network connection between the server and the following IPs:
-        - 54.241.87.26
-        - 54.193.121.186
+        - 13.56.203.235
+        - 54.151.81.98
 
 In this section, we'll guide you through creating a GitHub app for your self-hosted gitStream installation. By the end, you should have noted down the following values:
 
