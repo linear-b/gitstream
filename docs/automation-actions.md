@@ -325,12 +325,12 @@ The action automatically analyzes the code modifications to create a clear, high
 
 ```yaml+jinja title="example"
 automations:
-  pr_description:
-    # trigger it only when PR is created or has new commits.
+  linearb_ai_description:
+    # trigger it only when PR is created or has new commits
     on:
       - pr_created
       - commit
-    # Skip description for Draft PRs and PRs from bots.
+    # skip description for Draft PRs and PRs from bots
     if:
       - {{ not pr.draft }}
       - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
