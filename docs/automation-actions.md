@@ -279,7 +279,7 @@ automations:
       - action: close@v1
 ```
 
-#### `code-review` :fontawesome-brands-github: :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+#### `code-review` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
 This action, once triggered, reviews the code in the PR, and generates a comment with the identified issue, bugs, misconfigurations, and bad practices in the newly introduced code, with an option to approve the PR if no issues were found.
 
