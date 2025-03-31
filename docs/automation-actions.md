@@ -29,8 +29,8 @@ For all other actions, gitStream executes the actions in the order they are list
 - [`add-thread`](#add-thread) :fontawesome-brands-gitlab:
 - [`approve`](#approve) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`close`](#close) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
-- [`code-review`](#code-review) :fontawesome-brands-github: <!-- :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket: -->
-- [`describe-changes`](#describe-changes) :fontawesome-brands-github: <!-- :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket: -->
+- [`code-review`](#code-review) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+- [`describe-changes`](#describe-changes) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`explain-code-experts`](#explain-code-experts) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`merge`](#merge) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`request-changes`](#request-changes) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
@@ -279,7 +279,7 @@ automations:
       - action: close@v1
 ```
 
-#### `code-review` :fontawesome-brands-github: <!-- >:fontawesome-brands-gitlab: :fontawesome-brands-bitbucket: -->
+#### `code-review` :fontawesome-brands-github: :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
 This action, once triggered, reviews the code in the PR, and generates a comment with the identified issue, bugs, misconfigurations, and bad practices in the newly introduced code, with an option to approve the PR if no issues were found.
 
@@ -288,6 +288,7 @@ This action, once triggered, reviews the code in the PR, and generates a comment
 | Args       | Usage | Type      | Description                                     |
 | -----------|------|-----|------------------------------------------------ |
 | `approve_on_LGTM` | Optional | Bool    | Approve this PR if no issues were found. Default is `false` |
+| `guidelines` | Optional | String | Provides custom instructions to the AI model to tailor the generated description.                                           |
 
 ```yaml+jinja title="example"
 automations:
@@ -302,14 +303,18 @@ automations:
       - action: code-review@v1
         args:
           approve_on_LGTM: {{ APPROVE_PR_ON_LGTM }} # optional arg, you can remove it
+          guidelines: {{ GUIDELINES | dump }}
 ...
 ...
 # Define variables
 
 APPROVE_PR_ON_LGTM: false # Add conditions for PR approvals. For example - allow approval only for specific users
+GUIDELINES:
+    - Don't comment on using outdated dependencies
+
 ```
 
-#### `describe-changes` :fontawesome-brands-github:
+#### `describe-changes` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
 This action, once triggered, leverages AI to generate a comprehensive summary of the changes in the PR and incorporates it into the PR description.
 
@@ -320,10 +325,17 @@ The action automatically analyzes the code modifications to create a clear, high
 | Args         | Usage    | Type   | Description                                                                                                                 |
 | ------------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------- |
 | `concat_mode` | Optional | String | By default `replace`. The mode to add the changes description, can be `replace`, `append`, or `prepend` to the PR description |
+| `guidelines` | Optional | String | Provides custom instructions to the AI model to tailor the generated description.                                           |
+| `template`   | Optional | String | Specifies a template for the AI model to use and fill in when generating the PR description.                                |
 
 </div>
 
 ```yaml+jinja title="example"
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
 automations:
   linearb_ai_description:
     # trigger it only when PR is created or has new commits
@@ -338,6 +350,17 @@ automations:
       - action: describe-changes@v1
         args:
           concat_mode: append
+          guidelines: {{ GUIDELINES }}
+          template: {{ TEMPLATE }}
+
+GUIDELINES: |
+  Remove all unnecessary checkboxes.
+  Try to extract the Jira ticket from "{{ branch.name }}" or "{{ pr.title }}" and fill it into the template.
+  Jira ticket should be in format ABC-12345.
+
+# Load the PR template content from a file in the repository
+TEMPLATE: {{ ".github/pull_request_template.md" | readFile() | dump }}
+
 ```
 
 #### `explain-code-experts` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
