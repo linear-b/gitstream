@@ -7,7 +7,7 @@ automations:
       - pr_created
       - commit
     if:
-      - {{ pr.draft == false }}
+      - {{ not pr.draft }}
       - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
     run:
       - action: code-review@v1
