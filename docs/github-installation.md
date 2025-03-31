@@ -6,8 +6,9 @@ description: Install gitStream to your GitHub organization.
 
 !!! Info "Prerequisites"
     Allowed network connection between the runners and the following IPs:
-        - 13.56.203.235
-        - 54.151.81.98
+    
+    - 13.56.203.235
+    - 54.151.81.98
 
 !!! Warning "Install gitStream"
 
