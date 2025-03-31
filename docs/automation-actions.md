@@ -309,7 +309,7 @@ automations:
 # Define variables
 
 APPROVE_PR_ON_LGTM: false # Add conditions for PR approvals. For example - allow approval only for specific users
-GUIDELINES:
+GUIDELINES: |
     - Don't comment on using outdated dependencies
 
 ```
