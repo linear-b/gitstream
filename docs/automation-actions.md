@@ -359,7 +359,7 @@ GUIDELINES: |
   Jira ticket should be in format ABC-12345.
 
 # Load the PR template content from a file in the repository
-TEMPLATE: {{ ".github/pull_request_template.md" | readFile() | dump }}
+TEMPLATE: {{ ".github/PULL_REQUEST_TEMPLATE.md" | readFile() | dump }}
 
 ```
 
