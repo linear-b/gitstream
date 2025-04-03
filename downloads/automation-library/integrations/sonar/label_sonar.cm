@@ -1,0 +1,41 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+  
+automations:
+  {% for item in reports %}
+  label_sonar_{{ item.name }}:
+    if:
+      - {{ item.count > 0}}
+    run:
+      - action: add-label@v1
+        args:
+          label: '{{ item.icon }} sonar:{{ item.name }}-{{ item.rating }}'
+          color: {{ colors.red if (item.rating == 'E' or item.rating == 'D') else (colors.orange if (item.rating == 'C' ) else colors.yellow) }}
+  {% endfor %}
+
+sonar: {{ pr | extractSonarFindings }}
+
+reports:
+  - name: vulnerabilities
+    count: {{ sonar.vulnerabilities.count }}
+    icon: 🔓
+    rating: {{ sonar.vulnerabilities.rating }}
+  - name: code smells
+    count: {{ sonar.code_smells.count }}
+    icon: ☣️
+    rating: {{ sonar.code_smells.rating }}
+  - name: security hotspots
+    count: {{ sonar.security_hotspots.count }}
+    icon: 🛡️
+    rating: {{ sonar.security_hotspots.rating }}
+  - name: bugs
+    count: {{ sonar.bugs.count }}
+    icon: 🪲
+    rating: {{ sonar.bugs.rating }}
+
+colors:
+  red: 'b60205'
+  orange: 'd93f0b'
+  yellow: 'fbca04'
