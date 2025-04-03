@@ -8,7 +8,7 @@ quickstart: true
 # Code Review Using LinearB's AI :material-star-circle:
 
 <!-- --8<-- [start:example]-->
-Use LinearB's AI with the `code-review` action to automatically review the introduced changes to the code.
+Use LinearB's AI with the [`code-review`](/automation-actions/#code-review) action to automatically review the introduced changes to the code.
 
 ![code-review](/automations/integrations/LinearBAI/code-review/LinearB-AI-code-review.png)
 
