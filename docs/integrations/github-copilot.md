@@ -4,11 +4,9 @@ description: Workflow automations to improve your GitHub Copilot usage.
 ---
 # Integrate gitStream with GitHub Copilot
 
+## Automatically Label AI-Assisted PRs
 
-## Automatically Label Copilot-Assisted PRs
-
---8<-- "docs/automations/integrations/copilot/flag-copilot-pr/README.md:example"
-
+--8<-- "docs/automations/integrations/ai-assistance/flag-ai-pr/README.md:example"
 
 ## Additional Resources
 

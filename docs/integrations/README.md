@@ -9,6 +9,12 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
+[:fontawesome-solid-wand-magic-sparkles: AI Assistance](/automations/integrations/ai-assistance/flag-ai-pr)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
 <a href=/integrations/linearb>![LinearB](/downloads/images/linearb-symbol-dark.png#only-light) ![LinearB](/downloads/images/linearb-symbol-white.png#only-dark) LinearB</a>
 </div>
 </div>
@@ -32,12 +38,6 @@ visible: false
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
 [:simple-githubactions: GitHub Actions](/integrations/github-actions)
-</div>
-</div>
-
-<div class="integrations-card" markdown="1">
-<div class="integrations-card-title" markdown="1">
-[:octicons-copilot-16: GitHub Copilot](/integrations/github-copilot)
 </div>
 </div>
 
