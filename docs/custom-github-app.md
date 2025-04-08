@@ -37,12 +37,11 @@ In LinearB, go to Settings -> Git -> click the `Connect gitStream` button next t
 Keep this window open and complete the next steps in GitHub. Once you have the **App ID** and **Private Key** (.pem file), you can complete the connection in LinearB.
 
 ## 2. Create a New GitHub App
+Any GitHub account on your self-hosted GitHub Server can own the app, but we recommend creating it under the organization account of the team who will maintain the gitStream installation.
 
-Any GitHub account can own the app, but we recommend creating it under the organization account of the team who will maintain the gitStream installation.
-
-- Log in to [GitHub](https://github.com/) and go to your organization account page (e.g., `https://github.com/<organization account name>`)
-- Click on *Settings -> Developer Settings -> GitHub Apps -> New GitHub App* as shown below
-- Or go directly to `https://github.com/organizations/<organization account name>/settings/apps/new`
+- Log in to your GitHub Server and go to your organization account page (e.g., `https://<GITHUB_SERVER_URL>/<organization account name>`)
+- Navigate to *Settings -> Developer Settings -> GitHub Apps -> New GitHub App* as shown below
+- Or go directly to `https://<GITHUB_SERVER_URL>/settings/apps`
 
 ![GitHub App Creation](screenshots/create-new-github-app.png)
 
@@ -148,7 +147,9 @@ To complete the integration, fill in the App ID and Private Key in the LinearB s
 
 ## 10. Connect GitHub App to Your Repositories
 
-Go to your organization settings in GitHub and in Third-party Access choose the GitHub Apps. You may need to choose the account to install the gitStream app on. Choose your org you used to create the GitHub app in the previous sections.
+Go to your organization settings in GitHub and navigate to **Third-party Access** to manage GitHub Apps. Select the account where you want to install the gitStream app. Choose the organization you used to create the GitHub app in the previous steps.
+
+Alternatively, you can go directly to the app settings at `https://<GITHUB_SERVER_URL>/settings/apps/<gitstream-app>/installations` and add the app to the relevant organizations.
 
 ![GitHub app setup](screenshots/setup-new-github-app.png)
 
@@ -162,4 +163,110 @@ Choose the repositories you want to connect.
 
 ## 11. Finish Setting Up gitStream
 
-Follow the instructions to configure your repository using the [GitHub Instructions](github-installation.md)
+You can now set up gitStream for a single repo, your GitHub organization or across all the organizations in the server. Select the tab below for the instructions you want.
+=== "Single Repo"
+    **Single Repo Setup**
+
+    You must implement two main components for gitStream to function for a single GitHub repo. The first is a configuration file that defines the workflow automations to execute for the repo. The second is a GitHub actions configuration file that triggers gitStream when PRs are created or updated.
+    !!! example "Required Configurations"
+        **gitStream**
+
+        Create a `.cm/gitstream.cm` rules file in your repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on the repo, and you can name it anything you want as long as it ends in `.cm`
+
+        Here is an example of a gitStream configuration file you can use to setup some basic workflow automations.
+
+        ```yaml+jinja
+        --8<-- "docs/downloads/gitstream.cm"
+        ```
+
+        **Github Actions**
+
+        Once your gitStream configuration file is setup, you need a Github Actions configuration file to trigger gitStream automations. Create a `.github/workflows/gitstream.yml` file in your repository's default branch (usually `master` or `main`) and add the following configuration:
+
+        ```yaml+jinja
+        --8<-- "docs/downloads/gitstream.yml"
+        ```
+
+        !!! Success
+            When finished, you should have the following file structure in your repo.
+
+            ```
+            .
+            ├─ .cm/
+            │  └─ gitstream.cm
+            ├─ .github/
+            │  └─ workflows/
+            │     └─ gitstream.yml
+            ```
+
+=== "GitHub Organization"
+    **GitHub Organization Setup**
+
+    Organization rules are ideal when you want to enforce consistent rules across every repo in your organization. You can define them by creating a special repository named `cm` in your GitHub organization where you can add automation files that will apply to **all** repositories within that organization.
+
+    !!! Tip "Prerequisite: Create a cm repo and enable gitStream."
+        Organization-wide automations need to be defined in a repo named "cm" inside your GitHub organization. Before continuing, you must create this repo and <a href="https://github.com/apps/gitstream-cm/installations/new" target="_blank">enable the gitStream app for it</a>.
+
+    !!! example "Required Configurations"
+        **gitStream**
+
+        Create a `gitstream.cm` rules file in the root directory of your cm repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on your organization's repos. You can name it anything you want as long as it ends in `.cm`
+
+        !!! info "Configuration files go in the repo's root directory."
+            Unlike the set up instructions for a single repo, your `.cm` files should be placed in the repository's root directory.
+        ```yaml+jinja
+        --8<-- "docs/downloads/gitstream.cm"
+        ```
+        **GitHub Actions**
+
+        Once your gitStream configuration file is set up, you will need to create a Github Actions configuration file to trigger gitStream automations. Create a `.github/workflows/gitstream.yml` file in your `cm` repository's default branch (usually `master` or `main`) and add the following configuration:
+
+        ```yaml+jinja
+        --8<-- "docs/downloads/gitstream.yml"
+        ```
+
+        !!! Success
+            Once finished, **all** PRs to your organization's repositories will be processed by the GitHub Action in this repo, and your `cm` repo should have a file directory that looks like this.
+
+            ```
+            .
+            ├─ gitstream.cm
+            ├─ .github/
+            │  └─ workflows/
+            │     └─ gitstream.yml
+=== "GitHub Multi Org"
+    **GitHub Multi Org Setup**
+
+    Multi-org rules are ideal when you want to enforce consistent rules across every repo across multiple organizations on your server. You can define them by creating a special repository named `cm` under the `cm` organization in your GitHub Server where you can add automation files that will apply to **all** repositories across all organizations.
+
+    !!! Tip "Prerequisite: Create a cm repo under the cm org and enable gitStream."
+        Multi-org automations need to be defined in a repo named `cm` inside the `cm` organization on your GitHub Server. Before continuing, you must create this repo and <a href="https://github.com/apps/gitstream-cm/installations/new" target="_blank">enable the gitStream app for it</a>.
+
+    !!! example "Required Configurations"
+        **gitStream**
+
+        Create a `gitstream.cm` rules file in the root directory of the `cm` repository's default branch (usually `master` or `main`). This file will contain a YAML configuration that determines the workflows that run on your server's repos. You can name it anything you want as long as it ends in `.cm`
+
+        !!! info "Configuration files go in the repo's root directory."
+            Unlike the setup instructions for a single repo, your `.cm` files should be placed in the repository's root directory.
+        ```yaml+jinja
+        --8<-- "docs/downloads/gitstream.cm"
+        ```
+        **GitHub Actions**
+
+        Once your gitStream configuration file is set up, you will need to create a Github Actions configuration file to trigger gitStream automations. Create a `.github/workflows/gitstream.yml` file in your `cm` repository's default branch (usually `master` or `main`) and add the following configuration:
+
+        ```yaml+jinja
+        --8<-- "docs/downloads/gitstream.yml"
+        ```
+
+        !!! Success
+            Once finished, **all** PRs to repositories across all organizations on your server will be processed by the GitHub Action in this repo, and your `cm` repo should have a file directory that looks like this.
+
+            ```
+            .
+            ├─ gitstream.cm
+            ├─ .github/
+            │  └─ workflows/
+            │     └─ gitstream.yml
+            ```
