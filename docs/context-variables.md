@@ -33,7 +33,7 @@ gitStream includes a collection of variables called contexts.
 
 The following structures are used in the context objects:
 
-- [`GitBlame`](#gitblamep-structure)
+- [`GitBlame`](#gitblame-structure)
 - :octicons-beaker-24: [`Check`](#check-structure)
 - [`Contributor`](#contributor-structure)
 - [`FileDiff`](#filediff-structure)
@@ -272,7 +272,7 @@ The `repo` context includes metadata related to the repo.
 | `repo`              | Map                                     | Includes the info related to the current repo                                                                                                                                                 |
 | `repo.age`          | Integer                                 | Number of days since first commit (of any user)                                                                                                                                               |
 | `repo.author_age`   | Integer                                 | number of days since first commit to this repo                                                                                                                                                |
-| `repo.blame`        | [`GitBlame`](#gitblamep-structure)      | The percentage of each user's lines in a file, the list includes all changed files in the branch. The `ratio` field sorts the list                                                          |
+| `repo.blame`        | [`GitBlame`](#gitblame-structure)       | The percentage of each user's lines in a file, the list includes all changed files in the branch. The `ratio` field sorts the list                                                          |
 | `repo.contributors` | [`Contributor`](#contributor-structure) | List of contributors in the repo                                                                                                                                                              |
 | `repo.git_activity` | [`GitActivity`](#gitactivity-structure) | Per file and user, the number of lines changed every week for the last 52 weeks                                                                                                               |
 | `repo.languages`    | Map                                     | Lists the languages used in the specified repository. The returned object is a map of key-value pairs representing a language and the percentage of bytes in that language within the code. |
