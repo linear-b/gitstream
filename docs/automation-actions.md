@@ -401,44 +401,9 @@ GUIDELINES: |
 TEMPLATE: {{ ".github/PULL_REQUEST_TEMPLATE.md" | readFile() | dump }}
 ```
 
-The following files are automatically excluded from the describe changes.
+!!! tip "Excluded Files"
 
-| File type | Filter type | Values|
-| - | - | - |
-| Data | Extension | `ini` `csv` `xls` `xlsx` `xlr` `doc` `docx` `txt` `pps` `ppt` `pptx` `dot` `dotx` `log` `tar` `rtf` `dat` `ipynb` `po` `profile` `object` `obj` `dxf` `twb` `bcsymbolmap` `tfstate` `pdf` `rbi` `pem` `crt` `svg` `png` `jpeg` `jpg` `ttf` |
-| Data | Regex | `.*dist/.*\.js$` `.*public/assets/.*\.js$` |
-| Pipeline | Regex | `.*ci\.yml$` |
-
-| Lock File Name          | Programming Language | Package Manager      |
-|-------------------------|----------------------|----------------------|
-| `package-lock.json`     | JavaScript           | npm                  |
-| `yarn.lock`             | JavaScript           | Yarn                 |
-| `npm-shrinkwrap.json`   | JavaScript           | npm                  |
-| `Pipfile.lock`          | Python               | pipenv               |
-| `poetry.lock`           | Python               | Poetry               |
-| `conda-lock.yml`        | Python               | conda                |
-| `Gemfile.lock`          | Ruby                 | Bundler              |
-| `composer.lock`         | PHP                  | Composer             |
-| `packages.lock.json`    | .NET                 | NuGet                |
-| `project.assets.json`   | .NET                 | .NET Core            |
-| `pom.xml`               | Java                 | Maven                |
-| `Cargo.lock`            | Rust                 | Cargo                |
-| `mix.lock`              | Elixir               | Mix                  |
-| `pubspec.lock`          | Dart/Flutter         | pub                  |
-| `go.sum`                | Go                   | Go modules           |
-| `stack.yaml.lock`       | Haskell              | Stack                |
-| `vcpkg.json`            | C++                  | vcpkg                |
-| `conan.lock`            | C++                  | Conan                |
-| `ivy.xml`               | Scala                | sbt/Ivy              |
-| `project.clj`           | Clojure              | Leiningen            |
-| `Podfile.lock`          | Swift/Objective-C    | CocoaPods            |
-| `Cartfile.resolved`     | Swift/Objective-C    | Carthage             |
-| `flake.lock`            | Nix                  | Nix                  |
-| `pnpm-lock.yaml`        | JavaScript           | pnpm                 |
-
-!!! tip
-
-    You can also filter more files, using [`config.ignore_files`](/cm-file/#configignore_files).
+    The `describe-changes` action processes the same files as `code-review`. For details see [`code-review`](#code-review).
 
 #### `explain-code-experts` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
