@@ -2,7 +2,7 @@
 
 ## Monthly PR automation limit
 
-Free accounts have a monthly cap on the number of PRs that can trigger automations in their organization. This limit ensures fair usage while allowing teams to experience gitStream’s benefits before upgrading.
+Free accounts have a monthly cap of **250** PRs that can trigger automations in their organization. This limit ensures fair usage while allowing teams to experience gitStream’s benefits before upgrading.
 
 ### How it works
 - When the account reaches 90% of its quota, a warning appears in PR comments.  
