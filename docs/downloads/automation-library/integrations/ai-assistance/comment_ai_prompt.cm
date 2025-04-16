@@ -31,4 +31,4 @@ automations:
             - [ ] Other AI tool
             - [ ] No AI tools were used
 
-            Tip: If you want to avoid this comment in the future, you can add a label of the format "🤖 ai-*" when creating your PR.
+            Tip: If you want to avoid this comment in the future, you can add a label of the format `🤖 ai-*` when creating your PR.
