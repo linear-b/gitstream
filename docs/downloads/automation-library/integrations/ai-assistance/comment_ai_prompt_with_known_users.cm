@@ -31,7 +31,7 @@ automations:
             - [ ] Other AI tool
             - [ ] No AI tools were used
 
-            **Tip**: If you want to avoid this comment in the future, add a label of the format "🤖 ai-*" when creating your PR, or ask your admin to add you to the pre-defined lists of known users
+            **Tip**: If you want to avoid this comment in the future, add a label of the format `🤖 ai-*` when creating your PR, or ask your admin to add you to the pre-defined lists of known users
 
   label_copilot_known_users:
     # For all PRs authored by someone who is specified in the genai_contributors list
