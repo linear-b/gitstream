@@ -9,7 +9,6 @@ description: Workflow automations to improve your GitHub Copilot usage.
 
 --8<-- "docs/automations/integrations/copilot/flag-copilot-pr/README.md:example"
 
---8<-- "docs/automations/integrations/ai-assistance/flag-ai-pr/README.md:example"
 
 ## Additional Resources
 
