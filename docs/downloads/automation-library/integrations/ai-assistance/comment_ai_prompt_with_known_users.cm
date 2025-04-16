@@ -43,7 +43,7 @@ automations:
         args:
           label: '🤖 ai-copilot'
 
-label_cursor_known_users:
+  label_cursor_known_users:
     # For all PRs authored by someone who is specified in the genai_contributors list
     if:
       - {{ pr.author | match(list=cursor_contributors) | some  }}
