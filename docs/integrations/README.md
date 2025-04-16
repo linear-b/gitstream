@@ -9,7 +9,7 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:fontawesome-solid-wand-magic-sparkles: AI Assistance](/automations/integrations/ai-assistance/flag-ai-pr)
+[:material-assistant: AI Assistance](/automations/integrations/ai-assistance/flag-ai-pr)
 </div>
 </div>
 
@@ -38,6 +38,12 @@ visible: false
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
 [:simple-githubactions: GitHub Actions](/integrations/github-actions)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:octicons-copilot-16: GitHub Copilot](/integrations/github-copilot)
 </div>
 </div>
 

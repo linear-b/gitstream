@@ -69,14 +69,3 @@ automations:
         args:
           label: "🤖 ai-none"
           
-  track_ai_models_and_services:
-    # Track AI models and services based on comments or description if both are present
-    if:
-      - {{ (pr.comments | filter(attr='content', regex=r/AI Service: .*/) | some) and (pr.comments | filter(attr='content', regex=r/AI Model: .*/) | some) }}
-    run:
-      - action: add-label@v1
-        args:
-          label: "🤖 service-{{ pr.comments | filter(attr='content', regex=r/AI Service: (.*)/) | first | match(regex=r/AI Service: (.*)/) | trim }}"
-      - action: add-label@v1
-        args:
-          label: "🤖 model-{{ pr.comments | filter(attr='content', regex=r/AI Model: (.*)/) | first | match(regex=r/AI Model: (.*)/) | trim }}"
