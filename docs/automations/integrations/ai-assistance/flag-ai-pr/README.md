@@ -75,7 +75,7 @@ Automatically apply labels to PRs based on whether they were assisted by AI tool
         </div>
 
     ### Track AI Tools
-    Add lables to the PR according to the tools that the developer checked in the micro-survey above
+    Add labels to the PR according to the tools that the developer checked in the micro-survey above
     ![Label AI Assistance](/automations/integrations/ai-assistance/flag-ai-pr/label-ai-assistance.png)
 
     !!! example "Track AI tools, models and services."
