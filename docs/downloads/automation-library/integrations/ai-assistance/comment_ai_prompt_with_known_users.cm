@@ -56,9 +56,10 @@ automations:
 copilot_contributors:
   - username1
   - username2
-  - etc
+  - usernameN
 
 cursor_contributors:
-  - username3
-  - username4
-  - etcc
+  - username1
+  - username2
+  - usernameN
+  
