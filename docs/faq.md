@@ -27,13 +27,13 @@ gitStream supports repositories in GitHub, GitLab, and Bitbucket. Note that the 
 
 ## Are there limits on gitStream automations for free accounts?
 
-Yes. Free accounts have a monthly limit on the number of PRs that can trigger automations.  
+Yes. Free accounts have a monthly limit on the number of pull requests that can trigger automations. It is limited to 250 pull requests each month per Git owner or organization.
 
-- When the organization reaches 90% of the limit, a warning will appear in PR comments.  
-- Once the limit is exceeded, new PRs will not trigger automations and will be marked as "Skipped."  
-- The limit resets at the start of each month.  
+- When the organization reaches 90% of the limit, a warning will appear in PR comments.
+- Once the limit is exceeded, new PRs will not trigger automations and will be marked as "Skipped."
+- The limit resets at the start of each month.
 
-To remove automation limits, <a href="https://linearb.io/contact-us" target="_blank">Contact LinearB</a> and upgrade to a paid plan.  
+To remove automation limits, <a href="https://linearb.io/contact-us" target="_blank">Contact LinearB</a> and upgrade to a paid plan.
 🔗 Learn more: [Automation Limits](limits.md)
 
 ## Can I use gitStream with Merge Queues?
@@ -45,7 +45,7 @@ Yes. When a merge queue is used, and gitStream is set as a required check, gitSt
 
 The `.cm` file uses YAML with JINJA2. For your favorite editor to automatically choose the right syntax, you can use modelines.
 
-Add the following line to the top of the `.cm` file (the default has it already): 
+Add the following line to the top of the `.cm` file (the default has it already):
 
 ```
 # -*- mode: yaml -*-
