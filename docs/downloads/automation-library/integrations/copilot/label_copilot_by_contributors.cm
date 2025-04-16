@@ -4,17 +4,17 @@ manifest:
   version: 1.0
 
 automations:
-  label_genai:
+  label_copilot_by_contributors:
     # For all PRs authored by someone who is specified in the genai_contributors list
     if:
-      - {{ pr.author | match(list=genai_contributors) | some  }}
+      - {{ pr.author | match(list=genai_contributors) | some }}
     # Apply a label indicating the user has adopted Copilot
     run:
       - action: add-label@v1
         args:
-          label: '🤖 Copilot'
+          label: '🤖 ai-copilot'
 
 genai_contributors:
   - username1
   - username2
-  - etc
+  - usernameN
