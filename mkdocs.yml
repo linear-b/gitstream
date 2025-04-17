@@ -21,7 +21,8 @@ nav:
   - Integrations: integrations/README.md
   - Reference:
     - Configuration: cm-file.md
-    - Execution: execution-model.md
+    - Trigger Control: execution-model.md
+    - Automation Limits: limits.md
     - Context variables: context-variables.md
     - Filter functions: filter-functions.md
     - Automation actions: automation-actions.md

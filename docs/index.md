@@ -4,6 +4,25 @@ description: YAML-based workflow automation for the code review process.
 ---
 # /:\ gitStream
 gitStream is a workflow automation tool that enables you to use YAML configuration files to optimize your code review process. Add context to PRs, find code experts for reviews, and automate the merge process to maximize developer productivity.
+
+## AI-Powered Productivity with LinearB's AI :material-star-circle:
+
+Enhance your pull request experience with our new AI capabilities using LinearB's AI services. Automatically generate PR descriptions, perform comprehensive code reviews, and more to improve efficiency and productivity.
+
+!!! quote ""
+	![summarized-pr](/automations/integrations/LinearBAI/describe-pr/LinearB-AI-describe-pr.png){: style="border-radius:4px;width:50%", align=right}
+	
+	**Add PR Description Using LinearB's AI**
+
+	Automatically generate and append a concise, [AI-generated description](automations/integrations/LinearBAI/describe-pr) to a pull request to ensure all PRs include meaningful and helpful descriptions, improving review efficiency.
+
+!!! quote ""
+	![code-review](/automations/integrations/LinearBAI/code-review/LinearB-AI-code-review.png){: style="border-radius:4px;width:50%", align=left}
+
+	**Use LinearB's AI for a Comprehensive Code Review**
+
+	Leverage LinearB's AI to [automatically review](automations/integrations/LinearBAI/code-review) introduced changes to the code, ensuring high-quality code reviews and reducing the manual effort required.
+
 ## Features
 
 !!! quote ""
@@ -75,6 +94,14 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 	
 	That's it! Now sit back and watch gitStream run automation rules on your next PR.
 
+!!! warning "Automation limits for free accounts"
+    Free accounts have a monthly cap on PRs that can trigger gitStream automations.
+
+    - At 90% usage, a warning appears in PR comments.  
+    - Once the limit is reached, new PRs will not run automations and the gitStream check will be concluded as `Skipped`.  
+    - Limits reset at the start of each month.
+		
+    🔗 Learn more: [Automation Limits](limits.md)
 
 ## Get Involved
 Want to report a bug, request a new feature, ask a question, get updates for new features, or propose a new configuration for the automation library? [Join us on GitHub](https://github.com/linear-b/gitstream).

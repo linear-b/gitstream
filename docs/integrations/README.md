@@ -6,16 +6,28 @@ visible: false
 # gitStream Integrations
 <!-- --8<-- [start:integrations]-->
 <div class="integrations-list" markdown="1">
-  
+
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:fontawesome-solid-wand-magic-sparkles: AI](/integrations/askAI)
+[:material-assistant: AI Assistance](/automations/integrations/ai-assistance/flag-ai-pr)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
 <a href=/integrations/linearb>![LinearB](/downloads/images/linearb-symbol-dark.png#only-light) ![LinearB](/downloads/images/linearb-symbol-white.png#only-dark) LinearB</a>
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:fontawesome-solid-wand-magic-sparkles: LinearB AI](/integrations/LB_AI)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:fontawesome-solid-wand-magic-sparkles: Bring Your Own AI](/integrations/askAI)
 </div>
 </div>
 

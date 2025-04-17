@@ -9,13 +9,16 @@ description: Install gitStream to your GitLab organization.
     1. GitLab
     2. GitLab runner v15 or higher with ability to run apk commands
     3. <a href="https://app.linearb.io/login" target="_blank">Login</a>, or <a href="https://app.linearb.io/sign-up" target="_blank">create a free account</a> on the LinearB app, and follow the steps to <a href="https://linearb.helpdocs.io/article/0xxpvue4s9-connect-git-stream-using-a-git-lab-integration" target="_blank">connect gitStream Using a GitLab Integration</a>.
+    4. Allowed network connection between the executors and the following IPs:
+        - 13.56.203.235
+        - 54.151.81.98
 
 GitLab Installation Overview
 
 1. Designate a gitStream user account.
 1. Create a `cm` repo and `.cm` configuration file.
 1. Create a GitLab pipeline.
-1. Install the gitStream service. 
+1. Connect gitStream in LinearB. 
 
 ## Designate a gitStream User Account
 
@@ -89,12 +92,12 @@ Once your gitStream configuration file is set up, you need a GitLab CI configura
 	```
 	The docker image can be pulled to your private repository from [DockerHub](https://hub.docker.com/r/gitstream/rules-engine){:target=_blank}.  
 
-## Install the gitStream Service
+## Connect gitStream in LinearB
 
-To complete the setup, install the gitStream service in your Bitbucket workspace. Follow the instructions provided in the LinearB app to connect your Bitbucket account and repositories to gitStream.
+To complete the setup, connect gitStream in LinearB. Follow the instructions in the LinearB app to connect your GitLab account and repositories to gitStream.
 
 ## Next Step
-If you successfully complete these instructions, gitStream will now automate your code review workflows in Bitbucket.
+If you complete these instructions, gitStream will now automate your Merge Request workflows on GitLab.
 
 !!! tip "How gitStream Works"
     Read our guide, [How gitStream Works](/how-it-works/), for a deeper understanding of gitStream's capabilities and how to leverage them fully.

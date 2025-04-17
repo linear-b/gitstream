@@ -24,11 +24,13 @@ Check that you see "gitStream workflow automation" in the Action section in your
 
 ![GitHub action](screenshots/github_pr_actions_section.png)
 
-Next, if you see failed action, check out the details:
+Next, if you see a failed action, check out the details:
 
 ![GitHub action log](screenshots/github_pr_actions_log.png)
 
-Some organization limit which actions can run, in that case in the repository settings you should enable it:
+#### Does your organization allows 3rd party actions?
+
+Some organizations limit which actions can run, in that case, in the repository settings, you should enable it:
 
 ![GitHub allow marketplace actions](screenshots/github_settings_allow_actions.png)
 
@@ -111,8 +113,11 @@ jobs:
 gitStream check run can fail from different reasons, and these are shown in the check result.
 
 #### Missing workflow file
+![Check failure](screenshots/file_not_found_error.png)
 
-When it says `gitStream.cm Skipped — gitStream workflow file not found`, it means that the GitHub action was not found, check again that you have this file in your repository root: `.github/workflows/gitstream.yml`, see instructions on [GitHub installation](/github-installation).
+When it says `gitStream.cm Skipped — gitStream workflow file not found`, it means that:
+- The GitHub action was not found, check again that you have this file in your repository root: `.github/workflows/gitstream.yml`, see instructions on [GitHub installation](/github-installation)
+- When using org level, then the required `cm` **repo** may not be in the GitHub application allowed repositories list. See instructions above: [enable gitStream for your `cm` repo](#using-org-level-did-you-enable-gitstream-for-your-cm-repo)
 
 #### Syntax error in the cm files
 

@@ -1,10 +1,22 @@
-# Execution Model
+# Trigger Control
 
 gitStream is triggered on new pull requests (PRs) for repositories that have gitStream installed. Upon triggering, gitStream collects context variables and evaluates the automation rules to determine which ones are relevant.
 
 ## Organization-level rules and repository rules
 
 When a central `cm` repository is set with the CI/CD runner, the events for PRs from all installed repositories shall be evaluated in the `cm` repository pipeline, considering the organization-level and PR repository rules.
+
+## Execution behavior for free accounts
+
+Free accounts have a monthly limit on the number of PRs that can trigger automations. Once this limit is reached:
+
+- PRs will still be created, but gitStream will skip automations for them.
+- The gitStream check on these PRs will be concluded as `Skipped`, to ensure that gitStream will not block the PR from merging.
+- A warning is displayed in PR comments when the organization reaches 90% of its quota.
+- The limit resets at the start of each month.
+
+To remove automation limits, <a href="https://linearb.io/contact-us" target="_blank">Contact LinearB</a> and upgrade to a paid plan.
+🔗 Learn more: [Automation Limits](limits.md)
 
 ## Triggering Mechanism
 
@@ -58,6 +70,9 @@ The table below lists supported explicit triggers, categorized into those enable
 
 Explicit triggers are set independently per each automation block and can be configured at the file level, specific to each automation separately or in combination. If triggers are listed at the file level **and** specific automation, the automation will be triggered according to both triggers.
 If an automation block does not have explicit triggers configured, it will be triggered according to the default (implicit) triggers.
+
+!!! Note
+    The `on` parameter can be used within individual automation blocks, while `triggers.include` and `triggers.exclude` can only be defined at the file level.
 
 **Note on Matching:**
 

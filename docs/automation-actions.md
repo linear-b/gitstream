@@ -20,6 +20,7 @@ Actions are the end results of the automation described in your `.cm` file.
 [`send-http-request`](#send-http-request) is executed immediately after the evaluation of the condition.
 For all other actions, gitStream executes the actions in the order they are listed per automation. If an action result fails, the following actions will not be executed.
 
+- [`add-code-comment`](#add-code-comment) :fontawesome-brands-github:
 - [`add-comment`](#add-comment) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`add-github-check`](#add-github-check) :fontawesome-brands-github:
 - [`add-label`](#add-label) :fontawesome-brands-github: :fontawesome-brands-gitlab:
@@ -28,14 +29,16 @@ For all other actions, gitStream executes the actions in the order they are list
 - [`add-thread`](#add-thread) :fontawesome-brands-gitlab:
 - [`approve`](#approve) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`close`](#close) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+- [`code-review`](#code-review) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+- [`describe-changes`](#describe-changes) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`explain-code-experts`](#explain-code-experts) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`merge`](#merge) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`request-changes`](#request-changes) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
-- [`require-reviewers`](#require-reviewers) :fontawesome-brands-github:
+- [`require-reviewers`](#require-reviewers) :fontawesome-brands-github: :fontawesome-brands-bitbucket:
 - [`run-github-workflow`](#run-github-workflow) :fontawesome-brands-github:
 - [`send-http-request`](#send-http-request) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`send-slack-message`](#send-slack-message) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
-- [`set-required-approvals`](#set-required-approvals) :fontawesome-brands-github:
+- [`set-required-approvals`](#set-required-approvals) :fontawesome-brands-github: :fontawesome-brands-bitbucket:
 - [`update-description`](#update-description) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`update-title`](#update-title) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
@@ -60,6 +63,37 @@ automations:
 
 
 ## Reference
+
+#### `add-code-comment` :fontawesome-brands-github:
+
+This action, once triggered, adds a single code comment to the PR.
+
+This is a managed action, when PR updates, the existing comments added by gitStream are re-evaluated, and those that are not applicable are removed.
+
+<div class="filter-details" markdown=1>
+
+| Args       | Usage | Type      | Description                         |
+| -----------|------|-----|------------------------------------------------ |
+| `comment`  | Required | String    | Sets the comment, markdown is supported, including suggestion syntax (```suggestion … ```) |
+| `file_path`  | Required | String    | The relative path to the file that necessitates the comment |
+| `start_line`  | Optional | Integer    | The line (or the first line in multi-line comment)of the blob in the pull request diff that the comment applies to. If start_line is empty, the code comment should be on the file provided |
+| `end_line`  | Optional | Integer    | For a multi-line comment, the last line of the range that your comment applies to. Must be equal to or larger than start_line |
+
+</div>
+
+```yaml+jinja title="example"
+automations:
+  senior_review:
+    if:
+      - true
+    run:
+      - action: add-code-comment@v1
+        args:
+          file_path: <FILE>
+          start_line: 20
+          comment: |
+            Magic! Move it to a constant variable.
+```
 
 #### `add-comment` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
@@ -212,31 +246,6 @@ automations:
           comment: "Please make sure this change request is documented before merging"
 ```
 
-#### `explain-code-experts` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
-
-This action, shall add a comment with codeExperts suggestion. If the comment already exists, the comment shall be edited.
-
-<div class="filter-details" markdown=1>
-
-| Args       | Usage | Type      | Description                                     |
-| -----------|------|-----|------------------------------------------------ |
-| `lt` | Optional | Integer    | Filter the user list, keeping those below the specified threshold |
-| `gt` | Optional | Integer    | Filter the user list, keeping those above the specified threshold |
-| `verbose` | Optional| Bool | When set to false then only shows the suggestion summary and skips the per file details (true by default) |
-
-</div>
-
-```yaml+jinja title="example"
-automations:
-  code_experts:
-    if:
-      - true
-    run:
-      - action: explain-code-experts@v1
-        args:
-          gt: 10
-```
-
 #### `approve` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
 This action, once triggered, approves the PR for merge.
@@ -269,6 +278,158 @@ automations:
             Please contact a member of `ui-team` team if you need to make changes to files in `src/views`
       - action: close@v1
 ```
+
+#### `code-review` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+
+This action, once triggered, reviews the code in the PR, and generates a comment with the identified issue, bugs, misconfigurations, and bad practices in the newly introduced code, with an option to approve the PR if no issues were found.
+
+<div class="filter-details" markdown=1>
+
+| Args       | Usage | Type      | Description                                     |
+| -----------|------|-----|------------------------------------------------ |
+| `approve_on_LGTM` | Optional | Bool    | Approve this PR if no issues were found. Default is `false` |
+| `guidelines` | Optional | String | Provides custom instructions to the AI model to tailor the generated description.                                           |
+
+```yaml+jinja title="example"
+automations:
+  linearb_ai_review:
+    on:
+      - pr_created
+      - commit
+    if:
+      - {{ not pr.draft }}
+      - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
+    run:
+      - action: code-review@v1
+        args:
+          approve_on_LGTM: {{ APPROVE_PR_ON_LGTM }} # optional arg, you can remove it
+          guidelines: {{ GUIDELINES | dump }}
+...
+...
+# Define variables
+
+APPROVE_PR_ON_LGTM: false # Add conditions for PR approvals. For example - allow approval only for specific users
+GUIDELINES: |
+    - Don't comment on using outdated dependencies
+
+```
+
+The following files are automatically excluded from the code review.
+
+| File type | Filter type | Values|
+| - | - | - |
+| Data | Extension | `ini` `csv` `xls` `xlsx` `xlr` `doc` `docx` `txt` `pps` `ppt` `pptx` `dot` `dotx` `log` `tar` `rtf` `dat` `ipynb` `po` `profile` `object` `obj` `dxf` `twb` `bcsymbolmap` `tfstate` `pdf` `rbi` `pem` `crt` `svg` `png` `jpeg` `jpg` `ttf` |
+| Data | Regex | `.*dist/.*\.js$` `.*public/assets/.*\.js$` |
+| Pipeline | Regex | `.*ci\.yml$` |
+
+| Lock File Name          | Programming Language | Package Manager      |
+|-------------------------|----------------------|----------------------|
+| `package-lock.json`     | JavaScript           | npm                  |
+| `yarn.lock`             | JavaScript           | Yarn                 |
+| `npm-shrinkwrap.json`   | JavaScript           | npm                  |
+| `Pipfile.lock`          | Python               | pipenv               |
+| `poetry.lock`           | Python               | Poetry               |
+| `conda-lock.yml`        | Python               | conda                |
+| `Gemfile.lock`          | Ruby                 | Bundler              |
+| `composer.lock`         | PHP                  | Composer             |
+| `packages.lock.json`    | .NET                 | NuGet                |
+| `project.assets.json`   | .NET                 | .NET Core            |
+| `pom.xml`               | Java                 | Maven                |
+| `Cargo.lock`            | Rust                 | Cargo                |
+| `mix.lock`              | Elixir               | Mix                  |
+| `pubspec.lock`          | Dart/Flutter         | pub                  |
+| `go.sum`                | Go                   | Go modules           |
+| `stack.yaml.lock`       | Haskell              | Stack                |
+| `vcpkg.json`            | C++                  | vcpkg                |
+| `conan.lock`            | C++                  | Conan                |
+| `ivy.xml`               | Scala                | sbt/Ivy              |
+| `project.clj`           | Clojure              | Leiningen            |
+| `Podfile.lock`          | Swift/Objective-C    | CocoaPods            |
+| `Cartfile.resolved`     | Swift/Objective-C    | Carthage             |
+| `flake.lock`            | Nix                  | Nix                  |
+| `pnpm-lock.yaml`        | JavaScript           | pnpm                 |
+
+!!! tip
+
+    You can also filter more files, using [`config.ignore_files`](/cm-file/#configignore_files).
+
+#### `describe-changes` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+
+This action, once triggered, leverages AI to generate a comprehensive summary of the changes in the PR and incorporates it into the PR description.
+
+The action automatically analyzes the code modifications to create a clear, high-level overview of what has been changed, making it easier for reviewers to understand the scope and purpose of the PR.
+
+<div class="filter-details" markdown=1>
+
+| Args         | Usage    | Type   | Description                                                                                                                 |
+| ------------ | -------- | ------ | --------------------------------------------------------------------------------------------------------------------------- |
+| `concat_mode` | Optional | String | By default `replace`. The mode to add the changes description, can be `replace`, `append`, or `prepend` to the PR description |
+| `guidelines` | Optional | String | Provides custom instructions to the AI model to tailor the generated description.                                           |
+| `template`   | Optional | String | Specifies a template for the AI model to use and fill in when generating the PR description.                                |
+
+</div>
+
+```yaml+jinja title="example"
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  linearb_ai_description:
+    # trigger it only when PR is created or has new commits
+    on:
+      - pr_created
+      - commit
+    # skip description for Draft PRs and PRs from bots
+    if:
+      - {{ not pr.draft }}
+      - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
+    run:
+      - action: describe-changes@v1
+        args:
+          concat_mode: append
+          guidelines: {{ GUIDELINES }}
+          template: {{ TEMPLATE }}
+
+GUIDELINES: |
+  Remove all unnecessary checkboxes.
+  Try to extract the Jira ticket from "{{ branch.name }}" or "{{ pr.title }}" and fill it into the template.
+  Jira ticket should be in format ABC-12345.
+
+# Load the PR template content from a file in the repository
+TEMPLATE: {{ ".github/PULL_REQUEST_TEMPLATE.md" | readFile() | dump }}
+```
+
+!!! tip "Excluded Files"
+
+    The `describe-changes` action processes the same files as `code-review`. For details see [`code-review`](#code-review).
+
+#### `explain-code-experts` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+
+This action, shall add a comment with codeExperts suggestion. If the comment already exists, the comment shall be edited.
+
+<div class="filter-details" markdown=1>
+
+| Args       | Usage | Type      | Description                                     |
+| -----------|------|-----|------------------------------------------------ |
+| `lt` | Optional | Integer    | Filter the user list, keeping those below the specified threshold |
+| `gt` | Optional | Integer    | Filter the user list, keeping those above the specified threshold |
+| `verbose` | Optional| Bool | When set to false then only shows the suggestion summary and skips the per file details (true by default) |
+
+</div>
+
+```yaml+jinja title="example"
+automations:
+  code_experts:
+    if:
+      - true
+    run:
+      - action: explain-code-experts@v1
+        args:
+          gt: 10
+```
+
 
 #### `merge` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
@@ -330,7 +491,7 @@ automations:
     :fontawesome-brands-gitlab: Enable the "All threads must be resolved" Merge check
 
 
-#### `require-reviewers` :fontawesome-brands-github:
+#### `require-reviewers` :fontawesome-brands-github: :fontawesome-brands-bitbucket:
 
 This action, once triggered, requires a specific reviewer approval. The PR merge is blocked till approved by either of the listed users or teams.
 
@@ -356,7 +517,11 @@ automations:
 
 !!! attention
 
-    To allow this action to block merge, you should enable branch protection, and gitStream has to be set as required check in GitHub.
+    To allow this action to block merge, The following settings should be set:
+
+    :fontawesome-brands-github: Enable branch protection and set gitStream as a required check
+
+    :fontawesome-brands-bitbucket: Select "Prevent a merge with unresolved merge checks" under Branch restrictions
 
 #### `run-github-workflow` :fontawesome-brands-github:
 
@@ -459,9 +624,9 @@ automations:
 slack_webhook: {{ env.SLACK_WEBHOOK }}
 ```
 
-#### `set-required-approvals` :fontawesome-brands-github:
+#### `set-required-approvals` :fontawesome-brands-github: :fontawesome-brands-bitbucket:
 
-This action, once triggered, blocks PR merge till the desired reviewers approved the PR. The actions fail the check to prevent the PR for merge.
+This action, once triggered, blocks PR merge till the desired reviewers approve the PR. The actions fail the check to prevent the PR from merging.
 
 <div class="filter-details" markdown=1>
 
@@ -482,9 +647,14 @@ automations:
           approvals: 2
 ```
 
+
 !!! attention
 
-    To allow this action to block merge, you should enable branch protection, and gitStream has to be set as required check in GitHub.
+    To allow this action to block merge, The following settings should be set:
+
+    :fontawesome-brands-github: Enable branch protection and set gitStream as a required check
+
+    :fontawesome-brands-bitbucket: Select "Prevent a merge with unresolved merge checks" under Branch restrictions
 
 #### `update-description` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 This action, when triggered, updates the PR description with new content.

@@ -16,9 +16,6 @@
   <a href="https://github.com/linear-b/gitstream">
     <img src="https://img.shields.io/github/stars/linear-b/gitstream" alt="Stars">
   </a>
-  <a href="https://github.com/linear-b/gitstream/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/linear-b/gitstream" alt="Apache 2.0">
-  </a>
 </p>
 
 <h1 align="center">The ultimate workflow automation tool for your git repository</h1>

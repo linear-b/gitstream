@@ -21,7 +21,7 @@ An automation identifier is a composition of the CM file name and the automation
 
 !!! tip
 
-    You can select (include or exclude) certain repositories per automation file using the [`triggers.include.repository`](./execution-model.md#trigger-configuration) and [`triggers.exclude.repository`](./execution-model.md#trigger-configuration)
+    You can select (include or exclude) certain repositories per automation file using the [`triggers.include.repository`](./execution-model.md#triggers-section) and [`triggers.exclude.repository`](./execution-model.md#triggers-section)
 
 ### Repository automation rules
 

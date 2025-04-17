@@ -6,7 +6,7 @@ description: Install gitStream to your Bitbucket workspace.
 
 !!! info "gitStream for Bitbucket Cloud is currently in **beta**"
     
-    To start automating your Bitbucket pull requests and enhancing your development workflow, please [contact our support team](mailto:support@linearb.io) to request access and receive setup instructions.  
+    To start automating your Bitbucket pull requests and enhancing your development workflow, please [contact our product team](mailto:product@linearb.io) to request access and receive setup instructions.  
     We’d love to hear your feedback and collaborate to improve this integration during the beta phase. Thank you for your interest!  
 
 !!! info "Prerequisites"
@@ -14,6 +14,10 @@ description: Install gitStream to your Bitbucket workspace.
     1. Bitbucket Cloud account
     2. Bitbucket Pipelines enabled
     3. <a href="https://app.linearb.io/login" target="_blank">Login</a>, or <a href="https://app.linearb.io/sign-up" target="_blank">create a free account</a> on the LinearB app, and follow the steps to connect gitStream using a Bitbucket integration.
+    4. A dedicated user for gitStream, whose name includes the term **"gitstream"**.  
+    5. Allowed network connection between the runners and the following IPs:
+        - 13.56.203.235
+        - 54.151.81.98
 
 Bitbucket Installation Overview
 
@@ -24,9 +28,7 @@ Bitbucket Installation Overview
 
 ## Designate a gitStream User Account
 
-gitStream automation rules are executed on behalf of the user account configured when you install the gitStream service. This account must have the necessary permissions to the relevant repositories.
-
-We recommend creating a dedicated service account to easily control access to individual repositories. You can also use your professional or personal Bitbucket account for this, resulting in all automations being executed under that account.
+gitStream automation rules are executed by the user account configured when you authorize LinearB. A meaningful account identifier whose name contains the string `gitstream` (case insensitive), such as `gitStream-cm`, is required to ensure clarity and proper identification of the automated actions. This account must have the necessary permissions to the relevant repositories.
 
 !!! tip "Use this account when you integrate gitStream"
     Make sure to use this account when authorizing Bitbucket in LinearB.

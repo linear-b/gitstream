@@ -1,8 +1,13 @@
 <a name="module_generateDescription"></a>
 
 ## askAI
-A gitStream plugin to interact with AI models. Currently works with `ChatGPR-4o-mini`
+The AskAI plugin allows gitStream workflows to interact with external AI services, enabling advanced automation capabilities such as code analysis, test case generation, and PR summarization. This plugin requires a valid API token for the AI service, which must be securely provided as an environment variable.
 
+!!! note "Security note"
+    The `AskAI` plugin integrates with an external AI model and requires your API token for authorization. Ensure you provide a valid token through the `env.OPEN_AI_TOKEN` parameter or similar configuration. This may also incur API costs.
+
+    When using the `AskAI` plugin, the provided **context** and **prompt** will be shared with the configured AI service. **Ensure that no sensitive or proprietary information is included unless your organization's policies permit it**. 
+    
 ![Example PR description](screenshots/askAI-describe-PR.png)
 
 **Returns**: <code>Object</code> -  Returns the AI-generated response based on the provided context and prompt.
@@ -17,9 +22,6 @@ A gitStream plugin to interact with AI models. Currently works with `ChatGPR-4o-
 
 
 **Example**
-!!! tip "Encoding output"
-    The output of AI models may be lengthy, which might cause issues when setting the comment. We recommend using the [`encode`](./filter-functions.md#encode) filter function, as shown in the example, to ensure that the comment is passed fully.
-    The [`add-comment`](./automation-actions.md#add-comment) action automatically decodes encoded strings.
     
 ```yaml
 {{ source | askAI("QA tester", "Based on the given context, search for new functions without tests and suggest the tests to add. If all functions are covered completely, return 'no tests to suggest.'", env.OPEN_AI_TOKEN) }}

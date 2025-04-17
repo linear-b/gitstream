@@ -15,4 +15,4 @@ automations:
           reviewers: {{ experts | intersection(list=owners) }}
 
 experts: {{ repo | codeExperts(gt=10) }}
-owners: {{ files | codeowners(pr, env.CODEOWNERS) }}
+owners: {{ files | getCodeowners(pr, env.CODEOWNERS) }}
