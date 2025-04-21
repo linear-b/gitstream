@@ -318,9 +318,10 @@ The following files are automatically excluded from the code review.
 
 | File type | Filter type | Values|
 | - | - | - |
-| Data | Extension | `ini` `csv` `xls` `xlsx` `xlr` `doc` `docx` `txt` `pps` `ppt` `pptx` `dot` `dotx` `log` `tar` `rtf` `dat` `ipynb` `po` `profile` `object` `obj` `dxf` `twb` `bcsymbolmap` `tfstate` `pdf` `rbi` `pem` `crt` `svg` `png` `jpeg` `jpg` `ttf` |
-| Data | Regex | `.*dist/.*\.js$` `.*public/assets/.*\.js$` |
-| Pipeline | Regex | `.*ci\.yml$` |
+| Data | Extension | `ini` `csv` `xls` `xlsx` `xlr` `doc` `docx` `txt` `pps` `ppt` `pptx` `dot` `dotx` `log` `tar` `rtf` `dat` `ipynb` `po` `profile` `object` `obj` `dxf` `twb` `bcsymbolmap` `tfstate` `pdf` `rbi` `pem` `crt` `svg` `png` `jpeg` `jpg` `ttf` `app` `bin` `bmp` `bz2` `class` `db` `dll` `dylib` `egg` `eot` `exe` `gif` `gitignore` `glif` `gradle` `gz` `ico` `jar` `lo` `lock` `mp3` `mp4` `nar` `o` `ogg` `otf` `p` `pickle` `pkl` `pyc` `pyd` `pyo` `rkt` `so` `ss` `tgz` `tsv` `war` `webm` `woff` `woff2` `xz` `zip` `zst` `snap` `lockb` |
+| Lock | Regex | `.*(yarn\|gemfile\|podfile\|cargo\|composer\|pipfile\|gopkg)\.lock$` `.*gradle\.lockfile$` `.*lock\.sbt$` |
+| Build | Regex | `.*dist/.*\\.js` `.*build/.*\\.js` |
+| Data | Regex | `.*public/assets/.*\\.js` |
 
 | Lock File Name          | Programming Language | Package Manager      |
 |-------------------------|----------------------|----------------------|
