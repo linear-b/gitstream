@@ -73,10 +73,14 @@ If you successfully complete these instructions, gitStream will now automate you
 
 The required permissions are:
 
-| Permissions       | Reason                                                                                       |
-| ----------------- | -------------------------------------------------------------------------------------------- |
-| Read/Write API    | To get notified on PR changes and allow gitStream to approve PRs once all conditions are met |
-| Read repository   | To read and check rules over the code changes on monitored repositories                      |
-| Read user profile | Used to identify users                                                                       |
+
+| Scope                                               | Description                                                  |
+|-----------------------------------------------------|--------------------------------------------------------------|
+| `account: email, read`                              | Access user account information and email.                   |
+| `repositories: read, write, admin`                  | Read, write, and administer repositories.                    |
+| `pullrequest: read, write`                          | Read and modify pull requests.                               |
+| `webhook: read, write`                              | Read and manage webhooks.                                    |
+| `pipeline: read, write`                             | Read and write pipelines.                                    |
+| `runner: read, write`                               | Read and manage runners.   
 
 </markdown>

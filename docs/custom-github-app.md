@@ -260,7 +260,7 @@ You can now set up gitStream for a single repo, your GitHub organization or acro
         ```
 
         !!! Success
-            Once finished, **all** PRs to repositories across all organizations on your server will be processed by the GitHub Action in this repo, and your `cm` repo should have a file directory that looks like this.
+            Once finished, **the GitHub Action will process all** PRs to repositories across all organizations on your server in this repo. Your `cm` repo under the `cm` org should have a file directory that looks like this.
 
             ```
             .
