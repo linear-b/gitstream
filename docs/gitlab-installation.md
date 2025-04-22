@@ -38,7 +38,7 @@ Create a `cm` project (repository) in your GitLab group. This repository must be
 	You can also define specific repo-level rules under the `.cm` folder in each of the connected repositories.
 
 !!! example "Example Configuration"
-		--8<-- "docs/downloads/gitstream.cm"
+		--8<-- "docs/downloads/gitStream-gl.cm"
 
 ## Create a GitLab Pipeline
 
