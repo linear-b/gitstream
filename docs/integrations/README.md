@@ -43,12 +43,6 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:octicons-copilot-16: GitHub Copilot](/integrations/github-copilot)
-</div>
-</div>
-
-<div class="integrations-card" markdown="1">
-<div class="integrations-card-title" markdown="1">
 [:material-label: PR Labels](/automations/standard/label-management)
 </div>
 </div>
@@ -62,6 +56,24 @@ visible: false
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
 [:simple-codereview: PR Reviews](/automations/standard/review-assignment)
+</div>
+</div>
+
+</div>
+
+## AI Tools
+
+<div class="integrations-list" markdown="1">
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:octicons-copilot-16: GitHub Copilot](/integrations/github-copilot)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:material-cube-outline: Cursor](/integrations/cursor)
 </div>
 </div>
 
@@ -164,6 +176,7 @@ visible: false
 </div>
 
 ## Feature Flags
+
 <div class="integrations-list" markdown="1">
 
 <div class="integrations-card" markdown="1">
@@ -198,8 +211,8 @@ visible: false
 
 </div>
 
-
 ## Languages
+
 <div class="integrations-list" markdown="1">
 
 <div class="integrations-card" markdown="1">
@@ -301,4 +314,7 @@ visible: false
 <!-- --8<-- [end:integrations]-->
 
 ## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
 --8<-- "docs/snippets/general.md"
