@@ -129,6 +129,17 @@ Clicking the `Details` button will show more information and context.
 
 You can add this automation to see details on context variable.
 
+#### gitStream fails when using template strings with special characters (e.g., colon ':')
+
+If a template string (e.g., pull request title, description, or other context variables) contains special characters such as a colon (`:`), gitStream might fail with a YAML parsing error due to invalid syntax.
+
+To resolve this issue, ensure you properly escape special characters by using Nunjucks multiline strings. For example:
+
+```yaml+jinja
+comment: |
+  {{ pr.title }}
+```
+
 ## How can I debug expressions and see their content?
 
 You can dump any context value to the PR comment. For example, to see the list of changed files, use:
