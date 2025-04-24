@@ -3,6 +3,9 @@ manifest:
 
 automations:
   merge_dependabot_minor:
+    on:
+      - pr_created
+      - commit
     if:
       - {{ bump == 'minor' }}
       - {{ branch.name | includes(term="dependabot") }}
@@ -14,6 +17,9 @@ automations:
           comment: |
             Dependabot `minor` version bumps are approved automatically.
   merge_dependabot_minor_patch:
+    on:
+      - pr_created
+      - commit
     if:
       - {{ bump == 'patch' }}
       - {{ branch.name | includes(term="dependabot") }}

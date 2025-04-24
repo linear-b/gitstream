@@ -5,6 +5,9 @@ manifest:
 
 automations:
   approve_dependabot:
+    on:
+      - pr_created
+      - commit
     if:
       - {{ branch.name | includes(term="dependabot") }}
       - {{ branch.author | includes(term="dependabot") }}
