@@ -5,11 +5,11 @@
 
 h2 {
   padding-top: 4%;
-} 
+}
 
 h4 {
   padding-top: 4%;
-} 
+}
 
 /* make the first column wider as usually this is a variable name that cant wrap normally */
 th:nth-child(1){
@@ -22,6 +22,10 @@ div.big-summary th:nth-child(1){
 
 div.filter-details th:nth-child(1){
     width: 20%;
+}
+
+div.trigger-details th:nth-child(2){
+    width: 30%;
 }
 
 /* change the table colors for light mode */
@@ -104,7 +108,7 @@ div.flow-chart {
   color: gray;
 }
 
-.tabbed-content .md-typeset .admonition { 
+.tabbed-content .md-typeset .admonition {
   font-size: .8rem;
 }
 
@@ -178,7 +182,7 @@ div.flow-chart {
   width:auto;
   height: 3em;
 }
-  
+
 .integrations-card-labels {
   font-size: 0.7em;
   color: #9aa4ad; /* this is a medium grey color */
