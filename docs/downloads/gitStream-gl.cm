@@ -1,20 +1,31 @@
 # -*- mode: yaml -*-
-# This example configuration for provides basic automations to get started with gitStream.
+# This example configuration provides basic automations to get started with gitStream.
 # View the gitStream quickstart for more examples: https://docs.gitstream.cm/examples/
 manifest:
   version: 1.0
 
-triggers:
-  exclude:
-    branch:
-      - r/(Dependabot|dependabot|renovate|Renovate)/
 
 automations:
-  # Add a label that indicates how many minutes it will take to review the PR.
+  # Use LinearB's AI service to review the changes
+  linearb_ai_review:
+    if:
+      - {{ not pr.draft }}
+      - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
+    run:
+      - action: code-review@v1
+
+  # Use LinearB's AI service to add a description to the PR
+  linearb_ai_description:
+    if:
+      - {{ not pr.draft }}
+      - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
+    run:
+      - action: describe-changes@v1
+        args:
+          concat_mode: append
+
+  # Add a label indicating how long it will take to review the PR.
   estimated_time_to_review:
-    on:
-      - pr_created
-      - commit
     if:
       - true
     run:
@@ -38,10 +49,6 @@ automations:
             Please add a Jira ticket reference to the title or description of this PR.
   # Post a comment that lists the best experts for the files that were modified.
   explain_code_experts:
-    on:
-      - pr_created
-      - pr_ready_for_review
-      - commit
     if:
       - true
     run:

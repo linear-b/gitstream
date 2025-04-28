@@ -42,6 +42,7 @@ The `triggers` section in gitStream gives you precise control over when automati
 
 Additionally, the `on` keyword defines specific events that trigger automations. It can be added at the file level (under the `triggers` section) or within individual automations for greater customization. Multiple triggers can be stacked, meaning gitStream will execute the automation for each matching triggering event, allowing flexibility in defining automation behavior
 
+<div class="trigger-details" markdown=1>
 | Key                                                   | Type              | Description                                                    |
 | ----------------------------------------------------- | ----------------- | -------------------------------------------------------------- |
 | `triggers.on` :fontawesome-brands-github:             | [String]          | Specifies the explicit triggers that initiate the automations. |
@@ -49,9 +50,11 @@ Additionally, the `on` keyword defines specific events that trigger automations.
 | `triggers.exclude.branch` :fontawesome-brands-github: | [String or regex] | Branches that match will not trigger the automation.           |
 | `triggers.include.repository`                         | [String or regex] | Repositories that match will trigger the automation.           |
 | `triggers.exclude.repository`                         | [String or regex] | Repositories that match will not trigger the automation.       |
+</div>
 
 The table below lists supported explicit triggers, categorized into those enabled by default and those that require manual activation.
 
+<div class="trigger-details" markdown=1>
 | Triggering event                                                      | Explicit Trigger :fontawesome-brands-github: | Default (implicit triggers)    |
 | --------------------------------------------------------------------- | -------------------------------------------- | ------------------------------ |
 | Creating a PR                                                         | `pr_created`                                 | `on`                           |
@@ -67,6 +70,7 @@ The table below lists supported explicit triggers, categorized into those enable
 | :fontawesome-brands-github: transition from any state to closed       | `pr_closed`                                  | `off`                          |
 | :fontawesome-brands-github: transition from closed to open            | `pr_reopened`                                | `off`                          |
 | :fontawesome-brands-github: Transition from any state to approved     | `pr_approved`                                | If there is an automation with one of the actions: `require-reviewers`, `set-required-approvals` or `merge`, or uses `pr.approvals` context variable  |
+</div>
 
 Explicit triggers are set independently per each automation block and can be configured at the file level, specific to each automation separately or in combination. If triggers are listed at the file level **and** specific automation, the automation will be triggered according to both triggers.
 If an automation block does not have explicit triggers configured, it will be triggered according to the default (implicit) triggers.
@@ -145,6 +149,9 @@ triggers:
 
 automations:
   bump_minor:
+    on:
+      - pr_created
+      - commit
     if:
       - {{ bump == 'minor' }}
       - {{ branch.name | includes(term="dependabot") }}
@@ -157,6 +164,9 @@ automations:
             Dependabot `minor` version bumps are approved automatically.
 
   bump_patch:
+    on:
+      - pr_created
+      - commit
     if:
       - {{ bump == 'patch' }}
       - {{ branch.name | includes(term="dependabot") }}
