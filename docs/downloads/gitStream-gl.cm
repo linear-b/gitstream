@@ -52,9 +52,9 @@ automations:
     if:
       - true
     run:
-      - action: explain-code-experts@v1 
+      - action: explain-code-experts@v1
         args:
-          gt: 10 
+          gt: 10
 
 
 # +----------------------------------------------------------------------------+
