@@ -40,12 +40,16 @@ automations:
           label: '🤖 Copilot'
   # Post a comment that lists the best experts for the files that were modified.
   explain_code_experts:
+    on:
+      - pr_created
+      - pr_ready_for_review
+      - commit
     if:
       - true
     run:
-      - action: explain-code-experts@v1 
+      - action: explain-code-experts@v1
         args:
-          gt: 10 
+          gt: 10
 
 
 # +----------------------------------------------------------------------------+

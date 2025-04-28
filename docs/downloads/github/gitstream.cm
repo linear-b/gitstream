@@ -40,6 +40,7 @@ automations:
   explain_code_experts:
     on:
       - pr_created
+      - pr_ready_for_review
       - commit
     if:
       - true
