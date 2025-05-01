@@ -6,12 +6,7 @@ category: [quality, genai, cursor, quickstart]
 
 # Automatically Label Cursor PRs
 <!-- --8<-- [start:example]-->
-Automatically apply labels to Pull Requests that are assisted by Cursor AI. This automation helps track the impact and usage of Cursor's AI capabilities across your development workflow. You can apply labels based on:
-
-- A known list of Cursor users
-- AI-generated code comments
-- PR tags
-- Inline prompt responses
+Automatically apply labels to Pull Requests that are assisted by Cursor AI. This automation helps track the impact and usage of Cursor's AI capabilities across your development workflow.
 
 === "Label by Prompt"
     Prompt PR authors to indicate if they used Cursor for the PR and automatically label the PR if they did. This requires two separate automation files to handle posting the prompt and labeling accordingly.
@@ -27,7 +22,7 @@ Automatically apply labels to Pull Requests that are assisted by Cursor AI. This
 
         * Post a comment prompting the author to indicate if Cursor assisted the author with writing the code in the PR.
 
-    !!! example "Ask the PR author about Cursor usage."
+    !!! example "Ask the PR author about Cursor usage"
         ```yaml+jinja
         --8<-- "docs/downloads/automation-library/integrations/cursor/comment_cursor_prompt.cm"
         ```
