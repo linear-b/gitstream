@@ -1,0 +1,26 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+on:
+  - comment_added
+  - commit
+  - pr_created
+
+automations:
+  label_windsurf:
+    # Detect PRs that contain the text '#windsurf#' in the title, description, comments, or commit messages
+    if:
+      - {{ windsurf_tag.pr_title or windsurf_tag.pr_desc or windsurf_tag.pr_comments or windsurf_tag.commit_messages }}
+    # Apply a label indicating the user has adopted Windsurf
+    run:
+      - action: add-label@v1
+        args:
+          label: '🤖 Windsurf'
+
+windsurf_tag:
+  pr_title: {{ pr.title | includes(regex=r/#windsurf#/) }}
+  pr_desc: {{pr.description | includes(regex=r/#windsurf#/) }}
+  pr_comments: {{ pr.comments | map(attr='content') | match(regex=r/#windsurf#/) | some }}
+  commit_messages: {{ branch.commits.messages | match(regex=r/#windsurf#/) | some }} 
