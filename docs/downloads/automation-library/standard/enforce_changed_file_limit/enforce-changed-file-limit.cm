@@ -1,0 +1,12 @@
+manifest:
+  version: 1.0
+
+automations:
+  enforce_changed_file_limit:
+    if:
+       - {{ files | length > 10 }}
+    run:
+      - action: request-changes@v1
+        args:
+          comment: |
+           Our goal is to keep PRs under 10 changed files, and this PR modifies more than 10 files. Please consider breaking this PR up into smaller components to make code reviews easier.
