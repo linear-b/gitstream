@@ -22,6 +22,6 @@ If you encounter issues while testing, refer to our [Troubleshooting page](troub
 
 ### 2. Using the Playground
 
-You can also test automations interactively using the [gitStream Playground](playground.md). The Playground offers an intuitive environment to preview how automations behave, allowing you to instantly adjust and perfect your rules.
+You can also test automations interactively using the [gitStream Playground](gitStream-playground.md). The Playground offers an intuitive environment to preview how automations behave, allowing you to instantly adjust and perfect your rules.
 
 Select the method most convenient for your workflow, or use both methods together for comprehensive testing. Once satisfied with the results, merge your `cm` changes into the main branch to enable the new automations.
