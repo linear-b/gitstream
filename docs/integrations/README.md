@@ -77,6 +77,12 @@ visible: false
 </div>
 </div>
 
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
+[:material-sail-boat: Windsurf](/integrations/windsurf)
+</div>
+</div>
+
 </div>
 
 ## Security & Compliance
@@ -314,7 +320,5 @@ visible: false
 <!-- --8<-- [end:integrations]-->
 
 ## Additional Resources
-
---8<-- "docs/snippets/general.md"
 
 --8<-- "docs/snippets/general.md"
