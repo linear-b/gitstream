@@ -59,6 +59,6 @@ Get a plug-in that enables modelines. Popular ones are:
 
 ## I have an issue I can't seem to solve. What should I do?
 
-Go to our issues page and check if any similar issues are already reported. If not, create a new issue with all the details so we can take a look.
+If you encounter an issue, please visit our [Troubleshooting page](troubleshooting.md) for guidance and solutions to common problems. 
 
-Found a bug? Create a new item in the [project's issues](https://github.com/linear-b/gitstream/issues)
+If your issue persists and you cannot find a resolution, contact our support team directly by emailing [support@linearb.io](mailto:support@linearb.io). We're here to help!
