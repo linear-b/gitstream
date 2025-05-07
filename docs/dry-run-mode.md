@@ -2,17 +2,29 @@
 title: How to Test gitStream Automations
 description: Use gitStream dry-run mode to test your automations before implementing them.
 ---
+
 # How to Test Your Automation
 
-By default, gitStream runs all applicable automations for every new PR and changes to existing PR. If you want to test and experiment with new rules, gitStream supports a dry-run mode that will avoid changing your PRs. When you commit changes to any CM files found inside your repo's `.cm/` directory, gitStream will switch to dry-run mode.
+Testing your gitStream automations ensures they work as expected before applying them to your live pull requests. gitStream provides two easy ways to safely test your automations:
 
-In dry-run mode, gitStream won't execute any automation rules on the PR. Instead, gitStream will try to parse all applicable automation rules and show an error in case of failure. When there are other changes outside the `cm` files, gitStream will post a comment to the PR discussion describing the actions to be taken for those changes. A new comment will be added after every new commit.
+### 1. Dry Run Mode
+
+Dry Run mode is automatically enabled whenever you open a PR that modifies any of your `.cm` automation files. In Dry Run mode:
+
+- gitStream evaluates automations based on code changes made to non-automation files (your repository's codebase).
+- Automations are evaluated without being executed.
+- Results are added as comments on your pull request, showing exactly what actions would have occurred.
+- Each new commit triggers an updated comment describing the changes.
 
 ![dry-run mode](/screenshots/dry-run-mode.png)
 
 !!! note
+	While in Dry Run mode, no automation changes actually take effect. To apply your automations, merge your PR after validation.
 
-	When in dry-run mode, incoming changes to the CM files are ignored. In other words, new automations and configurations will only take effect once you merge the PR.
+If you encounter issues while testing, refer to our [Troubleshooting page](troubleshooting.md) for guidance.
 
-Once you are satisfied with the results, you can merge your CM changes into the main branch to enable the new configurations.
+### 2. Using the Playground
 
+You can also test automations interactively using the [gitStream Playground](gitStream-playground.md). The Playground offers an intuitive environment to preview how automations behave, allowing you to instantly adjust and perfect your rules.
+
+Select the method most convenient for your workflow, or use both methods together for comprehensive testing. Once satisfied with the results, merge your `.cm` changes into the main branch to enable the new automations.
