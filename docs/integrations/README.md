@@ -79,6 +79,12 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
+[:material-brain: Claude Code](/integrations/claude-code)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
 [:material-sail-boat: Windsurf](/integrations/windsurf)
 </div>
 </div>
