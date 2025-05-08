@@ -79,6 +79,65 @@ By utilizing the following techniques, you can effectively combine and manage gl
 2. To exclude or run only on specific repositories from a global rule, you can use `triggers.include.repository` and `triggers.exclude.repository` in the `cm` file and add a list of the unwanted or wanted repositories respectfully.
 3. To override a global rule for specific automation in a repository, you can duplicate the rule (both the file and automation name) and place it in the desired repository. The locally defined rule will then take precedence over the global rule for that specific repository.
 
+### Controlling Organization-Level Rules per Repository
+
+The `triggers` section in organization-level rules allows you to precisely control which repositories will run specific automations. This is particularly useful for implementing standardized rules across most repositories while exempting specific ones, or for creating specialized automations that only apply to certain repository types.
+
+#### Repository Inclusion and Exclusion
+
+You can use `triggers.include.repository` and `triggers.exclude.repository` to define which repositories should or should not run particular automations:
+
+```yaml+jinja
+# In your organization's 'cm' repository
+manifest:
+  version: 1.0
+
+# This automation will run on all repositories EXCEPT those containing 'legacy' in their name
+triggers:
+  exclude:
+    repository:
+      - r/legacy/
+
+automations:
+  enforce_pr_title_format:
+    if:
+      - {{ not (pr.title | includes(term="fix:|feat:|docs:|style:|refactor:|test:|chore:")) }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            Please format your PR title according to our [Conventional Commits](https://www.conventionalcommits.org/) standard.
+            Example: `feat: implement new login flow`
+```
+
+#### Creating Repository-Type Specific Rules
+
+You can also create separate CM files for different types of repositories:
+
+```yaml+jinja
+# backend-rules.cm in your organization's 'cm' repository
+manifest:
+  version: 1.0
+
+# This file's automations will ONLY run on repositories with 'api' or 'service' in their name
+triggers:
+  include:
+    repository:
+      - r/api|service/
+
+automations:
+  require_api_docs:
+    if:
+      - {{ files | match(regex=r/\/api\/.*\.js|ts$/) | some }}
+    run:
+      - action: request-changes@v1
+        args:
+          comment: |
+            API changes detected. Please ensure you've updated the corresponding documentation.
+```
+
+This approach allows you to create specialized rule sets for different repository types (frontend, backend, infrastructure, etc.) while maintaining them all in a centralized location.
+
 
 ## The .cm automation file
 ### Schema
