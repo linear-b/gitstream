@@ -13,7 +13,7 @@ automations:
       - commit
     if:
       - {{ not pr.draft }}
-      - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
+      - {{ IS_NOT_A_BOT }}
     run:
       - action: code-review@v1
 
@@ -24,7 +24,7 @@ automations:
       - commit
     if:
       - {{ not pr.draft }}
-      - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
+      - {{ IS_NOT_A_BOT }}
     run:
       - action: describe-changes@v1
         args:
@@ -83,3 +83,5 @@ colors:
   red: 'b60205'
   yellow: 'fbca04'
   green: '0e8a16'
+
+IS_NOT_A_BOT: {{ pr.author | match(list=['github-actions', '_bot_', '[bot]', 'dependabot']) | nope }}
