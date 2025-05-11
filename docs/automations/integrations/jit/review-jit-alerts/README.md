@@ -4,6 +4,7 @@ description: Automatically assign PR reviewers for Jit security alerts.
 category: [security, jit]
 ---
 # Review Jit Security Alerts
+<!-- --8<-- [start:example]-->
 Manage review assignment for high and medium risk Jit security alerts.
 
 <div class="automationImage" markdown="1">
@@ -40,3 +41,4 @@ Manage review assignment for high and medium risk Jit security alerts.
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->

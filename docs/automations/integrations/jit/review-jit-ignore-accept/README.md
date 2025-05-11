@@ -4,6 +4,7 @@ description: Automatically notify your security team when someone ignores Jit vu
 category: [security, jit]
 ---
 # Review Jit Ignore and Accept
+<!-- --8<-- [start:example]-->
 Notify your Security team when someone ignores a Jit vulnerability report and accepts the risk.
 
 <div class="automationImage" markdown="1">
@@ -33,3 +34,4 @@ Notify your Security team when someone ignores a Jit vulnerability report and ac
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->
