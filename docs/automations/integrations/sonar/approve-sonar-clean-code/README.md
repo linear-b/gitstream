@@ -4,6 +4,7 @@ description: Automatically approve PRs that pass SonarCloud's quality gate.
 category: [security, sonarcloud]
 ---
 # Approve Sonar Clean Code
+<!-- --8<-- [start:examples]-->
 
 Approve PRs that pass SonarCloud's quality gate.
 
@@ -34,3 +35,5 @@ Approve PRs that pass SonarCloud's quality gate.
       </span>
     </div>
 </div>
+
+<!-- --8<-- [end:examples]-->
