@@ -3,28 +3,23 @@ title: Integrate gitStream with Terraform
 description: Workflow automation for Terraform code reviews.
 ---
 # Integrate gitStream with Terraform
-Terraform Examples:
 
-* [Assign Reviewers for Terraform Changes](#review-terraform)
+## Automation Examples
 
-* [Review New Terraform Module](#review-new-module)
+### Review Terraform Changes
+--8<-- "docs/automations/integrations/terraform/review-terraform/README.md:example"
 
-* [Review Terraform Source Version](#review-terraform-source-version)
+### Enforce Requirements for New Terraform Modules
+--8<-- "docs/automations/integrations/terraform/review-new-module/README.md:example"
 
-* [Review Terraform Module Name](#review-terraform-module-name)
+### Ensure Terraform Source URLs have version numbers
+--8<-- "docs/automations/integrations/terraform/review-terraform-source-version/README.md:example"
 
-<a name="review-terraform"></a>
-## Review Terraform Changes
---8<-- "docs/automations/integrations/terraform/review-terraform/README.md:2:"
+### Ensure New Terraform Modules conform to a Naming Pattern
+--8<-- "docs/automations/integrations/terraform/review-terraform-module-name/README.md:example"
 
-<a name="review-new-module"></a>
-## Enforce Requirements for New Terraform Modules
---8<-- "docs/automations/integrations/terraform/review-new-module/README.md:2:"
+## Additional Resources
 
-<a name="review-terraform-source-version"></a>
-## Ensure Terraform Source URLs have version numbers
---8<-- "docs/automations/integrations/terraform/review-terraform-source-version/README.md:2:"
+--8<-- "docs/snippets/general.md"
 
-<a name="review-terraform-module-name"></a>
-## Ensure New Terraform Modules conform to a Naming Pattern
---8<-- "docs/automations/integrations/terraform/review-terraform-module-name/README.md:2:"
+--8<-- "docs/snippets/automation-footer.md"

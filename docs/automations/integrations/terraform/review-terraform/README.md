@@ -6,6 +6,7 @@ quickstart: false
 ---
 
 # Require Reviewers for Terraform changes
+<!-- --8<-- [start:example]-->
 Automatically assign `org/infrastructure` team for reviewing changes when PR contains Terraform file changes.
 
 <div class="automationImage" markdown="1">
@@ -34,3 +35,4 @@ Automatically assign `org/infrastructure` team for reviewing changes when PR con
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->
