@@ -4,6 +4,7 @@ description: Automatically approve PRs that only contain Javadoc changes.
 category: [docs, java]
 ---
 # Review Javadoc Changes
+<!-- --8<-- [start:example]-->
 
 Unblock PRs that only change Javadoc content.
 
@@ -36,3 +37,4 @@ Unblock PRs that only change Javadoc content.
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->

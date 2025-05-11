@@ -6,6 +6,7 @@ quickstart: false
 ---
 
 # Review Terraform Source Version
+<!-- --8<-- [start:example]-->
 Ensure that all Terraform modules imported via a source URL specify a version.
 
 <div class="automationImage" markdown="1">
@@ -35,3 +36,4 @@ Ensure that all Terraform modules imported via a source URL specify a version.
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->

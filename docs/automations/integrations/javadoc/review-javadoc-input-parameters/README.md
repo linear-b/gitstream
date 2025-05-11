@@ -4,6 +4,7 @@ description: Notify PR authors to ensure proper Javadoc coverage.
 category: [docs, java]
 ---
 # Review Java Input Parameters for Javadoc Changes
+<!-- --8<-- [start:example]-->
 
 If a PR modifies the input parameters for a Java method, but not the associated Javadocs, notify reviewers to check for Javadoc updates.
 
@@ -35,3 +36,5 @@ If a PR modifies the input parameters for a Java method, but not the associated 
       </span>
     </div>
 </div>
+
+<!-- --8<-- [end:example]-->

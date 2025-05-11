@@ -4,6 +4,7 @@ description: Automatically request changes for PRs that fail to meet Javadoc req
 category: [docs, java]
 ---
 # Enforce Javadoc Requirements for New Classes
+<!-- --8<-- [start:example]-->
 
 Automatically request changes when someone creates a new Java class that lacks Javadoc content.
 
@@ -34,3 +35,4 @@ Automatically request changes when someone creates a new Java class that lacks J
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->

@@ -4,7 +4,7 @@ description: Automatically approve PRs for JSDoc changes.
 category: [docs, javascript]
 ---
 # Review JSDoc Changes
-
+<!-- --8<-- [start:example]-->
 Approve PRs that only contain changes to JSDoc and assign optional reviewers.
 
 <div class="automationImage" markdown="1">
@@ -35,3 +35,4 @@ Approve PRs that only contain changes to JSDoc and assign optional reviewers.
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->

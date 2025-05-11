@@ -6,6 +6,7 @@ quickstart: false
 ---
 
 # Review Terraform Module Name
+<!-- --8<-- [start:example]-->
 Request changes if a PR creates a new Terraform module that is missing a required prefix or keyword in the name.
 
 <div class="automationImage" markdown="1">
@@ -35,3 +36,4 @@ Request changes if a PR creates a new Terraform module that is missing a require
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->
