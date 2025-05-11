@@ -7,14 +7,15 @@ category: [quality, genai, copilot, tests, efficiency]
 
 <!-- --8<-- [start:examples]-->
 
-## Add PR Description Using LinearB's AI :material-star-circle:
+## Automation Examples
+
+### Add PR Description Using LinearB's AI :material-star-circle:
 
 --8<-- "docs/automations/integrations/LinearBAI/describe-pr/README.md:example"
 
-## Use LinearB's AI for a comprehensive Code Review :material-star-circle:
+### Use LinearB's AI for a comprehensive Code Review :material-star-circle:
 
 --8<-- "docs/automations/integrations/LinearBAI/code-review/README.md:example"
-
 
 ## Additional Resources
 
