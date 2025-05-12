@@ -4,7 +4,7 @@ description: Enforce JSDoc requirements for PRs.
 category: [docs, javascript]
 ---
 # Enforce JSDoc for New JavaScript Classes
-
+<!-- --8<-- [start:example]-->
 Require JSDoc for all new JavaScript classes.
 
 
@@ -36,3 +36,4 @@ Require JSDoc for all new JavaScript classes.
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->
