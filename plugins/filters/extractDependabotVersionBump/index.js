@@ -10,7 +10,7 @@
 
 
 module.exports = (desc) => {
-  if (desc && desc !== '""' && desc !== "''" ) {    
+  if (desc && desc !== '""' && desc !== "''" ) {
     // Match both "Bumps" and "Updates" patterns with version numbers
     // The regex captures version numbers that follow "from" and "to" keywords
     const regex = /(Bumps|Updates).*?from ([\d\.]+[A-Za-zαß]*) to ([\d\.]+[A-Za-zαß]*)/;
@@ -18,7 +18,7 @@ module.exports = (desc) => {
     if (matches && matches.length == 4) {
       var [_, action, from, to] = matches;
       // Remove trailing dot on the "to" version if present
-      if (to && to[to.length - 1] === ".") {
+      if (to && to.length > 0 && to[to.length - 1] === ".") {
         to = to.slice(0, -1);
       }
       // Return [to, from] format to be compatible with compareSemver
