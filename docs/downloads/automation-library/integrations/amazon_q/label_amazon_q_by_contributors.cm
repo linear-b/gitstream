@@ -1,0 +1,18 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  label_amazon_q_contributors:
+    if:
+      - {{ pr.author | match(list=amazon_q_contributors) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: '🤖 Amazon Q'
+
+amazon_q_contributors:
+  - username1
+  - username2
+  - etc 
