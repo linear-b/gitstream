@@ -15,7 +15,7 @@ azureProject: my_project
 {% if (ticket | includes(regex=r/.+/)) %}
 {% set ticketid = ticket %}
 {% endif %}
-{% endfor %} 
+{% endfor %}
 
 automations:
   link_azure_boards:
@@ -32,7 +32,7 @@ has:
 
 tracker:
   azure:
-    baseurl: https://dev.azure.com/[orgName]/[azureProject]/_workitems/
+    baseurl: https://dev.azure.com/{{orgName}}/{{azureProject}}/_workitems/
     pattern: r/(\w+)-(\w+)-(\d+)/
 
 tickets:
