@@ -1,0 +1,26 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+automations:
+  enforce_branch_name: 
+    if:  
+      - {{ not has.requiredBranchPrefix }}
+      - {{ not has.requiredBranchKeyword }}
+      - {{ not ignoreList }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "❗ Incorrect Branch Name"
+          color: {{ colors.red }}
+      - action: add-comment@v1
+        args:
+          comment: |
+            All PR branch names must be prefixed by feature, stable, or fix, and must contain a reference to a Jira ticket. E.g. 'feature-abc-1234'
+            Please move your changes to a new branch that meets these requirements and open a new PR.
+      - action: close@v1
+
+has:
+  requiredBranchPrefix: {{ branch.name | includes(regex=r/^(feature|stable|fix)/) }}
+  requiredBranchKeyword: {{ branch.name | includes(regex=r/abc+-\d+/) }}
+
+ignoreList: {{ branch.name | match(regex=r/^(development|staging)/) }}
