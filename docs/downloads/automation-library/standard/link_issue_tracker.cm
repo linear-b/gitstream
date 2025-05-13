@@ -14,7 +14,7 @@ azureProject: my_project
 {% if (ticket | includes(regex=r/.+/)) %}
 {% set ticketid = ticket %}
 {% endif %}
-{% endfor %} 
+{% endfor %}
 
 automations:
   comment_issue_tracker:
@@ -31,16 +31,16 @@ has:
 
 tracker:
   jira:
-    baseurl: https://[orgName].atlassian.net/browse/
+    baseurl: https://{{orgName}}.atlassian.net/browse/
     pattern: r/\b[A-Za-z]+-\d+\b/
   asana:
-    baseurl: https://app.asana.com/0/[asanaProject]/0/
+    baseurl: https://app.asana.com/0/{{asanaProject}}/0/
     pattern: r/asana-(\d+)/
   azure:
-    baseurl: https://dev.azure.com/[orgName]/[azureProject]/_workitems/
+    baseurl: https://dev.azure.com/{{orgName}}/{{azureProject}}/_workitems/
     pattern: r/(\w+)-(\w+)-(\d+)/
   shortcut:
-    baseurl: https://app.shortcut.com/[orgName]/story/
+    baseurl: https://app.shortcut.com/{{orgName}}/story/
     pattern: r/(\w+)\/sc-(\d+)/
 
 tickets:
