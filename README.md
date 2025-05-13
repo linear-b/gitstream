@@ -39,8 +39,8 @@
   <a href="https://github.com/linear-b/gitstream/discussions/102">Feature Updates</a>
   </p>
 
-
 ## ⭐️ Why gitStream?
+
 Our research shows that code reviews are [the most consistent bottleneck in the software development process](https://devinterrupted.substack.com/p/analysis-the-quickest-path-to-halving?utm_source=G&utm_medium=referral&utm_campaign=gitStream+-+GitHub+Repo), so we built gitStream to enable dev teams to use simple YAML configurations to reduce code review toil and improve software quality.
 
 ## ✨ Features
@@ -62,14 +62,13 @@ gitStream is a GitHub / GitLab / Bitbucket app that processes automations define
 
 If you're ready to install gitStream, or want to explore its automation capabilities, [head over to the docs](https://docs.gitstream.cm). You can have your first automation up and running in as little as 2 minutes.
 
-
 ## 📣 Updates
 
 Subscribe to [gitStream Feature Announcements](https://github.com/linear-b/gitstream/discussions/102).
 
 ## 📁 Local Documentation Server Setup
 
-To run the documentation server locally using Python3, follow these steps:
+To run the documentation server locally using Python (<=3.10, see `.python-version`), follow these steps:
 
 1. Create a virtual environment named `.venv` using the command `python -m venv .venv`
 2. Activate the virtual environment by running the command `. ./.venv/bin/activate`
@@ -78,8 +77,8 @@ To run the documentation server locally using Python3, follow these steps:
 
 The local documentation server should now be running at `http://127.0.0.1:8000/`.
 
-
 # LinearB
+
 gitStream is a free product from the team at [LinearB](https://linearb.io/?utm_source=Gi&utm_medium=referral&utm_campaign=gitStream+-+GitHub+Repo): the industry-leading platform for software delivery management that has helped thousands of developers around the world improve their team's productivity.
 
 <div align="center">
