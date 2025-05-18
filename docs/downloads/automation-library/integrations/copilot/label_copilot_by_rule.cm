@@ -9,4 +9,4 @@ automations:
       - action: add-labels@v1
         args:
           labels:
-            - ai-tool-usage
+            - ai-assisted
