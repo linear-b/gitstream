@@ -8,7 +8,41 @@ starter_kits: [genai]
 <!-- --8<-- [start:example]-->
 Automatically apply labels to PRs that are assisted by GitHub Copilot. You can apply labels based on a known list of Copilot users, PR tags, or by prompting the PR author to indicate if they used Copilot.
 
-=== "Label by Prompt"
+=== "Label by AI Rules"
+    Automatically apply labels to PRs based on Copilot AI rules.
+
+    !!! info "Configuration Description"
+        Conditions:
+
+        * A PR is created
+        * Copilot AI was used in this PR
+        * Copilot rule file was added to the repo
+
+        Automation Actions:
+
+        * PR is labeled with `ai-assisted`
+
+    !!! example "`.github/copilot-instructions.md`"
+        ```yaml+jinja
+        --8<-- "docs/downloads/automation-library/integrations/copilot/copilot-instructions.md"
+        ```
+        <div class="result" markdown>
+        <span>
+        [:octicons-download-24: Download Cursor rules file.](/downloads/automation-library/integrations/copilot/copilot-instructions.md){ .md-button }
+        </span>
+        </div>
+
+    !!! example "PR is labled with AI usage"
+        ```yaml+jinja
+        --8<-- "docs/downloads/automation-library/integrations/copilot/label_copilot_by_rule.cm"
+        ```
+        <div class="result" markdown>
+        <span>
+        [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/copilot/label_copilot_by_rule.cm){ .md-button }
+        </span>
+        </div>
+
+=== "Label by Survey"
     Prompt PR authors to indicate if they used Copilot for the PR and automatically label the PR if they did. This requires two separate automation files to handle posting the prompt and labeling accordingly.
 
     ![Label Copilot by Prompt](/automations/integrations/copilot/flag-copilot-pr/label-copilot-by-prompt.png)

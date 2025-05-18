@@ -8,7 +8,41 @@ category: [quality, genai, cursor, quickstart]
 <!-- --8<-- [start:example]-->
 Automatically apply labels to Pull Requests that are assisted by Cursor AI. This automation helps track the impact and usage of Cursor's AI capabilities across your development workflow.
 
-=== "Label by Prompt"
+=== "Label by AI Rules"
+    Automatically apply labels to PRs based on Cursor AI rules.
+
+    !!! info "Configuration Description"
+        Conditions:
+
+        * A PR is created
+        * Cursor AI was used in this PR
+        * Cursor rule file was added to the repo
+
+        Automation Actions:
+
+        * PR is labeled with `ai-assisted`
+
+    !!! example "`.cursor/rules/cursor-ai-logging.mdc`"
+        ```yaml+jinja
+        --8<-- "docs/downloads/automation-library/integrations/cursor/cursor-ai-logging.mdc"
+        ```
+        <div class="result" markdown>
+        <span>
+        [:octicons-download-24: Download Cursor rules file.](/downloads/automation-library/integrations/cursor/cursor-ai-logging.mdc){ .md-button }
+        </span>
+        </div>
+
+    !!! example "PR is labled with AI usage"
+        ```yaml+jinja
+        --8<-- "docs/downloads/automation-library/integrations/cursor/label_cursor_by_rule.cm"
+        ```
+        <div class="result" markdown>
+        <span>
+        [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/cursor/label_cursor_by_rule.cm){ .md-button }
+        </span>
+        </div>
+
+=== "Label by Survey"
     Prompt PR authors to indicate if they used Cursor for the PR and automatically label the PR if they did. This requires two separate automation files to handle posting the prompt and labeling accordingly.
 
     ![Label Cursor by Prompt](/automations/integrations/cursor/flag-cursor-pr/label-cursor-by-prompt.png)
