@@ -8,48 +8,7 @@ starter_kits: [genai]
 <!-- --8<-- [start:example]-->
 Automatically apply labels to PRs that are assisted by GitHub Copilot. You can apply labels based on a known list of Copilot users, PR tags, or by prompting the PR author to indicate if they used Copilot.
 
-=== "Label by AI Rules"
-    Automatically apply labels to PRs based on Copilot AI rules, providing a data-driven approach to track developer adoption of AI tools without requiring manual input from developers.
-
-    This solution automatically tracks AI tool usage without requiring developers to fill out surveys or take manual actions. Each AI-assisted edit is logged with unique identifiers in structured JSON format, setting the foundation for analytics across different AI tools while maintaining a consistent data model.
-
-    !!! info "Configuration Description"
-        Conditions:
-
-        * A PR is created
-        * Copilot AI was used in this PR
-        * Copilot rule file was added to the repo
-        * Changes to `.cm/ai.log` file are detected (this file contains entries for each AI-assisted action)
-
-        Automation Actions:
-
-        * PR is labeled with `ai-assisted`
-        * Structured data about AI usage is logged for future analytics
-
-    !!! example "`.github/copilot-instructions.md`"
-        ```yaml+jinja
-        --8<-- "docs/downloads/automation-library/integrations/copilot/copilot-instructions.md"
-        ```
-        <div class="result" markdown>
-        <span>
-        [:octicons-download-24: Download Cursor rules file.](/downloads/automation-library/integrations/copilot/copilot-instructions.md){ .md-button }
-        </span>
-        </div>
-
-    !!! example "PR is labled with AI usage"
-        ```yaml+jinja
-        --8<-- "docs/downloads/automation-library/integrations/copilot/label_copilot_by_rule.cm"
-        ```
-        <div class="result" markdown>
-        <span>
-        [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/copilot/label_copilot_by_rule.cm){ .md-button }
-        </span>
-        </div>
-
-    !!! tip
-        Add `.cm/ai.log linguist-generated=true` to your `.gitattributes` file to ensure that Copilot-generated files are not included in your repository.
-
-=== "Label by Survey"
+=== "Label by Prompt"
     Prompt PR authors to indicate if they used Copilot for the PR and automatically label the PR if they did. This requires two separate automation files to handle posting the prompt and labeling accordingly.
 
     ![Label Copilot by Prompt](/automations/integrations/copilot/flag-copilot-pr/label-copilot-by-prompt.png)
