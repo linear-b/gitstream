@@ -3,7 +3,8 @@ manifest:
 
 automations:
   linearb_ai_description:
-    # trigger it only when PR is created or has new commits
+    # Trigger it only when PR is created or has new commits
+    # Note: explicit triggers are ignored for GitLab or Bitbucket
     on:
       - pr_created
       - commit
