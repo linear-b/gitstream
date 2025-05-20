@@ -58,7 +58,7 @@ Once your gitStream configuration file is set up, you need a Bitbucket Pipelines
     The `add-label` action is not supported in Bitbucket as Bitbucket does not have a native labeling feature.
 
 !!! warning "Explicit triggers are not supported"
-    The `triggers` and `on` functionality are not currently supported in Bitbucket. If you include them in your CM automation files, gitStream will ignore them and will use the default triggering as sepecified in [`Trigger Control`](./execution-model.md#triggers-section).
+    The `triggers` and `on` functionality are not currently supported in Bitbucket. If you include them in your CM automation files, gitStream will skip the automations entirely.
 
 ## Install the gitStream Service
 
