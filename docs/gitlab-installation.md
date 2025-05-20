@@ -40,6 +40,9 @@ Create a `cm` project (repository) in your GitLab group. This repository must be
 !!! example "Example Configuration"
 		--8<-- "docs/downloads/gitStream-gl.cm"
 
+!!! warning "Explicit triggers are not supported"
+    The `triggers` and `on` functionality are not currently supported in GitLab. If you include them in your CM automation files, gitStream will skip the automations entirely.
+
 ## Create a GitLab Pipeline
 
 Once your gitStream configuration file is set up, you need a GitLab CI configuration file to trigger gitStream automations. Create a `cm` project (repository) in your GitLab group if you haven't already. It should be created in the same group or a parent group of the target repositories. Create a `.gitlab-ci.yml` file in your new `cm` repository's default branch (usually `master` or `main`) and add the following configuration:
