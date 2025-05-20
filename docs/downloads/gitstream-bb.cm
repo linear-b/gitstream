@@ -9,7 +9,6 @@ automations:
   # Use LinearB's AI service to review the changes
   linearb_ai_review:
     if:
-      - {{ not pr.draft }}
       - {{ not is.bot }}
     run:
       - action: code-review@v1
@@ -19,7 +18,6 @@ automations:
   # Use LinearB's AI service to add a description to the PR
   linearb_ai_description:
     if:
-      - {{ not pr.draft }}
       - {{ not is.bot }}
     run:
       - action: describe-changes@v1

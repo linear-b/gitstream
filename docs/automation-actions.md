@@ -298,7 +298,7 @@ automations:
       - commit
     if:
       - {{ not pr.draft }}
-      - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
+      - {{ pr.author | match(list=['github-actions', '_bot_', 'dependabot', '[bot]']) | nope }}
     run:
       - action: code-review@v1
         args:
@@ -385,7 +385,7 @@ automations:
     # skip description for Draft PRs and PRs from bots
     if:
       - {{ not pr.draft }}
-      - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
+      - {{ pr.author | match(list=['github-actions', '_bot_', 'dependabot', '[bot]']) | nope }}
     run:
       - action: describe-changes@v1
         args:
