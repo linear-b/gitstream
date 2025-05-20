@@ -4,7 +4,6 @@ manifest:
 automations:
   linearb_ai_review:
     if:
-      - {{ not pr.draft }}
       - {{ pr.author | match(list=['github-actions', '_bot_', 'dependabot', '[bot]']) | nope }}
     run:
       - action: code-review@v1
