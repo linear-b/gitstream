@@ -22,15 +22,41 @@ Use the [`describe-changes`](/automation-actions/#describe-changes) automation a
 
     * Append the AI-generated description to the PR description.
 
-!!! example "Configuration Example"
-    ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/integrations/LinearBAI/describe-pr.cm"
-    ```
-    <div class="result" markdown>
-        <span>
-        [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/LinearBAI/describe-pr.cm){ .md-button }
-        </span>
-    </div>
+=== "For GitHub"
+
+    !!! example "Configuration Example"
+        ```yaml+jinja
+        --8<-- "docs/downloads/automation-library/integrations/LinearBAI/describe-pr.cm"
+        ```
+        <div class="result" markdown>
+            <span>
+            [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/LinearBAI/describe-pr.cm){ .md-button }
+            </span>
+        </div>
+
+=== "For GitLab"
+
+    !!! example "Configuration Example"
+        ```yaml+jinja
+        --8<-- "docs/downloads/automation-library/integrations/LinearBAI/describe-pr-gl.cm"
+        ```
+        <div class="result" markdown>
+            <span>
+            [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/LinearBAI/describe-pr-gl.cm){ .md-button }
+            </span>
+        </div>
+
+=== "For Bitbucket"
+
+    !!! example "Configuration Example"
+        ```yaml+jinja
+        --8<-- "docs/downloads/automation-library/integrations/LinearBAI/describe-pr-bb.cm"
+        ```
+        <div class="result" markdown>
+            <span>
+            [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/LinearBAI/describe-pr-bb.cm){ .md-button }
+            </span>
+        </div>
 <!-- --8<-- [end:example]-->
 
 ## Additional Resources

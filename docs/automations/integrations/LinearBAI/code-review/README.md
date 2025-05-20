@@ -23,15 +23,41 @@ Use LinearB's AI with the [`code-review`](/automation-actions/#code-review) acti
 
     * Perform an AI-driven code review and append the review comments to the PR.
 
-!!! example "Configuration Example"
-    ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/integrations/LinearBAI/code-review.cm"
-    ```
-    <div class="result" markdown>
-        <span>
-        [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/LinearBAI/code-review.cm){ .md-button }
-        </span>
-    </div>
+=== "For GitHub"
+
+    !!! example "Configuration Example"
+        ```yaml+jinja
+        --8<-- "docs/downloads/automation-library/integrations/LinearBAI/code-review.cm"
+        ```
+        <div class="result" markdown>
+            <span>
+            [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/LinearBAI/code-review.cm){ .md-button }
+            </span>
+        </div>
+
+=== "For GitLab"
+
+    !!! example "Configuration Example"
+        ```yaml+jinja
+        --8<-- "docs/downloads/automation-library/integrations/LinearBAI/code-review-gl.cm"
+        ```
+        <div class="result" markdown>
+            <span>
+            [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/LinearBAI/code-review-gl.cm){ .md-button }
+            </span>
+        </div>
+
+=== "For Bitbucket"
+
+    !!! example "Configuration Example"
+        ```yaml+jinja
+        --8<-- "docs/downloads/automation-library/integrations/LinearBAI/code-review-bb.cm"
+        ```
+        <div class="result" markdown>
+            <span>
+            [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/LinearBAI/code-review-bb.cm){ .md-button }
+            </span>
+        </div>
 <!-- --8<-- [end:example]-->
 
 ## Additional Resources
