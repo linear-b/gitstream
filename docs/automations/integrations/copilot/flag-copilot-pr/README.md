@@ -98,7 +98,7 @@ Automatically apply labels to PRs that are assisted by GitHub Copilot. You can a
 === "Label by Copilot code comment"
 
     !!! warning "Experimental"
-        Code generation instructions is an experimental setting wich might change in future GitHub Copilot versions.
+        Code generation instructions is an experimental setting which might change in future GitHub Copilot versions.
 
     Use [Code generation instructions](https://code.visualstudio.com/updates/v1_93#code-generation-instructions) to instruct copilot to add a comment at the beginning of the AI generated code. Use gitStream automation to automatically identify PRs with this comment
     ![Label by Copilot comment](/automations/integrations/copilot/flag-copilot-pr/label-copilot-comment.png)
