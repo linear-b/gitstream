@@ -17,8 +17,10 @@ description: Install gitStream to your GitLab organization.
     When setting up IP allowlists in GitLab, you're specifying which source IP addresses are permitted to interact with your repositories and APIs. This affects both gitStream and your CI/CD runners.
 
     There are two primary cases where this matters for gitStream:
+
     1. **Webhook Event Handling by gitStream**
        When GitLab triggers a webhook event (e.g., a merge request opened), gitStream may need to make follow-up API calls to GitLab. This can include fetching additional metadata, posting comments to the MR, or performing other actions. These calls are made from the LinearB/gitStream service, which uses a fixed set of IP addresses. These IPs must be added to your GitLab allowlist to ensure proper operation.
+
     2. **Outbound Requests from Your CI Runner**
        When your pipeline runs gitStream, that runner might also make outbound calls to GitLab—for example, to clone a repository or retrieve commit history. These requests will originate from the runner's IP address.
 
@@ -36,11 +38,11 @@ GitLab Installation Overview
 1. Designate a gitStream user account.
 1. Create a `cm` repo and `.cm` configuration file.
 1. Create a GitLab pipeline.
-1. Connect gitStream in LinearB. 
+1. Connect gitStream in LinearB.
 
 ## Designate a gitStream User Account
 
-gitStream automation rules are executed on behalf of the user account configured when you install the gitStream service. This account must have the `maintainer` or `owner` role to the relevant repos. 
+gitStream automation rules are executed on behalf of the user account configured when you install the gitStream service. This account must have the `maintainer` or `owner` role to the relevant repos.
 
 We recommend creating a [dedicated service account](https://docs.gitlab.com/ee/user/profile/service_accounts.html){:target="_blank"} to control access to individual repos easily. You can also use your professional or personal GitLab account for this, which would result in all automations being executed under that account, which might also affect LinearB's metrics.
 
@@ -68,7 +70,7 @@ Once your gitStream configuration file is set up, you need a GitLab CI configura
 === "GitLab-Hosted runners"
 
     **Gitlab-Hosted Runners**
-    
+
     Use the following `.gitlab-ci.yml`
 
 	``` yaml+jinja
@@ -86,14 +88,14 @@ Once your gitStream configuration file is set up, you need a GitLab CI configura
     ``` yaml+jinja
     --8<-- "docs/downloads/gitlab-shell-ci.yml"
     ```
-    
+
 === "Self-Managed Runners - Kubernetes"
     **Self-Managed Runners**
 
 	First, [register the runner](https://docs.gitlab.com/runner/register/){:target="_blank"} with a tag, and use the named tag in the `.gitlab-ci.yml` file
 
 	**Kubernetes executors**
-	
+
     1. Ensure your runner configuration (`config.toml` for example) has the followig:
 	``` yaml
 	[runners.kubernetes]
@@ -111,7 +113,7 @@ Once your gitStream configuration file is set up, you need a GitLab CI configura
     - ...
     - docker pull YOUR-REGISTRY-URL/gitstream/rules-engine:latest
 	```
-	The docker image can be pulled to your private repository from [DockerHub](https://hub.docker.com/r/gitstream/rules-engine){:target=_blank}.  
+	The docker image can be pulled to your private repository from [DockerHub](https://hub.docker.com/r/gitstream/rules-engine){:target=_blank}.
 
 ## Connect gitStream in LinearB
 
@@ -135,5 +137,3 @@ The required permissions are:
 | Read/Write API    | To get notified on MR changes and allow gitStream to approve MRs once all conditions are met |
 | Read repository   | To read and check rules over the code changes on monitored repositories                      |
 | Read user profile | Used to identify users                                                                       |
-
-
