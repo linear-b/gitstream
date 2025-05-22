@@ -26,7 +26,6 @@ description: Install gitStream to your Bitbucket workspace.
 
     1. **Webhook Event Handling by gitStream**
        When Bitbucket triggers a webhook event (e.g., a pull request opened), gitStream may need to make follow-up API calls to Bitbucket. This can include fetching additional metadata, posting comments to the PR, or performing other actions. These calls are made from the LinearB/gitStream service, which uses a fixed set of IP addresses. These IPs must be added to your Bitbucket allowlist to ensure proper operation.
-
     2. **Outbound Requests from Your CI Runner**
        When your pipeline runs gitStream, that runner might also make outbound calls to Bitbucket—for example, to clone a repository or retrieve commit history. These requests will originate from the runner's IP address.
 
@@ -34,6 +33,7 @@ description: Install gitStream to your Bitbucket workspace.
 
     **Recommended Solution**
     To ensure reliability:
+
     - Add LinearB/gitStream service IPs to your Bitbucket allowlist (listed above).
     - Use self-hosted runners or runners with static IPs so you can manage and allowlist their addresses explicitly.
 
