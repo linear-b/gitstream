@@ -19,7 +19,7 @@ description: Install gitStream to your Bitbucket workspace.
         - 13.56.203.235
         - 54.151.81.98
 
-!!! Info "Understanding IP Allowlisting for gitStream"
+??? Info "Understanding IP Allowlisting for gitStream"
     When setting up IP allowlists in Bitbucket, you're specifying which source IP addresses are permitted to interact with your repositories and APIs. This affects both gitStream and your CI/CD runners.
 
     There are two primary cases where this matters for gitStream:
