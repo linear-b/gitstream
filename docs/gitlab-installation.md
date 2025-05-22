@@ -20,7 +20,6 @@ description: Install gitStream to your GitLab organization.
 
     1. **Webhook Event Handling by gitStream**
        When GitLab triggers a webhook event (e.g., a merge request opened), gitStream may need to make follow-up API calls to GitLab. This can include fetching additional metadata, posting comments to the MR, or performing other actions. These calls are made from the LinearB/gitStream service, which uses a fixed set of IP addresses. These IPs must be added to your GitLab allowlist to ensure proper operation.
-
     2. **Outbound Requests from Your CI Runner**
        When your pipeline runs gitStream, that runner might also make outbound calls to GitLab—for example, to clone a repository or retrieve commit history. These requests will originate from the runner's IP address.
 
@@ -28,6 +27,7 @@ description: Install gitStream to your GitLab organization.
 
     **Recommended Solution**
     To ensure reliability:
+
     - Add LinearB/gitStream service IPs to your GitLab allowlist (listed above).
     - Use self-hosted runners or runners with static IPs so you can manage and allowlist their addresses explicitly.
 
