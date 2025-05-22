@@ -2,6 +2,8 @@
 title: Automation - Ask AI to provide PR documentation
 description: Use gitStream's integration with AI services to generate conscious documentation of the changes in the PR.
 category: [quality, genai, copilot, tests, efficiency]
+search:
+  exclude: true
 ---
 # Ask AI to provide PR documentation
 

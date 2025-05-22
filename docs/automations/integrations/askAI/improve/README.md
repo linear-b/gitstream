@@ -2,6 +2,8 @@
 title: Automation - Ask AI for code suggestions to improve the PR
 description: Use gitStream's integration with AI services to generate code suggestions to improve the PR.
 category: [quality, genai, copilot, tests, efficiency]
+search:
+  exclude: true
 ---
 # Ask AI to provide code suggestions to improve the PR
 

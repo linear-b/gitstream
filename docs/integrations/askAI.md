@@ -2,6 +2,8 @@
 title: Integrate gitStream with Your Own AI
 description: Use gitStream to integrate with AI services for Review, describe and add tests.
 category: [quality, genai, copilot, tests, efficiency]
+search:
+  exclude: true
 ---
 # Integrate gitStream with your own AI
 
