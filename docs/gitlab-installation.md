@@ -13,6 +13,24 @@ description: Install gitStream to your GitLab organization.
         - 13.56.203.235
         - 54.151.81.98
 
+!!! Info "Understanding IP Allowlisting for gitStream"
+    When setting up IP allowlists in GitLab, you're specifying which source IP addresses are permitted to interact with your repositories and APIs. This affects both gitStream and your CI/CD runners.
+
+    There are two primary cases where this matters for gitStream:
+    1. **Webhook Event Handling by gitStream**
+       When GitLab triggers a webhook event (e.g., a merge request opened), gitStream may need to make follow-up API calls to GitLab. This can include fetching additional metadata, posting comments to the MR, or performing other actions. These calls are made from the LinearB/gitStream service, which uses a fixed set of IP addresses. These IPs must be added to your GitLab allowlist to ensure proper operation.
+    2. **Outbound Requests from Your CI Runner**
+       When your pipeline runs gitStream, that runner might also make outbound calls to GitLab—for example, to clone a repository or retrieve commit history. These requests will originate from the runner's IP address.
+
+    If you encounter errors due to blocked IPs during your CI runs, it's likely that the runner is using an IP that is not part of the configured allowlist.
+
+    **Recommended Solution**
+    To ensure reliability:
+    - Add LinearB/gitStream service IPs to your GitLab allowlist (listed above).
+    - Use self-hosted runners or runners with static IPs so you can manage and allowlist their addresses explicitly.
+
+    This combination ensures that both gitStream's internal operations and your CI runners' interactions with GitLab function without network restrictions.
+
 GitLab Installation Overview
 
 1. Designate a gitStream user account.
