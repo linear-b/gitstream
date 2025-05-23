@@ -20,7 +20,7 @@ automations:
 # Add conditions for PR approvals. For example - allow approval only for specific users
 APPROVE_PR_ON_LGTM: false
 
-# Add `guideline` to add your prompts to the review, you can have org wide instructions
+# Add `guidelines` to add your prompts to the review, you can have org wide instructions
 # by placing the `REVIEW_RULES.md` in the `cm` repo or team level instructions by adding it to
 # the team repo.
 # Note: To when the file is in the `cm` repo, use this example: `../cm/REVIEW_RULES.md`

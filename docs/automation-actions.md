@@ -306,8 +306,9 @@ automations:
           guidelines: {{ GUIDELINES | dump }}
 
 # Define variables
-
-APPROVE_PR_ON_LGTM: false # Add conditions for PR approvals. For example - allow approval only for specific users
+# Add conditions for PR approvals. For example - allow approval only for specific users
+APPROVE_PR_ON_LGTM: false
+# Add your prompts to the review
 GUIDELINES: |
     - Don't comment on using outdated dependencies
     - In Javascript
