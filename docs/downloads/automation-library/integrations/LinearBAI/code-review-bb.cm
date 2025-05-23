@@ -9,5 +9,14 @@ automations:
       - action: code-review@v1
         args:
           approve_on_LGTM: {{ APPROVE_PR_ON_LGTM }} # optional arg, you can remove it
+          guidelines: {{ GUIDELINES }}
 
-APPROVE_PR_ON_LGTM: false # you can add conditions for PR approvals. For example - allowing approvals only for specific users
+# Define variables
+# Add conditions for PR approvals. For example - allow approval only for specific users
+APPROVE_PR_ON_LGTM: false
+
+# Add `guideline` to add your prompts to the review, you can have org wide instructions
+# by placing the `REVIEW_RULES.md` in the `cm` repo or team level instructions by adding it to
+# the team repo.
+# Note: To when the file is in the `cm` repo, use this example: `../cm/REVIEW_RULES.md`
+GUIDELINES: {{ "./REVIEW_RULES.md" | readFile() | dump }}
