@@ -304,14 +304,15 @@ automations:
         args:
           approve_on_LGTM: {{ APPROVE_PR_ON_LGTM }} # optional arg, you can remove it
           guidelines: {{ GUIDELINES | dump }}
-...
-...
+
 # Define variables
 
 APPROVE_PR_ON_LGTM: false # Add conditions for PR approvals. For example - allow approval only for specific users
 GUIDELINES: |
     - Don't comment on using outdated dependencies
-
+    - In Javascript
+        - Make sure camelCase is used for variable names
+        - Make sure PascalCase is used for class names
 ```
 
 The following files are automatically excluded from the code review.
