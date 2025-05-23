@@ -22,6 +22,7 @@ Use LinearB's AI with the [`code-review`](/automation-actions/#code-review) acti
     Automation Actions:
 
     * Perform an AI-driven code review and append the review comments to the PR.
+    * Use `guidelines` to add your prompts to the team or org review
 
 === "For GitHub"
 
