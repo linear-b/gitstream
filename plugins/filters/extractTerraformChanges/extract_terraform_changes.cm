@@ -1,0 +1,15 @@
+manifest:
+  version: 1.0
+
+automations:
+  linearb_hcl_review:
+    on:
+      - pr_created
+      - commit
+    if:
+      - {{ files | match(regex=r/production.*\.hcl/) | some }}
+      - {{ (source.diff.files | extractTerraformChanges) == 'ro' }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: its an RO change
