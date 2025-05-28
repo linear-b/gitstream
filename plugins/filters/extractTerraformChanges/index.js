@@ -26,8 +26,9 @@ module.exports = (changes) => {
       continue;
     }
 
-    const jitObjects = parseJitObjects(change.original_content);
-    const modifiedPrivileges = getModifiedPrivileges(jitObjects, changedLines);
+    const originalJitObjects = parseJitObjects(change.original_content);
+    const newJitObjects = change.new_content ? parseJitObjects(change.new_content) : [];
+    const modifiedPrivileges = getModifiedPrivileges(originalJitObjects, newJitObjects, changedLines);
 
     for (const privilege of modifiedPrivileges) {
       if (privilege === 'rw') {
@@ -142,16 +143,30 @@ function parseJitObjects(content) {
 
 /**
  * Get privileges from JIT objects that have been modified
- * @param {Array} jitObjects - Array of JIT objects with line ranges
+ * @param {Array} originalJitObjects - Array of JIT objects from original content with line ranges
+ * @param {Array} newJitObjects - Array of JIT objects from new content with line ranges
  * @param {Array} changedLines - Array of changed line numbers
  * @returns {Array} Array of privilege strings from modified objects
  */
-function getModifiedPrivileges(jitObjects, changedLines) {
+function getModifiedPrivileges(originalJitObjects, newJitObjects, changedLines) {
   const privileges = [];
 
-  for (const jit of jitObjects) {
+  // Check original JIT objects for modifications
+  for (const jit of originalJitObjects) {
     // Check if any changed line falls within this JIT object's range
-    const isModified = changedLines.some(lineNum =>
+    const isModified = changedLines.some(lineNum => 
+      lineNum >= jit.startLine && lineNum <= jit.endLine
+    );
+
+    if (isModified) {
+      privileges.push(...jit.privileges);
+    }
+  }
+
+  // Also check new JIT objects for modifications to capture privilege upgrades (ro->rw)
+  for (const jit of newJitObjects) {
+    // Check if any changed line falls within this JIT object's range
+    const isModified = changedLines.some(lineNum => 
       lineNum >= jit.startLine && lineNum <= jit.endLine
     );
 

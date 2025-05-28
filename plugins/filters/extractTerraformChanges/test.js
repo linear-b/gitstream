@@ -9,6 +9,7 @@ const path = require('path');
 // Load test data
 const rwChangeData = JSON.parse(fs.readFileSync(path.join(__dirname, 'pr_with_rw_change.json'), 'utf8'));
 const roChangeData = JSON.parse(fs.readFileSync(path.join(__dirname, 'pr_with_ro_change.json'), 'utf8'));
+const roToRwChangeData = JSON.parse(fs.readFileSync(path.join(__dirname, 'pr_with_ro_to_rw_change.json'), 'utf8'));
 
 // Test cases
 const testCases = [
@@ -23,6 +24,12 @@ const testCases = [
     input: roChangeData,
     expected: "ro",
     description: "Should return 'ro' when only JIT objects with ro privileges are modified (TTL changes)"
+  },
+  {
+    name: "PR with RO to RW privilege change",
+    input: roToRwChangeData,
+    expected: "rw",
+    description: "Should return 'rw' when a JIT object with rw privileges is modified (changed from rw to ro)"
   },
   {
     name: "Empty input",
