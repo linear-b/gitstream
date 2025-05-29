@@ -58,6 +58,32 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
         --8<-- "docs/downloads/gitstream.yml"
         ```
 
+        <div class="result" markdown>
+          <span>
+          [:octicons-download-24: Download gitstream.yml (regular version)](/downloads/gitstream.yml){ .md-button }
+          </span>
+          <span>
+          [:octicons-download-24: Download gitstream.yml (lite version)](/downloads/gitstream-lite.yml){ .md-button }
+          </span>
+        </div>
+
+        !!! tip "Large Repository Support (Lite Version)"
+            If you're working with a large repository (typically monorepos) and experience timeout issues during GitHub Actions execution, you can use the lite version of gitStream that performs a shallow clone to reduce execution time:
+
+            ```yaml
+            jobs:
+              gitStream:
+                timeout-minutes: 15
+                runs-on: ubuntu-latest
+                name: gitStream workflow automation
+                steps:
+                  - name: Evaluate Rules
+                    uses: linear-b/gitstream-github-action@v2-lite
+                    id: rules-engine
+            ```
+
+            **Important:** The lite version has limitations - automations that rely on Git history (such as code-experts) may not work properly due to the shallow clone.
+
         !!! Success
             When finished, you should have the following file structure in your repo.
 
@@ -95,6 +121,32 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
         ```yaml+jinja
         --8<-- "docs/downloads/gitstream.yml"
         ```
+
+        <div class="result" markdown>
+          <span>
+          [:octicons-download-24: Download gitstream.yml (regular version)](/downloads/gitstream.yml){ .md-button }
+          </span>
+          <span>
+          [:octicons-download-24: Download gitstream.yml (lite version)](/downloads/gitstream-lite.yml){ .md-button }
+          </span>
+        </div>
+
+        !!! tip "Large Repository Support (Lite Version)"
+            If you're working with large repositories in your organization (typically monorepos) and experience timeout issues during GitHub Actions execution, you can use the lite version of gitStream that performs a shallow clone to reduce execution time:
+
+            ```yaml
+            jobs:
+              gitStream:
+                timeout-minutes: 15
+                runs-on: ubuntu-latest
+                name: gitStream workflow automation
+                steps:
+                  - name: Evaluate Rules
+                    uses: linear-b/gitstream-github-action@v2-lite
+                    id: rules-engine
+            ```
+
+            **Important:** The lite version has limitations - automations that rely on Git history (such as code-experts) may not work properly due to the shallow clone. See the [troubleshooting section](/troubleshooting/#github-timeout-issues-with-large-repositories) for more details.
 
         !!! Success
             Once finished, **all** PRs to your organization's repositories will be processed by the GitHub Action in this repo, and your `cm` repo should have a file directory that looks like this.
