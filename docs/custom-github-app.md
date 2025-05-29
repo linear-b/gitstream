@@ -7,6 +7,10 @@ description: Install gitStream on Your GitHub Server.
 
     This guide is for installations on self-hosted GitHub Server. If you are using the gitStream cloud service, please refer to [this guide](github-installation.md).
 
+!!! Tip
+
+    Multi-org support is also available by creating a `cm` organization and installing the app there. See step 11 for details on multi-org setup.
+
 # Custom GitHub App for Self-Hosted GitHub Server
 
 A GitHub application serves as the link between gitStream and GitHub. It facilitates user authentication via OAuth2 and allows users to select repositories accessible by gitStream.
