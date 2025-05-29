@@ -4,6 +4,7 @@ description: Automatically flag large PRs that may require Javadoc updates.
 category: [docs, java]
 ---
 # Review Javadoc for Large Changes
+<!-- --8<-- [start:example]-->
 
 Require more extensive reviews for large Java changes that lack Javadoc updates.
 
@@ -35,3 +36,4 @@ Require more extensive reviews for large Java changes that lack Javadoc updates.
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->

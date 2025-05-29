@@ -57,18 +57,19 @@ The table below lists supported explicit triggers, categorized into those enable
 <div class="trigger-details" markdown=1>
 | Triggering event                                                      | Explicit Trigger :fontawesome-brands-github: | Default (implicit triggers)    |
 | --------------------------------------------------------------------- | -------------------------------------------- | ------------------------------ |
+| Checks finished                                                       | -                                            | When an automation uses the `wait_for_all_checks` action |
+| Comment added                                                         | `comment_added`                              | when `pr.comment` in `.cm`     |
+| :fontawesome-brands-github: Comment edited                            | -                                            | when `pr.comment` in `.cm`     |
+| Commit pushed                                                         | `commit`                                     | `on`                           |
 | Creating a PR                                                         | `pr_created`                                 | `on`                           |
-| Commit                                                                | `commit`                                     | `on`                           |
-| Adding label                                                          | `label_added`                                | when `pr.label` in `.cm`       |
-| Removing label                                                        | `label_removed`                              | when `pr.label` in `.cm`       |
+| Description changed                                                   | -                                            | when `pr.description` in `.cm` |
+| Label added                                                           | `label_added`                                | when `pr.label` in `.cm`       |
+| Label removed                                                         | `label_removed`                              | when `pr.label` in `.cm`       |
 | :fontawesome-brands-github: Merging the PR                            | `merge`                                      | `off`                          |
-| Adding new comment                                                    | `comment_added`                              | when `pr.comment` in `.cm`     |
-| :fontawesome-brands-github: Editing an existing comment               | -                                            | when `pr.comment` in `.cm`     |
 | Title change                                                          | -                                            | when `pr.title` in `.cm`       |
-| Description change                                                    | -                                            | when `pr.description` in `.cm` |
 | :fontawesome-brands-github: Transition from draft to ready for review | `pr_ready_for_review`                        | `off`                          |
-| :fontawesome-brands-github: transition from any state to closed       | `pr_closed`                                  | `off`                          |
-| :fontawesome-brands-github: transition from closed to open            | `pr_reopened`                                | `off`                          |
+| :fontawesome-brands-github: Transition from any state to closed       | `pr_closed`                                  | `off`                          |
+| :fontawesome-brands-github: Transition from closed to open            | `pr_reopened`                                | `off`                          |
 | :fontawesome-brands-github: Transition from any state to approved     | `pr_approved`                                | If there is an automation with one of the actions: `require-reviewers`, `set-required-approvals` or `merge`, or uses `pr.approvals` context variable  |
 </div>
 

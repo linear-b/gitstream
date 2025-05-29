@@ -1,0 +1,13 @@
+manifest:
+  version: 1.0
+
+automations:
+  linearb_ai_description:
+    # skip description for Draft PRs and PRs from bots
+    if:
+      - {{ not pr.draft }}
+      - {{ pr.author | match(list=['github-actions', '_bot_', 'dependabot', '[bot]']) | nope }}
+    run:
+      - action: describe-changes@v1
+        args:
+          concat_mode: append

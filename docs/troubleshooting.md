@@ -36,7 +36,7 @@ Some organizations limit which actions can run, in that case, in the repository 
 
 Also, add
 ```
-linear-b/gitstream-github-action@v2,*/*/.github/workflows/gitstream.yml*
+linear-b/gitstream-github-action@v2,linear-b/gitstream-github-action@v2-lite,*/*/.github/workflows/gitstream.yml*
 ```
 to the **Allow specified actions and reusable workflows** list, if it is shown.
 ![GitHub allow marketplace actions](screenshots/github_settings_allow_specified_actions
@@ -129,7 +129,7 @@ Clicking the `Details` button will show more information and context.
 
 You can add this automation to see details on context variable.
 
-#### gitStream fails when using template strings with special characters (e.g., colon ':')
+## gitStream fails when using template strings with special characters (e.g., colon ':')
 
 If a template string (e.g., pull request title, description, or other context variables) contains special characters such as a colon (`:`), gitStream might fail with a YAML parsing error due to invalid syntax.
 
@@ -139,6 +139,35 @@ To resolve this issue, ensure you properly escape special characters by using Nu
 comment: |
   {{ pr.title }}
 ```
+
+## GitHub timeout issues with large repositories
+
+If you're experiencing timeout issues during GitHub Actions execution, particularly with large repositories or monorepos, this is typically caused by the time required to clone the entire repository history.
+
+You can resolve this by using the **lite version** of the gitStream GitHub Action, which performs a shallow clone to reduce execution time:
+
+```yaml
+jobs:
+  gitStream:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    name: gitStream workflow automation
+    steps:
+      - name: Evaluate Rules
+        uses: linear-b/gitstream-github-action@v2-lite
+        id: rules-engine
+```
+
+**Important limitations of the lite version:**
+- Automations that rely on Git history (such as `code-experts`) may not work properly due to the shallow clone
+- Historical data analysis features will be limited
+- Some context variables that depend on full Git history may return incomplete results
+
+<div class="result" markdown>
+  <span>
+  [:octicons-download-24: Download gitstream.yml (lite version)](/downloads/gitstream-lite.yml){ .md-button }
+  </span>
+</div>
 
 ## How can I debug expressions and see their content?
 

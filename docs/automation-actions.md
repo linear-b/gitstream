@@ -298,20 +298,22 @@ automations:
       - commit
     if:
       - {{ not pr.draft }}
-      - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
+      - {{ pr.author | match(list=['github-actions', '_bot_', 'dependabot', '[bot]']) | nope }}
     run:
       - action: code-review@v1
         args:
           approve_on_LGTM: {{ APPROVE_PR_ON_LGTM }} # optional arg, you can remove it
           guidelines: {{ GUIDELINES | dump }}
-...
-...
-# Define variables
 
-APPROVE_PR_ON_LGTM: false # Add conditions for PR approvals. For example - allow approval only for specific users
+# Define variables
+# Add conditions for PR approvals. For example - allow approval only for specific users
+APPROVE_PR_ON_LGTM: false
+# Add your prompts to the review
 GUIDELINES: |
     - Don't comment on using outdated dependencies
-
+    - In Javascript
+        - Make sure camelCase is used for variable names
+        - Make sure PascalCase is used for class names
 ```
 
 The following files are automatically excluded from the code review.
@@ -385,7 +387,7 @@ automations:
     # skip description for Draft PRs and PRs from bots
     if:
       - {{ not pr.draft }}
-      - {{ pr.author | match(list=['github-actions', 'dependabot', '[bot]']) | nope }}
+      - {{ pr.author | match(list=['github-actions', '_bot_', 'dependabot', '[bot]']) | nope }}
     run:
       - action: describe-changes@v1
         args:

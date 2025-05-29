@@ -2,6 +2,8 @@
 title: Automation - Ask AI for a Code Review
 description: Use gitStream's integration with AI services to perform a comprehensive code review to your code
 category: [quality, genai, copilot, tests, efficiency]
+search:
+  exclude: true
 ---
 # Ask AI for a Code Review
 

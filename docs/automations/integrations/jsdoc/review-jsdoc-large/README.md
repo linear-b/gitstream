@@ -4,7 +4,7 @@ description: Automatically flag large PRs that may require JSDoc updates.
 category: [docs, javascript]
 ---
 # Review JSDoc for Large Changes
-
+<!-- --8<-- [start:example]-->
 Require more extensive reviews for large JavaScript changes that lack JSDoc updates.
 
 <div class="automationImage" markdown="1">
@@ -35,3 +35,4 @@ Require more extensive reviews for large JavaScript changes that lack JSDoc upda
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->

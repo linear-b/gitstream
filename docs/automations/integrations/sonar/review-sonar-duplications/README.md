@@ -4,6 +4,7 @@ description: Automatically request changes when SonarCloud detects duplicated co
 category: [security, sonarcloud]
 ---
 # Review Sonar Duplications
+<!-- --8<-- [start:examples]-->
 
 Request changes when Sonar reports an excessive level of duplicated code.
 
@@ -32,3 +33,5 @@ Request changes when Sonar reports an excessive level of duplicated code.
       </span>
     </div>
 </div>
+
+<!-- --8<-- [start:examples]-->
