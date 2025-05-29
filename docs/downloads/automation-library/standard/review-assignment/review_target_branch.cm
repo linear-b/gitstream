@@ -20,9 +20,11 @@ automations:
   {% endfor %}
 
 branches:
-    - prefix: r/^release/ 
+    - name: Release
+      prefix: r/^release/
+      reviewers: org/release-team
       reviews: 4
-      name: Release
-    - prefix: r/^experimental-/ 
+    - name: Experimental
+      prefix: r/^experimental-/
+      reviewers: org/experiment-team
       reviews: 1
-      name: Experimental

@@ -1,6 +1,7 @@
 ---
 title: Automation - Knowledge Share
 description: Automatically distribute PR reviews to increase code expertise.
+category: [review]
 ---
 # Knowledge Share
 
@@ -10,7 +11,7 @@ Require the reviewer as a previous contributor with code expertise between set t
 ![Knowledge Share](/automations/standard/review-assignment/share-knowledge/share-knowledge.png)
 
 !!! info "Configuration Description"
-    
+
     Conditions (all must be true):
 
     * A `Share Knowledge` label has been applied to the PR

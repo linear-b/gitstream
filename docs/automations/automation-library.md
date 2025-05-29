@@ -31,6 +31,8 @@ This library of gitStream examples is meant to serve as a starting point for you
 * [Label deleted files](label-deleted-files/README.md) - Label PRs that delete files.
 * [Label missing project tracker](label-missing-project-tracker/README.md) - Flag PRs that are missing a reference to an associated project tracking resource.
 * [Automatic project tracking links](standard/link-issue-tracker/README.md) - Automatically post PR comments that link to the associated project tracking resource (Jira, Shortcut, Azure Boards, and more).
+* [Summarize PR contents by language](standard/summarize-language-changes/README.md) - Post a comment that breaks down code changes by the programming languages contained in the PR.
+* [PR Checklist](pr-checklist-general/README.md) - Post a comment with a checklist giving more context about the PR to reviewers
 
 ## Improve PR Quality
 ### Merge Routing
@@ -44,7 +46,7 @@ This library of gitStream examples is meant to serve as a starting point for you
 ### Quality Checks
 * [Enforce Semantic PR Titles](standard/enforce-pr-title/README.md) - Enforce PR naming conventions.
 * [Enforce Changelog Updates](standard/review-changelog/README.md) - Require changelog updates for PRs that meet specific criteria.
-* [Request screenshot](request-screenshot/README.md) - Request a screenshot in the PR description if none exist.
+* [Request screenshot](request-screenshot/README.md) - Request a screenshot in the PR description if none exists.
 * [Welcome newcomer](welcome-newcomer/README.md) - Post a welcome message when someone makes their first PR to a repo, and provide context to help them know what's next.
 * [Remove TODO comments](standard/review-todo-comments/README.md) - Detect TODO comments in PRs and ask the author to remove or fix them.
 
@@ -54,15 +56,18 @@ These examples help you follow your team's security best practices.
 * [Change deprecated components](change-deprecated-components/README.md) - Request changes when a PR includes one or more deprecated components.
 * [Enforce copyright headers](standard/enforce-copyright-header/README.md) - Enforce the use of copyright headers when publishing open source code.
 
+# Integrations
+
 --8<-- "docs/integrations/README.md:integrations"
-## Utilities
-These examples provide useful components to use in other automations. These aren't intended to be used on their own; instead they act as a reference point for improving other automations.
+
+# Utilities
+These examples provide useful components to use in other automations. These aren't intended to be used on their own; instead, they act as a reference point for improving other automations.
 
 * [Colors custom expression](utilities/colors-custom-expression/README.md) - A custom expression that implements all of GitHub's default label colors in a custom expression.
-* [CM File Header](utilities/cm-header/README.md) - A header to copy/paste to the top of your CM files to help yourself, and others, understand the purpose of the file.
+* [CM File Header](utilities/cm-header/README.md) - A header to copy/paste to the top of your CM files to help yourself and others understand the purpose of the file.
 
 
 ## Contribute Your Idea
 
-!!! tip "Have a great idea for an automation that should be included in this library?"
+!!! tip "Do you Have a great idea for an automation that should be included in this library?"
     [Submit your configuration](https://github.com/linear-b/gitStream/issues/new?assignees=&labels=new-example&template=new_automation_example.md&title=New+Example%3A+) on GitHub. We'll recognize your contribution publicly (if you want) and might even send you some special swag for your contribution. 

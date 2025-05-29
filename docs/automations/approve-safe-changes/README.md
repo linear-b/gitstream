@@ -1,6 +1,8 @@
 ---
 title: Automation - Approve Safe Changes
 description: Automatically approve PRs that change docs, tests, and other safe assets.
+category: [efficiency]
+quickstart: false
 ---
 # Approve Safe Changes
 
@@ -11,7 +13,7 @@ Automatically approve PRs that change docs, tests, and other safe assets.
 !!! info "Configuration Description"
     Conditions (all must be true):
 
-    * The PR only contains documentation, tests, or formatting changes.
+    * The PR only contains documentation, images, tests, or formatting changes.
 
     Automation Actions:
 

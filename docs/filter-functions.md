@@ -6,9 +6,10 @@ description: Filter Functions enable you to process data that gitStream extracts
 
 Filters can change the look and format of the source data, or even generate new data derived from the input values. What's important is that the original data is replaced by the result of transformations, and that's what ends up in rendered templates.
 
-!!! note 
-    
-    Items marked with :octicons-beaker-24: are under development and are not available yet.
+!!! note
+
+    - Items marked with :octicons-beaker-24: are under development and are not available yet.
+    - Items marked with :material-star-circle: are available exclusively for paid accounts. To unlock this feature, [contact our sales team](https://linearb.io/book-a-demo).
 
 ## Overview
 
@@ -18,19 +19,20 @@ The following functions are supported in addition to the built-in functions prov
 
 <div class="big-summary" markdown=1>
 
-| Function | Input | Args | Output |
-| --------------- | ------- | ---- |  ---- |
-| [`capture`](#capture)<br />Find and return the first occurrence of a regex in the input string | String | `regex` | [Objects] |
-| [`difference`](#difference)<br />Given two lists, keep only items that are in the 1st list but not in the 2nd. | [Objects] | `list` | [Objects] |
-| [`every`](#every)<br />Checks whether all element in the list are `true` | [Bool] | - | Bool |
-| [`filter`](#filter)<br />Reduce list of items into a list of same items that match the specified term | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
-| [`includes`](#match)<br />Check if substring match | String | `regex`, `term`, `list` | Bool |
-| [`intersection`](#intersection)<br />Given two lists, keep only items that are in both lists.| [Objects] | `list` | [Objects] |
-| [`map`](#map)<br />Maps each object in a list into their specified attribute value | [Object] | `attr` | [Object] |
-| [`match`](#match)<br />Maps list of items into a list of booleans that match the specified term | [String]<br />[Object] | `regex`, `term`, `list` `attr` | [Bool] |
-| [`nope`](#nope)<br />Checks whether all element in the list are `false` | [Bool] | - | Bool |
-| [`reject`](#reject)<br />Inverse of [`filter`](#filter), the result list contains non-matching items | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
-| [`some`](#some)<br />Checks whether at least one element in the list is `true` | [Bool] | - | Bool |
+| Function                                                                                                              | Input                  | Args                            | Output                 |
+| --------------------------------------------------------------------------------------------------------------------- | ---------------------- | ------------------------------- | ---------------------- |
+| [`capture`](#capture)<br />Find and return the first occurrence of a regex in the input string                        | String                 | `regex`                         | String                 |
+| [`difference`](#difference)<br />Given two lists, keep only items that are in the 1st list but not in the 2nd.        | [Objects]              | `list`                          | [Objects]              |
+| [`every`](#every)<br />Checks whether all element in the list are `true`                                              | [Bool]                 | -                               | Bool                   |
+| [`filter`](#filter)<br />Reduce list of items into a list of same items that match the specified term                 | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
+| [`includes`](#match)<br />Check if substring match                                                                    | String                 | `regex`, `term`, `list`         | Bool                   |
+| [`intersection`](#intersection)<br />Given two lists, keep only items that are in both lists.                         | [Objects]              | `list`                          | [Objects]              |
+| [`map`](#map)<br />Maps each object in a list into their specified attribute value                                    | [Object]               | `attr`                          | [Object]               |
+| [`match`](#match)<br />Maps list of items into a list of booleans that match the specified term                       | [String]<br />[Object] | `regex`, `term`, `list` `attr`  | [Bool]                 |
+| [`nope`](#nope)<br />Checks whether all element in the list are `false`                                               | [Bool]                 | -                               | Bool                   |
+| [`reject`](#reject)<br />Inverse of [`filter`](#filter), the result list contains non-matching items                  | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
+| [`some`](#some)<br />Checks whether at least one element in the list is `true`                                        | [Bool]                 | -                               | Bool                   |
+
 
 </div>
 
@@ -38,24 +40,26 @@ The following functions are supported in addition to the built-in functions prov
 
 <div class="big-summary" markdown=1>
 
-| Function | Input | Args | Output |
-| --------------- | ------- | ---- |  ---- |
-| [`allDocs`](#alldocs)<br />Checks the list includes only documents | [`files`](./context-variables.md#files) | - | Bool |
-| [`allImages`](#allimages)<br />Checks the list includes only images | [`files`](./context-variables.md#files) | - | Bool |
-| [`allTests`](#alltests)<br />Checks the list includes only tests | [`files`](./context-variables.md#files) | - | Bool |
-| [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results| [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
-| [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes | [`branch`](./context-variables.md#branch)| - | Integer |
-| [`extensions`](#extensions)<br />Lists all the unique file extensions | [String] | - | [String] |
-| [`extractJitFindings`](#extractjitfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the Jit scan | [`pr`](./context-variables.md#pr) | - | Object |
-| [`extractSonarFindings`](#extractsonarfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the SonarCloud scan | [`pr`](./context-variables.md#pr) | - | Object |
-| [`explainRankByGitBlame`](#explainrankbygitblame)<br />Short markdown text explaining rankByGitBlame results | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
-| [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo | [`repo.contributors`](./context-variables.md#repo) | String | Bool |
-| [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed | [[`FileDiff` ](./context-variables.md#filediff-structure)] | - | Bool |
-| [`mapToEnum`](#maptoenum)<br />return the enum value matches to the input key | String | Enum object | Object |
-| [`matchDiffLines`](#matchdifflines)<br />Match every line in diff | [[`FileDiff` ](./context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces` | [Bool] |
-| [`rankByGitActivity`](#rankbygitactivity)<br />Get list of contributors based on `git-commit` activity | [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
-| [`rankByGitBlame`](#rankbygitblame)<br />Get list of contributors based on `git-blame` results| [`repo`](./context-variables.md#repo) | `gt`, `lt` | [String] |
-
+| Function                                                                                                                                                                 | Input                                                      | Args                                               | Output                  |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- | -------------------------------------------------- | ----------------------- |
+| [`allDocs`](#alldocs)<br />Checks the list includes only images                                                                                                          | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
+| [`allImages`](#allimages)<br />Checks the list includes only images                                                                                                      | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
+| [`allTests`](#alltests)<br />Checks the list includes only tests                                                                                                         | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
+| [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results                                                                       | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
+| [`decode`](#decode)<br />Decode Base64 encoded string into an object                                                                                                     | String (Base64 encoded)                                    | -                                                  | Object                  |
+| [`encode`](#encode)<br />Encode data into Base64 encoded string                                                                                                          | Object                                                     | -                                                  | String (Base64 encoded) |
+| [`estimatedReviewTime`](#estimatedreviewtime)<br />Estimated review time in minutes                                                                                      | [`branch`](./context-variables.md#branch)                  | -                                                  | Integer                 |
+| [`extensions`](#extensions)<br />Lists all the unique file extensions                                                                                                    | [String]                                                   | -                                                  | [String]                |
+| [`extractJitFindings`](#extractjitfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the Jit scan                         | [`pr`](./context-variables.md#pr)                          | -                                                  | Object                  |
+| [`extractSonarFindings`](#extractsonarfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the SonarCloud scan              | [`pr`](./context-variables.md#pr)                          | -                                                  | Object                  |
+| [`explainRankByGitBlame`](#explainrankbygitblame)<br />Short markdown text explaining rankByGitBlame results                                                             | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
+| [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo                                                                                 | [`repo.contributors`](./context-variables.md#repo)         | String                                             | Bool                    |
+| [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed                                                                                     | [[`FileDiff` ](./context-variables.md#filediff-structure)] | -                                                  | Bool                    |
+| [`mapToEnum`](#maptoenum)<br />return the enum value matches to the input key                                                                                            | String                                                     | Enum object                                        | Object                  |
+| [`matchDiffLines`](#matchdifflines)<br />Match every line in diff                                                                                                        | [[`FileDiff` ](./context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces`                       | [Bool]                  |
+| [`rankByGitActivity`](#rankbygitactivity)<br />Get list of contributors based on `git-commit` activity                                                                   | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
+| [`rankByGitBlame`](#rankbygitblame)<br />Get list of contributors based on `git-blame` results                                                                           | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
+| [`readFile`](#readfile)<br />Reads the contents of a file from the current branch or "cm" folder                                                                         | String - The file path                                     | String (optional) - the file type. `txt` or `json` | String                  |
 </div>
 
 ### Named arguments
@@ -66,7 +70,7 @@ Some functions support named arguments, many of these repeat in different functi
 
 `list` - a list of strings, trying to match any of the listed substrings with the matched item.
 
-`regex` - a single string, used as a _regular expression_ with the matched item. A regular expression can be created just like JavaScript, but needs to be prefixed with r, for example, `r/^foo.*/g`, for more info see [Nunjucks](https://mozilla.github.io/nunjucks/templating.html#regular-expressions). 
+`regex` - a single string, used as a _regular expression_ with the matched item. A regular expression can be created just like JavaScript, but needs to be prefixed with r, for example, `r/^foo.*/g`, for more info see [Nunjucks](https://mozilla.github.io/nunjucks/templating.html#regular-expressions).
 
 <!-- `globs` - a key to an element in the `.cm` that holds a list of strings, used as _glob_ pattern test on the matched item. For more info, see [Wikipedia](https://en.wikipedia.org/wiki/Glob_(programming)). -->
 
@@ -92,7 +96,7 @@ Extract the first match of the regex in the input string. If no match is found, 
 | -------- | ---------|-----------|------------------------------------------------ |
 | - | Input  | String    | The string to find the match in |
 | `regex`  | Input |  String  | Search term to match with the input string |
-| -  | Output  | Bool   | The first substring that match the provided regex |
+| -  | Output  | String   | The first substring that matches the provided regex |
 
 </div>
 
@@ -149,18 +153,23 @@ Creates a shallow copy of a portion of a given list, filtered down to just the e
 
 </div>
 
-For example, check if all changes to JavaScript files are in tests directory:
+Examples:
+Check if all changes to JavaScript files are in the tests directory:
 
 ```yaml+jinja
 {{ files | filter(regex=r/\.js$/) | match(regex=r/tests\//) | every }}
 ```
 
-For example, check if all changes to JavaScript files are formatting:
+Check if all changes to JavaScript files are formatting:
 
 ```yaml+jinja
 {{ source.diff.files | filter(attr='new_file', regex=r/\.js$/) | isFormattingChange }}
 ```
 
+Check if the PR has new Python files:
+```yaml+jinja
+{{ branch.diff.files_metadata | filter(attr='original_file', regex=r/^$/) | filter(attr='new_file', regex=r/\.py$/) | some }}
+```
 #### `includes`
 
 Determines whether a string includes a certain substring. You can use either a single term, regex, or a list of terms to match with.
@@ -194,7 +203,7 @@ Given two lists, keep only items that are in both lists.
 
 #### `map`
 
-Creates a new list populated with the values of the selected attribute of every element in the input list. 
+Creates a new list populated with the values of the selected attribute of every element in the input list.
 
 <div class="filter-details" markdown=1>
 
@@ -227,13 +236,15 @@ Return `true` for each element in the list that match the search term.
 
 </div>
 
-For example, to check if all code changes are in the `tests` directory:
+Examples:
+
+Check if all code changes are in the `tests` directory:
 
 ```yaml+jinja
 {{ files | match(regex=r/tests\//) | every }}
 ```
 
-For example, to check if there are code changes with specific function call:
+Check if there are code changes with specific function call:
 
 ```yaml+jinja
 {{ source.diff.files | match(attr='diff', term='myFunction') | some }}
@@ -273,13 +284,15 @@ Creates a shallow copy of a portion of a given list, filtered down to just the e
 
 </div>
 
-For example, check if all changes, but JavaScript files are in tests directory:
+Examples:
+
+Check if all changes, but JavaScript files are in tests directory:
 
 ```yaml+jinja
 {{ files | reject(regex=r/\.js$/) | match(regex=r/tests\//') | every }}
 ```
 
-For example, check if all changes except for `config.json` files are formatting:
+Check if all changes except for `config.json` files are formatting:
 
 ```yaml+jinja
 {{ source.diff.files | reject(attr='new_file', regex=r/config\.json$/) | isFormattingChange }}
@@ -327,6 +340,7 @@ In case you want to exclude more files, like all `txt` under the `requirements` 
 {{ (files | allDocs) and (files | match(regex=r/requirements\/.*\.txt$/) | nope ) }}
 ```
 
+
 #### `allImages`
 
 Return `true` if the input list includes only images based on file extensions.
@@ -335,10 +349,10 @@ Image file extensions are: `svg`, `png`, `gif`.
 
 <div class="filter-details" markdown=1>
 
-| Argument   | Usage    | Type      | Description                                     |
-| -------- | ---------|-----------|------------------------------------------------ |
-| - | Input    | [`files`](./context-variables.md#files)  | The list of changed files with their path       |
-| - | Output   | Bool      | `true` if all file extensions are of images     |
+| Argument | Usage  | Type                                    | Description                                 |
+| -------- | ------ | --------------------------------------- | ------------------------------------------- |
+| -        | Input  | [`files`](./context-variables.md#files) | The list of changed files with their path   |
+| -        | Output | Bool                                    | `true` if all file extensions are of images |
 
 </div>
 
@@ -354,10 +368,10 @@ To identify as test the file must include the word `test` or `spec` in its name 
 
 <div class="filter-details" markdown=1>
 
-| Argument | Usage    | Type      | Description                                     |
-| ------ | ---------|-----------|------------------------------------------------ |
-| - | Input   | [`files`](./context-variables.md#files)  |The list of changed files with their path        |
-| - | Output | Bool      | `true` if all file tests are based on name and path |
+| Argument | Usage  | Type                                    | Description                                         |
+| -------- | ------ | --------------------------------------- | --------------------------------------------------- |
+| -        | Input  | [`files`](./context-variables.md#files) | The list of changed files with their path           |
+| -        | Output | Bool                                    | `true` if all file tests are based on name and path |
 
 </div>
 
@@ -375,7 +389,7 @@ The output lists the Git provider users, e.g., GitHub users, which are mapped fr
 
 !!! note
 
-    The `codeExperts` filter function calls gitStream app API with the `repo` context to calculate the estimated review time value.
+    The `codeExperts` filter function calls gitStream app API with the `repo` context to calculate the experts.
 
 <div class="filter-details" markdown=1>
 
@@ -393,7 +407,7 @@ For example:
 ```yaml+jinja
 automations:
   code_experts:
-    if: 
+    if:
       - true
     run:
       - action: add-reviewers@v1
@@ -401,16 +415,46 @@ automations:
           reviewers: {{ repo | codeExperts(gt=10) }}
 ```
 
+#### `decode`
+
+Decode Base64 encoded string into an object. Encoded strings are formatted: `"base64: <encoded_string>"`
+<div class="filter-details" markdown=1>
+
+| Argument | Usage  | Type   | Description                                 |
+| -------- | ------ | ------ | ------------------------------------------- |
+| -        | Input  | String | Base64 encoded string prefixed `"Base64: "` |
+| -        | Output | Object | Decoded objet                               |
+
+</div>
+
+```yaml+jinja
+{{ "base64: SGVsbG8gV29ybGQ=" | decode }} # Output: "Hello World"
+```
+
+#### `encode`
+
+Encode data into Base64 encoded string. When an encoded string is passed as input for [`add-comment`](./automation-actions.md#add-comment), the action automatically detects and decodes it.
+<div class="filter-details" markdown=1>
+
+| Argument | Usage  | Type         | Description                         |
+| -------- | ------ | ------------ | ----------------------------------- |
+| -        | Input  | Object       | The input object to encode          |
+| -        | Output | String (Base64) | Base64 encoding of the object |
+
+</div>
+
+```yaml+jinja
+{{ "Hello World" | encode }} # Output: "base64: SGVsbG8gV29ybGQ="
+```
+
 #### `estimatedReviewTime`
 
-Returns the estimated review time in minutes based on statistical model.
-The model uses the amount of additions and deletions statistics for each file type with additional information about the commits and base branch.
+Returns the estimated review time in minutes based on an ML model.
+The model estimation is computed based on the PR metadata data (e.g. branch name, commits) and mainly by the number of additions and deletions for each type of change (Code, Data, Configuration, etc..)
 
 !!! note
 
     The `estimatedReviewTime` filter function calls gitStream app API with the `branch` context to calculate the estimated review time value.
-
-The following files are excluded when calculating this value:
 
 <div class="filter-details" markdown=1>
 
@@ -425,16 +469,39 @@ The following files are excluded when calculating this value:
 {{ branch | estimatedReviewTime }}
 ```
 
-The following files are automatically excluded from the estimated review time calculation. 
+The following files are automatically excluded from the estimated review time calculation.
 
-| File type | Filter type | Values| 
+| File type | Filter type | Values|
 | - | - | - |
 | Data | Extension | `ini` `csv` `xls` `xlsx` `xlr` `doc` `docx` `txt` `pps` `ppt` `pptx` `dot` `dotx` `log` `tar` `rtf` `dat` `ipynb` `po` `profile` `object` `obj` `dxf` `twb` `bcsymbolmap` `tfstate` `pdf` `rbi` `pem` `crt` `svg` `png` `jpeg` `jpg` `ttf` |
 | Data | Regex | `.*dist/.*\.js$` `.*public/assets/.*\.js$` |
-| Lock | Regex | `.*package-lock|packages\.lock|package)\.json$` | 
-| Lock | File | `yarn.lock` `gemfile.lock` `podfile.lock` `cargo.lock` `composer.lock` `pipfile.lock` `gopkg.lock` |
-| Lock | Regex | `.*gradle\.lockfile$` `.*lock\.sbt$` |
 | Pipeline | Regex | `.*ci\.yml$` |
+
+| Lock File Name          | Programming Language | Package Manager      |
+|-------------------------|----------------------|----------------------|
+| `package-lock.json`     | JavaScript           | npm                  |
+| `yarn.lock`             | JavaScript           | Yarn                 |
+| `npm-shrinkwrap.json`   | JavaScript           | npm                  |
+| `Pipfile.lock`          | Python               | pipenv               |
+| `poetry.lock`           | Python               | Poetry               |
+| `conda-lock.yml`        | Python               | conda                |
+| `Gemfile.lock`          | Ruby                 | Bundler              |
+| `composer.lock`         | PHP                  | Composer             |
+| `packages.lock.json`    | .NET                 | NuGet                |
+| `project.assets.json`   | .NET                 | .NET Core            |
+| `pom.xml`               | Java                 | Maven                |
+| `Cargo.lock`            | Rust                 | Cargo                |
+| `mix.lock`              | Elixir               | Mix                  |
+| `pubspec.lock`          | Dart/Flutter         | pub                  |
+| `go.sum`                | Go                   | Go modules           |
+| `stack.yaml.lock`       | Haskell              | Stack                |
+| `vcpkg.json`            | C++                  | vcpkg                |
+| `conan.lock`            | C++                  | Conan                |
+| `ivy.xml`               | Scala                | sbt/Ivy              |
+| `project.clj`           | Clojure              | Leiningen            |
+| `Podfile.lock`          | Swift/Objective-C    | CocoaPods            |
+| `Cartfile.resolved`     | Swift/Objective-C    | Carthage             |
+| `flake.lock`            | Nix                  | Nix                  |
 
 !!! tip
 
@@ -481,11 +548,11 @@ The output is an object of the following format:
     "severity": 'string',
     "summary": 'string'
   }],
-  "metrics": { 
-    "HIGH": number, 
+  "metrics": {
+    "HIGH": number,
     "MEDIUM": number,
     "LOW": number,
-    "INFO": number 
+    "INFO": number
   }
 }
 ```
@@ -531,7 +598,7 @@ Assign the output to a variable
 jit: {{ pr | extractJitFindings }}
 ```
 
-Add a label if Jit detected secrets in the PR 
+Add a label if Jit detected secrets in the PR
 
 ```yaml+jinja
 
@@ -552,7 +619,7 @@ automations:
 
 Get an object with a summary of the findings found by the SonarCloud scan. This filter is relevant only for repos that use SonarCloud to scan PRs
 
-The `pr` context includes all the comments added to the pull request, including the comment written by the SonarCloud bot that holds a summary of its scan. 
+The `pr` context includes all the comments added to the pull request, including the comment written by the SonarCloud bot that holds a summary of its scan.
 
 This filter reads and parses the comment with SonarCloud's scan summary and makes them available to use inside the `.cm` file automations.
 
@@ -642,7 +709,7 @@ colors:
 
 #### `explainRankByGitBlame`
 
-This filter helps to explain the results of [`rankByGitBlame`](#rankbygitblame), the output is in Markdown format that can be used in a PR comment. 
+This filter helps to explain the results of [`rankByGitBlame`](#rankbygitblame), the output is in Markdown format that can be used in a PR comment.
 
 The output lists the Git provider users, e.g., GitHub users, which are mapped from the Git users included in the `git-blame` output. Git users that could not be automatically mapped are marked with `*`. To map these users, you can add `user_mapping` see instructions [here](/cm-file#config).
 
@@ -655,7 +722,7 @@ The output lists the Git provider users, e.g., GitHub users, which are mapped fr
 | `gt`  | Input  | Integer  | Filter the user list, keeping those above the specified threshold  |
 | -     | Output   | String   | Explaining [`rankByGitBlame`](#rankbygitblame) results in markdown format |
 
-!!! note 
+!!! note
 
     Each contributor's result is rounded down to the nearest integer, so the total may add up to less than 100%.
 
@@ -666,7 +733,7 @@ For example:
 ```yaml+jinja
 automations:
   the_right_reviewer:
-    if: 
+    if:
       - true
     run:
       - action: add-reviewers@v1
@@ -695,9 +762,9 @@ Return `true` if it's the author first commit in the repo.
 </div>
 
 ```yaml+jinja
-if: 
+if:
   - {{ repo.contributors | isFirstCommit(branch.author) }}
-run: 
+run:
   - action: add-comment@v1
     args:
       comment: "Welcome {{branch.author}}!"
@@ -707,7 +774,7 @@ run:
 
 Return `true` if all file diffs are validated as formatting changes. This filter function works for JavaScript, TypeScript, Python, JSON, YAML and HTML.
 
-gitStream determines formatting changes by minifying the source code for the incoming changes and the existing code and comparing them. If they are identical, this filter function returns `true`. If any unsupported languages are contained in the PR, gitStream will return `false`. 
+gitStream determines formatting changes by minifying the source code for the incoming changes and the existing code and comparing them. If they are identical, this filter function returns `true`. If any unsupported languages are contained in the PR, gitStream will return `false`.
 
 <div class="filter-details" markdown=1>
 
@@ -739,7 +806,7 @@ Get the enum value matches to the input key
 
 For example, set a label color according to names in the enum:
 
-```yaml+jinja	
+```yaml+jinja
 automations:
   label_color:
     if:
@@ -775,7 +842,7 @@ Checks diff for matching lines.
 
 For example, to check if all the changes are of adding prints and ignore white spaces:
 
-```yaml+jinja	
+```yaml+jinja
 {{ source.diff.files | matchDiffLines(regex=r/^\+.*console\.log/, ignoreWhiteSpaces=true) | every }}
 ```
 
@@ -784,10 +851,10 @@ For example, to check if all the changes are of adding prints and ignore white s
 
 Get list of contributors based on `git-commit` activity.
 
-The `repo` context includes all the changed files, for each file it includes each 
-contributor number of lines changed every week over the last 52 weeks, based on `git-commit`. 
+The `repo` context includes all the changed files, for each file it includes each
+contributor number of lines changed every week over the last 52 weeks, based on `git-commit`.
 
-These functions compare each contributor changes per week and yield an average percentage of contribution for any given file. For example, in a certain week a file had 500 line changed, 200 by a first user, while 3 other users changed 100 lines each. So the score for the first user in that week will be 40 (200/500 in %). The function then average the score for each user for the selected time period. 
+These functions compare each contributor changes per week and yield an average percentage of contribution for any given file. For example, in a certain week a file had 500 line changed, 200 by a first user, while 3 other users changed 100 lines each. So the score for the first user in that week will be 40 (200/500 in %). The function then average the score for each user for the selected time period.
 
 Then you can use the thresholds to get the right reviewer.
 
@@ -813,8 +880,8 @@ active_coders: {{ repo | rankByGitActivity(gt=50, weeks=12) }}
 
 Get list of contributors based on `git-blame` results
 
-The `repo` context includes all the changed files, for each file it includes the 
-contributors' percentage of lines in the file, based on `git-blame`. 
+The `repo` context includes all the changed files, for each file it includes the
+contributors' percentage of lines in the file, based on `git-blame`.
 
 This function sums all these percentages per user and yield an average percentage of contribution. Then you can use the thresholds to get the right reviewer.
 
@@ -850,4 +917,75 @@ Check if the branch author is a rookie
 
 ```yaml+jinja
 is_rookie: {{ repo | rankByGitBlame(lt=15) | match(term=branch.author) | some }}
+```
+
+#### `readFile`
+
+Reads the contents of a file from the current branch or the `cm` repo and returns it as a string.
+
+<div class="filter-details" markdown=1>
+
+| Argument | Usage  | Type   | Description                                                         |
+| -------- | ------ | ------ | ------------------------------------------------------------------- |
+| -        | Input  | String | The relative file path in the current repo. Prepend `../cm/` to get files from the `cm` repo      |
+| `output` | Input  | String | The content type. Optional, `txt` by default. Allowed options are `txt` or `json`. When using `json`, the output will be returned as a stringified Object |
+| -        | Output | String | The contents of the file as a String. In case of `json` output, the result will be `JSON.stringified`                         |
+</div>
+
+Examples:
+
+Add a comment with a file's content:
+
+```yaml+jinja
+automations:
+  add_readme_comment:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            {{ README_CONTENT }}
+
+README_CONTENT: {{ "./README.md" | readFile() }}
+```
+
+Read JSON configuration file from the `cm` repo and use some of the properties in a comment:
+```
+automations:
+  describe_teams:
+    if:
+      - {{ true }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+              We have {{ TEAMS | length }} teams with {{ TEAMS.front.members | length + TEAMS.back.members | length }} members in total:
+              FrontEnd: include {{ TEAMS.front.members | length }} members
+              BackEnd: include {{ TEAMS.back.members | length }} members
+
+
+TEAMS: {{ "../cm/TEAMS.json" | readFile(output="json") }}
+```
+
+Configuration file example:
+``` JSON
+{
+  "front": {
+    "name": "Frontend",
+    "description": "Frontend team",
+    "members": [
+      "John",
+      "Jane"
+    ]
+  },
+  "back": {
+    "name": "Backend",
+    "description": "Backend team",
+    "members": [
+      "Alice",
+      "Bob"
+    ]
+  }
+}
 ```

@@ -1,6 +1,7 @@
 ---
 title: Automation - Branch-Based Review Policies
 description: Automatically route and manage PRs based on the target or destination branch.
+category: [review]
 ---
 # Branch-Based Review Policies
 

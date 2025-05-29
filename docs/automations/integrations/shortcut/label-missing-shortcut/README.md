@@ -1,6 +1,7 @@
 ---
 title: Automation - Label Missing Shortcut
 description: Automatically label PRs that are missing references to Shortcut resources.
+category: [quality, shortcut, project]
 ---
 # Label Missing Shortcut
 <!-- --8<-- [start:example]-->

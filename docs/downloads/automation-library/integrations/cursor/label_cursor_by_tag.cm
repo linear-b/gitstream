@@ -1,0 +1,26 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+on:
+  - comment_added
+  - commit
+  - pr_created
+
+automations:
+  label_cursor:
+    # Detect PRs that contain the text '#cursor#' in the title, description, comments, or commit messages
+    if:
+      - {{ cursor_tag.pr_title or cursor_tag.pr_desc or cursor_tag.pr_comments or cursor_tag.commit_messages }}
+    # Apply a label indicating the user has adopted Cursor
+    run:
+      - action: add-label@v1
+        args:
+          label: '🤖 Cursor'
+
+cursor_tag:
+  pr_title: {{ pr.title | includes(regex=r/#cursor#/) }}
+  pr_desc: {{pr.description | includes(regex=r/#cursor#/) }}
+  pr_comments: {{ pr.comments | map(attr='content') | match(regex=r/#cursor#/) | some }}
+  commit_messages: {{ branch.commits.messages | match(regex=r/#cursor#/) | some }} 

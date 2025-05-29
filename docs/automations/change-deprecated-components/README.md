@@ -1,6 +1,7 @@
 ---
 title: Automation - Change Deprecated Components
 description: Automatically detect the use of deprecated components and services in PRs.
+category: [quality]
 ---
 # Change Deprecated Components
 

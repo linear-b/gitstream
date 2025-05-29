@@ -1,0 +1,13 @@
+-*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  label_claude_code_pr:
+    if:
+      - {{ pr.comments | filter(attr='commenter', term='gitstream-cm') | filter (attr='content', regex=r/\- \[x\] Claude Code Assisted/) | some}}
+    run:
+      - action: add-label@v1
+        args:
+          label: '🤖 Claude Code' 

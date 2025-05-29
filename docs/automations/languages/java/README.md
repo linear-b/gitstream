@@ -1,6 +1,7 @@
 ---
-title: Integrate gitStream with Java
+title: Automation - Integrate gitStream with Java
 description: Implement Java workflow automations with gitStream.
+visible: false
 ---
 
 ## Approve Java Log Output Changes

@@ -1,6 +1,7 @@
 ---
-title: gitStream Automation - Review RDoc for Large Changes
+title: Automation - Review RDoc for Large Changes
 description: Automatically flag large PRs that may require RDoc updates.
+category: [quality, docs, ruby]
 ---
 # Review RDoc for Large Changes
 

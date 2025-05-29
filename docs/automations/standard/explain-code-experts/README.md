@@ -1,10 +1,12 @@
 ---
 title: Automation - Explain Code Experts
 description: Automatically summarize the people with the highest code expertise for PRs.
+category: [quality, review, quickstart]
+quickstart: true
 ---
 # Explain Code Experts
 
-Post a comment that uses git blame and history to list the most relevant experts for all PRs. The comment will automatically update as additional commits are added to the PR. 
+Post a comment that uses git blame and history to list the most relevant experts for all PRs. The comment will automatically update as additional commits are added to the PR.
 
 <div class="automationImage" markdown="1">
 ![Explain Code Experts](explain-code-experts.png)
@@ -13,11 +15,17 @@ Post a comment that uses git blame and history to list the most relevant experts
 !!! info "Configuration Description"
     Conditions (all must be true):
 
-    * A PR is created or modified.
+    * The PR has the 'suggest-reviewer' label.
+
+    Explicit Triggers:
+    
+    * When a PR is created (`pr_created`)
+    * When a PR becomes ready for review (`pr_ready_for_review`)
+    * When a new commit is pushed to the PR (`commit`)
 
     Automation Actions:
 
-    * Post a comment that identifies the people with the highest level of code expetise.
+    * Post a comment that identifies the people with the highest level of code expertise.
 
 </div>
 <div class="automationExample" markdown="1">

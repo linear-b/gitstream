@@ -1,6 +1,7 @@
 ---
 title: Automation - Enforce PR Semantic Titles
 description: Automatically enforce PR naming conventions across your GitHub organization.
+category: [quality, review]
 ---
 # Enforce PR Semantic Title Names
 

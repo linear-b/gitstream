@@ -4,6 +4,25 @@ description: YAML-based workflow automation for the code review process.
 ---
 # /:\ gitStream
 gitStream is a workflow automation tool that enables you to use YAML configuration files to optimize your code review process. Add context to PRs, find code experts for reviews, and automate the merge process to maximize developer productivity.
+
+## AI-Powered Productivity with LinearB's AI :material-star-circle:
+
+Enhance your pull request experience with our new AI capabilities using LinearB's AI services. Automatically generate PR descriptions, perform comprehensive code reviews, and more to improve efficiency and productivity.
+
+!!! quote ""
+	![summarized-pr](/automations/integrations/LinearBAI/describe-pr/LinearB-AI-describe-pr.png){: style="border-radius:4px;width:50%", align=right}
+	
+	**Add PR Description Using LinearB's AI**
+
+	Automatically generate and append a concise, [AI-generated description](automations/integrations/LinearBAI/describe-pr) to a pull request to ensure all PRs include meaningful and helpful descriptions, improving review efficiency.
+
+!!! quote ""
+	![code-review](/automations/integrations/LinearBAI/code-review/LinearB-AI-code-review.png){: style="border-radius:4px;width:50%", align=left}
+
+	**Use LinearB's AI for a Comprehensive Code Review**
+
+	Leverage LinearB's AI to [automatically review](automations/integrations/LinearBAI/code-review) introduced changes to the code, ensuring high-quality code reviews and reducing the manual effort required.
+
 ## Features
 
 !!! quote ""
@@ -46,6 +65,20 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 
 		gitStream can be installed for one repo, specific repos, or all repos in your organization. We recommend installing for **all** because it will ensure all new repos are able to use gitStream. You can change this setting at any time in the future.
 
+=== ":fontawesome-brands-github: GitHub Server"
+
+	1. Create and install a [Custom GitHub App for Self-Hosted GitHub Server](/custom-github-app)
+	2. <a href="https://app.linearb.io/login" target="_blank">Login</a> to the LinearB app. Navigate to **Company Settings** -> **Git**
+		1. Make sure the GHES is integrated with LinearB
+		2. Connect gitStream to the GHES integration by pressing the "Connect gitStream" button
+		3. Connect the repositories to gitStream by selecting the checkbox under the "gitStream" column (for org level installation, `cm` repo must be selected)
+	3. Configure your repository using the [instructions for GitHub](/github-installation#setup). This will guide you through setting up your first automations.
+
+	That's it! Now sit back and watch gitStream run automation rules on your next PR.
+
+	!!! tip "Tip: Install gitStream for your entire organization"
+
+		gitStream can be installed for one repo, specific repos, or all repos in your organization. We recommend installing for **all** because it will ensure all new repos are able to use gitStream. You can change this setting at any time in the future.
 
 === ":fontawesome-brands-gitlab: GitLab"
 
@@ -54,10 +87,21 @@ gitStream is a workflow automation tool that enables you to use YAML configurati
 	
 	That's it! Now sit back and watch gitStream run automation rules on your next PR.
 
-=== ":fontawesome-brands-bitbucket: BitBucket"
+=== ":fontawesome-brands-bitbucket: Bitbucket"
 
-	Coming soon
+	1. <a href="https://app.linearb.io/login" target="_blank">Login</a>, or <a href="https://app.linearb.io/sign-up" target="_blank">create a free account</a> on the LinearB app.
+	2. Connect gitStream to your Bitbucket repos by following the steps described in the [Bitbucket installation guide](bitbucket-installation.md).
+	
+	That's it! Now sit back and watch gitStream run automation rules on your next PR.
 
+!!! warning "Automation limits for free accounts"
+    Free accounts have a monthly cap on PRs that can trigger gitStream automations.
+
+    - At 90% usage, a warning appears in PR comments.  
+    - Once the limit is reached, new PRs will not run automations and the gitStream check will be concluded as `Skipped`.  
+    - Limits reset at the start of each month.
+		
+    🔗 Learn more: [Automation Limits](limits.md)
 
 ## Get Involved
 Want to report a bug, request a new feature, ask a question, get updates for new features, or propose a new configuration for the automation library? [Join us on GitHub](https://github.com/linear-b/gitstream).

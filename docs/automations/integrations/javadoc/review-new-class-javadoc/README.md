@@ -1,8 +1,10 @@
 ---
-title: gitStream Automation - Enforce Javadoc Requirements for New Classes
+title: Automation - Enforce Javadoc Requirements for New Classes
 description: Automatically request changes for PRs that fail to meet Javadoc requirements.
+category: [docs, java]
 ---
 # Enforce Javadoc Requirements for New Classes
+<!-- --8<-- [start:example]-->
 
 Automatically request changes when someone creates a new Java class that lacks Javadoc content.
 
@@ -33,3 +35,4 @@ Automatically request changes when someone creates a new Java class that lacks J
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->

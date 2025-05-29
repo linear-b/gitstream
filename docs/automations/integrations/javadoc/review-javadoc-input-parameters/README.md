@@ -1,8 +1,10 @@
 ---
-title: gitStream Automation - Review Java Input Parameters for Javadoc Changes
-description: Notify PR authors to ensure proper Javadoc coverage. 
+title: Automation - Review Java Input Parameters for Javadoc Changes
+description: Notify PR authors to ensure proper Javadoc coverage.
+category: [docs, java]
 ---
 # Review Java Input Parameters for Javadoc Changes
+<!-- --8<-- [start:example]-->
 
 If a PR modifies the input parameters for a Java method, but not the associated Javadocs, notify reviewers to check for Javadoc updates.
 
@@ -14,7 +16,7 @@ If a PR modifies the input parameters for a Java method, but not the associated 
     Conditions (all must be true):
 
     * The PR changes one or more input parameters in Java methods.
-        * Note: This may not trigger for methods with annotations, methods that throw exceptions, multi-line method definitions, and other non-standard use cases. 
+        * Note: This may not trigger for methods with annotations, methods that throw exceptions, multi-line method definitions, and other non-standard use cases.
     * The PR lacks changes to ‘@param’ declarations.
 
 
@@ -34,3 +36,5 @@ If a PR modifies the input parameters for a Java method, but not the associated 
       </span>
     </div>
 </div>
+
+<!-- --8<-- [end:example]-->

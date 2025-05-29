@@ -1,6 +1,7 @@
 ---
 title: Automation - Assign team members as reviewers
 description: Automatically assign teammates to review PRs.
+category: [efficiency]
 ---
 # Assign team members as reviewers
 
@@ -10,11 +11,11 @@ You can also omit the `| first` filter to assign all teams the owner is member o
 
 !!! example "name"
     ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/name.cm"
+    --8<-- "docs/downloads/automation-library/assign-team-to-prs-by-their-member.cm"
     ```
     <div class="result" markdown>
       <span>
-      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/name.cm){ .md-button }
+      [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/assign-team-to-prs-by-their-member.cm){ .md-button }
       </span>
     </div>
 

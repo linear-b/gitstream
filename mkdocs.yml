@@ -1,7 +1,7 @@
 site_name: gitStream Documentation
 site_description: Automate the code review process with gitStream.
 site_author: LinearB
-copyright: Copyright &copy; 2023 LinearB, Inc.
+copyright: Copyright &copy; 2024 LinearB, Inc.
 repo_url: https://github.com/linear-b/gitstream
 repo_name: linear-b/gitstream
 edit_uri: "edit/main/docs/"
@@ -11,32 +11,38 @@ nav:
   - Guide:
     - GitHub Setup: github-installation.md
     - GitLab Setup: gitlab-installation.md
+    - Bitbucket Cloud Setup: bitbucket-installation.md
+    - Custom GitHub App (GitHub Server): custom-github-app.md
     - How gitStream works: how-it-works.md
     - Your First Automation: quick-start.md
     - How to Test Your Automations: dry-run-mode.md
-  - Quickstart Examples: examples.md
+  - Quickstart: examples.md
   - Automation Library: automations/automation-library.md
   - Integrations: integrations/README.md
   - Reference:
     - Configuration: cm-file.md
-    - Execution: execution-model.md
+    - Trigger Control: execution-model.md
+    - Automation Limits: limits.md
     - Context variables: context-variables.md
     - Filter functions: filter-functions.md
     - Automation actions: automation-actions.md
+  - Plugins:
+    - Overview: plugins.md
+    - Plugins Development: plugins-for-developers.md
+    - Filter Functions Plugins List: filter-function-plugins.md
   - Playground: gitStream-playground.md
   - Troubleshooting: troubleshooting.md
   - FAQ: faq.md
-  - Demo: https://app.gitstream.cm/playground
-  - Login: https://app.gitstream.cm/login 
+  - Login: https://app.gitstream.cm/login
 
 theme:
   name: material
   logo: assets/gitstream-w.webp
   icon:
       repo: fontawesome/brands/github
-  # When the user first visits your site, the media queries are evaluated in the order 
+  # When the user first visits your site, the media queries are evaluated in the order
   # of their definition. The first media query that matches selects the default color palette.
-  palette: 
+  palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
       toggle:
@@ -95,7 +101,7 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
-      alternate_style: true 
+      alternate_style: true
 extra:
   analytics:
     provider: google
@@ -103,3 +109,5 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/linear-b/gitstream/
+watch:
+  - plugins

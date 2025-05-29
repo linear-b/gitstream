@@ -9,7 +9,7 @@ on:
 
 automations:
   {% for item in pipelines %}
-  dispatch_github_action_{{ item.name }}:
+  dispatch_github_action_label_{{ item.name }}:
     if:
       - {{ pr.labels | match(term=item.label) | some }}
     run:
@@ -21,8 +21,8 @@ automations:
 
 pipelines:
   - name: mobile-ci
-    label: Mobile CI 
+    label: Mobile CI
     workflow: mobile.yml
   - name: backend-ci
-    label: Backend CI 
+    label: Backend CI
     workflow: 'backend.yml'

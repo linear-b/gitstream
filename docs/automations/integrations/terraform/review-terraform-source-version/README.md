@@ -1,5 +1,13 @@
+---
+title: Automation - Review Terraform Module Imports
+description: Enforce Terraform modules use version when importing via URL source
+category: [quality, terraform]
+quickstart: false
+---
+
 # Review Terraform Source Version
-Ensure that all Terraform modules imported via a source URL specify a version. 
+<!-- --8<-- [start:example]-->
+Ensure that all Terraform modules imported via a source URL specify a version.
 
 <div class="automationImage" markdown="1">
 ![Review Terraform Source Version](/automations/integrations/terraform/review-terraform-source-version/review-terraform-source-version.png)
@@ -28,3 +36,4 @@ Ensure that all Terraform modules imported via a source URL specify a version.
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->

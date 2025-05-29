@@ -1,8 +1,10 @@
 ---
-title: gitStream Automation - Review Javadoc Changes
+title: Automation - Review Javadoc Changes
 description: Automatically approve PRs that only contain Javadoc changes.
+category: [docs, java]
 ---
 # Review Javadoc Changes
+<!-- --8<-- [start:example]-->
 
 Unblock PRs that only change Javadoc content.
 
@@ -19,7 +21,7 @@ Unblock PRs that only change Javadoc content.
 
     Automation Actions:
 
-    * Assign the `org/tech-writers`team for optional review. 
+    * Assign the `org/tech-writers`team for optional review.
     * Apply a green `📓 Javadoc Only` label
     * Approve the PR
 
@@ -35,3 +37,4 @@ Unblock PRs that only change Javadoc content.
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->

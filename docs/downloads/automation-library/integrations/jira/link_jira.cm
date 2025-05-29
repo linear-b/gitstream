@@ -13,7 +13,7 @@ orgName: org
 {% if (ticket | includes(regex=r/.+/)) %}
 {% set ticketid = ticket %}
 {% endif %}
-{% endfor %} 
+{% endfor %}
 
 automations:
   link_jira:
@@ -30,7 +30,7 @@ has:
 
 tracker:
   jira:
-    baseurl: https://[orgName].atlassian.net/browse/
+    baseurl: https://{{orgName}}.atlassian.net/browse/
     pattern: r/\b[A-Za-z]+-\d+\b/
 
 tickets:

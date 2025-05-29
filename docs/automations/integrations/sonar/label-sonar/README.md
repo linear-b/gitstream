@@ -1,8 +1,11 @@
 ---
-title: gitStream Automation - Label SonarCloud Quality Reports
+title: Automation - Label SonarCloud Quality Reports
 description: Automatically label PRs with SonarCloud insights.
+category: [security, sonarcloud]
 ---
 # Label SonarCloud Quality Reports
+<!-- --8<-- [start:examples]-->
+
 Label the number of bugs, vulnerabilities, security hotspots, and code smells reported by SonarCloud.
 
 <div class="automationImage" style="align:right" markdown="1">
@@ -29,3 +32,5 @@ Label the number of bugs, vulnerabilities, security hotspots, and code smells re
       </span>
     </div>
 </div>
+
+<!-- --8<-- [end:examples]-->

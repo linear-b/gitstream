@@ -1,6 +1,7 @@
 ---
 title: Automation - Additional Review for Large PRs
 description: Require extra code reviews for large PRs.
+category: [efficiency]
 ---
 # Additional Review for Large PRs
 Require 2 reviewers for PRs that have more than 10 changed files in the src directory and the estimated time to review is 30 or more minutes.

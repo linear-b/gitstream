@@ -1,0 +1,20 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  label_windsurf_contributors:
+    # For all PRs authored by someone who is specified in the windsurf_contributors list
+    if:
+      - {{ pr.author | match(list=windsurf_contributors) | some }}
+    # Apply a label indicating the user has adopted Windsurf
+    run:
+      - action: add-label@v1
+        args:
+          label: '🤖 Windsurf'
+
+windsurf_contributors:
+  - username1
+  - username2
+  - etc 

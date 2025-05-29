@@ -7,7 +7,6 @@ description: Learn how to customize gitStream to meet the needs of your organiza
 Continuous Merge automation files have a `.cm` extension. In a repository,  gitStream loads and parse the `.cm` directory, which can have multiple automation files, each of which is evaluated independently.
 
 You can edit the `.cm` files and add your own checks and rules. Check out the [Automation examples](/examples).
-
 ## Automation rules
 
 There are two types of automation rules: repository level rules and organization level rules.
@@ -22,7 +21,7 @@ An automation identifier is a composition of the CM file name and the automation
 
 !!! tip
 
-    You can exclude certain repositories per automation file using the [`config.ignore_repositories`](#config)
+    You can select (include or exclude) certain repositories per automation file using the [`triggers.include.repository`](./execution-model.md#triggers-section) and [`triggers.exclude.repository`](./execution-model.md#triggers-section)
 
 ### Repository automation rules
 
@@ -49,7 +48,7 @@ When configured correctly, your repository directory structure should look like 
 
 !!! note
 
-    The `.cm/gitstream.cm` is special, as it allows for repository level configuration such as `config.admin`.
+    The `.cm/gitstream.cm` is special, as it allows repository-level configuration such as `config.admin`.
 
 ### Organization automation rules
 
@@ -68,17 +67,76 @@ When configured correctly, the `cm` repository directory structure should look l
 For each PR the following automation rules are applied:
 
 1. Repository level rules
-2. Organization level rules, unless with the same identifier as a repository level automation
+2. Organization-level rules, unless with the same identifier as a repository-level automation
 
 When organization level rules are defined, then the CI/CD will be executed on the `cm` repository on behalf of the PR repository.
 
-### Setting up Global Automation rules 
+### Setting up Global Automation rules
 
 By utilizing the following techniques, you can effectively combine and manage global and repository rules to customize the behavior of your automations to fit the specific requirements of your repositories:
 
 1. Global rules are defined in the configuration management `cm` repository and are applied to all repositories that are connected to gitStream.
-2. To exclude a specific repository from a global rule, you can create a configuration file in the `cm` repository and add a list of the unwanted repositories under the `config.ignore_repositories` property in the CM file.
-3. To override a global rule for a specific automation in a repository, you can duplicate the rule (both the file and automation name) and place it in the desired repository. The locally defined rule will then take precedence over the global rule for that specific repository.
+2. To exclude or run only on specific repositories from a global rule, you can use `triggers.include.repository` and `triggers.exclude.repository` in the `cm` file and add a list of the unwanted or wanted repositories respectfully.
+3. To override a global rule for specific automation in a repository, you can duplicate the rule (both the file and automation name) and place it in the desired repository. The locally defined rule will then take precedence over the global rule for that specific repository.
+
+### Controlling Organization-Level Rules per Repository
+
+The `triggers` section in organization-level rules allows you to precisely control which repositories will run specific automations. This is particularly useful for implementing standardized rules across most repositories while exempting specific ones, or for creating specialized automations that only apply to certain repository types.
+
+#### Repository Inclusion and Exclusion
+
+You can use `triggers.include.repository` and `triggers.exclude.repository` to define which repositories should or should not run particular automations:
+
+```yaml+jinja
+# In your organization's 'cm' repository
+manifest:
+  version: 1.0
+
+# This automation will run on all repositories EXCEPT those containing 'legacy' in their name
+triggers:
+  exclude:
+    repository:
+      - r/legacy/
+
+automations:
+  enforce_pr_title_format:
+    if:
+      - {{ not (pr.title | includes(term="fix:|feat:|docs:|style:|refactor:|test:|chore:")) }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            Please format your PR title according to our [Conventional Commits](https://www.conventionalcommits.org/) standard.
+            Example: `feat: implement new login flow`
+```
+
+#### Creating Repository-Type Specific Rules
+
+You can also create separate CM files for different types of repositories:
+
+```yaml+jinja
+# backend-rules.cm in your organization's 'cm' repository
+manifest:
+  version: 1.0
+
+# This file's automations will ONLY run on repositories with 'api' or 'service' in their name
+triggers:
+  include:
+    repository:
+      - r/api|service/
+
+automations:
+  require_api_docs:
+    if:
+      - {{ files | match(regex=r/\/api\/.*\.js|ts$/) | some }}
+    run:
+      - action: request-changes@v1
+        args:
+          comment: |
+            API changes detected. Please ensure you've updated the corresponding documentation.
+```
+
+This approach allows you to create specialized rule sets for different repository types (frontend, backend, infrastructure, etc.) while maintaining them all in a centralized location.
 
 
 ## The .cm automation file
@@ -88,6 +146,7 @@ The following sections are used in `.cm` file to describe the desired automation
 
 - [`manifest`](#manifest)
 - [`config`](#config)
+- [`triggers`](#triggers)
 - [`automations`](#automations)
 
 #### `manifest`
@@ -110,20 +169,20 @@ The manifest version field is used to parse the `.cm` file, in the future if bre
 
 #### `config`
 
-The `config` section is optional in the `.cm` file and is used to specify configuration for the way gitStream works.
+The `config` section in the `.cm` file is optional and specifies settings that affect gitStream's operation within a given context.
 
-| Key                          | Type     | Default      | Scope          | Description                            |
-| ---------------------------- | ---------|---------     | -------------- | -------------------------------------- |
-| `config`                     | Map      | -            | per `.cm` file | The config section, applies for the automations defined in the current file |
-| `config.admin.users`         | [String] | `[]`         | `gitstream.cm` | Admin user list (use the Git provider user names) |
-| `config.ignore_files`        | [String] | `[]`         | per `.cm` file | Exclude specific files |
-| `config.ignore_repositories` | [String] | `[]`         | per `.cm` file | Exclude specific repositories |
-| `config.user_mapping`        | [String: String] | `[]` | per `.cm` file | Key value list of Git user detailes and Git provider account names  |
-
+| Key                   | Type             | Default | Scope          | Description                                                                         |
+| --------------------- | ---------------- | ------- | -------------- | ----------------------------------------------------------------------------------- |
+| `config`              | Map              | -       | per `.cm` file | Root configuration section, applies to the automations defined in the current file. |
+| `config.admin.users`  | [String]         | `[]`    | `gitstream.cm` | List of admin users, identified by Git provider usernames.                          |
+| `config.ignore_files` | [String]         | `[]`    | per `.cm` file | Files to exclude from consideration.                                                |
+| `config.user_mapping` | [String: String] | `[]`    | per `.cm` file | Map Git user details to provider account names.                                     |
 
 ##### `config.admin.users`
 
-When specified in `gitstream.cm` the `config.admin.users` allows adding admin rights, when a PR changes the `*.cm` files only, if the user is listed in `config.admin.users` the PR will be then approved by gitStream. For example, setting `popeye` as admin:
+When specified in `gitstream.cm`, the `config.admin.users` allows adding admin rights. When a PR changes the `*.cm` files only, if the user is listed in `config.admin.users`, the PR will be approved by gitStream. Furthermore, if an admin is defined, they will automatically be requested to review changes in PRs that change rules files and will also be set as a required reviewer, meaning gitStream will block the merge until the admin approves the PR.
+
+For example, setting `popeye` as admin:
 
 ```yaml title="example"
 config:
@@ -134,6 +193,8 @@ config:
 This configuration is valid only when used in `.cm/gitstream.cm`, when defined in other `.cm` files this configuration is ignored.
 
 When you add a user to `config.admin.users` in your organization's `cm` repository, they are granted administrative privileges to CM changes across **every repository** in the organization. gitStream evaluates CM rules in the individual repository **and** your organization's `cm` repository to determine admin users.
+
+When you add a user to `config.admin.users` in your repository's `.cm/gitstream.cm` file, they are granted administrative privileges to CM changes within that specific repository. However, if an organization-level admin is already defined in your organization's `cm` repository, then the organization-level admin approval is required for that change to take effect.
 
 ##### `config.ignore_files`
 
@@ -149,19 +210,6 @@ config:
     - 'openapi.json'
     - 'ui/src/**/*Model.d.ts'
 ```
-
-##### `config.ignore_repositories`
-
-The `config.ignore_repositories` contains a list of repositories to ignore, for example:
-
-```yaml title="example"
-config:
-  ignore_repositories:
-    - services
-    - common
-```
-
-For the listed repositories, the automation defined in the CM file shall not apply.
 
 ##### `config.user_mapping`
 
@@ -199,6 +247,21 @@ On the other hand, when using `explainRankByGitBlame` with `add-comment@v1` it s
 1.  `rankByGitBlame` will drop `null` users
 2.  `explainRankByGitBlame` will NOT drop `null` users
 
+#### `triggers`
+
+The `triggers` is section specifies when automations are executed, supporting `include` and `exclude` lists for branch and repository patterns at the file level. The `on` keyword can also be used within individual automations to define specific events that trigger those automations.
+
+```yaml+jinja
+triggers:
+  on:
+    - pr_created
+    - commit
+  exclude:
+    branch:
+      - hotfix
+```
+
+Read more here: [triggers](/execution-model#explicit-triggers).
 
 #### `automations`
 

@@ -14,8 +14,8 @@ manifest:
 {% endfor %}
 
 automations:
-  review_new_terraform_module:
-    if: 
+  review_terraform_module_name:
+    if:
       - {{is.mainfile and is.mainfilenotinroot}}
       - {{module_name_checks.prefix or module_name_checks.keyword}}
     run:

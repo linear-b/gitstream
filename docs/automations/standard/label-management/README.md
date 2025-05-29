@@ -1,41 +1,35 @@
 ---
-title: Automate PR Labels With gitStream
+title: Automation - Automate PR Labels With gitStream
 description: Implement workflow automations for GitHub and GitLab PR labels.
+visible: false
 ---
 # PR Label Management with gitStream
 
 Use YAML to automate label management on your git repo with gitStream.
 
-* [Enforce Required Labels](#enforce-required-labels)
-* [Label Modified Resources](#label-changed-resources)
-* [Percent-Based Labels for Modified Resources](#label-resources-percent)
-* [Label the number of unresolved code review threads](#label-unresolved-threads)
-* [Automatically recommend labels for new PRs](#suggest-labels)
-* [Label PRs with the number of reviews](#label-approvals)
-
 <a name="enforce-required-labels"></a>
 ## Enforce Required Labels
---8<-- "docs/automations/standard/label-management/enforce-labels/README.md:6:"
+--8<-- "docs/automations/standard/label-management/enforce-labels/README.md:example"
 
 <a name="label-changed-resources"></a>
 ## Label Modified Resources
---8<-- "docs/automations/standard/label-management/label-modified-resources/README.md:6:"
+--8<-- "docs/automations/standard/label-management/label-resources-percent/README.md:example"
 
-<a name="label-changed-resources"></a>
-## Percent-Based Labels for Modified Resources
---8<-- "docs/automations/standard/label-management/label-resources-percent/README.md:6:"
+<a name="label-languages"></a>
+## Label PRs by Language
+--8<-- "docs/automations/standard/label-management/label-prs-by-language/README.md:example"
 
 <a name="label-unresolved-threads"></a>
 ## Label the Number of Unresolved Code Review Threads
---8<-- "docs/automations/standard/label-management/label-unresolved-threads/README.md:6:"
+--8<-- "docs/automations/standard/label-management/label-unresolved-threads/README.md:example"
 
 <a name="suggest-labels"></a>
 ## Automatically Recommend Labels for New PRs
---8<-- "docs/automations/standard/label-management/suggest-labels/README.md:6:"
+--8<-- "docs/automations/standard/label-management/suggest-labels/README.md:example"
 
 <a name="label-approvals"></a>
 ## Label PRs with the Number of Approvals
---8<-- "docs/automations/standard/label-management/label-approvals/README.md:6:"
+--8<-- "docs/automations/standard/label-management/label-approvals/README.md:example"
 
 ## Additional Resources
 

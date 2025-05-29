@@ -14,7 +14,7 @@ orgName: org
 {% if (ticket | includes(regex=r/.+/)) %}
 {% set ticketid = ticket %}
 {% endif %}
-{% endfor %} 
+{% endfor %}
 
 automations:
   link_shortcut:
@@ -31,7 +31,7 @@ has:
 
 tracker:
   shortcut:
-    baseurl: https://app.shortcut.com/[orgName]/story/
+    baseurl: https://app.shortcut.com/{{orgName}}/story/
     pattern: r/(\w+)\/sc-(\d+)/
 
 tickets:

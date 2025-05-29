@@ -1,8 +1,10 @@
 ---
 title: Automation - Enforce Required Labels
 description: Automatically enforce the use of required PR labels.
+category: [review, quality]
 ---
 # Enforce Required Labels
+<!-- --8<-- [start:example]-->
 Automatically enforce the use of required PR labels.
 
 <div class="automationImage" markdown="1">
@@ -31,3 +33,14 @@ Automatically enforce the use of required PR labels.
       </span>
     </div>
 </div>
+<!-- --8<-- [end:example]-->
+
+## Additional Resources
+
+--8<-- "docs/snippets/general.md"
+
+**Related Automations**:
+
+--8<-- "docs/snippets/context-automation.md"
+
+--8<-- "docs/snippets/automation-footer.md"

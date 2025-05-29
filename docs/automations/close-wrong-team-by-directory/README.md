@@ -1,6 +1,7 @@
 ---
 title: Automation - Close Wrong Team by Directory
 description: Automatically close PRs to protected portions of your code.
+category: [quality]
 ---
 # Close Wrong Team by Directory
 
