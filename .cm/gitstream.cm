@@ -55,7 +55,7 @@ automations:
   # Check for wrong app link
   check_wrong_domain:
     if:
-      - {{ source.diff.files | match(attr='diff', regex=r/git[sS]tream\.com/) | some }}
+      - {{ source.diff.files | match(attr='new_content', regex=r/git[sS]tream\.com/) | some }}
     run:
       - action: add-label@v1
         args:
