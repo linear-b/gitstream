@@ -8,8 +8,8 @@ config:
     users: [vim-zz, PavelLinearB]
 
 automations:
-  # Approve changes of text files inside docs dir by maintainers 
-  # Merging is still manual 
+  # Approve changes of text files inside docs dir by maintainers
+  # Merging is still manual
   approve_maintainers_docs:
     if:
       - {{ files | match(regex=r/docs\/.*\.(md|txt|png|svg|webp)$/) | every }}
@@ -17,7 +17,7 @@ automations:
       - {{ pr.author | match(list=maintainers) }}
     run:
       - action: approve@v1
-  
+
   # Notify maintainers on new PRs
   notify_maintainers:
     if:
@@ -26,7 +26,7 @@ automations:
       - action: add-reviewers@v1
         args:
           reviewers: {{ maintainers }}
-  
+
   # Mark changes to automation rule examples as they need to be tested and working
   mark_examples:
     if:
@@ -52,10 +52,10 @@ automations:
           comment: |
             A screenshot of the relevant part of docs after the changes is a life saver 🛟
 
-  # Check for wrong app link 
+  # Check for wrong app link
   check_wrong_domain:
     if:
-      - {{ source.diff.files | match(attr='diff', regex=r/git[sS]tream\.com/) | some }}
+      - {{ source.diff.files | match(attr='new_content', regex=r/git[sS]tream\.com/) | some }}
     run:
       - action: add-label@v1
         args:
@@ -66,10 +66,10 @@ automations:
           comment: |
             You have used `gitstream.com` which is not a valid link, use `gitstream.cm` instead.
 
-  # Check for wrong app link 
+  # Check for wrong app link
   check_local_links:
     if:
-      - {{ source.diff.files | match(attr='diff', list=['localhost', '127.0.0.1']) | some }}
+      - {{ source.diff.files | match(attr='new_content', list=['localhost', '127.0.0.1']) | some }}
     run:
       - action: add-label@v1
         args:
