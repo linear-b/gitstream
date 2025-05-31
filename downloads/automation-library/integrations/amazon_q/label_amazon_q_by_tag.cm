@@ -1,0 +1,24 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+on:
+  - comment_added
+  - commit
+  - pr_created
+
+automations:
+  label_amazon_q:
+    if:
+      - {{ amazon_q_tag.pr_title or amazon_q_tag.pr_desc or amazon_q_tag.pr_comments or amazon_q_tag.commit_messages }}
+    run:
+      - action: add-label@v1
+        args:
+          label: '🤖 Amazon Q'
+
+amazon_q_tag:
+  pr_title: {{ pr.title | includes(regex=r/#amazon_q#/) }}
+  pr_desc: {{pr.description | includes(regex=r/#amazon_q#/) }}
+  pr_comments: {{ pr.comments | map(attr='content') | match(regex=r/#amazon_q#/) | some }}
+  commit_messages: {{ branch.commits.messages | match(regex=r/#amazon_q#/) | some }} 

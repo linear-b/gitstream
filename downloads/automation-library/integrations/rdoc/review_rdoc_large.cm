@@ -1,0 +1,31 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  #Require more extensive reviews for large Ruby changes that lack RDoc updates.
+  review_rdoc_large:
+    if:
+      - {{ changes.additions > 150}}
+      - {{ source.diff.files | matchDiffLines(regex=r/(\#.*\n.*)*def/) | nope }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: "⚠️ Missing RDoc"
+          color: {{ colors.yellow }}
+      - action: add-comment@v1
+        args: 
+          comment: | 
+              This PR makes major changes to Ruby methods, but is missing updates to RDoc. Please double check for any necessary RDoc updates.
+      - action: add-reviewers@v1
+        args:
+          reviewers: [fourth-organization/tech-writers]
+
+changes:
+  # Sum all the lines added/edited in the PR
+  additions: {{ branch.diff.files_metadata | map(attr='additions') | sum }}
+
+
+colors:
+  yellow: 'fbca04'
