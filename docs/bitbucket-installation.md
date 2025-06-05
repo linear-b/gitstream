@@ -39,12 +39,13 @@ description: Install gitStream to your Bitbucket workspace.
 
     This combination ensures that both gitStream's internal operations and your CI runners' interactions with Bitbucket function without network restrictions.
 
-Bitbucket Installation Overview
+## Bitbucket Installation Overview
 
 1. Designate a gitStream user account.
 2. Create a `cm` repo and `.cm` configuration file.
 3. Create a Bitbucket pipeline.
-4. Install the gitStream service.
+4. Configure self-hosted runners (if applicable).
+5. Install the gitStream service.
 
 ## Designate a gitStream User Account
 
@@ -56,6 +57,9 @@ gitStream automation rules are executed by the user account configured when you 
 ## Create a `cm` repo and `.cm` configuration file.
 
 Create a `cm` repository in your Bitbucket workspace. This repository must reside in the same project as your target repositories. In the root directory of the default branch (usually `master` or `main`), create a `gitstream.cm` rules file to define the workflow automations. The file can have any name but must end with the `.cm` extension.
+
+!!! warning "Changes Must Be in Main Branch"
+    Ensure all changes to your `.cm` configuration files are committed to the main branch before proceeding with the setup.
 
 !!! info "Configuration File Locations"
 	Group-level rules require your `.cm` files to be placed in the `cm` repository's root directory.
@@ -74,10 +78,41 @@ Once your gitStream configuration file is set up, you need a Bitbucket Pipelines
 --8<-- "docs/downloads/bitbucket-pipelines.yml"
 ```
 
-!!! warning "Labels are not supported"
+## Configure Self-Hosted Runners (Optional)
+
+If you're using self-hosted runners for your gitStream automation, follow these additional configuration steps:
+
+**1. Self-Hosted Runner Must Be on the CM Repository**
+
+Self-hosted runners need to be configured specifically for the `cm` repository where your gitStream configuration files are stored.
+
+**2. Update Pipeline Configuration**
+
+Add the following configuration to your `bitbucket-pipelines.yml` in the gitstream custom pipeline section:
+
+```yaml
+runs-on:
+  - self.hosted # Required to indicate a self-hosted runner
+  - cmgitstreamrunner # Must use custom label for gitStream runner
+```
+
+**3. Configure Runner Labels in Bitbucket**
+
+!!! important "Required Runner Labels"
+    You MUST add the following labels to your self-hosted runner in Bitbucket:
+
+    - `self.hosted` (provided by default)
+    - `linux` (provided by default)
+    - `cmgitstreamrunner` (custom label you need to add)
+
+    The `cmgitstreamrunner` label is required for gitStream to properly identify and use your self-hosted runner.
+
+**4. Verify Runner Configuration**
+
+!!! warning "Labels are **not supported**"
     The `add-label` action is not supported in Bitbucket as Bitbucket does not have a native labeling feature.
 
-!!! warning "Explicit triggers are not supported"
+!!! warning "Explicit triggers are **not supported**"
     The `triggers` and `on` functionality are not currently supported in Bitbucket. If you include them in your CM automation files, gitStream will skip the automations entirely.
 
 ## Install the gitStream Service

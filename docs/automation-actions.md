@@ -288,9 +288,9 @@ This action, once triggered, reviews the code in the PR, and generates a comment
 | Args       | Usage | Type      | Description                                     |
 | -----------|------|-----|------------------------------------------------ |
 | `approve_on_LGTM` | Optional | Bool    | Approve this PR if no issues were found. Default is `false` |
-| `guidelines` | Optional | String | Provides custom instructions to the AI model to tailor the generated description.                                           |
+| `guidelines` | Optional | String | Provides custom instructions to the AI model to tailor the code review. Can be inline text or loaded from a file using the `readFile()` function.                                           |
 
-```yaml+jinja title="example"
+```yaml+jinja title="example - inline guidelines"
 automations:
   linearb_ai_review:
     on:
@@ -302,19 +302,53 @@ automations:
     run:
       - action: code-review@v1
         args:
-          approve_on_LGTM: {{ APPROVE_PR_ON_LGTM }} # optional arg, you can remove it
-          guidelines: {{ GUIDELINES | dump }}
+          approve_on_LGTM: {{ approve_pr_on_lgtm }} # optional
+          guidelines: {{ guidelines | dump }} # optional
 
 # Define variables
-# Add conditions for PR approvals. For example - allow approval only for specific users
-APPROVE_PR_ON_LGTM: false
-# Add your prompts to the review
-GUIDELINES: |
+approve_pr_on_lgtm: false
+# Add your prompts to the review as inline text
+guidelines: |
     - Don't comment on using outdated dependencies
     - In Javascript
         - Make sure camelCase is used for variable names
         - Make sure PascalCase is used for class names
 ```
+
+```yaml+jinja title="example - guidelines from file"
+automations:
+  linearb_ai_review:
+    on:
+      - pr_created
+      - commit
+    if:
+      - {{ not pr.draft }}
+      - {{ pr.author | match(list=['github-actions', '_bot_', 'dependabot', '[bot]']) | nope }}
+    run:
+      - action: code-review@v1
+        args:
+          approve_on_LGTM: false
+          guidelines: {{ "./REVIEW_RULES.md" | readFile() | dump }}
+```
+
+!!! tip "Loading Guidelines from Files"
+
+    **Repository Root Files**: Place your guidelines file (e.g., `REVIEW_RULES.md`) at the root of your repository and reference it with:
+    ```yaml
+    guidelines: {{ "./REVIEW_RULES.md" | readFile() | dump }}
+    ```
+
+    **CM Repository Files**: If you have organization-wide guidelines in your central CM repository, reference them with:
+    ```yaml
+    guidelines: {{ "../cm/REVIEW_RULES.md" | readFile() | dump }}
+    ```
+
+    **Team-specific Files**: For team-level guidelines, place the file in the specific team repository root and use the relative path:
+    ```yaml
+    guidelines: {{ "./TEAM_REVIEW_RULES.md" | readFile() | dump }}
+    ```
+
+    The `dump` filter ensures proper YAML formatting when the file content is inserted into the configuration.
 
 The following files are automatically excluded from the code review.
 
@@ -392,10 +426,10 @@ automations:
       - action: describe-changes@v1
         args:
           concat_mode: append
-          guidelines: {{ GUIDELINES }}
+          guidelines: {{ guidelines }}
           template: {{ TEMPLATE }}
 
-GUIDELINES: |
+guidelines: |
   Remove all unnecessary checkboxes.
   Try to extract the Jira ticket from "{{ branch.name }}" or "{{ pr.title }}" and fill it into the template.
   Jira ticket should be in format ABC-12345.
