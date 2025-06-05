@@ -6,6 +6,10 @@ pipelines:
   # Pipelines that can only be triggered manually
   custom:
     gitstream:
+      # For self-hosted runners, uncomment the runs-on section below
+      # runs-on:
+      #   - self.hosted # Required to indicate a self-hosted runner
+      #   - cmgitstreamrunner # Custom label that must be added to your self-hosted runner
       - variables:
           - name: client_payload
             description: the client payload
