@@ -122,9 +122,6 @@ To complete the setup, install the gitStream service in your Bitbucket workspace
 ## Next Step
 If you successfully complete these instructions, gitStream will now automate your code review workflows in Bitbucket.
 
-!!! success "Setup Complete"
-    If you successfully complete these instructions, gitStream will now automate your code review workflows in Bitbucket.
-
 !!! tip "How gitStream Works"
     Read our guide, [How gitStream Works](/how-it-works/), for a deeper understanding of gitStream's capabilities and how to leverage them fully.
 
