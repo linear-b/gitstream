@@ -25,12 +25,6 @@ visible: false
 </div>
 </div>
 
-<div class="integrations-card" markdown="1">
-<div class="integrations-card-title" markdown="1">
-[:fontawesome-solid-spray-can-sparkles: Bring Your Own AI](/integrations/askAI)
-</div>
-</div>
-
 </div>
 ## GitHub / GitLab
 <div class="integrations-list" markdown="1">

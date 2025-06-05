@@ -80,6 +80,12 @@ plugins:
         'automations/approve-python-formatting-change/README.md': 'automations/languages/python/approve-python-formatting-change/README.md'
         'automations/approve-javascript-formatting-change/README.md': 'automations/languages/javascript/approve-javascript-formatting-change/README.md'
         'automations/languages/css/review-css-important/README.md': 'automations/languages/html/review-css-important/README.md'
+        'automations/integrations/askAI/add-tests/README.md': 'integrations/linearb.md'
+        'automations/integrations/askAI/code-review/README.md': 'integrations/linearb.md'
+        'automations/integrations/askAI/document/README.md': 'integrations/linearb.md'
+        'automations/integrations/askAI/improve/README.md': 'integrations/linearb.md'
+        'automations/integrations/askAI/summarize-pr/README.md': 'integrations/linearb.md'
+        'integrations/askAI.md': 'integrations/linearb.md'
 markdown_extensions:
   - admonition
   - attr_list
