@@ -467,6 +467,21 @@ automations:
           gt: 10
 ```
 
+!!! tip "Automatically assign code experts"
+    You can automatically assign code experts as reviewers by using the `add-reviewers` action with the `codeExperts` filter function:
+
+    ```yaml+jinja
+    automations:
+      code_experts:
+        if:
+          - true
+        run:
+          - action: add-reviewers@v1
+            args:
+              reviewers: {{ repo | codeExperts(gt=10) }}
+    ```
+
+    For more information about the `codeExperts` filter function, see the [filter functions documentation](https://docs.gitstream.cm/filter-functions/#codeexperts).
 
 #### `merge` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
