@@ -1,0 +1,28 @@
+manifest:
+  version: 1.0
+
+automations:
+  linearb_ai_review:
+    # Trigger it only when PR is created or has new commits
+    on:
+      - pr_created
+      - commit
+    if:
+      - {{ not pr.draft }}
+      - {{ pr.author | match(list=['github-actions', '_bot_', 'dependabot', '[bot]']) | nope }}
+    run:
+      - action: code-review@v1
+        args:
+          approve_on_LGTM: {{ approve_pr_on_lgtm }} # optional arg, you can remove it
+          guidelines: {{ guidelines }}
+
+# Define variables
+# Add conditions for PR approvals. For example - allow approval only for specific users
+approve_pr_on_lgtm: false
+
+# Add `guidelines` to customize the code review prompts:
+# - For repository-specific guidelines: Place `REVIEW_RULES.md` at your repository root
+# - For organization-wide guidelines: Place the file in your CM repository root and use `../cm/REVIEW_RULES.md`
+# - For team-specific guidelines: Place the file in the team repository root
+# The `dump` filter ensures proper YAML formatting when the file content is inserted
+guidelines: {{ "./REVIEW_RULES.md" | readFile() | dump }}

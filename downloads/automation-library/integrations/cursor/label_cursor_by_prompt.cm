@@ -1,0 +1,16 @@
+-*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  # You should use this automation in conjunction with comment_cursor_prompt.cm
+  label_cursor_pr:
+    # If the PR author has indicated that they used Cursor to assist coding in this PR, 
+    # apply a label indicating the PR was supported by Cursor
+    if:
+      - {{ pr.comments | filter(attr='commenter', term='gitstream-cm') | filter (attr='content', regex=r/\- \[x\] Cursor Assisted/) | some}}
+    run:
+      - action: add-label@v1
+        args:
+          label: '🤖 Cursor' 

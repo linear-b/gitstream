@@ -1,0 +1,33 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  label_missing_project_tracker:
+    if:
+      - {{not (has[provider].ticket_in_title or has[provider].ticket_in_desc)}}
+    run:
+      - action: add-label@v1
+        args:
+          label: "⚠️ Missing Project Tracker"
+          color: 'F6443B'
+      - action: add-comment@v1
+        args:
+          comment: Please provide a link to the associated resource in your team's project tracker.
+
+has:
+  jira:
+    ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
+    ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
+  asana:
+    ticket_in_title: {{ pr.title | includes(regex=r/asana-(\d+)/) }}
+    ticket_in_desc: {{ pr.description | includes(regex=r/app\.asana.\com\/(\d+)\/(\d+)\/(\d+)\/(\d+)\/(\d+)/) }}
+  azure:
+    ticket_in_title: {{ pr.title | includes(regex=r/(\w+)-(\w+)-(\d+)/) }}
+    ticket_in_desc: {{ pr.description | includes(regex=r/(dev\.azure\.com|(\w+)\.visualstudio\.com)\/(\w+)\/(\w+)\/_workitems\/edit\/(\d+)/) }}
+  shortcut:
+    ticket_in_title: {{ pr.title | includes(regex=r/(\w+)\/sc-(\d+)/) }}
+    ticket_in_desc: {{ pr.description | includes(regex=r/(app\.shortcut\.com)\/(\w+)\/story\/(\d+)\/(\w+)/) }}
+
+provider: jira
