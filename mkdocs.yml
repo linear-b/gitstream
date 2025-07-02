@@ -26,6 +26,7 @@ nav:
     - Context variables: context-variables.md
     - Filter functions: filter-functions.md
     - Automation actions: automation-actions.md
+    - User commands: user-commands.md
   - Plugins:
     - Overview: plugins.md
     - Plugins Development: plugins-for-developers.md
