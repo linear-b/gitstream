@@ -15,7 +15,7 @@ User commands allow you to trigger specific gitStream actions manually by adding
 gitStream supports comment-triggered actions that allow you to execute specific automations on-demand. Commands are only processed when **new comments are added**, not when existing comments are edited.
 
 gitStream provides visual feedback through emoji reactions on command comments. :eyes: is added when a command is recognized and processing begins
-and :white_check_mark: is added when the command has been successfully executed.
+and :thumbsup: is added when the command has been successfully executed.
 
 ## Available Commands
 
