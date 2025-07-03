@@ -21,7 +21,7 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:fontawesome-solid-wand-magic-sparkles: LinearB AI](/integrations/LB_AI)
+[:fontawesome-solid-wand-magic-sparkles: LinearB AI](/integrations/LinearBAI)
 </div>
 </div>
 
