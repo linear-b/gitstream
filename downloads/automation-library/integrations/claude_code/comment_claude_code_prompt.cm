@@ -1,0 +1,20 @@
+-*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+on:
+  - pr_created
+
+automations:
+  comment_claude_code_prompt:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            Please mark whether you used Claude Code to assist coding in this PR
+
+            - [ ] Claude Code Assisted
+            - [ ] Not Claude Code Assisted 
