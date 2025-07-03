@@ -7,7 +7,7 @@ category: [quality, genai, copilot, tests, efficiency]
 
 !!! tip "User Commands"
 
-    LinearB's AI is available also with user commands, read more about them [here](docs/user-commands.md)
+    LinearB's AI is available also with user commands, read more about them [here](/user-commands)
 
 <!-- --8<-- [start:examples]-->
 
