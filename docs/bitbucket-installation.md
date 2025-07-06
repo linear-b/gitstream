@@ -49,7 +49,9 @@ description: Install gitStream to your Bitbucket workspace.
 
 ## Designate a gitStream User Account
 
-gitStream automation rules are executed by the user account configured when you authorize LinearB. A meaningful account identifier whose name contains the string `gitstream` (case insensitive), such as `gitStream-cm`, is required to ensure clarity and proper identification of the automated actions. This account must have the necessary permissions to the relevant repositories.
+gitStream automation rules are executed on behalf of the user account configured when you connect gitStream to your Bitbucket instance. This account must have the appropriate permissions to the relevant repositories.
+
+- A meaningful account identifier whose name contains the string `gitstream` (case insensitive), such as `gitStream-cm`, is required to ensure clarity and proper identification of the automated actions
 
 !!! tip "Use this account when you integrate gitStream"
     Make sure to use this account when authorizing Bitbucket in LinearB.
