@@ -42,9 +42,11 @@ GitLab Installation Overview
 
 ## Designate a gitStream User Account
 
-gitStream automation rules are executed on behalf of the user account configured when you install the gitStream service. This account must have the `maintainer` or `owner` role to the relevant repos.
+gitStream automation rules are executed on behalf of the user account configured when you connect gitStream to your GitLab instance. This account must have the appropriate permissions to the relevant repositories.
 
-We recommend creating a [dedicated service account](https://docs.gitlab.com/ee/user/profile/service_accounts.html){:target="_blank"} to control access to individual repos easily. You can also use your professional or personal GitLab account for this, which would result in all automations being executed under that account, which might also affect LinearB's metrics.
+- The account must have the `maintainer` or `owner` role to the relevant repos
+- We recommend creating a [dedicated service account](https://docs.gitlab.com/ee/user/profile/service_accounts.html){:target="_blank"} to control access to individual repos easily. A meaningful account identifier whose name contains the string `gitstream` (case insensitive), such as `gitStream-cm`, is recommended to ensure clarity and proper identification of the automated actions
+- You can also use your professional or personal GitLab account, though this would result in all automations being executed under that account, which might also affect LinearB's metrics
 
 !!! tip "Use this account when you integrate gitStream"
     Make sure to use this account when authorizing GitLab in LinearB.
