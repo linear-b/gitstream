@@ -9,14 +9,6 @@
 
 <br/>
 
-<p align="center">
-  <a href="https://github.com/linear-b/gitstream/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/linear-b/gitstream" alt="NPM">
-  </a>
-  <a href="https://github.com/linear-b/gitstream">
-    <img src="https://img.shields.io/github/stars/linear-b/gitstream" alt="Stars">
-  </a>
-</p>
 
 <h1 align="center">The ultimate workflow automation tool for your git repository</h1>
 
