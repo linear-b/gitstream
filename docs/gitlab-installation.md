@@ -13,18 +13,40 @@ description: Install gitStream to your GitLab organization.
         - 13.56.203.235
         - 54.151.81.98
 
+??? Info "Understanding IP Allowlisting for gitStream"
+    When setting up IP allowlists in GitLab, you're specifying which source IP addresses are permitted to interact with your repositories and APIs. This affects both gitStream and your CI/CD runners.
+
+    There are two primary cases where this matters for gitStream:
+
+    1. **Webhook Event Handling by gitStream**
+       When GitLab triggers a webhook event (e.g., a merge request opened), gitStream may need to make follow-up API calls to GitLab. This can include fetching additional metadata, posting comments to the MR, or performing other actions. These calls are made from the LinearB/gitStream service, which uses a fixed set of IP addresses. These IPs must be added to your GitLab allowlist to ensure proper operation.
+    2. **Outbound Requests from Your CI Runner**
+       When your pipeline runs gitStream, that runner might also make outbound calls to GitLab—for example, to clone a repository or retrieve commit history. These requests will originate from the runner's IP address.
+
+    If you encounter errors due to blocked IPs during your CI runs, it's likely that the runner is using an IP that is not part of the configured allowlist.
+
+    **Recommended Solution**
+    To ensure reliability:
+
+    - Add LinearB/gitStream service IPs to your GitLab allowlist (listed above).
+    - Use self-hosted runners or runners with static IPs so you can manage and allowlist their addresses explicitly.
+
+    This combination ensures that both gitStream's internal operations and your CI runners' interactions with GitLab function without network restrictions.
+
 GitLab Installation Overview
 
 1. Designate a gitStream user account.
 1. Create a `cm` repo and `.cm` configuration file.
 1. Create a GitLab pipeline.
-1. Connect gitStream in LinearB. 
+1. Connect gitStream in LinearB.
 
 ## Designate a gitStream User Account
 
-gitStream automation rules are executed on behalf of the user account configured when you install the gitStream service. This account must have the `maintainer` or `owner` role to the relevant repos. 
+gitStream automation rules are executed on behalf of the user account configured when you connect gitStream to your GitLab instance. This account must have the appropriate permissions to the relevant repositories.
 
-We recommend creating a [dedicated service account](https://docs.gitlab.com/ee/user/profile/service_accounts.html){:target="_blank"} to control access to individual repos easily. You can also use your professional or personal GitLab account for this, which would result in all automations being executed under that account, which might also affect LinearB's metrics.
+- The account must have the `maintainer` or `owner` role to the relevant repos
+- We recommend creating a [dedicated service account](https://docs.gitlab.com/ee/user/profile/service_accounts.html){:target="_blank"} to control access to individual repos easily. A meaningful account identifier whose name contains the string `gitstream` (case insensitive), such as `gitStream-cm`, is recommended to ensure clarity and proper identification of the automated actions
+- You can also use your professional or personal GitLab account, though this would result in all automations being executed under that account, which might also affect LinearB's metrics
 
 !!! tip "Use this account when you integrate gitStream"
     Make sure to use this account when authorizing GitLab in LinearB.
@@ -40,6 +62,9 @@ Create a `cm` project (repository) in your GitLab group. This repository must be
 !!! example "Example Configuration"
 		--8<-- "docs/downloads/gitStream-gl.cm"
 
+!!! warning "Explicit triggers are not supported"
+    The `triggers` and `on` functionality are not currently supported in GitLab. If you include them in your CM automation files, gitStream will skip the automations entirely.
+
 ## Create a GitLab Pipeline
 
 Once your gitStream configuration file is set up, you need a GitLab CI configuration file to trigger gitStream automations. Create a `cm` project (repository) in your GitLab group if you haven't already. It should be created in the same group or a parent group of the target repositories. Create a `.gitlab-ci.yml` file in your new `cm` repository's default branch (usually `master` or `main`) and add the following configuration:
@@ -47,7 +72,7 @@ Once your gitStream configuration file is set up, you need a GitLab CI configura
 === "GitLab-Hosted runners"
 
     **Gitlab-Hosted Runners**
-    
+
     Use the following `.gitlab-ci.yml`
 
 	``` yaml+jinja
@@ -65,14 +90,14 @@ Once your gitStream configuration file is set up, you need a GitLab CI configura
     ``` yaml+jinja
     --8<-- "docs/downloads/gitlab-shell-ci.yml"
     ```
-    
+
 === "Self-Managed Runners - Kubernetes"
     **Self-Managed Runners**
 
 	First, [register the runner](https://docs.gitlab.com/runner/register/){:target="_blank"} with a tag, and use the named tag in the `.gitlab-ci.yml` file
 
 	**Kubernetes executors**
-	
+
     1. Ensure your runner configuration (`config.toml` for example) has the followig:
 	``` yaml
 	[runners.kubernetes]
@@ -90,7 +115,7 @@ Once your gitStream configuration file is set up, you need a GitLab CI configura
     - ...
     - docker pull YOUR-REGISTRY-URL/gitstream/rules-engine:latest
 	```
-	The docker image can be pulled to your private repository from [DockerHub](https://hub.docker.com/r/gitstream/rules-engine){:target=_blank}.  
+	The docker image can be pulled to your private repository from [DockerHub](https://hub.docker.com/r/gitstream/rules-engine){:target=_blank}.
 
 ## Connect gitStream in LinearB
 
@@ -114,5 +139,3 @@ The required permissions are:
 | Read/Write API    | To get notified on MR changes and allow gitStream to approve MRs once all conditions are met |
 | Read repository   | To read and check rules over the code changes on monitored repositories                      |
 | Read user profile | Used to identify users                                                                       |
-
-

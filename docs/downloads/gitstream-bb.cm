@@ -6,7 +6,7 @@ manifest:
 
 
 automations:
-  # Add a comment that indicates how many minutes it will take to review the PR.
+  # Add a label indicating how long it will take to review the PR.
   estimated_time_to_review:
     if:
       - true
@@ -25,15 +25,14 @@ automations:
           comment: |
             This PR is missing a Jira ticket reference in the title or description.
             Please add a Jira ticket reference to the title or description of this PR.
-
   # Post a comment that lists the best experts for the files that were modified.
   explain_code_experts:
     if:
       - true
     run:
-      - action: explain-code-experts@v1 
+      - action: explain-code-experts@v1
         args:
-          gt: 10 
+          gt: 10
 
 
 # +----------------------------------------------------------------------------+
@@ -43,7 +42,21 @@ automations:
 
 calc:
   etr: {{ branch | estimatedReviewTime }}
+  safe_changes: {{ is.formatting or is.docs or is.tests or is.image }}
 
 has:
   jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
   jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
+
+colors:
+  red: 'b60205'
+  yellow: 'fbca04'
+  green: '0e8a16'
+
+is:
+  formatting: {{ source.diff.files | isFormattingChange }}
+  docs: {{ files | allDocs }}
+  tests: {{ files | allTests }}
+  image: {{ files | allImages }}
+  bot_author: {{ pr.author | match(list=['github-actions', '_bot_', '[bot]', 'dependabot']) | some }}
+  bot_branch: {{ branch.name | match(list=['renovate/']) | some }}

@@ -28,6 +28,10 @@ div.trigger-details th:nth-child(2){
     width: 30%;
 }
 
+div.commands-details th:nth-child(1){
+    width: 20%;
+}
+
 /* change the table colors for light mode */
 [data-md-color-scheme="default"] table th{
   background: #D8DADE;

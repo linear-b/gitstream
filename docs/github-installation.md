@@ -6,9 +6,29 @@ description: Install gitStream to your GitHub organization.
 
 !!! Info "Prerequisites"
     Allowed network connection between the runners and the following IPs:
-    
+
     - 13.56.203.235
     - 54.151.81.98
+
+??? Info "Understanding IP Allowlisting for gitStream"
+    When setting up IP allowlists in GitHub, you're specifying which source IP addresses are permitted to interact with your repositories and APIs. This affects both gitStream and your CI/CD runners.
+
+    There are two primary cases where this matters for gitStream:
+
+    1. **Webhook Event Handling by gitStream**
+       When GitHub triggers a webhook event (e.g., a pull request opened), gitStream may need to make follow-up API calls to GitHub. This can include fetching additional metadata, posting comments to the PR, or performing other actions. These calls are made from the LinearB/gitStream service, which uses a fixed set of IP addresses. These IPs must be added to your GitHub allowlist to ensure proper operation.
+    2. **Outbound Requests from Your CI Runner**
+       When your pipeline runs gitStream (e.g., via a GitHub Action), that runner might also make outbound calls to GitHub—for example, to clone a repository or retrieve commit history. These requests will originate from the runner's IP address.
+
+    If you encounter errors due to blocked IPs during your CI runs, it's likely that the runner is using an IP that is not part of the configured allowlist. This is a common issue with GitHub-hosted runners, as their IPs can be dynamic and change frequently.
+
+    **Recommended Solution**
+    To ensure reliability:
+
+    - Add LinearB/gitStream service IPs to your GitHub allowlist (listed above).
+    - Use self-hosted runners or runners with static IPs so you can manage and allowlist their addresses explicitly.
+
+    This combination ensures that both gitStream's internal operations and your CI runners' interactions with GitHub function without network restrictions.
 
 !!! Warning "Install gitStream"
 
@@ -37,6 +57,32 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
         ```yaml+jinja
         --8<-- "docs/downloads/gitstream.yml"
         ```
+
+        <div class="result" markdown>
+          <span>
+          [:octicons-download-24: Download gitstream.yml (regular version)](/downloads/gitstream.yml){ .md-button }
+          </span>
+          <span>
+          [:octicons-download-24: Download gitstream.yml (lite version)](/downloads/gitstream-lite.yml){ .md-button }
+          </span>
+        </div>
+
+        !!! tip "Large Repository Support (Lite Version)"
+            If you're working with a large repository (typically monorepos) and experience timeout issues during GitHub Actions execution, you can use the lite version of gitStream that performs a shallow clone to reduce execution time:
+
+            ```yaml
+            jobs:
+              gitStream:
+                timeout-minutes: 15
+                runs-on: ubuntu-latest
+                name: gitStream workflow automation
+                steps:
+                  - name: Evaluate Rules
+                    uses: linear-b/gitstream-github-action@v2-lite
+                    id: rules-engine
+            ```
+
+            **Important:** The lite version has limitations - automations that rely on Git history (such as code-experts) may not work properly due to the shallow clone.
 
         !!! Success
             When finished, you should have the following file structure in your repo.
@@ -75,6 +121,32 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
         ```yaml+jinja
         --8<-- "docs/downloads/gitstream.yml"
         ```
+
+        <div class="result" markdown>
+          <span>
+          [:octicons-download-24: Download gitstream.yml (regular version)](/downloads/gitstream.yml){ .md-button }
+          </span>
+          <span>
+          [:octicons-download-24: Download gitstream.yml (lite version)](/downloads/gitstream-lite.yml){ .md-button }
+          </span>
+        </div>
+
+        !!! tip "Large Repository Support (Lite Version)"
+            If you're working with large repositories in your organization (typically monorepos) and experience timeout issues during GitHub Actions execution, you can use the lite version of gitStream that performs a shallow clone to reduce execution time:
+
+            ```yaml
+            jobs:
+              gitStream:
+                timeout-minutes: 15
+                runs-on: ubuntu-latest
+                name: gitStream workflow automation
+                steps:
+                  - name: Evaluate Rules
+                    uses: linear-b/gitstream-github-action@v2-lite
+                    id: rules-engine
+            ```
+
+            **Important:** The lite version has limitations - automations that rely on Git history (such as code-experts) may not work properly due to the shallow clone. See the [troubleshooting section](/troubleshooting/#github-timeout-issues-with-large-repositories) for more details.
 
         !!! Success
             Once finished, **all** PRs to your organization's repositories will be processed by the GitHub Action in this repo, and your `cm` repo should have a file directory that looks like this.

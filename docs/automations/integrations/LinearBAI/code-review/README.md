@@ -22,17 +22,57 @@ Use LinearB's AI with the [`code-review`](/automation-actions/#code-review) acti
     Automation Actions:
 
     * Perform an AI-driven code review and append the review comments to the PR.
+    * Use `guidelines` to add your prompts to the team or org review
 
-!!! example "Configuration Example"
-    ```yaml+jinja
-    --8<-- "docs/downloads/automation-library/integrations/LinearBAI/code-review.cm"
+=== "For GitHub"
+
+    !!! example "Configuration Example"
+        ```yaml+jinja
+        --8<-- "docs/downloads/automation-library/integrations/LinearBAI/code-review.cm"
+        ```
+        <div class="result" markdown>
+            <span>
+            [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/LinearBAI/code-review.cm){ .md-button }
+            </span>
+        </div>
+
+=== "For GitLab"
+
+    !!! example "Configuration Example"
+        ```yaml+jinja
+        --8<-- "docs/downloads/automation-library/integrations/LinearBAI/code-review-gl.cm"
+        ```
+        <div class="result" markdown>
+            <span>
+            [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/LinearBAI/code-review-gl.cm){ .md-button }
+            </span>
+        </div>
+
+=== "For Bitbucket"
+
+    !!! example "Configuration Example"
+        ```yaml+jinja
+        --8<-- "docs/downloads/automation-library/integrations/LinearBAI/code-review-bb.cm"
+        ```
+        <div class="result" markdown>
+            <span>
+            [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/LinearBAI/code-review-bb.cm){ .md-button }
+            </span>
+        </div>
+
+!!! tip "`./REVIEW_RULES.md` example"
+
+    This file should be created in your repo root:
+
     ```
-    <div class="result" markdown>
-        <span>
-        [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/LinearBAI/code-review.cm){ .md-button }
-        </span>
-    </div>
+    1. Do not comment on missing documentation.
+    2. Do not comment on missing tests.
+    3. For JavaScript code, enforce using camelCase for variables and functions.
+    ```
+
 <!-- --8<-- [end:example]-->
+
+
 
 ## Additional Resources
 

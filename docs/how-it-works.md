@@ -151,6 +151,7 @@ Once gitStream is installed and configured, there are several services that will
 Whenever a new PR is opened or an existing PR is changed (see also [Execution Model](https://docs.gitstream.cm/execution-model/)), the following process occurs:
 
 1. The **git service provider API** notifies the **gitStream service** that an applicable change has occured to the PR which triggers a call to execute the **gitStream CI/CD script**.
+1. **Trigger Control** evaluates whether to proceed with handling based on event type, branch patterns, or repository names as configured in your [Execution Model](execution-model.md).
 1. The **gitStream CI/CD script** executes the GitHub Action <a href="https://github.com/linear-b/gitstream-github-action" target="_blank">`linear-b/gitstream-github-action@v2`</a> on the repository, which looks for two things:
     * Valid CM files that match the filepath `.cm/*.cm`
     * Any CM files that are contained in the root directory of the organization's cm repo (if applicable).
@@ -164,6 +165,7 @@ sequenceDiagram
   autonumber
   Git Provider API->>gitStream app: PR Notification
   activate gitStream app
+  gitStream app->>gitStream app: Trigger Control
   gitStream app->>gitStream CI/CD script: Execute CI/CD Action
   activate gitStream CI/CD script
   gitStream CI/CD script->>gitStream agent: CM Metadata
