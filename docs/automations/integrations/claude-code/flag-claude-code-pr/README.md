@@ -8,6 +8,31 @@ starter_kits: [genai]
 <!-- --8<-- [start:example]-->
 Automatically apply labels to PRs that are assisted by Claude Code. You can apply labels based on a known list of Claude Code users, PR tags, or by prompting the PR author to indicate if they used Claude Code.
 
+=== "Label Co-author"
+    Automatically apply labels to PRs that are authored by Claude or have Claude as a co-author in commit messages.
+
+    ![Label Claude Code by Co-author](/automations/integrations/claude-code/flag-claude-code-pr/label-claude-code-by-coauthor.png)
+
+    !!! info "Configuration Description"
+        Conditions:
+
+        * The PR author's name contains "Claude" (case-insensitive), OR
+        * Any commit message in the PR contains a "Co-Authored-By" line with Claude
+
+        Automation Actions:
+
+        * Apply a `🤖 Claude Code` label to the PR
+
+    !!! example "Label Claude Code by Co-author"
+        ```yaml+jinja
+        --8<-- "docs/downloads/automation-library/integrations/claude_code/label_claude_code_by_co_author.cm"
+        ```
+        <div class="result" markdown>
+        <span>
+        [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/claude_code/label_claude_code_by_co_author.cm){ .md-button }
+        </span>
+        </div>
+
 === "Label by Prompt"
     Prompt PR authors to indicate if they used Claude Code for the PR and automatically label the PR if they did. This requires two separate automation files to handle posting the prompt and labeling accordingly.
 
