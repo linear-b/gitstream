@@ -1,0 +1,25 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  label_missing_shortcut:
+    if:
+      - {{not (has.shortcut.ticket_in_title or has.shortcut.ticket_in_desc)}}
+    run:
+      - action: add-label@v1
+        args:
+          label: "⚠️ Missing Shortcut Link"
+          color: {{ colors.red }}
+      - action: add-comment@v1
+        args:
+          comment: Please provide a link to the associated Shortcut resource.
+
+has:
+  shortcut:
+    ticket_in_title: {{ pr.title | includes(regex=r/(\w+)\/sc-(\d+)/) }}
+    ticket_in_desc: {{ pr.description | includes(regex=r/(app\.shortcut\.com)\/(\w+)\/story\/(\d+)\/(\w+)/) }}
+
+colors:
+  red: 'b60205'
