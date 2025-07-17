@@ -1,0 +1,15 @@
+manifest:
+  version: 1.0
+
+automations:
+  tag_claude_pr:
+    if:
+      - {{ is.claude_author or is.claude_co_author }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "🤖 Claude Code"
+
+is:
+  claude_author: {{ pr.author | lower | includes(regex=r/[Cc]laude/) }}
+  claude_co_author: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Cc]laude/) | some }}
