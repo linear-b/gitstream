@@ -9,7 +9,7 @@ automations:
       - commit
     if:
       - {{ not pr.draft }}
-      - {{ pr.author | match(list=['github-actions', '_bot_', 'dependabot', '[bot]']) | nope }}
+      - {{ not (is.bot_author or is.bot_branch) }}
     run:
       - action: code-review@v1
         args:
@@ -26,3 +26,7 @@ approve_pr_on_lgtm: false
 # - For team-specific guidelines: Place the file in the team repository root
 # The `dump` filter ensures proper YAML formatting when the file content is inserted
 guidelines: {{ "./REVIEW_RULES.md" | readFile() | dump }}
+
+is:
+  bot_author: {{ pr.author | match(list=['github-actions', '_bot_', '[bot]', 'dependabot']) | some }}
+  bot_branch: {{ branch.name | match(list=['renovate/']) | some }}

@@ -4,7 +4,7 @@ manifest:
 automations:
   linearb_ai_review:
     if:
-      - {{ pr.author | match(list=['github-actions', '_bot_', 'dependabot', '[bot]']) | nope }}
+      - {{ not (is.bot_author or is.bot_branch) }}
     run:
       - action: code-review@v1
         args:
@@ -20,3 +20,7 @@ approve_pr_on_lgtm: false
 # the team repo.
 # Note: To when the file is in the `cm` repo, use this example: `../cm/REVIEW_RULES.md`
 guidelines: {{ "./REVIEW_RULES.md" | readFile() | dump }}
+
+is:
+  bot_author: {{ pr.author | match(list=['github-actions', '_bot_', '[bot]', 'dependabot']) | some }}
+  bot_branch: {{ branch.name | match(list=['renovate/']) | some }}
