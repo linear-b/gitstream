@@ -20,7 +20,7 @@ automations:
   linearb_ai_description:
     if:
       - {{ not pr.draft }}
-      - {{ not is.bot }}
+      - {{ not (is.bot_author or is.bot_branch) }}
     run:
       - action: describe-changes@v1
         args:
@@ -82,4 +82,5 @@ is:
   docs: {{ files | allDocs }}
   tests: {{ files | allTests }}
   image: {{ files | allImages }}
-  bot: {{ pr.author | match(list=['github-actions', '_bot_', '[bot]', 'dependabot']) | some }}
+  bot_author: {{ pr.author | match(list=['github-actions', '_bot_', '[bot]', 'dependabot']) | some }}
+  bot_branch: {{ branch.name | match(list=['renovate/']) | some }}

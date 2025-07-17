@@ -298,7 +298,7 @@ automations:
       - commit
     if:
       - {{ not pr.draft }}
-      - {{ pr.author | match(list=['github-actions', '_bot_', 'dependabot', '[bot]']) | nope }}
+      - {{ not (is.bot_author or is.bot_branch) }}
     run:
       - action: code-review@v1
         args:
@@ -313,6 +313,10 @@ guidelines: |
     - In Javascript
         - Make sure camelCase is used for variable names
         - Make sure PascalCase is used for class names
+is:
+  bot_author: {{ pr.author | match(list=['github-actions', '_bot_', '[bot]', 'dependabot']) | some }}
+  bot_branch: {{ branch.name | match(list=['renovate/']) | some }}
+
 ```
 
 ```yaml+jinja title="example - guidelines from file"
@@ -323,12 +327,16 @@ automations:
       - commit
     if:
       - {{ not pr.draft }}
-      - {{ pr.author | match(list=['github-actions', '_bot_', 'dependabot', '[bot]']) | nope }}
+      - {{ not (is.bot_author or is.bot_branch) }}
     run:
       - action: code-review@v1
         args:
           approve_on_LGTM: false
           guidelines: {{ "./REVIEW_RULES.md" | readFile() | dump }}
+
+is:
+  bot_author: {{ pr.author | match(list=['github-actions', '_bot_', '[bot]', 'dependabot']) | some }}
+  bot_branch: {{ branch.name | match(list=['renovate/']) | some }}
 ```
 
 !!! tip "Loading Guidelines from Files"
@@ -421,7 +429,7 @@ automations:
     # skip description for Draft PRs and PRs from bots
     if:
       - {{ not pr.draft }}
-      - {{ pr.author | match(list=['github-actions', '_bot_', 'dependabot', '[bot]']) | nope }}
+      - {{ not (is.bot_author or is.bot_branch) }}
     run:
       - action: describe-changes@v1
         args:
@@ -436,6 +444,10 @@ guidelines: |
 
 # Load the PR template content from a file in the repository
 TEMPLATE: {{ ".github/PULL_REQUEST_TEMPLATE.md" | readFile() | dump }}
+
+is:
+  bot_author: {{ pr.author | match(list=['github-actions', '_bot_', '[bot]', 'dependabot']) | some }}
+  bot_branch: {{ branch.name | match(list=['renovate/']) | some }}
 ```
 
 !!! tip "Excluded Files"
