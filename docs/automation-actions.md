@@ -339,60 +339,65 @@ is:
   bot_branch: {{ branch.name | match(list=['renovate/']) | some }}
 ```
 
-!!! tip "Loading Guidelines from Files"
+!!! tip "Iterative Guidelines Refinement with Playground"
 
-    **Repository Root Files**: Place your guidelines file (e.g., `REVIEW_RULES.md`) at the root of your repository and reference it with:
-    ```yaml
-    guidelines: {{ "./REVIEW_RULES.md" | readFile() | dump }}
-    ```
+    To achieve the exact review behavior you want, use this iterative workflow:
 
-    **CM Repository Files**: If you have organization-wide guidelines in your central CM repository, reference them with:
-    ```yaml
-    guidelines: {{ "../cm/REVIEW_RULES.md" | readFile() | dump }}
-    ```
+    1. Start with the [Playground](https://app.linearb.io/gitstream/playground)
+    2. Add specific guidelines e.g., "Do not comment on formatting issues"
+    3. Run in the Playground with a reference PR from your repository
+    4. Refine guidelines based on the results
+    5. Repeat cycles 2-4 until you get the expected review behavior
+    6. Deploy to your repository CM rules - The guidelines will now work consistently on real PRs
 
-    **Team-specific Files**: For team-level guidelines, place the file in the specific team repository root and use the relative path:
-    ```yaml
-    guidelines: {{ "./TEAM_REVIEW_RULES.md" | readFile() | dump }}
-    ```
 
-    The `dump` filter ensures proper YAML formatting when the file content is inserted into the configuration.
+**Loading Guidelines from Files**
 
-The following files are automatically excluded from the code review.
+| Location | Description | File Placement | Configuration |
+|----------|-------------|----------------|---------------|
+| Repository Root Files | Guidelines file in your repository root | Place your guidelines file (e.g., `REVIEW_RULES.md`) at the root of your repository | `guidelines: {{ "./REVIEW_RULES.md" | readFile() | dump }}` |
+| CM Repository Files | Organization-wide guidelines in central CM repository | Place guidelines in your central CM repository | `guidelines: {{ "../cm/REVIEW_RULES.md" | readFile() | dump }}` |
+| Team-specific Files | Team-level guidelines in specific team repository | Place the file in the specific team repository root | `guidelines: {{ "./TEAM_REVIEW_RULES.md" | readFile() | dump }}` |
 
-| File type | Filter type | Values|
-| - | - | - |
-| Data | Extension | `ini` `csv` `xls` `xlsx` `xlr` `doc` `docx` `txt` `pps` `ppt` `pptx` `dot` `dotx` `log` `tar` `rtf` `dat` `ipynb` `po` `profile` `object` `obj` `dxf` `twb` `bcsymbolmap` `tfstate` `pdf` `rbi` `pem` `crt` `svg` `png` `jpeg` `jpg` `ttf` `app` `bin` `bmp` `bz2` `class` `db` `dll` `dylib` `egg` `eot` `exe` `gif` `gitignore` `glif` `gradle` `gz` `ico` `jar` `lo` `lock` `mp3` `mp4` `nar` `o` `ogg` `otf` `p` `pickle` `pkl` `pyc` `pyd` `pyo` `rkt` `so` `ss` `tgz` `tsv` `war` `webm` `woff` `woff2` `xz` `zip` `zst` `snap` `lockb` |
-| Lock | Regex | `.*(yarn\|gemfile\|podfile\|cargo\|composer\|pipfile\|gopkg)\.lock$` `.*gradle\.lockfile$` `.*lock\.sbt$` |
-| Build | Regex | `.*dist/.*\\.js` `.*build/.*\\.js` |
-| Data | Regex | `.*public/assets/.*\\.js` |
+The `dump` filter ensures proper YAML formatting when the file content is inserted into the configuration.
 
-| Lock File Name          | Programming Language | Package Manager      |
-|-------------------------|----------------------|----------------------|
-| `package-lock.json`     | JavaScript           | npm                  |
-| `yarn.lock`             | JavaScript           | Yarn                 |
-| `npm-shrinkwrap.json`   | JavaScript           | npm                  |
-| `Pipfile.lock`          | Python               | pipenv               |
-| `poetry.lock`           | Python               | Poetry               |
-| `conda-lock.yml`        | Python               | conda                |
-| `Gemfile.lock`          | Ruby                 | Bundler              |
-| `composer.lock`         | PHP                  | Composer             |
-| `packages.lock.json`    | .NET                 | NuGet                |
-| `project.assets.json`   | .NET                 | .NET Core            |
-| `pom.xml`               | Java                 | Maven                |
-| `Cargo.lock`            | Rust                 | Cargo                |
-| `mix.lock`              | Elixir               | Mix                  |
-| `pubspec.lock`          | Dart/Flutter         | pub                  |
-| `go.sum`                | Go                   | Go modules           |
-| `stack.yaml.lock`       | Haskell              | Stack                |
-| `vcpkg.json`            | C++                  | vcpkg                |
-| `conan.lock`            | C++                  | Conan                |
-| `ivy.xml`               | Scala                | sbt/Ivy              |
-| `project.clj`           | Clojure              | Leiningen            |
-| `Podfile.lock`          | Swift/Objective-C    | CocoaPods            |
-| `Cartfile.resolved`     | Swift/Objective-C    | Carthage             |
-| `flake.lock`            | Nix                  | Nix                  |
-| `pnpm-lock.yaml`        | JavaScript           | pnpm                 |
+??? "Files Excluded from AI Review"
+
+    The following files are automatically excluded from the code review.
+
+    | File type | Filter type | Values|
+    | - | - | - |
+    | Data | Extension | `ini` `csv` `xls` `xlsx` `xlr` `doc` `docx` `txt` `pps` `ppt` `pptx` `dot` `dotx` `log` `tar` `rtf` `dat` `ipynb` `po` `profile` `object` `obj` `dxf` `twb` `bcsymbolmap` `tfstate` `pdf` `rbi` `pem` `crt` `svg` `png` `jpeg` `jpg` `ttf` `app` `bin` `bmp` `bz2` `class` `db` `dll` `dylib` `egg` `eot` `exe` `gif` `gitignore` `glif` `gradle` `gz` `ico` `jar` `lo` `lock` `mp3` `mp4` `nar` `o` `ogg` `otf` `p` `pickle` `pkl` `pyc` `pyd` `pyo` `rkt` `so` `ss` `tgz` `tsv` `war` `webm` `woff` `woff2` `xz` `zip` `zst` `snap` `lockb` |
+    | Lock | Regex | `.*(yarn\|gemfile\|podfile\|cargo\|composer\|pipfile\|gopkg)\.lock$` `.*gradle\.lockfile$` `.*lock\.sbt$` |
+    | Build | Regex | `.*dist/.*\\.js` `.*build/.*\\.js` |
+    | Data | Regex | `.*public/assets/.*\\.js` |
+
+    | Lock File Name          | Programming Language | Package Manager      |
+    |-------------------------|----------------------|----------------------|
+    | `package-lock.json`     | JavaScript           | npm                  |
+    | `yarn.lock`             | JavaScript           | Yarn                 |
+    | `npm-shrinkwrap.json`   | JavaScript           | npm                  |
+    | `Pipfile.lock`          | Python               | pipenv               |
+    | `poetry.lock`           | Python               | Poetry               |
+    | `conda-lock.yml`        | Python               | conda                |
+    | `Gemfile.lock`          | Ruby                 | Bundler              |
+    | `composer.lock`         | PHP                  | Composer             |
+    | `packages.lock.json`    | .NET                 | NuGet                |
+    | `project.assets.json`   | .NET                 | .NET Core            |
+    | `pom.xml`               | Java                 | Maven                |
+    | `Cargo.lock`            | Rust                 | Cargo                |
+    | `mix.lock`              | Elixir               | Mix                  |
+    | `pubspec.lock`          | Dart/Flutter         | pub                  |
+    | `go.sum`                | Go                   | Go modules           |
+    | `stack.yaml.lock`       | Haskell              | Stack                |
+    | `vcpkg.json`            | C++                  | vcpkg                |
+    | `conan.lock`            | C++                  | Conan                |
+    | `ivy.xml`               | Scala                | sbt/Ivy              |
+    | `project.clj`           | Clojure              | Leiningen            |
+    | `Podfile.lock`          | Swift/Objective-C    | CocoaPods            |
+    | `Cartfile.resolved`     | Swift/Objective-C    | Carthage             |
+    | `flake.lock`            | Nix                  | Nix                  |
+    | `pnpm-lock.yaml`        | JavaScript           | pnpm                 |
 
 !!! tip
 
