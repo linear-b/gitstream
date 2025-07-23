@@ -17,7 +17,7 @@ on:
         description: the head sha
         required: true
       base_ref:
-        description: the base ref 
+        description: the base ref
         required: true
       installation_id:
         description: the installation id
@@ -36,6 +36,10 @@ jobs:
     runs-on: ubuntu-latest
     name: gitStream workflow automation
     steps:
+      - name: Adding PR Url
+        run: |
+          echo '[${{ fromJSON(fromJSON(inputs.client_payload)).repo }}#${{ fromJSON(fromJSON(inputs.client_payload)).prContext.number }}](${{ fromJSON(fromJSON(inputs.client_payload)).prContext.url }}) - `${{ fromJSON(fromJSON(inputs.client_payload)).branch }}` by ${{ fromJSON(fromJSON(inputs.client_payload)).prContext.author }}' >> $GITHUB_STEP_SUMMARY
+
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@v2
         id: rules-engine
