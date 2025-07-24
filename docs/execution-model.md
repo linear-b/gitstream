@@ -171,7 +171,7 @@ automations:
 
 With implicit triggers (no explicit triggers configured), `describe-changes` will only execute when the automation is triggered by code changes, while `add-reviewers` follows the current default behavior.
 
-### Examples
+## Examples
 
 #### Dependabot and Renovate
 
