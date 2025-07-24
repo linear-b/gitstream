@@ -1,5 +1,8 @@
 # Trigger Control
 
+!!! warning "GitHub Only Feature :fontawesome-brands-github:"
+    Explicit triggers (using `on`, `triggers.on`, `triggers.include`, and `triggers.exclude` parameters) are only supported on GitHub. Using explicit triggers in GitLab or Bitbucket will cause the automation to fail with an error. For GitLab and Bitbucket, simply omit trigger configuration to use implicit triggers automatically.
+
 gitStream is triggered on new pull requests (PRs) for repositories that have gitStream installed. Upon triggering, gitStream collects context variables and evaluates the automation rules to determine which ones are relevant.
 
 ## Organization-level rules and repository rules
