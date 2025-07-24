@@ -82,6 +82,70 @@ If an automation block does not have explicit triggers configured, it will be tr
 !!! Note
     The `on` parameter can be used within individual automation blocks, while `triggers.include` and `triggers.exclude` can only be defined at the file level.
 
+## Action-Level Execution Control
+
+gitStream provides intelligent action-level execution control that automatically skips certain actions based on the original triggering event. This feature helps reduce noise and ensures that AI-powered and code-related actions only execute when there are actual code changes, improving efficiency across all supported providers (GitLab, Bitbucket, and GitHub).
+
+### How It Works
+
+When an automation is triggered, gitStream evaluates each action individually against the original triggering event. Some actions are automatically skipped if the triggering event is not relevant to their purpose.
+
+!!! important "Explicit Triggers Override"
+    When explicit triggers are configured (using the `on` or `triggers` parameters), they take precedence over the automatic skip mechanism. This means actions will execute for all explicitly defined triggers, regardless of the action-level execution rules below.
+
+### Action Execution Rules
+
+The following table shows which actions are restricted to code-related triggering events:
+
+<div class="trigger-details" markdown=1>
+| Action                | Executes Only On                                           | Behavior on Other Triggers |
+| --------------------- | ---------------------------------------------------------- | -------------------------- |
+| `add-code-comment`    | Commit pushed, Creating a PR (not draft), PR ready for review | Skipped |
+| `code-review`         | Commit pushed, Creating a PR (not draft), PR ready for review | Skipped |
+| `describe-changes`    | Commit pushed, Creating a PR (not draft), PR ready for review | Skipped |
+| `explain-code-experts`| Commit pushed, Creating a PR (not draft), PR ready for review | Skipped |
+| All other actions     | Current defaults (no restrictions)                        | Executed |
+</div>
+
+### Examples
+
+#### Scenario: AI Code Review with Explicit Triggers
+
+```yaml+jinja
+automations:
+  ai_code_review:
+    on:
+      - commit
+      - label_added
+    if:
+      - true
+    run:
+      - action: code-review@v1        # Executes on both commit and label_added (explicit triggers override skip rules)
+      - action: add-label@v1          # Executes on both commit and label_added
+        args:
+          label: "reviewed"
+```
+
+In this example with explicit triggers:
+- When triggered by a `commit` event: both actions execute
+- When triggered by a `label_added` event: both actions execute (explicit triggers take precedence)
+
+#### Scenario: No Explicit Triggers
+
+```yaml+jinja
+automations:
+  smart_review:
+    if:
+      - {{ files | length > 5 }}
+    run:
+      - action: describe-changes@v1   # Only executes on code-related events
+      - action: add-reviewers@v1      # Executes on all default triggers
+        args:
+          reviewers: ["expert1", "expert2"]
+```
+
+With implicit triggers (no explicit triggers configured), `describe-changes` will only execute when the automation is triggered by code changes, while `add-reviewers` follows the current default behavior.
+
 **Note on Matching:**
 
 - When using a `String` as the matching type, the values in `triggers.include.*` and `triggers.exclude.*` require exact matches. This means that the names of branches or repositories must exactly match the specified string to either trigger or prevent triggering the automation.
