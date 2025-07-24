@@ -82,6 +82,31 @@ If an automation block does not have explicit triggers configured, it will be tr
 !!! Note
     The `on` parameter can be used within individual automation blocks, while `triggers.include` and `triggers.exclude` can only be defined at the file level.
 
+**Note on Matching:**
+
+- When using a `String` as the matching type, the values in `triggers.include.*` and `triggers.exclude.*` require exact matches. This means that the names of branches or repositories must exactly match the specified string to either trigger or prevent triggering the automation.
+- For more precise control, use a regular expression (regex) format: `r/REGEX_PATTERN/`.
+
+**Default Behavior:**
+
+- Implicit triggers are the default behavior if the automation doesn't have explicit triggers configured.
+- The automation runs for all branches and repositories if neither include nor exclude is specified.
+
+**Exclude/Include prioritization**
+
+- Exclude overrides the include option. Thus, a repo will be excluded when it matches the include and exclude lists.
+
+    In the following example, the automations in the file will be triggered for all repositories that contain the string `feature`, except for the repository `my_feature`
+    ```yaml+jinja
+    triggers:
+      include:
+        repository:
+          - r/feature/
+      exclude:
+        repository:
+          - my_feature
+    ```
+
 ## Action-Level Execution Control
 
 gitStream provides intelligent action-level execution control that automatically skips certain actions based on the original triggering event. This feature helps reduce noise and ensures that AI-powered and code-related actions only execute when there are actual code changes, improving efficiency across all supported providers (GitLab, Bitbucket, and GitHub).
@@ -145,31 +170,6 @@ automations:
 ```
 
 With implicit triggers (no explicit triggers configured), `describe-changes` will only execute when the automation is triggered by code changes, while `add-reviewers` follows the current default behavior.
-
-**Note on Matching:**
-
-- When using a `String` as the matching type, the values in `triggers.include.*` and `triggers.exclude.*` require exact matches. This means that the names of branches or repositories must exactly match the specified string to either trigger or prevent triggering the automation.
-- For more precise control, use a regular expression (regex) format: `r/REGEX_PATTERN/`.
-
-**Default Behavior:**
-
-- Implicit triggers are the default behavior if the automation doesn't have explicit triggers configured.
-- The automation runs for all branches and repositories if neither include nor exclude is specified.
-
-**Exclude/Include prioritization**
-
-- Exclude overrides the include option. Thus, a repo will be excluded when it matches the include and exclude lists.
-
-    In the following example, the automations in the file will be triggered for all repositories that contain the string `feature`, except for the repository `my_feature`
-    ```yaml+jinja
-    triggers:
-      include:
-        repository:
-          - r/feature/
-      exclude:
-        repository:
-          - my_feature
-    ```
 
 ### Examples
 
