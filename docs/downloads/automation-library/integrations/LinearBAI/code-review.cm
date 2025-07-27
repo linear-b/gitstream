@@ -3,10 +3,8 @@ manifest:
 
 automations:
   linearb_ai_review:
-    # Trigger it only when PR is created or has new commits
-    on:
-      - pr_created
-      - commit
+    # Triggers only when PR is created or has new commits, see docs
+    #   https://docs.gitstream.cm/execution-model/#action-level-execution-control
     if:
       - {{ not pr.draft }}
       - {{ not (is.bot_author or is.bot_branch) }}

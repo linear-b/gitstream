@@ -6,27 +6,21 @@ manifest:
 
 
 automations:
+
   # Use LinearB's AI service to review the changes
   linearb_ai_review:
-    on:
-      - pr_created
-      - commit
     if:
-      - {{ not pr.draft }}
-      - {{ not is.bot }}
+      - {{ not (pr.draft or is.bot) }}
     run:
       - action: code-review@v1
         args:
           approve_on_LGTM: {{ calc.safe_changes }}
 
+
   # Use LinearB's AI service to add a description to the PR
   linearb_ai_description:
-    on:
-      - pr_created
-      - commit
     if:
-      - {{ not pr.draft }}
-      - {{ not is.bot }}
+      - {{ not (pr.draft or is.bot) }}
     run:
       - action: describe-changes@v1
         args:
@@ -41,6 +35,7 @@ automations:
         args:
           label: "{{ calc.etr }} min review"
           color: {{ colors.red if (calc.etr >= 20) else ( colors.yellow if (calc.etr >= 5) else colors.green ) }}
+
   # Inform PR authors when they fail to reference Jira tickets in the PR title or description.
   label_missing_jira_info:
     if:
@@ -55,12 +50,9 @@ automations:
           comment: |
             This PR is missing a Jira ticket reference in the title or description.
             Please add a Jira ticket reference to the title or description of this PR.
+
   # Post a comment that lists the best experts for the files that were modified.
   explain_code_experts:
-    on:
-      - pr_created
-      - pr_ready_for_review
-      - commit
     if:
       - true
     run:

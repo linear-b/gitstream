@@ -6,6 +6,7 @@ manifest:
 
 
 automations:
+
   # Add a label that indicates how many minutes it will take to review the PR.
   estimated_time_to_review:
     if:
@@ -15,6 +16,7 @@ automations:
         args:
           label: "{{ calc.etr }} min review"
           color: {{ colors.red if (calc.etr >= 20) else ( colors.yellow if (calc.etr >= 5) else colors.green ) }}
+
   # Inform PR authors when they fail to reference Jira tickets in the PR title or description.
   label_missing_jira_info:
     if:
@@ -29,8 +31,9 @@ automations:
           comment: |
             This PR is missing a Jira ticket reference in the title or description.
             Please add a Jira ticket reference to the title or description of this PR.
+
+  # Detect PRs that contain the text '#copilot#' in the title, description, comments, or commit messages
   label_copilot:
-    # Detect PRs that contain the text '#copilot#' in the title, description, comments, or commit messages
     if:
       - {{ copilot_tag.pr_title or copilot_tag.pr_desc or copilot_tag.pr_comments or copilot_tag.commit_messages  }}
     # Apply a label indicating the user has adopted Copilot
@@ -38,12 +41,9 @@ automations:
       - action: add-label@v1
         args:
           label: '🤖 Copilot'
+
   # Post a comment that lists the best experts for the files that were modified.
   explain_code_experts:
-    on:
-      - pr_created
-      - pr_ready_for_review
-      - commit
     if:
       - true
     run:
