@@ -415,6 +415,10 @@ automations:
           reviewers: {{ repo | codeExperts(gt=10) }}
 ```
 
+!!! tip "Limit git history for code experts"
+    
+    Use the [`config.git_history_since`](./cm-file.md#configgit_history_since) configuration to limit the git history analysis to commits after a specific date. This is useful for team transitions or when you want to focus on recent contributors only.
+
 #### `decode`
 
 Decode Base64 encoded string into an object. Encoded strings are formatted: `"base64: <encoded_string>"`

@@ -500,6 +500,10 @@ automations:
 
     For more information about the `codeExperts` filter function, see the [filter functions documentation](https://docs.gitstream.cm/filter-functions/#codeexperts).
 
+!!! tip "Limit git history for code experts"
+    
+    Use the [`config.git_history_since`](./cm-file.md#configgit_history_since) configuration to limit the git history analysis to commits after a specific date. This is useful for team transitions or when you want to focus on recent contributors only.
+
 #### `merge` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
 Once triggered, merge the PR if possible. It can be set to wait for all checks to pass or only required ones.
