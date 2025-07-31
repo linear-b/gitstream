@@ -1,0 +1,35 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+# This automation demonstrates all of GitHub's default label colors.
+# This is meant to be used as a reference, not as an automation in your repo.
+automations:
+  label_colors:
+    if:
+      - true
+    run:
+      - action: add-label@v1
+        args:
+          label: "Test Label"
+          color: {{ colors.green }}
+
+# These are all of the colors in GitHub's default label color palette.
+colors:
+  red: 'b60205'
+  orange: 'd93f0b'
+  yellow: 'fbca04'
+  green: '0e8a16'
+  teal: '006b75'
+  blue: '1d76db'
+  dark-blue: '0052cc'
+  purple: '5319e7'
+  light-red: 'e99695'
+  light-orange: 'f9d0c4'
+  light-yellow: 'fef2c0'
+  light-green: 'c2e0c6'
+  light-teal: 'bfdadc'
+  light-blue: 'c5def5'
+  light-dark-blue: 'bfd4f2'
+  light-purple: 'd4c5f9'
