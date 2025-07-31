@@ -171,12 +171,13 @@ The manifest version field is used to parse the `.cm` file, in the future if bre
 
 The `config` section in the `.cm` file is optional and specifies settings that affect gitStream's operation within a given context.
 
-| Key                   | Type             | Default | Scope          | Description                                                                         |
-| --------------------- | ---------------- | ------- | -------------- | ----------------------------------------------------------------------------------- |
-| `config`              | Map              | -       | per `.cm` file | Root configuration section, applies to the automations defined in the current file. |
-| `config.admin.users`  | [String]         | `[]`    | `gitstream.cm` | List of admin users, identified by Git provider usernames.                          |
-| `config.ignore_files` | [String]         | `[]`    | per `.cm` file | Files to exclude from consideration.                                                |
-| `config.user_mapping` | [String: String] | `[]`    | per `.cm` file | Map Git user details to provider account names.                                     |
+| Key                      | Type             | Default | Scope          | Description                                                                         |
+| ------------------------ | ---------------- | ------- | -------------- | ----------------------------------------------------------------------------------- |
+| `config`                 | Map              | -       | per `.cm` file | Root configuration section, applies to the automations defined in the current file. |
+| `config.admin.users`     | [String]         | `[]`    | `gitstream.cm` | List of admin users, identified by Git provider usernames.                          |
+| `config.git_history_since` | String         | -       | per `.cm` file | Limit git history analysis to commits after the specified date (YYYY-MM-DD).       |
+| `config.ignore_files`    | [String]         | `[]`    | per `.cm` file | Files to exclude from consideration.                                                |
+| `config.user_mapping`    | [String: String] | `[]`    | per `.cm` file | Map Git user details to provider account names.                                     |
 
 ##### `config.admin.users`
 
@@ -246,6 +247,46 @@ On the other hand, when using `explainRankByGitBlame` with `add-comment@v1` it s
 
 1.  `rankByGitBlame` will drop `null` users
 2.  `explainRankByGitBlame` will NOT drop `null` users
+
+##### `config.git_history_since`
+
+The `config.git_history_since` configuration limits how far back gitStream looks in git history when analyzing code expertise and git blame results. This affects filters and actions that rely on git history analysis, including:
+
+- `codeExperts` filter
+- `rankByGitBlame` filter  
+- `explainRankByGitBlame` filter
+- `explain-code-experts` action
+
+When `git_history_since` is configured, gitStream will only consider commits made on or after the specified date when determining code experts and calculating git blame rankings. This is particularly useful for:
+
+- **Team transitions**: When a project changes hands between teams, you can set the date to when the new team took over to ensure only current team members are suggested as reviewers
+- **Performance optimization**: Large repositories with extensive history can benefit from limiting the analysis scope
+- **Relevant expertise**: Focus on recent contributions rather than legacy code changes
+
+The value should be specified as a date in `YYYY-MM-DD` format.
+
+```yaml title="example"
+config:
+  git_history_since: '2025-01-01'  # Only consider commits from January 1, 2025 onwards
+```
+
+**Example use case**: If your team took over a project on January 1, 2025, and you want to ensure that only current team members are suggested as code experts:
+
+```yaml title=".cm/gitstream.cm"
+config:
+  git_history_since: '2025-01-01'
+
+automations:
+  assign_code_experts:
+    if:
+      - {{ files | codeExperts(gt=10) | length > 0 }}
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ files | codeExperts(gt=10) }}
+```
+
+With this configuration, the `codeExperts` filter will only analyze git blame data from commits made on or after January 1, 2025, effectively filtering out previous team members from reviewer suggestions.
 
 #### `triggers`
 
