@@ -293,9 +293,6 @@ This action, once triggered, reviews the code in the PR, and generates a comment
 ```yaml+jinja title="example - inline guidelines"
 automations:
   linearb_ai_review:
-    on:
-      - pr_created
-      - commit
     if:
       - {{ not pr.draft }}
       - {{ not (is.bot_author or is.bot_branch) }}
@@ -322,9 +319,6 @@ is:
 ```yaml+jinja title="example - guidelines from file"
 automations:
   linearb_ai_review:
-    on:
-      - pr_created
-      - commit
     if:
       - {{ not pr.draft }}
       - {{ not (is.bot_author or is.bot_branch) }}
@@ -427,10 +421,6 @@ manifest:
 
 automations:
   linearb_ai_description:
-    # trigger it only when PR is created or has new commits
-    on:
-      - pr_created
-      - commit
     # skip description for Draft PRs and PRs from bots
     if:
       - {{ not pr.draft }}
@@ -501,7 +491,7 @@ automations:
     For more information about the `codeExperts` filter function, see the [filter functions documentation](https://docs.gitstream.cm/filter-functions/#codeexperts).
 
 !!! tip "Limit git history for code experts"
-    
+
     Use the [`config.git_history_since`](./cm-file.md#configgit_history_since) configuration to limit the git history analysis to commits after a specific date. This is useful for team transitions or when you want to focus on recent contributors only.
 
 #### `merge` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
@@ -615,11 +605,12 @@ This action, once triggered, will start a workflow dispatch automation with the 
 </div>
 
 ```yaml+jinja title="example"
-on:
-  - commit
+
 
 automations:
   run_workflow_dispatch:
+    on:
+      - commit
     if:
       - {{ has.fe_code_changes }}
     run:
