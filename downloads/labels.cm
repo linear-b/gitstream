@@ -1,0 +1,67 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  # Apply an update labels that indicate how long it takes to review the PR
+  # This uses the `calc` custom expression found at the bottom of this file.
+  estimated_time_to_review:
+    # Triggered for all new PRs and PR changes
+    if:
+      - true
+    # Apply a color-coded label that indicates how long it would take someone to review the PR
+    run:
+      - action: add-label@v1
+        args:
+          label: "{{ calc.etr }} min review"
+          color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
+
+  # Label PRs that are missing tests.
+  label_missing_tests:
+    # Triggered for changes that lack a change to a test.
+    if:
+      - {{ files | match(regex=r/[^a-zA-Z0-9](tests)[^a-zA-Z0-9]/) | nope }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'no-tests'
+          color: '#E94637'
+
+  # Apply a label that indicates when a PR deletes files
+  # This uses the `has` custom expression found at the bottom of this file
+  label_deleted_files:
+    if:
+      - {{ has.deleted_files }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'deleted-files'
+          color: '#DF9C04'
+
+  # Label PRs that are missing references to associated Jira tickets.
+  # Requires the `jira` custom expression at the bottom of this file
+  jira_ticket:
+    # Triggered when a PR doesn't list a Jira ticket number in the title or description
+    if:
+      - {{ not (jira.ticket_in_title or jira.ticket_in_desc) }}
+    # Apply a "missing-jira" label.
+    run:
+      - action: add-label@v1
+        args:
+          label: "missing-jira"
+          color: '#F6443B'
+
+# This is used in the `estimated_time_to_review`
+calc:
+  etr: {{ branch | estimatedReviewTime }}
+
+# This is used in the `label_deleted_files` automation
+has:
+  deleted_files: {{ source.diff.files | map(attr='new_file') | match(term='/dev/null') | some }}
+
+# Evaluates PR titles and descriptions to find strings that match Jira ticket number formatting.
+# This is used in the `jira_ticket` automation.
+jira:
+  ticket_in_title: {{ pr.title | includes(regex=r/^\[?\w{3,4}-\d{1,6}\]?(\s|-|_).{1,}$/) }}
+  ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
+
