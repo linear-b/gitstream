@@ -1,0 +1,31 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  {% for item in reports %}
+  label_jit_{{ item.name }}:
+    if:
+      - {{ item.count > 0}}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'Jit: {{ item.count }} {{ item.name }} vulnerabilities'
+          color: {{ colors.red if (item.name == 'high') else (colors.orange if (item.name == 'medium' ) else colors.yellow) }}
+  {% endfor %}
+
+jit: {{ pr | extractJitFindings }}
+
+reports:
+  - name: high
+    count: {{ jit.metrics.HIGH }}
+  - name: medium
+    count: {{ jit.metrics.MEDIUM }}
+  - name: low
+    count: {{ jit.metrics.LOW }}
+
+colors:
+  red: 'b60205'
+  orange: 'd93f0b'
+  yellow: 'fbca04'

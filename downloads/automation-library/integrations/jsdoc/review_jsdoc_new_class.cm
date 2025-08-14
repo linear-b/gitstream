@@ -1,0 +1,25 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+automations:
+  review_jsdoc_new_class: 
+    if:  
+        - {{ is.javascript and is.new }} 
+        - {{ source.diff.files | matchDiffLines(regex=r/\/*\*([\s\S]*?)\//) | nope }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "⚠️ Missing JSDoc"
+          color: {{ colors.yellow }}
+      - action: request-changes@v1
+        args: 
+          comment: | 
+            JSDoc is required for all JavaScript classes. Please add JSDoc to all new classes in this PR.
+
+is:
+    javascript: {{ files | extensions | match(list=['js', 'ts']) | every }}
+    new: {{ source.diff.files | map(attr='original_file') | match(regex=r/^$/) | some }}
+
+colors:
+  yellow: 'fbca04'
+
