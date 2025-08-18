@@ -69,7 +69,7 @@ automations:
   # Check for wrong app link
   check_local_links:
     if:
-      - {{ source.diff.files | match(attr='diff', regex=r/(?<!The local documentation server should now be running at `http:\/\/)(?:localhost|127\.0\.0\.1)/) | some }}
+      - {{ source.diff.files | reject(attr='new_file', regex=r/^(CLAUDE|AGENTS)\.md$/) | match(attr='diff', regex=r/(?<!The local documentation server should now be running at `http:\/\/)(?:localhost|127\.0\.0\.1)/) | some }}
     run:
       - action: add-label@v1
         args:
