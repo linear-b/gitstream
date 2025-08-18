@@ -53,25 +53,25 @@ automations:
 
 1. Add the rules file to your repo root:
 
-```title="./DESCRIPTION_RULES.md"
--  Add emojis to highlight important changes.
--  Use clear and concise language.
--  Avoid using jargon or technical terms.
-```
+    ```title="./DESCRIPTION_RULES.md"
+    -  Add emojis to highlight important changes.
+    -  Use clear and concise language.
+    -  Avoid using jargon or technical terms.
+    ```
 
 2. Load the file in the code review automation:
 
-```
-automations:
-    linearb_ai_desc:
-    if:
-        - {{ not pr.draft }}
-    run:
-        - action: describe-changes@v1
-        args:
-            concat_mode: append
-            guidelines: {{ "./DESCRIPTION_RULES.md" | readFile() | dump }}
-```
+    ```
+    automations:
+        linearb_ai_desc:
+        if:
+            - {{ not pr.draft }}
+        run:
+            - action: describe-changes@v1
+            args:
+                concat_mode: append
+                guidelines: {{ "./DESCRIPTION_RULES.md" | readFile() | dump }}
+    ```
 
 <!-- --8<-- [end:example]-->
 

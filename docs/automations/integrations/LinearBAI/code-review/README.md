@@ -55,24 +55,24 @@ linearb_ai_review:
 
 1. Add the rules file to your repo root:
 
-```title="./REVIEW_RULES.md"
-- Do not comment on missing documentation.
-- Do not comment on missing tests.
-- For JavaScript code, enforce using camelCase for variables and functions.
-```
+    ```title="./REVIEW_RULES.md"
+    - Do not comment on missing documentation.
+    - Do not comment on missing tests.
+    - For JavaScript code, enforce using camelCase for variables and functions.
+    ```
 
 2. Load the file in the code review automation:
 
-```
-automations:
-    linearb_ai_review:
-    if:
-        - {{ not pr.draft }}
-    run:
-        - action: code-review@v1
-        args:
-            guidelines: {{ "./REVIEW_RULES.md" | readFile() | dump }}
-```
+    ```
+    automations:
+        linearb_ai_review:
+        if:
+            - {{ not pr.draft }}
+        run:
+            - action: code-review@v1
+            args:
+                guidelines: {{ "./REVIEW_RULES.md" | readFile() | dump }}
+    ```
 
 <!-- --8<-- [end:example]-->
 
