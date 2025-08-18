@@ -38,14 +38,14 @@ You can request the AI to provide code review comments in your preferred languag
 
 ```yaml+jinja
 automations:
-    linearb_ai_desc:
+  linearb_ai_desc:
     if:
-        - {{ not pr.draft }}
+      - {{ not pr.draft }}
     run:
-        - action: describe-changes@v1
+      - action: describe-changes@v1
         args:
-            concat_mode: append
-            guidelines: |
+          concat_mode: append
+          guidelines: |
             - Use Korean language for all comments
 ```
 
@@ -63,14 +63,14 @@ automations:
 
     ```
     automations:
-        linearb_ai_desc:
+      linearb_ai_desc:
         if:
-            - {{ not pr.draft }}
+          - {{ not pr.draft }}
         run:
-            - action: describe-changes@v1
+          - action: describe-changes@v1
             args:
-                concat_mode: append
-                guidelines: {{ "./DESCRIPTION_RULES.md" | readFile() | dump }}
+              concat_mode: append
+              guidelines: {{ "./DESCRIPTION_RULES.md" | readFile() | dump }}
     ```
 
 <!-- --8<-- [end:example]-->

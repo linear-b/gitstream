@@ -40,13 +40,13 @@ You can request the AI to provide code review comments in your preferred languag
 
 ```yaml+jinja
 automations:
-linearb_ai_review:
+  linearb_ai_review:
     if:
-    - {{ not pr.draft }}
+      - {{ not pr.draft }}
     run:
-    - action: code-review@v1
+      - action: code-review@v1
         args:
-        guidelines: |
+          guidelines: |
             - Use Spanish language for all comments
             - Focus on code quality and best practices
 ```
@@ -65,13 +65,13 @@ linearb_ai_review:
 
     ```
     automations:
-        linearb_ai_review:
+      linearb_ai_review:
         if:
-            - {{ not pr.draft }}
+          - {{ not pr.draft }}
         run:
-            - action: code-review@v1
+          - action: code-review@v1
             args:
-                guidelines: {{ "./REVIEW_RULES.md" | readFile() | dump }}
+              guidelines: {{ "./REVIEW_RULES.md" | readFile() | dump }}
     ```
 
 <!-- --8<-- [end:example]-->
