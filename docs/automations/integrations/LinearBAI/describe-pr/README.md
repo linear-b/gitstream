@@ -5,7 +5,7 @@ category: [quality, genai, efficiency, quickstart]
 starter_kits: [genai]
 quickstart: true
 ---
-# Add PR Description Using LinearB's AI :material-star-circle:
+# PR Description Using LinearB's AI
 
 <!-- --8<-- [start:example]-->
 Use the [`describe-changes`](/automation-actions/#describe-changes) automation action to automatically generate and append a concise, AI-generated description to a pull request. This ensures that all PRs include meaningful and helpful descriptions, improving review efficiency.
@@ -22,8 +22,6 @@ Use the [`describe-changes`](/automation-actions/#describe-changes) automation a
 
     * Append the AI-generated description to the PR description.
 
-=== "For GitHub"
-
     !!! example "Configuration Example"
         ```yaml+jinja
         --8<-- "docs/downloads/automation-library/integrations/LinearBAI/describe-pr.cm"
@@ -34,29 +32,47 @@ Use the [`describe-changes`](/automation-actions/#describe-changes) automation a
             </span>
         </div>
 
-=== "For GitLab"
+#### Localization Support
 
-    !!! example "Configuration Example"
-        ```yaml+jinja
-        --8<-- "docs/downloads/automation-library/integrations/LinearBAI/describe-pr-gl.cm"
-        ```
-        <div class="result" markdown>
-            <span>
-            [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/LinearBAI/describe-pr-gl.cm){ .md-button }
-            </span>
-        </div>
+You can request the AI to add PR descriptions in your preferred language by adding it to the guidelines:
 
-=== "For Bitbucket"
+```yaml+jinja
+automations:
+  linearb_ai_desc:
+    if:
+      - {{ not pr.draft }}
+    run:
+      - action: describe-changes@v1
+        args:
+          concat_mode: append
+          guidelines: |
+            - Use Korean language for all comments
+```
 
-    !!! example "Configuration Example"
-        ```yaml+jinja
-        --8<-- "docs/downloads/automation-library/integrations/LinearBAI/describe-pr-bb.cm"
-        ```
-        <div class="result" markdown>
-            <span>
-            [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/LinearBAI/describe-pr-bb.cm){ .md-button }
-            </span>
-        </div>
+#### Repository rules file example
+
+1. Add the rules file to your repo root:
+
+    ```title="./DESCRIPTION_RULES.md"
+    -  Add emojis to highlight important changes.
+    -  Use clear and concise language.
+    -  Avoid using jargon or technical terms.
+    ```
+
+2. Load the file in the PR descriptions automation:
+
+    ```
+    automations:
+      linearb_ai_desc:
+        if:
+          - {{ not pr.draft }}
+        run:
+          - action: describe-changes@v1
+            args:
+              concat_mode: append
+              guidelines: {{ "./DESCRIPTION_RULES.md" | readFile() | dump }}
+    ```
+
 <!-- --8<-- [end:example]-->
 
 ## Additional Resources

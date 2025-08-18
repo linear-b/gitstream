@@ -7,17 +7,17 @@ category: [quality, genai, copilot, tests, efficiency]
 
 !!! tip "User Commands"
 
-    LinearB's AI is available also with user commands, read more about them [here](/user-commands)
+    LinearB's AI is available also with `/gs` user commands, read more about them [here](/user-commands).
 
 <!-- --8<-- [start:examples]-->
 
 ## Automation Examples
 
-### Use LinearB's AI for a comprehensive Code Review :material-star-circle:
+### Code Review using LinearB's AI
 
 --8<-- "docs/automations/integrations/LinearBAI/code-review/README.md:example"
 
-### Add PR Description Using LinearB's AI :material-star-circle:
+### PR Description Using LinearB's AI
 
 --8<-- "docs/automations/integrations/LinearBAI/describe-pr/README.md:example"
 

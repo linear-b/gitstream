@@ -5,7 +5,7 @@ category: [quality, genai, efficiency, quickstart]
 starter_kits: [genai]
 quickstart: true
 ---
-# Code Review Using LinearB's AI :material-star-circle:
+# Code Review Using LinearB's AI
 
 <!-- --8<-- [start:example]-->
 Use LinearB's AI with the [`code-review`](/automation-actions/#code-review) action to automatically review the introduced changes to the code.
@@ -24,8 +24,6 @@ Use LinearB's AI with the [`code-review`](/automation-actions/#code-review) acti
     * Perform an AI-driven code review and append the review comments to the PR.
     * Use `guidelines` to add your prompts to the team or org review
 
-=== "For GitHub"
-
     !!! example "Configuration Example"
         ```yaml+jinja
         --8<-- "docs/downloads/automation-library/integrations/LinearBAI/code-review.cm"
@@ -36,38 +34,44 @@ Use LinearB's AI with the [`code-review`](/automation-actions/#code-review) acti
             </span>
         </div>
 
-=== "For GitLab"
+#### Localization Support
 
-    !!! example "Configuration Example"
-        ```yaml+jinja
-        --8<-- "docs/downloads/automation-library/integrations/LinearBAI/code-review-gl.cm"
-        ```
-        <div class="result" markdown>
-            <span>
-            [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/LinearBAI/code-review-gl.cm){ .md-button }
-            </span>
-        </div>
+You can request the AI to provide code review comments in your preferred language by adding it to the guidelines:
 
-=== "For Bitbucket"
+```yaml+jinja
+automations:
+  linearb_ai_review:
+    if:
+      - {{ not pr.draft }}
+    run:
+      - action: code-review@v1
+        args:
+          guidelines: |
+            - Use Spanish language for all comments
+            - Focus on code quality and best practices
+```
 
-    !!! example "Configuration Example"
-        ```yaml+jinja
-        --8<-- "docs/downloads/automation-library/integrations/LinearBAI/code-review-bb.cm"
-        ```
-        <div class="result" markdown>
-            <span>
-            [:octicons-download-24: Download this example as a CM file.](/downloads/automation-library/integrations/LinearBAI/code-review-bb.cm){ .md-button }
-            </span>
-        </div>
+#### Repository rules file example
 
-!!! tip "`./REVIEW_RULES.md` example"
+1. Add the rules file to your repo root:
 
-    This file should be created in your repo root:
+    ```title="./REVIEW_RULES.md"
+    - Do not comment on missing documentation.
+    - Do not comment on missing tests.
+    - For JavaScript code, enforce using camelCase for variables and functions.
+    ```
+
+2. Load the file in the code review automation:
 
     ```
-    1. Do not comment on missing documentation.
-    2. Do not comment on missing tests.
-    3. For JavaScript code, enforce using camelCase for variables and functions.
+    automations:
+      linearb_ai_review:
+        if:
+          - {{ not pr.draft }}
+        run:
+          - action: code-review@v1
+            args:
+              guidelines: {{ "./REVIEW_RULES.md" | readFile() | dump }}
     ```
 
 <!-- --8<-- [end:example]-->
