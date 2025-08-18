@@ -34,7 +34,7 @@ Use the [`describe-changes`](/automation-actions/#describe-changes) automation a
 
 #### Localization Support
 
-You can request the AI to provide code review comments in your preferred language by adding it to the guidelines:
+You can request the AI to add PR descriptions in your preferred language by adding it to the guidelines:
 
 ```yaml+jinja
 automations:
@@ -59,7 +59,7 @@ automations:
     -  Avoid using jargon or technical terms.
     ```
 
-2. Load the file in the code review automation:
+2. Load the file in the PR descriptions automation:
 
     ```
     automations:
