@@ -1,0 +1,19 @@
+# -*- mode: yaml -*-
+
+# +----------------------------------------------------------------------------+
+# | WARNING: This file controls repo automations, use caution when modifying   |
+# +----------------------------------------------------------------------------+
+# | This file contains one or more /:\ gitStream automations:                  |
+# | https:// docs.gitstream.cm                                                 |
+# |                                                                            |
+# | gitStream uses YAML syntax with nunjucks templating via Jinja 2.           |
+# |                                                                            |
+# | Automations follow an "if this, then that" execution format.               |
+# | More info here: https://docs.gitstream.cm/how-it-works/                    |
+# |                                                                            |
+# +----------------------------------------------------------------------------+
+
+# /:\ gitStream Reference Docs: 
+#    Context Variables: https://docs.gitstream.cm/context-variables/
+#    Filter Functions: https://docs.gitstream.cm/filter-functions/
+#    Automation Actions: https://docs.gitstream.cm/automation-actions/
