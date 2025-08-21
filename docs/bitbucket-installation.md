@@ -19,7 +19,7 @@ description: Install gitStream to your Bitbucket workspace.
         - 13.56.203.235
         - 54.151.81.98
 
-??? Info "Understanding IP Allowlisting for gitStream"
+??? Info "Advanced: IP Allowlisting for gitStream"
     When setting up IP allowlists in Bitbucket, you're specifying which source IP addresses are permitted to interact with your repositories and APIs. This affects both gitStream and your CI/CD runners.
 
     There are two primary cases where this matters for gitStream:
@@ -36,6 +36,7 @@ description: Install gitStream to your Bitbucket workspace.
 
     - Add LinearB/gitStream service IPs to your Bitbucket allowlist (listed above).
     - Use self-hosted runners or runners with static IPs so you can manage and allowlist their addresses explicitly.
+    - Add must add to your `bitbucket-pipeline.yml` `step.runtime.cloud.atlassian-ip-ranges: true`.
 
     This combination ensures that both gitStream's internal operations and your CI runners' interactions with Bitbucket function without network restrictions.
 
