@@ -2,7 +2,7 @@
 
 !!! warning "Platform Limitations"
     **Explicit triggers** (using `on`, `triggers.on`, `triggers.include`, and `triggers.exclude` parameters) are only supported on GitHub :fontawesome-brands-github:. Using explicit triggers in GitLab or Bitbucket will cause the automation to fail with an error. For GitLab and Bitbucket, simply omit trigger configuration to use implicit triggers automatically.
-    
+
     However, other execution control concepts covered in this document, such as action-level execution control, apply to all supported platforms (GitHub, GitLab, and Bitbucket).
 
 gitStream is triggered on new pull requests (PRs) for repositories that have gitStream installed. Upon triggering, gitStream collects context variables and evaluates the automation rules to determine which ones are relevant.
@@ -177,6 +177,24 @@ automations:
 With implicit triggers (no explicit triggers configured), `describe-changes` will only execute when the automation is triggered by code changes, while `add-reviewers` follows the current default behavior.
 
 ## Examples
+
+
+#### Enable AI Actions on Draft PRs
+By default, AI actions like `code-review` don't run on draft PRs. To enable it, use explicit triggers with `pr_created` and `commit`:
+
+```yaml+jinja
+automations:
+    ai_review_on_drafts:
+    on:
+        - pr_created
+        - commit
+    if:
+        - true
+    run:
+        - action: code-review@v1
+```
+
+This allows developers to get AI feedback during the coding process before marking the PR as ready for review.
 
 #### Dependabot and Renovate
 
