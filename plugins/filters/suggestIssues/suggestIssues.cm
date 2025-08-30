@@ -1,0 +1,46 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  # Add comment that suggests tickets for this PR when there is no linked
+  # ticket in the title or description
+  suggest_issues:
+    on:
+      - label_added
+    if:
+      - {{ pr.labels | match(term='suggest-ticket') | some }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            Select one of the suggested issues to link to this PR. Once you make a selection, gitStream will automatically update the PR title and description with the selected issue key (taking into account issues opened up to the last 2 hours).
+
+            {{ pr | suggestedIssues(branch, env.TICKET_SUGGESTION_TOKEN) }}
+
+            *✨ This list was created using LinearB’s AI service*
+
+  # If the PR author has indicated that they used a specific issue,
+  # add it to the PR description and title
+  add_selected_issue_to_pr:
+    if:
+      - {{ pr.comments | filter(attr='commenter', term='gitstream-cm') | filter (attr='content', regex=r/\- \[x\]/) | some }}
+      - {{ not (has.jira_ticket_in_title or has.jira_ticket_in_desc) }}
+    run:
+      - action: update-title@v1
+        args:
+          concat_mode: prepend
+          title: |
+            {{ selected_issue_key }} -
+      - action: update-description@v1
+        args:
+          concat_mode: prepend
+          description: |
+            Jira issue: {{ selected_issue_key }}
+
+selected_issue_key: {{ pr.comments | filter(attr='commenter', term='gitstream-cm') | map(attr='content') | filter (regex=r/\- \[x\].*/) | first | capture(regex=r/\b[A-Za-z]+-\d+\b/) }}
+
+has:
+  jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
+  jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
