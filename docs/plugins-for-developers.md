@@ -64,6 +64,35 @@ automations:
 !!! warning "15 Minute Time Limit"
     gitStream actions are terminated after 15 minutes, this is a hard limit that can't be extended.
 
+#### Using Async Plugin in Conditions
+
+Normally, gitStream optimizes plugin execution by rendering plugins only after condition evaluation when all automation rules are decided. This optimization prevents unnecessary plugin calls.
+
+However, when using an async plugin in a **condition** without the `immediate: true` flag, this optimization causes the plugin to not work properly, and you will see warning messages in the logs.
+
+To use an async plugin in a condition, you must annotate the plugin with `immediate: true`:
+
+```javascript
+module.exports = {
+    async: true,
+    immediate: true,
+    filter: myFilter
+}
+```
+
+The `immediate: true` flag tells the system not to optimize plugin execution. The downside is that the plugin might be called multiple times during the workflow execution. If your plugin makes API calls, this will result in multiple API requests as well.
+
+```yaml+jinja
+automations:
+  welcome_author:
+    if:
+      - {{ "" | myFilter }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: hello world!
+```
+
 ### Accept Arguments
 
 Filter function plugins can accept any number of arguments. The first argument must be passed to the filter function via a ` | ` operator; all subsequent arguments are passed as a set inside parenthesis.
