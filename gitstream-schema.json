@@ -1,0 +1,421 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://gitstream.cm/gitstream-schema.json",
+  "title": "gitStream Configuration Schema",
+  "description": "JSON Schema for gitStream .cm configuration files",
+  "type": "object",
+  "required": ["manifest", "automations"],
+  "properties": {
+    "manifest": {
+      "type": "object",
+      "description": "gitStream configuration manifest",
+      "required": ["version"],
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "gitStream configuration version",
+          "const": "1.0"
+        }
+      },
+      "additionalProperties": false
+    },
+    "config": {
+      "type": "object",
+      "description": "Optional configuration settings",
+      "properties": {
+        "admin": {
+          "type": "object",
+          "description": "Admin configuration",
+          "properties": {
+            "users": {
+              "type": "array",
+              "description": "List of admin users",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "ignore_files": {
+          "type": "array",
+          "description": "List of files to ignore in analysis",
+          "items": {
+            "type": "string"
+          }
+        },
+        "user_mapping": {
+          "type": "object",
+          "description": "Mapping between git users and provider users",
+          "patternProperties": {
+            ".*": {
+              "type": "string"
+            }
+          }
+        },
+        "git_history_since": {
+          "type": "string",
+          "description": "Limit git history analysis to commits after this date",
+          "format": "date"
+        },
+        "explicit_triggers": {
+          "type": "array",
+          "description": "Define explicit triggers for gitStream",
+          "items": {
+            "type": "object",
+            "properties": {
+              "provider": {
+                "type": "string",
+                "enum": ["github", "gitlab", "bitbucket"]
+              },
+              "events": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "automations": {
+      "type": "object",
+      "description": "Automation rules",
+      "patternProperties": {
+        "^[a-zA-Z_][a-zA-Z0-9_]*$": {
+          "$ref": "#/definitions/automation"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": {
+    "^[a-zA-Z_][a-zA-Z0-9_]*$": {
+      "$ref": "#/definitions/customExpression"
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "automation": {
+      "type": "object",
+      "description": "Single automation rule",
+      "required": ["if", "run"],
+      "properties": {
+        "if": {
+          "type": "array",
+          "description": "Conditions that must be met for this automation to run",
+          "items": {
+            "$ref": "#/definitions/jinjaExpression"
+          },
+          "minItems": 1
+        },
+        "run": {
+          "type": "array",
+          "description": "Actions to execute when conditions are met",
+          "items": {
+            "$ref": "#/definitions/action"
+          },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "action": {
+      "type": "object",
+      "description": "Action to execute",
+      "required": ["action"],
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "Action type",
+          "enum": [
+            "add-code-comment@v1",
+            "add-comment@v1",
+            "add-github-check@v1",
+            "add-label@v1",
+            "add-labels@v1",
+            "add-reviewers@v1",
+            "add-thread@v1",
+            "approve@v1",
+            "close@v1",
+            "code-review@v1",
+            "describe-changes@v1",
+            "explain-code-experts@v1",
+            "merge@v1",
+            "request-changes@v1",
+            "require-reviewers@v1",
+            "run-github-workflow@v1",
+            "send-http-request@v1",
+            "send-slack-message@v1",
+            "set-required-approvals@v1",
+            "update-description@v1",
+            "update-title@v1"
+          ]
+        },
+        "args": {
+          "type": "object",
+          "description": "Action arguments",
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "action": {
+                    "const": "add-comment@v1"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "args": {
+                    "required": ["comment"],
+                    "properties": {
+                      "comment": {
+                        "$ref": "#/definitions/jinjaExpression",
+                        "description": "Comment text (markdown supported)"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "action": {
+                    "const": "add-label@v1"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "args": {
+                    "required": ["label"],
+                    "properties": {
+                      "label": {
+                        "$ref": "#/definitions/jinjaExpression",
+                        "description": "Label text"
+                      },
+                      "color": {
+                        "$ref": "#/definitions/jinjaExpression",
+                        "description": "Label color in hex (e.g., 'FEFEFE' or '#FEFEFE')"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "action": {
+                    "const": "add-reviewers@v1"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "args": {
+                    "required": ["reviewers"],
+                    "properties": {
+                      "reviewers": {
+                        "$ref": "#/definitions/jinjaExpression",
+                        "description": "List of reviewer usernames"
+                      },
+                      "teams": {
+                        "$ref": "#/definitions/jinjaExpression",
+                        "description": "List of team names"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "action": {
+                    "const": "add-code-comment@v1"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "args": {
+                    "required": ["comment", "file_name"],
+                    "properties": {
+                      "comment": {
+                        "$ref": "#/definitions/jinjaExpression",
+                        "description": "Code comment text (markdown supported, including suggestion syntax)"
+                      },
+                      "file_name": {
+                        "$ref": "#/definitions/jinjaExpression",
+                        "description": "Relative path to the file"
+                      },
+                      "start_line": {
+                        "$ref": "#/definitions/jinjaExpression",
+                        "description": "Starting line number (optional)"
+                      },
+                      "end_line": {
+                        "$ref": "#/definitions/jinjaExpression",
+                        "description": "Ending line number for multi-line comments (optional)"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "action": {
+                    "const": "merge@v1"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "args": {
+                    "properties": {
+                      "wait_for_all_checks": {
+                        "$ref": "#/definitions/jinjaExpression",
+                        "description": "Wait for all checks to complete before merging"
+                      },
+                      "squash_on_merge": {
+                        "$ref": "#/definitions/jinjaExpression",
+                        "description": "Squash commits when merging"
+                      },
+                      "delete_branch": {
+                        "$ref": "#/definitions/jinjaExpression",
+                        "description": "Delete branch after merge"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "action": {
+                    "const": "send-http-request@v1"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "args": {
+                    "required": ["url"],
+                    "properties": {
+                      "url": {
+                        "$ref": "#/definitions/jinjaExpression",
+                        "description": "HTTP request URL"
+                      },
+                      "method": {
+                        "$ref": "#/definitions/jinjaExpression",
+                        "description": "HTTP method (GET, POST, PUT, DELETE, etc.)"
+                      },
+                      "headers": {
+                        "$ref": "#/definitions/jinjaExpression",
+                        "description": "HTTP headers object"
+                      },
+                      "body": {
+                        "$ref": "#/definitions/jinjaExpression",
+                        "description": "Request body"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "action": {
+                    "const": "set-required-approvals@v1"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "args": {
+                    "required": ["approvals"],
+                    "properties": {
+                      "approvals": {
+                        "$ref": "#/definitions/jinjaExpression",
+                        "description": "Number of required approvals"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          ],
+          "patternProperties": {
+            ".*": true
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "customExpression": {
+      "description": "Custom expression that can be referenced in automations",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/jinjaExpression"
+        },
+        {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z_][a-zA-Z0-9_]*$": {
+              "$ref": "#/definitions/jinjaExpression"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/jinjaExpression"
+          }
+        }
+      ]
+    },
+    "jinjaExpression": {
+      "description": "Jinja2 template expression or static value",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/jinjaExpression"
+          }
+        },
+        {
+          "type": "object",
+          "patternProperties": {
+            ".*": {
+              "$ref": "#/definitions/jinjaExpression"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

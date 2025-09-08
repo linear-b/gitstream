@@ -1,4 +1,6 @@
 # -*- mode: yaml -*-
+# yaml-language-server: $schema=https://raw.githubusercontent.com/linear-b/gitstream/main/gitstream-schema.json
+#
 # This example configuration provides basic automations to get started with gitStream.
 # View the gitStream quickstart for more examples: https://docs.gitstream.cm/examples/
 manifest:
