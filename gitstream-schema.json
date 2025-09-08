@@ -1,0 +1,307 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/linear-b/gitstream/main/gitstream-schema.json",
+  "title": "gitStream .cm Configuration",
+  "description": "Schema for gitStream .cm files that define automation rules for pull/merge requests",
+  "type": "object",
+  "required": ["manifest", "automations"],
+  "additionalProperties": true,
+  "properties": {
+    "manifest": {
+      "type": "object",
+      "description": "gitStream configuration manifest",
+      "required": ["version"],
+      "properties": {
+        "version": {
+          "type": "string",
+          "enum": ["1.0"],
+          "description": "gitStream configuration version"
+        }
+      },
+      "additionalProperties": false
+    },
+    "config": {
+      "type": "object",
+      "description": "gitStream configuration options",
+      "properties": {
+        "admin": {
+          "type": "object",
+          "properties": {
+            "users": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "List of admin users"
+            }
+          }
+        },
+        "ignore_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of file patterns to ignore"
+        },
+        "enable_merge_queue": {
+          "type": "boolean",
+          "description": "Enable merge queue functionality"
+        }
+      },
+      "additionalProperties": true
+    },
+    "automations": {
+      "type": "object",
+      "description": "Collection of automation rules",
+      "patternProperties": {
+        "^[a-zA-Z_][a-zA-Z0-9_]*$": {
+          "type": "object",
+          "description": "Individual automation rule",
+          "required": ["if", "run"],
+          "properties": {
+            "if": {
+              "type": "array",
+              "description": "Conditions that must be met for automation to trigger",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^\\{\\{.*\\}\\}$",
+                    "description": "Jinja2 expression that evaluates to boolean"
+                  },
+                  {
+                    "type": "boolean"
+                  }
+                ]
+              }
+            },
+            "run": {
+              "type": "array",
+              "description": "Actions to execute when conditions are met",
+              "items": {
+                "type": "object",
+                "required": ["action"],
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "approve@v1",
+                      "request-changes@v1", 
+                      "add-comment@v1",
+                      "add-label@v1",
+                      "remove-label@v1",
+                      "add-reviewers@v1",
+                      "remove-reviewers@v1",
+                      "require-reviewers@v1",
+                      "set-required-approvals@v1",
+                      "merge@v1",
+                      "close@v1",
+                      "update-title@v1",
+                      "update-description@v1",
+                      "explain-code-experts@v1",
+                      "code-review@v1",
+                      "describe-changes@v1",
+                      "dispatch-workflow@v1",
+                      "skip-workflow@v1"
+                    ],
+                    "description": "Action to perform"
+                  },
+                  "args": {
+                    "type": "object",
+                    "description": "Arguments for the action",
+                    "additionalProperties": true
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": {
+    "^[a-zA-Z_][a-zA-Z0-9_]*$": {
+      "description": "Custom expressions and variables",
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string",
+                "description": "Jinja2 template expression"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "array"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        },
+        {
+          "type": "string",
+          "description": "Jinja2 template expression"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "array"
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "contextVariables": {
+      "description": "Available gitStream context variables",
+      "properties": {
+        "branch": {
+          "type": "object",
+          "description": "Branch information",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Branch name"
+            },
+            "base": {
+              "type": "string", 
+              "description": "Base branch name"
+            }
+          }
+        },
+        "pr": {
+          "type": "object",
+          "description": "Pull request information",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "PR title"
+            },
+            "description": {
+              "type": "string",
+              "description": "PR description"
+            },
+            "author": {
+              "type": "string",
+              "description": "PR author username"
+            },
+            "draft": {
+              "type": "boolean",
+              "description": "Whether PR is draft"
+            },
+            "size": {
+              "type": "number",
+              "description": "PR size (lines changed)"
+            },
+            "comments": {
+              "type": "array",
+              "description": "PR comments"
+            },
+            "reviews": {
+              "type": "array",
+              "description": "PR reviews"
+            },
+            "labels": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "PR labels"
+            }
+          }
+        },
+        "files": {
+          "type": "array",
+          "description": "List of changed files",
+          "items": {
+            "type": "string"
+          }
+        },
+        "repo": {
+          "type": "object",
+          "description": "Repository information",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Repository name"
+            },
+            "owner": {
+              "type": "string",
+              "description": "Repository owner"
+            }
+          }
+        },
+        "source": {
+          "type": "object",
+          "description": "Source code information",
+          "properties": {
+            "diff": {
+              "type": "object",
+              "description": "Diff information",
+              "properties": {
+                "files": {
+                  "type": "array",
+                  "description": "Files in diff"
+                }
+              }
+            }
+          }
+        },
+        "env": {
+          "type": "object",
+          "description": "Environment variables",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "filterFunctions": {
+      "description": "Available filter functions for use with | operator",
+      "enum": [
+        "match",
+        "some", 
+        "every",
+        "filter",
+        "map",
+        "reject",
+        "includes",
+        "excludes",
+        "estimatedReviewTime",
+        "isFormattingChange",
+        "allDocs",
+        "allTests", 
+        "allImages",
+        "readFile",
+        "dump",
+        "length",
+        "first",
+        "last",
+        "unique",
+        "sort",
+        "reverse",
+        "join",
+        "split",
+        "replace",
+        "regex",
+        "upper",
+        "lower",
+        "trim"
+      ]
+    }
+  }
+}
