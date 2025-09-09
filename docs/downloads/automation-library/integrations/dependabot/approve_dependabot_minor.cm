@@ -32,4 +32,4 @@ automations:
           comment: |
             Dependabot `patch` version bumps are approved and merged automatically.
 
-bump: {{ pr.description | extractDependabotVersionBump | compareSemver }}
+bump: {{ pr.description | checkDependabot | checkSemver }}

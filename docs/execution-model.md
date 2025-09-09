@@ -200,8 +200,6 @@ This allows developers to get AI feedback during the coding process before marki
 
 For example, you can have your normal automations that help developers with their PRs and a separate automation that automates Dependabot or Renovate version bumps. Both automations serve distinctly different purposes: the first helps your developers streamline their PRs, while the other reduces developers' toil by auto-approving version bumps. You will not want to unnecessarily trigger gitStream for Dependabot or Renovate, so you can configure the triggers to exclude the branch where Dependabot or Renovate PRs are created.
 
-!!! warning "Required gitStream Plugins"
-    This example requires you to install the [`extractDependabotVersionBump`](/filter-function-plugins/#extractdependabotversionbump) and [`compareSemver`](/filter-function-plugins/#comparesemver) plugins.
 
 In your default automation file, you should exclude the branch where Dependabot or Renovate PRs are created:
 
@@ -270,7 +268,7 @@ automations:
           comment: |
             Dependabot `patch` version bumps are approved and merged automatically.
 
-bump: {{ pr.description | extractDependabotVersionBump | compareSemver }}
+bump: {{ pr.description | checkDependabot | checkSemver }}
 ```
 
 #### Assign code expert
