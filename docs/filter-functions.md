@@ -45,6 +45,8 @@ The following functions are supported in addition to the built-in functions prov
 | [`allDocs`](#alldocs)<br />Checks the list includes only images                                                                                                          | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
 | [`allImages`](#allimages)<br />Checks the list includes only images                                                                                                      | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
 | [`allTests`](#alltests)<br />Checks the list includes only tests                                                                                                         | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
+| [`checkDependabot`](#checkdependabot)<br />Extract version bump information from Dependabot PRs description                                                              | String - PR description                                    | -                                                  | [String]                |
+| [`checkSemver`](#checksemver)<br />Compare two software version numbers and determine the type of version change                                                         | [String] - Array with [to, from] versions                  | `lexicographical`, `zeroExtend`                    | String                  |
 | [`codeExperts`](#codeexperts)<br />Get list of contributors based on expert reviewer model results                                                                       | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
 | [`decode`](#decode)<br />Decode Base64 encoded string into an object                                                                                                     | String (Base64 encoded)                                    | -                                                  | Object                  |
 | [`encode`](#encode)<br />Encode data into Base64 encoded string                                                                                                          | Object                                                     | -                                                  | String (Base64 encoded) |
@@ -379,6 +381,93 @@ To identify as test the file must include the word `test` or `spec` in its name 
 {{ files | allTests }}
 ```
 
+
+#### `checkDependabot`
+
+Extract version bump information from Dependabot PRs description. This filter parses Dependabot PR descriptions to identify version changes and returns an array containing the "to" and "from" versions.
+
+<div class="filter-details" markdown=1>
+
+| Argument | Usage  | Type   | Description                                                         |
+| -------- | ------ | ------ | ------------------------------------------------------------------- |
+| -        | Input  | String | The PR description from a Dependabot pull request                  |
+| -        | Output | [String] | Array with [to, from] versions, or null if no version info found |
+
+</div>
+
+Examples:
+
+Check if a Dependabot PR is a minor version bump and auto-approve:
+
+```yaml+jinja
+automations:
+  auto_approve_dependabot_minor:
+    if:
+      - {{ pr.description | checkDependabot | checkSemver == 'minor' }}
+      - {{ branch.name | includes(term="dependabot") }}
+      - {{ branch.author | includes(term="dependabot") }}
+    run:
+      - action: approve@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            Dependabot minor version bump approved automatically.
+```
+
+Auto-merge patch updates:
+
+```yaml+jinja
+automations:
+  auto_merge_dependabot_patch:
+    if:
+      - {{ pr.description | checkDependabot | checkSemver == 'patch' }}
+      - {{ branch.name | includes(term="dependabot") }}
+    run:
+      - action: approve@v1
+      - action: merge@v1
+```
+
+#### `checkSemver`
+
+Compare two software version numbers and determine the type of version change. This filter takes an array of two version strings and returns the type of change between them.
+
+<div class="filter-details" markdown=1>
+
+| Argument | Usage  | Type   | Description                                                         |
+| -------- | ------ | ------ | ------------------------------------------------------------------- |
+| -        | Input  | [String] | Array with [to, from] versions in semver format                  |
+| `lexicographical` | Input (optional) | Boolean | Compare lexicographically instead of naturally (default: false) |
+| `zeroExtend` | Input (optional) | Boolean | Pad shorter version with zeros (default: true) |
+| -        | Output | String | Returns 'major', 'minor', 'patch', 'downgrade', 'equal', or 'error' |
+
+</div>
+
+Examples:
+
+Compare version arrays directly:
+
+```yaml+jinja
+{{ ["1.2.3", "1.2.1"] | checkSemver }}  # Returns "patch"
+```
+
+Use with Dependabot to classify version bumps:
+
+```yaml+jinja
+bump_type: {{ pr.description | checkDependabot | checkSemver }}
+
+automations:
+  handle_major_bump:
+    if:
+      - {{ bump_type == 'major' }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "major-version-bump"
+      - action: request-changes@v1
+        args:
+          comment: "Major version bumps require manual review"
+```
+
 #### `codeExperts`
 
 When requesting a review for a pull request, it's important to select a reviewer who has a deep understanding of the relevant code area, the domain problem, and the framework being used. This ensures that the reviewer can provide specific and informed feedback, rather than general comments that may not take into account the context in which the issue was solved.
@@ -416,7 +505,7 @@ automations:
 ```
 
 !!! tip "Limit git history for code experts"
-    
+
     Use the [`config.git_history_since`](./cm-file.md#configgit_history_since) configuration to limit the git history analysis to commits after a specific date. This is useful for team transitions or when you want to focus on recent contributors only.
 
 #### `decode`

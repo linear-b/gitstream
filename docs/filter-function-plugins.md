@@ -12,9 +12,15 @@ JavaScript plugins that enable custom filter functions for gitStream. To learn h
 
 --8<-- "plugins/filters/compareMultiSemver/README.md"
 
---8<-- "plugins/filters/compareSemver/README.md"
+## compareSemver
+!!! note "compareSemver → checkSemver"
 
---8<-- "plugins/filters/extractDependabotVersionBump/README.md"
+    This plugin is now supported by a native filter function [`checkSemver`](/filter-functions/#checksemver). The native implementation provides better performance and doesn't require plugin installation.
+
+## extractDependabotVersionBump
+!!! note "extractDependabotVersionBump → checkDependabot"
+
+    This plugin is now supported by a native filter function [`checkDependabot`](/filter-functions/#checkdependabot). The native implementation provides better performance and doesn't require plugin installation.
 
 --8<-- "plugins/filters/extractRenovateVersionBump/README.md"
 
