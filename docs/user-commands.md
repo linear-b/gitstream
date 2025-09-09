@@ -25,6 +25,6 @@ and :thumbsup: is added when the command has been successfully executed.
 | `/gs review` | :fontawesome-brands-github: | Run an AI-powered code review on this PR | Executes `code-review@v1` once on the current PR |
 | `/gs desc` | :fontawesome-brands-github: | Generate a description of the changes in this PR | Executes `describe-changes@v1` once on the current PR with `concat_mode: append` |
 | `/gs etr` | :fontawesome-brands-github: | Add estimated time to review label | Adds a label with the estimated review time based on the PR changes |
-| `/gs code-experts` | :fontawesome-brands-github: | Add a comment with codeExperts suggestion for current changes | Executes `explain_code_experts@v1` once on the current PR |
+| `/gs code_experts` | :fontawesome-brands-github: | Add a comment with codeExperts suggestion for current changes | Executes `explain_code_experts@v1` once on the current PR |
 | `/gs help` | :fontawesome-brands-github: | Show help message with available commands | Displays a comment with the list of all available gitStream commands |
 </div>
