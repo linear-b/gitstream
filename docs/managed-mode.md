@@ -38,7 +38,7 @@ automations:
           guidelines: {{ loadDescriptionGuidelines() | dump }}
 ```
 
-### Smart Labeling (Claude Code Detection)
+### Smart Labeling (Agent Coding Detection)
 
 Automatically apply labels to PRs that are assisted by Claude Code to track time savings, PR risk, and productivity lift from AI tools. This automation can detect Claude Code usage through multiple methods including co-authorship, user prompts, known users, or specific tags.
 
@@ -112,14 +112,11 @@ colors:
   green: '0e8a16'
 ```
 
-### Dependabot Auto-merge
+### Dependabot Minor Bump Auto-Approve
 
 Auto-merge Dependabot PRs for patch and minor version updates. This automation helps maintain dependencies while ensuring only safe, non-breaking changes are automatically approved and merged.
 
 ```yaml
-manifest:
-  version: 1.0
-
 automations:
   merge_dependabot_minor:
     on:
@@ -135,6 +132,13 @@ automations:
         args:
           comment: Dependabot `minor` version bumps are approved automatically.
 
+dependabot_bump: {{ pr.description | checkDependabot | checkSemver }}
+```
+
+### Dependabot Patch Bump Auto-Approve
+
+```yaml
+automations:
   merge_dependabot_patch:
     on:
       - pr_created
