@@ -15,7 +15,7 @@ Use LinearB's AI with the `code-review` action to automatically review the intro
 automations:
   linearb_ai_review:
     if:
-      - {{ not (is.bot_author or is.bot_branch) }}
+      - {{ not (pr.draft or is.bot_author) }}
     run:
       - action: code-review@v1
         args:
@@ -30,7 +30,7 @@ Use the `describe-changes` automation action to automatically generate and appen
 automations:
   linearb_ai_description:
     if:
-      - {{ not (is.bot_author or is.bot_branch) }}
+      - {{ not (pr.draft or is.bot_author) }}
     run:
       - action: describe-changes@v1
         args:
@@ -44,17 +44,48 @@ Automatically apply labels to PRs that are assisted by Claude Code to track time
 
 ```yaml
 automations:
-  tag_claude_pr:
+  tag_claude_in_pr:
     if:
       - {{ is.claude_author or is.claude_co_author }}
     run:
       - action: add-label@v1
         args:
-          label: "🤖 Claude Code"
+          label: 🤖 Claude Code
+
+  tag_copilot_in_pr:
+    if:
+      - {{ is.copilot_author or is.copilot_co_author }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 🤖 GitHub Copilot
+
+  tag_cursor_in_pr:
+    if:
+      - {{ is.cursor_author or is.cursor_co_author }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 🤖 Cursor AI
+
+  tag_linearb_ai_in_pr:
+    if:
+      - {{ is.linearb_author or is.linearb_co_author }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 🤖 LinearB AI
 
 is:
+  bot_author: {{ pr.author | match(list=[\"github-actions\", \"_bot_\", \"[bot]\", \"dependabot\"]) | some }}
   claude_author: {{ pr.author | lower | includes(regex=r/claude/) }}
   claude_co_author: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Cc]laude/) | some }}
+  copilot_author: {{ pr.author | lower | includes(regex=r/copilot/) }}
+  copilot_co_author: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*([Cc]opilot|[Gg]ithub.*[Cc]opilot)/) | some }}
+  cursor_author: {{ pr.author | lower | includes(regex=r/cursor/) }}
+  cursor_co_author: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Cc]ursor/) | some }}
+  linearb_author: {{ pr.author | lower | includes(regex=r/^linearb/) and not (pr.author | lower | includes(regex=r/^linearbci$/)) }}
+  linearb_co_author: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*(gitstream-cm|linearb).*\\[bot\\]/) | some }}
 ```
 
 ### Estimated Time to Review
@@ -95,9 +126,9 @@ automations:
       - pr_created
       - commit
     if:
-      - {{ bump == 'minor' }}
-      - {{ branch.name | includes(term="dependabot") }}
-      - {{ branch.author | includes(term="dependabot") }}
+      - {{ dependabot_bump == 'minor' }}
+      - {{ branch.name | includes(term='dependabot') }}
+      - {{ branch.author | includes(term='dependabot') }}
     run:
       - action: approve@v1
       - action: add-comment@v1
@@ -109,12 +140,14 @@ automations:
       - pr_created
       - commit
     if:
-      - {{ bump == 'patch' }}
-      - {{ branch.name | includes(term="dependabot") }}
-      - {{ branch.author | includes(term="dependabot") }}
+      - {{ dependabot_bump == 'patch' }}
+      - {{ branch.name | includes(term='dependabot') }}
+      - {{ branch.author | includes(term='dependabot') }}
     run:
       - action: approve@v1
       - action: add-comment@v1
         args:
           comment: Dependabot `patch` version bumps are approved automatically.
+
+dependabot_bump: {{ pr.description | checkDependabot | checkSemver }}
 ```
