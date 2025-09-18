@@ -20,6 +20,9 @@ automations:
       - action: code-review@v1
         args:
           guidelines: {{ loadReviewGuidelines() | dump }}
+
+is:
+  bot_author: {{ pr.author | match(list=[\"github-actions\", \"_bot_\", \"[bot]\", \"dependabot\"]) | some }}
 ```
 
 ### AI PR Description
@@ -36,6 +39,9 @@ automations:
         args:
           concat_mode: append
           guidelines: {{ loadDescriptionGuidelines() | dump }}
+
+is:
+  bot_author: {{ pr.author | match(list=[\"github-actions\", \"_bot_\", \"[bot]\", \"dependabot\"]) | some }}
 ```
 
 ### Smart Labeling (Agent Coding Detection)
@@ -96,7 +102,7 @@ Label all PRs with an estimated number of minutes it would take someone to revie
 automations:
   estimated_time_to_review:
     if:
-      - true
+      - {{ not is.bot_author }}
     run:
       - action: add-label@v1
         args:
@@ -110,6 +116,9 @@ colors:
   red: 'b60205'
   yellow: 'fbca04'
   green: '0e8a16'
+
+is:
+  bot_author: {{ pr.author | match(list=[\"github-actions\", \"_bot_\", \"[bot]\", \"dependabot\"]) | some }}
 ```
 
 ### Dependabot Minor Bump Auto-Approve
