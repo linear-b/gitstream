@@ -10,9 +10,10 @@ nav:
   - Overview: index.md
   - Guide:
     - GitHub Setup: github-installation.md
+    - GitHub Server (Custom App): custom-github-app.md
     - GitLab Setup: gitlab-installation.md
     - Bitbucket Cloud Setup: bitbucket-installation.md
-    - Custom GitHub App (GitHub Server): custom-github-app.md
+    - Managed Mode: managed-mode.md
     - How gitStream works: how-it-works.md
     - Your First Automation: quick-start.md
     - How to Test Your Automations: dry-run-mode.md
