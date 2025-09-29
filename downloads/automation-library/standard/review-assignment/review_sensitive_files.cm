@@ -1,0 +1,31 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  # Assign special teams to review sensitive files. 
+  # This requires the `sensitive` custom expression found at the bottom of this file.
+  review_sensitive_files:
+    # For all files listed in the sensitive custom expression.
+    if:
+      - {{ files | match(list=sensitive_files) | some }}
+    run:
+      # Add reviewers from the dev-leads team, and require two approvals
+      # Modify `my-organization/security` to match your organization.
+      - action: add-reviewers@v1
+        args:
+          reviewers: [my-organization/security]
+      - action: set-required-approvals@v1
+        args:
+          approvals: 2
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR affects one or more sensitive files and requires review from the security team.
+
+# The `sensitive_file_review` automation requires this custom expression.
+# Modify this list to suit your security needs.
+sensitive_files:
+  - src/app/auth/
+  - src/app/routing/
+  - src/app/resources/
