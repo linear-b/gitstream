@@ -1,0 +1,30 @@
+manifest:
+  version: 1.0
+
+automations:
+  linearb_ai_review:
+    # Triggers only when PR is created or has new commits, see docs
+    #   https://docs.gitstream.cm/execution-model/#action-level-execution-control
+    if:
+      - {{ not pr.draft }}
+      - {{ not (is.bot_author or is.bot_branch) }}
+    run:
+      - action: code-review@v1
+        args:
+          approve_on_LGTM: {{ approve_pr_on_lgtm }} # optional arg, you can remove it
+          guidelines: {{ guidelines }}
+
+# Define variables
+# Add conditions for PR approvals. For example - allow approval only for specific users
+approve_pr_on_lgtm: false
+
+# Add `guidelines` to customize the code review prompts:
+# - For repository-specific guidelines: Place `REVIEW_RULES.md` at your repository root
+# - For organization-wide guidelines: Place the file in your CM repository root and use `../cm/REVIEW_RULES.md`
+# - For team-specific guidelines: Place the file in the team repository root
+# The `dump` filter ensures proper YAML formatting when the file content is inserted
+guidelines: {{ "./REVIEW_RULES.md" | readFile() | dump }}
+
+is:
+  bot_author: {{ pr.author | match(list=['github-actions', '_bot_', '[bot]', 'dependabot']) | some }}
+  bot_branch: {{ branch.name | match(list=['renovate/']) | some }}

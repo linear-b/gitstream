@@ -1,0 +1,20 @@
+-*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+on:
+  - pr_created
+
+automations:
+  comment_amazon_q_prompt:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            Please mark whether you used Amazon Q to assist coding in this PR
+
+            - [ ] Amazon Q Assisted
+            - [ ] Not Amazon Q Assisted 
