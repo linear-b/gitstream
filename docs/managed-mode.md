@@ -1,5 +1,8 @@
 # Managed Mode
 
+!!! warning "GitHub App Migration"
+    If you are using the LinearB GitHub app, you should uninstall the gitStream GitHub app and use only the LinearB GitHub app. The LinearB GitHub app supports both managed and self-managed modes, where the self-managed mode is fully compatible with your existing gitStream setup.
+
 !!! tip "Setup Configuration"
     Managed Mode setup is configured entirely from the LinearB platform. You do not need to setup gitStream yourself, add any GitHub Actions, or create CM rule files - all of this is handled automatically by the LinearB platform. For detailed setup instructions, see [Managing AI Services in LinearB](https://linearb.helpdocs.io/article/hvm9neua4e-managing-ai-services-in-linear-b#ai_tools_automations).
 
