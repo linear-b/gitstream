@@ -80,7 +80,7 @@ automations:
           label: 🤖 LinearB AI
 
 is:
-  bot_author: {{ pr.author | match(list=[\"github-actions\", \"_bot_\", \"[bot]\", \"dependabot\"]) | some }}
+  bot_author: {{ pr.author | match(list=["github-actions", "_bot_", "[bot]", "dependabot"]) | some }}
   claude_author: {{ pr.author | lower | includes(regex=r/claude/) }}
   claude_co_author: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Cc]laude/) | some }}
   copilot_author: {{ pr.author | lower | includes(regex=r/copilot/) }}
@@ -88,7 +88,7 @@ is:
   cursor_author: {{ pr.author | lower | includes(regex=r/cursor/) }}
   cursor_co_author: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Cc]ursor/) | some }}
   linearb_author: {{ pr.author | lower | includes(regex=r/^linearb/) and not (pr.author | lower | includes(regex=r/^linearbci$/)) }}
-  linearb_co_author: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*(gitstream-cm|linearb).*\\[bot\\]/) | some }}
+  linearb_co_author: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*(gitstream-cm|linearb).*\[bot\]/) | some }}
 ```
 
 ### Estimated Time to Review
