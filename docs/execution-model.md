@@ -63,22 +63,22 @@ Additionally, the `on` keyword defines specific events that trigger automations.
 The table below lists supported explicit triggers, categorized into those enabled by default and those that require manual activation.
 
 <div class="trigger-details" markdown=1>
-| Triggering event                                                      | Explicit Trigger :fontawesome-brands-github: | Default (implicit triggers)    |
-| --------------------------------------------------------------------- | -------------------------------------------- | ------------------------------ |
-| Checks finished                                                       | -                                            | When an automation uses the `wait_for_all_checks` action |
-| Comment added                                                         | `comment_added`                              | when `pr.comment` in `.cm`     |
-| :fontawesome-brands-github: Comment edited                            | -                                            | when `pr.comment` in `.cm`     |
-| Commit pushed                                                         | `commit`                                     | `on`                           |
-| Creating a PR                                                         | `pr_created`                                 | When not a draft               |
-| Description changed                                                   | -                                            | when `pr.description` in `.cm` |
-| Label added                                                           | `label_added`                                | when `pr.label` in `.cm`       |
-| Label removed                                                         | `label_removed`                              | when `pr.label` in `.cm`       |
-| :fontawesome-brands-github: Merging the PR                            | `merge`                                      | `off`                          |
-| Title change                                                          | -                                            | when `pr.title` in `.cm`       |
-| Transition from draft to ready for review                             | `pr_ready_for_review`                        | `on`                           |
-| :fontawesome-brands-github: Transition from any state to closed       | `pr_closed`                                  | `off`                          |
-| :fontawesome-brands-github: Transition from closed to open            | `pr_reopened`                                | `off`                          |
-| :fontawesome-brands-github: Transition from any state to approved     | `pr_approved`                                | If there is an automation with one of the actions: `require-reviewers`, `set-required-approvals` or `merge`, or uses `pr.approvals` context variable  |
+| Triggering event                                                      | Explicit Trigger :fontawesome-brands-github: | Default | Conditions    |
+| --------------------------------------------------------------------- | -------------------------------------------- | ------- | ------------- |
+| Checks finished                                                       | -                                            | `on`    | when an automation uses the `wait_for_all_checks` action |
+| Comment added                                                         | `comment_added`                              | `on`    | when `pr.comment` in `.cm`     |
+| :fontawesome-brands-github: Comment edited                            | -                                            | `on`    | when `pr.comment` in `.cm`     |
+| Commit pushed                                                         | `commit`                                     | `on`    | -                          |
+| Creating a PR                                                         | `pr_created`                                 | `on`    | when not a draft               |
+| Description changed                                                   | -                                            | `on`    | when `pr.description` in `.cm` |
+| Label added                                                           | `label_added`                                | `on`    | when `pr.label` in `.cm`       |
+| Label removed                                                         | `label_removed`                              | `on`    | when `pr.label` in `.cm`       |
+| :fontawesome-brands-github: Merging the PR                            | `merge`                                      | `off`   | -                          |
+| Title change                                                          | -                                            | `on`    | when `pr.title` in `.cm`       |
+| Transition from draft to ready for review                             | `pr_ready_for_review`                        | `on`    | -                          |
+| :fontawesome-brands-github: Transition from any state to closed       | `pr_closed`                                  | `off`   | -                          |
+| :fontawesome-brands-github: Transition from closed to open            | `pr_reopened`                                | `off`   | -                          |
+| :fontawesome-brands-github: Transition from any state to approved     | `pr_approved`                                | `on`    | If there is an automation with one of the actions: `require-reviewers`, `set-required-approvals` or `merge`, or uses `pr.approvals` context variable  |
 </div>
 
 Explicit triggers are set independently per each automation block and can be configured at the file level, specific to each automation separately or in combination. If triggers are listed at the file level **and** specific automation, the automation will be triggered according to both triggers.
