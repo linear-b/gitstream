@@ -69,13 +69,13 @@ The table below lists supported explicit triggers, categorized into those enable
 | Comment added                                                         | `comment_added`                              | when `pr.comment` in `.cm`     |
 | :fontawesome-brands-github: Comment edited                            | -                                            | when `pr.comment` in `.cm`     |
 | Commit pushed                                                         | `commit`                                     | `on`                           |
-| Creating a PR                                                         | `pr_created`                                 | `on`                           |
+| Creating a PR                                                         | `pr_created`                                 | When not a draft               |
 | Description changed                                                   | -                                            | when `pr.description` in `.cm` |
 | Label added                                                           | `label_added`                                | when `pr.label` in `.cm`       |
 | Label removed                                                         | `label_removed`                              | when `pr.label` in `.cm`       |
 | :fontawesome-brands-github: Merging the PR                            | `merge`                                      | `off`                          |
 | Title change                                                          | -                                            | when `pr.title` in `.cm`       |
-| :fontawesome-brands-github: Transition from draft to ready for review | `pr_ready_for_review`                        | `off`                          |
+| Transition from draft to ready for review                             | `pr_ready_for_review`                        | `on`                           |
 | :fontawesome-brands-github: Transition from any state to closed       | `pr_closed`                                  | `off`                          |
 | :fontawesome-brands-github: Transition from closed to open            | `pr_reopened`                                | `off`                          |
 | :fontawesome-brands-github: Transition from any state to approved     | `pr_approved`                                | If there is an automation with one of the actions: `require-reviewers`, `set-required-approvals` or `merge`, or uses `pr.approvals` context variable  |
