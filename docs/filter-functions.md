@@ -23,13 +23,13 @@ The following functions are supported in addition to the built-in functions prov
 | --------------------------------------------------------------------------------------------------------------------- | ---------------------- | ------------------------------- | ---------------------- |
 | [`capture`](#capture)<br />Find and return the first occurrence of a regex in the input string                        | String                 | `regex`                         | String                 |
 | [`difference`](#difference)<br />Given two lists, keep only items that are in the 1st list but not in the 2nd.        | [Objects]              | `list`                          | [Objects]              |
-| [`every`](#every)<br />Checks whether all element in the list are `true`                                              | [Bool]                 | -                               | Bool                   |
+| [`every`](#every)<br />Checks whether all elements in the list are `true`                                              | [Bool]                 | -                               | Bool                   |
 | [`filter`](#filter)<br />Reduce list of items into a list of same items that match the specified term                 | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
 | [`includes`](#match)<br />Check if substring match                                                                    | String                 | `regex`, `term`, `list`         | Bool                   |
 | [`intersection`](#intersection)<br />Given two lists, keep only items that are in both lists.                         | [Objects]              | `list`                          | [Objects]              |
 | [`map`](#map)<br />Maps each object in a list into their specified attribute value                                    | [Object]               | `attr`                          | [Object]               |
 | [`match`](#match)<br />Maps list of items into a list of booleans that match the specified term                       | [String]<br />[Object] | `regex`, `term`, `list` `attr`  | [Bool]                 |
-| [`nope`](#nope)<br />Checks whether all element in the list are `false`                                               | [Bool]                 | -                               | Bool                   |
+| [`nope`](#nope)<br />Checks whether all elements in the list are `false`                                               | [Bool]                 | -                               | Bool                   |
 | [`reject`](#reject)<br />Inverse of [`filter`](#filter), the result list contains non-matching items                  | [String]<br />[Object] | `regex`, `term`, `list`, `attr` | [String]<br />[Object] |
 | [`some`](#some)<br />Checks whether at least one element in the list is `true`                                        | [Bool]                 | -                               | Bool                   |
 
@@ -42,7 +42,7 @@ The following functions are supported in addition to the built-in functions prov
 
 | Function                                                                                                                                                                 | Input                                                      | Args                                               | Output                  |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- | -------------------------------------------------- | ----------------------- |
-| [`allDocs`](#alldocs)<br />Checks the list includes only images                                                                                                          | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
+| [`allDocs`](#alldocs)<br />Checks if the list includes only documents                                                                                                          | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
 | [`allImages`](#allimages)<br />Checks the list includes only images                                                                                                      | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
 | [`allTests`](#alltests)<br />Checks the list includes only tests                                                                                                         | [`files`](./context-variables.md#files)                    | -                                                  | Bool                    |
 | [`checkDependabot`](#checkdependabot)<br />Extract version bump information from Dependabot PRs description                                                              | String - PR description                                    | -                                                  | [String]                |
@@ -55,9 +55,9 @@ The following functions are supported in addition to the built-in functions prov
 | [`extractJitFindings`](#extractjitfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the Jit scan                         | [`pr`](./context-variables.md#pr)                          | -                                                  | Object                  |
 | [`extractSonarFindings`](#extractsonarfindings) :fontawesome-brands-github: <br />Get an object with a summary of the findings found by the SonarCloud scan              | [`pr`](./context-variables.md#pr)                          | -                                                  | Object                  |
 | [`explainRankByGitBlame`](#explainrankbygitblame)<br />Short markdown text explaining rankByGitBlame results                                                             | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
-| [`isFirstCommit`](#isfirstcommit)<br />Checks if its the author first commit in the repo                                                                                 | [`repo.contributors`](./context-variables.md#repo)         | String                                             | Bool                    |
+| [`isFirstCommit`](#isfirstcommit)<br />Checks if it's the author's first commit in the repo                                                                                 | [`repo.contributors`](./context-variables.md#repo)         | String                                             | Bool                    |
 | [`isFormattingChange`](#isformattingchange)<br />Checks that only formatting changed                                                                                     | [[`FileDiff` ](./context-variables.md#filediff-structure)] | -                                                  | Bool                    |
-| [`mapToEnum`](#maptoenum)<br />return the enum value matches to the input key                                                                                            | String                                                     | Enum object                                        | Object                  |
+| [`mapToEnum`](#maptoenum)<br />return the enum value that matches the input key                                                                                            | String                                                     | Enum object                                        | Object                  |
 | [`matchDiffLines`](#matchdifflines)<br />Match every line in diff                                                                                                        | [[`FileDiff` ](./context-variables.md#filediff-structure)] | `regex`, `ignoreWhiteSpaces`                       | [Bool]                  |
 | [`rankByGitActivity`](#rankbygitactivity)<br />Get list of contributors based on `git-commit` activity                                                                   | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
 | [`rankByGitBlame`](#rankbygitblame)<br />Get list of contributors based on `git-blame` results                                                                           | [`repo`](./context-variables.md#repo)                      | `gt`, `lt`                                         | [String]                |
@@ -123,7 +123,7 @@ Given two lists, keep only items that are in the 1st list but not in the 2nd.
 
 #### `every`
 
-Checks whether all element in the list are `true`. In case the list of elements is empty, it will return `false`.
+Checks whether all elements in the list are `true`. In case the list of elements is empty, it will return `false`.
 
 <div class="filter-details" markdown=1>
 
@@ -623,7 +623,7 @@ For example, check that only one file type was changed:
 
 !!! Warning ":fontawesome-brands-github: Available in GitHub only"
 
-    This filter is currently availalbe only in GitHub
+    This filter is currently available only in GitHub
 
 Get an object with a summary of the findings found by [Jit](https://www.jit.io/) scan. This filter is relevant only for repos that use Jit to scan PRs
 
@@ -708,7 +708,7 @@ automations:
 #### `extractSonarFindings`
 !!! Warning ":fontawesome-brands-github: Available in GitHub only"
 
-    This filter is currently availalbe only in GitHub
+    This filter is currently available only in GitHub
 
 Get an object with a summary of the findings found by the SonarCloud scan. This filter is relevant only for repos that use SonarCloud to scan PRs
 
@@ -842,7 +842,7 @@ Note the comment starts with `|` and a `new-line` as `explainRankByGitBlame` gen
 
 #### `isFirstCommit`
 
-Return `true` if it's the author first commit in the repo.
+Return `true` if it's the author's first commit in the repo.
 
 <div class="filter-details" markdown=1>
 
@@ -850,7 +850,7 @@ Return `true` if it's the author first commit in the repo.
 | ------------ | ---------|--------|------------------------------------------------ |
 | -     | Input    | [`repo.contributors`](./context-variables.md#repo)  | List of contributors in the repo |
 | -     | Input    | String  | The contributor name |
-| -     | Output   | Bool   | `true` if its the first commit of the selected contributor |
+| -     | Output   | Bool   | `true` if it's the author's first commit of the selected contributor |
 
 </div>
 

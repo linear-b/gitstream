@@ -48,7 +48,7 @@ For all other actions, gitStream executes the actions in the order they are list
 
 #### Dynamic actions arguments
 
-Arguments values a dynamic value is supported using expressions based on Jinja2 syntax, and includes gitStream context variables, for example:
+Argument values support dynamic values using expressions based on Jinja2 syntax, and include gitStream context variables, for example:
 
 ```yaml+jinja
 automations:
@@ -263,7 +263,7 @@ automations:
 
 #### `close` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
-This action, once triggered, close the PR without merging.
+This action, once triggered, closes the PR without merging.
 
 ```yaml+jinja title="example"
 automations:

@@ -31,7 +31,7 @@ gitStream automations are triggered by events related to pull requests (PRs). Yo
 
 By default, gitStream evaluates any new commit pushed to the PR, triggering automation evaluation.
 
-Additionally, if any of the automation rules reference the following [`pr`](context-variables.md#pr) context variables: `pr.comments`, `pr.title`, `pr.description`, or `pr.labels`, gitStream shall trigger and will initiate automation rules evaluation where there are changes to the PR comments, title, description, or labels respectfully.
+Additionally, if any of the automation rules reference the following [`pr`](context-variables.md#pr) context variables: `pr.comments`, `pr.title`, `pr.description`, or `pr.labels`, gitStream shall trigger and will initiate automation rules evaluation where there are changes to the PR comments, title, description, or labels respectively.
 
 This allows for greater flexibility in the automation process, ensuring that the relevant automation rules are evaluated and triggered when necessary. The execution model ensures the automation process is streamlined, efficient, and effective.
 
@@ -317,7 +317,7 @@ automations:
 
 #### Branch regex pattern
 
-Trigger only specific automations branch pattern A, and trigger other automation for all other branches except those that fit the pattern REGEX_PATTERN
+Trigger only specific automations branch pattern A, and trigger other automation for all other branches except those that fit the pattern REGEX_PATTERN.
 
 ```yaml+jinja
 # Automation in this file will trigger only for branch pattern REGEX_PATTERN

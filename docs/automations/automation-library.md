@@ -69,5 +69,5 @@ These examples provide useful components to use in other automations. These aren
 
 ## Contribute Your Idea
 
-!!! tip "Do you Have a great idea for an automation that should be included in this library?"
+!!! tip "Do you have a great idea for an automation that should be included in this library?"
     [Submit your configuration](https://github.com/linear-b/gitStream/issues/new?assignees=&labels=new-example&template=new_automation_example.md&title=New+Example%3A+) on GitHub. We'll recognize your contribution publicly (if you want) and might even send you some special swag for your contribution. 

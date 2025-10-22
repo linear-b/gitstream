@@ -36,7 +36,7 @@ Here is an example of the basic components that are required in every CM file.
 Any number of actions can be included in a single automation, and these actions are invoked one-by-one in no particular order. PRs marked as Draft are ignored by default, and this behavior can be modified using [explicit triggers](./execution-model.md#explicit-triggers) (GitHub only).
 
 !!! example "Basic Automation Example"
-    This example defines an automation named `welcome_newcomer` that post a comment to welcome anyone who submits their first PR to the repo.
+    This example defines an automation named `welcome_newcomer` that posts a comment to welcome anyone who submits their first PR to the repo.
     ```yaml+jinja
     automations:
       welcome_newcomer:
@@ -150,7 +150,7 @@ Once gitStream is installed and configured, there are several services that will
 
 Whenever a new PR is opened or an existing PR is changed (see also [Execution Model](https://docs.gitstream.cm/execution-model/)), the following process occurs:
 
-1. The **git service provider API** notifies the **gitStream service** that an applicable change has occured to the PR which triggers a call to execute the **gitStream CI/CD script**.
+1. The **git service provider API** notifies the **gitStream service** that an applicable change has occurred to the PR which triggers a call to execute the **gitStream CI/CD script**.
 1. **Trigger Control** evaluates whether to proceed with handling based on event type, branch patterns, or repository names as configured in your [Execution Model](execution-model.md).
 1. The **gitStream CI/CD script** executes the GitHub Action <a href="https://github.com/linear-b/gitstream-github-action" target="_blank">`linear-b/gitstream-github-action@v2`</a> on the repository, which looks for two things:
     * Valid CM files that match the filepath `.cm/*.cm`

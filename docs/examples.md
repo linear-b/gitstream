@@ -4,14 +4,14 @@ description: Build your first gitStream automation in as little as two minutes.
 ---
 # gitStream Quickstart
 
-This page contains common gitStream configurations that are a great place to begin adopting a continuous merge mindset with gitStream. If you haven't already, you'll need to install gitStream to your [GitHub](github-installation.md) or [GitLab](gitlab-installation.md) organization before you can use these automations
+This page contains common gitStream configurations that are a great place to begin adopting a continuous merge mindset with gitStream. If you haven't already, you'll need to install gitStream to your [GitHub](github-installation.md) or [GitLab](gitlab-installation.md) organization before you can use these automations.
 
 !!! tip "Build your first gitStream automation in as little as two minutes."
-    These example are complete gitStream configuration files that you can download directly via the buttons below the examples and upload to the `.cm` directory of your repo. Alternatively, you can copy and paste the individual automations, but make sure you include all required declarations and any related custom expressions from the configuration to ensure everything works properly. 
+    These examples are complete gitStream configuration files that you can download directly via the buttons below the examples and upload to the `.cm` directory of your repo. Alternatively, you can copy and paste the individual automations, but make sure you include all required declarations and any related custom expressions from the configuration to ensure everything works properly. 
 
 ## Improve PR Context with Label Automation
 
-This CM automation contains a collection of workflows to automatically apply labels that to provide deeper context to code reviewers to help them more quickly triage and address incoming requests for reviews. Ideally, you should implement these automations across your entire git organization to maximize developer usage. 
+This CM automation contains a collection of workflows to automatically apply labels to provide deeper context to code reviewers to help them more quickly triage and address incoming requests for reviews. Ideally, you should implement these automations across your entire git organization to maximize developer usage. 
 
 The following example includes workflow automations to do the following:
 
