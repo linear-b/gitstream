@@ -184,7 +184,7 @@ You can now set up gitStream for a single repo, your GitHub organization or acro
         ```
 
         **GitHub Actions**
-        Once your gitStream configuration file is setup, you need a Github Actions configuration file to trigger gitStream automations. Create a `.github/workflows/gitstream.yml` file in your repository's default branch (usually `master` or `main`) and add the following configuration:
+        Once your gitStream configuration file is setup, you need a GitHub Actions configuration file to trigger gitStream automations. Create a `.github/workflows/gitstream.yml` file in your repository's default branch (usually `master` or `main`) and add the following configuration:
 
         ```yaml+jinja
         --8<-- "docs/downloads/gitstream.yml"
@@ -223,7 +223,7 @@ You can now set up gitStream for a single repo, your GitHub organization or acro
 
         **GitHub Actions**
 
-        Once your gitStream configuration file is set up, you will need to create a Github Actions configuration file to trigger gitStream automations. Create a `.github/workflows/gitstream.yml` file in your `cm` repository's default branch (usually `master` or `main`) and add the following configuration:
+        Once your gitStream configuration file is set up, you will need to create a GitHub Actions configuration file to trigger gitStream automations. Create a `.github/workflows/gitstream.yml` file in your `cm` repository's default branch (usually `master` or `main`) and add the following configuration:
 
         ```yaml+jinja
         --8<-- "docs/downloads/gitstream.yml"
@@ -259,7 +259,7 @@ You can now set up gitStream for a single repo, your GitHub organization or acro
 
         **GitHub Actions**
 
-        Once your gitStream configuration file is set up, you will need to create a Github Actions configuration file to trigger gitStream automations. Create a `.github/workflows/gitstream.yml` file in your `cm` repository's default branch (usually `master` or `main`) and add the following configuration:
+        Once your gitStream configuration file is set up, you will need to create a GitHub Actions configuration file to trigger gitStream automations. Create a `.github/workflows/gitstream.yml` file in your `cm` repository's default branch (usually `master` or `main`) and add the following configuration:
 
         ```yaml+jinja
         --8<-- "docs/downloads/gitstream.yml"

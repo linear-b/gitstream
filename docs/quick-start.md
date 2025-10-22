@@ -32,7 +32,7 @@ This example uses the filter functions [`allDocs`](/filter-functions/#alldocs), 
     ```
 
 !!! tip "Test Your Automation in Dry Run Mode"
-    gitStream includes a dry-run mode that let's you test your automations on your desired repo without pushing significant code, documentation, or other changes to the repo. 
+    gitStream includes a dry-run mode that lets you test your automations on your desired repo without pushing significant code, documentation, or other changes to the repo. 
     
     Learn more in our guide: [How to Test Your Automations](/dry-run-mode/).
 
@@ -65,7 +65,7 @@ This example uses the [`codeExperts`](/filter-functions/#codeexperts) filter fun
     ```
 
 ## Enforce Review Policies for Critical Changes
-Complex and sensitive PRs often require more nuanced and complex review processes that bring in outside teams of experts to review code changes. gitStream makes it easy to set up custom review policies to keep teams align across your organization. This example contains two automations that implement custom review policies for specific parts of a codebase. 
+Complex and sensitive PRs often require more nuanced and complex review processes that bring in outside teams of experts to review code changes. gitStream makes it easy to set up custom review policies to keep teams aligned across your organization. This example contains two automations that implement custom review policies for specific parts of a codebase. 
 
 First, the `security_review` automation uses the [`require-reviewers`](/automation-actions/#require-reviewers) automation action to add the security team from the git organization as reviewers on PRs that affect the `auth` directory of the repo. This action accepts a `reviewers:` argument that contains a list of teams or individual users; you will need to change this value to match your organization and users.
 

@@ -21,7 +21,7 @@ Flag the use of `!important` in CSS files and automatically request changes.
     Automation Actions:
 
     * Apply an orange label that says `⚠️ Includes !important tag`
-    * Request changes an post a comment asking the PR author to remove the important tage.
+    * Request changes and post a comment asking the PR author to remove the important tag.
 
 </div>
 <div class="automationExample" markdown="1">
