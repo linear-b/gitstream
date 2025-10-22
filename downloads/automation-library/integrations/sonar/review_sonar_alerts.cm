@@ -1,0 +1,18 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+automations:
+  review_sonar_alerts:
+      if:
+        - {{ sonar.code_smells.rating != 'A' or sonar.vulnerabilities.rating != 'A' or sonar.security_hotspots.rating != 'A'}}
+      run:
+        - action: require-reviewers@v1
+          args:
+            reviewers: [my-organization/security-team]
+        - action: add-comment@v1
+          args:
+            comment: |
+              This PR requires additional review because it fails to meet SonarCloud clean code standards.
+
+sonar: {{ pr | extractSonarFindings }}

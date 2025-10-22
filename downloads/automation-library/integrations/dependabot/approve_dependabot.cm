@@ -1,0 +1,22 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  approve_dependabot:
+    on:
+      - pr_created
+      - commit
+    if:
+      - {{ branch.name | includes(term="dependabot") }}
+      - {{ branch.author | includes(term="dependabot") }}
+    run:
+      - action: approve@v1
+      - action: add-label@v1
+        args:
+          label: "approved-dependabot"
+      - action: merge@v1
+        args:
+          wait_for_all_checks: true
+          squash_on_merge: true
