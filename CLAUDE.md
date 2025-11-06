@@ -9,6 +9,8 @@ This is the gitStream repository - a workflow automation tool for git repositori
 ## Development Commands
 
 ### Documentation Server
+
+#### MkDocs (Current/Production)
 The documentation is built using MkDocs Material theme.
 
 ```bash
@@ -25,6 +27,27 @@ mkdocs serve  # Runs at http://127.0.0.1:8000/
 # Build documentation
 mkdocs build
 ```
+
+#### Zensical (Testing)
+Zensical is being evaluated as a potential replacement for MkDocs. It uses the same `mkdocs.yml` configuration file.
+
+**Requirements:** Python 3.11+ (uses `uv` for dependency management)
+
+```bash
+# Sync/install Zensical dependencies (first time or after updates)
+uv sync
+
+# Run Zensical documentation server locally
+uv run zensical serve  # Runs at http://127.0.0.1:8000/
+
+# Build documentation with Zensical
+uv run zensical build
+```
+
+**Notes:**
+- Zensical uses its own uv-managed virtual environment (`.venv`) with Python 3.11+
+- Both MkDocs and Zensical use port 8000 by default, so run only one at a time
+- See `ZENSICAL_TESTING.md` for detailed comparison guide
 
 ## Code Architecture
 
