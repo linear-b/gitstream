@@ -10,12 +10,6 @@
   color: #FFFFFF;
 }
 
-/* Hide the search keyboard shortcut hint (⌘K) */
-.md-search__shortcut,
-.md-search .shortcut {
-  display: none;
-}
-
 h2 {
   padding-top: 4%;
 }
