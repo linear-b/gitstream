@@ -186,6 +186,7 @@ div.flow-chart {
 
 .integrations-card-title a{
   color: inherit;
+  text-decoration: none;
 }
 
 .integrations-card-title img{
