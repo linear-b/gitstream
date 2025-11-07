@@ -31,7 +31,7 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:simple-githubactions: GitHub Actions](/integrations/github-actions)
+[![](../assets/icons/simple-icons/githubactions.svg){ width="20" } GitHub Actions](/integrations/github-actions)
 </div>
 </div>
 
@@ -49,7 +49,7 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:simple-codereview: PR Reviews](/automations/standard/review-assignment)
+[![](../assets/icons/simple-icons/codereview.svg){ width="20" } PR Reviews](/automations/standard/review-assignment)
 </div>
 </div>
 
@@ -103,13 +103,13 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:simple-sonarcloud: SonarCloud](/integrations/sonar)
+[![](../assets/icons/simple-icons/sonarcloud.svg){ width="20" } SonarCloud](/integrations/sonar)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:simple-dependabot: Dependabot](/integrations/dependabot)
+[![](../assets/icons/simple-icons/dependabot.svg){ width="20" } Dependabot](/integrations/dependabot)
 </div>
 </div>
 
@@ -121,13 +121,13 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:simple-renovatebot: Renovate](/integrations/renovate)
+[![](../assets/icons/simple-icons/renovatebot.svg){ width="20" } Renovate](/integrations/renovate)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:simple-snyk: Snyk](/integrations/snyk)
+[![](../assets/icons/simple-icons/snyk.svg){ width="20" } Snyk](/integrations/snyk)
 </div>
 </div>
 
@@ -151,19 +151,19 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:simple-asana: Asana](/integrations/asana)
+[![](../assets/icons/simple-icons/asana.svg){ width="20" } Asana](/integrations/asana)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:simple-clubhouse: Shortcut](/integrations/shortcut)
+[![](../assets/icons/simple-icons/clubhouse.svg){ width="20" } Shortcut](/integrations/shortcut)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:simple-azuredevops: Azure Boards](/integrations/azure-boards)
+[![](../assets/icons/simple-icons/azuredevops.svg){ width="20" } Azure Boards](/integrations/azure-boards)
 </div>
 </div>
 
@@ -175,7 +175,7 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:simple-slack: Slack](/integrations/slack)
+[![](../assets/icons/simple-icons/slack.svg){ width="20" } Slack](/integrations/slack)
 </div>
 </div>
 
@@ -229,7 +229,7 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:simple-javascript: JavaScript](/automations/languages/javascript)
+[![](../assets/icons/simple-icons/javascript.svg){ width="20" } JavaScript](/automations/languages/javascript)
 </div>
 </div>
 
@@ -241,7 +241,7 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:simple-python: Python](/automations/languages/python)
+[![](../assets/icons/simple-icons/python.svg){ width="20" } Python](/automations/languages/python)
 </div>
 </div>
 
@@ -253,13 +253,13 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:simple-ruby: Ruby](/automations/languages/ruby)
+[![](../assets/icons/simple-icons/ruby.svg){ width="20" } Ruby](/automations/languages/ruby)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:simple-html5: HTML/CSS](/automations/languages/html)
+[![](../assets/icons/simple-icons/html5.svg){ width="20" } HTML/CSS](/automations/languages/html)
 </div>
 </div>
 
@@ -318,7 +318,7 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:simple-zapier: Zapier](/integrations/zapier)
+[![](../assets/icons/simple-icons/zapier.svg){ width="20" } Zapier](/integrations/zapier)
 </div>
 </div>
 
