@@ -1,0 +1,643 @@
+# -*- mode: yaml -*-
+# This CM automation tracks AI tool adoption in your repository
+# Based on: https://linearb.helpdocs.io/article/n8q4ydqmkd-ai-insights
+#
+# Adoption Types:
+# - Rules File: AI tool configuration file added/modified
+# - Co-author: AI tool contributed as co-author in commits
+# - PR Author: AI tool or bot created the PR
+
+manifest:
+  version: 1.0
+
+# Custom expressions for AI tool detection
+config:
+  # Rule file patterns for each AI tool
+  has_aider_rules: {{ files | match(regex=r/(^|.*\/).aider.conf.yml$/) | some }}
+  has_amazonq_rules: {{ files | match(regex=r/^\.amazonq\/rules\/[^\/]+\.md$/) | some }}
+  has_augmentcode_rules: {{ files | match(regex=r/^\.augment\/rules\/[^\/]+\.md$/) | some }}
+  has_claude_rules: {{ files | match(regex=r/(^|.*\/)CLAUDE\.md$/) | some }}
+  has_cursor_rules: {{ files | match(regex=r/(^|.*\/)\.cursorrules$|^\.cursor\/rules\/[^\/]+\.md$/) | some }}
+  has_customtool_rules: {{ files | match(regex=r/(^|.*\/)\.customtool$|^\.custom\/rules\/[^\/]+\.rules$/) | some }}
+  has_firebase_rules: {{ files | match(regex=r/(^|.*\/).idx\/airules.md$/) | some }}
+  has_gemini_rules: {{ files | match(regex=r/(^|.*\/)GEMINI\.md$/) | some }}
+  has_github_copilot_rules: {{ files | match(regex=r/^\.github\/copilot-instructions\.md$|^\.github\/[^\/]+-instructions\.md$/) | some }}
+  has_goose_rules: {{ files | match(regex=r/(^|.*\/)\.goosehints$/) | some }}
+  has_jetbrains_junie_rules: {{ files | match(regex=r/^\.junie\/[^\/]+\.md$/) | some }}
+  has_kilocode_rules: {{ files | match(regex=r/^\.kilocode\/rules\/[^\/]+\.md$/) | some }}
+  has_kiro_rules: {{ files | match(regex=r/^\.kiro\/steering\/[^\/]+\.md$/) | some }}
+  has_openai_rules: {{ files | match(regex=r/(^|.*\/)AGENT\.md$|(^|.*\/)AGENTS\.md$/) | some }}
+  has_openhands_rules: {{ files | match(regex=r/^\.openhands\/microagents\/[^\/]+\.md$/) | some }}
+  has_warp_rules: {{ files | match(regex=r/(^|.*\/)WARP\.md$/) | some }}
+  has_windsurf_rules: {{ files | match(regex=r/(^|.*\/)\.windsurfrules$/) | some }}
+  has_zed_rules: {{ files | match(regex=r/(^|.*\/)\.rules$/) | some }}
+
+  # Co-author detection patterns (check commit messages)
+  has_aider_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Aa]ider/) | some }}
+  has_aikido_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Aa]ikido/) | some }}
+  has_amazonq_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Aa]mazon.*[Qq]/) | some }}
+  has_atlassian_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Cc]ode.*[Rr]eviewer/) | some }}
+  has_bito_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Bb]ito/) | some }}
+  has_claude_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Cc]laude/) | some }}
+  has_codeant_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Cc]odeant/) | some }}
+  has_codegen_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Cc]odegen/) | some }}
+  has_coderabbit_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Cc]ode[Rr]abbit/) | some }}
+  has_codota_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Cc]odota/) | some }}
+  has_cubic_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Cc]ubic/) | some }}
+  has_cursor_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Cc]ursor/) | some }}
+  has_devin_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Dd]evin/) | some }}
+  has_ellipsis_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Ee]llipsis/) | some }}
+  has_factory_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Ff]actory/) | some }}
+  has_fine_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Ff]ine/) | some }}
+  has_gemini_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Gg]emini/) | some }}
+  has_github_copilot_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Cc]opilot/) | some }}
+  has_gitlab_duo_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Gg]it[Ll]ab.*[Dd]uo/) | some }}
+  has_gitstream_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Gg]itstream/) | some }}
+  has_google_jules_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Gg]oogle.*[Jj]ules/) | some }}
+  has_graphite_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Gg]raphite/) | some }}
+  has_greptile_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Gg]reptile/) | some }}
+  has_jazzberry_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*([Pp]rophet|[Jj]azzberry)/) | some }}
+  has_jetbrains_junie_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Jj]et[Bb]rains.*[Jj]unie/) | some }}
+  has_korbit_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Kk]orbit/) | some }}
+  has_meticulous_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Mm]eticulous/) | some }}
+  has_openai_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*([Cc]odex|[Cc]hat[Gg][Pp][Tt])/) | some }}
+  has_opencode_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Oo]pencode/) | some }}
+  has_qodo_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*(pr.agent|[Qq]odo|[Cc]odium)/) | some }}
+  has_replit_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Rr]eplit/) | some }}
+  has_rovo_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Rr]ovo/) | some }}
+  has_sourcegraph_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Ss]ourcegraph/) | some }}
+  has_sourcery_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Ss]ourcery/) | some }}
+  has_sweep_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Ss]weep/) | some }}
+  has_tabnine_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Tt]abnine/) | some }}
+  has_tusk_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Tt]usk/) | some }}
+  has_whatthediff_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Ww]hat.*[Dd]iff/) | some }}
+  has_windsurf_coauthor: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*[Ww]indsurf/) | some }}
+
+  # PR Author detection patterns
+  is_claude_author: {{ pr.author | match(regex=r/(^claude$|claude ai|claude ai assistant|claude code|claude github action|claude\[bot\])/i) }}
+  is_coderabbit_author: {{ pr.author | match(regex=r/coderabbit/i) }}
+  is_cursor_author: {{ pr.author | match(regex=r/(-cursor|^cursor)/i) }}
+  is_devin_author: {{ pr.author | match(regex=r/(devin ai|devin-ai)/i) }}
+  is_fine_author: {{ pr.author | match(regex=r/(^fine-agent|^fine-ai)/i) }}
+  is_gemini_author: {{ pr.author | match(regex=r/(^gemini$|^gemini-|gemini-code-assist)/i) }}
+  is_github_copilot_author: {{ pr.author | match(regex=r/copilot/i) }}
+  is_gitstream_author: {{ pr.author | match(regex=r/gitstream/i) }}
+  is_greptile_author: {{ pr.author | match(regex=r/greptile/i) }}
+  is_qodo_author: {{ pr.author | match(regex=r/(^pr agent|^pr-agent|^pr_agent|codium pr-agent|pr-ia-20240430|qodo\b|s-qce-pr-reviewer)/i) }}
+
+  # General AI detection - true if ANY AI tool/method is detected
+  any_ai_detected: {{ has_aider_rules or has_amazonq_rules or has_augmentcode_rules or has_claude_rules or has_cursor_rules or has_customtool_rules or has_firebase_rules or has_gemini_rules or has_github_copilot_rules or has_goose_rules or has_jetbrains_junie_rules or has_kilocode_rules or has_kiro_rules or has_openai_rules or has_openhands_rules or has_warp_rules or has_windsurf_rules or has_zed_rules or has_aider_coauthor or has_aikido_coauthor or has_amazonq_coauthor or has_atlassian_coauthor or has_bito_coauthor or has_claude_coauthor or has_codeant_coauthor or has_codegen_coauthor or has_coderabbit_coauthor or has_codota_coauthor or has_cubic_coauthor or has_cursor_coauthor or has_devin_coauthor or has_ellipsis_coauthor or has_factory_coauthor or has_fine_coauthor or has_gemini_coauthor or has_github_copilot_coauthor or has_gitlab_duo_coauthor or has_gitstream_coauthor or has_google_jules_coauthor or has_graphite_coauthor or has_greptile_coauthor or has_jazzberry_coauthor or has_jetbrains_junie_coauthor or has_korbit_coauthor or has_meticulous_coauthor or has_openai_coauthor or has_opencode_coauthor or has_qodo_coauthor or has_replit_coauthor or has_rovo_coauthor or has_sourcegraph_coauthor or has_sourcery_coauthor or has_sweep_coauthor or has_tabnine_coauthor or has_tusk_coauthor or has_whatthediff_coauthor or has_windsurf_coauthor or is_claude_author or is_coderabbit_author or is_cursor_author or is_devin_author or is_fine_author or is_gemini_author or is_github_copilot_author or is_gitstream_author or is_greptile_author or is_qodo_author }}
+
+automations:
+  # =============================================================================
+  # RULES FILE ADOPTION - Label PRs that add/modify AI tool configuration files
+  # =============================================================================
+
+  label_aider_rules:
+    if:
+      - {{ config.has_aider_rules }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-rules'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-aider'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Aider Rules File**
+
+            This PR adds or modifies Aider configuration files, indicating rules-based AI adoption.
+
+  label_amazonq_rules:
+    if:
+      - {{ config.has_amazonq_rules }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-rules'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-amazon-q'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Amazon Q Rules File**
+
+            This PR adds or modifies Amazon Q configuration files, indicating rules-based AI adoption.
+
+  label_augmentcode_rules:
+    if:
+      - {{ config.has_augmentcode_rules }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-rules'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-augmentcode'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: AugmentCode Rules File**
+
+            This PR adds or modifies AugmentCode configuration files, indicating rules-based AI adoption.
+
+  label_claude_rules:
+    if:
+      - {{ config.has_claude_rules }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-rules'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-claude'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Claude Rules File**
+
+            This PR adds or modifies Claude/Claude Code configuration files, indicating rules-based AI adoption.
+
+  label_cursor_rules:
+    if:
+      - {{ config.has_cursor_rules }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-rules'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-cursor'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Cursor Rules File**
+
+            This PR adds or modifies Cursor configuration files, indicating rules-based AI adoption.
+
+  label_firebase_rules:
+    if:
+      - {{ config.has_firebase_rules }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-rules'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-firebase-studio'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Firebase Studio Rules File**
+
+            This PR adds or modifies Firebase Studio AI configuration files, indicating rules-based AI adoption.
+
+  label_gemini_rules:
+    if:
+      - {{ config.has_gemini_rules }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-rules'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-gemini'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Google Gemini Rules File**
+
+            This PR adds or modifies Google Gemini configuration files, indicating rules-based AI adoption.
+
+  label_github_copilot_rules:
+    if:
+      - {{ config.has_github_copilot_rules }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-rules'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-github-copilot'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: GitHub Copilot Rules File**
+
+            This PR adds or modifies GitHub Copilot instruction files, indicating rules-based AI adoption.
+
+  label_goose_rules:
+    if:
+      - {{ config.has_goose_rules }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-rules'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-goose'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Goose Rules File**
+
+            This PR adds or modifies Goose configuration files, indicating rules-based AI adoption.
+
+  label_jetbrains_junie_rules:
+    if:
+      - {{ config.has_jetbrains_junie_rules }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-rules'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-jetbrains-junie'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: JetBrains Junie Rules File**
+
+            This PR adds or modifies JetBrains Junie configuration files, indicating rules-based AI adoption.
+
+  label_kilocode_rules:
+    if:
+      - {{ config.has_kilocode_rules }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-rules'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-kilocode'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Kilo Code Rules File**
+
+            This PR adds or modifies Kilo Code configuration files, indicating rules-based AI adoption.
+
+  label_kiro_rules:
+    if:
+      - {{ config.has_kiro_rules }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-rules'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-kiro'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Kiro Rules File**
+
+            This PR adds or modifies Kiro steering files, indicating rules-based AI adoption.
+
+  label_openai_rules:
+    if:
+      - {{ config.has_openai_rules }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-rules'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-openai-codex'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: OpenAI Codex Rules File**
+
+            This PR adds or modifies OpenAI Codex configuration files, indicating rules-based AI adoption.
+
+  label_openhands_rules:
+    if:
+      - {{ config.has_openhands_rules }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-rules'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-openhands'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Open Hands Rules File**
+
+            This PR adds or modifies Open Hands microagent files, indicating rules-based AI adoption.
+
+  label_warp_rules:
+    if:
+      - {{ config.has_warp_rules }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-rules'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-warp'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Warp Rules File**
+
+            This PR adds or modifies Warp configuration files, indicating rules-based AI adoption.
+
+  label_windsurf_rules:
+    if:
+      - {{ config.has_windsurf_rules }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-rules'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-windsurf'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Windsurf Rules File**
+
+            This PR adds or modifies Windsurf configuration files, indicating rules-based AI adoption.
+
+  label_zed_rules:
+    if:
+      - {{ config.has_zed_rules }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-rules'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-zed'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Zed Rules File**
+
+            This PR adds or modifies Zed configuration files, indicating rules-based AI adoption.
+
+  # =============================================================================
+  # CO-AUTHOR ADOPTION - Label PRs where AI tools contributed as co-authors
+  # =============================================================================
+
+  label_aider_coauthor:
+    if:
+      - {{ config.has_aider_coauthor }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-coauthor'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-aider'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Aider Co-author**
+
+            This PR includes commits with Aider as a co-author, indicating collaborative AI adoption.
+
+  label_claude_coauthor:
+    if:
+      - {{ config.has_claude_coauthor }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-coauthor'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-claude'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Claude Co-author**
+
+            This PR includes commits with Claude as a co-author, indicating collaborative AI adoption.
+
+  label_cursor_coauthor:
+    if:
+      - {{ config.has_cursor_coauthor }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-coauthor'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-cursor'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Cursor Co-author**
+
+            This PR includes commits with Cursor as a co-author, indicating collaborative AI adoption.
+
+  label_github_copilot_coauthor:
+    if:
+      - {{ config.has_github_copilot_coauthor }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-coauthor'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-github-copilot'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: GitHub Copilot Co-author**
+
+            This PR includes commits with GitHub Copilot as a co-author, indicating collaborative AI adoption.
+
+  label_gemini_coauthor:
+    if:
+      - {{ config.has_gemini_coauthor }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-coauthor'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-gemini'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Google Gemini Co-author**
+
+            This PR includes commits with Google Gemini as a co-author, indicating collaborative AI adoption.
+
+  label_qodo_coauthor:
+    if:
+      - {{ config.has_qodo_coauthor }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-coauthor'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-qodo'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Qodo Co-author**
+
+            This PR includes commits with Qodo (formerly Codium/PR-Agent) as a co-author, indicating collaborative AI adoption.
+
+  label_devin_coauthor:
+    if:
+      - {{ config.has_devin_coauthor }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-coauthor'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-devin'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Devin AI Co-author**
+
+            This PR includes commits with Devin AI as a co-author, indicating collaborative AI adoption.
+
+  label_windsurf_coauthor:
+    if:
+      - {{ config.has_windsurf_coauthor }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-coauthor'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-windsurf'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Windsurf Co-author**
+
+            This PR includes commits with Windsurf as a co-author, indicating collaborative AI adoption.
+
+  # Add more co-author automations for other tools as needed...
+
+  # =============================================================================
+  # PR AUTHOR ADOPTION - Label PRs created by AI tools/bots
+  # =============================================================================
+
+  label_claude_author:
+    if:
+      - {{ config.is_claude_author }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-pr-author'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-claude'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Claude PR Author**
+
+            This PR was created by Claude, indicating AI-driven PR creation.
+
+  label_cursor_author:
+    if:
+      - {{ config.is_cursor_author }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-pr-author'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-cursor'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Cursor PR Author**
+
+            This PR was created by Cursor, indicating AI-driven PR creation.
+
+  label_github_copilot_author:
+    if:
+      - {{ config.is_github_copilot_author }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-pr-author'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-github-copilot'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: GitHub Copilot PR Author**
+
+            This PR was created by GitHub Copilot, indicating AI-driven PR creation.
+
+  label_devin_author:
+    if:
+      - {{ config.is_devin_author }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-pr-author'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-devin'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Devin AI PR Author**
+
+            This PR was created by Devin AI, indicating AI-driven PR creation.
+
+  label_qodo_author:
+    if:
+      - {{ config.is_qodo_author }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-pr-author'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-qodo'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: Qodo PR Author**
+
+            This PR was created by Qodo (formerly Codium/PR-Agent), indicating AI-driven PR creation.
+
+  label_coderabbit_author:
+    if:
+      - {{ config.is_coderabbit_author }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-adoption-pr-author'
+      - action: add-label@v1
+        args:
+          label: 'ai-tool-coderabbit'
+      - action: add-comment@v1
+        args:
+          comment: |
+            🤖 **AI Adoption Detected: CodeRabbit PR Author**
+
+            This PR was created by CodeRabbit, indicating AI-driven PR creation.
+
+  # =============================================================================
+  # GENERAL AI USAGE - Label any PR where AI was detected
+  # =============================================================================
+
+  label_ai_used:
+    if:
+      - {{ config.any_ai_detected }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'ai-used'
