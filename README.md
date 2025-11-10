@@ -68,14 +68,37 @@ Subscribe to [gitStream Feature Announcements](https://github.com/linear-b/gitst
 
 ## 📁 Local Documentation Server Setup
 
-To run the documentation server locally using Python (<=3.10, see `.python-version`), follow these steps:
+This repository supports two documentation systems:
 
-1. Create a virtual environment named `.venv` using the command `python -m venv .venv`
-2. Activate the virtual environment by running the command `. ./.venv/bin/activate`
-3. Install the required packages by executing `pip install -r requirements.txt`
-4. Start the server by running `mkdocs serve`
+### MkDocs (Production/Default)
 
-The local documentation server should now be running at `http://127.0.0.1:8000/`.
+The production documentation system, used by CI/CD. Requires Python 3.12 (or ≤3.10).
+
+```bash
+# Create and activate virtual environment
+python3.12 -m venv .venv
+. .venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run server
+mkdocs serve  # http://127.0.0.1:8000/
+```
+
+### Zensical (Experimental)
+
+An alternative documentation system being evaluated. Requires Python 3.11+.
+
+```bash
+# Install dependencies (creates .venv-zensical automatically)
+UV_PROJECT_ENVIRONMENT=.venv-zensical uv sync
+
+# Run server
+UV_PROJECT_ENVIRONMENT=.venv-zensical uv run zensical serve  # http://127.0.0.1:8000/
+```
+
+**Note:** Both servers use port 8000, so run only one at a time.
 
 # LinearB
 
