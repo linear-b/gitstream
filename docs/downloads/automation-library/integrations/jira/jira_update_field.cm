@@ -6,12 +6,12 @@ manifest:
 on:
   - pr_created
 
-{% set ticketid = "\b[A-Za-z]+-\d+\b" %}
+{% set ticketid = '' %}
 {% for ticket in tickets %}
-{% if (ticket | includes(regex=r/.+/)) %}
-{% set ticketid = ticket %}
-{% endif %}
-{% endfor %} 
+  {% if ticket and ticket | length > 0 and ticketid == '' %}
+    {% set ticketid = ticket %}
+  {% endif %}
+{% endfor %}
 
 automations:
   jira_update_field: 
@@ -22,7 +22,7 @@ automations:
         args:
           url: "{{ env.JIRA_UPDATE_PR_FIELD_WEBHOOK }}"
           method: POST
-          headers: '{"Content-type": "application/json"}'
+          headers: '{"Content-type": "application/json", "X-Automation-Webhook-Token": "{{ env.JIRA_UPDATE_PR_FIELD_SECRET }}"}'
           body: '{"issues":["{{ticketid}}"],"data":{"pr_url":"https://github.com/{{repo.owner}}/{{repo.name}}/pull/{{pr.number}}"}}'
 
 has:

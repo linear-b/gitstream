@@ -1,0 +1,8 @@
+[project]
+name = "gitstream"
+version = "0.1.0"
+description = "gitStream documentation"
+requires-python = ">=3.11"
+dependencies = [
+    "zensical>=0.0.3",
+]

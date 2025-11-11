@@ -1,6 +1,13 @@
 
 .md-header{
   background-color: #3F2B95;
+  color: #FFFFFF;
+}
+
+.md-header__title,
+.md-header__button,
+.md-header a {
+  color: #FFFFFF;
 }
 
 h2 {
@@ -173,6 +180,7 @@ div.flow-chart {
 
 .integrations-card-title a{
   color: inherit;
+  text-decoration: none;
 }
 
 .integrations-card-title img{

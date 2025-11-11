@@ -3,3 +3,4 @@ site/
 overrides/
 .obsidian/
 .DS_Store
+trace.json
