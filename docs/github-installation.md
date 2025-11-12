@@ -62,9 +62,6 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
           <span>
           [:octicons-download-24: Download gitstream.yml (regular version)](/downloads/gitstream.yml){ .md-button }
           </span>
-          <span>
-          [:octicons-download-24: Download gitstream.yml (lite version)](/downloads/gitstream-lite.yml){ .md-button }
-          </span>
         </div>
 
         !!! tip "Large Repository Support (Lite Version)"
@@ -84,6 +81,12 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
 
             **Important:** The lite version has limitations - automations that rely on Git history (such as code-experts) may not work properly due to the shallow clone.
 
+        <div class="result" markdown>
+          <span>
+          [:octicons-download-24: Download gitstream.yml (lite version)](/downloads/gitstream-lite.yml){ .md-button }
+          </span>
+        </div>
+        
         !!! Success
             When finished, you should have the following file structure in your repo.
 
@@ -126,9 +129,6 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
           <span>
           [:octicons-download-24: Download gitstream.yml (regular version)](/downloads/gitstream.yml){ .md-button }
           </span>
-          <span>
-          [:octicons-download-24: Download gitstream.yml (lite version)](/downloads/gitstream-lite.yml){ .md-button }
-          </span>
         </div>
 
         !!! tip "Large Repository Support (Lite Version)"
@@ -148,6 +148,12 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
 
             **Important:** The lite version has limitations - automations that rely on Git history (such as code-experts) may not work properly due to the shallow clone. See the [troubleshooting section](/troubleshooting/#github-timeout-issues-with-large-repositories) for more details.
 
+        <div class="result" markdown>
+          <span>
+          [:octicons-download-24: Download gitstream.yml (lite version)](/downloads/gitstream-lite.yml){ .md-button }
+          </span>
+        </div>
+        
         !!! Success
             Once finished, **all** PRs to your organization's repositories will be processed by the GitHub Action in this repo, and your `cm` repo should have a file directory that looks like this.
 
