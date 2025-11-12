@@ -53,7 +53,7 @@ Triggers can be defined globally at the file level or specifically for each auto
 
 #### `triggers` section
 
-The `triggers` section in gitStream gives you precise control over when automations execute. It allows you to define conditions based on pull request events using `include` and `exclude` lists to specify branch and repository patterns. These lists determine which branches or repositories trigger or bypass automation but do not affect the events initiating automations - implicit triggers remain active when using only `include` and `exclude`.
+The `triggers` section in gitStream gives you precise control over when automations execute. It allows you to define conditions based on pull request events using `include` and `exclude` lists to specify branch, repository, and user patterns. These lists determine which branches, repositories, or users trigger or bypass automation but do not affect the events initiating automations - implicit triggers remain active when using only `include` and `exclude`.
 
 Additionally, the `on` keyword defines specific events that trigger automations. It can be added at the file level (under the `triggers` section) or within individual automations for greater customization. When `on` is used, it switches from implicit to explicit triggering mode, meaning only the specified events will trigger automations. Multiple triggers can be stacked, meaning gitStream will execute the automation for each matching triggering event, allowing flexibility in defining automation behavior
 
@@ -65,6 +65,8 @@ Additionally, the `on` keyword defines specific events that trigger automations.
 | `triggers.exclude.branch` :fontawesome-brands-github: | [String or regex] | Branches that match will not trigger the automation.           |
 | `triggers.include.repository`                         | [String or regex] | Repositories that match will trigger the automation.           |
 | `triggers.exclude.repository`                         | [String or regex] | Repositories that match will not trigger the automation.       |
+| `triggers.include.user` :fontawesome-brands-github:   | [String or regex] | Users that match will trigger the automation.                  |
+| `triggers.exclude.user` :fontawesome-brands-github:   | [String or regex] | Users that match will not trigger the automation.              |
 </div>
 
 The table below lists supported explicit triggers, categorized into those enabled by default and those that require manual activation.
@@ -96,17 +98,17 @@ If an automation block does not have the `on` parameter configured (explicit tri
 
 **Note on Matching:**
 
-- When using a `String` as the matching type, the values in `triggers.include.*` and `triggers.exclude.*` require exact matches. This means that the names of branches or repositories must exactly match the specified string to either trigger or prevent triggering the automation.
+- When using a `String` as the matching type, the values in `triggers.include.*` and `triggers.exclude.*` require exact matches. This means that the names of branches, repositories, or users must exactly match the specified string to either trigger or prevent triggering the automation.
 - For more precise control, use a regular expression (regex) format: `r/REGEX_PATTERN/`.
 
 **Default Behavior:**
 
 - Implicit triggers are the default behavior if the automation doesn't have explicit triggers configured.
-- The automation runs for all branches and repositories if neither include nor exclude is specified.
+- The automation runs for all branches, repositories, and users if neither include nor exclude is specified.
 
 **Exclude/Include prioritization**
 
-- Exclude overrides the include option. Thus, a repo will be excluded when it matches the include and exclude lists.
+- Exclude overrides the include option. Thus, a branch, repository, or user will be excluded when it matches both the include and exclude lists.
 
     In the following example, the automations in the file will be triggered for all repositories that contain the string `feature`, except for the repository `my_feature`
     ```yaml+jinja
@@ -202,6 +204,34 @@ automations:
 ```
 
 This allows developers to get AI feedback during the coding process before marking the PR as ready for review.
+
+#### Exclude Bots by User
+
+You can exclude automations from running when specific users (such as bots) trigger events. This is useful for filtering out automated tool activity from SonarQube, security scanners, or other bot accounts:
+
+```yaml+jinja title="gitstream.cm"
+manifest:
+  version: 1.0
+
+# Exclude automations when triggered by bot users
+# Note: Only using triggers.exclude means implicit triggers remain active
+triggers:
+  exclude:
+    user:
+      - sonar
+      - r/(bot|dependabot|renovate)/
+
+automations:
+  code_review:
+    if:
+      - true
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: [team-lead]
+```
+
+This prevents gitStream from running automations when SonarQube, Dependabot, Renovate, or any user with "bot" in their name performs actions like opening PRs or pushing commits.
 
 #### Dependabot and Renovate
 
