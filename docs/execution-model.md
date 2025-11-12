@@ -1,7 +1,9 @@
 # Trigger Control
 
 !!! warning "Platform Limitations"
-    **Explicit triggers** (using `on`, `triggers.on`, `triggers.include`, and `triggers.exclude` parameters) are only supported on GitHub :fontawesome-brands-github:. Using explicit triggers in GitLab or Bitbucket will cause the automation to fail with an error. For GitLab and Bitbucket, simply omit trigger configuration to use implicit triggers automatically.
+    **Explicit triggers** (using `on`, `triggers.on`, `triggers.include`, and `triggers.exclude` parameters) are only supported on GitHub :fontawesome-brands-github:. 
+    
+    Using explicit triggers in GitLab or Bitbucket will cause the automation to fail with an error. For GitLab and Bitbucket, simply omit trigger configuration to use implicit triggers automatically.
 
     However, other execution control concepts covered in this document, such as action-level execution control, apply to all supported platforms (GitHub, GitLab, and Bitbucket).
 
@@ -41,14 +43,19 @@ gitstream supports an explicit triggering mechanism. When using explicit trigger
 
 Triggers can be defined globally at the file level or specifically for each automation. Triggers are applied only to the file(s) where they are declared.
 
+!!! important "When Implicit Triggers Are Disabled"
+    Implicit triggers are disabled ONLY when using `triggers.on` (file-level) or `on` (automation-level) - these parameters define explicit triggering events and completely override the default implicit trigger behavior.
+
+    When using ONLY `triggers.include` or `triggers.exclude` implicit triggers remain active - these parameters filter which branches/repositories run automations but do not change the triggering events themselves.
+
 !!! Note "Combining File-Level and Automation-Level Triggers"
     When both file-level explicit triggers and automation-level explicit triggers exist, the actual triggers used will be the result of unifying both lists. This means the automation will be triggered by any event specified in either the file-level triggers or the automation-level triggers.
 
 #### `triggers` section
 
-The `triggers` section in gitStream gives you precise control over when automations execute. It allows you to define conditions based on pull request events using `include` and `exclude` lists to specify branch and repository patterns. These lists determine which branches or repositories trigger or bypass automation but do not affect the events initiating automations.
+The `triggers` section in gitStream gives you precise control over when automations execute. It allows you to define conditions based on pull request events using `include` and `exclude` lists to specify branch and repository patterns. These lists determine which branches or repositories trigger or bypass automation but do not affect the events initiating automations - implicit triggers remain active when using only `include` and `exclude`.
 
-Additionally, the `on` keyword defines specific events that trigger automations. It can be added at the file level (under the `triggers` section) or within individual automations for greater customization. Multiple triggers can be stacked, meaning gitStream will execute the automation for each matching triggering event, allowing flexibility in defining automation behavior
+Additionally, the `on` keyword defines specific events that trigger automations. It can be added at the file level (under the `triggers` section) or within individual automations for greater customization. When `on` is used, it switches from implicit to explicit triggering mode, meaning only the specified events will trigger automations. Multiple triggers can be stacked, meaning gitStream will execute the automation for each matching triggering event, allowing flexibility in defining automation behavior
 
 <div class="trigger-details" markdown=1>
 | Key                                                   | Type              | Description                                                    |
@@ -81,8 +88,8 @@ The table below lists supported explicit triggers, categorized into those enable
 | Transition from any state to approved :fontawesome-brands-github:     | `pr_approved`                                | `on`    | when actions `require-reviewers`, `set-required-approvals`, or `merge` are used, or when `pr` context is used in `.cm` |
 </div>
 
-Explicit triggers are set independently per each automation block and can be configured at the file level, specific to each automation separately or in combination. If triggers are listed at the file level **and** specific automation, the automation will be triggered according to both triggers.
-If an automation block does not have explicit triggers configured, it will be triggered according to the default (implicit) triggers.
+Explicit triggers (using `on`) are set independently per each automation block and can be configured at the file level, specific to each automation separately or in combination. If triggers are listed at the file level and specific automation, the automation will be triggered according to both triggers.
+If an automation block does not have the `on` parameter configured (explicit triggers), it will be triggered according to the default (implicit) triggers, even if `triggers.include` or `triggers.exclude` are used at the file level.
 
 !!! Note
     The `on` parameter can be used within individual automation blocks, while `triggers.include` and `triggers.exclude` can only be defined at the file level.
@@ -208,6 +215,8 @@ manifest:
   version: 1.0
 
 # Disable triggering when the PR is created by bots
+# Note: Only using triggers.exclude means implicit triggers remain active
+# (automations will still trigger on commits, PR creation, etc.)
 triggers:
   exclude:
     branch:
@@ -231,6 +240,8 @@ And the other automations file is set to automate Dependabot PRs:
 manifest:
   version: 1.0
 
+# Note: triggers.include still allows implicit triggers
+# However, the automations below use 'on' which switches to explicit mode
 triggers:
   include:
     branch:
