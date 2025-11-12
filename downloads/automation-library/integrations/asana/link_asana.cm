@@ -1,0 +1,38 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+provider: asana
+
+# Configure this to match your organization. It is used in tracker.asana.baseurl.
+asanaProject: 1234
+
+{% set ticketid = "" %}
+{% for ticket in tickets %}
+{% if (ticket | includes(regex=r/.+/)) %}
+{% set ticketid = ticket %}
+{% endif %}
+{% endfor %} 
+
+automations:
+  link_asana:
+    if:
+      - {{ has.ticket_in_title or has.ticket_in_branch }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: Issue Tracker Link - [{{ticketid}}]({{tracker[provider].baseurl}}{{ticketid}})
+
+has:
+  ticket_in_title: {{ pr.title | includes(regex=tracker[provider].pattern) }}
+  ticket_in_branch: {{ branch.name | includes(regex=tracker[provider].pattern) }}
+
+tracker:
+  asana:
+    baseurl: https://app.asana.com/0/[asanaProject]/0/
+    pattern: r/asana-(\d+)/
+
+tickets:
+  - {{branch.name | capture(regex=tracker[provider].pattern)}}
+  - {{pr.title | capture(regex=tracker[provider].pattern)}}
