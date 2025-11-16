@@ -51,8 +51,8 @@ automations:
   # https://docs.gitstream.cm/automations/standard/label-management/label-unresolved-threads/
   label_unresolved_threads:  
     if:
-      - {{ pr.status == 'open' }}  
-      - {{ pr.unresolved_threads }}
+      - {{ pr.status == 'open' }}
+      - {{ pr.unresolved_threads > 0 }}
     run:
       - action: add-label@v1
         args:
