@@ -6,15 +6,64 @@ on:
 
 jobs:
   build:
-    name: Publish docs
+    name: Build docs
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
     steps:
       - name: Checkout main
-        uses: actions/checkout@v2
-      - name: Deploy docs
-        uses: mhausenblas/mkdocs-deploy-gh-pages@master
+        uses: actions/checkout@v4
+
+      # Zensical Build (Production)
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+          python-version: '3.11'
+
+      - name: Sync Zensical dependencies
+        run: uv sync
+
+      - name: Build docs with Zensical
+        run: uv run zensical build
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CUSTOM_DOMAIN: 'docs.gitstream.cm'
           ANALYTICS_TAG: 'G-WE4YLK8TT5'
-          REQUIREMENTS: requirements.txt
+
+      - name: Add CNAME for custom domain
+        run: echo 'docs.gitstream.cm' > site/CNAME
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'site'
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  # MkDocs Build (Fallback - uncomment to switch back)
+  # build-mkdocs:
+  #   name: Publish docs (MkDocs)
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout main
+  #       uses: actions/checkout@v4
+  #     - name: Deploy docs
+  #       uses: mhausenblas/mkdocs-deploy-gh-pages@master
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         CUSTOM_DOMAIN: 'docs.gitstream.cm'
+  #         ANALYTICS_TAG: 'G-WE4YLK8TT5'
+  #         REQUIREMENTS: requirements.txt
