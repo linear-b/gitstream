@@ -8,13 +8,54 @@ jobs:
   build:
     name: Publish docs
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     steps:
       - name: Checkout main
-        uses: actions/checkout@v2
-      - name: Deploy docs
-        uses: mhausenblas/mkdocs-deploy-gh-pages@master
+        uses: actions/checkout@v4
+
+      # Zensical Build (Production)
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      - name: Sync Zensical dependencies
+        run: uv sync
+
+      - name: Build docs with Zensical
+        run: uv run zensical build
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CUSTOM_DOMAIN: 'docs.gitstream.cm'
           ANALYTICS_TAG: 'G-WE4YLK8TT5'
-          REQUIREMENTS: requirements.txt
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'site'
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        with:
+          custom_domain: 'docs.gitstream.cm'
+
+  # MkDocs Build (Fallback - uncomment to switch back)
+  # build-mkdocs:
+  #   name: Publish docs (MkDocs)
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout main
+  #       uses: actions/checkout@v4
+  #     - name: Deploy docs
+  #       uses: mhausenblas/mkdocs-deploy-gh-pages@master
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         CUSTOM_DOMAIN: 'docs.gitstream.cm'
+  #         ANALYTICS_TAG: 'G-WE4YLK8TT5'
+  #         REQUIREMENTS: requirements.txt
