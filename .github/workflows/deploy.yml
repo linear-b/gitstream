@@ -16,15 +16,11 @@ jobs:
         uses: actions/checkout@v4
 
       # Zensical Build (Production)
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v7
         with:
+          enable-cache: true
           python-version: '3.11'
-
-      - name: Install uv
-        run: |
-          curl -LsSf https://astral.sh/uv/install.sh | sh
-          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
       - name: Sync Zensical dependencies
         run: uv sync
