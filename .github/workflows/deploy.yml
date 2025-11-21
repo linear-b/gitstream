@@ -6,12 +6,11 @@ on:
 
 jobs:
   build:
-    name: Publish docs
+    name: Build docs
     runs-on: ubuntu-latest
     permissions:
       contents: read
       pages: write
-      id-token: write
     steps:
       - name: Checkout main
         uses: actions/checkout@v4
@@ -35,15 +34,28 @@ jobs:
         env:
           ANALYTICS_TAG: 'G-WE4YLK8TT5'
 
+      - name: Add CNAME for custom domain
+        run: echo 'docs.gitstream.cm' > site/CNAME
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'site'
 
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          custom_domain: 'docs.gitstream.cm'
 
   # MkDocs Build (Fallback - uncomment to switch back)
   # build-mkdocs:
