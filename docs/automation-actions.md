@@ -331,6 +331,12 @@ automations:
       - action: approve@v1
 ```
 
+!!! note "Automation Names with Hyphens"
+    
+    If your automation name contains hyphens (e.g., `ai-code-review`), you must use bracket notation to access its outputs:
+    
+    `{{ actions['ai-code-review'].outputs.is_LGTM }}  # use bracket notation`
+
 This example shows how to use guidelines for AI review.
 
 ```yaml+jinja title="example - inline guidelines"
