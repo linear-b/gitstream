@@ -9,19 +9,19 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-assistant: AI Assistance](/automations/integrations/ai-assistance/flag-ai-pr)
+[:material-assistant: AI Assistance](/automations/integrations/ai-assistance/flag-ai-pr/)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-<a href=/integrations/linearb>![LinearB](/downloads/images/linearb-symbol-dark.png#only-light) ![LinearB](/downloads/images/linearb-symbol-white.png#only-dark) LinearB</a>
+<a href=linearb>![LinearB](../downloads/images/linearb-symbol-dark.png#only-light) ![LinearB](../downloads/images/linearb-symbol-white.png#only-dark) LinearB</a>
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:fontawesome-solid-wand-magic-sparkles: LinearB AI](/integrations/LinearBAI)
+[:fontawesome-solid-wand-magic-sparkles: LinearB AI](LinearBAI)
 </div>
 </div>
 
@@ -31,25 +31,25 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[![](../assets/icons/simple-icons/githubactions.svg){ width="20" } GitHub Actions](/integrations/github-actions)
+[![](../assets/icons/simple-icons/githubactions.svg){ width="20" } GitHub Actions](github-actions)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-label: PR Labels](/automations/standard/label-management)
+[:material-label: PR Labels](/automations/standard/label-management/)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-git: Branch Management](/automations/standard/branch-management)
+[:material-git: Branch Management](/automations/standard/branch-management/)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[![](../assets/icons/simple-icons/codereview.svg){ width="20" } PR Reviews](/automations/standard/review-assignment)
+[![](../assets/icons/simple-icons/codereview.svg){ width="20" } PR Reviews](/automations/standard/review-assignment/)
 </div>
 </div>
 
@@ -61,31 +61,31 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:octicons-copilot-16: GitHub Copilot](/integrations/github-copilot)
+[:octicons-copilot-16: GitHub Copilot](github-copilot)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-cube-outline: Cursor](/integrations/cursor)
+[:material-cube-outline: Cursor](cursor)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-alpha-a-box: Amazon Q](/integrations/amazon-q)
+[:material-alpha-a-box: Amazon Q](amazon-q)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-brain: Claude Code](/integrations/claude-code)
+[:material-brain: Claude Code](claude-code)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-sail-boat: Windsurf](/integrations/windsurf)
+[:material-sail-boat: Windsurf](windsurf)
 </div>
 </div>
 
@@ -97,43 +97,43 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-<a href=/integrations/orca-security>![Orca Security](/downloads/images/Orca-Mark-Black.png#only-light) ![LinearB](/downloads/images/Orca-Mark-White.png#only-dark) Orca</a>
+<a href=orca-security>![Orca Security](../downloads/images/Orca-Mark-Black.png#only-light) ![LinearB](../downloads/images/Orca-Mark-White.png#only-dark) Orca</a>
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[![](../assets/icons/simple-icons/sonarcloud.svg){ width="20" } SonarCloud](/integrations/sonar)
+[![](../assets/icons/simple-icons/sonarcloud.svg){ width="20" } SonarCloud](sonar)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[![](../assets/icons/simple-icons/dependabot.svg){ width="20" } Dependabot](/integrations/dependabot)
+[![](../assets/icons/simple-icons/dependabot.svg){ width="20" } Dependabot](dependabot)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-security: Jit](/integrations/jit)
+[:material-security: Jit](jit)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[![](../assets/icons/simple-icons/renovatebot.svg){ width="20" } Renovate](/integrations/renovate)
+[![](../assets/icons/simple-icons/renovatebot.svg){ width="20" } Renovate](renovate)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[![](../assets/icons/simple-icons/snyk.svg){ width="20" } Snyk](/integrations/snyk)
+[![](../assets/icons/simple-icons/snyk.svg){ width="20" } Snyk](snyk)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-lock: SOC 2](/integrations/soc2)
+[:material-lock: SOC 2](soc2)
 </div>
 </div>
 
@@ -145,25 +145,25 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:fontawesome-brands-jira: Jira](/integrations/jira)
+[:fontawesome-brands-jira: Jira](jira)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[![](../assets/icons/simple-icons/asana.svg){ width="20" } Asana](/integrations/asana)
+[![](../assets/icons/simple-icons/asana.svg){ width="20" } Asana](asana)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[![](../assets/icons/simple-icons/clubhouse.svg){ width="20" } Shortcut](/integrations/shortcut)
+[![](../assets/icons/simple-icons/clubhouse.svg){ width="20" } Shortcut](shortcut)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[![](../assets/icons/simple-icons/azuredevops.svg){ width="20" } Azure Boards](/integrations/azure-boards)
+[![](../assets/icons/simple-icons/azuredevops.svg){ width="20" } Azure Boards](azure-boards)
 </div>
 </div>
 
@@ -175,13 +175,13 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[![](../assets/icons/simple-icons/slack.svg){ width="20" } Slack](/integrations/slack)
+[![](../assets/icons/simple-icons/slack.svg){ width="20" } Slack](slack)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-microsoft-teams: Microsoft Teams](/integrations/teams)
+[:material-microsoft-teams: Microsoft Teams](teams)
 </div>
 </div>
 
@@ -193,31 +193,31 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[DevCycle](/integrations/devcycle)
+[DevCycle](devcycle)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[Launch Darkly](/integrations/launch-darkly)
+[Launch Darkly](launch-darkly)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[Flagsmith](/integrations/flagsmith)
+[Flagsmith](flagsmith)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[Unleash](/integrations/unleash)
+[Unleash](unleash)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[Flagr](/integrations/flagr)
+[Flagr](flagr)
 </div>
 </div>
 
@@ -229,43 +229,43 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[![](../assets/icons/simple-icons/javascript.svg){ width="20" } JavaScript](/automations/languages/javascript)
+[![](../assets/icons/simple-icons/javascript.svg){ width="20" } JavaScript](/automations/languages/javascript/)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:fontawesome-brands-golang: Go](/automations/languages/golang)
+[:fontawesome-brands-golang: Go](/automations/languages/golang/)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[![](../assets/icons/simple-icons/python.svg){ width="20" } Python](/automations/languages/python)
+[![](../assets/icons/simple-icons/python.svg){ width="20" } Python](/automations/languages/python/)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-language-java: Java](/automations/languages/java)
+[:material-language-java: Java](/automations/languages/java/)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[![](../assets/icons/simple-icons/ruby.svg){ width="20" } Ruby](/automations/languages/ruby)
+[![](../assets/icons/simple-icons/ruby.svg){ width="20" } Ruby](/automations/languages/ruby/)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[![](../assets/icons/simple-icons/html5.svg){ width="20" } HTML/CSS](/automations/languages/html)
+[![](../assets/icons/simple-icons/html5.svg){ width="20" } HTML/CSS](/automations/languages/html/)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:fontawesome-brands-rust: Rust](/automations/languages/rust)
+[:fontawesome-brands-rust: Rust](/automations/languages/rust/)
 </div>
 </div>
 
@@ -276,31 +276,31 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-code-braces: Swimm](/integrations/swimm)
+[:material-code-braces: Swimm](swimm)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-language-java: Javadoc](/integrations/javadoc)
+[:material-language-java: Javadoc](javadoc)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-language-javascript: JSDoc](/integrations/jsdoc)
+[:material-language-javascript: JSDoc](jsdoc)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-language-ruby: RDoc](/integrations/rdoc)
+[:material-language-ruby: RDoc](rdoc)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-language-go: Godoc](/integrations/godoc)
+[:material-language-go: Godoc](godoc)
 </div>
 </div>
 
@@ -312,13 +312,13 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[:material-terraform: Terraform](/integrations/terraform)
+[:material-terraform: Terraform](terraform)
 </div>
 </div>
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
-[![](../assets/icons/simple-icons/zapier.svg){ width="20" } Zapier](/integrations/zapier)
+[![](../assets/icons/simple-icons/zapier.svg){ width="20" } Zapier](zapier)
 </div>
 </div>
 
