@@ -302,12 +302,7 @@ This action returns outputs that can be used by subsequent automations through t
 
 </div>
 
-Use the `actions` context variable to access outputs from this action in subsequent automations. The format is `actions.<automation_id>.outputs.<output_name>`, where `<automation_id>` is the identifier of the automation that ran the action.
-
-
-- `<automation_id>`: The identifier of the automation that ran the action (e.g., `ai_code_review`)
-- `<output_name>`: The name of the output from the action (e.g., `is_LGTM`)
-
+See [`actions`](./context-variables.md#actions) for how to use the `actions` context variable to access outputs from this action in subsequent automations.
 
 **Examples**
 
