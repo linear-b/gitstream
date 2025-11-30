@@ -53,7 +53,7 @@ Triggers can be defined globally at the file level or specifically for each auto
 
 #### `triggers` section
 
-The `triggers` section in gitStream gives you precise control over when automations execute. It allows you to define conditions based on pull request events using `include` and `exclude` lists to specify branch and repository patterns. These lists determine which branches or repositories trigger or bypass automation but do not affect the events initiating automations - implicit triggers remain active when using only `include` and `exclude`.
+The `triggers` section in gitStream gives you precise control over when automations execute. It allows you to define conditions based on pull request events using `include` and `exclude` lists to specify branch, repository, and user patterns. These lists determine which branches, repositories, or users trigger or bypass automation but do not affect the events initiating automations - implicit triggers remain active when using only `include` and `exclude`.
 
 Additionally, the `on` keyword defines specific events that trigger automations. It can be added at the file level (under the `triggers` section) or within individual automations for greater customization. When `on` is used, it switches from implicit to explicit triggering mode, meaning only the specified events will trigger automations. Multiple triggers can be stacked, meaning gitStream will execute the automation for each matching triggering event, allowing flexibility in defining automation behavior
 
@@ -65,7 +65,16 @@ Additionally, the `on` keyword defines specific events that trigger automations.
 | `triggers.exclude.branch` :fontawesome-brands-github: | [String or regex] | Branches that match will not trigger the automation.           |
 | `triggers.include.repository`                         | [String or regex] | Repositories that match will trigger the automation.           |
 | `triggers.exclude.repository`                         | [String or regex] | Repositories that match will not trigger the automation.       |
+| `triggers.include.user` :fontawesome-brands-github:   | [String or regex] | Users that match will trigger the automation.                 |
+| `triggers.exclude.user` :fontawesome-brands-github:   | [String or regex] | Users that match will not trigger the automation.             |
 </div>
+
+!!! note "Default Behavior"
+
+    - Implicit triggers are the default behavior if the automation doesn't have explicit triggers configured.
+    - The automation runs for all branches, repositories, and users if neither include nor exclude is specified.
+
+##### Trigger Events :fontawesome-brands-github:
 
 The table below lists supported explicit triggers, categorized into those enabled by default and those that require manual activation.
 
@@ -94,15 +103,23 @@ If an automation block does not have the `on` parameter configured (explicit tri
 !!! Note
     The `on` parameter can be used within individual automation blocks, while `triggers.include` and `triggers.exclude` can only be defined at the file level.
 
+##### Branch Filtering :fontawesome-brands-github:
+
+Branch filtering allows you to control which branches can trigger automations based on branch name patterns.
+
 **Note on Matching:**
 
-- When using a `String` as the matching type, the values in `triggers.include.*` and `triggers.exclude.*` require exact matches. This means that the names of branches or repositories must exactly match the specified string to either trigger or prevent triggering the automation.
+- When using a `String` as the matching type, the values in `triggers.include.branch` and `triggers.exclude.branch` require exact matches. This means that the names of branches must exactly match the specified string to either trigger or prevent triggering the automation.
 - For more precise control, use a regular expression (regex) format: `r/REGEX_PATTERN/`.
 
-**Default Behavior:**
+##### Repository Filtering
 
-- Implicit triggers are the default behavior if the automation doesn't have explicit triggers configured.
-- The automation runs for all branches and repositories if neither include nor exclude is specified.
+Repository filtering allows you to control which repositories can trigger automations based on repository name patterns.
+
+**Note on Matching:**
+
+- When using a `String` as the matching type, the values in `triggers.include.repository` and `triggers.exclude.repository` require exact matches. This means that the names of repositories must exactly match the specified string to either trigger or prevent triggering the automation.
+- For more precise control, use a regular expression (regex) format: `r/REGEX_PATTERN/`.
 
 **Exclude/Include prioritization**
 
@@ -118,6 +135,30 @@ If an automation block does not have the `on` parameter configured (explicit tri
         repository:
           - my_feature
     ```
+
+##### User Filtering :fontawesome-brands-github:
+
+User filtering allows you to control which users can trigger automations, enabling you to exclude bot accounts or include only specific team members. This helps reduce noise from automated tools and optimize automation quota usage.
+
+**User Identification:**
+The user is matched against the event actor:
+
+- For commits: the commit author
+- For PR creation: the PR author  
+- For label changes: the user who added/removed the label
+- For comments: the commenter
+- For approvals: the approver
+
+**Common Use Cases:**
+
+- **Exclude bots:** Prevent automations from running when triggered by SonarQube, Dependabot, Renovate, or security scanners
+- **Include specific users:** Run automations only for specific team members or service accounts
+- **Reduce noise:** Filter out automated tool activity that doesn't require gitStream processing
+
+**Note on Matching:**
+
+- When using a `String` as the matching type, the values in `triggers.include.user` and `triggers.exclude.user` require exact matches. This means that the names of users must exactly match the specified string to either trigger or prevent triggering the automation.
+- For more precise control, use a regular expression (regex) format: `r/REGEX_PATTERN/`.
 
 ## Action-Level Execution Control
 
@@ -205,10 +246,10 @@ This allows developers to get AI feedback during the coding process before marki
 
 #### Dependabot and Renovate
 
-For example, you can have your normal automations that help developers with their PRs and a separate automation that automates Dependabot or Renovate version bumps. Both automations serve distinctly different purposes: the first helps your developers streamline their PRs, while the other reduces developers' toil by auto-approving version bumps. You will not want to unnecessarily trigger gitStream for Dependabot or Renovate, so you can configure the triggers to exclude the branch where Dependabot or Renovate PRs are created.
+For example, you can have your normal automations that help developers with their PRs and a separate automation that automates Dependabot or Renovate version bumps. Both automations serve distinctly different purposes: the first helps your developers streamline their PRs, while the other reduces developers' toil by auto-approving version bumps. You will not want to unnecessarily trigger gitStream for Dependabot or Renovate, so you can configure the triggers to exclude these bot users.
 
 
-In your default automation file, you should exclude the branch where Dependabot or Renovate PRs are created:
+In your default automation file, you should exclude bot users like Dependabot or Renovate:
 
 ```yaml+jinja title="gitstream.cm"
 manifest:
@@ -219,8 +260,10 @@ manifest:
 # (automations will still trigger on commits, PR creation, etc.)
 triggers:
   exclude:
-    branch:
-      - r/(Dependabot|dependabot|Renovate|renovate)/
+    user:
+      - dependabot[bot]
+      - renovate[bot] 
+      - r/(bot|dependabot|renovate)/
 
 # The default automations for developers below
 automations:
@@ -240,12 +283,13 @@ And the other automations file is set to automate Dependabot PRs:
 manifest:
   version: 1.0
 
-# Note: triggers.include still allows implicit triggers
+# Note: triggers.include still allows implicit triggers  
 # However, the automations below use 'on' which switches to explicit mode
 triggers:
   include:
-    branch:
-      - r/(Dependabot|dependabot|Renovate|renovate)/
+    user:
+      - dependabot[bot]
+      - renovate[bot]
 
 automations:
   bump_minor:
@@ -324,6 +368,57 @@ automations:
       - action: explain-code-experts@v1
         args:
           gt: 10
+```
+
+#### User Filtering Examples :fontawesome-brands-github:
+
+Exclude specific bot users from triggering automations while allowing all other users:
+
+```yaml+jinja title="exclude-bots.cm"
+manifest:
+  version: 1.0
+
+# Exclude bot users from triggering automations
+triggers:
+  exclude:
+    user:
+      - sonar
+      - dependabot[bot]
+      - renovate[bot]
+      - r/(bot|scanner)/
+
+automations:
+  review_requirements:
+    if:
+      - true
+    run:
+      - action: set-required-approvals@v1
+        args:
+          approvals: 2
+```
+
+Include only specific team members for sensitive automations:
+
+```yaml+jinja title="team-only.cm"
+manifest:
+  version: 1.0
+
+# Only allow specific team members to trigger these automations
+triggers:
+  include:
+    user:
+      - john-doe
+      - jane-smith
+      - r/team-lead-.*/
+
+automations:
+  security_review:
+    if:
+      - {{ files | match(regex=r/\.(env|key|pem)$/) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: security-review-required
 ```
 
 #### Branch regex pattern
