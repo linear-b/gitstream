@@ -2,9 +2,9 @@
 manifest:
   version: 1.0
 automations:
-  label_unresolved_threads:  
-    if:  
-      - {{ pr.unresolved_threads }}
+  label_unresolved_threads:
+    if:
+      - {{ pr.unresolved_threads > 0 }}
     run:
       - action: add-label@v1
         args:

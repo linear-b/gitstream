@@ -290,6 +290,49 @@ This action, once triggered, reviews the code in the PR, and generates a comment
 | `approve_on_LGTM` | Optional | Bool    | Approve this PR if no issues were found. Default is `false` |
 | `guidelines` | Optional | String | Provides custom instructions to the AI model to tailor the code review. Can be inline text or loaded from a file using the `readFile()` function.                                           |
 
+</div>
+
+This action returns outputs that can be used by subsequent automations through the `actions` context variable. Outputs available:
+
+<div class="filter-details" markdown=1>
+
+| Output    | Type | Description                                     |
+| ----------|------|------------------------------------------------ |
+| `is_LGTM` | Bool | `true` if the code review found no issues (looks good to me), `false` if issues were found |
+
+</div>
+
+See [`actions`](./context-variables.md#actions) for how to use the `actions` context variable to access outputs from this action in subsequent automations.
+
+**Examples**
+
+This example demonstrates using the `is_LGTM` output to automatically approve PRs that pass the AI code review:
+
+```yaml+jinja title="example - auto-approve based on code review output"
+automations:
+  # First automation: Run AI code review
+  ai_code_review:
+    if:
+      - true
+    run:
+      - action: code-review@v1
+
+  # Second automation: Only runs if the AI review found no issues
+  auto_approve_on_ai_lgtm:
+    if:
+      - {{ actions.ai_code_review.outputs.is_LGTM }}
+    run:
+      - action: approve@v1
+```
+
+!!! note "Automation Names with Hyphens"
+    
+    If your automation name contains hyphens (e.g., `ai-code-review`), you must use bracket notation to access its outputs:
+    
+    `{{ actions['ai-code-review'].outputs.is_LGTM }}  # use bracket notation`
+
+This example shows how to use guidelines for AI review.
+
 ```yaml+jinja title="example - inline guidelines"
 automations:
   linearb_ai_review:
@@ -315,6 +358,8 @@ is:
   bot_branch: {{ branch.name | match(list=['renovate/']) | some }}
 
 ```
+
+This example shows how to load guidelines from an external file and use them for the AI Review.
 
 ```yaml+jinja title="example - guidelines from file"
 automations:
@@ -395,6 +440,7 @@ The `dump` filter ensures proper YAML formatting when the file content is insert
 !!! tip
 
     You can also filter more files, using [`config.ignore_files`](/cm-file/#configignore_files).
+
 
 #### `describe-changes` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 

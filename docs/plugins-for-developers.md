@@ -9,6 +9,94 @@ gitStream plugins are based on the [CommonJS](https://en.wikipedia.org/wiki/Comm
 
     No other dependencies are supported at this time. If you have recommendations for new dependencies, please open a new issue on the [gitStream GitHub repo](https://github.com/linear-b/gitstream).
 
+### Loading Dependencies in Your Plugin
+
+#### Pre-installed Dependencies
+
+To use the supported dependencies in your plugin, you can load them using the standard `require()` function at the top of your `index.js` file:
+
+```javascript
+// Load supported dependencies
+const axios = require('axios');
+const moment = require('moment');
+const _ = require('lodash');
+const core = require('@actions/core');
+const { Octokit } = require('@octokit/rest');
+
+// Example plugin using axios for HTTP requests
+const myPlugin = async (url, callback) => {
+    try {
+        const response = await axios.get(url);
+        return callback(null, response.data);
+    } catch (error) {
+        return callback(error, null);
+    }
+};
+
+module.exports = {
+    async: true,
+    filter: myPlugin
+};
+```
+
+**Pre-installed Dependency Usage Examples:**
+
+- **axios**: Make HTTP requests to external APIs
+- **moment**: Parse, manipulate, and format dates
+- **lodash**: Utility functions for working with arrays, objects, and other data types
+- **@actions/core**: Access GitHub Actions core functionality (when running in GitHub Actions context)
+- **@octokit/rest**: Interact with the GitHub REST API
+
+#### Runtime Package Installation
+
+For async plugins, you can **dynamically install any npm package at runtime** using `execSync` to run `npm install`:
+
+```javascript
+const { execSync } = require('child_process');
+
+const myAdvancedPlugin = async (source, callback) => {
+  try {
+    // Install packages at runtime (only runs once per execution)
+    execSync('npm install --silent tree-sitter tree-sitter-javascript', { stdio: 'pipe' });
+
+    // Now you can require the dynamically installed packages
+    const Parser = require('tree-sitter');
+    const JavaScript = require('tree-sitter-javascript');
+
+    const parser = new Parser();
+    parser.setLanguage(JavaScript);
+
+    // Use the newly installed packages
+    const jsFiles = source?.diff?.files?.filter(f => f.new_file?.endsWith('.js')) || [];
+    const firstJsFile = jsFiles[0];
+
+    if (!firstJsFile?.new_content) {
+      return callback(null, JSON.stringify([]));
+    }
+
+    const tree = parser.parse(firstJsFile.new_content);
+    
+    // Process the parsed tree...
+    const comments = [];
+    const traverse = (node) => {
+      if (node.type === 'comment') {
+        comments.push(node.text);
+      }
+      for (let i = 0; i < node.childCount; i++) {
+        traverse(node.child(i));
+      }
+    };
+    traverse(tree.rootNode);
+
+    return callback(null, JSON.stringify(comments));
+  } catch (error) {
+    return callback(error, null);
+  }
+};
+
+module.exports = { async: true, filter: myAdvancedPlugin };
+```
+
 ### Define a New Plugin
 
 Each filter function plugin must have its own unique directory inside the appropriate `/filters` directory for your repo or organization. To create a new filter function, create an index.js file inside the plugin's top-level directory, all plugins must have an index.js file that serves as the primary entry point
