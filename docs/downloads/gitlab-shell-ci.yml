@@ -18,10 +18,9 @@ gitstream-job:
     variables:
       - $GITSTREAM_BLOCK_MERGE
   script:
-    - apk update && apk add git && apk add docker
-    - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}${repoUrl} gitstream/repo
-    - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}${cmUrl} gitstream/cm
-    - cd gitstream && cd repo && git fetch --all && git checkout $base_ref && git pull && ls && git checkout $head_ref && git pull && ls
+    - git clone --shallow-since="6 months ago" --no-tags https://gitlab-ci-token:${CI_JOB_TOKEN}${repoUrl} gitstream/repo
+    - git clone --depth=1 --no-tags https://gitlab-ci-token:${CI_JOB_TOKEN}${cmUrl} gitstream/cm
+    - cd gitstream/repo && git fetch origin $head_ref:$head_ref && git checkout $head_ref
     - docker pull gitstream/rules-engine:latest
     - |
       docker run -v $CI_PROJECT_DIR/gitstream:/code \
