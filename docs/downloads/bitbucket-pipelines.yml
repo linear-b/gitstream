@@ -44,12 +44,9 @@ pipelines:
           services:
             - docker
           script:
-            - git clone https://x-token-auth:$oauth_token@bitbucket.org/$full_repo.git gitstream/repo
-            - git clone https://x-token-auth:$oauth_token@bitbucket.org/$BITBUCKET_WORKSPACE/$BITBUCKET_REPO_SLUG.git gitstream/cm
-            - cd gitstream/repo
-            - git fetch --all
-            - git checkout $base_ref
-            - git checkout $head_ref
+            - git clone --shallow-since="6 months ago" --no-tags https://x-token-auth:$oauth_token@bitbucket.org/$full_repo.git gitstream/repo
+            - git clone --depth=1 --no-tags https://x-token-auth:$oauth_token@bitbucket.org/$BITBUCKET_WORKSPACE/$BITBUCKET_REPO_SLUG.git gitstream/cm
+            - cd gitstream/repo && git fetch origin $head_ref:$head_ref && git checkout $head_ref
             - docker pull gitstream/rules-engine:latest
             - |
               docker run -v $BITBUCKET_CLONE_DIR/gitstream:/code \
