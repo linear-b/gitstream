@@ -10,7 +10,7 @@ automations:
   linearb_ai_review:
     if:
       - {{ not pr.draft }}
-      - {{ not is.bot }}
+      - {{ not (is.bot_author or is.bot_branch) }}
     run:
       - action: code-review@v1
         args:
