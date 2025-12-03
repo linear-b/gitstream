@@ -1,0 +1,93 @@
+# -*- mode: yaml -*-
+# Example GitStream configuration using readMarkdownWithLinks for LinearB AI code reviews
+# This shows how to enhance AI code reviews with comprehensive documentation context
+
+manifest:
+  version: 1.0
+
+automations:
+  # Enhanced AI code review with comprehensive documentation context
+  ai_review_with_full_docs:
+    if:
+      - {{ not pr.draft }}
+      - {{ pr.files | match(regex=r".*\.(js|ts|py|go|java|cpp|cs)") | some }}
+    run:
+      - action: code-review@v1
+        args:
+          guidelines: |
+            Code Review Guidelines:
+            {{ "REVIEW_RULES.md" | readMarkdownWithLinks | dump }}
+            
+            Project Documentation Context:
+            {{ "README.md" | readMarkdownWithLinks(maxDepth=2) | dump }}
+            
+            Architecture and Design:
+            {{ "docs/ARCHITECTURE.md" | readMarkdownWithLinks(maxDepth=1) | dump }}
+
+  # Context-aware reviews based on changed file areas
+  contextual_ai_review:
+    if:
+      - {{ not pr.draft }}
+    run:
+      - action: code-review@v1
+        args:
+          guidelines: |
+            Base Review Guidelines:
+            {{ "REVIEW_RULES.md" | readMarkdownWithLinks | dump }}
+            
+            {% if pr.files | match(regex=r"src/api/.*") | some %}
+            API-Specific Guidelines and Documentation:
+            {{ "docs/api/README.md" | readMarkdownWithLinks | dump }}
+            {% endif %}
+            
+            {% if pr.files | match(regex=r".*test.*") | some %}
+            Testing Standards and Guidelines:
+            {{ "docs/testing/README.md" | readMarkdownWithLinks | dump }}
+            {% endif %}
+            
+            {% if pr.files | match(regex=r".*security.*") | some %}
+            Security Guidelines:
+            {{ "docs/security/GUIDELINES.md" | readMarkdownWithLinks | dump }}
+            {% endif %}
+
+  # Large PR reviews with extensive context
+  comprehensive_review_large_prs:
+    if:
+      - {{ not pr.draft }}
+      - {{ pr.files | length > 10 }}  # Large changes
+    run:
+      - action: code-review@v1
+        args:
+          guidelines: |
+            Comprehensive Review Guidelines for Large Changes:
+            {{ "REVIEW_RULES.md" | readMarkdownWithLinks | dump }}
+            
+            Full Project Context:
+            {{ "README.md" | readMarkdownWithLinks(maxDepth=1) | dump }}
+            
+            Contributing Guidelines:
+            {{ "CONTRIBUTING.md" | readMarkdownWithLinks | dump }}
+            
+            Architecture Documentation:
+            {{ "docs/ARCHITECTURE.md" | readMarkdownWithLinks(maxDepth=2) | dump }}
+
+  # First-time contributor guidance
+  enhanced_review_new_contributors:
+    if:
+      - {{ not pr.draft }}
+      - {{ pr.author_is_new_contributor }}
+    run:
+      - action: code-review@v1
+        args:
+          guidelines: |
+            Welcome! Here are our code review guidelines with full context:
+            {{ "REVIEW_RULES.md" | readMarkdownWithLinks | dump }}
+            
+            New Contributor Guide:
+            {{ "docs/ONBOARDING.md" | readMarkdownWithLinks | dump }}
+            
+            Project Overview:
+            {{ "README.md" | readMarkdownWithLinks(maxDepth=1) | dump }}
+            
+            Contributing Guidelines:
+            {{ "CONTRIBUTING.md" | readMarkdownWithLinks(maxDepth=1) | dump }}
