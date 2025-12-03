@@ -2,15 +2,21 @@ const fs = require('fs');
 const path = require('path');
 
 /**
- * Read file function - in GitStream environment this would be provided
- * For standalone testing, we use fs.readFileSync
+ * Safely read file with path traversal protection
  * @param {string} filePath - Path to file to read
- * @returns {string|null} File content or null if error
+ * @returns {string|null} File content or null if error/invalid path
  */
 function readFile(filePath) {
+  // Whitelist: only allow relative paths within current directory
+  const normalizedPath = path.normalize(filePath);
+  
+  if (path.isAbsolute(normalizedPath) || normalizedPath.includes('..')) {
+    console.log(`Invalid path: ${filePath}`);
+    return null;
+  }
+  
   try {
-    // In GitStream, replace this with: return gitstream.readFile(filePath);
-    return fs.readFileSync(filePath, 'utf8');
+    return fs.readFileSync(normalizedPath, 'utf8');
   } catch (error) {
     console.log(`Error reading file ${filePath}: ${error.message}`);
     return null;
@@ -35,7 +41,7 @@ function extractInternalLinks(content, basePath) {
     
     // Check if it's an internal link (not http/https and ends with .md)
     if (!linkPath.startsWith('http') && linkPath.endsWith('.md')) {
-      const resolvedPath = path.resolve(basePath, linkPath);
+      const resolvedPath = path.join(basePath, linkPath);
       internalLinks.push({
         text: linkText,
         path: linkPath,
@@ -65,13 +71,12 @@ function readMarkdown(filePath, options = {}) {
     currentDepth = 0
   } = options;
 
-  // Resolve the absolute path
-  const absolutePath = path.resolve(filePath);
+  const normalizedPath = path.normalize(filePath);
   
   // Check if we've already visited this file (prevent cycles)
-  if (visited.has(absolutePath)) {
+  if (visited.has(normalizedPath)) {
     return {
-      path: absolutePath,
+      path: normalizedPath,
       content: null,
       error: 'Circular reference detected',
       linkedFiles: []
@@ -81,8 +86,8 @@ function readMarkdown(filePath, options = {}) {
   // Check depth limit
   if (currentDepth >= maxDepth) {
     return {
-      path: absolutePath,
-      content: readFile(absolutePath),
+      path: normalizedPath,
+      content: readFile(normalizedPath),
       error: null,
       linkedFiles: [],
       depthLimitReached: true
@@ -90,13 +95,13 @@ function readMarkdown(filePath, options = {}) {
   }
 
   // Mark this file as visited
-  visited.add(absolutePath);
+  visited.add(normalizedPath);
 
   // Read the main file content
-  const content = readFile(absolutePath);
-  if (!content) {
+  const content = readFile(normalizedPath);
+  if (content === null) {
     return {
-      path: absolutePath,
+      path: normalizedPath,
       content: null,
       error: 'File not found or could not be read',
       linkedFiles: []
@@ -104,7 +109,7 @@ function readMarkdown(filePath, options = {}) {
   }
 
   const result = {
-    path: absolutePath,
+    path: normalizedPath,
     content: content,
     error: null,
     linkedFiles: []
@@ -112,7 +117,7 @@ function readMarkdown(filePath, options = {}) {
 
   // If we should follow links, extract and process them
   if (followLinks) {
-    const basePath = path.dirname(absolutePath);
+    const basePath = path.dirname(normalizedPath);
     const internalLinks = extractInternalLinks(content, basePath);
 
     for (const link of internalLinks) {
@@ -137,7 +142,6 @@ function readMarkdown(filePath, options = {}) {
 /**
  * @module readMarkdownWithLinks
  * @description Reads a markdown file and follows internal links to create a comprehensive document view. 
- * Uses GitStream's readFile under the hood but extends it to recursively follow markdown link references.
  * Prevents circular references and supports configurable depth limits.
  * @param {string} filePath - Path to the markdown file to read
  * @param {Object} [options={}] - Configuration options for link following
@@ -191,3 +195,81 @@ function readMarkdownWithLinks(filePath, options = {}) {
 }
 
 module.exports = readMarkdownWithLinks;
+
+
+
+
+// ============================================================================
+// TESTS (for local development only)
+// ============================================================================
+if (require.main === module) {
+  const fs = require('fs');
+  
+  function assert(condition, message) {
+    if (!condition) { console.error(`❌ ${message}`); process.exit(1); }
+    console.log(`✅ ${message}`);
+  }
+
+  // Setup
+  fs.mkdirSync('./test-files/sub', { recursive: true });
+  fs.writeFileSync('./test-files/main.md', '# Main\n[Related](./related.md)\n[Another](./another.md)\n[External](https://example.com)');
+  fs.writeFileSync('./test-files/related.md', '# Related\n[Sub](./sub/subdoc.md)');
+  fs.writeFileSync('./test-files/another.md', '# Another');
+  fs.writeFileSync('./test-files/sub/subdoc.md', '# Sub\n[Main](../main.md)');
+
+  console.log('🧪 Running tests\n');
+
+  // Test 1: Basic reading
+  let r = readMarkdown('./test-files/main.md', { followLinks: false });
+  assert(r.content?.includes('# Main'), 'Basic file reading');
+
+  // Test 2: Link following
+  r = readMarkdown('./test-files/main.md', { maxDepth: 2 });
+  console.log(r.linkedFiles[0])
+  assert(r.linkedFiles.length === 2, 'Follows 2 links');  
+  assert(r.linkedFiles[0].linkedFiles.length === 1, 'Nested link following');
+
+  // Test 3: Circular reference
+  r = readMarkdown('./test-files/main.md', { maxDepth: 5 });
+  const circularRef = r.linkedFiles[0].linkedFiles[0].linkedFiles[0];
+  assert(circularRef?.error === 'Circular reference detected', 'Circular reference detection');
+
+  // Test 4: Depth limit
+  r = readMarkdown('./test-files/main.md', { maxDepth: 1 });
+  assert(r.linkedFiles[0].linkedFiles.length === 0, 'Depth limit respected');
+
+  // Test 5: Non-existent file
+  r = readMarkdown('./test-files/missing.md');
+  assert(r.error === 'File not found or could not be read', 'Non-existent file handling');
+
+  // Test 6: Combined output
+  const combined = readMarkdownWithLinks('./test-files/main.md', { maxDepth: 1 });
+  assert(combined.includes('=== main.md ==='), 'Combined format includes headers');
+  assert(combined.includes('  === related.md ==='), 'Nested files indented');
+
+  // Test 7: Path traversal blocked
+  r = readMarkdown('../../../etc/passwd');
+  assert(r.content === null, 'Path traversal blocked');
+  assert(r.error === 'File not found or could not be read', 'Path traversal returns error');
+
+  // Test 8: Absolute path blocked
+  const content1 = readFile('/etc/passwd');
+  assert(content1 === null, 'Absolute Unix path blocked');
+
+  const content2 = readFile('C:\\Windows\\System32\\config');
+  assert(content2 === null, 'Absolute Windows path blocked');
+
+  // Test 9: Empty file handling
+  fs.writeFileSync('./test-files/empty.md', '');
+  r = readMarkdown('./test-files/empty.md');
+  assert(r.content === '', 'Empty file handled');
+  assert(r.linkedFiles.length === 0, 'Empty file has no links');
+
+  // Test 10: Self-referencing link
+  fs.writeFileSync('./test-files/self.md', '# Self\n[Self](./self.md)');
+  r = readMarkdown('./test-files/self.md', { maxDepth: 3 });
+  assert(r.linkedFiles[0].error === 'Circular reference detected', 'Self-reference detected');
+
+  console.log('\n🎉 All tests passed!');
+  fs.rmSync('./test-files', { recursive: true });
+}
