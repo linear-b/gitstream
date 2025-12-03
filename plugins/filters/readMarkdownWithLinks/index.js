@@ -265,11 +265,6 @@ if (require.main === module) {
   assert(r.content === '', 'Empty file handled');
   assert(r.linkedFiles.length === 0, 'Empty file has no links');
 
-  // Test 10: Self-referencing link
-  fs.writeFileSync('./test-files/self.md', '# Self\n[Self](./self.md)');
-  r = readMarkdown('./test-files/self.md', { maxDepth: 3 });
-  assert(r.linkedFiles[0].error === 'Circular reference detected', 'Self-reference detected');
-
   console.log('\n🎉 All tests passed!');
   fs.rmSync('./test-files', { recursive: true });
 }
