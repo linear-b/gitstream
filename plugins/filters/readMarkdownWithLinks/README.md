@@ -12,10 +12,10 @@ The main use case for this plugin is enhancing LinearB AI code reviews with comp
 ### Basic Usage
 ```yaml
 guidelines: |
-  {{ "REVIEW_RULES.md" | readMarkdownWithLinks }}
+  {{ "REVIEW_RULES.md" | readMarkdownWithLinks | dump }}
   
   Additional Context:
-  {{ "README.md" | readMarkdownWithLinks(maxDepth=2) }}
+  {{ "README.md" | readMarkdownWithLinks(maxDepth=2) | dump }}
 ```
 
 ## Configuration Options
