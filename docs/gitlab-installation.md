@@ -69,6 +69,9 @@ Create a `cm` project (repository) in your GitLab group. This repository must be
 
 Once your gitStream configuration file is set up, you need a GitLab CI configuration file to trigger gitStream automations. Create a `cm` project (repository) in your GitLab group if you haven't already. It should be created in the same group or a parent group of the target repositories. Create a `.gitlab-ci.yml` file in your new `cm` repository's default branch (usually `master` or `main`) and add the following configuration:
 
+!!! note "Variables Access Configuration for CM Project"
+    In your **CM project/repository only**, ensure that the CI/CD settings have the **Variables** section with the **"Minimum role to use pipeline variables"** setting configured to any value other than **"No one allowed"**. This allows the pipeline in the CM repository to access the necessary variables for gitStream to function properly. You can find this setting under **Settings > CI/CD > Variables** in the CM project.
+
 === "GitLab-Hosted runners"
 
     **Gitlab-Hosted Runners**
