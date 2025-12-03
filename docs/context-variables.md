@@ -281,6 +281,7 @@ The `pr` context includes metadata related to the pull request.
 | `pr.author_teams`           | String                                      | The teams which the PR author is member of                                                 |
 | `pr.checks`                 | [[`Check`]](#check-structure)               | List of checks, names and status                                                           |
 | `pr.comments`               | [[`Comment`]](#comment-structure)           | List of PR comments objects                                                                |
+| `pr.commit_statuses` :fontawesome-brands-github:       | [[`CommitStatus`]](#commitstatus-structure) | List of commit status check objects from external CI systems. |
 | `pr.conflicted_files_count` | Integer                                     | The number files in the PR with conflicts                                                  |
 | `pr.conversations`          | [[`Conversation`]](#conversation-structure) | List of PR conversation objects, usually when reviewer have comments about the source code |
 | `pr.created_at`             | String                                      | The date and time the PR was created                                                       |
@@ -366,6 +367,29 @@ The source context include all code changes, it is not safe to share it with unk
   "created_at": String, # The time on which the comment was created
   "updated_at": String, # The time on which the comment was last updated
 }
+```
+
+#### `CommitStatus` structure :fontawesome-brands-github:
+
+Represents the status of external CI systems like Docker builds or test results. 
+
+```json
+{
+  "state": String, # The status of the check: `pending`, `success`, `failure`, `error`
+  "context": String, # The identifier for the CI system or check (e.g., "continuous-integration/jenkins")
+  "description": String # Human-readable description of the status (e.g., "The build succeeded!")
+}
+```
+
+Example:
+```json
+[
+  {
+    "state": "pending",
+    "context": "continuous-integration/jenkins",
+    "description": "The build succeeded!"
+  }
+]
 ```
 
 #### `Conversation` structure
