@@ -1,5 +1,5 @@
 # -*- mode: yaml -*-
-# Example GitStream configuration using readMarkdownWithLinks for LinearB AI code reviews
+# Example gitStream configuration using readMarkdownWithLinks for LinearB AI code reviews
 # This shows how to enhance AI code reviews with comprehensive documentation context
 
 manifest:
@@ -70,24 +70,3 @@ automations:
             
             Architecture Documentation:
             {{ "docs/ARCHITECTURE.md" | readMarkdownWithLinks(maxDepth=2) | dump }}
-
-  # First-time contributor guidance
-  enhanced_review_new_contributors:
-    if:
-      - {{ not pr.draft }}
-      - {{ pr.author_is_new_contributor }}
-    run:
-      - action: code-review@v1
-        args:
-          guidelines: |
-            Welcome! Here are our code review guidelines with full context:
-            {{ "REVIEW_RULES.md" | readMarkdownWithLinks | dump }}
-            
-            New Contributor Guide:
-            {{ "docs/ONBOARDING.md" | readMarkdownWithLinks | dump }}
-            
-            Project Overview:
-            {{ "README.md" | readMarkdownWithLinks(maxDepth=1) | dump }}
-            
-            Contributing Guidelines:
-            {{ "CONTRIBUTING.md" | readMarkdownWithLinks(maxDepth=1) | dump }}
