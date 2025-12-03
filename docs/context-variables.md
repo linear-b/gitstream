@@ -371,7 +371,7 @@ The source context include all code changes, it is not safe to share it with unk
 
 #### `CommitStatus` structure :fontawesome-brands-github:
 
-Represents the status of external CI systems like Docker builds or test results. 
+Represents the status of external CI systems like Docker builds or test results. Note gitStream doesn't respond to commit status events, only collects them when other events trigger.
 
 ```json
 {
