@@ -108,6 +108,10 @@ jobs:
         uses: linear-b/gitstream-github-action@v2
 ```
 
+## PR author usernames containing "linearb" prevent gitStream from running
+
+If a PR is created by a user whose GitHub username contains the substring "linearb" (case-insensitive), gitStream will not run on that PR. This is a built-in restriction to prevent gitStream from processing its own internal automated PRs.
+
 ## gitStream fails and I don't understand why
 
 gitStream check run can fail from different reasons, and these are shown in the check result.
