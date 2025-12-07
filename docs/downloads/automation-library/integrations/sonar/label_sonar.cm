@@ -2,7 +2,7 @@
 
 manifest:
   version: 1.0
-  
+
 automations:
   {% for item in reports %}
   label_sonar_{{ item.name }}:
@@ -22,11 +22,11 @@ reports:
     count: {{ sonar.vulnerabilities.count }}
     icon: 🔓
     rating: {{ sonar.vulnerabilities.rating }}
-  - name: code smells
+  - name: code_smells
     count: {{ sonar.code_smells.count }}
     icon: ☣️
     rating: {{ sonar.code_smells.rating }}
-  - name: security hotspots
+  - name: security_hotspots
     count: {{ sonar.security_hotspots.count }}
     icon: 🛡️
     rating: {{ sonar.security_hotspots.rating }}
