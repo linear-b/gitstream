@@ -1020,7 +1020,7 @@ Reads the contents of a file from the current branch or the `cm` repo and return
 
 | Argument | Usage  | Type   | Description                                                         |
 | -------- | ------ | ------ | ------------------------------------------------------------------- |
-| -        | Input  | String | The relative file path in the current repo. Prepend `../cm/` to get files from the `cm` repo      |
+| -        | Input  | String | The relative file path in the current repo. Prepend `../cm/` (`code/cm/` on GitHub) to get files from the `cm` repo      |
 | `output` | Input  | String | The content type. Optional, `txt` by default. Allowed options are `txt` or `json`. When using `json`, the output will be returned as a stringified Object |
 | -        | Output | String | The contents of the file as a String. In case of `json` output, the result will be `JSON.stringified`                         |
 </div>
