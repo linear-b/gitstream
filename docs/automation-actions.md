@@ -395,7 +395,7 @@ is:
 | Location | Description | File Placement | Configuration |
 |----------|-------------|----------------|---------------|
 | Repository Root Files | Guidelines file in your repository root | Place your guidelines file (e.g., `REVIEW_RULES.md`) at the root of your repository | `guidelines: {{ "./REVIEW_RULES.md" | readFile() | dump }}` |
-| CM Repository Files | Organization-wide guidelines in central CM repository | Place guidelines in your central CM repository | `guidelines: {{ "../cm/REVIEW_RULES.md" | readFile() | dump }}` |
+| CM Repository Files | Organization-wide guidelines in central CM repository | Place guidelines in your central CM repository | `guidelines: {{ "../cm/REVIEW_RULES.md" | readFile() | dump }}` (or on GitHub: `guidelines: {{ "code/cm/REVIEW_RULES.md" | readFile() | dump }}`) |
 
 The `dump` filter ensures proper YAML formatting when the file content is inserted into the configuration.
 
