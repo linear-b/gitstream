@@ -20,8 +20,7 @@ approve_pr_on_lgtm: false
 
 # Add `guidelines` to customize the code review prompts:
 # - For repository-specific guidelines: Place `REVIEW_RULES.md` at your repository root
-# - For organization-wide guidelines: Place the file in your CM repository root and use `../cm/REVIEW_RULES.md`
-# - For team-specific guidelines: Place the file in the team repository root
+# - For organization-wide guidelines: Place the file in your CM repository root and use `../cm/REVIEW_RULES.md` (or on GitHub:  `code/cm/REVIEW_RULES.md`)
 # The `dump` filter ensures proper YAML formatting when the file content is inserted
 guidelines: {{ "./REVIEW_RULES.md" | readFile() | dump }}
 
