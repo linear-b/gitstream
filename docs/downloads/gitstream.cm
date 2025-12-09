@@ -12,8 +12,6 @@ automations:
       - action: code-review@v1
         args:
           guidelines: |
-            - Highlight **critical issues** only (correctness/logic, performance, security, maintainability blockers).
-            - Skip nitpicks; ignore null-reference risks that are known to be validated earlier in this code path.
             - Keep suggestions short and actionable.
 
   pr_policy_low_noise:
