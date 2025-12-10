@@ -12,8 +12,6 @@ automations:
       - action: code-review@v1
         args:
           guidelines: |
-            - Highlight **critical issues** only (correctness/logic, performance, security, maintainability blockers).
-            - Skip nitpicks; ignore null-reference risks that are known to be validated earlier in this code path.
             - Keep suggestions short and actionable.
 
   pr_policy_low_noise:
@@ -81,7 +79,7 @@ who:
   experts: {{ repo | codeExperts(gt=10, top=5) }}
 
 is:
-  bot: {{ pr.author | match(list=['github-actions','_bot_','[bot]','dependabot','gitstream-cm','dayforce-global-sonar-integration','prvalidation','aida-bot']) | some }}
+  bot: {{ pr.author | match(list=['github-actions','_bot_','[bot]','dependabot','gitstream-cm','prvalidation','aida-bot']) | some }}
 
 colors:
   red:    'b60205'
