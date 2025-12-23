@@ -144,6 +144,35 @@ comment: |
   {{ pr.title }}
 ```
 
+## GitLab self-managed in restricted networks
+
+If gitStream is installed in GitLab and nothing happens (or the CI job starts but fails in different places), the issue is often related to network allowlists, TLS configuration, or runner policies. Use the checkpoints below to narrow it down.
+
+#### gitStream can't reach GitLab (timeouts, 403s, or no webhook follow-up)
+Make sure your GitLab allowlist includes the LinearB/gitStream service IPs and your runner IPs. See the allowlist notes in [GitLab installation](/gitlab-installation#gitlab-installation-overview).
+
+#### TLS/certificate mismatch when GitLab is exposed by IP
+You may see an error like:
+```
+Error: Hostname/IP does not match certificate's altnames
+```
+This usually means the GitLab URL is an IP address, but the TLS certificate was issued for a hostname. Use a hostname that matches the certificate, or reissue the certificate with the IP in its SANs. If you run gitStream in a managed environment, contact support to align SSL validation with the host you expose.
+
+#### Pipeline starts but fails pulling images (no logs or timeouts)
+If your runners can’t reach DockerHub, mirror the required images in your private registry (for example `docker:latest`, `docker:dind`, `gitstream/rules-engine:latest`) and update your `.gitlab-ci.yml` to pull from that registry. See [GitLab installation](/gitlab-installation#gitlab-installation-overview) for the registry customization option.
+
+#### Pipeline stuck on "Waiting for pod ... ContainersNotReady"
+Kubernetes/GitLab runners often disallow privileged mode, which Docker-in-Docker requires. Either allow privileged DIND on the runner or run gitStream with a container runtime your runner allows (for example Podman) and remove the DIND dependency from the pipeline.
+
+#### Clone URL is malformed (e.g., `ssh///` or unexpected port)
+If your org injects SSH URLs or a custom port into `repoUrl`/`cmUrl`, normalize the URL in your CI script before cloning (remove the SSH prefix/port and enforce the correct https URL).
+
+#### Docker runs but fails to write into the mounted repo
+If the runner checks out files as `root` and the container runs as a non-root user, update ownership/permissions on the checkout directory before running the container, or run the container as the same user that owns the files.
+
+#### API calls succeed locally but fail to post MR updates
+If the `client_payload` (or derived repo URL) points to an external IP/host not reachable from your internal network, replace the host in `client_payload` with the internal GitLab endpoint, or align GitLab's external URL with the hostname reachable by your runners.
+
 ## GitHub timeout issues with large repositories
 
 If you're experiencing timeout issues during GitHub Actions execution, particularly with large repositories or monorepos, this is typically caused by the time required to clone the entire repository history.
