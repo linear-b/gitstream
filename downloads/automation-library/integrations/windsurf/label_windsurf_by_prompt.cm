@@ -1,0 +1,16 @@
+-*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  # You should use this automation in conjunction with comment_windsurf_prompt.cm
+  label_windsurf_pr:
+    # If the PR author has indicated that they used Windsurf to assist coding in this PR, 
+    # apply a label indicating the PR was supported by Windsurf
+    if:
+      - {{ pr.comments | filter(attr='commenter', term='gitstream-cm') | filter (attr='content', regex=r/\- \[x\] Windsurf Assisted/) | some}}
+    run:
+      - action: add-label@v1
+        args:
+          label: '🤖 Windsurf' 

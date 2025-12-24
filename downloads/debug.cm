@@ -1,0 +1,14 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  show_changed_files:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            FILES DUMP {{ files | dump | safe }}
