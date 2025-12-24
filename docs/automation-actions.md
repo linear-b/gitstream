@@ -378,6 +378,21 @@ is:
   bot_branch: {{ branch.name | match(list=['renovate/']) | some }}
 ```
 
+This example shows how to combine organization-level and repository-level guidelines.
+
+```yaml+jinja title="example - combined org + repo guidelines"
+automations:
+  linearb_ai_review:
+    if:
+      - true
+    run:
+      - action: code-review@v1
+        args:
+          guidelines: |
+            Repo {{ "./repo_guidelines.md" | readFile() }}
+            Org: {{ "../cm/org_guidelines.md" | readFile() }}
+```
+
 !!! tip "Iterative Guidelines Refinement with Playground"
 
     To achieve the exact review behavior you want, use this iterative workflow:
