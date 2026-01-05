@@ -289,7 +289,7 @@ This action, once triggered, reviews the code in the PR, and generates a comment
 | -----------|------|-----|------------------------------------------------ |
 | `approve_on_LGTM` | Optional | Bool    | Approve this PR if no issues were found. Default is `false` |
 | `guidelines` | Optional | String | Provides custom instructions to the AI model to tailor the code review. Can be inline text or loaded from a file using the `readFile()` function.                                           |
-| `issues_limit` | Optional | Integer \| unlimited | Limits the number of issues included in the generated code review comment. Set to a positive integer (e.g., `10`) or `unlimited` to include all issues. Default is `3`. |
+| `issues_limit` | Optional | Integer \| `unlimited` | Limits the number of issues included in the generated code review comment. Set to a positive integer (e.g., `10`) or `unlimited` to include all issues. Default is `3`. |
 
 </div>
 
