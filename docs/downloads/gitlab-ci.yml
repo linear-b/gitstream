@@ -30,9 +30,5 @@ gitstream-job:
     - docker pull gitstream/rules-engine:latest
     - |
       docker run -v $CI_PROJECT_DIR/gitstream:/code \
-      -e HEAD_REF=$head_ref \
-      -e BASE_REF=$base_ref \
       -e CLIENT_PAYLOAD="$client_payload" \
-      -e RULES_RESOLVER_URL=$resolver_url \
-      -e RULES_RESOLVER_TOKEN=$resolver_token \
       -e DEBUG_MODE=true  gitstream/rules-engine:latest
