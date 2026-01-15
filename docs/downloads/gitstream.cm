@@ -76,7 +76,7 @@ has:
   jira_ticket_in_desc:  {{ pr.description | includes(regex=r/\b[A-Za-z][A-Za-z0-9_]+-\d+\b/) }}
 
 who:
-  experts: {{ repo | codeExperts(gt=10, top=5) }}
+  experts: {{ repo | codeExperts(gt=10) }}
 
 is:
   bot: {{ pr.author | match(list=['github-actions','_bot_','[bot]','dependabot','gitstream-cm','prvalidation','aida-bot']) | some }}
