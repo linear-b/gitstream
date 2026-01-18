@@ -1,6 +1,10 @@
 # /:\\ gitStream Changelog
 All notable changes to this project will be documented in this file.
 
+### 2026.1.18
+- **Added GitLab support for `require-reviewers` action**: The `require-reviewers` action is now available for GitLab merge requests, enabling required reviewer functionality to block merges until approved by specified users or teams.
+- **Simplified `require-reviewers` configuration**: Streamlined the action by removing `team_reviewers` and `fail_on_error` parameters, requiring only the `reviewers` parameter for clearer and more consistent configuration.
+
 ### 2024.5.06
 - **Simplified GitLab workflow file**: Using the image directly instead of docker Dind
 
