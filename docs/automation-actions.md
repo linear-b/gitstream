@@ -34,7 +34,7 @@ For all other actions, gitStream executes the actions in the order they are list
 - [`explain-code-experts`](#explain-code-experts) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`merge`](#merge) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`request-changes`](#request-changes) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
-- [`require-reviewers`](#require-reviewers) :fontawesome-brands-github: :fontawesome-brands-bitbucket:
+- [`require-reviewers`](#require-reviewers) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`run-github-workflow`](#run-github-workflow) :fontawesome-brands-github:
 - [`send-http-request`](#send-http-request) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`send-slack-message`](#send-slack-message) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
@@ -615,9 +615,9 @@ automations:
     :fontawesome-brands-gitlab: Enable the "All threads must be resolved" Merge check
 
 
-#### `require-reviewers` :fontawesome-brands-github: :fontawesome-brands-bitbucket:
+#### `require-reviewers` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 
-This action, once triggered, requires a specific reviewer approval. The PR merge is blocked till approved by either of the listed users or teams.
+This action, once triggered, requires a specific reviewer approval. The PR/MR merge is blocked till approved by either of the listed users or teams.
 
 <div class="filter-details" markdown=1>
 
@@ -644,6 +644,8 @@ automations:
     To allow this action to block merge, The following settings should be set:
 
     :fontawesome-brands-github: Enable branch protection and set gitStream as a required check
+
+    :fontawesome-brands-gitlab: GitLab automatically blocks merge when this action is triggered
 
     :fontawesome-brands-bitbucket: Select "Prevent a merge with unresolved merge checks" under Branch restrictions
 
