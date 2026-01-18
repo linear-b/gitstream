@@ -1,0 +1,87 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  linearb_ai_codereview:
+    # Ai Code Review - Triggers only when PR is ready for review, see docs https://docs.gitstream.cm/execution-model/#action-level-execution-control
+    on: [pr_created, pr_ready_for_review, merge]
+    if:
+      - {{ not is.bot }}
+    run:
+      - action: code-review@v1
+        args:
+          guidelines: |
+            - Keep suggestions short and actionable.
+
+  pr_policy_low_noise:
+    on: [pr_created, commit]
+    if:
+      - {{ not pr.draft }}
+      - {{ not is.bot }}
+    run:
+      # AI description (updates PR body; not a comment)
+      - action: describe-changes@v1
+        args:
+          concat_mode: append
+
+      # Quiet labels
+      - action: add-label@v1
+        args:
+          label: "{{ calc.etr }} min review"
+          color: {{ colors.red if (calc.etr >= 20) else (colors.yellow if (calc.etr >= 5) else colors.green) }}
+
+      - action: add-label@v1
+        when :  {{ pr.unresolved_threads }}
+        args:
+          label: "{{ pr.unresolved_threads | default(value=0) }} unresolved thread(s)"
+          color: {{ colors.yellow }}
+
+      - action: add-label@v1
+        when: {{ not (has.jira_ticket_in_title or has.jira_ticket_in_desc) }}
+        args:
+          label: "missing-jira"
+          color: {{ colors.red }}
+          # further automations available with Jira webhook
+
+      # Assign reviewers silently
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ who.experts }}
+
+      # ONE consolidated, updatable comment
+      - action: add-comment@v1
+        args:
+          comment: |
+            ## gitStream Summary — Low Noise (Staff Engineer focus)
+
+            **AI PR Description:** Updated in the PR body above.
+            **ETR:** {{ calc.etr }} min review
+            **Unresolved threads:** {{ pr.unresolved_threads | default(value=0) }}
+
+            ### Suggested Reviewers (auto-assigned)
+            {{ who.experts }}
+
+            ### Jira Reference
+            {{ '✅ Found in title/description.' if (has.jira_ticket_in_title or has.jira_ticket_in_desc) else '⚠️ Missing Jira ticket. Please add one (e.g., `ABC-123` or an `atlassian.net/browse/...` link).' }}
+
+            > Labels/reviewers were applied quietly to keep this PR clean.
+
+# ----------------- config -----------------
+calc:
+  etr: {{ branch | estimatedReviewTime }}
+
+has:
+  jira_ticket_in_title: {{ pr.title       | includes(regex=r/\b[A-Za-z][A-Za-z0-9_]+-\d+\b/) }}
+  jira_ticket_in_desc:  {{ pr.description | includes(regex=r/\b[A-Za-z][A-Za-z0-9_]+-\d+\b/) }}
+
+who:
+  experts: {{ repo | codeExperts(gt=10) }}
+
+is:
+  bot: {{ pr.author | match(list=['github-actions','_bot_','[bot]','dependabot','gitstream-cm','prvalidation','aida-bot']) | some }}
+
+colors:
+  red:    'b60205'
+  yellow: 'fbca04'
+  green:  '0e8a16'
