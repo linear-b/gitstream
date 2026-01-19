@@ -266,6 +266,9 @@ automations:
 
 This action, once triggered, updates the PR state between draft and ready for review.
 
+!!! note "Explicit Triggers Required for Draft PRs"
+    Since gitStream does not run on draft PRs by default, this action requires the use of [explicit triggers](execution-model.md#explicit-triggers) to function properly. Define triggers using the `on` parameter at the automation level to specify when the automation should evaluate draft PRs.
+
 <div class="filter-details" markdown=1>
 
 | Args | Usage | Type | Description |
@@ -277,7 +280,7 @@ This action, once triggered, updates the PR state between draft and ready for re
 ```yaml+jinja title="example"
 automations:
   ready_for_review:
-    # because the action is on Draft, explicit triggers must be used
+    # Explicit triggers required to work with draft PRs
     on:
       - label_added
       - pr_created
