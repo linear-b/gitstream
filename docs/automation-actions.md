@@ -28,6 +28,7 @@ For all other actions, gitStream executes the actions in the order they are list
 - [`add-reviewers`](#add-reviewers) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`add-thread`](#add-thread) :fontawesome-brands-gitlab:
 - [`approve`](#approve) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
+- [`change-pr-state`](#change-pr-state) :fontawesome-brands-github: :fontawesome-brands-gitlab:
 - [`close`](#close) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`code-review`](#code-review) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 - [`describe-changes`](#describe-changes) :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
@@ -259,6 +260,33 @@ automations:
       - {{ source.diff.files | isFormattingChange }}
     run:
       - action: approve@v1
+```
+
+#### `change-pr-state` :fontawesome-brands-github: :fontawesome-brands-gitlab:
+
+This action, once triggered, updates the PR state between draft and ready for review.
+
+<div class="filter-details" markdown=1>
+
+| Args | Usage | Type | Description |
+| --- | --- | --- | --- |
+| `draft` | Optional | Bool | When `true`, convert the PR to Draft. When `false`, mark the PR as Ready for review. |
+
+</div>
+
+```yaml+jinja title="example"
+automations:
+  ready_for_review:
+    # because the action is on Draft, explicit triggers must be used
+    on:
+      - label_added
+      - pr_created
+    if:
+      - true
+    run:
+      - action: change-pr-state@v1
+        args:
+          draft: false
 ```
 
 #### `close` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
