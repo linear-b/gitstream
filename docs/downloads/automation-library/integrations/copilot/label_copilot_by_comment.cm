@@ -1,4 +1,4 @@
--*- mode: yaml -*-
+# -*- mode: yaml -*-
 
 manifest:
   version: 1.0
