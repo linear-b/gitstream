@@ -49,9 +49,9 @@ If you want to build gitStream automations to interact with the Jira API or Jira
 
 <a target="_blank" href="https://confluence.atlassian.com/jirakb/working-with-incoming-webhook-data-in-automation-for-jira-1125878776.html"> Learn more about working with incoming webhooks in the Jira docs </a>
 
- Next, in GitHub, create an organization secret to store your Jira webhook URL and pass it to gitStream's [`env` context variable](/context-variables/#env) by adding a line to `.github/workflows/gitstream.yml` inside your repo. Make sure to give this a unique name, such as `JIRA_CREATE_ISSUE_WEBHOOK: ${{ secrets.JIRA_CREATE_ISSUE_WEBHOOK }}`.
+ Next, in GitHub, create an organization secret to store your Jira webhook URL and secret and pass these to gitStream's [`env` context variable](/context-variables/#env) by adding lines to `.github/workflows/gitstream.yml` inside your repo. Make sure to give these a unique name, such as `JIRA_CREATE_ISSUE_WEBHOOK: ${{ secrets.JIRA_CREATE_ISSUE_WEBHOOK }}` and `JIRA_CREATE_ISSUE_SECRET: ${{ secrets.JIRA_CREATE_ISSUE_SECRET }}`.
 
-Once finished, you can use the `env.JIRA_CREATE_ISSUE_WEBHOOK` context variable inside CM files to send HTTP requests to Jira from your GitHub repo. For an example of how to do this, check out the [create Jira issue](/automations/integrations/jira/create-jira-issue) automation.
+Once finished, you can use the `env.JIRA_CREATE_ISSUE_WEBHOOK` and `env.JIRA_CREATE_ISSUE_SECRET` context variables inside CM files to send HTTP requests to Jira from your GitHub repo. For an example of how to do this, check out the [create Jira issue](/automations/integrations/jira/create-jira-issue) automation.
 
 
 ### Connect to the Jira API
