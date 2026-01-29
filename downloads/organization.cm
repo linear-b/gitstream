@@ -1,0 +1,16 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+    
+automations:
+  # Assign reviewers at random to spread knowledge of a particular repo.
+  share_knowledge:
+    # Triggered for PRs to the `new-repo` repository.
+    if:
+      - {{ repo.name | match(term='new-repo') }}
+    # Assign reviewers at random from a list of previous contributors 
+    # who are under the 50% expertise threshold
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ repo | rankByGitBlame(lt=50) | random }}

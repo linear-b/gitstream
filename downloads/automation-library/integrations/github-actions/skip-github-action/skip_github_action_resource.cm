@@ -1,0 +1,26 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+on:
+  - pr_created
+  - commit
+
+automations:
+  skip_github_action_resource:
+    if:
+      - {{ files | match(term='docs/') | every }}
+    run:
+      - action: add-github-check@v1
+        args:
+          check_name: release-ci
+          conclusion: skipped
+      - action: add-github-check@v1
+        args:
+          check_name: mobile-ci
+          conclusion: skipped
+      - action: add-comment@v1
+        args:
+          comment: |
+            [gitStream](https://docs.gitstream.cm) automatically skipped production CI pipelines because this PR only contains docs changes.

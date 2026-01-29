@@ -1,0 +1,29 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  approve_tiny_change:
+    # Triggered for PRs that contain one file and one line.
+    if:
+      - {{ is.one_file and is.one_line }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'single-line'
+      - action: approve@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR has been approved because it is only a single line
+
+changes:
+  # Sum all the lines added in the PR
+  additions: {{ branch.diff.files_metadata | map(attr='additions') | sum }}
+  # Sum all the line removed in the PR
+  deletions: {{ branch.diff.files_metadata | map(attr='deletions') | sum }}
+
+is:
+  one_file: {{ files | length == 1 }}
+  one_line: {{ changes.additions - changes.deletions <= 1 }}

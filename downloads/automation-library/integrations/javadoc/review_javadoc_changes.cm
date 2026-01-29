@@ -1,0 +1,21 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+automations:
+  # Assign PRs that only affect JavaDocs to the technical writing team and add docs label
+  review_javadoc:
+    if:
+      - {{ source.diff.files | matchDiffLines(regex=r/\/*\*([\s\S]*?)\//) | every }}
+      - {{ source.diff.files | matchDiffLines(regex=r/\b(public|protected|private|static|final|synchronized)?\s+\w+\s+\w+\s*\(([^)]*)\)\s*\{/) | nope }}
+    run:
+      - action: add-label@v1
+        args:
+            label: "📓 Javadoc Only"
+            color: {{ colors.green }}
+      - action: add-reviewers@v1
+        args:
+          reviewers: [org/tech-writers]
+      - action: approve@v1
+      
+colors:
+  green: '0e8a16'

@@ -1,0 +1,48 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+# Configure these to match your organization.
+provider: jira
+orgName: org
+asanaProject: 1234
+azureProject: my_project
+
+{% set ticketid = "" %}
+{% for ticket in tickets %}
+{% if (ticket | includes(regex=r/.+/)) %}
+{% set ticketid = ticket %}
+{% endif %}
+{% endfor %}
+
+automations:
+  comment_issue_tracker:
+    if:
+      - {{ has.ticket_in_title or has.ticket_in_branch }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: Issue Tracker Link - [{{ticketid}}]({{tracker[provider].baseurl}}{{ticketid}})
+
+has:
+  ticket_in_title: {{ pr.title | includes(regex=tracker[provider].pattern) }}
+  ticket_in_branch: {{ branch.name | includes(regex=tracker[provider].pattern) }}
+
+tracker:
+  jira:
+    baseurl: https://{{orgName}}.atlassian.net/browse/
+    pattern: r/\b[A-Za-z]+-\d+\b/
+  asana:
+    baseurl: https://app.asana.com/0/{{asanaProject}}/0/
+    pattern: r/asana-(\d+)/
+  azure:
+    baseurl: https://dev.azure.com/{{orgName}}/{{azureProject}}/_workitems/
+    pattern: r/(\w+)-(\w+)-(\d+)/
+  shortcut:
+    baseurl: https://app.shortcut.com/{{orgName}}/story/
+    pattern: r/(\w+)\/sc-(\d+)/
+
+tickets:
+  - {{branch.name | capture(regex=tracker[provider].pattern)}}
+  - {{pr.title | capture(regex=tracker[provider].pattern)}}

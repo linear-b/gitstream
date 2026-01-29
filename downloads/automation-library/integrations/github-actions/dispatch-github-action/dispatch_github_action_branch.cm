@@ -1,0 +1,35 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+on:
+  - pr_created
+  - commit
+
+automations:
+  {% for item in pipelines %}
+  # Change pr.target to branch.name if you want to trigger on the source branch rather then the target branch.
+  dispatch_github_action_branch_{{ item.name }}:
+    if:
+      - {{ pr.target | includes(term=item.branch_prefix) }}
+    run:
+      - action: run-github-workflow@v1
+        args:
+          workflow: .github/workflows/{{ item.workflow }}
+          check_name: {{ item.name }}
+      - action: add-label@v1
+        args:
+          label: {{ item.label }}
+  {% endfor %}
+
+
+pipelines:
+  - name: mobile_ci
+    label: Mobile CI
+    branch_prefix: 'mobile-'
+    workflow: mobile.yml
+  - name: backend_ci
+    label: Backend CI
+    branch_prefix: 'backend-'
+    workflow: 'backend.yml'

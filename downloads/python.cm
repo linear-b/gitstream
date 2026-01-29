@@ -1,0 +1,17 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  # Approve PRs that only change logging functionality.
+  approve_python_logging_changes:
+    # Triggered for PRs to python files that only modify logging functions.
+    if: 
+      - {{ files | match(regex=r/\.py$/) | every }}
+      - {{ files | length == 1 }}
+      - {{ source.diff.files | matchDiffLines(regex=r/^[+-].*logger\.(trace|debug|info|warn|error)/, ignoreWhiteSpaces=true) | every }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'logging-changes'
+      - action: approve@v1

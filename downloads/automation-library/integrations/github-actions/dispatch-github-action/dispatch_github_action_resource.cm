@@ -1,0 +1,43 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+on:
+  - pr_created
+  - commit
+
+automations:
+  {% for item in pipelines %}
+  dispatch_github_action_resource_{{ item.name }}:
+    if:
+      - {{ files | match(list=item.resources) | some }}
+    run:
+      - action: run-github-workflow@v1
+        args:
+          workflow: .github/workflows/{{ item.workflow }}
+          check_name: {{ item.name }}
+      - action: add-label@v1
+        args:
+          label: {{ item.label }}
+  {% endfor %}
+
+
+pipelines:
+  - name: mobile-ci
+    label: Mobile CI
+    resources:
+      - 'src/android/'
+      - 'src/ios/'
+    workflow: mobile.yml
+  - name: backend-ci
+    label: Backend CI
+    resources:
+      - 'src/api/'
+      - 'src/services'
+    workflow: 'backend.yml'
+  - name: frontend-ci
+    label: Frontend CI
+    resources:
+      - 'src/app/'
+    workflow: 'frontend.yml'

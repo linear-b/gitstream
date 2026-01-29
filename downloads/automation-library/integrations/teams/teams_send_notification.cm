@@ -1,0 +1,39 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  send_teams_security:
+    if:
+      # use your custom logic here to determine whether this needs a security review
+      - true
+    run:
+      - action: send-http-request@v1
+        args:
+          method: "POST"
+          headers: '{"Content-type": "application/json"}'
+          url: "{{ env.MS_TEAMS_WEBHOOK_SECURITY }}"
+          body: '{"text": "A PR requires a security review. See https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"}'
+  send_teams_qa:
+    if:
+      # use your custom logic here to determine whether this needs a qa review
+      - {{ not (files | match(regex=r/(test|spec)/) | some) }}
+    run:
+      - action: send-http-request@v1
+        args:
+          method: "POST"
+          headers: '{"Content-type": "application/json"}'
+          url: "{{ env.MS_TEAMS_WEBHOOK_QA }}"
+          body: '{"text": "A PR was submitted without tests. See https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"}'
+  send_teams_docs:
+    if:
+      # use your custom logic here to determine whether this needs a docs review
+      - {{ files | match(regex=r/(docs)/) | some }}
+    run:
+      - action: send-http-request@v1
+        args:
+          method: "POST"
+          headers: '{"Content-type": "application/json"}'
+          url: "{{ env.MS_TEAMS_WEBHOOK_DOCS }}"
+          body: '{"text": "A PR has modified the docs. See https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"}'

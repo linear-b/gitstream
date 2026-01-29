@@ -1,0 +1,24 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+on:
+  - pr_created
+  - commit
+
+# Optionally, you can change pr.target to branch.name
+# if you want to trigger based on the source branch name rather then the target branch name.
+automations:
+  skip_github_action_branch:
+    if:
+      - {{ pr.target | includes(term='release') }}
+    run:
+      - action: add-github-check@v1
+        args:
+          check_name: staging-ci
+          conclusion: skipped
+      - action: add-comment@v1
+        args:
+          comment: |
+            [gitStream](https://docs.gitstream.cm) automatically skipped staging CI pipelines because this PR targets the release branch.

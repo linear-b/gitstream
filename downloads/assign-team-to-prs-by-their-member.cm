@@ -1,0 +1,13 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  add_first_team_reviewer:
+    if:
+      - true
+    run:
+      - action: add-reviewers@v1
+        args:
+          team_reviewers: {{ pr.author_teams | first }}

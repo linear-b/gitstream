@@ -1,0 +1,28 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+on:
+  - label_added
+  - label_removed
+
+automations:
+  {% for item in pipelines %}
+  dispatch_github_action_label_{{ item.name }}:
+    if:
+      - {{ pr.labels | match(term=item.label) | some }}
+    run:
+      - action: run-github-workflow@v1
+        args:
+          workflow: .github/workflows/{{ item.workflow }}
+          check_name: {{ item.name }}
+  {% endfor %}
+
+pipelines:
+  - name: mobile-ci
+    label: Mobile CI
+    workflow: mobile.yml
+  - name: backend-ci
+    label: Backend CI
+    workflow: 'backend.yml'

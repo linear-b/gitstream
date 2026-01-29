@@ -1,0 +1,53 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+## change orgName to match your git organization name.
+orgName: company
+
+automations:
+    {% for item in watchers %}
+    notify_watcher_{{ item.owner if item.owner else item.team }}:
+        if:
+        - {{ (files | match(list=item.files) | some) or (source.diff.files | match(attr="diff", list=item.diffs) | some) }}
+        run:
+        - action: add-comment@v1
+          args:
+            comment: |
+                @{{ item.owner if item.owner else (["{{ orgName }}/", item.team] | join) }} - this PR has changes you're watching
+
+                {% if files | match(list=item.files) | some -%}
+                files:
+                {%- for file in files | filter(list=item.files) %}
+                - {{ file }}
+                {%- endfor -%}
+                {%- endif %}
+
+                {% if source.diff.files | match(attr="diff", list=item.diffs) | some -%}
+                diffs:
+                {%- for diff in item.diffs -%}
+                {%- if source.diff.files | match(attr="diff", list=diff) | some %}
+                - {{ diff }}
+                {%- for file in source.diff.files | filter(attr="diff", list=diff) | map(attr="new_file") %}
+                - {{ file }}
+                {%- endfor -%}
+                {%- endif -%}
+                {%- endfor -%}
+                {%- endif %}
+        - action: add-reviewers@v1
+          args:
+            reviewers: {{ item.owner }}
+            team_reviewers: {{ item.team }}
+  {% endfor %}
+
+
+
+watchers:
+  - owner: juliaspencer
+    files:
+      - src/auth
+  - team: release
+    files:
+      - package.json
+      - yarn.lock

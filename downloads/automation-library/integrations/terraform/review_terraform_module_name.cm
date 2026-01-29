@@ -1,0 +1,42 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+# Prefix Check Logic
+{% set prefixcheck = [] %}
+{% for pattern in terraform.prefixes %}
+{% if(newfilesinpr | match(term=module_location + pattern) | some) %}
+{% set prefixcheck = prefixcheck + [true]%}
+{% else %}
+{% set prefixcheck = prefixcheck + [false]  %}
+{% endif %}
+{% endfor %}
+
+automations:
+  review_terraform_module_name:
+    if:
+      - {{is.mainfile and is.mainfilenotinroot}}
+      - {{module_name_checks.prefix or module_name_checks.keyword}}
+    run:
+      - action: request-changes@v1
+        args:
+          comment: |
+            Terraform module names must contain a required prefix and keyword:
+            * Prefixes: {{ terraform.prefixes }}
+            * Keywords: {{ terraform.keywords }}
+
+module_name_checks:
+  prefix: {{prefixcheck | match(term='true') | nope}}
+  keyword: {{newfilesinpr | match(list=terraform.keywords) | nope}}
+
+module_location: infrastructure/modules/
+terraform:
+  prefixes: ['aws', 'gcp', 'azure']
+  keywords: ['db', 'networking', 'security']
+
+is:
+  mainfile: {{newfilesinpr | match(term = "main.tf") | some}}
+  mainfilenotinroot: {{source.diff.files | map(attr='original_file') | match(term = "main.tf") | nope }}
+newfilesinpr:
+  {{ branch.diff.files_metadata | map(attr='new_file')}}

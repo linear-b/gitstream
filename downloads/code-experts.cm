@@ -1,0 +1,80 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  # Assign special teams to review sensitive files. 
+  # This requires the `sensitive` custom expression found at the bottom of this file.
+  sensitive_file_review:
+    # For all files listed in the sensitive custom expression.
+    if:
+      - {{ files | match(list=sensitive_files) | some }}
+    run:
+      # Add reviewers from the dev-leads team, and require two approvals
+      # Modify `my_organization/security` to match your organization.
+      - action: add-reviewers@v1
+        args:
+          reviewers: [my_organization/security]
+      - action: set-required-approvals@v1
+        args:
+          approvals: 2
+
+  # Assign up to 2 reviewers based on highest code expertise. 
+  assign_code_experts:
+    # If the PR changes any files inside `/src`.
+    if: 
+      - {{ files | match(regex=r/src\//) | some }}
+    run:
+      # Add a code reviewer with a minimum 10% expertise
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ repo | codeExperts(gt=10) }}
+      # Post a comment that lists all code experts who exceed the 10% threshold
+      - action: explain-code-experts@v1 
+        args:
+          gt: 10
+
+  # Require additional reviewers for large PRs. 
+  large_review:
+    # If 10 or more files are modified and the estimated review time is 30 minutes or more.
+    if:
+      - {{ files | length >= 10 }}
+      - {{ branch | estimatedReviewTime >= 30 }}
+    # Apply a requirement for two reviewers, 
+    # and post a comment to recommend breaking this PR up into smaller contributions.
+    run:
+      - action: set-required-approvals@v1
+        args:
+          approvals: 2
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR may require a significant amount of effort to review. Please consider dividing your PR up into multiple smaller contributions.
+
+  # Help newcomers find mentors to guide them.
+  new_contributor_review:
+    # If the PR author made their first contirbution within the last 21 days.
+    if:
+      - {{ repo.author_age < 21 and (repo.age - repo.author_age) >= 21 }}
+    # 1. Add reviewers from the team `my_organization/mentors`. Replace this string to match your organization
+    # 2. Apply a new-contributor label.
+    # 3 Post a comment that explains the next steps.
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: [my_organization/mentors]
+      - action: add-label@v1
+        args:
+          label: 'new-contributor'
+          color: '#FBBD10'
+      - action : add-comment@v1
+        args:
+          comment: |
+            During your first 21 days, someone from the mentor team will be assigned to review your PRs.
+
+# The `sensitive_file_review` automation requires this custom expression.
+# Modify this list to suit your security needs.
+sensitive_files:
+  - src/app/auth/
+  - src/app/routing/
+  - src/app/resources/
