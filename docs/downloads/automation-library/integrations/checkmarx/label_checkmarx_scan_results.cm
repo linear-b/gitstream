@@ -1,0 +1,28 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  {% for item in reports %}
+  label_checkmarx_{{ item.name }}:
+    if:
+      - {{ item.count > 0 }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'checkmarx:{{ item.name }}'
+  {% endfor %}
+
+checkmarx: {{ pr | extractCheckmarxFindings }}
+
+reports:
+  - name: sast-findings
+    count: {{ checkmarx.sast.count }}
+  - name: sca-findings
+    count: {{ checkmarx.sca.count }}
+  - name: iac-findings
+    count: {{ checkmarx.kics.count }}
+
+colors:
+  red: 'b60205'

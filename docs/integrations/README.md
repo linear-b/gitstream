@@ -97,6 +97,12 @@ visible: false
 
 <div class="integrations-card" markdown="1">
 <div class="integrations-card-title" markdown="1">
+[:material-shield-search: Checkmarx](/integrations/checkmarx/)
+</div>
+</div>
+
+<div class="integrations-card" markdown="1">
+<div class="integrations-card-title" markdown="1">
 <a href=/integrations/orca-security/>![Orca Security](../downloads/images/Orca-Mark-Black.png#only-light) ![LinearB](../downloads/images/Orca-Mark-White.png#only-dark) Orca</a>
 </div>
 </div>
