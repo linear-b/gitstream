@@ -88,7 +88,7 @@ mkdocs serve  # http://127.0.0.1:8000/
 
 ### Zensical (Experimental)
 
-An alternative documentation system being evaluated. Requires Python 3.11+.
+An alternative documentation system being evaluated. Requires Python 3.11+
 
 ```bash
 # Install dependencies (creates .venv-zensical automatically)
