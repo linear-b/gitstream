@@ -865,9 +865,9 @@ run:
 
 #### `isFormattingChange`
 
-Return `true` if all file diffs are validated as formatting changes. This filter function works for JavaScript, TypeScript, Python, JSON, YAML and HTML.
+Return `true` if all file diffs are validated as formatting changes. This filter function works for JavaScript, TypeScript, JSX, TSX, Python, JSON, YAML, HTML, CSS, SCSS, LESS, Markdown, and other file types supported by Prettier.
 
-gitStream determines formatting changes by minifying the source code for the incoming changes and the existing code and comparing them. If they are identical, this filter function returns `true`. If any unsupported languages are contained in the PR, gitStream will return `false`.
+gitStream determines formatting changes by minifying the source code for the incoming changes and the existing code and comparing them. If they are identical, this filter function returns `true`. For unsupported file types, gitStream falls back to whitespace normalization for comparison.
 
 <div class="filter-details" markdown=1>
 
