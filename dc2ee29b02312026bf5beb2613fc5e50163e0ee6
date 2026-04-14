@@ -1,0 +1,23 @@
+docs/filter-functions.md
+  e179dd0f0dcb0747 868,870
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "dc2ee29b02312026bf5beb2613fc5e50163e0ee6",
+  "prompts": {
+    "e179dd0f0dcb0747": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a5d740f9-97f3-4b38-abd5-1db38ea77201",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Misha Kav",
+      "messages": [],
+      "total_additions": 2,
+      "total_deletions": 2,
+      "accepted_lines": 2,
+      "overriden_lines": 0
+    }
+  }
+}
