@@ -95,10 +95,13 @@ When using repository level rules, you can edit the `.github/workflows/gitstream
 
     This will not work for org level rules
 
-```yaml+jinja title=".github/workflows/gitstream.yml" hl_lines="5"
+```yaml+jinja title=".github/workflows/gitstream.yml" hl_lines="8"
+permissions:
+  contents: read
+
 jobs:
   gitStream:
-    timeout-minutes: 5
+    timeout-minutes: 15
     # uncomment this condition, if you don't want any automation on dependabot PRs
     if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
@@ -180,6 +183,9 @@ If you're experiencing timeout issues during GitHub Actions execution, particula
 You can resolve this by using the **lite version** of the gitStream GitHub Action, which performs a shallow clone to reduce execution time:
 
 ```yaml
+permissions:
+  contents: read
+
 jobs:
   gitStream:
     timeout-minutes: 15

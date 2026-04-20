@@ -68,6 +68,9 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
             If you're working with a large repository (typically monorepos) and experience timeout issues during GitHub Actions execution, you can use the lite version of gitStream that performs a shallow clone to reduce execution time:
 
             ```yaml
+            permissions:
+              contents: read
+
             jobs:
               gitStream:
                 timeout-minutes: 15
@@ -135,6 +138,9 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
             If you're working with large repositories in your organization (typically monorepos) and experience timeout issues during GitHub Actions execution, you can use the lite version of gitStream that performs a shallow clone to reduce execution time:
 
             ```yaml
+            permissions:
+              contents: read
+
             jobs:
               gitStream:
                 timeout-minutes: 15
@@ -186,6 +192,25 @@ You can set up gitStream for a single repo or your entire GitHub organization. S
 | Read and write access to actions, checks, pull requests, and workflows | Trigger workflows, create and update pull requests and their checks, and modify workflow files |
 | User email | Used to identify users |
 
+### Hardening the Workflow `GITHUB_TOKEN`
+
+The generated `.github/workflows/gitstream.yml` declares an explicit `permissions:` block that scopes the workflow's built-in `GITHUB_TOKEN` to the minimum required:
+
+```yaml
+permissions:
+  contents: read
+```
+
+This follows GitHub's [least-privilege guidance for `GITHUB_TOKEN`](https://github.blog/changelog/2021-04-20-github-actions-control-permissions-for-github_token/). All remaining scopes default to `none` once any key is set.
+
+!!! info "Why `contents: read` is sufficient"
+    The gitStream action uses two distinct tokens:
+
+    - **`GITHUB_TOKEN`** (built into the workflow runner) — used only to clone the repository via `actions/checkout`. Needs `contents: read` on private repos.
+    - **gitStream App installation token** — passed through `client_payload` and used by the action for all PR comments, labels, approvals, and checks. Governed by the **GitHub App permissions** documented above, independent of the workflow `permissions:` block.
+
+    Scoping `GITHUB_TOKEN` down to `contents: read` does not affect any gitStream feature — writes flow through the App token.
+
 ### Configure gitStream to Block Merges <a name="github-merge-block"></a>
 You can configure GitHub to require gitStream checks to pass before PRs can be merged using [branch protection rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches).
 
@@ -221,6 +246,9 @@ Follow these steps to ensure gitStream runs on self-hosted GitHub Actions runner
     - Modify the gitStream GitHub Actions workflow file (`.github/workflows/gitstream.yml`) to specify self-hosted runners:
 
     ```yaml
+    permissions:
+      contents: read
+
     jobs:
       gitStream:
         runs-on: self-hosted
