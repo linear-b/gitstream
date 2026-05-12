@@ -1,12 +1,12 @@
 Welcome to gitStream Playground! This platform allows you to thoroughly test gitStream automations before deploying them into the `.cm` rule file on any GitHub pull request of your choice. 
 
-[Playground :fontawesome-solid-play:](https://app.gitstream.cm/playground){.md-button .md-button--primary}
+[Playground :fontawesome-solid-play:](https://app.linearb.io/automations/playground){.md-button .md-button--primary}
 
 ## Getting Started
 
 ### Accessing gitStream Playground
 
-To access gitStream Playground, visit [https://app.gitstream.cm/playground](https://app.gitstream.cm/playground). 
+To access gitStream Playground, visit [https://app.linearb.io/automations/playground](https://app.linearb.io/automations/playground).
 To be able to test automations of private repository PRs, log in with your GitHub account credentials.
 
 ### Interface Overview

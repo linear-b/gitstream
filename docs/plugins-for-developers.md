@@ -208,7 +208,7 @@ Filter function plugins can accept any number of arguments. The first argument m
 
 2. **Context Variable Insight**
 
-    Utilize the [gitStream playground](https://app.gitstream.cm/playground) to see how the context variable appears in a real Pull Request (PR). Inspect the PR Context Variables at the bottom of the screen ![Playground](screenshots/playground-context-variables.png).
+    Utilize the [gitStream playground](https://app.linearb.io/automations/playground) to see how the context variable appears in a real Pull Request (PR). Inspect the PR Context Variables at the bottom of the screen ![Playground](screenshots/playground-context-variables.png).
 
 3. **Local Execution**
 
