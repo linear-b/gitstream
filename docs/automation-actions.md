@@ -429,7 +429,7 @@ automations:
 
     To achieve the exact review behavior you want, use this iterative workflow:
 
-    1. Start with the [Playground](https://app.gitstream.cm/playground)
+    1. Start with the [Playground](https://app.linearb.io/automations/playground)
     2. Add specific guidelines e.g., "Do not comment on formatting issues"
     3. Run in the Playground with a reference PR from your repository
     4. Refine guidelines based on the results
