@@ -100,7 +100,7 @@ automations:
   label_missing_jira_info:
     if:
       - {{ not (pr.title       | includes(regex=r/\b[A-Za-z]+-\d+\b/)) }}
-      - {{ not (pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/)) }}
+      - {{ not (pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d+/)) }}
       - {{ not (pr.source      | includes(regex=r/\b[A-Za-z]+-\d+\b/)) }}
       - {{ not is.bot_author }}
     run:
