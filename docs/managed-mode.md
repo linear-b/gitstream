@@ -110,7 +110,7 @@ automations:
           color: 'F6443B'
 
 missing_jira_ticket_on_title:       {{ pr.title       | capture(regex=r/\b[A-Za-z]+-\d+\b/) | length == 0 }}
-missing_jira_ticket_on_description: {{ pr.description | capture(regex=r/atlassian.net\/browse\/\w{1,}-\d+/) | length == 0 }}
+missing_jira_ticket_on_description: {{ pr.description | capture(regex=r/atlassian\.net\/browse\/\w{1,}-\d+/) | length == 0 }}
 missing_jira_ticket_on_branch:      {{ pr.source      | capture(regex=r/\b[A-Za-z]+-\d+\b/) | length == 0 }}
 missing_jira_ticket: {{ missing_jira_ticket_on_title and missing_jira_ticket_on_description and missing_jira_ticket_on_branch }}
 ```
