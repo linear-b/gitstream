@@ -97,20 +97,17 @@ Label PRs that don't reference a Jira ticket in the title, description, or branc
 
 ```yaml
 automations:
-  linearb_label_missing_jira_info:
+  label_missing_jira_info:
     if:
       - {{ not (pr.title       | includes(regex=r/\b[A-Za-z]+-\d+\b/)) }}
       - {{ not (pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/)) }}
-      - {{ not (pr.source      | includes(regex=r/[A-Z]+-\d+/)) }}
+      - {{ not (pr.source      | includes(regex=r/\b[A-Za-z]+-\d+\b/)) }}
       - {{ not is.bot_author }}
     run:
       - action: add-label@v1
         args:
           label: "missing-jira"
           color: 'F6443B'
-
-is:
-  bot_author: {{ pr.author | match(list=["github-actions", "_bot_", "[bot]", "dependabot"]) | some }}
 ```
 
 ### Estimated Time to Review
