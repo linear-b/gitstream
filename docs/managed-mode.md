@@ -98,16 +98,21 @@ Label PRs that don't reference a Jira ticket in the title, description, or branc
 ```yaml
 automations:
   label_missing_jira_info:
+    # Triggered for PRs that don't have a Jira ticket reference in the title,
+    # description, or branch name.
     if:
-      - {{ not (pr.title       | includes(regex=r/\b[A-Za-z]+-\d+\b/)) }}
-      - {{ not (pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d+/)) }}
-      - {{ not (pr.source      | includes(regex=r/\b[A-Za-z]+-\d+\b/)) }}
+      - {{ missing_jira_ticket }}
       - {{ not is.bot_author }}
     run:
       - action: add-label@v1
         args:
           label: "missing-jira"
           color: 'F6443B'
+
+missing_jira_ticket_on_title:       {{ pr.title       | capture(regex=r/\b[A-Za-z]+-\d+\b/) | length == 0 }}
+missing_jira_ticket_on_description: {{ pr.description | capture(regex=r/atlassian.net\/browse\/\w{1,}-\d+/) | length == 0 }}
+missing_jira_ticket_on_branch:      {{ pr.source      | capture(regex=r/\b[A-Za-z]+-\d+\b/) | length == 0 }}
+missing_jira_ticket: {{ missing_jira_ticket_on_title and missing_jira_ticket_on_description and missing_jira_ticket_on_branch }}
 ```
 
 ### Estimated Time to Review
