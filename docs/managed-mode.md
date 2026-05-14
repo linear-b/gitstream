@@ -91,6 +91,28 @@ is:
   linearb_co_author: {{ branch.commits.messages | match(regex=r/[Cc]o-[Aa]uthored-[Bb]y:.*(gitstream-cm|linearb).*\[bot\]/) | some }}
 ```
 
+### Label Missing Jira Info
+
+Label PRs that don't reference a Jira ticket in the title, description, or branch name. This uses configurable regular expressions to detect Jira ticket formats; PRs that fail all three checks receive a `missing-jira` label. The title regex, description regex, branch regex, and label name can all be customized per organization from the LinearB platform.
+
+```yaml
+automations:
+  label_missing_jira_info:
+    if:
+      - {{ missing_jira_ticket }}
+      - {{ not is.bot_author }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "missing-jira"
+          color: 'F6443B'
+
+missing_jira_ticket_on_title:       {{ pr.title       | capture(regex=r/\b[A-Za-z]+-\d+\b/) | length == 0 }}
+missing_jira_ticket_on_description: {{ pr.description | capture(regex=r/atlassian\.net\/browse\/\w{1,}-\d+/) | length == 0 }}
+missing_jira_ticket_on_branch:      {{ pr.source      | capture(regex=r/\b[A-Za-z]+-\d+\b/) | length == 0 }}
+missing_jira_ticket: {{ missing_jira_ticket_on_title and missing_jira_ticket_on_description and missing_jira_ticket_on_branch }}
+```
+
 ### Estimated Time to Review
 
 Label all PRs with an estimated number of minutes it would take someone to review. gitStream automatically updates this label whenever a PR changes, providing valuable insight for reviewers and team planning.
