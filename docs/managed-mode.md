@@ -98,8 +98,6 @@ Label PRs that don't reference a Jira ticket in the title, description, or branc
 ```yaml
 automations:
   label_missing_jira_info:
-    # Triggered for PRs that don't have a Jira ticket reference in the title,
-    # description, or branch name.
     if:
       - {{ missing_jira_ticket }}
       - {{ not is.bot_author }}
