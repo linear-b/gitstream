@@ -1,0 +1,24 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+on:
+  - comment_added
+  - commit
+  - pr_created
+
+automations:
+  label_claude_code:
+    if:
+      - {{ claude_code_tag.pr_title or claude_code_tag.pr_desc or claude_code_tag.pr_comments or claude_code_tag.commit_messages }}
+    run:
+      - action: add-label@v1
+        args:
+          label: '🤖 Claude Code'
+
+claude_code_tag:
+  pr_title: {{ pr.title | includes(regex=r/#claude_code#/) }}
+  pr_desc: {{pr.description | includes(regex=r/#claude_code#/) }}
+  pr_comments: {{ pr.comments | map(attr='content') | match(regex=r/#claude_code#/) | some }}
+  commit_messages: {{ branch.commits.messages | match(regex=r/#claude_code#/) | some }} 

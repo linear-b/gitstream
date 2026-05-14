@@ -1,0 +1,21 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  junior:
+    if:
+      - {{ repo.author_age < 21 and (repo.age - repo.author_age) >= 21 }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'first-weeks'
+          color: '#FBBD10'
+      - action : add-comment@v1
+        args:
+          comment: |
+            During your first 21 days, your team lead will be assigned to review your PRs.
+      - action: add-reviewers@v1
+        args:
+          reviewers: [popeye]

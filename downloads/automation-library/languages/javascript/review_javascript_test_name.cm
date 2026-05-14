@@ -1,0 +1,18 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+newTests: {{ source.diff.files | filter(attr='new_file', regex=r/^test/) }}
+newTestsCount: {{ source.diff.files | filter(attr='new_file', regex=r/^test/) | length }}
+
+automations:
+  review_javascript_test_name:
+    if:
+
+      - {{ newTestsCount > 0}}     
+      - {{ source.diff.files | filter(attr='new_file', regex=r/^test/) | match(attr='new_file', regex=r/.test.js$/) | nope }}
+
+    run: 
+      - action: request-changes@v1
+        args:
+          comment: |
+              The test file name does not follow the JavaScript test name conventions. A test file name needs to have the suffix .test after class name. For example, if you are testing a class file called Data.js then the test file name has to be data.test.js.

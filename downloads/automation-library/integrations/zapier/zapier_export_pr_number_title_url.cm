@@ -1,0 +1,21 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+  pr_url: "https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"
+
+on:
+    - pr_created
+
+automations:
+  zapier_export_pr_number_title_url:
+    if:
+      - true
+    run:
+      - action: send-http-request@v1
+        args:
+          url: "{{ ZAPIER_WEBHOOK }}"
+          method: POST
+          headers: '{"Content-type": "application/json"}'
+          body: '{ "pr_number":"{{ pr.number }}", "pr_title":"{{ pr.title }}", "pr_url":"{{ pr_url }}" }'

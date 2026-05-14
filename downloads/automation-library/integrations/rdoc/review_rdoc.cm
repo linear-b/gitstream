@@ -1,0 +1,19 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+automations:
+  review_rdoc:
+    if:
+      - {{ source.diff.files | match(attr='diff', regex=r/^[\s\t]*#.*/) | every }}
+    run:
+      - action: add-label@v1
+        args:
+            label: "📓RDoc Only"
+            color: {{ colors.green }}
+      - action: add-reviewers@v1
+        args:
+          reviewers: [org/tech-writers]
+      - action: approve@v1
+
+colors:
+  green: '0e8a16'

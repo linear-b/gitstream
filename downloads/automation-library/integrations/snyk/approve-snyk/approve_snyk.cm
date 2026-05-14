@@ -1,0 +1,18 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  approve_snyk:
+    if:
+      - {{ branch.author | includes(term="snyk") }}
+    run:
+      - action: approve@v1
+      - action: add-label@v1
+        args:
+          label: "approved-snyk"
+      - action: merge@v1
+        args:
+          wait_for_all_checks: true
+          squash_on_merge: true

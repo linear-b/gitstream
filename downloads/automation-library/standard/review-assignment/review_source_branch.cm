@@ -1,0 +1,28 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+automations:
+  {% for item in branches %}
+  review_source_branch{{ item.name }}: 
+    if:       
+    - {{ branch.name | match(regex=item.prefix) }}
+    run:
+      - action: set-required-approvals@v1
+        args:
+          approvals: {{ item.reviews }}
+      - action: add-comment@v1
+        args: 
+          comment: | 
+            Reviewers from the {{ item.name }} team have automatically been assigned to this PR.
+      - action: add-reviewers@v1
+        args:
+          reviewers: [{{ item.reviewers }}]
+  {% endfor %}
+
+branches:
+    - name: ABC
+      prefix: r/^ABC/
+      reviewers: org/a-team
+    - name: XYZ
+      prefix: r/^XYZ-/
+      reviewers: org/x-team

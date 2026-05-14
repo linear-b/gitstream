@@ -1,0 +1,18 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  label_claude_code_contributors:
+    if:
+      - {{ pr.author | match(list=claude_code_contributors) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: '🤖 Claude Code'
+
+claude_code_contributors:
+  - username1
+  - username2
+  - etc 

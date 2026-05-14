@@ -1,0 +1,13 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  enforce_html_title_length:
+    if:
+      - {{ source.diff.files | matchDiffLines(regex=r/(<title>([\w\W]{1,29})<\/title>)|(<title>([\w\W]{61,})<\/title>)/) | some }}
+    run: 
+      - action: request-changes@v1
+        args:
+          comment: | 
+              Please ensure that all HTML titles are between 30 and 60 characters.

@@ -1,0 +1,31 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+newFiles: {{ source.diff.files | filter(attr='new_file', regex=r/^src\/(?!.*Test\.java$).*\.java$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
+newTests: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*Test\.java$/) | filter(attr='original_file', regex=r/^$/) | map(attr='new_file') }}
+
+newFilesCount: {{ source.diff.files | filter(attr='new_file', regex=r/^src\/(?!.*Test\.java$).*\.java$/) | filter(attr='original_file', regex=r/^$/) | length }}
+newTestsCount: {{ source.diff.files | filter(attr='new_file', regex=r/src\/.*Test\.java$/) | filter(attr='original_file', regex=r/^$/) | length }}
+
+automations:
+  review_missing_java_tests:
+    if:
+      - {{ newFilesCount != newTestsCount }}
+    run: 
+      - action: add-label@v1
+        args:
+            label: "⚠️ Missing Tests"
+            color: {{ colors.orange }}    
+      - action: request-changes@v1
+        args:
+          comment: |
+            Some of your new Java files are missing corresponding tests. Please ensure that all new files have a corresponding test file.
+
+            **New Files**: {{ newFilesCount }}
+            {{ newFiles }}
+
+            **New Tests**: {{ newTestsCount }}
+            {{ newTests }}
+colors:
+  orange: 'd93f0b'

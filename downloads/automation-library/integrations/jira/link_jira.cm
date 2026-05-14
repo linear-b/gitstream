@@ -1,0 +1,38 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+provider: jira
+
+# Change this to the name of your Jira organization
+orgName: org
+
+{% set ticketid = "" %}
+{% for ticket in tickets %}
+{% if (ticket | includes(regex=r/.+/)) %}
+{% set ticketid = ticket %}
+{% endif %}
+{% endfor %}
+
+automations:
+  link_jira:
+    if:
+      - {{ has.ticket_in_title or has.ticket_in_branch }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: Issue Tracker Link - [{{ticketid}}]({{tracker[provider].baseurl}}{{ticketid}})
+
+has:
+  ticket_in_title: {{ pr.title | includes(regex=tracker[provider].pattern) }}
+  ticket_in_branch: {{ branch.name | includes(regex=tracker[provider].pattern) }}
+
+tracker:
+  jira:
+    baseurl: https://{{orgName}}.atlassian.net/browse/
+    pattern: r/\b[A-Za-z]+-\d+\b/
+
+tickets:
+  - {{branch.name | capture(regex=tracker[provider].pattern)}}
+  - {{pr.title | capture(regex=tracker[provider].pattern)}}

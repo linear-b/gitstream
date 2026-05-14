@@ -1,0 +1,39 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+# Configure these to match your organization.
+provider: jira
+
+# Change this to match the name of your Shortcut organization. This is used in tracker.shortcut.baseurl
+orgName: org
+
+{% set ticketid = "" %}
+{% for ticket in tickets %}
+{% if (ticket | includes(regex=r/.+/)) %}
+{% set ticketid = ticket %}
+{% endif %}
+{% endfor %}
+
+automations:
+  link_shortcut:
+    if:
+      - {{ has.ticket_in_title or has.ticket_in_branch }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: Issue Tracker Link - [{{ticketid}}]({{tracker[provider].baseurl}}{{ticketid}})
+
+has:
+  ticket_in_title: {{ pr.title | includes(regex=tracker[provider].pattern) }}
+  ticket_in_branch: {{ branch.name | includes(regex=tracker[provider].pattern) }}
+
+tracker:
+  shortcut:
+    baseurl: https://app.shortcut.com/{{orgName}}/story/
+    pattern: r/(\w+)\/sc-(\d+)/
+
+tickets:
+  - {{branch.name | capture(regex=tracker[provider].pattern)}}
+  - {{pr.title | capture(regex=tracker[provider].pattern)}}

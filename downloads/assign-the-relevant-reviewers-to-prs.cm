@@ -1,0 +1,17 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  the_right_reviewer:
+    if: 
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            {{ repo | explainRankByGitBlame(gt=25) }}
+      - action: add-reviewers@v1
+        args:
+          reviewers: {{ repo | rankByGitBlame(gt=25) | random }}

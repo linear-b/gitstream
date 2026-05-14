@@ -1,0 +1,63 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+on: 
+  - pr_created
+
+automations:
+  summarize_language_changes:
+    if:
+      - true
+    run:
+    - action: add-comment@v1
+      args:
+        comment:  
+          <h3>Summary of Changes by Language</h3>
+              <table>
+              <tr>
+              <td>Language</td>
+              <td>Language Change Percentage</td>
+              </tr>
+              <tr>
+              <td>Java</td>
+              <td>{{ total.java | round }}%</td>
+              </tr>
+                <tr>
+              <td>JavaScript</td>
+              <td>{{ total.javascript | round }}%</td>
+              </tr>
+            <td>Rust</td>
+              <td>{{ total.rust | round }}%</td>
+              </tr>
+                <tr>
+              <td>Ruby</td>
+              <td>{{ total.ruby  | round }}%</td>
+              </tr>
+                <td>HTML</td>
+              <td>{{ total.html  | round }}%</td>
+              </tr>
+            <td>CSS</td>
+              <td>{{ total.css  | round }}%</td>
+              </tr>
+                <tr>
+              <td>Golang</td>
+              <td>{{ total.golang  | round }}%</td>
+              </tr>
+                <tr>
+              <td>Python</td>
+              <td>{{ total.python  | round }}%</td>
+              </tr>
+              </table>
+
+total:
+  additions: {{ branch.diff.files_metadata | map(attr='additions') | sum }}
+  java: {{ branch.diff.files_metadata | filter(attr='file', regex=r/.java$/ ) | map(attr='additions') | sum / total.additions * 100 }}
+  javascript: {{ branch.diff.files_metadata | filter(attr='file', regex=r/.js$/ ) | map(attr='additions') | sum / total.additions * 100 }}
+  rust: {{ branch.diff.files_metadata | filter(attr='file', regex=r/.rs$/ ) | map(attr='additions') | sum / total.additions * 100 }}
+  ruby: {{ branch.diff.files_metadata | filter(attr='file', regex=r/.rb$/ ) | map(attr='additions') | sum / total.additions * 100 }}
+  html: {{ branch.diff.files_metadata | filter(attr='file', regex=r/.html$/ ) | map(attr='additions') | sum / total.additions * 100 }}
+  css: {{ branch.diff.files_metadata | filter(attr='file', regex=r/.css$/ ) | map(attr='additions') | sum / total.additions * 100 }}
+  golang: {{ branch.diff.files_metadata | filter(attr='file', regex=r/.go$/ ) | map(attr='additions') | sum / total.additions * 100 }}
+  python: {{ branch.diff.files_metadata | filter(attr='file', regex=r/.py$/ ) | map(attr='additions') | sum / total.additions * 100 }}
+

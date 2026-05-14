@@ -1,0 +1,17 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  slack_auto_recognition:
+    if:
+        - {{ files | match(regex=r/(test|spec)/) | some }} # this pr has at least 1 test
+        - {{ files | length <= 5 }} # this pr has 5 or less files
+        - {{ branch.name | includes(regex=r/[A-Z]{2,}-\d+.*/) }} # this branch has the Jira ticket prefix
+        - {{ branch.diff.size <= 150 }} # this branch has 150 lines of code or less changed
+    run:
+        - action: send-slack-message@v1
+          args:
+            webhook_url: "{{ env.SLACK_WEBHOOK }}"
+            message: ":tada: Congrats to {{ pr.author }} for the amazing new PR, '{{ pr.title }}'! Check it out at https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"

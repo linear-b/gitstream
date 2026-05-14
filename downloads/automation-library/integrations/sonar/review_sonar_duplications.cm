@@ -1,0 +1,22 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+automations:
+  review_sonar_duplications:
+    if:
+      - {{ sonar.duplications > 3 }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'Sonar: {{ sonar.duplications}}% duplication'
+          color: {{ colors.yellow }}
+      - action: request-changes@v1
+        args:
+          comment: |
+            Sonar reports an excessive level of code duplication. Please consider refactoring your PR to reduce duplications.
+
+sonar: {{ pr | extractSonarFindings }}
+
+colors:
+  yellow: 'fbca04'

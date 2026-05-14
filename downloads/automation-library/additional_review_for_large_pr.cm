@@ -1,0 +1,19 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  additional_review_for_large_pr:
+    if:
+      - {{ branch | estimatedReviewTime >= 30 }}
+      - {{ files | length >= 10 }}
+      - {{ files | match(regex=r/src\//) | some }}
+    run:
+      - action: set-required-approvals@v1
+        args:
+          approvals: 2
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR is a large change and requires 2 reviews.

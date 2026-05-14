@@ -1,0 +1,19 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+automations:
+  enforce_copyright_header: 
+    if:   
+      - {{ source.diff.files | filter(attr='new_file', regex=r/src\//) | map(attr='original_file') | match(regex=r/^$/) | some }}
+      - {{ source.diff.files | matchDiffLines(regex=licence.licenceRegex) | nope }}
+
+    run:
+      - action: add-comment@v1
+        args: 
+          comment: | 
+            All new files in the '/src' directory must include the required copyright header at the top of the file. For example:
+              // Copyright (c) ORG  and contributors. All rights reserved.
+             // Licensed under the MIT license. See LICENSE file in the project root for details.
+
+licence:
+  licenceRegex: r/(Copyright \(c\) )|(Licensed under the MIT license)/

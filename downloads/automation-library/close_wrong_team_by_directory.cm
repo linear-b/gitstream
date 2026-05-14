@@ -1,0 +1,17 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  # Close PRs to restricted sections of the codebase if the PR author isn't on the correct team. 
+  close_wrong_team_by_directory:
+    # Triggered when someone who isn't on the `ui` team submits a PR to change files inside /src/views
+    if:
+      - {{ files | match(regex=r/src\/views/) | some }}
+      - {{ pr.author_teams | match(term='ui') | nope }}
+    # Close the PR and post a comment explaining the next step.
+    run:
+      - action: add-comment@v1
+        args: 
+          comment: Please contact a member of the `ui` team if you need to make changes to files in `src/views`
+      - action: close@v1
