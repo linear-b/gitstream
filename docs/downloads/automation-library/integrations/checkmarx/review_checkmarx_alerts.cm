@@ -1,0 +1,23 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+automations:
+  review_checkmarx_alerts:
+    if:
+      - {{ has.sast_alert or has.sca_alert or has.iac_alert }}
+    run:
+      - action: require-reviewers@v1
+        args:
+          reviewers: [my-organization/security-team]
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR requires additional review because Checkmarx identified security issues that need attention.
+
+checkmarx: {{ pr | extractCheckmarxFindings }}
+
+has:
+  sast_alert: {{ checkmarx.sast.severity.critical > 0 or checkmarx.sast.severity.high > 0 }}
+  sca_alert: {{ checkmarx.sca.severity.critical > 0 or checkmarx.sca.severity.high > 0 }}
+  iac_alert: {{ checkmarx.kics.severity.critical > 0 or checkmarx.kics.severity.high > 0 }}
