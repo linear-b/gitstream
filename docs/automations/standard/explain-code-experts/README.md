@@ -8,6 +8,8 @@ quickstart: true
 
 Post a comment that uses git blame and history to list the most relevant experts for all PRs. The comment will automatically update as additional commits are added to the PR.
 
+If your repository has formatting-only commits or mechanical migrations that should not count toward expertise, list those commit SHAs in `.git-blame-ignore-revs`. The blame-based calculation used by this automation excludes those revisions from code expert attribution.
+
 <div class="automationImage" markdown="1">
 ![Explain Code Experts](explain-code-experts.png)
 </div>
