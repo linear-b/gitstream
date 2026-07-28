@@ -545,6 +545,8 @@ is:
 
 This action, shall add a comment with codeExperts suggestion. If the comment already exists, the comment shall be edited.
 
+The underlying blame-based expertise calculation respects a repository-level `.git-blame-ignore-revs` file. Use this Git file to keep formatting-only commits or mechanical migrations from dominating code expert attribution.
+
 <div class="filter-details" markdown=1>
 
 | Args       | Usage | Type      | Description                                     |
@@ -582,9 +584,11 @@ automations:
 
     For more information about the `codeExperts` filter function, see the [filter functions documentation](https://docs.gitstream.cm/filter-functions/#codeexperts).
 
-!!! tip "Limit git history for code experts"
+!!! tip "Control code expert attribution"
 
     Use the [`config.git_history_since`](./cm-file.md#configgit_history_since) configuration to limit the git history analysis to commits after a specific date. This is useful for team transitions or when you want to focus on recent contributors only.
+
+    Use `.git-blame-ignore-revs` when you need to exclude specific commits from blame attribution. This is different from [`config.ignore_files`](./cm-file.md#configignore_files), which excludes whole files from automation processing.
 
 #### `merge` :fontawesome-brands-github: :fontawesome-brands-gitlab: :fontawesome-brands-bitbucket:
 

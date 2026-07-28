@@ -480,6 +480,12 @@ The output lists the Git provider users, e.g., GitHub users, which are mapped fr
 
     The `codeExperts` filter function calls gitStream app API with the `repo` context to calculate the experts.
 
+!!! note "Ignored blame revisions"
+
+    `codeExperts` respects a repository-level `.git-blame-ignore-revs` file when calculating blame-based expertise. Use this Git file to exclude specific commits, such as formatting-only commits or mechanical migrations, from blame attribution.
+
+    This is different from [`config.git_history_since`](./cm-file.md#configgit_history_since), which limits history analysis by date, and [`config.ignore_files`](./cm-file.md#configignore_files), which excludes whole files from automation processing.
+
 <div class="filter-details" markdown=1>
 
 | Argument       | Usage    | Type   | Description                                     |
@@ -806,6 +812,8 @@ This filter helps to explain the results of [`rankByGitBlame`](#rankbygitblame),
 
 The output lists the Git provider users, e.g., GitHub users, which are mapped from the Git users included in the `git-blame` output. Git users that could not be automatically mapped are marked with `*`. To map these users, you can add `user_mapping` see instructions [here](/cm-file#config).
 
+`explainRankByGitBlame` respects a repository-level `.git-blame-ignore-revs` file. Commits listed there are excluded from blame attribution before contributor percentages are calculated.
+
 <div class="filter-details" markdown=1>
 
 | Argument       | Usage    | Type   | Description                                     |
@@ -977,6 +985,8 @@ The `repo` context includes all the changed files, for each file it includes the
 contributors' percentage of lines in the file, based on `git-blame`.
 
 This function sums all these percentages per user and yield an average percentage of contribution. Then you can use the thresholds to get the right reviewer.
+
+`rankByGitBlame` respects a repository-level `.git-blame-ignore-revs` file. Commits listed there are excluded from blame attribution before contributor percentages are calculated.
 
 The output lists the Git provider users, e.g., GitHub users, which are mapped from the Git users included in the `git-blame` output. When gitStream cannot map the Git user to a Git provider user it will be dropped from the output list, hence the list may contain less than 100% of the lines.
 
