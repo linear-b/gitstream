@@ -279,6 +279,7 @@ The `pr` context includes metadata related to the pull request.
 | `pr.author`                 | String                                      | The PR author name                                                                         |
 | `pr.author_is_org_member`   | Bool                                        | `true` if the PR author is a member of the organization where gitStream is installed       |
 | `pr.author_teams`           | String                                      | The teams which the PR author is member of                                                 |
+| `pr.author_type`            | String                                      | The kind of account that opened the PR: `user`, `bot` or `organization`. See [note](#pr-author-type) |
 | `pr.checks`                 | [[`Check`]](#check-structure)               | List of checks, names and status                                                           |
 | `pr.comments`               | [[`Comment`]](#comment-structure)           | List of PR comments objects                                                                |
 | `pr.commit_statuses` :fontawesome-brands-github:       | [[`CommitStatus`]](#commitstatus-structure) | List of commit status check objects from external CI systems. |
@@ -300,6 +301,39 @@ The `pr` context includes metadata related to the pull request.
 | `pr.unresolved_threads`     | Integer                                     | The number of open review comments in the PR                                               |
 | `pr.updated_at`             | String                                      | The date and time the PR was last updated                                                  |
 | `pr.url`                    | String                                      | A link to the PR on                                                                        |
+
+##### PR author type
+
+`pr.author_type` reports the kind of account that opened the PR, so automations can skip
+machine-authored changes without maintaining a list of bot names:
+
+```yaml+jinja
+automations:
+  senior_review:
+    if:
+      - {{ pr.author_type != 'bot' }}
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: [senior-devs]
+```
+
+The value is lowercase, like `pr.status` and `repo.visibility`.
+
+Two limitations are worth knowing:
+
+- On GitHub, only GitHub Apps report `bot`. Automation that authenticates with a personal access
+  token - self-hosted Renovate, in-house CI bots - reports `user`.
+- On Bitbucket, apps report `bot` and workspaces report `organization`, but the bot user that
+  Bitbucket creates for each access token still reports `user`.
+
+The value is empty when gitStream could not determine the account kind. For full coverage, keep
+matching on the author name as well:
+
+```yaml+jinja
+is:
+  bot_author: {{ pr.author_type == 'bot' or (pr.author | match(list=["[bot]", "dependabot"]) | some) }}
+```
 
 Example for checking the PR title includes a Jira ticket:
 
