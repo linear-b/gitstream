@@ -442,7 +442,6 @@ Example:
 
 #### `Conversation` structure
 
-```json
 The fields available depend on the provider:
 
 ```json
