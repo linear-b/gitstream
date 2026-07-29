@@ -35,7 +35,7 @@ gitStream includes a collection of variables called contexts.
 The following structures are used in the context objects:
 
 - [`GitBlame`](#gitblame-structure)
-- :octicons-beaker-24: [`Check`](#check-structure)
+- [`Check`](#check-structure)
 - [`Contributor`](#contributor-structure)
 - [`FileDiff`](#filediff-structure)
 - [`FileMetadata`](#filemetadata-structure)
@@ -201,6 +201,19 @@ The `env` context allows the user to pass data from the repo that is unavailable
 
 To configure the `env` variable, add the `env` field to gitstream's workflow job configurations on `.github/workflows/gitstream.yml`. For more information, visit GitHub's guide for [Using secrets in GitHub Actions](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)
 
+!!! note
+
+    `env` is read from the environment of the process that runs the automation, so what you can set
+    depends on how gitStream runs:
+
+    - On GitHub, the job-level `env` shown above reaches the automation directly.
+    - On GitLab and Bitbucket, the automation runs in a container started by the pipeline in your
+      `cm` project. A CI/CD variable is visible to the pipeline job, but it only reaches the
+      automation if that pipeline forwards it to the container, for example
+      `-e MY_VAR=$MY_VAR` on the `docker run` step.
+    - In [Managed mode](/managed-mode/) the automation runs on gitStream's infrastructure, so its
+      process environment is not yours to configure.
+
 ```yaml title="examle: add secrets to the env variable"
 ...
 jobs:
@@ -275,30 +288,29 @@ The `pr` context includes metadata related to the pull request.
 | --------------------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | `pr`                        | Map                                         | Includes the info related to the PR                                                        |
 | `pr.approvals`              | [String]                                    | A list of the of reviewers that approved the PR                                            |
-| `pr.assignees`              | [String]                                    | A list of the people assigned to this pull request                                         |
+| `pr.assignees` :fontawesome-brands-github: :fontawesome-brands-gitlab:              | [String]                                    | A list of the people assigned to this pull request                                         |
 | `pr.author`                 | String                                      | The PR author name                                                                         |
-| `pr.author_is_org_member`   | Bool                                        | `true` if the PR author is a member of the organization where gitStream is installed       |
-| `pr.author_teams`           | String                                      | The teams which the PR author is member of                                                 |
+| `pr.author_is_org_member` :fontawesome-brands-github:   | Bool                                        | `true` if the PR author is a member of the organization where gitStream is installed       |
+| `pr.author_teams` :fontawesome-brands-github:           | [String]                                    | The teams which the PR author is member of                                                 |
 | `pr.author_type`            | String                                      | The kind of account that opened the PR: `user`, `bot` or `organization`. See [note](#pr-author-type) |
-| `pr.checks`                 | [[`Check`]](#check-structure)               | List of checks, names and status                                                           |
+| `pr.checks` :fontawesome-brands-github:                 | [[`Check`]](#check-structure)               | List of checks, names and status                                                           |
 | `pr.comments`               | [[`Comment`]](#comment-structure)           | List of PR comments objects                                                                |
 | `pr.commit_statuses` :fontawesome-brands-github:       | [[`CommitStatus`]](#commitstatus-structure) | List of commit status check objects from external CI systems. |
 | `pr.conflicted_files_count` | Integer                                     | The number files in the PR with conflicts                                                  |
-| `pr.conversations`          | [[`Conversation`]](#conversation-structure) | List of PR conversation objects, usually when reviewer have comments about the source code |
+| `pr.conversations` :fontawesome-brands-github: :fontawesome-brands-gitlab:          | [[`Conversation`]](#conversation-structure) | List of PR conversation objects, usually when reviewer have comments about the source code |
 | `pr.created_at`             | String                                      | The date and time the PR was created                                                       |
 | `pr.description`            | String                                      | The PR description text                                                                    |
 | `pr.draft`                  | Bool                                        | `true` when the PR is marked as Draft/WIP                                                  |
-| `pr.labels`                 | [String]                                    | The labels that are attached to the PR                                                     |
+| `pr.labels` :fontawesome-brands-github: :fontawesome-brands-gitlab:                 | [String]                                    | The labels that are attached to the PR                                                     |
 | `pr.number`                 | Integer                                     | The PR or MR Id number                                                                     |
-| `pr.provider`               | String                                      | The Git cloud provider name, e.g. `GitHub`, `GitLab` etc.                                  |
-| `pr.requested_changes`      | [String]                                    | List of users that requested changes                                                       |
+| `pr.requested_changes` :fontawesome-brands-github: :fontawesome-brands-bitbucket:      | [String]                                    | List of users that requested changes                                                       |
 | `pr.reviewers`              | [String]                                    | The list of reviewers set for this PR                                                      |
-| `pr.reviews`                | [[`Review`]](#review-structure)             | List of PR reviews, relevant in GitHub                                                     |
+| `pr.reviews` :fontawesome-brands-github:                | [[`Review`]](#review-structure)             | List of PR reviews                                                                         |
 | `pr.source`                 | String                                      | The branch from which the PR originates                                                    |
-| `pr.status`                 | String                                      | The PR status: `open`, `closed` and `merged`                                               |
+| `pr.status`                 | String                                      | The PR status: `open`, `closed` and `merged`. On GitLab the open state is reported as `opened` |
 | `pr.target`                 | String                                      | The branch the PR is intended merged into                                                  |
 | `pr.title`                  | String                                      | The PR title                                                                               |
-| `pr.unresolved_threads`     | Integer                                     | The number of open review comments in the PR                                               |
+| `pr.unresolved_threads` :fontawesome-brands-github:     | Integer                                     | The number of open review comments in the PR                                               |
 | `pr.updated_at`             | String                                      | The date and time the PR was last updated                                                  |
 | `pr.url`                    | String                                      | A link to the PR on                                                                        |
 
@@ -368,6 +380,7 @@ The `repo` context includes metadata related to the repo.
 | `repo.languages`    | Map                                     | Lists the languages used in the specified repository. The returned object is a map of key-value pairs representing a language and the percentage of bytes in that language within the code. |
 | `repo.name`         | String                                  | Repository name                                                                                                                                                                               |
 | `repo.owner`        | String                                  | Repository owner account name                                                                                                                                                                 |
+| `repo.provider`     | String                                  | The Git cloud provider name. Value is one of: `github`, `gitlab`, or `bitbucket`                                                                                                              |
 | `repo.visibility`   | String                                  | The visibility of the source branch repo. Value is one of: `private`, `internal`, or `public`                                                                                                 |
 
 #### `source`
@@ -399,7 +412,8 @@ The source context include all code changes, it is not safe to share it with unk
   "commenter": String, # The user that add the comment
   "content": String, # The comment body
   "created_at": String, # The time on which the comment was created
-  "updated_at": String, # The time on which the comment was last updated
+  "id": String, # The provider's identifier for the comment
+  "updated_at": String, # The time on which the comment was last updated. Not available on GitHub
 }
 ```
 
@@ -428,15 +442,21 @@ Example:
 
 #### `Conversation` structure
 
+The fields available depend on the provider:
+
 ```json
 {
   "commenter": String, # The user that add the comment
   "content": String, # The comment body
-  "created_at": String, # The time on which the comment was created
-  "updated_at": String, # The time on which the comment was updated
+  # GitHub only:
   "start_line": Integer, # The first line marked for this comment
   "end_line": Integer, # The last line marked for this comment
-  "is_resolved": Boolean # `true` when marked as resolved
+  "is_resolved": Boolean, # `true` when marked as resolved
+  # GitLab only:
+  "created_at": String, # The time on which the comment was created
+  "updated_at": String, # The time on which the comment was updated
+  "id": String, # The provider's identifier for the comment
+  "file_path": String, # The file the comment is attached to, including its path
 }
 ```
 
@@ -472,7 +492,9 @@ The `branch.diff.files_metadata` mapping includes a list of `FileMetadata`:
 {
   "additions": Integer, # The number of lines edited or added to the file
   "deletions": Integer, # The number of lines removed from the file
-  "file": String, # The name of the file before the changes, including its path
+  "file": String, # The name of the file after the changes, or before them when the file was deleted
+  "new_file": String, # The name of the file after the changes, including its path
+  "original_file": String, # The name of the file before the changes, empty for a new file
 }
 ```
 
@@ -560,8 +582,12 @@ For example:
 {
   "commenter": String, # The user that add the comment
   "content": String, # The comment body
-  "created_at": String, # The time on which the comment was created
   "state": String, # Either `approved`, `changes_requested`, `commented`, `pending`, `submitted`
   "conversations": [Conversation], # Conversations that are relvant to this Review feedback
 }
 ```
+
+!!! note
+
+    The `conversations` nested in a `Review` carry `commenter`, `content`, `created_at`, `state` and
+    `id` - not the line and resolution fields of a top-level [`Conversation`](#conversation-structure).
