@@ -11,6 +11,7 @@ image: docker:latest
 
 services:
   - name: docker:dind
+    command: ["--mtu=1360"]
 
 before_script:
   - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
