@@ -1,0 +1,41 @@
+tutorials/basic-usage-python-repo/.github/workflows/gitstream.yml
+  h_61b907e93a4090 36
+  e93a9d54411a421f 31-33
+docs/github-installation.md
+  e93a9d54411a421f 71-73,141-143,195-213,249-251
+docs/downloads/gitstream.yml
+  e93a9d54411a421f 33-35
+docs/downloads/gitstream-lite.yml
+  e93a9d54411a421f 33-35
+docs/troubleshooting.md
+  e93a9d54411a421f 98-101,186-188
+  h_61b907e93a4090 104
+.github/workflows/gitstream.yml
+  e93a9d54411a421f 33-35
+  h_61b907e93a4090 38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "4b624e8dc6ed8c71edac664fc0b60150839bc8ea",
+  "prompts": {
+    "e93a9d54411a421f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7a082db4-2056-48e3-a8f5-dc1305d0e7df",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Misha Kav",
+      "messages": [],
+      "total_additions": 47,
+      "total_deletions": 1,
+      "accepted_lines": 47,
+      "overriden_lines": 0
+    }
+  },
+  "humans": {
+    "h_61b907e93a4090": {
+      "author": "Misha Kav"
+    }
+  }
+}
