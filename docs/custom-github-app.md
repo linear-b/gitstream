@@ -9,7 +9,7 @@ description: Install gitStream on Your GitHub Server.
 
 !!! Tip
 
-    Multi-org support is also available by creating a `cm` organization and installing the app there. See step 11 for details on multi-org setup.
+    Multi-org support is also available by creating a `cm` organization and installing the app there. See step 12 for details on multi-org setup.
 
 # Custom GitHub App for Self-Hosted GitHub Server
 
@@ -149,7 +149,16 @@ To complete the integration, fill in the App ID and Private Key in the LinearB s
 
 ![LinearB setup](screenshots/setup-linearb-github-server-step-2.png)
 
-## 10. Connect GitHub App to Your Repositories
+## 10. Install the GitHub App in Your Organization
+
+After completing the setup in LinearB, a GitHub administrator must install the custom gitStream app in the organization that owns the repositories:
+
+1. In GitHub, go to **Settings -> Developer settings -> GitHub Apps**.
+2. Select the custom gitStream app you created.
+3. Select **Install App**, then select the organization where you want to use gitStream.
+4. Grant access to either **All repositories** or **Only select repositories**, and complete the installation.
+
+## 11. Connect GitHub App to Your Repositories
 
 Go to your organization settings in GitHub and navigate to **Third-party Access** to manage GitHub Apps. Select the account where you want to install the gitStream app. Choose the organization you used to create the GitHub app in the previous steps.
 
@@ -165,7 +174,7 @@ Choose the repositories you want to connect.
 
 ![Repository access](screenshots/choose-repo-access-for-new-github-app.png)
 
-## 11. Finish Setting Up gitStream
+## 12. Finish Setting Up gitStream
 
 You can now set up gitStream for a single repo, your GitHub organization or across all the organizations in the server. Select the tab below for the instructions you want.
 === "Single Repo"
@@ -276,7 +285,7 @@ You can now set up gitStream for a single repo, your GitHub organization or acro
             │     └─ gitstream.yml
             ```
 
-## 12. GitHub Enterprise Setup
+## 13. GitHub Enterprise Setup
 
 When running gitStream on GitHub Enterprise, you need to manually "clone" the following actions since runners don't connect to the internet:
 
