@@ -26,7 +26,13 @@ gitstream-job:
   script:
     - git clone --shallow-since="6 months ago" --no-tags https://gitlab-ci-token:${CI_JOB_TOKEN}${repoUrl} gitstream/repo
     - git clone --depth=1 --no-tags https://gitlab-ci-token:${CI_JOB_TOKEN}${cmUrl} gitstream/cm
-    - cd gitstream/repo && git fetch origin $head_ref:$head_ref && git checkout $head_ref
+    - |
+      set -e
+      cd gitstream/repo
+      git checkout --detach
+      # Fetch all branches so any base branch can be diffed; keep --shallow-since or this pulls full history.
+      git fetch --no-tags --force --shallow-since="6 months ago" origin '+refs/heads/*:refs/heads/*'
+      git checkout "$head_ref"
     - docker pull gitstream/rules-engine:latest
     - |
       docker run -v $CI_PROJECT_DIR/gitstream:/code \
