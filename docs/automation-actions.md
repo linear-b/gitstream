@@ -456,6 +456,9 @@ The `dump` filter ensures proper YAML formatting when the file content is insert
     | Lock | Regex | `.*(yarn\|gemfile\|podfile\|cargo\|composer\|pipfile\|gopkg)\.lock$` `.*gradle\.lockfile$` `.*lock\.sbt$` |
     | Build | Regex | `.*dist/.*\\.js` `.*build/.*\\.js` |
     | Data | Regex | `.*public/assets/.*\\.js` |
+    | Generated | Regex | `.*\\.pb\\.go$` `.*_pb2\\.pyi?$` `.*_pb2_grpc\\.pyi?$` `.*_grpc\\.pb\\..*$` `.*_pb\\.(rb\|ts\|js\|dart)$` `.*\\.pb\\.(cc\|h)$` |
+    | Minified | Regex | `.*\\.min\\.js$` `.*\\.min\\.css$` `.*\\.bundle\\.js$` |
+    | Vendored | Regex | `vendor/.*` |
 
     | Lock File Name          | Programming Language | Package Manager      |
     |-------------------------|----------------------|----------------------|
