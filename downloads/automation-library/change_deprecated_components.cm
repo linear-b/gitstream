@@ -1,0 +1,33 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  # Request changes when a PR includes deprecated components.
+  # This requires the `item` custom expression found at the bottom of this file.
+  {% for item in deprecated %}
+  # Automation names must be unique, so this adds an iterator index to each instance
+  review_deprecated_component_{{ item.old }}:
+    # Triggered when any of the modified files use a deprecated component
+    if:
+      - {{ source.diff.files | matchDiffLines(regex=item.regex) | some }}
+    # Apply a deprecated-component label, request changes, and post a comment with an explanation.
+    run:
+      - action: add-label@v1
+        args:
+          label: 'deprecated-component'
+          color: '#FF0000'
+      - action: request-changes@v1
+        args:
+          comment: |
+            `{{ item.old }}` component is deprecated, use `{{ item.new }}` instead
+  {% endfor %}
+
+# These are the deprecated files that are evaluated in catch_deprecated_components
+deprecated:
+  - regex: r/oldAPI/
+    old: oldAPI
+    new: newAPI
+  - regex: r/anotherOldAPI/
+    old: anotherOldAPI
+    new: anotherNewAPI

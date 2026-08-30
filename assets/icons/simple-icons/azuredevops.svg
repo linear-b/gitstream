@@ -1,0 +1,1 @@
+<!doctype html><script>const PATH=`/404`,parms=new URL(window.location).searchParams.toString(),opts=parms?`&${parms}`:``;window.location=`/?r=/404${opts}`;</script><noscript><meta content="0; URL=/?r=/404" http-equiv=refresh></head></noscript></html>

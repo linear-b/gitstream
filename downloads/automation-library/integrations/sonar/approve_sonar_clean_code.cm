@@ -1,0 +1,27 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+automations:
+  approve_sonar_clean_code:
+    if:
+      - {{ sonar.bugs.rating == 'A' }}
+      - {{ sonar.code_smells.rating == 'A' }}
+      - {{ sonar.vulnerabilities.rating == 'A' }}
+      - {{ sonar.security_hotspots.rating == 'A' }}
+      - {{ sonar.duplications == null or sonar.duplications == 0 }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: '✅ Sonar: Clean Code'
+          color: {{ colors.green }}
+      - action: approve@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR passes the SonarCloud quality gate check and as been automatically approved.
+
+sonar: {{ pr | extractSonarFindings }}
+
+colors:
+  green: '0e8a16'

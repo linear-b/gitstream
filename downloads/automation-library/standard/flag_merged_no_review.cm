@@ -1,0 +1,39 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+on:
+  - merge
+
+# https://docs.gitstream.cm/automation-actions/#send-slack-message
+slack_webhook: {{ env.SLACK_WEBHOOK }}
+
+# Update security_team to match your organization
+security_team: 'my-org/app-sec'
+
+automations:
+  flag_merged_no_review:
+    if:
+      - {{ pr.approvals | length == 0 }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "DCF5-merged-without-review"
+          color: {{ colors.red }}
+
+      - action: send-slack-message@v1
+        args:
+          message: "PR #{{ pr.number }} - {{ pr.title }} - was merged without peer reviews. SOC2 requires code reviews for every code change. _SOC2 ref: CC8.1_"
+          webhook_url: "{{ slack_webhook }}"
+
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR was merged without peer reviews. SOC2 requires code reviews for every code change.
+            _SOC2 ref: CC8.1_
+
+            @{{ security_team }}
+
+
+colors:
+  red: 'F6443B'

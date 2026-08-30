@@ -1,0 +1,32 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  tests_safe_changes:
+    if:
+      # Given the PR files changes, check that only tests were changed. The allTests filter checks for 
+      # the substring `test` or `spec` in the file path or file name.
+      - {{ files | allTests }}
+      # Checking `changes.ratio` which is calculated below
+      - {{ changes.ratio > 0.8 }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'tests-changes'
+      - action: add-comment@v1
+        args:
+          comment: |
+            PR added tests (ratio: {{ changes.ratio }})
+      # - action: approve@v1
+
+# You can add more sections to the .cm file to place more logic, and use it in your automations
+# The following logic `ratio` result is used in the automation above by checking `changes.ratio`
+changes:
+  # Sum all the line added/edited in the PR
+  additions: {{ branch.diff.files_metadata | map(attr='additions') | sum }}
+  # Sum all the line removed in the PR
+  deletions: {{ branch.diff.files_metadata | map(attr='deletions') | sum }}
+  # Calculate the ratio to check if it is about new code
+  ratio: {{ changes.additions / (changes.additions + changes.deletions) }}

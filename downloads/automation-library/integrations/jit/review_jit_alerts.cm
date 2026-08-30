@@ -1,0 +1,34 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  review_jit_high_alerts:
+    if:
+      - {{ jit.metrics.HIGH > 0 }}
+    run:
+      - action: require-reviewers@v1
+        args:
+          reviewers: [my-organization/security-team]
+      - action: set-required-approvals@v1
+        args:
+          approvals: 2
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR requires additional review because Jit reported one or more high risk vulnerabilities.
+  review_jit_medium_alerts:
+    if:
+      - {{ jit.metrics.MEDIUM > 0 }}
+    run:
+      - action: set-required-approvals@v1
+        args:
+          approvals: 2
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR requires additional reviewers because Jit reported one or more medium risk vulnerabilities.
+
+
+jit: {{ pr | extractJitFindings }}

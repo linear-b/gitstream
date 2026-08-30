@@ -1,0 +1,23 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+automations:
+  review_orca_alerts:
+    if:
+      - {{ has.vulnerability or has.iac_violation or has.secret }}
+    run:
+      - action: require-reviewers@v1
+        args:
+          reviewers: [my-organization/security-team]
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR requires additional review because it fails to meet Orca Security safe code standards.
+
+orca: {{ pr | extractOrcaFindings }}
+
+has:
+  vulnerability: {{ orca.vulnerabilities.priority == 'High' or orca.vulnerabilities.priority == 'Medium' }}
+  iac_violation: {{ orca.infrastructure_as_code.priority == 'High' or orca.infrastructure_as_code.priority == 'Medium' }}
+  secret: {{ orca.secrets.priority == 'High' or orca.secrets.priority == 'Medium' }}

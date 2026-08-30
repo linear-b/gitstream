@@ -1,0 +1,17 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  explain_code_experts:
+    on:
+      - pr_created
+      - pr_ready_for_review
+      - commit
+    if:
+      - {{ pr.labels | match(term='suggest-reviewer') | some }}
+    run:
+      - action: explain-code-experts@v1
+        args:
+          gt: 10

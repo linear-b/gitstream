@@ -1,0 +1,21 @@
+
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+automations:
+  #Assign PRs that only affect JSDocs to the technical writing team and add docs label
+  review_jsdoc:
+    if:
+      - {{ source.diff.files | match(attr='diff', regex=r/\/*\*[\s\S]*?\//) | every }}
+    run:
+      - action: add-label@v1
+        args:
+            label: "📓JSDoc Only"
+            color: {{ colors.green }}
+      - action: add-reviewers@v1
+        args:
+          reviewers: [fourth-organization/tech-writers]
+      - action: approve@v1
+      
+colors:
+  green: '0e8a16'

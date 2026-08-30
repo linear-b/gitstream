@@ -1,0 +1,13 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+automations:
+  review_javadoc_input_parameters: 
+    if:  
+        - {{ source.diff.files | matchDiffLines(regex=r/\*\s@param/) | nope }}
+        - {{ source.diff.files | matchDiffLines(regex=r/\b(public|protected|private|static|final|synchronized)?\s+\w+\s+\w+\s*\(([^)]*)\)\s*\{/) | some }}
+    run:
+      - action: add-comment@v1
+        args: 
+            comment: | 
+              This PR modifies method input parameters, but is missing Javadoc changes. Please check to ensure no Javadoc changes are necessary.

@@ -1,0 +1,21 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  approve_python_log_output:
+    # Triggered for python changes that only affect lines of code that invoke a logger object. 
+    # Modify 'logger' to match your dev environment.
+    if: 
+      - {{ files | match(regex=r/\.py$/) | every }}
+      - {{ source.diff.files | matchDiffLines(regex=r/^[+-].*logger\.(trace|debug|info|warn|error)/, ignoreWhiteSpaces=true) | every }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'log-output-only'
+      - action: approve@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR has been approved because it only contains changes to log output

@@ -1,0 +1,20 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  approve_rust_log_output:
+    # Triggered for Rust changes that only affect the logging macros
+    if: 
+      - {{ files | extensions | match(term='rs') | every }}
+      - {{ source.diff.files | matchDiffLines(regex=r/^.*\b(println|print|dbg|error|warn|info|debug|trace)\b!/, ignoreWhiteSpaces=true) | every }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'log-output-only'
+      - action: approve@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR has been approved because it only contains changes to log output

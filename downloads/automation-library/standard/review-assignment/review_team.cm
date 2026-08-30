@@ -1,0 +1,26 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  {% for item in teams %}
+  review_team_{{ item.name }}: 
+    if:  
+      - {{ pr.author_teams | match(regex=item.regex) }}
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: [{{ item.team }}] 
+      - action: add-comment@v1
+        args: 
+          comment: | 
+            This {{ item.name }} team has been automatically assigned to review this PR.
+  {% endfor %}
+
+teams:
+  - regex: r/ui-team/
+    name: UI Team
+    team: org/ui-team
+  - regex: r/mobile-team/
+    name: Mobile
+    team: org/mobile-team

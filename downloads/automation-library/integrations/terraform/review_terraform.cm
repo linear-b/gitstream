@@ -1,0 +1,19 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  review_terraform:
+    # Triggered for any changes to Terraform files
+    if:
+      - {{ files | match(regex=r/.*\.tf.*/) | some }}
+    # Assign infrastructure team as reviewer for change in Terraform files
+    run:
+      - action: require-reviewers@v1
+        args:
+          reviewers: [org/infrastructure]
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR affects Terraform configurations and requires a review from the Infra team.

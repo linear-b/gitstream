@@ -1,0 +1,15 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  double_review:
+    if:
+      - {{ branch | estimatedReviewTime >= 30 }}
+      - {{ files | length >= 10 }}
+      - {{ files | match(regex=r/src\//) | some }}
+    run:
+      - action: set-required-approvals@v1
+        args:
+          approvals: 2

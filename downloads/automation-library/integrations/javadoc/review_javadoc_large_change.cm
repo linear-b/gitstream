@@ -1,0 +1,34 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  #Require more extensive reviews for large Java changes that lack Javadoc updates.
+  review_javadoc_large:
+    if:
+      - {{ changes.ratio > 25}}
+      - {{ source.diff.files | matchDiffLines(regex=r/\/*\*([\s\S]*?)\//) | nope }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: "⚠️ Missing Javadoc"
+          color: {{ colors.yellow }}
+      - action: add-comment@v1
+        args: 
+          comment: | 
+              This PR makes major changes to Java classes, but is missing updates to Javadoc. Please double check for any necessary Javadoc updates.
+      - action: add-reviewers@v1
+        args:
+          reviewers: [fourth-organization/tech-writers]
+
+changes:
+  # Sum all the lines added/edited in the PR
+  additions: {{ branch.diff.files_metadata | map(attr='additions') | sum }}
+  # Sum all the line removed in the PR
+  deletions: {{ branch.diff.files_metadata | map(attr='deletions') | sum }}
+  # Calculate the ratio of new code
+  ratio: {{ (changes.additions / (changes.additions + changes.deletions)) * 100 | round(2) }}
+
+colors:
+  yellow: 'fbca04'

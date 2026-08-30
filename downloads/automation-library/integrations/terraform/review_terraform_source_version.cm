@@ -1,0 +1,22 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  review_terraform_source_version:
+    # Check if New Content contains a source URL, the URL is not part of allow list and lacks version reference
+    if: 
+      - {{ source.diff.files | match(attr='new_content', regex=r/source.*?=.*\".*(http|https).*\"/) | some }}
+      - {{ source.diff.files | match(attr='new_content', list=allowlist) | nope }}
+      - {{ source.diff.files | match(attr='new_content', regex=r/source.*?=.*\?ref=v.*/) | nope }}
+    run:
+      - action: request-changes@v1
+        args:
+          comment: |
+            You must reference a specific version when accessing Terraform module sources via URL, e.g. `?ref=v1.0.0`. Please update your Terraform files to follow this practice.
+
+allowlist:
+  - 'https://github.com/terraform-aws-modules/terraform-aws-s3-bucket.git'
+  - 'https://github.com/terraform-aws-modules/terraform-aws-vpc.git'
+  - 'https://github.com/terraform-aws-modules/terraform-aws-eks.git'

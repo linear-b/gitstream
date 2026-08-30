@@ -1,0 +1,18 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+has_jira_ticket: {{ pr.title | hasJiraTicket(env.JIRA_API_TOKEN) }}
+
+automations:
+  add_jira: 
+    if:
+      - {{ not has_jira_ticket }}
+    run:
+      - action: send-http-request@v1
+        args:
+          url: env.JIRA_WEBHOOK_URL
+          method: POST
+          headers: '{"Content-type": "application/json"}'
+          body: '{"data":{"pr_url": "https://github.com/{{ repo.owner }}/{{ repo.name }}/pull/{{ pr.number }}"}}'

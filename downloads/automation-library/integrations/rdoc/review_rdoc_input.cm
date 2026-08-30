@@ -1,0 +1,14 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+automations:
+  review_rdoc_input: 
+    if:  
+      - {{ source.diff.files | match(attr='diff', regex=r/(\#.*\n.*)*def/) | nope }}
+      - {{ source.diff.files | match(attr='diff', regex=r/def.*\(.*\)/ | some }}
+    run:
+    - action: add-comment@v1
+      args: 
+        comment: | 
+            This PR modifies method input parameters, but is missing RDoc changes. Please check to ensure no RDoc changes are necessary.
+

@@ -1,0 +1,44 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+{% set misslist = [] %}
+{% for pattern in terraform %}
+{% if (newfilesinpr | match(term=pattern) | nope) %}
+{% set misslist = misslist + [pattern+' '] %}
+{% endif %}
+{% endfor %} 
+
+automations:
+  review_new_terraform_module:
+    if: 
+      - {{misslist | match(regex=r/.*/) | some}}
+      - {{is.mainfile and is.mainfilenotinroot }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            New terraform modules must contain all required components before merging. Please update your PR with the required components and gitStream will automatically remove this comment once completed.
+
+            Here are the required components, {{misslist}} should be customized appropriately:
+            my_module/
+            ├── main.tf
+            ├── outputs.tf
+            ├── providers.tf
+      - action: add-label@v1
+        args:
+          label: '⚠️ Missing Terraform Components'
+          color: '#FFA500'
+
+resources:
+  module_directory: 'modules'
+terraform:
+  - main.tf
+  - outputs.tf
+  - providers.tf
+is:
+  mainfile: {{newfilesinpr | match(term = "main.tf") | some}}
+  mainfilenotinroot: {{source.diff.files | map(attr='original_file') | match(term = "main.tf") | nope }}
+newfilesinpr:
+  {{ branch.diff.files_metadata | map(attr='new_file')}}

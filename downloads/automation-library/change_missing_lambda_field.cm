@@ -1,0 +1,21 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  # Request changes when required Lambda information is missing from the PR.
+  catch_missing_lambda_info:
+    # Triggered for new Lambda functions that are missing a description field.
+    if:
+      - {{ source.diff.files | matchDiffLines(regex=r/LambdaFunction/) | some }}
+      - {{ source.diff.files | matchDiffLines(regex=r/description:/) | nope }}
+    # Apply the lambda-missing-field label and request changes to the PR.
+    run:
+      - action: add-label@v1
+        args:
+          label: 'lambda-missing-field'
+          color: '#FF0000'
+      - action: request-changes@v1
+        args:
+          comment: |
+            New `LambdaFunction` must have `description:` field.

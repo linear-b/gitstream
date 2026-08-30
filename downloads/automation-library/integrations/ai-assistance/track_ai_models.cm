@@ -1,0 +1,71 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  label_ai_tools_by_checkbox:
+    # Apply labels based on the checkboxes selected in the PR comment
+    if:
+      - {{ pr.comments | filter(attr='content', regex=r/\- \[x\] GitHub Copilot/) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "🤖 ai-copilot"
+          
+  label_ai_cursor:
+    if:
+      - {{ pr.comments | filter(attr='content', regex=r/\- \[x\] Cursor/) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "🤖 ai-cursor"
+          
+  label_ai_tabnine:
+    if:
+      - {{ pr.comments | filter(attr='content', regex=r/\- \[x\] Tabnine/) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "🤖 ai-tabnine"
+          
+  label_ai_jetbrains:
+    if:
+      - {{ pr.comments | filter(attr='content', regex=r/\- \[x\] JetBrains AI Assistant/) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "🤖 ai-jetbrains"
+          
+  label_ai_intellicode:
+    if:
+      - {{ pr.comments | filter(attr='content', regex=r/\- \[x\] VSCode IntelliCode/) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "🤖 ai-intellicode"
+          
+  label_ai_chatgpt:
+    if:
+      - {{ pr.comments | filter(attr='content', regex=r/\- \[x\] ChatGPT/) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "🤖 ai-chatgpt"
+          
+  label_ai_other:
+    if:
+      - {{ pr.comments | filter(attr='content', regex=r/\- \[x\] Other AI tool/) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "🤖 ai-other"
+          
+  label_ai_none:
+    if:
+      - {{ pr.comments | filter(attr='content', regex=r/\- \[x\] No AI tools were used/) | some }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "🤖 ai-none"
+          

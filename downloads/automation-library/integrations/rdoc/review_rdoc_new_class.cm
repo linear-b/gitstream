@@ -1,0 +1,24 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+automations:
+  review_rdoc_new_class: 
+    if:  
+      - {{ is.rb and is.new }} 
+      - {{ source.diff.files | match(attr='diff', regex=r/(\#.*\n.*)*def/) | nope }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "⚠️ Missing RDoc"
+          color: {{ colors.yellow }}
+      - action: add-comment@v1
+        args: 
+          comment: | 
+            RDoc is required for all Ruby classes. Please add documentation for this PR.
+
+is:
+    rb: {{ files | extensions | match(regex=r/rb/) | every }}
+    new: {{ source.diff.files | map(attr='original_file') | match(regex=r/^$/) | some }}
+
+colors:
+  yellow: 'fbca04'

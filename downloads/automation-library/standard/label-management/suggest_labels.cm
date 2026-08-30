@@ -1,0 +1,17 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+automations:
+  suggest_labels:  
+    if:  
+      - {{ pr.labels | length == 0}}
+    run:
+      - action: add-comment@v1
+        args: 
+          comment: | 
+            All PRs must contain labels that indicate which CI/CD systems must be run. PLease update your PR to include one of the following labels: `Build: Mobile`, `Build: UI`, `Build: All`, `Build: None`
+
+            Additionally, Here are some labels you can apply to this PR that may be helpful:
+               * Suggest Reviewer - Use this if you aren't sure who to assign as the reviewer.
+               * WIP - Indicate this is a work in progress that shouldn't be merged.
+

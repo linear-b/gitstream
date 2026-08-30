@@ -1,0 +1,25 @@
+manifest:
+  version: 1.0
+
+automations:
+  review_new_class_javadoc:
+    # Triggered for new Java files that lack Javadoc content.
+    if:
+      - {{ is.java and is.new }}
+      - {{ source.diff.files | matchDiffLines(regex=r/\/*\*([\s\S]*?)\//) | nope }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: "⚠️ Missing Javadoc"
+          color: {{ colors.yellow }}
+      - action: request-changes@v1
+        args:
+          comment: | 
+              This PR creates new Java classes, but is missing updates to Javadoc. Please double check for any necessary Javadoc updates.
+
+is:
+    java: {{ files | extensions | match(term='java') | every }}
+    new: {{ source.diff.files | map(attr='original_file') | match(regex=r/^$/) | some }}
+
+colors:
+  yellow: 'fbca04'

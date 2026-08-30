@@ -1,0 +1,19 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  # Apply a label that indicates when a PR deletes files
+  # This uses the `has` custom expression found at the bottom of this file
+  label_deleted_files:
+    if:
+      - {{ has.deleted_files }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'deleted-files'
+          color: '#DF9C04'
+
+# This is used in the `label_deleted_files` automation
+has:
+  deleted_files: {{ source.diff.files | map(attr='new_file') | match(term='/dev/null') | some }}

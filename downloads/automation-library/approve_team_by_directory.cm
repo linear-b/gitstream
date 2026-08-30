@@ -1,0 +1,18 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  approve_team_by_directory:
+    # Triggered for PRs that only include changes to files inside the docs directory,
+    # and that are authored by someone on the tech-writers team.
+    if:
+      - {{ files | match(regex=r/docs\//) | every }}
+      - {{ pr.author_teams | match(term='tech-writers') }}
+    run: 
+      - action: approve@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            Docs changes from the tech-writers team are automatically approved.

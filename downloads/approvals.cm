@@ -1,0 +1,114 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  # Automatically approve documentation improvements from the `tech-writers` team.
+  docs_approval:
+    if:
+      - {{ files | allDocs }}
+      - {{ pr.author_teams | match(term='tech-writers') }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'safe-change'
+      - action: approve@v1
+
+
+  tests_approval:
+    # Triggered for tests that are more than 80% new additions.
+    # Uses the `changes` custom expression at the bottom of this file. 
+    if:
+      - {{ files | allTests }}
+      - {{ changes.ratio > 0.8 }}
+    # Post a comment 
+    run: 
+      - action: add-comment@v1
+        args:
+          comment: |
+            PR added tests (ratio: {{ changes.ratio }})
+      - action: approve@v1
+
+
+  # Close PRs to restricted sections of the codebase. 
+  close_ui_changes_by_non_ui:
+    # Triggered when someone who isn't on the `ui` team submits a PR to change files inside /src/views
+    if:
+      - {{ files | match(regex=r/src\/views/) | some }}
+      - {{ pr.author_teams | match(term='ui') | nope }}
+    # Close the PR and post a comment explaining the next step.
+    run:
+      - action: add-comment@v1
+        args: 
+          comment: Please contact a member of the `ui` team if you need to make changes to files in `src/views`
+      - action: close@v1
+
+  # Approve small changes automatically.
+  # This requires the `is` custom expression found at the bottom of this file.
+  approve_tiny_fix:
+    # Triggered for PRS that are only one change in a single file.
+    if:
+      - {{ is.one_file and is.one_line }}
+    # Apply the tiny-fix label and approve the PR.
+    run:
+      - action: add-label@v1
+        args:
+          label: 'tiny-fix'
+      - action: approve@v1
+
+  # Request changes when required information is missing from the PR.
+  catch_missing_lambda_info:
+    # Triggered for new Lambda functions that are missing a description field.
+    if:
+      - {{ source.diff.files | matchDiffLines(regex=r/LambdaFunction/) | some }}
+      - {{ source.diff.files | matchDiffLines(regex=r/description:/) | nope }}
+    # Apply the lambda-missing-field label and request changes to the PR.
+    run:
+      - action: add-label@v1
+        args:
+          label: 'lambda-missing-field'
+          color: '#FF0000'
+      - action: request-changes@v1
+        args:
+          comment: |
+            New `LambdaFunction` must have `description:` field.
+
+  # Request changes when a PR includes deprecated components.
+  # This requires the `item` custom expression found at the bottom of this file.
+  {% for item in deprecated %}
+  # Automation names must be unique, so this adds an iterator index to each instance
+  catch_deprecated_components_{{ loop.index }}:
+    # Triggered when any of the modified files use a deprecated component
+    if:
+      - {{ source.diff.files | matchDiffLines(regex=item.regex) | some }}
+    # Apply a deprecated-component label, request changes, and post a comment with an explanation.
+    run:
+      - action: add-label@v1
+        args:
+          label: 'deprecated-component'
+          color: '#FF0000'
+      - action: request-changes@v1
+        args:
+          comment: |
+            `{{ item.old }}` component is deprecated, use `{{ item.new }}` instead
+  {% endfor %}
+
+# These calculations are used in the `tests_approval` automation
+changes:
+  additions: {{ branch.diff.files_metadata | map(attr='additions') | sum }}
+  deletions: {{ branch.diff.files_metadata | map(attr='deletions') | sum }}
+  ratio: {{ changes.additions / (changes.additions + changes.deletions) }}
+
+# This custom expression is used in the `approve_tiny_fix` automation
+is:
+  one_file: {{ files | length == 1 }}
+  one_line: {{ branch.diff.size <= 2 }}
+
+# These are the deprecated files that are evaluated in catch_deprecated_components
+deprecated:
+  - regex: r/oldAPI/
+    old: oldAPI
+    new: newAPI
+  - regex: r/anotherOldAPI/
+    old: anotherOldAPI
+    new: anotherNewAPI

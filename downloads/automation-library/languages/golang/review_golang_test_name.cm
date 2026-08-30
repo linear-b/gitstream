@@ -1,0 +1,14 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+automations:
+  review_golang_test_name:
+    if:   
+       - {{ source.diff.files | matchDiffLines(regex=r/\*testing.T/) | some }} # Golang test files are created in a separate test directory, so this how we check if it is a test file.
+       - {{ source.diff.files | match(attr='new_file', regex=r/_test.go$/) | nope }}
+    run: 
+      - action: request-changes@v1
+        args:
+          comment: |
+              The test file name does not follow the Golang test name conventions. A test file name needs to have the suffix _test after class name. For example, if you are testing a class file called data.go then the test file name has to be data_test.go.

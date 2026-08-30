@@ -1,0 +1,22 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+on:
+  - label_added
+  - label_removed
+
+automations:
+  skip_github_action_label:
+    if:
+      - {{ pr.labels | match(term='experimental') | some }}
+    run:
+      - action: add-github-check@v1
+        args:
+          check_name: production-ci
+          conclusion: skipped
+      - action: add-comment@v1
+        args:
+          comment: |
+            [gitStream](https://docs.gitstream.cm) automatically skipped production CI pipelines because this is labeled for experimental release.

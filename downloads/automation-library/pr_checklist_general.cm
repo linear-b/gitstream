@@ -1,0 +1,13 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  checklist: 
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: {{ "" | checklist(branch, files, pr, repo, env, source) }}
