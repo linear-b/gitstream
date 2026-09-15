@@ -10,5 +10,5 @@ automations:
     run:
       - action: add-reviewers@v1
         args:
-          reviewers: ['linear-b/team-flare']
+          reviewers: ['linear-b/capeesh']
  
